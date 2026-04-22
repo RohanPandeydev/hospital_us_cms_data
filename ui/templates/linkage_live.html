@@ -1,0 +1,171 @@
+{% extends "base.html" %}
+{% block title %}Device ↔ Hospital Linkage{% endblock %}
+{% block content %}
+<div class="page-header">
+  <h1>🔗 Device ↔ Hospital Outcome Linkage</h1>
+  <p>Live join: FDA device adverse events × CMS hospital outcomes. This is the point of the whole system.</p>
+</div>
+
+<div class="explain">
+  <strong>How the join works:</strong>
+  <div style="display:flex; gap:1rem; margin-top:0.5rem; flex-wrap:wrap;">
+    <div style="flex:1; min-width:200px;">
+      <strong>1.</strong> FDA reports a device event → gets us <code>product_code</code> (e.g. <code>LWS</code> = defibrillator)
+    </div>
+    <div style="flex:1; min-width:200px;">
+      <strong>2.</strong> Our bridge maps that product_code → CMS measure (e.g. <code>READM-30-HF-HRRP</code>)
+    </div>
+    <div style="flex:1; min-width:200px;">
+      <strong>3.</strong> That CMS measure has per-hospital values → we know which hospitals are at risk
+    </div>
+  </div>
+</div>
+
+<div class="kpi">
+  <div class="box"><div class="label">Total MAUDE events <i class="info-icon">i<span class="info-tip">Total adverse-event reports ingested from FDA MAUDE — the raw FDA-side denominator.</span></i></div><div class="value">{{ "{:,}".format(summary[3]) }}</div></div>
+  <div class="box" style="background: var(--accent-glow); border-color: rgba(99,102,241,0.25);">
+    <div class="label" style="color: var(--accent-light);">Events ↔ CMS linked <i class="info-icon">i<span class="info-tip">The core KPI: MAUDE events where the device's product_code matches a row in our bridge table and therefore traces to a CMS outcome measure. Higher coverage = more of the FDA signal is usable for hospital risk modeling.</span></i></div>
+    <div class="value" style="color: var(--accent-light);">{{ "{:,}".format(summary[0]) }}</div>
+    <div class="delta">{{ (summary[0] / (summary[3] or 1) * 100) | round }}% coverage</div>
+  </div>
+  <div class="box"><div class="label">Linked product codes <i class="info-icon">i<span class="info-tip">Distinct FDA product codes (device categories) for which we have at least one bridge mapping to a CMS measure. Growing this number expands ML model coverage.</span></i></div><div class="value">{{ summary[1] }}</div></div>
+  <div class="box"><div class="label">CMS measures hit <i class="info-icon">i<span class="info-tip">Distinct CMS outcome measures reached through the bridge. Each measure is one supervised-learning target for our device-risk models.</span></i></div><div class="value">{{ summary[2] }}</div></div>
+  <div class="box"><div class="label">Bridge rows <i class="info-icon">i<span class="info-tip">Total rows in bridge_hcpcs_to_product_code — our hand-curated + auto-matched crosswalk. More rows = broader linkage coverage.</span></i></div><div class="value">{{ summary[4] }}</div></div>
+</div>
+
+<div class="grid-2">
+  <div class="card">
+    <div class="card-title">Top device → outcome links <i class="info-icon">i<span class="info-tip">The 12 strongest device-to-outcome links in our bridge, ranked by FDA event volume. Hover a bar to see which CMS measure it ties to.</span></i></div>
+    <p class="card-subtitle">Which device categories produce the most adverse events tied to each CMS outcome measure.</p>
+    <div class="chart-tall"><canvas id="linkChart"></canvas></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Events by outcome domain <i class="info-icon">i<span class="info-tip">Events aggregated by clinical domain. Readmission and Mortality typically dominate because cardiac rhythm devices (pacemakers, defibrillators) generate high event volume.</span></i></div>
+    <p class="card-subtitle">Grouped by clinical domain. Heart failure (HF) dominates because pacemaker/defib lead events are frequent. CLABSI (infections) is the purest device-caused signal.</p>
+    <div class="chart-tall"><canvas id="domainChart"></canvas></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">Full linkage map</div>
+  <p class="card-subtitle">Every FDA device category that's tied to a CMS outcome, sorted by event count.</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Device category <i class="info-icon">i<span class="info-tip">Human-readable label for the FDA device family (e.g., "Pacemaker, Dual-Chamber", "Atherectomy Catheter"). Derived from the FDA CDRH Product Classification database.</span></i></th>
+        <th>Plain-English outcome <i class="info-icon">i<span class="info-tip">Our translation of the CMS measure code into something a non-clinician can read (e.g., "30-day readmission after heart failure").</span></i></th>
+        <th>CMS code <i class="info-icon">i<span class="info-tip">The official CMS measure identifier (e.g., READM_30_HF). Used as the label/target in ML models.</span></i></th>
+        <th>Domain <i class="info-icon">i<span class="info-tip">Clinical domain grouping: Readmission, Mortality, Infection, Safety, Complication, Patient Experience, etc. Used for feature grouping in ML.</span></i></th>
+        <th>FDA events <i class="info-icon">i<span class="info-tip">How many FDA adverse events link to this (device → outcome) pair. Larger numbers = stronger training signal.</span></i></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in by_category %}
+      {% set info = decode_measure(row[1]) %}
+      <tr>
+        <td><strong>{{ row[0] }}</strong></td>
+        <td>{{ info[0] or row[1] }}</td>
+        <td><code class="measure">{{ row[1] }}</code></td>
+        <td>{% if info[1] %}<span class="domain-tag">{{ info[1] }}</span>{% endif %}</td>
+        <td class="score-badge">{{ row[2] }}</td>
+        <td><a href="/linkage-live?cms_measure={{ row[1] }}">drill down →</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% if cms_measure %}
+<hr>
+{% set info = decode_measure(cms_measure) %}
+<div class="card" style="border-left: 3px solid var(--accent);">
+  <div class="card-title">Drill-down: {{ info[0] or cms_measure }}</div>
+  <p class="card-subtitle">
+    <code class="measure">{{ cms_measure }}</code>
+    {% if info[2] %}— {{ info[2] }}{% endif %}
+  </p>
+  <p class="muted">All FDA adverse events for devices that map to this CMS outcome, by brand + manufacturer.</p>
+  <table class="scroll-wrap">
+    <thead>
+      <tr>
+        <th>Device category</th><th>Product</th><th>Brand</th><th>Manufacturer</th>
+        <th>Events</th><th>Deaths</th><th>Injuries</th><th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for r in detail_rows %}
+      <tr>
+        <td><strong>{{ r[0] }}</strong></td>
+        <td><code class="measure">{{ r[1] }}</code></td>
+        <td class="cell">{{ r[2] or '—' }}</td>
+        <td class="cell">{{ r[3] or '—' }}</td>
+        <td class="score-badge">{{ r[4] }}</td>
+        <td>{% if r[5] and r[5] > 0 %}<span class="risk risk-high">{{ r[5] }}</span>{% else %}—{% endif %}</td>
+        <td>{% if r[6] and r[6] > 0 %}<span class="risk risk-med">{{ r[6] }}</span>{% else %}—{% endif %}</td>
+        <td><a href="/fda?product_code={{ r[1] }}">events →</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endif %}
+
+<div class="card">
+  <div class="card-title">Quick drill-down</div>
+  <form method="get" action="/linkage-live">
+    <select name="cms_measure" onchange="this.form.submit()" style="font-size:0.85rem; padding:0.5rem 0.7rem; width:100%; max-width:500px; background: var(--bg-elevated); color: var(--text-primary); border: 1px solid var(--border); border-radius: var(--radius-xs); font-family: 'Inter', sans-serif;">
+      <option value="">Pick a CMS measure to see all linked FDA events…</option>
+      {% for m in measures_list %}
+        {% set info = decode_measure(m) %}
+        <option value="{{ m }}" {% if m==cms_measure %}selected{% endif %}>
+          {{ info[0] or m }}
+        </option>
+      {% endfor %}
+    </select>
+  </form>
+</div>
+
+<script>
+const bc = {{ by_category|json_safe|tojson }};
+new Chart(document.getElementById('linkChart'), {
+  type: 'bar',
+  data: {
+    labels: bc.slice(0, 12).map(r => r[0]),
+    datasets: [{
+      data: bc.slice(0, 12).map(r => r[2]),
+      backgroundColor: '#8b5cf6',
+      borderRadius: 4,
+    }],
+  },
+  options: {responsive:true, maintainAspectRatio:false, indexAxis:'y',
+    plugins: {legend:{display:false},
+              tooltip: {callbacks: {afterLabel: (ctx) => 'CMS measure: ' + bc[ctx.dataIndex][1]}}}},
+});
+
+// Group by domain (inferred from measure ID prefix)
+const domainMap = {};
+for (const r of bc) {
+  let domain = 'Other';
+  if (r[1].startsWith('READM') || r[1].startsWith('EDAC')) domain = 'Readmission';
+  else if (r[1].startsWith('MORT')) domain = 'Mortality';
+  else if (r[1].startsWith('HAI')) domain = 'Infection';
+  else if (r[1].startsWith('PSI')) domain = 'Safety';
+  else if (r[1].startsWith('COMP')) domain = 'Complication';
+  domainMap[domain] = (domainMap[domain] || 0) + r[2];
+}
+new Chart(document.getElementById('domainChart'), {
+  type: 'polarArea',
+  data: {
+    labels: Object.keys(domainMap),
+    datasets: [{
+      data: Object.values(domainMap),
+      backgroundColor: ['rgba(99,102,241,0.5)', 'rgba(248,113,113,0.5)', 'rgba(251,191,36,0.5)', 'rgba(52,211,153,0.5)', 'rgba(139,92,246,0.5)', 'rgba(99,109,131,0.5)'],
+      borderWidth: 0,
+    }],
+  },
+  options: {responsive:true, maintainAspectRatio:false, plugins:{legend:{position:'right'}}},
+});
+</script>
+{% endblock %}

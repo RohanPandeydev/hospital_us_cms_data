@@ -1,0 +1,57 @@
+hcpcs_code,hcpcs_short_desc,hcpcs_is_device,product_code,device_category,match_method,confidence,maude_event_count,gudid_device_count,source_notes
+A4314,Cath w/drainage 2-way latex,False,FAQ,foley_tray_2way_latex,manual_seed,high,0,0,Insertion tray w/ Foley 2-way latex
+A4316,Cath w/drainage 3-way,False,FAQ,foley_tray_2way_silicone,manual_seed,high,0,0,Insertion tray w/ Foley 2-way silicone
+A4338,Indwelling catheter latex,False,FAQ,urinary_catheter_foley,manual_seed,high,0,0,Indwelling Foley catheter
+A4344,Cath indw foley 2 way silicn,False,FAQ,indwelling_silicone,manual_seed,medium,0,0,"Indwelling catheter, silicone"
+A4411,Ost skn barr extnd =4sq,False,FRE,ostomy_skin_barrier,manual_seed,medium,0,0,"Ostomy skin barrier, paste"
+A6196,Alginate dressing <=16 sq in,False,FRO,alginate_dressing,manual_seed,high,2,5,"Alginate dressing, wound"
+B4088,"Gastro/jejuno tube, low-pro",False,KNT,gastrostomy_low_profile,manual_seed,medium,13,8,Low-profile G-tube
+C1713,"Anchor/screw bn/bn,tis/bn",True,KZH,bone_anchor,manual_seed,high,2,0,"Bone anchor/screw → KZH anchor, bone"
+C1721,"Aicd, dual chamber",True,LWS,icd_dual_chamber,manual_seed,high,108,2,AICD dual chamber → implantable defibrillator
+C1722,"Aicd, single chamber",True,LWS,icd_single_chamber,manual_seed,high,108,2,AICD single chamber → implantable defibrillator
+C1725,"Cath, translumin non-laser",True,DQY,atherectomy_catheter,manual_seed,high,26,10,Transluminal atherectomy directional
+C1741,Anchor/screw bone absorb,True,KZH,bone_anchor_absorbable,manual_seed,high,2,0,Absorbable bone anchor → KZH
+C1751,"Cath, inf, per/cent/midline",True,FRN,central_venous_catheter,manual_seed,high,176,0,PICC / CVC → long-term intravascular catheter
+C1752,"Cath,hemodialysis,short-term",True,KOC,hemodialysis_catheter,manual_seed,high,0,0,"Hemodialysis catheter, long-term"
+C1753,"Cath, intravas ultrasound",True,FRN,ivus_catheter,manual_seed,medium,176,0,Intravascular ultrasound catheter
+C1755,"Catheter, intraspinal",True,DQX,catheter_guidewire,manual_seed,medium,12,8,Catheter guide wire
+C1768,"Graft, vascular",True,DSY,,gudid_description,low,4,1,auto-matched via GUDID description (support=1)
+C1769,Guide wire,True,DQX,,gudid_description,medium,12,8,auto-matched via GUDID description (support=3)
+C1779,"Lead, pmkr, transvenous vdd",True,NVY,pacemaker_lead_vdd,manual_seed,high,47,1,Single-pass VDD pacemaker lead
+C1784,"Ocular dev, intraop, det ret",True,LOM,crt_p,manual_seed,high,1,0,CRT-P (biventricular pacemaker)
+C1785,"Pmkr, dual, rate-resp",True,DTB,pacemaker_dual_chamber,manual_seed,high,168,0,Dual-chamber pacemaker pulse generator
+C1786,"Pmkr, single, rate-resp",True,DTB,pacemaker_single_chamber,manual_seed,high,168,0,Single-chamber pacemaker pulse generator
+C1874,"Stent, coated/cov w/del sys",True,NIQ,drug_eluting_stent,manual_seed,high,61,2,Covered/coated stent w/ delivery → DES
+C1875,"Stent, coated/cov w/o del sy",True,NIQ,drug_eluting_stent,manual_seed,high,61,2,Covered/coated stent w/o delivery → DES
+C1876,"Stent, non-coa/non-cov w/del",True,MAF,bare_metal_stent,manual_seed,high,16,0,Non-coated stent w/ delivery → BMS
+C1877,"Stent, non-coat/cov w/o del",True,MAF,bare_metal_stent,manual_seed,high,16,0,Non-coated stent w/o delivery → BMS
+C1880,Vena cava filter,True,DSY,ivc_filter,manual_seed,high,4,1,Vena cava filter
+C1882,"Aicd, other than sing/dual",True,MRM,crt_d,manual_seed,high,2,0,AICD other than single/dual → CRT-D
+C1887,"Catheter, guiding",True,LWS,ep_catheter_guiding,manual_seed,medium,108,2,"EP guiding catheter, intracardiac"
+C1895,"Lead, aicd, endo dual coil",True,NPL,icd_lead_dual_coil,manual_seed,high,0,1,Endocardial dual coil ICD lead
+C1896,"Lead, aicd, non sing/dual",True,LWP,icd_lead_single_coil,manual_seed,medium,39,0,Single coil ICD lead
+C1898,"Lead, pmkr, other than trans",True,DXY,pacemaker_lead,manual_seed,high,4,0,"Pacemaker lead, transvenous"
+C1899,"Lead, pmkr/aicd combination",True,DXY,pacemaker_lead_combo,manual_seed,medium,4,0,Lead pacemaker/AICD combination
+C1900,"Lead, coronary venous",True,DXY,lead_coronary_venous,manual_seed,medium,4,0,Coronary venous lead for CRT
+E0465,Home vent invasive interface,True,NOU,home_ventilator_invasive,manual_seed,medium,0,0,"Home mechanical ventilator, invasive"
+E0466,Home vent non-invasive inter,True,NOU,home_ventilator_niv,manual_seed,medium,0,0,"Home mechanical ventilator, non-invasive"
+E0470,Rad w/o backup non-inv intfc,True,NOU,rad_no_backup,manual_seed,high,0,0,RAD without backup rate
+E0471,Rad w/backup non inv intrfc,True,NOU,rad_with_backup,manual_seed,high,0,0,RAD with backup rate
+E0601,Cont airway pressure device,True,BZD,cpap_device,manual_seed,high,0,3,Continuous positive airway pressure
+E0733,Trans elec nerv for trigemin,True,GXY,,gudid_description,low,0,9,auto-matched via GUDID description (support=1)
+E0784,Ext amb infusn pump insulin,True,LZG,insulin_pump,manual_seed,high,270,0,External insulin infusion pump
+E1353,Oxygen supplies regulator,True,CAN,,gudid_description,low,1,2,auto-matched via GUDID description (support=1)
+E1637,"Hemostats for dialysis, each",True,HRQ,,gudid_description,low,0,3,auto-matched via GUDID description (support=2)
+E1639,"Scale, each",True,ELC,,gudid_description,low,1,4,auto-matched via GUDID description (support=1)
+K0001,Standard wheelchair,True,IOR,manual_wheelchair,manual_seed,medium,1,1,Standard manual wheelchair
+K0553,Ther cgm supply allowance,True,QBJ,cgm_supply,manual_seed,medium,946,0,CGM receiver/transmitter supplies
+K0554,Ther cgm receiver/monitor,True,QBJ,cgm_receiver,manual_seed,medium,946,0,CGM therapeutic receiver
+K0822,Pwc gp 2 std seat/back,True,IPL,power_wheelchair_grp2,manual_seed,medium,0,0,Group 2 standard power wheelchair
+K1016,Trans elec nerv for trigemin,True,GXY,,gudid_description,low,0,9,auto-matched via GUDID description (support=1)
+L5856,Elec knee-shin swing/stance,True,ISY,microprocessor_knee,manual_seed,high,0,0,Microprocessor knee prosthesis
+L5857,Elec knee-shin swing only,True,ISY,microprocessor_knee,manual_seed,high,0,0,"Microprocessor knee, addition"
+L5859,Knee-shin pro flex/ext cont,True,ISY,microprocessor_knee_addn,manual_seed,medium,0,0,Powered prosthetic knee
+L8679,Imp neurosti pls gn any type,True,MHY,neurostim_implant,manual_seed,medium,21,0,Implantable neurostim pulse generator
+L8680,Implt neurostim elctr each,True,MHY,neurostim_electrode,manual_seed,medium,21,0,Implantable neurostim electrode
+V2630,Anter chamber intraocul lens,False,HQL,iol_anterior_chamber,manual_seed,high,34,18,Anterior chamber intraocular lens
+V2632,Post chmbr intraocular lens,False,HQL,iol_posterior_chamber,manual_seed,high,34,18,Posterior chamber intraocular lens

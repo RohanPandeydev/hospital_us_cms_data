@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block title %}Glossary{% endblock %}
+{% block content %}
+<div class="page-header">
+  <h1>📖 Glossary</h1>
+  <p>Plain-English definitions for every CMS acronym and measure in this warehouse.</p>
+</div>
+
+<div class="explain">
+  <strong>Quick acronym guide:</strong><br>
+  <strong>CCN</strong> = CMS Certification Number (unique hospital ID, e.g. <code>010001</code>) &nbsp;•&nbsp;
+  <strong>NPI</strong> = National Provider Identifier &nbsp;•&nbsp;
+  <strong>ERR</strong> = Excess Readmission Ratio (>1 = worse than national) &nbsp;•&nbsp;
+  <strong>SIR</strong> = Standardized Infection Ratio (>1 = more infections than expected) &nbsp;•&nbsp;
+  <strong>PSI</strong> = Patient Safety Indicator &nbsp;•&nbsp;
+  <strong>HAI</strong> = Hospital-Acquired Infection &nbsp;•&nbsp;
+  <strong>HRRP</strong> = Hospital Readmissions Reduction Program (Medicare penalty) &nbsp;•&nbsp;
+  <strong>CABG</strong> = Coronary Artery Bypass Graft &nbsp;•&nbsp;
+  <strong>AMI</strong> = Acute Myocardial Infarction (heart attack) &nbsp;•&nbsp;
+  <strong>CJR</strong> = Comprehensive care for Joint Replacement (hip/knee) &nbsp;•&nbsp;
+  <strong>ASC</strong> = Ambulatory Surgical Center &nbsp;•&nbsp;
+  <strong>HCAHPS</strong> = Hospital Consumer Assessment of Healthcare Providers & Systems (patient survey) &nbsp;•&nbsp;
+  <strong>EDAC</strong> = Excess Days in Acute Care (leading indicator of readmission) &nbsp;•&nbsp;
+  <strong>MORT_30</strong> = 30-day mortality &nbsp;•&nbsp;
+  <strong>CLABSI</strong> = Central Line-Associated Bloodstream Infection &nbsp;•&nbsp;
+  <strong>CAUTI</strong> = Catheter-Associated Urinary Tract Infection &nbsp;•&nbsp;
+  <strong>SSI</strong> = Surgical Site Infection &nbsp;•&nbsp;
+  <strong>MRSA</strong> = Methicillin-Resistant Staphylococcus aureus
+</div>
+
+<h2>Datasets in this warehouse</h2>
+<div class="card">
+<table>
+  <thead><tr><th>Dataset ID</th><th>Name</th><th>What's in it</th></tr></thead>
+  <tbody>
+    {% for ds_id, (name, desc) in datasets.items() %}
+    <tr>
+      <td><code class="measure">{{ ds_id }}</code></td>
+      <td><strong>{{ name }}</strong></td>
+      <td>{{ desc }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+
+<h2>Measures, grouped by clinical domain</h2>
+
+{% for domain in ['Readmission','Mortality','Infection','Safety','Complication','Device-Specific','Patient Experience'] %}
+  {% if domain in by_domain %}
+  <h3 style="margin-top: 1.5rem;"><span class="domain-tag">{{ domain }}</span> &nbsp;<small class="muted">{{ by_domain[domain]|length }} measures</small></h3>
+  <div class="card">
+  <table>
+    <thead><tr><th>Code</th><th>Plain-English name</th><th>What it measures</th><th>Good direction</th><th>Threshold</th></tr></thead>
+    <tbody>
+      {% for m in by_domain[domain] %}
+      <tr>
+        <td><code class="measure">{{ m.id }}</code></td>
+        <td><strong>{{ m.name }}</strong></td>
+        <td class="muted">{{ m.description }}</td>
+        <td>
+          {% if m.direction == 'lower' %}
+            <span class="risk risk-low">lower is better</span>
+          {% elif m.direction == 'higher' %}
+            <span class="risk risk-low">higher is better</span>
+          {% else %}—{% endif %}
+        </td>
+        <td>{% if m.threshold is not none %}{{ m.threshold }}{% else %}—{% endif %}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  </div>
+  {% endif %}
+{% endfor %}
+{% endblock %}

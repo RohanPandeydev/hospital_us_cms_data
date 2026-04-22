@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+{% block title %}Medicare Utilization{% endblock %}
+{% block content %}
+<div class="page-header">
+  <h1>💰 Medicare Utilization & Device Billing</h1>
+  <p>Procedure volumes per hospital, DMEPOS device billing, and Medicare payments.</p>
+</div>
+
+<div class="explain">
+  <strong>What this adds:</strong> CMS's provider-data tells us <em>rates</em> (readmissions, complications, infections) —
+  but rates are meaningless without volume. This section gives us the <strong>denominator</strong>:
+  how many hip/knee replacements, stents, cardiac devices, etc. each hospital actually performs.
+  That lets us turn "<em>N adverse events</em>" into "<em>N per 100 procedures</em>" — comparable across facilities.
+  <br><br>
+  Source: <code>data.cms.gov/data-api/v1</code>
+</div>
+
+<h2>What's ingested</h2>
+{% if dataset_summary %}
+<div class="card">
+<table>
+  <thead>
+    <tr>
+      <th>Dataset <i class="info-icon">i<span class="info-tip">The CMS data-api/v1 dataset ID we ingested from (e.g. medicare_inpatient_by_provider_service).</span></i></th>
+      <th>Rows <i class="info-icon">i<span class="info-tip">Total rows ingested. Each row is one (hospital × procedure × year) billing summary.</span></i></th>
+      <th>Hospitals (CCN) <i class="info-icon">i<span class="info-tip">Distinct hospital facilities represented, keyed by CMS Certification Number.</span></i></th>
+      <th>Providers (NPI) <i class="info-icon">i<span class="info-tip">National Provider Identifier — individual physicians or supplier entities. Used in DMEPOS and physician-services data.</span></i></th>
+      <th>DRG codes <i class="info-icon">i<span class="info-tip">MS-DRG = Medicare Severity Diagnosis Related Group — the procedure categories used for inpatient billing (e.g. DRG 470 = joint replacement).</span></i></th>
+      <th>HCPCS codes <i class="info-icon">i<span class="info-tip">Distinct HCPCS billing codes present. These are the codes we bridge to FDA product codes to reach device safety data.</span></i></th>
+      <th>Years <i class="info-icon">i<span class="info-tip">Range of performance years covered. Medicare utilization data typically lags 1–2 years behind the current year.</span></i></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in dataset_summary %}
+    <tr>
+      <td>
+        <a href="/utilization?dataset_id={{ row[0] }}"><strong>{{ row[0] }}</strong></a>
+      </td>
+      <td>{{ "{:,}".format(row[1]) }}</td>
+      <td>{{ row[2] or '—' }}</td>
+      <td>{{ row[3] or '—' }}</td>
+      <td>{{ row[4] or '—' }}</td>
+      <td>{{ row[5] or '—' }}</td>
+      <td>{{ row[6] or '—' }}{% if row[7] and row[7] != row[6] %}–{{ row[7] }}{% endif %}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{% else %}
+<div class="card" style="border-left: 3px solid var(--warning);">
+<p class="muted">No utilization data ingested yet. Run:
+<br><code>python run.py ingest --dataset medicare_inpatient_by_provider_service --limit 10000</code></p>
+</div>
+{% endif %}
+
+{% if dataset_id and dataset_summary %}
+<hr style="margin: 1.5rem 0;">
+<h2>Drill-down: <code class="measure">{{ dataset_id }}</code></h2>
+
+<div class="card">
+<form method="get" action="/utilization" class="filter-bar">
+  <input type="hidden" name="dataset_id" value="{{ dataset_id }}">
+  <input type="text" name="ccn" placeholder="Filter by CCN (hospital)" value="{{ ccn }}">
+  <input type="text" name="npi" placeholder="Filter by NPI (provider)" value="{{ npi }}">
+  <button type="submit">Filter</button>
+</form>
+</div>
+
+{% if top_drg %}
+<div class="card">
+<h3>Top MS-DRGs by volume <i class="info-icon">i<span class="info-tip">The most-billed procedure categories (MS-DRGs) in this dataset. High-volume DRGs with implanted devices (e.g. DRG 216–220 for cardiac valves, 461–462 for joint replacements) are the sweet spot for device-outcome modeling.</span></i></h3>
+<p class="card-subtitle">Medicare Severity-DRG = the procedure category used for inpatient billing. High volume = hospital does a lot of that procedure type = important for device rate normalization.</p>
+<table>
+  <thead><tr><th>DRG</th><th>Description</th><th>Rows</th><th>Discharges</th><th>Beneficiaries</th></tr></thead>
+  <tbody>
+    {% for r in top_drg %}
+    <tr>
+      <td><code class="measure">{{ r[0] }}</code></td>
+      <td class="cell">{{ r[1] or '—' }}</td>
+      <td>{{ r[2] }}</td>
+      <td>{{ r[3] or '—' }}</td>
+      <td>{{ r[4] or '—' }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endif %}
+
+{% if top_hcpcs %}
+<div class="card">
+<h3>Top HCPCS codes by volume <i class="info-icon">i<span class="info-tip">Most-billed HCPCS codes. For DMEPOS and outpatient data, these are the primary keys we use to link to specific devices and FDA product codes via our bridge table.</span></i></h3>
+<p class="card-subtitle">HCPCS = the code for the specific service / device / supply billed to Medicare. Primary identifier in DMEPOS and physician services data.</p>
+<table>
+  <thead><tr><th>HCPCS</th><th>Rows</th><th>Services</th><th>Beneficiaries</th></tr></thead>
+  <tbody>
+    {% for r in top_hcpcs %}
+    <tr>
+      <td><code class="measure">{{ r[0] }}</code></td>
+      <td>{{ r[1] }}</td>
+      <td>{{ r[2] or '—' }}</td>
+      <td>{{ r[3] or '—' }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endif %}
+
+{% if top_ccn %}
+<div class="card">
+<h3>Top hospitals by service volume <i class="info-icon">i<span class="info-tip">Hospitals ranked by total Medicare service volume in this dataset. High-volume hospitals produce statistically reliable outcome measures — the best training data for device-risk ML.</span></i></h3>
+<table>
+  <thead><tr><th>CCN</th><th>Name</th><th>State</th><th>Rows</th><th>Total services</th><th></th></tr></thead>
+  <tbody>
+    {% for r in top_ccn %}
+    <tr>
+      <td><code>{{ r[0] }}</code></td>
+      <td class="cell"><strong>{{ r[1] or '—' }}</strong></td>
+      <td>{{ r[2] or '—' }}</td>
+      <td>{{ r[3] }}</td>
+      <td class="score-badge">{{ r[4] or '—' }}</td>
+      <td><a href="/hospitals?facility_id={{ r[0] }}">hospital profile →</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endif %}
+
+<div class="card">
+<h3>Sample rows</h3>
+<table class="scroll-wrap">
+  <thead>
+    <tr>
+      <th>Year</th><th>CCN</th><th>NPI</th><th>DRG</th><th>DRG description</th>
+      <th>HCPCS</th><th>Provider</th><th>State</th>
+      <th>Services</th><th>Benes</th><th>$ Payment</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for r in sample_rows %}
+    <tr>
+      <td>{{ r[1] or '—' }}</td>
+      <td><code>{{ r[2] or '—' }}</code></td>
+      <td><code>{{ r[3] or '—' }}</code></td>
+      <td><code class="measure">{{ r[4] or '—' }}</code></td>
+      <td class="cell">{{ r[5] or '—' }}</td>
+      <td><code class="measure">{{ r[6] or '—' }}</code></td>
+      <td class="cell">{{ r[7] or '—' }}</td>
+      <td>{{ r[8] or '—' }}</td>
+      <td>{{ r[9] or '—' }}</td>
+      <td>{{ r[10] or '—' }}</td>
+      <td>{{ r[11] or '—' }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endif %}
+{% endblock %}

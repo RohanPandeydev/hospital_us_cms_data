@@ -1,0 +1,262 @@
+{% extends "base.html" %}
+{% block title %}Overview{% endblock %}
+{% block content %}
+<div class="page-header">
+  <h1>CMS × FDA Device Risk Intelligence</h1>
+  <p>Every US hospital's Medicare outcomes, every reported device adverse event, and the connections between them.</p>
+</div>
+
+<div class="explain" style="background: linear-gradient(135deg, rgba(99,102,241,0.18), rgba(139,92,246,0.12)); border-left-color: var(--accent-light); padding: 1.25rem 1.4rem; font-size: 0.92rem; line-height: 1.7;">
+  <div style="color: var(--text-primary); font-size: 0.98rem; font-weight: 500;">
+    "We're pulling the complete public record that Medicare keeps on every US hospital — <strong style="color: var(--accent-light);">5,426 hospitals</strong>, <strong style="color: var(--accent-light);">60,000 quality scores</strong> across <strong style="color: var(--accent-light);">144 outcome measures</strong> — because it's the only dataset in existence that tells us how every hospital in America actually performs, and it's already labeled in the form an AI model can train on."
+  </div>
+</div>
+
+<div class="explain">
+  <strong>What you can do here:</strong> Find the worst-performing hospitals for any outcome → drill into their profile → see which device categories are tied to their risks. Designed for the question: <em>"Where are devices failing, and which hospitals are most exposed?"</em>
+</div>
+
+<!-- Hero KPIs -->
+<div class="kpi">
+  <div class="box">
+    <div class="label">US Hospitals <i class="info-icon">i<span class="info-tip">Total count of Medicare-certified hospitals in the US. These are facilities that participate in the Medicare program and are assigned a CMS Certification Number (CCN).</span></i></div>
+    <div class="value">{{ "{:,}".format(hero[0]) }}</div>
+    <div class="delta">Medicare-certified</div>
+  </div>
+  <div class="box">
+    <div class="label">Outcome Measures <i class="info-icon">i<span class="info-tip">Total rows of clinical outcome data: each row is one measure (e.g. readmission rate, infection rate) for one hospital. A hospital can have 50+ measures, so this number is hospitals × measures.</span></i></div>
+    <div class="value">{{ "{:,}".format(hero[1]) }}</div>
+    <div class="delta">rate × hospital rows</div>
+  </div>
+  <div class="box">
+    <div class="label">FDA Adverse Events <i class="info-icon">i<span class="info-tip">Reports from the FDA MAUDE database — every time a medical device malfunctions, injures, or causes death, it's reported here. Includes device malfunctions, patient injuries, and deaths.</span></i></div>
+    <div class="value">{{ "{:,}".format(hero[2]) }}</div>
+    <div class="delta">MAUDE reports</div>
+  </div>
+  <div class="box">
+    <div class="label">Manufacturers <i class="info-icon">i<span class="info-tip">Count of distinct device manufacturers that have at least one adverse event reported in our FDA MAUDE dataset. Larger manufacturers tend to have more reports simply due to higher device volume.</span></i></div>
+    <div class="value">{{ "{:,}".format(hero[3]) }}</div>
+    <div class="delta">with reported events</div>
+  </div>
+  <div class="box">
+    <div class="label">Device↔Outcome Bridges <i class="info-icon">i<span class="info-tip">Number of mappings in our bridge table that connect an FDA product_code (device type) to a CMS outcome measure. This is the key linkage that lets us answer "which devices affect which hospital outcomes."</span></i></div>
+    <div class="value">{{ hero[4] }}</div>
+    <div class="delta">product-code → CMS measure</div>
+  </div>
+  <div class="box" style="background: var(--accent-glow); border-color: rgba(99,102,241,0.25);">
+    <div class="label" style="color: var(--accent-light);">Linked Events <i class="info-icon">i<span class="info-tip">FDA adverse events that we've successfully linked to CMS hospital outcomes via the bridge table. These are the events where we can trace a device failure back to a specific hospital quality metric.</span></i></div>
+    <div class="value" style="color: var(--accent-light);">{{ "{:,}".format(hero[5]) }}</div>
+    <div class="delta good">FDA events tied to CMS outcomes</div>
+  </div>
+</div>
+
+<!-- Quick actions -->
+<div class="grid-3">
+  <a href="/leaderboard?tab=err" style="text-decoration:none; color:inherit;">
+    <div class="card" style="border-left: 3px solid var(--danger);">
+      <div class="card-title">⚠️ Worst Readmission Hospitals <i class="info-icon">i<span class="info-tip">ERR (Excess Readmission Ratio) measures how often patients return to a hospital within 30 days after discharge. ERR > 1.0 means worse than the national average and triggers Medicare payment penalties.</span></i></div>
+      <p class="muted" style="margin:0;">Hospitals exceeding Medicare's readmission penalty threshold (ERR &gt; 1.0).</p>
+    </div>
+  </a>
+  <a href="/leaderboard?tab=hai" style="text-decoration:none; color:inherit;">
+    <div class="card" style="border-left: 3px solid var(--warning);">
+      <div class="card-title">🦠 Device Infection Hotspots <i class="info-icon">i<span class="info-tip">HAI (Hospital-Acquired Infections) directly caused by medical devices — CLABSI from central venous catheters and CAUTI from urinary catheters. SIR > 1.0 means more infections than statistically expected.</span></i></div>
+      <p class="muted" style="margin:0;">Hospitals with elevated CLABSI / CAUTI infections from catheter devices.</p>
+    </div>
+  </a>
+  <a href="/linkage-live" style="text-decoration:none; color:inherit;">
+    <div class="card" style="border-left: 3px solid var(--accent);">
+      <div class="card-title">🔗 Device ↔ Outcome Linkage <i class="info-icon">i<span class="info-tip">The core feature: a live join between FDA device adverse events and CMS hospital quality measures via our product-code bridge table. Shows which device categories map to which hospital outcomes.</span></i></div>
+      <p class="muted" style="margin:0;">See which FDA device categories are tied to which CMS outcome measures.</p>
+    </div>
+  </a>
+</div>
+
+<!-- Charts row 1: hospital composition -->
+<div class="grid-2">
+  <div class="card">
+    <div class="card-title">Hospital Quality Rating Distribution <i class="info-icon">i<span class="info-tip">CMS assigns 1–5 star overall ratings based on a composite of mortality, safety, readmissions, patient experience, timely care, and effective care. 5★ = best. Many hospitals remain unrated (NA) due to insufficient data.</span></i></div>
+    <p class="card-subtitle">CMS rates hospitals 1–5 stars based on mortality, safety, readmissions, patient experience, and timeliness. Higher is better.</p>
+    <div class="chart-container"><canvas id="ratingChart"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Hospitals by Facility Type <i class="info-icon">i<span class="info-tip">Acute Care = general hospitals with ER/surgery. Critical Access = small rural hospitals (&lt;25 beds). Children's, Psychiatric, and Rehab are specialty types. Each type has different device usage patterns.</span></i></div>
+    <p class="card-subtitle">Acute Care dominates (~3,500). Critical Access Hospitals serve rural areas. Psychiatric/Rehab specialize. All can participate in device procedures.</p>
+    <div class="chart-container"><canvas id="typeChart"></canvas></div>
+  </div>
+</div>
+
+<!-- Charts row 2: risk -->
+<div class="grid-2">
+  <div class="card">
+    <div class="card-title">🚩 Worst 10 Hospitals — Hip/Knee Readmission (ERR) <i class="info-icon">i<span class="info-tip">ERR = Excess Readmission Ratio. 1.0 = exactly average. >1.0 = the hospital readmits patients more often than expected after hip/knee procedures. Triggers up to 3% Medicare payment reduction (HRRP penalty).</span></i></div>
+    <p class="card-subtitle">Excess Readmission Ratio: 1.0 = national average. Higher = worse. &gt; 1.0 triggers Medicare payment reduction. Click → full profile.</p>
+    <div class="chart-tall"><canvas id="worstErrChart"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-title">FDA MAUDE Event Severity <i class="info-icon">i<span class="info-tip">MAUDE events are classified by outcome: Death = patient died, Injury = patient was harmed, Malfunction = device failed but patient unharmed. Malfunctions dominate because all device failures must be reported.</span></i></div>
+    <p class="card-subtitle">Breakdown of all reported device adverse events. <strong style="color:var(--danger)">Death</strong> + <strong style="color:var(--warning)">Injury</strong> = serious harm. Malfunction = device failed but patient unharmed.</p>
+    <div class="chart-container"><canvas id="fdaTypeChart"></canvas></div>
+  </div>
+</div>
+
+<!-- Charts row 3: geography + linkage -->
+<div class="grid-2">
+  <div class="card">
+    <div class="card-title">Hospitals by State (top 15) <i class="info-icon">i<span class="info-tip">Geographic distribution of Medicare-certified hospitals. Texas, California, and Florida typically lead due to population size. States with more hospitals have more device procedures and potentially more adverse events.</span></i></div>
+    <p class="card-subtitle">Click a bar to see all hospitals in that state.</p>
+    <div class="chart-tall"><canvas id="stateChart"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-title">🔗 Strongest Device ↔ Outcome Links <i class="info-icon">i<span class="info-tip">Shows the FDA device categories with the most adverse events tied to CMS hospital outcomes. This is the core intelligence: "which device types are most associated with negative hospital outcomes."</span></i></div>
+    <p class="card-subtitle">How many FDA adverse events are tied to each CMS outcome category via our product-code bridge. The core answer to "which devices cause which hospital outcomes."</p>
+    <div class="chart-tall"><canvas id="linkChart"></canvas></div>
+  </div>
+</div>
+
+<!-- Recent ingestion runs -->
+<div class="card">
+  <div class="card-title">Data Pipeline Activity <i class="info-icon">i<span class="info-tip">Shows the last 8 data ingestion runs. Each run pulls data from CMS or FDA APIs and upserts into our PostgreSQL warehouse. Green = success, red = error, yellow = still running.</span></i></div>
+  <p class="card-subtitle">Last 8 ingestion runs — when each dataset was last refreshed.</p>
+  <table>
+    <thead><tr>
+      <th>Dataset <i class="info-icon">i<span class="info-tip">The CMS dataset ID (e.g. 9n3s-kdb3). Each ID maps to a specific CMS data product like readmissions, infections, or hospital info.</span></i></th>
+      <th>Status <i class="info-icon">i<span class="info-tip">Whether the ingestion completed successfully (green), failed (red), or is still in progress (yellow).</span></i></th>
+      <th>Rows <i class="info-icon">i<span class="info-tip">Number of rows inserted or updated during this ingestion run.</span></i></th>
+      <th>Time <i class="info-icon">i<span class="info-tip">When the ingestion run started.</span></i></th>
+    </tr></thead>
+    <tbody>
+      {% for r in runs %}
+      <tr>
+        <td><code class="measure">{{ r[0] }}</code></td>
+        <td>
+          {% if r[1]=='success' %}<span class="risk risk-low">success</span>
+          {% elif r[1]=='error' %}<span class="risk risk-high">error</span>
+          {% elif r[1]=='running' %}<span class="risk risk-med">running</span>
+          {% else %}<span class="risk risk-unknown">{{ r[1] }}</span>{% endif %}
+        </td>
+        <td>{{ "{:,}".format(r[2]) if r[2] else '—' }}</td>
+        <td class="muted">{{ r[3] or '—' }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<script>
+const RISK_COLORS = {
+  high: '#f87171', med: '#fbbf24', low: '#34d399', neutral: '#636d83', accent: '#6366f1',
+};
+const CHART_DEFAULTS = { responsive: true, maintainAspectRatio: false };
+
+// Rating chart (donut)
+new Chart(document.getElementById('ratingChart'), {
+  type: 'doughnut',
+  data: {
+    labels: {{ ratings|map(attribute=0)|list|tojson }},
+    datasets: [{
+      data: {{ ratings|map(attribute=1)|list|tojson }},
+      backgroundColor: ['#f87171','#fb923c','#fbbf24','#34d399','#059669','#636d83'],
+      borderWidth: 0,
+    }],
+  },
+  options: {...CHART_DEFAULTS, plugins: {legend: {position: 'right'}}, cutout: '65%'},
+});
+
+// Type chart (horizontal bar)
+new Chart(document.getElementById('typeChart'), {
+  type: 'bar',
+  data: {
+    labels: {{ types|map(attribute=0)|list|tojson }},
+    datasets: [{
+      data: {{ types|map(attribute=1)|list|tojson }},
+      backgroundColor: '#6366f1',
+      borderRadius: 4,
+    }],
+  },
+  options: {...CHART_DEFAULTS, indexAxis: 'y', plugins: {legend: {display: false}}},
+});
+
+// Worst ERR chart (horizontal bar)
+const worstErr = {{ worst_err|json_safe|tojson }};
+const errLabels = worstErr.map(r => r[0]);
+const errData   = worstErr.map(r => parseFloat(r[2]));
+const errIds    = worstErr.map(r => r[3]);
+new Chart(document.getElementById('worstErrChart'), {
+  type: 'bar',
+  data: {
+    labels: errLabels,
+    datasets: [{
+      label: 'ERR',
+      data: errData,
+      backgroundColor: errData.map(v => v > 1.25 ? RISK_COLORS.high : v > 1.0 ? RISK_COLORS.med : RISK_COLORS.low),
+      borderRadius: 4,
+    }],
+  },
+  options: {
+    ...CHART_DEFAULTS, indexAxis: 'y',
+    plugins: {legend: {display:false},
+              tooltip: {callbacks: {afterLabel: (ctx) => ctx.parsed.x > 1.0 ? 'Above Medicare penalty threshold' : 'Below threshold'}}},
+    scales: {x: {beginAtZero: true, suggestedMax: 1.7,
+                 title: {display: true, text: 'Excess Readmission Ratio (1.0 = national avg)'}}},
+    onClick: (e, els) => { if (els[0]) window.location = '/hospitals?facility_id=' + errIds[els[0].index]; }
+  },
+});
+
+// FDA type chart (donut)
+new Chart(document.getElementById('fdaTypeChart'), {
+  type: 'doughnut',
+  data: {
+    labels: {{ fda_types|map(attribute=0)|list|tojson }},
+    datasets: [{
+      data: {{ fda_types|map(attribute=1)|list|tojson }},
+      backgroundColor: (ctx) => {
+        const l = ctx.chart.data.labels[ctx.dataIndex];
+        if (l === 'Death') return '#f87171';
+        if (l === 'Injury') return '#fbbf24';
+        if (l === 'Malfunction') return '#fb923c';
+        return '#636d83';
+      },
+      borderWidth: 0,
+    }],
+  },
+  options: {...CHART_DEFAULTS, plugins: {legend: {position: 'right'}}, cutout: '65%'},
+});
+
+// State chart
+new Chart(document.getElementById('stateChart'), {
+  type: 'bar',
+  data: {
+    labels: {{ by_state|map(attribute=0)|list|tojson }},
+    datasets: [{
+      data: {{ by_state|map(attribute=1)|list|tojson }},
+      backgroundColor: '#6366f1',
+      borderRadius: 4,
+    }],
+  },
+  options: {...CHART_DEFAULTS, indexAxis: 'y', plugins: {legend: {display: false}}},
+});
+
+// Linkage chart
+const linkRows  = {{ top_linked|json_safe|tojson }};
+const linkLabels = linkRows.map(r => r[0]);
+const linkMeas   = linkRows.map(r => r[1]);
+const linkData   = linkRows.map(r => r[2]);
+new Chart(document.getElementById('linkChart'), {
+  type: 'bar',
+  data: {
+    labels: linkLabels.map((l, i) => l + ' → ' + linkMeas[i]),
+    datasets: [{
+      label: 'FDA events',
+      data: linkData,
+      backgroundColor: '#8b5cf6',
+      borderRadius: 4,
+    }],
+  },
+  options: {...CHART_DEFAULTS, indexAxis: 'y',
+    plugins: {legend: {display:false},
+              tooltip: {callbacks: {title: (ctx) => ctx[0].label.split(' → ')[0],
+                                    afterTitle: (ctx) => 'CMS measure: ' + ctx[0].label.split(' → ')[1]}}}},
+});
+</script>
+{% endblock %}

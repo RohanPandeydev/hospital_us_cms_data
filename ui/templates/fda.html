@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+{% block title %}FDA MAUDE{% endblock %}
+{% block content %}
+<div class="page-header">
+  <h1>🔬 FDA MAUDE — Device Adverse Events</h1>
+  <p>Reported device malfunctions, injuries, and deaths. Source: FDA openFDA API (api.fda.gov).</p>
+</div>
+
+<div class="explain">
+  <strong>What is MAUDE?</strong> The FDA's Manufacturer and User Facility Device Experience database. Every time a
+  medical device is reported to fail, harm, or kill a patient, it shows up here. Each event has the device
+  <code>product_code</code>, brand, manufacturer, model, and often a UDI barcode. These events are the device-side
+  signal we correlate with hospital outcomes on the <a href="/linkage-live">Linkage page</a>.
+</div>
+
+<div class="kpi">
+  <div class="box"><div class="label">Events <i class="info-icon">i<span class="info-tip">Total MAUDE adverse-event reports in our database. Each report describes one incident where a medical device allegedly malfunctioned, injured, or caused the death of a patient.</span></i></div><div class="value">{{ "{:,}".format(kpi[0]) }}</div><div class="delta">adverse event reports</div></div>
+  <div class="box"><div class="label">Devices <i class="info-icon">i<span class="info-tip">Count of device records. One event can involve multiple devices (e.g., a defibrillator + its lead), so this is slightly higher than the event count.</span></i></div><div class="value">{{ "{:,}".format(kpi[1]) }}</div><div class="delta">some events have 2+ devices</div></div>
+  <div class="box"><div class="label">UDI Coverage <i class="info-icon">i<span class="info-tip">UDI = Unique Device Identifier — an FDA-mandated barcode that uniquely identifies a specific device SKU. Higher coverage = more precise traceability for recalls and ML modeling.</span></i></div><div class="value">{{ "{:,}".format(kpi[2]) }}</div><div class="delta">{{ (kpi[2] / (kpi[1] or 1) * 100) | round }}% of devices</div></div>
+  <div class="box"><div class="label">Product Codes <i class="info-icon">i<span class="info-tip">FDA CDRH Product Classification codes — 3-letter codes that group devices by type (e.g., LWS = implantable defibrillator, KZH = bone anchor). Our bridge table maps these to CMS HCPCS billing codes.</span></i></div><div class="value">{{ "{:,}".format(kpi[3]) }}</div><div class="delta">FDA CDRH categories</div></div>
+  <div class="box"><div class="label">Manufacturers <i class="info-icon">i<span class="info-tip">Distinct device makers that have at least one report in our dataset. Larger manufacturers naturally have more reports simply because they sell more devices — this is NOT a quality ranking.</span></i></div><div class="value">{{ "{:,}".format(kpi[4]) }}</div></div>
+</div>
+
+<div class="grid-2">
+  <div class="card">
+    <div class="card-title">Event Severity Breakdown <i class="info-icon">i<span class="info-tip">Distribution of reports by outcome: Death (patient died), Injury (patient was harmed), Malfunction (device failed without patient harm). Malfunction dominates because FDA requires reporting of any malfunction even if no one was injured.</span></i></div>
+    <p class="card-subtitle"><strong style="color:var(--danger)">Death</strong> / <strong style="color:var(--warning)">Injury</strong> = patient harm. <strong style="color:#fb923c">Malfunction</strong> = device failed but patient unharmed. Malfunction dominates because devices are required to be reported even when no harm occurred.</p>
+    <div class="chart-container"><canvas id="typeChart"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Top 15 Product Codes by Event Volume <i class="info-icon">i<span class="info-tip">The 15 FDA device categories with the most reported events. Blue = we've built a bridge to a CMS outcome measure for that category. Gray = unmapped — these are candidates for extending our bridge table.</span></i></div>
+    <p class="card-subtitle">Blue = we have a CMS measure mapping for that device category. Gray = unmapped (seed more in bridge table).</p>
+    <div class="chart-tall"><canvas id="pcChart"></canvas></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">Top Manufacturers by Event Count <i class="info-icon">i<span class="info-tip">Manufacturers ranked by adverse-event volume. IMPORTANT: higher counts usually reflect larger market share (more devices in use), not worse quality. For a true quality ranking you'd need to normalize by sales volume.</span></i></div>
+  <p class="card-subtitle">Note: higher event counts can mean larger market share (more devices deployed), not necessarily lower quality. Normalize by production volume for proper comparison.</p>
+  <div class="chart-tall"><canvas id="mfrChart"></canvas></div>
+</div>
+
+<hr>
+
+<div class="card">
+  <div class="card-title">Adverse Event Browser</div>
+  <p class="card-subtitle">Filter by product code (e.g. <code>LWS</code> for defibrillators, <code>KZH</code> for hip implants), brand name, or severity.</p>
+  <form method="get" action="/fda" class="filter-bar">
+    <input type="text" name="product_code" placeholder="Product code (e.g. LWS, KZH, FRN)" value="{{ product_code }}">
+    <input type="text" name="brand"        placeholder="Brand name contains…"              value="{{ brand }}">
+    <select name="event_type">
+      <option value="">Severity: all</option>
+      {% for t in ['Death','Injury','Malfunction','Other'] %}
+        <option value="{{t}}" {% if t==event_type %}selected{% endif %}>{{t}}</option>
+      {% endfor %}
+    </select>
+    <button type="submit">Filter</button>
+  </form>
+
+  <table class="scroll-wrap">
+    <thead>
+      <tr>
+        <th>Report # <i class="info-icon">i<span class="info-tip">MAUDE report number — FDA's unique ID for each adverse-event submission. Used to look up the full narrative at accessdata.fda.gov.</span></i></th>
+        <th>Severity <i class="info-icon">i<span class="info-tip">Event classification: Death / Injury / Malfunction / Other. Severity drives ML model weighting.</span></i></th>
+        <th>Date <i class="info-icon">i<span class="info-tip">When the adverse event occurred (not when it was reported — there's often a lag of weeks to months).</span></i></th>
+        <th>Product <i class="info-icon">i<span class="info-tip">FDA product_code — the 3-letter device-category code. Our bridge maps this to HCPCS billing codes.</span></i></th>
+        <th>Brand <i class="info-icon">i<span class="info-tip">Commercial brand name of the device (e.g., "PLATINIUM", "SOFPORT").</span></i></th>
+        <th>Manufacturer <i class="info-icon">i<span class="info-tip">Company that made the device. Used for manufacturer-level safety trend analysis.</span></i></th>
+        <th>Model <i class="info-icon">i<span class="info-tip">Model / part number. Helps distinguish revisions of the same product.</span></i></th>
+        <th>UDI <i class="info-icon">i<span class="info-tip">Unique Device Identifier barcode. When present, lets us precisely match to FDA GUDID master records.</span></i></th>
+        <th>Patient Outcome <i class="info-icon">i<span class="info-tip">Specific outcome for the patient: Hospitalization (H), Death (D), Required Intervention (R), Life-threatening (L), or combinations. Primary ML target labels.</span></i></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for r in events_rows %}
+      <tr>
+        <td><code style="font-size:0.75rem;">{{ r[0] }}</code></td>
+        <td>
+          {% if r[1]=='Death' %}<span class="risk risk-high">Death</span>
+          {% elif r[1]=='Injury' %}<span class="risk risk-med">Injury</span>
+          {% elif r[1]=='Malfunction' %}<span class="risk risk-unknown">Malfunction</span>
+          {% else %}<span class="risk risk-unknown">{{ r[1] }}</span>{% endif %}
+        </td>
+        <td>{{ r[2] or '—' }}</td>
+        <td><code class="measure">{{ r[3] or '—' }}</code></td>
+        <td class="cell">{{ r[4] or '—' }}</td>
+        <td class="cell">{{ r[5] or '—' }}</td>
+        <td>{{ r[6] or '—' }}</td>
+        <td class="cell">{{ r[7] or '—' }}</td>
+        <td>{{ r[8] or '—' }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<script>
+new Chart(document.getElementById('typeChart'), {
+  type: 'doughnut',
+  data: {
+    labels: {{ event_breakdown|map(attribute=0)|list|tojson }},
+    datasets: [{
+      data: {{ event_breakdown|map(attribute=1)|list|tojson }},
+      backgroundColor: (ctx) => {
+        const l = ctx.chart.data.labels[ctx.dataIndex];
+        if (l === 'Death') return '#f87171';
+        if (l === 'Injury') return '#fbbf24';
+        if (l === 'Malfunction') return '#fb923c';
+        return '#636d83';
+      },
+      borderWidth: 0,
+    }],
+  },
+  options: {responsive:true, maintainAspectRatio:false, plugins:{legend:{position:'right'}}, cutout: '65%'},
+});
+
+const pcData = {{ top_pc|json_safe|tojson }};
+new Chart(document.getElementById('pcChart'), {
+  type: 'bar',
+  data: {
+    labels: pcData.slice(0, 15).map(r => r[0] + (r[1] ? ' — ' + r[1] : '')),
+    datasets: [{
+      data: pcData.slice(0, 15).map(r => r[2]),
+      backgroundColor: pcData.slice(0, 15).map(r => r[1] ? '#6366f1' : '#636d83'),
+      borderRadius: 4,
+    }],
+  },
+  options: {responsive:true, maintainAspectRatio:false, indexAxis:'y',
+    plugins: {legend:{display:false},
+              tooltip: {callbacks: {afterLabel: (ctx) => pcData[ctx.dataIndex][1] ? 'Mapped to CMS measure' : 'Unmapped'}}}},
+});
+
+const mfrData = {{ top_mfr|json_safe|tojson }};
+new Chart(document.getElementById('mfrChart'), {
+  type: 'bar',
+  data: {
+    labels: mfrData.map(r => r[0]),
+    datasets: [{
+      data: mfrData.map(r => r[1]),
+      backgroundColor: '#8b5cf6',
+      borderRadius: 4,
+    }],
+  },
+  options: {responsive:true, maintainAspectRatio:false, indexAxis:'y',
+    plugins:{legend:{display:false}}},
+});
+</script>
+{% endblock %}

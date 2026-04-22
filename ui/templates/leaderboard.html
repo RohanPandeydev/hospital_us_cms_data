@@ -1,0 +1,216 @@
+{% extends "base.html" %}
+{% block title %}Risk Leaderboard{% endblock %}
+{% block content %}
+<div class="page-header">
+  <h1>⚠️ Risk Leaderboard</h1>
+  <p>Hospitals ranked on device-relevant outcomes. Click any hospital to open its full profile.</p>
+</div>
+
+<div class="tabs">
+  <a href="/leaderboard?tab=err" class="{% if tab=='err' %}active{% endif %}">Readmissions (ERR)</a>
+  <a href="/leaderboard?tab=hai" class="{% if tab=='hai' %}active{% endif %}">Device Infections (SIR)</a>
+  <a href="/leaderboard?tab=psi" class="{% if tab=='psi' %}active{% endif %}">Safety (PSI)</a>
+  <a href="/leaderboard?tab=cjr" class="{% if tab=='cjr' %}active{% endif %}">Hip/Knee (CJR)</a>
+</div>
+
+<div class="explain">
+  {% if tab == 'err' %}
+    <strong>What is ERR?</strong> Excess Readmission Ratio — a hospital's 30-day readmission rate divided by what CMS
+    <em>expected</em> given its patient mix. <strong>1.0 = exactly average.</strong> <strong>&gt; 1.0 = worse than peers</strong> and
+    triggers up to 3% Medicare payment reduction (HRRP penalty). This is the #1 readmission metric for procedural devices.
+  {% elif tab == 'hai' %}
+    <strong>What is SIR?</strong> Standardized Infection Ratio — observed infections ÷ predicted infections.
+    <strong>&gt; 1.0 = more infections than expected.</strong> These are literally caused by medical devices: CLABSI from central
+    venous catheters, CAUTI from urinary catheters, MRSA bacteremia from device biofilms. The purest device-safety signal.
+  {% elif tab == 'psi' %}
+    <strong>What is PSI?</strong> Patient Safety Indicator — AHRQ-defined rates of serious post-operative events
+    (hemorrhage, respiratory failure, sepsis, accidental puncture). Many are device-related complications.
+  {% elif tab == 'cjr' %}
+    <strong>What is CJR?</strong> Comprehensive Care for Joint Replacement — the most device-specific metric we have.
+    Each hospital gets one composite hip/knee complication score reflecting implanted joint prosthesis outcomes.
+  {% endif %}
+</div>
+
+{% if measures_list %}
+<form method="get" action="/leaderboard" style="margin-bottom:1rem;">
+  <input type="hidden" name="tab" value="{{ tab }}">
+  <label style="font-size:0.85rem; font-weight:600; color: var(--text-secondary);">Measure: </label>
+  <select name="measure" onchange="this.form.submit()" style="font-size:0.85rem; padding:0.45rem 0.7rem; max-width:500px; background: var(--bg-elevated); color: var(--text-primary); border: 1px solid var(--border); border-radius: var(--radius-xs); font-family: 'Inter', sans-serif;">
+    {% for m in measures_list %}
+      {% set info = decode_measure(m) %}
+      <option value="{{ m }}" {% if m==measure %}selected{% endif %}>
+        {{ info[0] or m }}{% if info[0] and info[0] != m %} — {{ m }}{% endif %}
+      </option>
+    {% endfor %}
+  </select>
+</form>
+
+{% if measure %}
+  {% set info = decode_measure(measure) %}
+  {% if info[2] %}
+  <div class="card" style="background: var(--bg-elevated);">
+    <span class="domain-tag">{{ info[1] }}</span>
+    <span style="margin-left:0.5rem; font-size:0.9rem; color: var(--text-secondary);">{{ info[2] }}</span>
+  </div>
+  {% endif %}
+{% endif %}
+{% endif %}
+
+{% if rows and tab != 'cjr' and tab != 'psi' %}
+<div class="grid-2">
+  <div class="card">
+    <div class="card-title">Top 10 worst — visual ranking <i class="info-icon">i<span class="info-tip">The 10 hospitals with the highest score on this measure. Red bars exceed the Medicare penalty threshold (1.0). Click a bar to open that hospital's full profile.</span></i></div>
+    <p class="card-subtitle">Red = severe, yellow = over threshold, green = acceptable.</p>
+    <div class="chart-tall"><canvas id="topChart"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Score distribution <i class="info-icon">i<span class="info-tip">Histogram showing how the top-50 worst hospitals are spread across score ranges. Red bars are above the 1.0 penalty threshold. Helps you see whether risk is concentrated in a few outliers or broadly distributed.</span></i></div>
+    <p class="card-subtitle">Where the top-50 worst hospitals fall on this measure. The vertical line is the penalty threshold (1.0).</p>
+    <div class="chart-tall"><canvas id="histChart"></canvas></div>
+  </div>
+</div>
+{% endif %}
+
+<div class="card">
+  <div class="card-title">Full ranked list ({{ rows|length }})</div>
+  {% if rows %}
+  <table class="scroll-wrap">
+    <thead>
+      <tr>
+        <th>Rank</th>
+        <th>CCN <i class="info-icon">i<span class="info-tip">CMS Certification Number — 6-digit hospital ID assigned by Medicare.</span></i></th>
+        <th>Hospital</th>
+        <th>State</th>
+        <th>Score <i class="info-icon">i<span class="info-tip">The actual measured value for this hospital on this measure. For ERR/SIR: 1.0 = exactly average; for rates: lower or higher is better depending on the measure.</span></i></th>
+        <th>Risk <i class="info-icon">i<span class="info-tip">Our derived risk tier based on the score: severe (worst performers), elevated (above threshold), ok (at/below benchmark).</span></i></th>
+        {% if tab == 'err' %}<th>Discharges <i class="info-icon">i<span class="info-tip">CMS hospital quality star rating (1–5). Used here as a quick cross-check alongside the readmission score.</span></i></th><th>Readmits <i class="info-icon">i<span class="info-tip">Peer Group — 1–5, segmented by proportion of dual-eligible (Medicare + Medicaid) patients. Controls for socioeconomic confounders in HRRP penalty calculations.</span></i></th>{% endif %}
+        {% if tab == 'psi' %}<th>CI 95% <i class="info-icon">i<span class="info-tip">95% confidence interval on the score. Narrow interval = high-volume, reliable estimate. Wide interval = small sample, take with caution.</span></i></th><th>vs. national <i class="info-icon">i<span class="info-tip">Comparison to the national benchmark — whether this hospital is statistically better, same, or worse than average.</span></i></th>{% endif %}
+        {% if tab == 'hai' %}<th>vs. national <i class="info-icon">i<span class="info-tip">Comparison to the national HAI rate. "Worse" = statistically more device-related infections than expected.</span></i></th>{% endif %}
+        {% if tab == 'cjr' %}<th>HCAHPS <i class="info-icon">i<span class="info-tip">Patient experience score (Hospital Consumer Assessment). Higher = better satisfaction.</span></i></th><th>Market Area <i class="info-icon">i<span class="info-tip">MSA = Metropolitan Statistical Area. Regional grouping used by Medicare for geographic comparisons.</span></i></th>{% endif %}
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in rows %}
+      {% if tab == 'err' %}
+        {% set score = row[4] %}
+        {% set r_class = risk_level(score, 'lower', 1.0) %}
+      {% elif tab == 'hai' %}
+        {% set score = row[3] %}
+        {% set r_class = risk_level(score, 'lower', 1.0) %}
+      {% elif tab == 'psi' %}
+        {% set r_class = 'med' if row[6] and 'orse' in row[6]|lower else ('low' if row[6] and 'better' in row[6]|lower else None) %}
+      {% else %}{% set r_class = None %}{% endif %}
+      <tr>
+        <td><strong>{{ loop.index }}</strong></td>
+        <td><code>{{ row[0] }}</code></td>
+        <td><strong>{{ row[1] }}</strong></td>
+        <td>{{ row[2] }}</td>
+        {% if tab == 'err' %}
+          <td>{{ row[3] or '—' }}★</td>
+          <td class="score-badge">{{ row[4] }}</td>
+          <td>
+            {% if r_class == 'high' %}<span class="risk risk-high">severe</span>
+            {% elif r_class == 'med' %}<span class="risk risk-med">above threshold</span>
+            {% else %}<span class="risk risk-low">ok</span>{% endif %}
+          </td>
+          <td>{{ row[5] or '—' }}</td>
+          <td>{{ row[6] or '—' }}</td>
+        {% elif tab == 'hai' %}
+          <td class="score-badge">{{ row[3] }}</td>
+          <td>
+            {% if r_class == 'high' %}<span class="risk risk-high">severe</span>
+            {% elif r_class == 'med' %}<span class="risk risk-med">elevated</span>
+            {% else %}<span class="risk risk-low">ok</span>{% endif %}
+          </td>
+          <td>{{ row[4] or '—' }}</td>
+        {% elif tab == 'psi' %}
+          <td class="score-badge">{{ row[3] }}</td>
+          <td>
+            {% if r_class == 'med' %}<span class="risk risk-med">worse</span>
+            {% elif r_class == 'low' %}<span class="risk risk-low">better</span>{% endif %}
+          </td>
+          <td>{{ row[4] }} – {{ row[5] }}</td>
+          <td>{{ row[6] or '—' }}</td>
+        {% elif tab == 'cjr' %}
+          <td class="score-badge">{{ row[3] }}</td>
+          <td><span class="risk risk-unknown">—</span></td>
+          <td>{{ row[4] or '—' }}</td>
+          <td class="cell">{{ row[5] or '—' }}</td>
+        {% endif %}
+        <td><a href="/hospitals?facility_id={{ row[0] }}">profile →</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p class="muted">No data.</p>
+  {% endif %}
+</div>
+
+{% if rows and tab != 'cjr' and tab != 'psi' %}
+<script>
+const scoreIdx = {% if tab=='err' %}4{% elif tab=='hai' %}3{% else %}3{% endif %};
+const rows = {{ rows|json_safe|tojson }};
+const names = rows.slice(0, 10).map(r => r[1]);
+const scores = rows.slice(0, 10).map(r => parseFloat(r[scoreIdx]) || 0);
+const ids = rows.slice(0, 10).map(r => r[0]);
+
+// Top 10 bar
+new Chart(document.getElementById('topChart'), {
+  type: 'bar',
+  data: {
+    labels: names,
+    datasets: [{
+      data: scores,
+      backgroundColor: scores.map(v => v > 1.25 ? '#f87171' : v > 1.0 ? '#fbbf24' : '#34d399'),
+      borderRadius: 4,
+    }],
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false, indexAxis: 'y',
+    plugins: {legend: {display: false},
+              tooltip: {callbacks: {afterLabel: (ctx) =>
+                ctx.parsed.x > 1.0 ? '⚠ Above threshold — risk' : '✓ Below threshold — ok'}}},
+    scales: {x: {beginAtZero: true,
+                 title: {display: true, text: '{% if tab=="err" %}Excess Readmission Ratio{% else %}Standardized Infection Ratio{% endif %} (1.0 = national avg)'}}},
+    onClick: (e, els) => { if (els[0]) window.location = '/hospitals?facility_id=' + ids[els[0].index]; }
+  },
+});
+
+// Distribution histogram
+const allScores = rows.map(r => parseFloat(r[scoreIdx]) || 0).filter(x => x > 0);
+const min = Math.min(...allScores, 0.7);
+const max = Math.max(...allScores, 1.5);
+const nBins = 15;
+const binSize = (max - min) / nBins;
+const bins = new Array(nBins).fill(0);
+const binLabels = [];
+for (let i = 0; i < nBins; i++) {
+  binLabels.push((min + i * binSize).toFixed(2));
+}
+allScores.forEach(v => {
+  const b = Math.min(Math.floor((v - min) / binSize), nBins - 1);
+  bins[b]++;
+});
+new Chart(document.getElementById('histChart'), {
+  type: 'bar',
+  data: {
+    labels: binLabels,
+    datasets: [{
+      data: bins,
+      backgroundColor: binLabels.map(v => parseFloat(v) > 1.0 ? 'rgba(248,113,113,0.5)' : 'rgba(52,211,153,0.5)'),
+      borderRadius: 4,
+    }],
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {legend: {display: false},
+              annotation: {annotations: {}}},
+    scales: {y: {title: {display: true, text: 'Hospitals'}},
+             x: {title: {display: true, text: 'Score (bin start)'}}},
+  },
+});
+</script>
+{% endif %}
+{% endblock %}

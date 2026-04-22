@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Device Linkage Prep{% endblock %}
+{% block content %}
+<div class="page-header">
+  <h1>🔗 Device Linkage Prep</h1>
+  <p>Raw material for Phase 3 (FDA MAUDE) and Phase 4 (device ↔ hospital bridges)</p>
+</div>
+
+<div class="card">
+<h2 style="margin-top: 0;">1️⃣ ASC facilities with NPI — the primary bridge to FDA MAUDE</h2>
+<p class="muted">
+  <strong>{{ "{:,}".format(asc_total) }}</strong> Ambulatory Surgical Centers have both CCN and NPI.
+  NPI is the ID FDA MAUDE uses to identify reporting facilities — so these are direct join keys.
+  Showing first 200 below.
+</p>
+{% with cols=asc_cols, rows=asc %}{% include '_table.html' %}{% endwith %}
+</div>
+
+<div class="card">
+<h2 style="margin-top: 0;">2️⃣ CMS measure IDs — crosswalk targets for FDA product codes</h2>
+<p class="muted">
+  Each FDA device <code>product_code</code> maps to one or more CMS measures.
+  E.g., <code>KZH</code> (hip prosthesis) → <code>READM-30-HIP-KNEE-HRRP</code>, <code>COMP_HIP_KNEE</code>.
+</p>
+{% with cols=measures_cols, rows=measures %}{% include '_table.html' %}{% endwith %}
+</div>
+
+<div class="card">
+<h2 style="margin-top: 0;">3️⃣ Hospital ZIP index — for FDA facility fuzzy matching</h2>
+<p class="muted">
+  For MAUDE reports without NPI, we match on (ZIP + fuzzy facility name).
+</p>
+{% with cols=zip_cols, rows=zips %}{% include '_table.html' %}{% endwith %}
+</div>
+{% endblock %}

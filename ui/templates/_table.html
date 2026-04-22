@@ -1,0 +1,15 @@
+{# Reusable table macro. Usage:
+   {% with cols=cols, rows=rows %}{% include '_table.html' %}{% endwith %}
+#}
+{% if rows %}
+<table class="scroll-wrap">
+  <thead><tr>{% for c in cols %}<th>{{ c }}</th>{% endfor %}</tr></thead>
+  <tbody>
+    {% for row in rows %}
+    <tr>{% for v in row %}<td class="cell">{{ v if v is not none else '—' }}</td>{% endfor %}</tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p class="muted">No rows.</p>
+{% endif %}

@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+{% block title %}HCPCS / CPT Codes{% endblock %}
+{% block content %}
+<div class="page-header">
+  <h1>🔢 HCPCS / CPT Code Dictionary</h1>
+  <p>Master lookup for every Medicare procedure, device, supply, and drug code. The link between "what was billed" and "what device was used."</p>
+</div>
+
+<div class="explain">
+  <strong>HCPCS</strong> (Healthcare Common Procedure Coding System) has two levels.
+  <strong>Level I = CPT codes</strong> (5-digit numeric, owned by the AMA — e.g. <code>27130</code> = total hip replacement).
+  <strong>Level II = CMS codes</strong> (letter + 4 digits — e.g. <code>C1741</code> = bone fixation anchor implant, <code>L8699</code> = implanted prosthetic device).
+  Together they cover everything Medicare pays for. We use them to <em>bridge</em> Medicare billing (CCN + HCPCS) to FDA device reports (product_code + brand).
+</div>
+
+{% if kpi[0] == 0 %}
+<div class="card" style="border-left: 3px solid var(--warning);">
+  <div class="card-title">⚠ No HCPCS codes ingested yet</div>
+  <p>Run this once to download + parse the current CMS quarterly HCPCS file (~15k codes):</p>
+  <pre>python run.py ingest --dataset hcpcs_master</pre>
+</div>
+{% else %}
+
+<div class="kpi">
+  <div class="box"><div class="label">Total codes <i class="info-icon">i<span class="info-tip">Total HCPCS codes loaded from the CMS quarterly ZIP. Covers every procedure, supply, device, and drug that Medicare pays for.</span></i></div><div class="value">{{ "{:,}".format(kpi[0]) }}</div><div class="delta">HCPCS + CPT</div></div>
+  <div class="box" style="border-left: 3px solid var(--accent);">
+    <div class="label" style="color: var(--accent-light);">Device codes <i class="info-icon">i<span class="info-tip">Codes flagged as device-related (families C, E, K, L — outpatient pass-through devices, DME, and orthotics/prosthetics). These are the HCPCS codes our bridge maps to FDA product codes.</span></i></div>
+    <div class="value" style="color: var(--accent-light);">{{ "{:,}".format(kpi[1]) }}</div>
+    <div class="delta">C/E/K/L family</div>
+  </div>
+  <div class="box"><div class="label">BETOS categorized <i class="info-icon">i<span class="info-tip">BETOS = Berenson-Eggers Type of Service. A CMS clinical classification that groups HCPCS codes (e.g., "major procedure — cardiovascular"). Useful for aggregating costs and volumes.</span></i></div><div class="value">{{ "{:,}".format(kpi[2]) }}</div><div class="delta">clinical groups</div></div>
+  <div class="box"><div class="label">Code families <i class="info-icon">i<span class="info-tip">Number of HCPCS family prefixes present (A, B, C, …, V). Each family groups related codes — A = supplies, C = outpatient device pass-throughs, L = orthotics/prosthetics, etc.</span></i></div><div class="value">{{ kpi[3] }}</div><div class="delta">A/B/C…V</div></div>
+</div>
+
+<div class="grid-2">
+  <div class="card">
+    <div class="card-title">Codes by family <i class="info-icon">i<span class="info-tip">HCPCS codes are grouped by a letter prefix indicating the broad category. Device-dominant families (C, E, K, L) are highlighted — those are the ones we bridge to FDA product codes.</span></i></div>
+    <p class="card-subtitle">Blue rows are device-dominant families. <strong>C</strong> = Outpatient PPS pass-through devices · <strong>E</strong> = Durable Medical Equipment · <strong>L</strong> = Orthotics/Prosthetics · <strong>K</strong> = Temporary DME.</p>
+    <table>
+      <thead><tr><th>Family</th><th>Description</th><th>Codes</th><th>Devices</th></tr></thead>
+      <tbody>
+        {% set family_labels = {
+          'A': 'Medical & surgical supplies',
+          'B': 'Enteral / parenteral therapy',
+          'C': '★ Outpatient PPS device pass-through',
+          'D': 'Dental',
+          'E': '★ Durable medical equipment (DME)',
+          'G': 'Temporary procedures (Medicare)',
+          'H': 'Alcohol & drug treatment',
+          'J': 'Drugs (non-oral)',
+          'K': '★ Temporary DME',
+          'L': '★ Orthotics & prosthetics (includes implants)',
+          'M': 'Medical services',
+          'P': 'Pathology / laboratory',
+          'Q': 'Temporary codes',
+          'R': 'Diagnostic radiology',
+          'S': 'Private payer codes',
+          'T': 'State Medicaid',
+          'U': 'Unclassified',
+          'V': 'Vision / hearing services',
+        } %}
+        {% for row in family_breakdown %}
+        {% set is_dev_family = row[0] in ['C','E','K','L'] %}
+        <tr {% if is_dev_family %}style="background: var(--accent-glow);"{% endif %}>
+          <td><code class="measure" style="font-size:0.9rem;">{{ row[0] }}</code></td>
+          <td>{{ family_labels.get(row[0], '—') }}</td>
+          <td>{{ row[1] }}</td>
+          <td>{% if row[2] > 0 %}<span class="risk risk-low">{{ row[2] }}</span>{% else %}—{% endif %}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">HCPCS codes with device-bridge mappings <i class="info-icon">i<span class="info-tip">HCPCS codes that already have at least one FDA product_code mapping in our bridge table. These are the codes for which we can translate Medicare billing into FDA device-safety signals.</span></i></div>
+    <p class="card-subtitle">These HCPCS codes are already mapped in our <code>bridge_product_code_to_measure</code> table, linking them to CMS outcome measures.</p>
+    {% if bridged %}
+    <table>
+      <thead><tr><th>Code</th><th>Description</th></tr></thead>
+      <tbody>
+        {% for r in bridged %}
+        <tr>
+          <td><code class="measure">{{ r[0] }}</code></td>
+          <td>{{ r[1] or '—' }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <p class="muted">No direct bridge mappings yet — most bridge entries currently use FDA 3-letter product codes, not HCPCS.</p>
+    {% endif %}
+  </div>
+</div>
+
+<hr>
+
+<div class="card">
+  <div class="card-title">Search the code dictionary</div>
+  <p class="card-subtitle">Look up any HCPCS/CPT code, or search descriptions (e.g. "hip", "catheter", "stent", "pacemaker").</p>
+  <form method="get" action="/codes" class="filter-bar">
+    <input type="text" name="search" placeholder="Code or description contains…" value="{{ search }}">
+    <select name="family">
+      <option value="">Family: all</option>
+      {% for f in ['A','B','C','D','E','G','H','J','K','L','M','P','Q','R','S','T','U','V'] %}
+        <option value="{{ f }}" {% if f==family %}selected{% endif %}>{{ f }}</option>
+      {% endfor %}
+    </select>
+    <label style="font-size:0.85rem; display:flex; align-items:center; gap:0.4rem; color: var(--text-secondary);">
+      <input type="checkbox" name="device_only" value="1" {% if device_only %}checked{% endif %} style="accent-color: var(--accent);">
+      Devices only
+    </label>
+    <button type="submit">Search</button>
+  </form>
+
+  <table class="scroll-wrap">
+    <thead>
+      <tr>
+        <th>Code <i class="info-icon">i<span class="info-tip">The HCPCS code — letter + 4 digits (Level II, CMS-owned) or 5 digits (Level I, CPT, AMA-owned).</span></i></th>
+        <th>Short Description <i class="info-icon">i<span class="info-tip">Concise label shown on claims and billing interfaces. Abbreviated.</span></i></th>
+        <th>Long Description <i class="info-icon">i<span class="info-tip">Full regulatory definition of what this code covers. Used by our GUDID auto-matcher for full-text similarity against device descriptions.</span></i></th>
+        <th>BETOS <i class="info-icon">i<span class="info-tip">Berenson-Eggers Type of Service — a clinical grouping (e.g., M2A = major procedure — cardiovascular).</span></i></th>
+        <th>Family <i class="info-icon">i<span class="info-tip">First letter of the code — determines the broad category (see the Codes by Family panel).</span></i></th>
+        <th>Device <i class="info-icon">i<span class="info-tip">Flag indicating this code describes a physical device (vs. a service/procedure/drug).</span></i></th>
+        <th>Coverage <i class="info-icon">i<span class="info-tip">Medicare coverage status for this code — Separately Payable, Package, Not Covered, etc.</span></i></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for r in rows %}
+      <tr>
+        <td><code class="measure" style="font-size:0.92rem;">{{ r[0] }}</code></td>
+        <td><strong>{{ r[1] or '—' }}</strong></td>
+        <td class="cell" style="max-width:60ch;">{{ r[2] or '—' }}</td>
+        <td>{% if r[3] %}<code style="font-size:0.75rem;">{{ r[3] }}</code>{% else %}—{% endif %}</td>
+        <td><code style="font-size:0.85rem;">{{ r[4] or '—' }}</code></td>
+        <td>
+          {% if r[5] %}<span class="risk risk-low">device</span>{% else %}<span class="muted">—</span>{% endif %}
+        </td>
+        <td>{{ r[6] or '—' }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% if rows|length >= 200 %}
+  <p class="muted">Showing first 200 results. Refine search to narrow down.</p>
+  {% endif %}
+</div>
+
+{% endif %}
+{% endblock %}
