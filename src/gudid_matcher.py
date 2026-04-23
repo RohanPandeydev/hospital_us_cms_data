@@ -1,73 +1,46 @@
 """Auto-populate bridge_hcpcs_to_product_code from GUDID text matching.
 
-Strategy (pure SQL, runs in seconds against the GIN-indexed device_description):
-
-  1. For each device-family HCPCS (is_device=true), extract 2+-character
-     words from long_desc as a plainto_tsquery.
-  2. Full-text match against fda_gudid_devices.device_description using the
-     GIN index (idx_gudid_desc_tsv).
-  3. Group the resulting GUDID rows by product_code and take the one that
-     appears most often — that is the best-supported mapping for this HCPCS.
-  4. Classify confidence from the support count (how many GUDID records
-     backed the winning product_code).
-  5. Insert new (hcpcs_code, product_code) pairs ONLY. Manual-seed rows are
-     never overwritten (ON CONFLICT DO NOTHING).
-
-What's intentionally simple:
-  - No TF-IDF, no fuzzy. Postgres full-text is already stem/stop-aware and
-    the device family is small enough (~1.8k HCPCS codes).
-  - One winner per HCPCS. Ties are broken by lexical order of product_code.
+ClickHouse port: we tokenize HCPCS long_desc in Python and, for each code,
+pull GUDID rows whose device_description contains ALL tokens (case-insensitive).
+Not as smart as Postgres full-text search (no stemming / stop-words), but good
+enough for the seeded device families, and deliberately simple.
 """
 
 import logging
+import re
 
 log = logging.getLogger(__name__)
 
 
-MATCH_SQL = """
-WITH device_hcpcs AS (
-    SELECT hcpcs_code, long_desc
-      FROM hcpcs_master
-     WHERE is_device = TRUE
-       AND long_desc IS NOT NULL
-       AND length(long_desc) >= 8
-),
-matches AS (
-    SELECT
-        h.hcpcs_code,
-        h.long_desc,
-        g.product_code,
-        count(*) AS support
-      FROM device_hcpcs h
-      JOIN fda_gudid_devices g
-        ON g.product_code IS NOT NULL
-       AND g.device_description IS NOT NULL
-       AND to_tsvector('english', g.device_description)
-           @@ plainto_tsquery('english', h.long_desc)
-     GROUP BY h.hcpcs_code, h.long_desc, g.product_code
-),
-ranked AS (
-    SELECT
-        hcpcs_code,
-        product_code,
-        support,
-        row_number() OVER (PARTITION BY hcpcs_code
-                           ORDER BY support DESC, product_code ASC) AS rk
-      FROM matches
-     WHERE support >= %(min_support)s
-)
-SELECT hcpcs_code, product_code, support
-  FROM ranked
- WHERE rk = 1;
-"""
+STOPWORDS = {
+    "a", "an", "and", "or", "the", "of", "for", "to", "in", "on", "with",
+    "without", "as", "at", "by", "is", "are", "be", "this", "that",
+    "each", "per", "any", "other", "all", "than", "not", "no",
+}
+_WORD_RE = re.compile(r"[A-Za-z]{4,}")
 
 
-UPSERT_SQL = """
-    INSERT INTO bridge_hcpcs_to_product_code
-        (hcpcs_code, product_code, device_category, match_method, confidence, source_notes)
-    VALUES (%s, %s, %s, 'gudid_description', %s, %s)
-    ON CONFLICT (hcpcs_code, product_code) DO NOTHING;
-"""
+def _tokens(text):
+    """Return up to 5 distinguishing lowercase tokens from a description."""
+    if not text:
+        return []
+    out = []
+    seen = set()
+    for w in _WORD_RE.findall(text):
+        w = w.lower()
+        if w in STOPWORDS or w in seen:
+            continue
+        seen.add(w)
+        out.append(w)
+        if len(out) >= 5:
+            break
+    return out
+
+
+COLUMNS = [
+    "hcpcs_code", "product_code", "device_category",
+    "match_method", "confidence", "source_notes",
+]
 
 
 def _confidence(support):
@@ -79,34 +52,58 @@ def _confidence(support):
 
 
 def auto_populate(conn, min_support=2):
-    """Run the match and insert candidates. Returns (proposed, inserted).
+    """Match device-family HCPCS to GUDID product_codes by token overlap.
 
-    min_support — minimum number of GUDID records backing a (HCPCS, PC) pair
-    before we're willing to propose it (raise this to filter noise).
+    Returns (proposed, inserted). 'inserted' is best-effort — ClickHouse's
+    ReplacingMergeTree doesn't surface per-row conflict state, so we report
+    it as the count of pairs we inserted (duplicates against manual_seed
+    get collapsed on background merge).
     """
+    client = conn.client if hasattr(conn, "client") else conn
+
+    device_rows = client.query(
+        "SELECT hcpcs_code, long_desc FROM hcpcs_master FINAL "
+        "WHERE is_device = 1 AND long_desc != '' AND length(long_desc) >= 8"
+    ).result_rows
+    log.info("gudid matcher: scanning %d device-family HCPCS codes", len(device_rows))
+
     proposed = 0
+    to_insert = []
+    for hcpcs_code, long_desc in device_rows:
+        toks = _tokens(long_desc)
+        if len(toks) < 2:
+            continue
+        # Build AND-of-positionCaseInsensitive conditions — one parameter per token
+        conds = []
+        params = {}
+        for i, t in enumerate(toks):
+            key = f"t{i}"
+            conds.append(f"positionCaseInsensitive(device_description, {{{key}:String}}) > 0")
+            params[key] = t
+        sql = (
+            "SELECT product_code, count() AS support FROM fda_gudid_devices FINAL "
+            "WHERE product_code IS NOT NULL AND device_description IS NOT NULL "
+            "  AND " + " AND ".join(conds) +
+            " GROUP BY product_code "
+            " HAVING support >= {ms:UInt32} "
+            " ORDER BY support DESC, product_code ASC LIMIT 1"
+        )
+        params["ms"] = min_support
+        res = client.query(sql, parameters=params).result_rows
+        if not res:
+            continue
+        product_code, support = res[0]
+        proposed += 1
+        note = f"auto-matched via GUDID description (support={support})"
+        to_insert.append((
+            hcpcs_code, product_code, None,
+            "gudid_description", _confidence(support), note,
+        ))
+
     inserted = 0
+    if to_insert:
+        client.insert("bridge_hcpcs_to_product_code", to_insert, column_names=COLUMNS)
+        inserted = len(to_insert)
 
-    with conn.cursor() as cur:
-        cur.execute(MATCH_SQL, {"min_support": min_support})
-        candidates = cur.fetchall()
-
-    log.info("gudid matcher: %d HCPCS codes have candidates", len(candidates))
-
-    with conn.cursor() as cur:
-        for hcpcs_code, product_code, support in candidates:
-            proposed += 1
-            conf = _confidence(support)
-            note = f"auto-matched via GUDID description (support={support})"
-            cur.execute(UPSERT_SQL, (
-                hcpcs_code, product_code,
-                None,  # device_category — let a downstream step label
-                conf, note,
-            ))
-            if cur.rowcount == 1:
-                inserted += 1
-    conn.commit()
-
-    log.info("gudid matcher: proposed=%d inserted=%d (rest already in bridge)",
-             proposed, inserted)
+    log.info("gudid matcher: proposed=%d inserted=%d", proposed, inserted)
     return proposed, inserted

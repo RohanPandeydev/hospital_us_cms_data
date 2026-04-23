@@ -1,26 +1,15 @@
 """Static seed data for manual crosswalks.
 
 HCPCS ↔ FDA product_code: no authoritative public crosswalk exists, so this is
-a hand-curated starter set covering the highest-volume device families. Extend
-over time via GUDID description matching and brand fuzzy-match (tracked as
-match_method values other than 'manual_seed').
-
-Confidence levels:
-  high   — unambiguous 1:1 mapping published by FDA/CMS references
-  medium — category-level mapping, multiple product_codes may be valid
-  low    — inference from description similarity
+a hand-curated starter set covering the highest-volume device families.
 """
 
 import logging
-from psycopg2.extras import execute_values
 
 log = logging.getLogger(__name__)
 
 
 # (hcpcs_code, product_code, device_category, confidence, source_notes)
-# Hand-curated from FDA CDRH Product Classification Database + CMS HCPCS file.
-# Where multiple product_codes could apply to one HCPCS, we include each pair
-# as a separate row (the bridge is many-to-many by design).
 HCPCS_TO_PRODUCT_CODE_SEED = [
     # --- Cardiac rhythm: ICDs / pacemakers / leads ---
     ("C1721", "LWS", "icd_dual_chamber",        "high",   "AICD dual chamber → implantable defibrillator"),
@@ -97,33 +86,25 @@ HCPCS_TO_PRODUCT_CODE_SEED = [
 ]
 
 
-UPSERT_SQL = """
-    INSERT INTO bridge_hcpcs_to_product_code
-        (hcpcs_code, product_code, device_category, match_method, confidence, source_notes)
-    VALUES %s
-    ON CONFLICT (hcpcs_code, product_code) DO UPDATE SET
-        device_category = EXCLUDED.device_category,
-        match_method    = EXCLUDED.match_method,
-        confidence      = EXCLUDED.confidence,
-        source_notes    = EXCLUDED.source_notes;
-"""
+COLUMNS = [
+    "hcpcs_code", "product_code", "device_category",
+    "match_method", "confidence", "source_notes",
+]
 
 
 def seed_hcpcs_to_product_code(conn):
-    """Upsert the static HCPCS↔product_code seed. Idempotent."""
+    """Insert the static HCPCS↔product_code seed. Idempotent via ReplacingMergeTree."""
     rows = [
         (h, p, cat, "manual_seed", conf, note)
         for (h, p, cat, conf, note) in HCPCS_TO_PRODUCT_CODE_SEED
     ]
-    with conn.cursor() as cur:
-        execute_values(cur, UPSERT_SQL, rows, page_size=200)
-    conn.commit()
+    conn.insert("bridge_hcpcs_to_product_code", rows, column_names=COLUMNS)
     log.info("seeded bridge_hcpcs_to_product_code: %d rows", len(rows))
     return len(rows)
 
 
 def seed_all(conn):
-    """Run every manual seed loader. Extend here as more bridges are added."""
+    """Run every manual seed loader."""
     total = 0
     total += seed_hcpcs_to_product_code(conn)
     return total

@@ -126,25 +126,22 @@ def ingest_dataset(dataset, limit=None, client=None):
 
     client = client or _make_client(dataset)
     log.info("=== %s (%s) ===", dataset["id"], dataset["name"])
-    conn = db.connect()
-    log_id = db.start_ingest_log(conn, dataset)
     fetched = 0
     upserted = 0
     status = "success"
     error = None
     pbar = None
+    conn = db.connect()
+    handle = db.start_ingest_log(conn, dataset)
     try:
         total = _count_total(client, dataset, limit)
         pbar = tqdm(desc=dataset["id"], unit="row", total=total)
         for page in _iter_pages(client, dataset, limit):
-            try:
-                upserted += _upsert_page(conn, dataset, page)
-                conn.commit()
-            except Exception:
-                conn.rollback()
-                raise
+            upserted += _upsert_page(conn, dataset, page)
             fetched += len(page)
             pbar.update(len(page))
+            if limit is not None and fetched >= limit:
+                break
         log.info("%s done  fetched=%d  upserted=%d", dataset["id"], fetched, upserted)
     except KeyboardInterrupt:
         status = "aborted"
@@ -159,9 +156,9 @@ def ingest_dataset(dataset, limit=None, client=None):
         if pbar is not None:
             pbar.close()
         try:
-            db.finish_ingest_log(conn, log_id, fetched, upserted, status, error)
+            db.finish_ingest_log(conn, handle, fetched, upserted, status, error)
         finally:
-            conn.close()
+            conn.client.close()
     return fetched, upserted, status
 
 

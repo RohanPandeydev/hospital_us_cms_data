@@ -84,14 +84,12 @@ def cmd_auto_bridge(args):
         python run.py ingest --dataset fda_gudid
     """
     from src import gudid_matcher
-    with db.connect() as conn, conn.cursor() as cur:
-        cur.execute("SELECT count(*) FROM fda_gudid_devices")
-        n_gudid = cur.fetchone()[0]
-    if n_gudid == 0:
-        print("SKIP: fda_gudid_devices is empty. Run `python run.py ingest --dataset fda_gudid` first.")
-        return
-    print(f"Running GUDID matcher against {n_gudid:,} devices (min_support={args.min_support}) …")
     with db.connect() as conn:
+        n_gudid = conn.query("SELECT count() FROM fda_gudid_devices FINAL").result_rows[0][0]
+        if n_gudid == 0:
+            print("SKIP: fda_gudid_devices is empty. Run `python run.py ingest --dataset fda_gudid` first.")
+            return
+        print(f"Running GUDID matcher against {n_gudid:,} devices (min_support={args.min_support}) …")
         proposed, inserted = gudid_matcher.auto_populate(
             conn, min_support=args.min_support,
         )
@@ -99,18 +97,13 @@ def cmd_auto_bridge(args):
 
 
 def cmd_refresh(args):
-    """Refresh the materialized views built on top of the bridges."""
-    views = ["hcpcs_device_profile", "hospital_hcpcs_enriched"]
-    with db.connect() as conn, conn.cursor() as cur:
-        for v in views:
-            try:
-                cur.execute(f"REFRESH MATERIALIZED VIEW {v}")
-                conn.commit()
-                print(f"  refreshed: {v}")
-            except Exception as e:
-                conn.rollback()
-                print(f"  SKIP {v}: {e}")
-    print("OK: views refreshed")
+    """No-op on ClickHouse.
+
+    The Postgres build had two materialized views (hcpcs_device_profile,
+    hospital_hcpcs_enriched) that needed periodic refresh. On ClickHouse the
+    UI computes those joins at query time, so there's nothing to refresh.
+    """
+    print("OK: no materialized views on ClickHouse — nothing to refresh")
 
 
 def cmd_probe(args):
@@ -145,11 +138,10 @@ def cmd_status(args):
                rows_fetched, rows_upserted, status, error
           FROM cms_ingestion_log
          ORDER BY started_at DESC
-         LIMIT 50;
+         LIMIT 50
     """
-    with db.connect() as conn, conn.cursor() as cur:
-        cur.execute(sql)
-        rows = cur.fetchall()
+    with db.connect() as conn:
+        rows = conn.query(sql).result_rows
     if not rows:
         print("No ingestion runs yet.")
         return

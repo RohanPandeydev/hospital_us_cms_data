@@ -21,8 +21,6 @@ import logging
 import zipfile
 import requests
 
-from psycopg2.extras import execute_values
-
 from . import db
 
 log = logging.getLogger(__name__)
@@ -66,7 +64,7 @@ def _parse_line(line):
         code, short_desc or None, long_desc or None,
         betos or None, pricing or None, coverage or None,
         asc_grp or None, mog_grp or None, tos or None, action or None,
-        family, is_device, CURRENT_HCPCS_QTR, line.rstrip(),
+        family, 1 if is_device else 0, CURRENT_HCPCS_QTR, line.rstrip(),
     )
 
 
@@ -107,46 +105,33 @@ def ingest(limit=None):
     if limit:
         rows = rows[:limit]
 
-    conn = db.connect()
     dataset_meta = {"id": "hcpcs_master", "name": "HCPCS Level II Master"}
-    log_id = db.start_ingest_log(conn, dataset_meta)
     fetched = len(rows)
     upserted = 0
     status = "success"
     error = None
 
-    try:
-        sql = f"""
-            INSERT INTO hcpcs_master ({", ".join(HCPCS_COLUMNS)})
-            VALUES %s
-            ON CONFLICT (hcpcs_code) DO UPDATE SET
-                short_desc        = EXCLUDED.short_desc,
-                long_desc         = EXCLUDED.long_desc,
-                betos_code        = EXCLUDED.betos_code,
-                pricing_indicator = EXCLUDED.pricing_indicator,
-                coverage_code     = EXCLUDED.coverage_code,
-                asc_payment_grp   = EXCLUDED.asc_payment_grp,
-                mog_payment_grp   = EXCLUDED.mog_payment_grp,
-                type_of_service   = EXCLUDED.type_of_service,
-                action_code       = EXCLUDED.action_code,
-                code_family       = EXCLUDED.code_family,
-                is_device         = EXCLUDED.is_device,
-                effective_qtr     = EXCLUDED.effective_qtr,
-                raw_line          = EXCLUDED.raw_line,
-                fetched_at        = now();
-        """
-        with conn.cursor() as cur:
-            execute_values(cur, sql, rows, page_size=500)
-        conn.commit()
-        upserted = len(rows)
-        log.info("upserted %d rows", upserted)
-    except Exception as e:
-        status = "error"
-        error = repr(e)
-        conn.rollback()
-        log.exception("HCPCS ingest failed")
-        raise
-    finally:
-        db.finish_ingest_log(conn, log_id, fetched, upserted, status, error)
-        conn.close()
+    with db.connect() as conn:
+        handle = db.start_ingest_log(conn, dataset_meta)
+        try:
+            # Dedupe before insert — ReplacingMergeTree keeps latest but
+            # duplicate keys in one batch defeat the purpose.
+            seen = {}
+            for r in rows:
+                seen[r[0]] = r
+            deduped = list(seen.values())
+            conn.insert(
+                "hcpcs_master",
+                deduped,
+                column_names=HCPCS_COLUMNS,
+            )
+            upserted = len(deduped)
+            log.info("inserted %d rows", upserted)
+        except Exception as e:
+            status = "error"
+            error = repr(e)
+            log.exception("HCPCS ingest failed")
+            raise
+        finally:
+            db.finish_ingest_log(conn, handle, fetched, upserted, status, error)
     return fetched, upserted
