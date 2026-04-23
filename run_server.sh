@@ -15,7 +15,7 @@ if [ -f ".venv/bin/activate" ]; then
   source .venv/bin/activate
 fi
 
-HOST="${HOST:-127.0.0.1}"
+HOST="${HOST:-0.0.0.0}"
 PORT="${PORT:-8000}"
 
 echo "→ CMS Hospital Explorer on http://${HOST}:${PORT}"
