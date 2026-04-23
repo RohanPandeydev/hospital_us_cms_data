@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: cms-hospital-explorer
+    runtime: python
+    plan: starter
+    branch: master
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn ui.app:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11"
+      - key: CLICKHOUSE_HOST
+        sync: false
+      - key: CLICKHOUSE_PORT
+        sync: false
+      - key: CLICKHOUSE_USER
+        sync: false
+      - key: CLICKHOUSE_PASSWORD
+        sync: false
+      - key: CLICKHOUSE_DATABASE
+        sync: false
+      - key: CLICKHOUSE_SECURE
+        value: "true"
+      - key: CMS_API_BASE
+        value: https://data.cms.gov/provider-data/api/1/datastore/query
+      - key: CMS_PAGE_SIZE
+        value: "500"
+      - key: CMS_HTTP_TIMEOUT
+        value: "60"
+      - key: CMS_MAX_RETRIES
+        value: "5"
