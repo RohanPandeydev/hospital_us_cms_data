@@ -1,0 +1,746 @@
+{% extends "base.html" %}
+{% block title %}Risk JSON — {{ ccn }} / {{ device_category }}{% endblock %}
+
+{# -- Schema-v2 aliases so the existing template keeps working --------------
+   The payload was restructured into `device_risk_global` (hospital-agnostic
+   device signal) vs `hospital_context` (CCN-scoped evidence). We alias the
+   old flat paths to the new nested ones so this template doesn't have to
+   rewrite every reference. Fallbacks are defensive in case we ever get a
+   v1 payload from an old row. #}
+{% set dg  = payload.device_risk_global or {} %}
+{% set hc  = payload.hospital_context  or {} %}
+{% set payload_adverse_events    = dg.adverse_events    %}
+{% set payload_recall            = dg.recall            %}
+{% set payload_clinical_evidence = dg.clinical_evidence %}
+{% set payload_provider_signal   = hc.manufacturer_overlap %}
+{% set payload_hdv               = hc.procedure_volume %}
+{% set payload_hc_measures       = hc.compare_measures %}
+{% set payload_confidence        = {
+  "hospital_device_link": hc.linkage_confidence,
+  "device_risk":          dg.device_risk_confidence,
+  "linkage_evidence":     hc.linkage_evidence or [],
+} %}
+
+{% block content %}
+<div class="page-header">
+  <h1>📦 Unified Risk JSON — one record</h1>
+  <p>
+    CCN <code>{{ ccn }}</code> × device category
+    <span class="domain-tag">{{ device_category }}</span>
+    {% if hospital_name %} — {{ hospital_name }}{% if state %}, {{ state }}{% endif %}{% endif %}
+  </p>
+</div>
+
+<a href="/risk">← back to the risk leaderboard</a>
+
+<div class="explain" style="margin-top:1rem">
+  <strong>What is this page?</strong> The full unified JSON payload that was
+  written to Postgres for this (hospital × device family) pair. Every section
+  below is one logical layer of the blueprint — hospital identity, the device
+  in question, adverse events, recalls, clinical evidence, the computed risk
+  score, and confidence flags. Scroll to the bottom for the raw JSON.
+</div>
+
+<!-- Score banner — global → linkage-damped hospital score -->
+{% set r = payload.risk or {} %}
+{% set global_score = r.global_score %}
+{% set hosp_score   = r.hospital_final_score if r.hospital_final_score is defined else final_score %}
+{% set link_mult    = r.linkage_multiplier %}
+{% set exp_mult     = r.exposure_multiplier %}
+{% set link_conf    = r.linkage_confidence or (hc.linkage_confidence) %}
+<div class="kpi" style="margin-top:1rem">
+  <div class="box">
+    <div class="label">
+      Global device risk
+      <i class="info-icon">i<span class="info-tip">Hospital-agnostic device-family safety signal from FDA MAUDE + recalls. Same number for every hospital in this category. Range 0–10.</span></i>
+    </div>
+    <div class="value">
+      {% if global_score is not none %}
+        <span class="risk {{ 'risk-high' if global_score >= 7 else ('risk-med' if global_score >= 4 else 'risk-low') }}">
+          {{ '%.2f'|format(global_score) }}
+        </span>
+      {% else %}—{% endif %}
+    </div>
+  </div>
+  <div class="box">
+    <div class="label">
+      Hospital final score
+      <i class="info-icon">i<span class="info-tip">global × linkage_multiplier × exposure_multiplier, capped at 10. Reflects how much of the device's global risk actually transfers to THIS hospital given our evidence that the hospital touches this device (Medicare DRG claims, Hospital Compare measures, Open Payments overlap).</span></i>
+    </div>
+    <div class="value">
+      {% if hosp_score is not none %}
+        <span class="risk {{ 'risk-high' if hosp_score >= 7 else ('risk-med' if hosp_score >= 4 else 'risk-low') }}">
+          {{ '%.2f'|format(hosp_score) }}
+        </span>
+      {% else %}—{% endif %}
+    </div>
+  </div>
+  <div class="box">
+    <div class="label">
+      Linkage
+      <i class="info-icon">i<span class="info-tip">How confident we are that this hospital touches this device. procedural = Medicare billed matching DRGs ≥100 times. procedural_low = 1–99 DRG discharges. categorical = only Compare measures or Open-Payments overlap. none = no CCN-scoped evidence. "procedural" is deliberately not called "strong" — DRG billing tells us the procedure happens, not which device was used.</span></i>
+    </div>
+    <div class="value">
+      <span class="risk
+        {% if link_conf == 'procedural'     %}risk-low
+        {% elif link_conf == 'procedural_low' %}risk-med
+        {% elif link_conf == 'categorical'  %}risk-med
+        {% else %}risk-high
+        {% endif %}">
+        {{ link_conf or '—' }}
+      </span>
+      {% if link_mult is not none %}
+        <span class="muted" style="font-size:.8em">× {{ '%.2f'|format(link_mult) }}</span>
+      {% endif %}
+    </div>
+  </div>
+  {% set exp_bonus = r.exposure_bonus %}
+  <div class="box">
+    <div class="label">
+      Exposure bonus
+      <i class="info-icon">i<span class="info-tip">Additive score bump (0 to +1.5) based on this hospital's documented procedure volume under the mapped DRGs. Uses log10(1 + discharges) × 0.4, capped at 1.5. Additive — not multiplicative — so 107 discharges doesn't produce the same score as 10,000.</span></i>
+    </div>
+    <div class="value">
+      {% if exp_bonus is not none %}+{{ '%.2f'|format(exp_bonus) }}{% else %}—{% endif %}
+    </div>
+  </div>
+  <div class="box">
+    <div class="label">
+      Recall override
+      <i class="info-icon">i<span class="info-tip">True when the recall severity floor dominates the MAUDE score — the global number is driven by a Class I/II recall, not adverse-event volume.</span></i>
+    </div>
+    <div class="value">
+      {{ 'YES' if (r.scoring and r.scoring.recall_override) or (dg.scoring and dg.scoring.recall_override) else 'no' }}
+    </div>
+  </div>
+</div>
+
+<!-- ================ Hospital section ================ -->
+{% if payload.hospital %}
+<div class="card">
+  <h3 class="card-title">
+    🏥 Hospital
+    <i class="info-icon">i<span class="info-tip">Facility identity from the CMS Provider Data master (xubh-q36u). CCN is the Medicare ID and is the canonical key across CMS datasets.</span></i>
+  </h3>
+  <p class="card-subtitle">Source: CMS Provider Data — <code>Hospital General Information</code>.</p>
+  <table>
+    <tbody>
+      <tr><th>CCN</th><td><code>{{ payload.hospital.ccn }}</code></td></tr>
+      <tr><th>Name</th><td>{{ payload.hospital.name or '—' }}</td></tr>
+      <tr><th>Location</th><td>{{ payload.hospital.city or '' }}{% if payload.hospital.state %}, {{ payload.hospital.state }}{% endif %} {{ payload.hospital.zip_code or '' }}</td></tr>
+      <tr><th>Type</th><td>{{ payload.hospital.type or '—' }}</td></tr>
+      <tr><th>Ownership</th><td>{{ payload.hospital.ownership or '—' }}</td></tr>
+      <tr><th>CMS Star Rating <i class="info-icon">i<span class="info-tip">CMS Hospital Overall Rating, 1–5 stars. This is an aggregate quality signal from CMS, not device-specific.</span></i></th>
+          <td>{{ payload.hospital.quality_score if payload.hospital.quality_score is not none else '—' }}</td></tr>
+    </tbody>
+  </table>
+</div>
+{% endif %}
+
+<!-- ================ Device section ================ -->
+{% if payload.device %}
+<div class="card">
+  <h3 class="card-title">
+    🔬 Device
+    <i class="info-icon">i<span class="info-tip">The device family identified by the HCPCS↔FDA-product-code bridge. HCPCS codes are billing codes used by CMS; product codes are device classification codes used by FDA. The bridge connects them.</span></i>
+  </h3>
+  <p class="card-subtitle">Source: <code>bridge_hcpcs_to_product_code</code> (hand-curated).</p>
+  <table>
+    <tbody>
+      <tr><th>Category</th><td><span class="domain-tag">{{ payload.device.category }}</span></td></tr>
+      <tr><th>Primary product code</th><td><code>{{ payload.device.product_code or '—' }}</code></td></tr>
+      <tr><th>All product codes <i class="info-icon">i<span class="info-tip">Every FDA CDRH product code that maps to this device family.</span></i></th>
+          <td>{% for p in payload.device.product_codes or [] %}<code>{{ p }}</code> {% endfor %}</td></tr>
+      <tr><th>HCPCS codes <i class="info-icon">i<span class="info-tip">Every CMS billing code that maps to this device family.</span></i></th>
+          <td>{% for h in payload.device.hcpcs_codes or [] %}<code>{{ h }}</code> {% endfor %}</td></tr>
+      <tr><th>DRG codes <i class="info-icon">i<span class="info-tip">Medicare-Severity DRGs whose bundled procedures use this device. Enables CCN-level hospital-device linkage via Medicare Inpatient claims.</span></i></th>
+          <td>{% for d in payload.device.drg_codes or [] %}<code>{{ d }}</code> {% endfor %}{% if not payload.device.drg_codes %}<span class="muted">none mapped — this device category is tracked via HCPCS/product-code only (typically outpatient/DME)</span>{% endif %}</td></tr>
+      <tr><th>Regulatory class</th><td>{{ payload.device.regulatory_class or 'not yet linked (needs 510k/PMA layer)' }}</td></tr>
+    </tbody>
+  </table>
+</div>
+{% endif %}
+
+<!-- ================ HOSPITAL DEVICE VOLUME (direct linkage) ================ -->
+{% if payload_hdv %}
+<div class="card" style="border-left:4px solid
+  {% if payload_hdv.has_direct_claims_linkage %}#34d399{% else %}#6b7280{% endif %};">
+  <h3 class="card-title">
+    🏥 Hospital's direct device exposure
+    <i class="info-icon">i<span class="info-tip">This is the real hospital-to-device link, derived from CMS Medicare Inpatient claims. We map DRG codes (diagnosis-related groups this hospital billed Medicare for) to device categories using a curated DRG → device map. When this card shows a non-zero number, we have auditable evidence that THIS hospital actually performs procedures involving this device family.</span></i>
+  </h3>
+  <p class="card-subtitle">
+    Source: CMS Medicare Inpatient PUF — <code>cms_hospital_drg_volume</code>
+    joined through <code>drg_to_device_category</code>.
+    {% if payload_hdv.data_year %}
+      Data year: <strong>{{ payload_hdv.data_year }}</strong>.
+    {% endif %}
+  </p>
+
+  {% if payload_hdv.has_direct_claims_linkage %}
+    <div class="kpi">
+      <div class="box">
+        <div class="label">Medicare discharges <i class="info-icon">i<span class="info-tip">Total Medicare discharges this hospital billed under the DRGs mapped to this device category. Direct, verifiable procedure volume from CMS.</span></i></div>
+        <div class="value">{{ '{:,}'.format(payload_hdv.discharges or 0) }}</div>
+      </div>
+      <div class="box">
+        <div class="label">Weighted exposure <i class="info-icon">i<span class="info-tip">Discharges × each DRG's mapping weight. When a DRG covers multiple device categories (e.g. PCI covers both bare-metal and drug-eluting stents), the volume splits proportionally so no discharge is double-counted across categories.</span></i></div>
+        <div class="value">{{ '{:,.0f}'.format(payload_hdv.weighted_exposure or 0) }}</div>
+      </div>
+      <div class="box">
+        <div class="label">Avg Medicare payment <i class="info-icon">i<span class="info-tip">Average Medicare payment per discharge across the relevant DRGs. Gives a sense of procedure complexity/cost at this facility.</span></i></div>
+        <div class="value">
+          {% if payload_hdv.avg_medicare_payment %}
+            ${{ '{:,.0f}'.format(payload_hdv.avg_medicare_payment) }}
+          {% else %}—{% endif %}
+        </div>
+      </div>
+      <div class="box">
+        <div class="label">DRGs billed</div>
+        <div class="value" style="font-size:1rem">
+          {% for d in payload_hdv.drg_codes or [] %}
+            <code>{{ d }}</code>{% if not loop.last %} {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <div class="explain" style="margin-top:.8rem">
+      <strong>What this means:</strong> This hospital billed Medicare for
+      <strong>{{ '{:,}'.format(payload_hdv.discharges or 0) }}</strong>
+      discharge{{ '' if payload_hdv.discharges == 1 else 's' }} under
+      DRG code{{ 's' if (payload_hdv.drg_codes|length) > 1 else '' }}
+      {% for d in payload_hdv.drg_codes or [] %}<code>{{ d }}</code>{% if not loop.last %}, {% endif %}{% endfor %}
+      — all of which involve <span class="domain-tag">{{ payload.device.category }}</span>
+      devices. This is the first-class evidence that this hospital is
+      actually exposed to the adverse events and recalls reported at the
+      national level for this device family.
+    </div>
+  {% else %}
+    <p class="muted">
+      No Medicare inpatient claims under the DRGs mapped to this device
+      category — either the hospital doesn't perform these procedures, they
+      fall under outpatient (APC) billing not covered here, or they're
+      non-Medicare. Hospital-device link remains indirect for this category.
+    </p>
+  {% endif %}
+</div>
+{% endif %}
+
+<!-- ================ HOSPITAL COMPLICATIONS (device-adjacent) ================ -->
+{% if payload_hc_measures and payload_hc_measures.has_data %}
+<div class="card" style="border-left:4px solid #fbbf24;">
+  <h3 class="card-title">
+    📈 Hospital Compare complications
+    <i class="info-icon">i<span class="info-tip">CMS Hospital Compare outcome measures for this hospital that are clinically tied to this device category. Examples: COMP_HIP_KNEE (complications after hip/knee implant), MORT_30_CABG (30-day mortality after coronary bypass), PSI_12 (postop PE/DVT — implicates IVC filters).</span></i>
+  </h3>
+  <p class="card-subtitle">Source: CMS Hospital Compare measures → device-category map.</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Measure</th>
+        <th>Score</th>
+        <th>vs. national</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for m in payload_hc_measures.measures %}
+      <tr>
+        <td>
+          <code>{{ m.measure_id }}</code>
+          <div style="font-size:.8rem;color:var(--text-secondary)">{{ m.measure_name or '' }}</div>
+        </td>
+        <td>{{ m.score if m.score is not none else '—' }}</td>
+        <td>
+          {% set cn = (m.compared_to_national or '')|lower %}
+          {% if 'worse' in cn %}
+            <span class="risk risk-high">{{ m.compared_to_national }}</span>
+          {% elif 'better' in cn %}
+            <span class="risk risk-low">{{ m.compared_to_national }}</span>
+          {% else %}
+            <span class="muted">{{ m.compared_to_national or '—' }}</span>
+          {% endif %}
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endif %}
+
+<!-- ================ Adverse events section ================ -->
+{% if payload_adverse_events %}
+<div class="card">
+  <h3 class="card-title">
+    ⚠️ Adverse events — MAUDE
+    <i class="info-icon">i<span class="info-tip">Manufacturer and User Facility Device Experience database. Reports are submitted voluntarily by manufacturers and user facilities, so MAUDE significantly under-reports real event volumes — treat counts as a relative signal, not an absolute rate.</span></i>
+  </h3>
+  <p class="card-subtitle">
+    Source: openFDA <code>/device/event.json</code>. Counts are for the
+    <strong>device family</strong> (not this specific hospital — see confidence below).
+  </p>
+  <div class="kpi">
+    <div class="box">
+      <div class="label">Total Events</div>
+      <div class="value">{{ '{:,}'.format(payload_adverse_events.total_events or 0) }}</div>
+    </div>
+    <div class="box">
+      <div class="label">Deaths</div>
+      <div class="value bad">{{ '{:,}'.format(payload_adverse_events.death_count or 0) }}</div>
+    </div>
+    <div class="box">
+      <div class="label">Injuries</div>
+      <div class="value">{{ '{:,}'.format(payload_adverse_events.injury_count or 0) }}</div>
+    </div>
+    <div class="box">
+      <div class="label">Malfunctions</div>
+      <div class="value">{{ '{:,}'.format(payload_adverse_events.malfunction_count or 0) }}</div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+<!-- ================ Recall section ================ -->
+{% if payload_recall %}
+<div class="card">
+  <h3 class="card-title">
+    🚨 Recalls
+    <i class="info-icon">i<span class="info-tip">FDA device enforcement actions. Classes: I (reasonable probability of serious injury/death), II (temporary harm), III (unlikely harm). A single Class I recall forces this record's final_score to ≥9.</span></i>
+  </h3>
+  <p class="card-subtitle">Source: openFDA <code>/device/enforcement.json</code>, bucketed by keyword inference over <code>product_description</code>.</p>
+  {% if payload_recall.has_recall %}
+    <p>
+      <strong>Has recall:</strong>
+      <span class="risk risk-high">{{ payload_recall.recall_class or 'Yes' }}</span>
+      ({{ payload_recall.recall_count or 0 }} total recall{{ '' if payload_recall.recall_count == 1 else 's' }})
+    </p>
+    <table class="scroll-wrap">
+      <thead><tr><th>Recall #</th><th>Class</th><th>Firm</th><th>Reason</th></tr></thead>
+      <tbody>
+      {% for r in payload_recall.recalls or [] %}
+        <tr>
+          <td><code>{{ r.recall_number }}</code></td>
+          <td>
+            {% if r.recall_class and 'I' in r.recall_class and 'II' not in r.recall_class %}
+              <span class="risk risk-high">{{ r.recall_class }}</span>
+            {% elif r.recall_class == 'Class II' %}
+              <span class="risk risk-med">{{ r.recall_class }}</span>
+            {% else %}
+              <span class="risk risk-low">{{ r.recall_class or '—' }}</span>
+            {% endif %}
+          </td>
+          <td>{{ r.firm_name or '—' }}</td>
+          <td class="cell" style="max-width:70ch">{{ r.reason_for_recall or '—' }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p class="muted">No recall recorded for this device family.</p>
+  {% endif %}
+</div>
+{% endif %}
+
+<!-- ================ Clinical evidence ================ -->
+{% if payload_clinical_evidence %}
+<div class="card">
+  <h3 class="card-title">
+    🧪 Clinical evidence
+    <i class="info-icon">i<span class="info-tip">Published clinical trials for this device family. More trials (especially with posted results) generally indicates more mature safety data. Zero trials doesn't mean unsafe — niche or older devices often have little current trial activity.</span></i>
+  </h3>
+  <p class="card-subtitle">Source: ClinicalTrials.gov API v2.</p>
+  <div class="kpi">
+    <div class="box">
+      <div class="label">Trials</div>
+      <div class="value">{{ payload_clinical_evidence.trial_count or 0 }}</div>
+    </div>
+    <div class="box">
+      <div class="label">Completed</div>
+      <div class="value">{{ payload_clinical_evidence.completed or 0 }}</div>
+    </div>
+    <div class="box">
+      <div class="label">With Results</div>
+      <div class="value">{{ payload_clinical_evidence.with_results or 0 }}</div>
+    </div>
+    <div class="box">
+      <div class="label">Active</div>
+      <div class="value">{{ payload_clinical_evidence.active or 0 }}</div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+<!-- ================ Provider signal / Open Payments ================ -->
+{% if payload_provider_signal %}
+<div class="card">
+  <h3 class="card-title">
+    💸 Provider financial signal
+    <i class="info-icon">i<span class="info-tip">CMS Open Payments — manufacturer-to-physician payments at this teaching hospital. High exposure doesn't mean anything is wrong, but it's context for device-selection bias.</span></i>
+  </h3>
+  <p class="card-subtitle">Source: CMS Open Payments (<code>openpaymentsdata.cms.gov</code>).</p>
+  <table>
+    <tbody>
+      <tr><th>NPI linked</th><td>{{ 'Yes' if payload_provider_signal.npi_linked else 'No' }}</td></tr>
+      <tr><th>Manufacturer exposure tier</th>
+          <td>
+            {% set tier = payload_provider_signal.manufacturer_exposure or 'none' %}
+            {% if tier == 'high' %}<span class="risk risk-high">high</span>
+            {% elif tier == 'medium' %}<span class="risk risk-med">medium</span>
+            {% elif tier == 'low' %}<span class="risk risk-low">low</span>
+            {% else %}<span class="muted">none</span>{% endif %}
+          </td></tr>
+      <tr><th>Total payments (USD)</th>
+          <td>${{ '{:,.0f}'.format(payload_provider_signal.total_payments_usd or 0) }}</td></tr>
+      <tr><th>Distinct manufacturers</th>
+          <td>{{ payload_provider_signal.manufacturer_count or 0 }}</td></tr>
+    </tbody>
+  </table>
+</div>
+{% endif %}
+
+<!-- ================ Risk breakdown ================ -->
+{% if payload.risk %}
+<div class="card">
+  <h3 class="card-title">
+    📊 Risk score breakdown
+    <i class="info-icon">i<span class="info-tip">How the final score was derived for THIS row. Formula: final_score = min(10, max(maude_score, recall_floor)).</span></i>
+  </h3>
+  <table>
+    <tbody>
+      <tr><th>MAUDE score</th><td>{{ '%.2f'|format(payload.risk.maude_score or 0) }}</td></tr>
+      <tr><th>Recall override? <i class="info-icon">i<span class="info-tip">True when the recall floor exceeded the MAUDE-only score — i.e. the score is recall-driven, not event-driven.</span></i></th>
+          <td>{{ 'Yes' if payload.risk.recall_override else 'No' }}</td></tr>
+      <tr><th>Final score (device-family baseline)</th>
+          <td>
+            <span class="risk {{ 'risk-high' if final_score and final_score >= 7 else ('risk-med' if final_score and final_score >= 4 else 'risk-low') }}">
+              {{ '%.2f'|format(payload.risk.final_score or 0) }}
+            </span>
+          </td></tr>
+      {% if payload.risk.exposure_multiplier and payload.risk.exposure_multiplier > 1.0 %}
+      <tr><th>Exposure-adjusted score <i class="info-icon">i<span class="info-tip">Final score × multiplier based on THIS hospital's actual Medicare discharge volume for this device category. A hospital doing 500+ procedures/yr carries more cumulative exposure than one doing 5 — even for the same device family. Multiplier: 1.25× for ≥500 discharges, 1.15× for ≥100, 1.05× for ≥20.</span></i></th>
+          <td>
+            {% set eas = payload.risk.exposure_adjusted_score %}
+            <span class="risk {{ 'risk-high' if eas and eas >= 7 else ('risk-med' if eas and eas >= 4 else 'risk-low') }}">
+              {{ '%.2f'|format(eas or 0) }}
+            </span>
+            <span class="muted" style="margin-left:.5rem">
+              (× {{ '%.2f'|format(payload.risk.exposure_multiplier) }} exposure multiplier)
+            </span>
+          </td></tr>
+      {% endif %}
+    </tbody>
+  </table>
+</div>
+{% endif %}
+
+<!-- ================ Confidence / caveats ================ -->
+{% if payload_confidence %}
+<div class="card">
+  <h3 class="card-title">
+    🧭 Confidence flags
+    <i class="info-icon">i<span class="info-tip">How much to trust this row. hospital_device_link is weak in every row by design (no direct US federal linkage exists between MAUDE and a specific hospital). device_risk improves when there are many events or a recall.</span></i>
+  </h3>
+  <table>
+    <tbody>
+      <tr><th>Hospital ↔ device link <i class="info-icon">i<span class="info-tip">Always 'weak' — we infer hospital-level risk from national device-family data. A hospital-specific match would require a MAUDE facility-name fuzzy matcher (partial coverage) + procedure-volume normalization.</span></i></th>
+          <td><span class="risk {{ 'risk-low' if payload_confidence.hospital_device_link == 'strong' else ('risk-med' if payload_confidence.hospital_device_link == 'moderate' else 'risk-unknown') }}">{{ payload_confidence.hospital_device_link or 'unknown' }}</span></td></tr>
+      <tr><th>Device risk signal <i class="info-icon">i<span class="info-tip">Strong if ≥50 MAUDE events OR a recall. Moderate if 10–49 events. Weak if &lt;10 events and no recall.</span></i></th>
+          <td><span class="risk {{ 'risk-low' if payload_confidence.device_risk == 'strong' else ('risk-med' if payload_confidence.device_risk == 'moderate' else 'risk-unknown') }}">{{ payload_confidence.device_risk or 'unknown' }}</span></td></tr>
+      <tr><th>Linkage type</th>
+          <td><span class="domain-tag">{{ payload.meta.linkage_type if payload.meta else 'indirect' }}</span></td></tr>
+    </tbody>
+  </table>
+</div>
+{% endif %}
+
+<!-- ================ 510(k) device catalog (hospital ↔ 510K link) ================ -->
+{% if payload.device_510k_catalog and payload.device_510k_catalog.devices %}
+<div class="card">
+  <h3 class="card-title">
+    🔗 FDA-cleared devices for this category
+    <i class="info-icon">i<span class="info-tip">Every 510(k) clearance whose product_code maps to this device family via the bridge. This is the CATALOG of devices an acute-care hospital in this category could plausibly be using. Sorted by most recent decision. Once Open Payments is ingested, this list will narrow to manufacturers that paid THIS specific hospital.</span></i>
+  </h3>
+  <p class="card-subtitle">
+    Top {{ payload.device_510k_catalog.count }} 510(k)s joined through
+    <code>bridge_hcpcs_to_product_code</code>. Sorted by MAUDE event count
+    (most clinically relevant first). K-numbers are clickable FDA links.
+  </p>
+  <table class="scroll-wrap">
+    <thead>
+      <tr>
+        <th>K# <i class="info-icon">i<span class="info-tip">FDA 510(k) clearance number — unique per device submission. Click to open the FDA record in a new tab.</span></i></th>
+        <th>Device name</th>
+        <th>Manufacturer (applicant)</th>
+        <th>PC</th>
+        <th>Class</th>
+        <th style="text-align:right">MAUDE events <i class="info-icon">i<span class="info-tip">Adverse-event reports in MAUDE linked to this specific K-number via product_code + normalized-manufacturer substring match. 0 means no events found for this exact K# — but other K#s for the same device family may have them.</span></i></th>
+        <th style="text-align:right">Deaths</th>
+        <th style="text-align:right">Injuries</th>
+        <th>Decision date</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for d in payload.device_510k_catalog.devices %}
+      {% set m = d.maude or {} %}
+      {% set ev = m.event_count or 0 %}
+      <tr>
+        <td>
+          <a href="https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID={{ d.k_number }}"
+             target="_blank" rel="noopener">
+            <code>{{ d.k_number }}</code>
+          </a>
+        </td>
+        <td class="cell">{{ d.device_name or '—' }}</td>
+        <td class="cell">{{ d.applicant or '—' }}</td>
+        <td><code>{{ d.product_code or '' }}</code></td>
+        <td>
+          {% set rc = d.regulatory_class %}
+          {% if rc == 'Class III' %}<span class="risk risk-high">{{ rc }}</span>
+          {% elif rc == 'Class II' %}<span class="risk risk-med">{{ rc }}</span>
+          {% elif rc == 'Class I' %}<span class="risk risk-low">{{ rc }}</span>
+          {% else %}<span class="muted">{{ rc or '—' }}</span>{% endif %}
+        </td>
+        <td style="text-align:right">
+          {% if ev > 0 %}
+            <span class="risk {{ 'risk-high' if ev >= 50 else ('risk-med' if ev >= 10 else 'risk-low') }}">
+              {{ '{:,}'.format(ev) }}
+            </span>
+          {% else %}
+            <span class="muted">0</span>
+          {% endif %}
+        </td>
+        <td style="text-align:right">
+          {% if (m.death_count or 0) > 0 %}
+            <span class="risk risk-high">{{ m.death_count }}</span>
+          {% else %}
+            <span class="muted">0</span>
+          {% endif %}
+        </td>
+        <td style="text-align:right">
+          {% if (m.injury_count or 0) > 0 %}
+            <span class="risk risk-med">{{ m.injury_count }}</span>
+          {% else %}
+            <span class="muted">0</span>
+          {% endif %}
+        </td>
+        <td>{{ d.decision_date or '—' }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endif %}
+
+<!-- ================ Unified code crosswalk ================ -->
+{% if crosswalk_by_type %}
+<div class="card">
+  <h3 class="card-title">
+    🔀 Code crosswalk — every identifier for this device family
+    <i class="info-icon">i<span class="info-tip">One unified view of every code type that maps to this device category: CMS billing codes (HCPCS), diagnosis-related groups (DRG), FDA product codes, 510(k) clearance numbers (K#), unique device identifiers (UDI-DI), brand names, manufacturers, and GMDN generic-device nomenclature preferred terms. This crosswalk lets you jump from any code type to all the others.</span></i>
+  </h3>
+  {% set total_cw = namespace(n=0) %}
+  {% for _, items in crosswalk_by_type.items() %}{% set total_cw.n = total_cw.n + (items|length) %}{% endfor %}
+  <p class="card-subtitle">
+    Built from bridge_hcpcs_to_product_code, drg_to_device_category,
+    fda_510k, fda_gudid_devices, fda_device_classification.
+    <strong>{{ total_cw.n }}</strong> links shown (up to 500).
+  </p>
+
+  {% set type_meta = {
+    'hcpcs':        {'icon':'🧾','label':'HCPCS billing codes','why':'CMS procedure-billing identifiers — what the hospital bills Medicare for.'},
+    'cpt':          {'icon':'📋','label':'CPT procedure codes','why':'AMA Current Procedural Terminology — procedure-level billing codes.'},
+    'drg':          {'icon':'🏥','label':'DRGs (inpatient)','why':'Medicare-Severity DRGs — how inpatient stays are grouped and paid.'},
+    'product_code': {'icon':'🏷','label':'FDA product codes','why':'CDRH 3-letter codes identifying a device type category at the FDA.'},
+    'k_number':     {'icon':'📜','label':'510(k) clearance numbers','why':'Each K-number is one FDA clearance submission for a specific device.'},
+    'udi_di':       {'icon':'🔖','label':'UDI-DI (device identifiers)','why':'Universal Device Identifier — ties a specific physical device model to its manufacturer.'},
+    'brand':        {'icon':'🪪','label':'Brand names','why':'Marketed product names from FDA GUDID — searchable device brand.'},
+    'manufacturer': {'icon':'🏭','label':'Manufacturers','why':'Companies listed in GUDID for this device family.'},
+    'gmdn':         {'icon':'🌐','label':'GMDN preferred terms','why':'Global Medical Device Nomenclature — international generic device names.'},
+  } %}
+
+  {% for ctype, items in crosswalk_by_type.items() %}
+    {% if items %}
+      {% set meta = type_meta.get(ctype, {'icon':'•','label':ctype,'why':''}) %}
+      <h4 style="margin-top:1rem;color:var(--text-primary)">
+        {{ meta.icon }} {{ meta.label }}
+        <span class="muted" style="font-weight:400;font-size:.85rem">({{ items|length }})</span>
+      </h4>
+      <p class="card-subtitle" style="margin-bottom:.4rem">{{ meta.why }}</p>
+      <div style="max-height:220px;overflow:auto;border:1px solid var(--border);border-radius:6px">
+        <table style="margin:0">
+          <thead><tr>
+            <th>Code</th>
+            <th>Description</th>
+            {% if ctype in ['k_number','udi_di','brand','manufacturer'] %}
+              <th>Manufacturer</th>
+            {% endif %}
+            <th>Source</th>
+            <th>Confidence</th>
+          </tr></thead>
+          <tbody>
+          {% for c in items %}
+            <tr>
+              <td>
+                {% if ctype == 'k_number' %}
+                  <a href="https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID={{ c.code_value }}"
+                     target="_blank" rel="noopener"><code>{{ c.code_value }}</code></a>
+                {% else %}
+                  <code>{{ c.code_value }}</code>
+                {% endif %}
+              </td>
+              <td class="cell" style="max-width:60ch">{{ c.display_name or '—' }}</td>
+              {% if ctype in ['k_number','udi_di','brand','manufacturer'] %}
+                <td>{{ c.linked_manufacturer or '—' }}</td>
+              {% endif %}
+              <td><span class="muted">{{ c.source }}</span></td>
+              <td>
+                {% if c.confidence == 'high' %}<span class="risk risk-low">high</span>
+                {% elif c.confidence == 'medium' %}<span class="risk risk-med">medium</span>
+                {% elif c.confidence == 'low' %}<span class="risk risk-high">low</span>
+                {% else %}—{% endif %}
+              </td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
+{% endif %}
+
+<!-- ================ FDA Device Classification ================ -->
+{% if classification %}
+<div class="card">
+  <h3 class="card-title">
+    🛡 FDA Device Classification (regulatory profile)
+    <i class="info-icon">i<span class="info-tip">Authoritative FDA classification data for every product code in this device category. Shows: device class (I low / II moderate / III high), implant status, life-sustain status, medical specialty panel, and CFR regulation number.</span></i>
+  </h3>
+  <p class="card-subtitle">Source: openFDA <code>/device/classification.json</code> — 7,057 product codes in <code>fda_device_classification</code>.</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Product Code</th>
+        <th>Device Name</th>
+        <th>Class</th>
+        <th>Regulation</th>
+        <th>Specialty</th>
+        <th>Implant?</th>
+        <th>Life-sustain?</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for c in classification %}
+      <tr>
+        <td><code>{{ c.product_code }}</code></td>
+        <td class="cell">{{ c.device_name or '—' }}</td>
+        <td>
+          {% if c.device_class == '3' %}<span class="risk risk-high">Class III</span>
+          {% elif c.device_class == '2' %}<span class="risk risk-med">Class II</span>
+          {% elif c.device_class == '1' %}<span class="risk risk-low">Class I</span>
+          {% else %}<span class="muted">{{ c.device_class or '—' }}</span>{% endif %}
+        </td>
+        <td>{% if c.regulation_number %}<a href="https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfcfr/CFRSearch.cfm?fr={{ c.regulation_number }}" target="_blank" rel="noopener"><code>{{ c.regulation_number }}</code></a>{% else %}—{% endif %}</td>
+        <td>{{ c.medical_specialty_description or '—' }}</td>
+        <td>
+          {% if c.implant_flag == 'Y' %}<span class="risk risk-med">Yes</span>
+          {% else %}<span class="muted">No</span>{% endif %}
+        </td>
+        <td>
+          {% if c.life_sustain_support_flag == 'Y' %}<span class="risk risk-high">Yes</span>
+          {% else %}<span class="muted">No</span>{% endif %}
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endif %}
+
+<!-- ================ Device-match provenance ================ -->
+{% if provenance %}
+<div class="card">
+  <h3 class="card-title">
+    🧬 Device-match provenance
+    <i class="info-icon">i<span class="info-tip">How each recall on this device family got linked. Method priority: k_number (highest confidence — authoritative 510(k) lookup) → product_code (exact openFDA PC match) → manufacturer (firm-name substring match vs. 510k applicants) → regex (keyword rules) → llm (Groq classifier, last resort).</span></i>
+  </h3>
+  <p class="card-subtitle">
+    Matcher pipeline: <strong>K# → product_code → manufacturer → regex → LLM</strong>.
+    Showing up to 50 recalls.
+  </p>
+  <table class="scroll-wrap">
+    <thead>
+      <tr>
+        <th>Recall #</th>
+        <th>Class</th>
+        <th>Firm</th>
+        <th>Matched K#</th>
+        <th>Matched PC</th>
+        <th>Method <i class="info-icon">i<span class="info-tip">k_number is highest confidence. manufacturer means firm_name substring-matched a known 510k applicant. regex means keyword rule hit. llm means Groq classifier picked the category when all deterministic layers failed.</span></i></th>
+        <th>Confidence</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for p in provenance %}
+      <tr>
+        <td><code>{{ p.recall_number }}</code></td>
+        <td>
+          {% if p.recall_class == 'Class I' %}
+            <span class="risk risk-high">{{ p.recall_class }}</span>
+          {% elif p.recall_class == 'Class II' %}
+            <span class="risk risk-med">{{ p.recall_class }}</span>
+          {% else %}
+            <span class="risk risk-low">{{ p.recall_class or '—' }}</span>
+          {% endif %}
+        </td>
+        <td class="cell">{{ p.firm_name or '—' }}</td>
+        <td><code>{{ p.matched_k_number or '' }}</code></td>
+        <td><code>{{ p.matched_product_code or '' }}</code></td>
+        <td>
+          {% set m = p.match_method %}
+          <span class="domain-tag" style="
+            {% if m == 'k_number' %}background:rgba(52,211,153,.18);color:#34d399;
+            {% elif m == 'product_code' %}background:rgba(52,211,153,.12);color:#34d399;
+            {% elif m == 'manufacturer' %}background:rgba(99,102,241,.15);color:#a78bfa;
+            {% elif m == 'regex' %}background:rgba(251,191,36,.12);color:#fbbf24;
+            {% elif m == 'llm' %}background:rgba(248,113,113,.12);color:#f87171;
+            {% endif %}">{{ m or '—' }}</span>
+        </td>
+        <td>
+          {% if p.match_confidence == 'high' %}
+            <span class="risk risk-low">high</span>
+          {% elif p.match_confidence == 'medium' %}
+            <span class="risk risk-med">medium</span>
+          {% elif p.match_confidence == 'low' %}
+            <span class="risk risk-high">low</span>
+          {% else %}—{% endif %}
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endif %}
+
+<!-- ================ Sources ================ -->
+{% if payload.meta and payload.meta.sources %}
+<div class="card">
+  <h3 class="card-title">📚 Data provenance</h3>
+  <p class="card-subtitle">Every data source feeding this record.</p>
+  <ul style="margin-left:1.2rem">
+    {% for s in payload.meta.sources %}
+      <li style="padding:.2rem 0; color:var(--text-secondary)">{{ s }}</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}
+
+<!-- ================ Raw JSON ================ -->
+<div class="card">
+  <h3 class="card-title">
+    🧾 Raw JSON payload
+    <i class="info-icon">i<span class="info-tip">The full record exactly as written to Postgres — copy this into any downstream ML/analytics pipeline.</span></i>
+  </h3>
+  <p class="card-subtitle">Everything above rendered, plus nothing lost.</p>
+  <pre style="max-height:60vh; overflow:auto">{{ payload_json }}</pre>
+</div>
+{% endblock %}

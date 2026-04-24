@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+{% block title %}Code Crosswalk{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>🔀 Unified Device Code Crosswalk</h1>
+  <p>One searchable index that connects every identifier type we've ingested:
+     CMS billing codes (HCPCS), inpatient DRGs, FDA product codes, 510(k)
+     K-numbers, Unique Device Identifiers (UDI-DI), brand names,
+     manufacturers, and GMDN preferred terms — all mapped to the same
+     device-category vocabulary.</p>
+</div>
+
+<div class="explain">
+  <strong>Why this matters.</strong> A single physical device (say, a Medtronic
+  Resolute Onyx drug-eluting stent) shows up under <em>six different
+  identifier systems</em> depending on who's writing about it — CMS uses
+  HCPCS/DRG, FDA uses product code + K-number, distributors use UDI-DI, the
+  manufacturer uses brand names, and researchers use GMDN. This page unifies
+  all of them under one device_category so you can pivot in any direction.
+</div>
+
+<!-- KPI -->
+<div class="kpi">
+  <div class="box">
+    <div class="label">Total crosswalk rows</div>
+    <div class="value">{{ '{:,}'.format(kpi.total or 0) }}</div>
+  </div>
+  <div class="box">
+    <div class="label">Device categories</div>
+    <div class="value">{{ kpi.cats or 0 }}</div>
+  </div>
+  <div class="box">
+    <div class="label">Code types</div>
+    <div class="value">{{ kpi.types or 0 }}</div>
+  </div>
+  <div class="box">
+    <div class="label">Distinct codes</div>
+    <div class="value">{{ '{:,}'.format(kpi.codes or 0) }}</div>
+  </div>
+</div>
+
+<!-- Code-type breakdown -->
+<div class="card">
+  <h3 class="card-title">By code type</h3>
+  <table>
+    <thead><tr><th>Code type</th><th>Count</th><th>What it is</th></tr></thead>
+    <tbody>
+      {% set type_desc = {
+        'hcpcs':'CMS Healthcare Common Procedure Coding — billing codes used by Medicare.',
+        'cpt':'AMA Current Procedural Terminology — procedure-level codes.',
+        'drg':'Medicare-Severity DRG — inpatient payment group.',
+        'product_code':'FDA CDRH 3-letter device classification code.',
+        'k_number':'FDA 510(k) clearance submission number.',
+        'udi_di':'GS1 Unique Device Identifier — Device Identifier portion.',
+        'brand':'Marketed device brand name (from GUDID).',
+        'manufacturer':'Device maker company name (from GUDID).',
+        'gmdn':'Global Medical Device Nomenclature preferred term.'
+      } %}
+      {% for t, n in type_counts %}
+        <tr>
+          <td><span class="domain-tag">{{ t }}</span></td>
+          <td>{{ '{:,}'.format(n) }}</td>
+          <td class="cell">{{ type_desc.get(t, '') }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<!-- Filters -->
+<div class="card">
+  <h3 class="card-title">Filter</h3>
+  <form method="get" class="filter-form">
+    <label>
+      Device category
+      <select name="device_category">
+        <option value="">— any —</option>
+        {% for c in categories %}
+          <option value="{{ c }}" {% if filters.device_category == c %}selected{% endif %}>{{ c }}</option>
+        {% endfor %}
+      </select>
+    </label>
+    <label>
+      Code type
+      <select name="code_type">
+        <option value="">— any —</option>
+        {% for t, _ in type_counts %}
+          <option value="{{ t }}" {% if filters.code_type == t %}selected{% endif %}>{{ t }}</option>
+        {% endfor %}
+      </select>
+    </label>
+    <label>
+      Search
+      <input type="text" name="search" value="{{ filters.search or '' }}"
+             placeholder="K#, brand, HCPCS, manufacturer, …">
+    </label>
+    <button type="submit">Apply</button>
+    <a href="/crosswalk">reset</a>
+  </form>
+</div>
+
+<!-- Results -->
+<div class="card">
+  <h3 class="card-title">
+    Results <span class="muted">(up to 500 rows)</span>
+  </h3>
+  {% if rows %}
+    <table class="scroll-wrap">
+      <thead>
+        <tr>
+          <th>Device category</th>
+          <th>Code type</th>
+          <th>Code</th>
+          <th>Description</th>
+          <th>Brand</th>
+          <th>Manufacturer</th>
+          <th>Product code</th>
+          <th>Source</th>
+          <th>Confidence</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for r in rows %}
+        <tr>
+          <td><span class="domain-tag">{{ r[0] }}</span></td>
+          <td>{{ r[1] }}</td>
+          <td>
+            {% if r[1] == 'k_number' %}
+              <a href="https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID={{ r[2] }}"
+                 target="_blank" rel="noopener"><code>{{ r[2] }}</code></a>
+            {% else %}
+              <code>{{ r[2] }}</code>
+            {% endif %}
+          </td>
+          <td class="cell" style="max-width:40ch">{{ r[3] or '—' }}</td>
+          <td>{{ r[6] or '—' }}</td>
+          <td>{{ r[7] or '—' }}</td>
+          <td><code>{{ r[8] or '' }}</code></td>
+          <td><span class="muted">{{ r[4] }}</span></td>
+          <td>
+            {% if r[5] == 'high' %}<span class="risk risk-low">high</span>
+            {% elif r[5] == 'medium' %}<span class="risk risk-med">medium</span>
+            {% elif r[5] == 'low' %}<span class="risk risk-high">low</span>
+            {% else %}—{% endif %}
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p class="muted">No rows match the current filters.</p>
+  {% endif %}
+</div>
+{% endblock %}

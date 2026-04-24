@@ -195,14 +195,10 @@ DATASETS = [
         "name": "Medicare Physician & Other Practitioners - by Provider and Service",
         "kind": "cms_summary",
         "source": "cms_data_api",
-        "filter_field": "Rndrng_Prvdr_State_Abrvtn",
-        "columns": [
-            "Rndrng_NPI", "Rndrng_Prvdr_Last_Org_Name",
-            "Rndrng_Prvdr_State_Abrvtn", "Rndrng_Prvdr_City",
-            "HCPCS_Cd", "HCPCS_Desc",
-            "Tot_Benes", "Tot_Srvcs",
-            "Avg_Sbmtd_Chrg", "Avg_Mdcr_Pymt_Amt",
-        ],
+        # Per-state JSON pagination times out: even a single state of
+        # physician-by-service is tens of MB. Stream the pre-built CSV
+        # instead via /data-viewer/stats.data_file_url.
+        "bulk_csv": True,
     },
     # --- Reference / master tables ---
     {
@@ -211,6 +207,7 @@ DATASETS = [
         "name": "Provider of Services (POS) File — IQIES",
         "kind": "cms_summary",
         "source": "cms_data_api",
+        "bulk_csv": True,
     },
     {
         "id": "betos_classification",
@@ -218,6 +215,7 @@ DATASETS = [
         "name": "Restructured BETOS HCPCS Classification",
         "kind": "cms_summary",
         "source": "cms_data_api",
+        "bulk_csv": True,
     },
     {
         "id": "hospital_cost_report",
@@ -225,6 +223,7 @@ DATASETS = [
         "name": "Hospital Provider Cost Report (HCRIS)",
         "kind": "cms_summary",
         "source": "cms_data_api",
+        "bulk_csv": True,
     },
     {
         "id": "hcpcs_master",

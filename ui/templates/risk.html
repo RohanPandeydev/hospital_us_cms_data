@@ -1,0 +1,259 @@
+{% extends "base.html" %}
+{% block title %}Unified Risk Intelligence{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>🧠 Unified Device Risk Intelligence</h1>
+  <p>Hospital × device-category risk rows assembled from CMS hospital data,
+     FDA MAUDE, device recalls, ClinicalTrials.gov, and CMS Open Payments.
+     Each row is a single "risk hypothesis" — what the public data tells us
+     about a specific device family at a specific hospital.</p>
+</div>
+
+<div class="explain">
+  <strong>How to read this page in 30 seconds.</strong> Every row below
+  answers one question: <em>"For hospital X, for device family Y, what's the
+  evidence of harm?"</em> Because the US government publishes hospital data
+  (CMS) and device-safety data (FDA) in <strong>separate silos with no shared
+  ID</strong>, we can't say "this exact adverse event happened at this exact
+  hospital." So every row is an <strong>indirect inference</strong> joined
+  through an HCPCS↔FDA-product-code bridge — that's why every row carries
+  confidence fields. Score ranges 0–10:
+  <span class="risk risk-low">0–4 low</span>
+  <span class="risk risk-med">4–7 medium</span>
+  <span class="risk risk-high">≥7 high</span>.
+  Click <code>JSON ▸</code> on any row to see the full unified payload with
+  a breakdown of every data source feeding the score.
+</div>
+
+<!-- ================ KPI tiles with tooltips ================ -->
+<div class="kpi">
+  <div class="box">
+    <div class="label">
+      Total Rows
+      <i class="info-icon">i<span class="info-tip">Every US hospital paired with every device category in our bridge. 5,426 hospitals × 46 device categories = 249,596 rows. This is the full cartesian output you can filter.</span></i>
+    </div>
+    <div class="value">{{ '{:,}'.format(kpi.total_rows or 0) }}</div>
+    <div class="delta">{{ kpi.hospitals or 0 }} hospitals × {{ kpi.categories or 0 }} categories</div>
+  </div>
+  <div class="box">
+    <div class="label">
+      High Risk (≥7)
+      <i class="info-icon">i<span class="info-tip">Rows where the composite final_score crossed 7.0 — driven either by many adverse events or a Class I/II recall on that device family.</span></i>
+    </div>
+    <div class="value bad">{{ '{:,}'.format(kpi.high_risk or 0) }}</div>
+    <div class="delta">final_score ≥ 7</div>
+  </div>
+  <div class="box">
+    <div class="label">
+      With Recall
+      <i class="info-icon">i<span class="info-tip">Rows where the device category has at least one FDA recall tagged. A Class I recall (most severe — "reasonable probability of death") alone forces final_score to ≥9.0.</span></i>
+    </div>
+    <div class="value bad">{{ '{:,}'.format(kpi.with_recall or 0) }}</div>
+    <div class="delta">Class I / II / III</div>
+  </div>
+  <div class="box">
+    <div class="label">
+      Direct-linked rows
+      <i class="info-icon">i<span class="info-tip">Rows where we have direct hospital↔device evidence via CMS Medicare Inpatient claims (CCN billed DRG codes that map to this device category). These rows have linkage_type='direct' and strong confidence.</span></i>
+    </div>
+    <div class="value" style="color:#34d399">{{ '{:,}'.format(kpi.direct_linked or 0) }}</div>
+    <div class="delta">CCN↔DRG evidence</div>
+  </div>
+  <div class="box">
+    <div class="label">
+      With MAUDE Events
+      <i class="info-icon">i<span class="info-tip">Rows where the device category has at least one adverse-event report in FDA MAUDE (Manufacturer and User Facility Device Experience). MAUDE is voluntary so under-reporting is significant.</span></i>
+    </div>
+    <div class="value">{{ '{:,}'.format(kpi.with_events or 0) }}</div>
+    <div class="delta">adverse-event reports linked</div>
+  </div>
+  <div class="box">
+    <div class="label">
+      Avg Final Score
+      <i class="info-icon">i<span class="info-tip">Mean composite risk score across every row in the table. Most cells have score 0 because most device categories have neither MAUDE events nor recalls in the current sample.</span></i>
+    </div>
+    <div class="value">{{ kpi.avg_score if kpi.avg_score is not none else '—' }}</div>
+    <div class="delta">0–10 normalized</div>
+  </div>
+</div>
+
+<!-- ================ "How the score is built" explainer card ================ -->
+<div class="card">
+  <h3 class="card-title">How <code>final_score</code> is computed</h3>
+  <p class="card-subtitle">Transparent, auditable formula — no ML here, just weighted counts + recall severity.</p>
+  <div class="grid-2" style="gap:1.2rem">
+    <div>
+      <strong>Step 1 — MAUDE severity</strong>
+      <p class="muted" style="margin:.3rem 0 .6rem">
+        Weighted adverse-event count, log-scaled so 10 events ≈ 2.3, 100 ≈ 4.6, 1000 ≈ 6.9.
+      </p>
+      <pre style="font-size:.78rem">weighted = deaths×3 + injuries×2 + malfunctions×1
+maude_score = log(1 + weighted) × 2.3  (clamped 0–10)</pre>
+    </div>
+    <div>
+      <strong>Step 2 — Recall floor</strong>
+      <p class="muted" style="margin:.3rem 0 .6rem">
+        If the device family has a recall, a floor kicks in — even with zero MAUDE events.
+      </p>
+      <pre style="font-size:.78rem">Class I  → floor 9.0  (serious injury / death)
+Class II → floor 6.5  (temporary harm)
+Class III→ floor 4.0  (unlikely harm)</pre>
+    </div>
+  </div>
+  <p style="margin-top:.8rem">
+    <strong>final_score = min(10, max(maude_score, recall_floor))</strong>
+    &nbsp;→&nbsp; this is why you'll see score <code>9.00</code> even on
+    categories with very few MAUDE events — a single Class I recall pins the
+    floor up there.
+  </p>
+</div>
+
+<!-- ================ Data-coverage caveat ================ -->
+<div class="explain">
+  <strong>⚠️ Important caveat — "hospital-device link" confidence is weak.</strong>
+  MAUDE rarely names a specific hospital, and FDA recalls apply nationally,
+  so <strong>every hospital that bills for this device inherits the same
+  device-family risk score</strong>. The score describes the device, not
+  whether this particular hospital is worse than its peers. To get
+  hospital-specific risk you'd need a MAUDE-facility → CCN matcher (partial
+  coverage at best) and/or CMS Medicare procedure volume for denominator
+  normalization (rate = events per 1000 procedures).
+</div>
+
+<!-- ================ Filter bar ================ -->
+<div class="card">
+  <h3 class="card-title">Filter</h3>
+  <p class="card-subtitle">All filters stack. Submit to re-query.</p>
+
+  <form method="get" action="/risk" class="filter-bar">
+    <select name="state" title="Filter to hospitals in this state">
+      <option value="">— All states —</option>
+      {% for s in states %}
+        <option value="{{ s }}" {% if s == filters.state %}selected{% endif %}>{{ s }}</option>
+      {% endfor %}
+    </select>
+
+    <select name="device_category" title="Narrow to one device family">
+      <option value="">— All device categories —</option>
+      {% for c in categories %}
+        <option value="{{ c }}" {% if c == filters.device_category %}selected{% endif %}>{{ c }}</option>
+      {% endfor %}
+    </select>
+
+    <input type="number" step="0.1" min="0" max="10" name="min_score"
+           placeholder="Min final_score (0–10)" value="{{ filters.min_score }}"
+           title="Only show rows with final_score above this threshold">
+
+    <select name="has_recall" title="Only rows where the device family has a recall">
+      <option value=""   {% if filters.has_recall == '' %}selected{% endif %}>Recall: any</option>
+      <option value="1"  {% if filters.has_recall == '1' %}selected{% endif %}>Has recall</option>
+    </select>
+
+    <input type="text" name="q_text" placeholder="Hospital name or CCN"
+           value="{{ filters.q_text }}"
+           title="Case-insensitive substring match on hospital name; exact match on CCN">
+
+    <input type="number" min="10" max="2000" name="limit" value="{{ filters.limit }}"
+           title="Max rows to display (up to 2000)">
+
+    <button type="submit">Apply filters</button>
+  </form>
+</div>
+
+<!-- ================ Main results table ================ -->
+<div class="card">
+  <h3 class="card-title">
+    Top risk rows
+    <i class="info-icon">i<span class="info-tip">Sorted by final_score descending, then total MAUDE events. Rows at the top combine the highest recall severity and the most adverse-event reports.</span></i>
+  </h3>
+  <p class="card-subtitle">
+    Showing <strong>{{ rows|length }}</strong> row(s).
+    Hover the column header dots for an explanation of each field.
+  </p>
+
+  <table class="scroll-wrap">
+    <thead>
+      <tr>
+        <th>CCN <i class="info-icon">i<span class="info-tip">CMS Certification Number — the Medicare ID for the hospital (6 digits).</span></i></th>
+        <th>Hospital</th>
+        <th>State</th>
+        <th>Device Category <i class="info-icon">i<span class="info-tip">Device family slug from our HCPCS↔product_code bridge. Groups CPT/HCPCS billing codes and FDA product codes that describe the same real device (e.g. "drug_eluting_stent").</span></i></th>
+        <th>PC <i class="info-icon">i<span class="info-tip">FDA CDRH product code — three letters assigned to the device type at 510(k)/PMA clearance. Multiple product codes can map to the same device_category.</span></i></th>
+        <th style="text-align:right">Final <i class="info-icon">i<span class="info-tip">0–10 composite risk score. max(maude_score, recall_floor). Color: green 0–4, amber 4–7, red ≥7.</span></i></th>
+        <th style="text-align:right">MAUDE <i class="info-icon">i<span class="info-tip">Log-scaled severity from MAUDE counts alone: log(1 + deaths×3 + injuries×2 + malfunctions) × 2.3, clamped to 0–10.</span></i></th>
+        <th style="text-align:right">Events <i class="info-icon">i<span class="info-tip">Total MAUDE adverse-event reports for this device category (not this hospital specifically).</span></i></th>
+        <th style="text-align:right">Deaths <i class="info-icon">i<span class="info-tip">Count of MAUDE reports tagged event_type = Death.</span></i></th>
+        <th style="text-align:right">Injuries <i class="info-icon">i<span class="info-tip">Count of MAUDE reports tagged event_type = Injury.</span></i></th>
+        <th>Recall <i class="info-icon">i<span class="info-tip">Worst recall class on this device family from FDA Enforcement. Class I = reasonable probability of serious injury/death. Class II = temporary harm. Class III = unlikely harm.</span></i></th>
+        <th>Trials <i class="info-icon">i<span class="info-tip">Number of clinical trials found on ClinicalTrials.gov matching this device family. Higher = more published safety/efficacy data.</span></i></th>
+        <th>Exposure <i class="info-icon">i<span class="info-tip">Manufacturer financial exposure from CMS Open Payments — total $ this hospital received from device/drug manufacturers. Bins: none / low (&lt;100k) / medium (100k–1M) / high (≥1M). Currently 0 until Open Payments is ingested.</span></i></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for r in rows %}
+      {% set score = r[15] %}
+      {% set badge_class = 'risk-high' if score and score >= 7 else ('risk-med' if score and score >= 4 else 'risk-low') %}
+      <tr>
+        <td><code>{{ r[0] }}</code></td>
+        <td class="cell">{{ r[1] or '' }}</td>
+        <td>{{ r[2] or '' }}</td>
+        <td><span class="domain-tag">{{ r[3] }}</span></td>
+        <td><code>{{ r[4] or '' }}</code></td>
+        <td style="text-align:right"><span class="risk {{ badge_class }}">{{ '%.2f'|format(score or 0) }}</span></td>
+        <td style="text-align:right">{{ '%.2f'|format(r[14] or 0) }}</td>
+        <td style="text-align:right">{{ '{:,}'.format(r[6] or 0) }}</td>
+        <td style="text-align:right">{{ '{:,}'.format(r[7] or 0) }}</td>
+        <td style="text-align:right">{{ '{:,}'.format(r[8] or 0) }}</td>
+        <td>
+          {% if r[10] %}
+            <span class="risk risk-high">{{ r[11] or 'Recall' }}</span>
+          {% else %}
+            <span class="muted">—</span>
+          {% endif %}
+        </td>
+        <td>{{ r[12] or 0 }}</td>
+        <td>{{ r[13] or 'none' }}</td>
+        <td>
+          <a href="/risk/detail?ccn={{ r[0] }}&device_category={{ r[3] }}">JSON ▸</a>
+        </td>
+      </tr>
+    {% else %}
+      <tr><td colspan="14" class="muted">No rows. Run <code>python run.py risk-build</code> first.</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<!-- ================ Data sources footer ================ -->
+<div class="card">
+  <h3 class="card-title">Where each field comes from</h3>
+  <table>
+    <thead><tr><th>Field</th><th>Source</th><th>Update cadence</th></tr></thead>
+    <tbody>
+      <tr><td>CCN, hospital name, state, rating</td>
+          <td>CMS Provider Data — <code>Hospital General Information</code></td>
+          <td>Monthly</td></tr>
+      <tr><td>quality scores, HAI, HCAHPS</td>
+          <td>CMS Provider Data — measures (60k rows)</td>
+          <td>Quarterly</td></tr>
+      <tr><td>MAUDE events, deaths, injuries</td>
+          <td>openFDA <code>/device/event.json</code></td>
+          <td>~Daily</td></tr>
+      <tr><td>Recall class, firm, reason</td>
+          <td>openFDA <code>/device/enforcement.json</code></td>
+          <td>~Weekly</td></tr>
+      <tr><td>Trial counts, outcomes</td>
+          <td>ClinicalTrials.gov API v2</td>
+          <td>Rolling</td></tr>
+      <tr><td>Manufacturer $ exposure</td>
+          <td>CMS Open Payments (<code>openpaymentsdata.cms.gov</code>)</td>
+          <td>Annual</td></tr>
+      <tr><td>device_category mapping</td>
+          <td>Hand-curated HCPCS↔product_code bridge (56 rows)</td>
+          <td>Manual</td></tr>
+    </tbody>
+  </table>
+</div>
+{% endblock %}
