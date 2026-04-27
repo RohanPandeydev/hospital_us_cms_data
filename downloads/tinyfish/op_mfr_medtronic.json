@@ -1,0 +1,220 @@
+{
+  "type": "COMPLETE",
+  "run_id": "48a5beff-bb4c-44c6-bb6b-d170be57fc7c",
+  "status": "COMPLETED",
+  "timestamp": "2026-04-25T08:43:49.987Z",
+  "result": {
+    "result": [
+      {
+        "hospital_name": "HARTFORD HOSPITAL",
+        "hospital_ccn": "070025",
+        "total_payments_usd": "622139.58",
+        "year": "2024",
+        "manufacturer_name": "Medtronic, Inc."
+      },
+      {
+        "hospital_name": "BOARD OF TRUSTEES OF THE UNIVERSITY",
+        "hospital_ccn": "140150",
+        "total_payments_usd": "390558.00",
+        "year": "2024",
+        "manufacturer_name": "Medtronic, Inc."
+      },
+      {
+        "hospital_name": "U OF U HOSPITALS & CLINICS",
+        "hospital_ccn": "460009",
+        "total_payments_usd": "281887.92",
+        "year": "2024",
+        "manufacturer_name": "Medtronic, Inc."
+      },
+      {
+        "hospital_name": "NORTHSHORE UNIVERSITY HEALTHSYSTEM",
+        "hospital_ccn": "140010",
+        "total_payments_usd": "137534.33",
+        "year": "2024",
+        "manufacturer_name": "Medtronic, Inc."
+      },
+      {
+        "hospital_name": "ORLANDO HEALTH",
+        "hospital_ccn": "100006",
+        "total_payments_usd": "120298.92",
+        "year": "2024",
+        "manufacturer_name": "Medtronic, Inc."
+      },
+      {
+        "hospital_name": "BRIGHAM AND WOMENS HOSPITAL",
+        "hospital_ccn": "220110",
+        "total_payments_usd": "102511.32",
+        "year": "2024",
+        "manufacturer_name": "Medtronic, Inc."
+      },
+      {
+        "hospital_name": "HUNTSVILLE HOSPITAL",
+        "hospital_ccn": "010039",
+        "total_payments_usd": "94450.00",
+        "year": "2024",
+        "manufacturer_name": "Medtronic, Inc."
+      },
+      {
+        "hospital_name": "UH CLEVELAND MEDICAL CENTER",
+        "hospital_ccn": "360137",
+        "total_payments_usd": "89353.85",
+        "year": "2024",
+        "manufacturer_name": "Medtronic, Inc."
+      },
+      {
+        "hospital_name": "THOMAS JEFFERSON UNIV. HOSPITAL",
+        "hospital_ccn": "390174",
+        "total_payments_usd": "74000.00",
+        "year": "2024",
+        "manufacturer_name": "Medtronic, Inc."
+      },
+      {
+        "hospital_name": "EMORY UNIVERSITY HOSPITAL",
+        "hospital_ccn": "110010",
+        "total_payments_usd": "60577.94",
+        "year": "2024",
+        "manufacturer_name": "Medtronic, Inc."
+      },
+      {
+        "hospital_name": "U Of U Hospitals & Clinics",
+        "hospital_ccn": "460009",
+        "total_payments_usd": "199747.92",
+        "year": "2024",
+        "manufacturer_name": "Medtronic, Inc."
+      },
+      {
+        "hospital_name": "Hartford Hospital",
+        "hospital_ccn": "070025",
+        "total_payments_usd": "110832.04",
+        "year": "2024",
+        "manufacturer_name": "Medtronic, Inc."
+      },
+      {
+        "hospital_name": "Hartford Hospital",
+        "hospital_ccn": "070025",
+        "total_payments_usd": "97359.43",
+        "year": "2024",
+        "manufacturer_name": "Medtronic, Inc."
+      },
+      {
+        "hospital_name": "Hartford Hospital",
+        "hospital_ccn": "070025",
+        "total_payments_usd": "70000.00",
+        "year": "2024",
+        "manufacturer_name": "Medtronic, Inc."
+      },
+      {
+        "hospital_name": "Hartford Hospital",
+        "hospital_ccn": "070025",
+        "total_payments_usd": "69950.00",
+        "year": "2024",
+        "manufacturer_name": "Medtronic, Inc."
+      },
+      {
+        "hospital_name": "Hartford Hospital",
+        "hospital_ccn": "070025",
+        "total_payments_usd": "69838.93",
+        "year": "2024",
+        "manufacturer_name": "Medtronic, Inc."
+      },
+      {
+        "hospital_name": "Northshore University Healthsystem",
+        "hospital_ccn": "140010",
+        "total_payments_usd": "67596.24",
+        "year": "2024",
+        "manufacturer_name": "Medtronic, Inc."
+      },
+      {
+        "hospital_name": "Orlando Health",
+        "hospital_ccn": "100006",
+        "total_payments_usd": "65000.00",
+        "year": "2024",
+        "manufacturer_name": "Medtronic, Inc."
+      },
+      {
+        "hospital_name": "Hartford Hospital",
+        "hospital_ccn": "070025",
+        "total_payments_usd": "63802.22",
+        "year": "2024",
+        "manufacturer_name": "Medtronic, Inc."
+      },
+      {
+        "hospital_name": "Brigham And Womens Hospital",
+        "hospital_ccn": "220110",
+        "total_payments_usd": "57317.14",
+        "year": "2024",
+        "manufacturer_name": "Medtronic, Inc."
+      },
+      {
+        "hospital_name": "BOARD OF TRUSTEES OF THE UNIVERSITY",
+        "hospital_ccn": "140150",
+        "total_payments_usd": "55000.00",
+        "year": "2024",
+        "manufacturer_name": "Medtronic, Inc."
+      },
+      {
+        "hospital_name": "UH CLEVELAND MEDICAL CENTER",
+        "hospital_ccn": "360137",
+        "total_payments_usd": "54166.65",
+        "year": "2024",
+        "manufacturer_name": "Medtronic, Inc."
+      },
+      {
+        "hospital_name": "HUNTSVILLE HOSPITAL",
+        "hospital_ccn": "010039",
+        "total_payments_usd": "52700.00",
+        "year": "2024",
+        "manufacturer_name": "Medtronic, Inc."
+      },
+      {
+        "hospital_name": "THOMAS JEFFERSON UNIV. HOSPITAL",
+        "hospital_ccn": "390174",
+        "total_payments_usd": "44000.00",
+        "year": "2024",
+        "manufacturer_name": "Medtronic, Inc."
+      },
+      {
+        "hospital_name": "ORLANDO HEALTH",
+        "hospital_ccn": "100006",
+        "total_payments_usd": "37500.00",
+        "year": "2024",
+        "manufacturer_name": "Medtronic, Inc."
+      },
+      {
+        "hospital_name": "HUNTSVILLE HOSPITAL",
+        "hospital_ccn": "010039",
+        "total_payments_usd": "31750.00",
+        "year": "2024",
+        "manufacturer_name": "Medtronic, Inc."
+      },
+      {
+        "hospital_name": "EMORY UNIVERSITY HOSPITAL",
+        "hospital_ccn": "110010",
+        "total_payments_usd": "30000.00",
+        "year": "2024",
+        "manufacturer_name": "Medtronic, Inc."
+      },
+      {
+        "hospital_name": "THOMAS JEFFERSON UNIV. HOSPITAL",
+        "hospital_ccn": "390174",
+        "total_payments_usd": "30000.00",
+        "year": "2024",
+        "manufacturer_name": "Medtronic, Inc."
+      },
+      {
+        "hospital_name": "HARTFORD HOSPITAL",
+        "hospital_ccn": "070025",
+        "total_payments_usd": "29484.28",
+        "year": "2024",
+        "manufacturer_name": "Medtronic, Inc."
+      },
+      {
+        "hospital_name": "HARTFORD HOSPITAL",
+        "hospital_ccn": "070025",
+        "total_payments_usd": "27994.40",
+        "year": "2024",
+        "manufacturer_name": "Medtronic, Inc."
+      }
+    ]
+  }
+}

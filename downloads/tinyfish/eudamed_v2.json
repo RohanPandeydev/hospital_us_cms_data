@@ -1,0 +1,25 @@
+{
+  "type": "COMPLETE",
+  "run_id": "b24b6e58-cd1c-470c-aeb8-6e04afc55c3e",
+  "status": "COMPLETED",
+  "timestamp": "2026-04-24T18:40:59.355Z",
+  "result": {
+    "status": "failure",
+    "reason": "Task could not be completed",
+    "details": [
+      {
+        "issue": "URL Not Found",
+        "description": "The provided URL `https://ec.europa.eu/tools/eudamed/#/screen/search-svn` redirects to a \"Page not found\" error (`#/screen/page-not-found`)."
+      },
+      {
+        "issue": "Module Not Publicly Available",
+        "description": "According to the EUDAMED home page and official news, only the first four modules (Actor registration, UDI/Devices registration, Notified bodies and certificates, and Market Surveillance) are currently mandatory or fully published. The \"Vigilance and post-market surveillance\" module (module 5), which would contain safety notices or SVNs, is not listed as a publicly accessible module on the site's dashboard or navigation menus."
+      },
+      {
+        "issue": "No Navigation Path",
+        "description": "A thorough check of the home page cards, the \"UDI/Devices\" menu, the \"Certificates\" menu, and the \"News\" section did not reveal any links to \"Safety Notices\", \"SVN\", or \"Vigilance\" search pages."
+      }
+    ],
+    "conclusion": "As the target page is not present at the specified URL and no link exists to navigate to it within the site's public interface, the extraction of the 10 safety notices could not be performed."
+  }
+}

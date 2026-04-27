@@ -1,0 +1,26 @@
+{
+  "type": "COMPLETE",
+  "run_id": "f609315c-c328-4a0f-8b41-866f9dc678ae",
+  "status": "COMPLETED",
+  "timestamp": "2026-04-24T18:30:28.433Z",
+  "result": {
+    "task": "Extract 10 most recent Field Safety Corrective Action (FSCA) notices from EUDAMED Public site",
+    "url": "https://ec.europa.eu/tools/eudamed/#/screen/home",
+    "fields": [
+      "notice_date",
+      "manufacturer_name",
+      "device_trade_name",
+      "eudamed_id",
+      "risk_description",
+      "action_taken"
+    ],
+    "steps": [
+      "Navigate to URL",
+      "Find FSCA section",
+      "Extract 10 recent notices",
+      "Gather details per notice",
+      "Output as JSON array"
+    ],
+    "status": "ready to scrape"
+  }
+}

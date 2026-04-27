@@ -1,0 +1,490 @@
+{
+  "type": "COMPLETE",
+  "run_id": "6871341d-7f4f-4528-8c58-4b4f94ca8bd8",
+  "status": "COMPLETED",
+  "timestamp": "2026-04-24T18:48:34.969Z",
+  "result": {
+    "result": [
+      {
+        "hospital_name": "Endeavor Health Elmhurst Hospital",
+        "city": "Elmhurst",
+        "state": "IL",
+        "zip": "60126-2989",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/endeavor-health-elmhurst-hospital"
+      },
+      {
+        "hospital_name": "Endeavor Health Evanston Hospital",
+        "city": "Evanston",
+        "state": "IL",
+        "zip": "60201-1613",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/endeavor-health-evanston-hospital"
+      },
+      {
+        "hospital_name": "Endeavor Health Glenbrook Hospital",
+        "city": "Glenview",
+        "state": "IL",
+        "zip": "60025",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/endeavor-health-glenbrook-hospital"
+      },
+      {
+        "hospital_name": "Endeavor Health Highland Park Hospital",
+        "city": "Highland Park",
+        "state": "IL",
+        "zip": "60035",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/endeavor-health-highland-park-hospital"
+      },
+      {
+        "hospital_name": "Endeavor Health Northwest Community Hospital",
+        "city": "Arlington Heights",
+        "state": "IL",
+        "zip": "60005-2392",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/endeavor-health-northwest-community-hospital"
+      },
+      {
+        "hospital_name": "Northwestern Medicine Catherine Gratz Griffin Lake Forest Hospital",
+        "city": "Lake Forest",
+        "state": "IL",
+        "zip": "60045-1696",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/northwestern-medicine-catherine-gratz-griffin-lake-forest-hospital"
+      },
+      {
+        "hospital_name": "Northwestern Medicine Central DuPage Hospital",
+        "city": "Winfield",
+        "state": "IL",
+        "zip": "60190",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/northwestern-medicine-central-dupage-hospital"
+      },
+      {
+        "hospital_name": "Northwestern Medicine Delnor Hospital",
+        "city": "Geneva",
+        "state": "IL",
+        "zip": "60134-4200",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/northwestern-medicine-delnor-hospital"
+      },
+      {
+        "hospital_name": "Northwestern Medicine Huntley Hospital",
+        "city": "Huntley",
+        "state": "IL",
+        "zip": "60142-7629",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/northwestern-medicine-huntley-hospital"
+      },
+      {
+        "hospital_name": "Northwestern Medicine Kishwaukee Hospital",
+        "city": "DeKalb",
+        "state": "IL",
+        "zip": "60115-9602",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/northwestern-medicine-kishwaukee-hospital"
+      },
+      {
+        "hospital_name": "Northwestern Medicine McHenry Hospital",
+        "city": "McHenry",
+        "state": "IL",
+        "zip": "60050-9506",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/northwestern-medicine-mchenry-hospital"
+      },
+      {
+        "hospital_name": "Rush University Medical Center",
+        "city": "Chicago",
+        "state": "IL",
+        "zip": "60612-3833",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/rush-university-medical-center"
+      },
+      {
+        "hospital_name": "Silver Cross Hospital",
+        "city": "New Lenox",
+        "state": "IL",
+        "zip": "60451",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/silver-cross-hospital"
+      },
+      {
+        "hospital_name": "UChicago Medicine AdventHealth Bolingbrook",
+        "city": "Bolingbrook",
+        "state": "IL",
+        "zip": "60440-4988",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/uchicago-medicine-adventhealth-bolingbrook"
+      },
+      {
+        "hospital_name": "UChicago Medicine AdventHealth Hinsdale",
+        "city": "Hinsdale",
+        "state": "IL",
+        "zip": "60521-3890",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/uchicago-medicine-adventhealth-hinsdale"
+      },
+      {
+        "hospital_name": "UChicago Medicine AdventHealth La Grange",
+        "city": "La Grange",
+        "state": "IL",
+        "zip": "60525-2600",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/uchicago-medicine-adventhealth-la-grange"
+      },
+      {
+        "hospital_name": "University of Chicago Medical Center",
+        "city": "Chicago",
+        "state": "IL",
+        "zip": "60637-1447",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/university-of-chicago-medical-center"
+      },
+      {
+        "hospital_name": "Advocate Condell Medical Center",
+        "city": "Libertyville",
+        "state": "IL",
+        "zip": "60048-3199",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/advocate-condell-medical-center"
+      },
+      {
+        "hospital_name": "Advocate Good Shepherd Hospital",
+        "city": "Barrington",
+        "state": "IL",
+        "zip": "60010",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/advocate-good-shepherd-hospital"
+      },
+      {
+        "hospital_name": "Advocate Lutheran General Hospital",
+        "city": "Park Ridge",
+        "state": "IL",
+        "zip": "60068-1174",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/advocate-lutheran-general-hospital"
+      },
+      {
+        "hospital_name": "Advocate Sherman Hospital",
+        "city": "Elgin",
+        "state": "IL",
+        "zip": "60123-2300",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/advocate-sherman-hospital"
+      },
+      {
+        "hospital_name": "Endeavor Health Edward Hospital",
+        "city": "Naperville",
+        "state": "IL",
+        "zip": "60540-7499",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/endeavor-health-edward-hospital"
+      },
+      {
+        "hospital_name": "Loyola Medicine MacNeal Hospital",
+        "city": "Berwyn",
+        "state": "IL",
+        "zip": "60402-0715",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/loyola-medicine-macneal-hospital"
+      },
+      {
+        "hospital_name": "McDonough District Hospital",
+        "city": "Macomb",
+        "state": "IL",
+        "zip": "61455-3318",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/mcdonough-district-hospital"
+      },
+      {
+        "hospital_name": "Morris Hospital",
+        "city": "Morris",
+        "state": "IL",
+        "zip": "60450-1497",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/morris-hospital"
+      },
+      {
+        "hospital_name": "Northwestern Memorial Hospital",
+        "city": "Chicago",
+        "state": "IL",
+        "zip": "60611-2908",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/northwestern-memorial-hospital"
+      },
+      {
+        "hospital_name": "OSF Healthcare Saint James - John W. Albrecht Medical Center",
+        "city": "Pontiac",
+        "state": "IL",
+        "zip": "61764-2194",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/osf-healthcare-saint-james-john-w-albrecht-medical-center"
+      },
+      {
+        "hospital_name": "OSF Saint Anthony's Health Center",
+        "city": "Alton",
+        "state": "IL",
+        "zip": "62002-4579",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/osf-saint-anthonys-health-center"
+      },
+      {
+        "hospital_name": "OSF St. Joseph Medical Center",
+        "city": "Bloomington",
+        "state": "IL",
+        "zip": "61701-4323",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/osf-st-joseph-medical-center"
+      },
+      {
+        "hospital_name": "OSF St. Mary Medical Center",
+        "city": "Galesburg",
+        "state": "IL",
+        "zip": "61401-1299",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/osf-st-mary-medical-center"
+      },
+      {
+        "hospital_name": "Ottawa Regional Hospital and Healthcare Center dba OSF Saint Elizabeth Medical Center",
+        "city": "Ottawa",
+        "state": "IL",
+        "zip": "61350-1687",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/ottawa-regional-hospital-and-healthcare-center-dba-osf-saint-elizabeth"
+      },
+      {
+        "hospital_name": "Resurrection Medical Center",
+        "city": "Chicago",
+        "state": "IL",
+        "zip": "60631-3746",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/resurrection-medical-center"
+      },
+      {
+        "hospital_name": "Saint Joseph Hospital - Elgin",
+        "city": "Elgin",
+        "state": "IL",
+        "zip": "60123-4912",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/saint-joseph-hospital-elgin"
+      },
+      {
+        "hospital_name": "St Bernard Hospital",
+        "city": "Chicago",
+        "state": "IL",
+        "zip": "60621-3146",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/st-bernard-hospital"
+      },
+      {
+        "hospital_name": "St. Mary's Hospital - Kankakee",
+        "city": "Kankakee",
+        "state": "IL",
+        "zip": "60901-3661",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/st-marys-hospital-kankakee"
+      },
+      {
+        "hospital_name": "Advocate Illinois Masonic Medical Center",
+        "city": "Chicago",
+        "state": "IL",
+        "zip": "60657-5193",
+        "safety_grade": "B",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/advocate-illinois-masonic-medical-center"
+      },
+      {
+        "hospital_name": "Advocate South Suburban Hospital",
+        "city": "Hazel Crest",
+        "state": "IL",
+        "zip": "60429-0989",
+        "safety_grade": "B",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/advocate-south-suburban-hospital"
+      },
+      {
+        "hospital_name": "Advocate Trinity Hospital",
+        "city": "Chicago",
+        "state": "IL",
+        "zip": "60617-9984",
+        "safety_grade": "B",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/advocate-trinity-hospital"
+      },
+      {
+        "hospital_name": "Ascension Saint Alexius",
+        "city": "Hoffman Estates",
+        "state": "IL",
+        "zip": "60169-1019",
+        "safety_grade": "B",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/ascension-saint-alexius"
+      },
+      {
+        "hospital_name": "Blessing Hospital",
+        "city": "Quincy",
+        "state": "IL",
+        "zip": "62301",
+        "safety_grade": "B",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/blessing-hospital"
+      },
+      {
+        "hospital_name": "Deaconess Illinois Medical Center",
+        "city": "Marion",
+        "state": "IL",
+        "zip": "62959",
+        "safety_grade": "B",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/deaconess-illinois-medical-center"
+      },
+      {
+        "hospital_name": "Decatur Memorial Hospital",
+        "city": "Decatur",
+        "state": "IL",
+        "zip": "62526-4192",
+        "safety_grade": "B",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/decatur-memorial-hospital"
+      },
+      {
+        "hospital_name": "FHN Memorial Hospital",
+        "city": "Freeport",
+        "state": "IL",
+        "zip": "61032-4899",
+        "safety_grade": "B",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/fhn-memorial-hospital"
+      },
+      {
+        "hospital_name": "Franciscan Health Olympia Fields",
+        "city": "Olympia Fields",
+        "state": "IL",
+        "zip": "60461-1080",
+        "safety_grade": "B",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/franciscan-health-olympia-fields"
+      },
+      {
+        "hospital_name": "Ingalls Memorial Hospital",
+        "city": "Harvey",
+        "state": "IL",
+        "zip": "60426-3591",
+        "safety_grade": "B",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/ingalls-memorial-hospital"
+      },
+      {
+        "hospital_name": "John H. Stroger Jr. Hospital",
+        "city": "Chicago",
+        "state": "IL",
+        "zip": "60612-3785",
+        "safety_grade": "B",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/john-h-stroger-jr-hospital"
+      },
+      {
+        "hospital_name": "Loretto Hospital",
+        "city": "Chicago",
+        "state": "IL",
+        "zip": "60644-9987",
+        "safety_grade": "B",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/loretto-hospital"
+      },
+      {
+        "hospital_name": "Loyola Medicine Gottlieb Memorial Hospital",
+        "city": "Melrose Park",
+        "state": "IL",
+        "zip": "60160-1692",
+        "safety_grade": "B",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/loyola-medicine-gottlieb-memorial-hospital"
+      },
+      {
+        "hospital_name": "Mercy Medical Center",
+        "city": "Aurora",
+        "state": "IL",
+        "zip": "60506-1449",
+        "safety_grade": "B",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/mercy-medical-center-aurora-il"
+      },
+      {
+        "hospital_name": "Northwestern Medicine Palos Hospital",
+        "city": "Palos Heights",
+        "state": "IL",
+        "zip": "60463-0930",
+        "safety_grade": "B",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/northwestern-medicine-palos-hospital"
+      },
+      {
+        "hospital_name": "OSF Little Company of Mary Medical Center",
+        "city": "Evergreen Park",
+        "state": "IL",
+        "zip": "60805-2795",
+        "safety_grade": "B",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/osf-little-company-of-mary-medical-center"
+      },
+      {
+        "hospital_name": "Riverside Medical Center",
+        "city": "Kankakee",
+        "state": "IL",
+        "zip": "60901-0749",
+        "safety_grade": "B",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/riverside-medical-center"
+      },
+      {
+        "hospital_name": "Rush Copley Medical Center",
+        "city": "Aurora",
+        "state": "IL",
+        "zip": "60504-7222",
+        "safety_grade": "B",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/rush-copley-medical-center"
+      },
+      {
+        "hospital_name": "Saint Mary of Nazareth Hospital",
+        "city": "Chicago",
+        "state": "IL",
+        "zip": "60622-8151",
+        "safety_grade": "B",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/saint-mary-of-nazareth-hospital"
+      },
+      {
+        "hospital_name": "UChicago Medicine AdventHealth GlenOaks",
+        "city": "Glendale Heights",
+        "state": "IL",
+        "zip": "60139-1403",
+        "safety_grade": "B",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/uchicago-medicine-adventhealth-glenoaks"
+      },
+      {
+        "hospital_name": "Advocate Christ Medical Center",
+        "city": "Oak Lawn",
+        "state": "IL",
+        "zip": "60453-2699",
+        "safety_grade": "C",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/advocate-christ-medical-center"
+      },
+      {
+        "hospital_name": "Advocate Good Samaritan Hospital",
+        "city": "Downers Grove",
+        "state": "IL",
+        "zip": "60515-1590",
+        "safety_grade": "C",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/advocate-good-samaritan-hospital"
+      },
+      {
+        "hospital_name": "Ascension Alexian Brothers",
+        "city": "Elk Grove Village",
+        "state": "IL",
+        "zip": "60007-3397",
+        "safety_grade": "C",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/ascension-alexian-brothers"
+      },
+      {
+        "hospital_name": "Ascension Saint Joseph-Chicago",
+        "city": "Chicago",
+        "state": "IL",
+        "zip": "60657",
+        "safety_grade": "C",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/ascension-saint-joseph-chicago"
+      },
+      {
+        "hospital_name": "Community First Medical Center",
+        "city": "Chicago",
+        "state": "IL",
+        "zip": "60634-4455",
+        "safety_grade": "C",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/community-first-medical-center"
+      }
+    ]
+  }
+}

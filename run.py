@@ -59,7 +59,11 @@ def cmd_ingest(args):
     db.ensure_database()
     db.apply_schema()
     ids = [args.dataset] if args.dataset else None
-    results = ingest_all(dataset_ids=ids, limit=args.limit)
+    csv_path = getattr(args, "csv_path", None)
+    if csv_path and not args.dataset:
+        print("ERROR: --csv-path requires --dataset <id>")
+        sys.exit(2)
+    results = ingest_all(dataset_ids=ids, limit=args.limit, csv_path=csv_path)
     # Always refresh manual crosswalks — idempotent, fast.
     with db.connect() as conn:
         bridge_seeds.seed_all(conn)
@@ -431,6 +435,10 @@ def main():
     ing = sub.add_parser("ingest", help="Fetch CMS data into Postgres")
     ing.add_argument("--dataset", help="Ingest a single dataset id (default: all)")
     ing.add_argument("--limit", type=int, help="Hard cap rows per dataset (for testing)")
+    ing.add_argument("--csv-path",
+                     help="Ingest from a locally-downloaded CSV instead of the "
+                          "CMS data-api (useful when the API is down). "
+                          "Requires --dataset and only works with cms_data_api datasets.")
 
     # ---- Risk Intelligence pipeline (Postgres cms_hospitals) ----
     sub.add_parser("risk-init",

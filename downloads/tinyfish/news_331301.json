@@ -1,0 +1,38 @@
+{
+  "type": "COMPLETE",
+  "run_id": "e7dc1489-03c3-4f3c-94d9-42530d3e6537",
+  "status": "COMPLETED",
+  "timestamp": "2026-04-24T19:17:40.920Z",
+  "result": {
+    "result": [
+      {
+        "title": "These 45 NY hospitals at risk of closing, layoffs due to Medicaid cuts",
+        "source": "AOL.com",
+        "published_date": "3 days ago",
+        "url": "https://www.aol.com/articles/45-ny-hospitals-risk-closing-070057376.html",
+        "snippet": "One in four New York hospitals are at risk \"of closing, reducing the medical services they provide, or laying off workers.\""
+      },
+      {
+        "title": "Massive Wave Of Hospital Closures Looms Over Upstate New York",
+        "source": "Hudson Valley Post",
+        "published_date": "Jul 30, 2025",
+        "url": "https://hudsonvalleypost.com/wave-of-hospital-closures-looms-over-upstate-new-york/",
+        "snippet": "A disturbing new report reveals nearly 60% of Upstate New York hospitals may close. Some are in immediate danger. Here's what's fueling the..."
+      },
+      {
+        "title": "'Risking patient lives'\u00e2\u0080\u0094Southern Tier hospitals brace for looming Medicaid cuts",
+        "source": "WSKG",
+        "published_date": "Jun 3, 2025",
+        "url": "https://www.wskg.org/regional-news/2025-06-03/risking-patient-lives-southern-tier-hospitals-brace-for-looming-medicaid-cuts",
+        "snippet": "If the cuts go through, healthcare systems in the Southern Tier would be at risk of shuttering and residents could struggle to access care."
+      },
+      {
+        "title": "Emergency room wait times at NY state hospitals ranked from 1 to 147 (Search all hospitals)",
+        "source": "Syracuse.com",
+        "published_date": "Mar 28, 2023",
+        "url": "https://www.syracuse.com/data/2023/03/emergency-room-wait-times-at-ny-state-hospitals-ranked-from-1-to-147-search-all-hospitals.html",
+        "snippet": "Patients at two of Syracuse's three hospitals spent some of the longest stretches in emergency rooms in all of New York last year, according to federal data."
+      }
+    ]
+  }
+}

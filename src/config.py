@@ -25,3 +25,11 @@ FDA_API_KEY = os.getenv("FDA_API_KEY", "")
 FDA_PAGE_SIZE = int(os.getenv("FDA_PAGE_SIZE", "1000"))
 FDA_HTTP_TIMEOUT = int(os.getenv("FDA_HTTP_TIMEOUT", "60"))
 FDA_MAX_RETRIES = int(os.getenv("FDA_MAX_RETRIES", "5"))
+
+# ---- TinyFish AI (web-extraction agent) ----
+# Used for scraping unstructured sources we don't reach via FDA/CMS APIs —
+# e.g. EUDAMED (EU medical device database), FDA 483 inspection letters,
+# state hospital quality registries. Streaming SSE endpoint.
+TINYFISH_API_KEY = os.getenv("TINYFISH_API_KEY", "")
+TINYFISH_BASE_URL = os.getenv("TINYFISH_BASE_URL", "https://agent.tinyfish.ai")
+TINYFISH_TIMEOUT = int(os.getenv("TINYFISH_TIMEOUT", "600"))

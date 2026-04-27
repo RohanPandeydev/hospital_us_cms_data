@@ -180,6 +180,11 @@ def fetch_recalls_by_category(conn) -> dict:
     from a bridge-verified one. Aggregated counts are also rolled up to the
     category level so the score logic downstream can penalize categories that
     are only weakly matched."""
+    # Strict-joins-only mode: we only include recalls whose device_category
+    # was resolved via a structured FDA identifier (matched_product_code or
+    # matched_k_number). Rows tagged only by regex/LLM are excluded from
+    # hospital risk aggregation — they stay queryable in fda_recalls but
+    # do not count as evidence for this device family at this hospital.
     sql = """
         SELECT device_category, recall_number, recall_class,
                firm_name, reason_for_recall, product_code,
@@ -187,6 +192,7 @@ def fetch_recalls_by_category(conn) -> dict:
                matched_k_number
         FROM fda_recalls
         WHERE device_category IS NOT NULL
+          AND (matched_product_code IS NOT NULL OR matched_k_number IS NOT NULL)
     """
     out: dict[str, dict] = {}
     with conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor) as cur:
@@ -264,9 +270,7 @@ def fetch_maude_counts_by_k_number(conn) -> dict:
           JOIN mfr_norm m
             ON m.product_code = a.product_code
            AND length(a.app_norm) >= 3
-           AND length(m.mfr_norm) >= 3
-           AND (position(a.app_norm in m.mfr_norm) > 0
-                OR position(m.mfr_norm in a.app_norm) > 0)
+           AND a.app_norm = m.mfr_norm   -- strict normalized equality, no substring/fuzzy
           JOIN fda_maude_events e ON e.report_number = m.report_number
          GROUP BY a.k_number
     """
@@ -458,6 +462,246 @@ def fetch_trials_by_category(conn) -> dict:
     return out
 
 
+def fetch_sparcs_ppc_by_ccn(conn) -> dict:
+    """{(ccn, device_category): [{year, ppc_group, adjusted_rate, significance, weight}, ...]}.
+
+    NY-only (for now — can extend to PA/CA). Joins SPARCS PPC rates to our
+    device_category vocabulary via the curated `sparcs_ppc_to_device_category`
+    map. The linkage hospital→CCN is structural (ny_pfi_to_ccn), not fuzzy."""
+    sql = """
+        SELECT s.ccn, m.device_category,
+               s.discharge_year, s.ppc_group_name,
+               s.observed_rate, s.adjusted_rate, s.significance,
+               m.weight
+          FROM sparcs_ppc_rate s
+          JOIN sparcs_ppc_to_device_category m
+            ON m.ppc_group_name = s.ppc_group_name
+         WHERE s.ccn IS NOT NULL
+           AND s.adjusted_rate IS NOT NULL
+           AND s.discharge_year >= 2020
+    """
+    out: dict = {}
+    with conn.cursor() as cur:
+        cur.execute(sql)
+        for ccn, cat, yr, grp, obs, adj, sig, w in cur.fetchall():
+            key = (ccn, cat)
+            out.setdefault(key, []).append({
+                "year":          int(yr),
+                "ppc_group":     grp,
+                "observed_rate": float(obs) if obs is not None else None,
+                "adjusted_rate": float(adj) if adj is not None else None,
+                "significance":  sig,
+                "weight":        float(w),
+            })
+    return out
+
+
+_MFR_NORM_SQL = """
+    lower(regexp_replace(
+        regexp_replace(
+          regexp_replace($src$,
+            '\\m(corp(oration)?|inc(orporated)?|ltd|llc|co|company|limited|gmbh|sa|nv|ag|plc|lp)\\M\\.?',
+            '', 'gi'),
+          '\\musa\\M', '', 'gi'),
+        '[^A-Za-z0-9]+', '', 'g'))
+"""
+
+
+def _mfr_norm_expr(col: str) -> str:
+    """Return the SQL expression that normalizes a manufacturer/applicant
+    column. Strips corporate suffixes + country markers + punctuation so
+    that 'DePuy Synthes Products, Inc.' and 'DePuy Synthes Products' and
+    'DePUY SYNTHES PRODUCTS LLC' all collapse to one key.
+
+    Still rule-based/structural — no fuzzy, no LLM."""
+    return _MFR_NORM_SQL.replace("$src$", col)
+
+
+def fetch_manufacturer_to_categories(conn) -> dict:
+    """{parent_name: set(device_category)}.
+
+    Combines manufacturer_to_product_code (FDA 510k → product_code →
+    device_category) with manufacturer_alias (parent_company resolver), so
+    'Medtronic Vascular', 'Medtronic Sofamor Danek', 'Medtronic Inc' all
+    collapse to a single 'Medtronic' key whose category set is the UNION
+    of every subsidiary's filings. Open Payments lookups hit this same
+    parent map. Zero regex, zero fuzzy — equality match on normalized
+    strings both for the 510k applicant → parent and OP mfr → parent.
+    """
+    out: dict = {}
+    with conn.cursor() as cur:
+        cur.execute("""
+            SELECT DISTINCT
+                   coalesce(a.parent_name, m.manufacturer_norm) AS parent,
+                   m.device_category
+              FROM manufacturer_to_product_code m
+         LEFT JOIN manufacturer_alias a ON a.alias_norm = m.manufacturer_norm
+             WHERE m.device_category IS NOT NULL
+        """)
+        for parent, cat in cur.fetchall():
+            if parent:
+                out.setdefault(parent, set()).add(cat)
+    return out
+
+
+def fetch_op_manufacturers_by_ccn(conn) -> dict:
+    """{ccn: [parent_name, ...]}.
+
+    Normalizes Open Payments manufacturer_name the same way, then resolves
+    to parent_name via manufacturer_alias when possible. Unaliased names
+    pass through as their own normalized form — they still join on
+    equality to whatever's in fda_510k under the same normalization, so
+    coverage degrades gracefully.
+    """
+    sql = f"""
+        SELECT DISTINCT
+               teaching_hospital_ccn,
+               coalesce(a.parent_name, {_mfr_norm_expr('manufacturer_name')}) AS parent
+          FROM cms_open_payments op
+     LEFT JOIN manufacturer_alias a
+            ON a.alias_norm = {_mfr_norm_expr('manufacturer_name')}
+         WHERE teaching_hospital_ccn IS NOT NULL
+           AND teaching_hospital_ccn <> ''
+           AND manufacturer_name IS NOT NULL
+    """
+    out: dict = {}
+    with conn.cursor() as cur:
+        cur.execute(sql)
+        for ccn, parent in cur.fetchall():
+            if parent:
+                out.setdefault(ccn, []).append(parent)
+    return out
+
+
+
+def fetch_ca_tavr_by_ccn(conn) -> dict:
+    """{ccn: {facility_name, year, volume, mortality, comparison}} — cardiac_valve only."""
+    sql = """
+        SELECT ccn, facility_name, report_year, tavr_volume,
+               risk_adjusted_mortality_rate, statewide_comparison
+          FROM ca_tavr_outcome
+         WHERE ccn IS NOT NULL
+    """
+    out: dict = {}
+    with conn.cursor() as cur:
+        cur.execute(sql)
+        for ccn, name, yr, vol, mort, cmp in cur.fetchall():
+            out[ccn] = {
+                "facility_name": name, "report_year": yr,
+                "tavr_volume": vol,
+                "risk_adjusted_mortality_rate": float(mort) if mort is not None else None,
+                "statewide_comparison": cmp,
+            }
+    return out
+
+
+def fetch_pa_phc4_by_ccn(conn) -> dict:
+    """{(ccn, condition): {...}} — PHC4 hospital performance per condition (CABG/etc)."""
+    sql = """
+        SELECT ccn, condition, mortality_rate, readmission_rate, volume, rating
+          FROM pa_phc4_outcome WHERE ccn IS NOT NULL
+    """
+    out: dict = {}
+    with conn.cursor() as cur:
+        cur.execute(sql)
+        for ccn, cond, mort, readm, vol, rating in cur.fetchall():
+            out.setdefault(ccn, []).append({
+                "condition": cond, "mortality_rate": mort,
+                "readmission_rate": readm, "volume": vol, "rating": rating,
+            })
+    return out
+
+
+def fetch_news_by_ccn(conn) -> dict:
+    """{ccn: [{title, source, published_date, url, snippet}, ...]}."""
+    sql = """
+        SELECT ccn, title, source, published_date, url, snippet
+          FROM hospital_news WHERE ccn IS NOT NULL
+         ORDER BY fetched_at DESC
+    """
+    out: dict = {}
+    with conn.cursor() as cur:
+        cur.execute(sql)
+        for ccn, title, src, dt, url, sn in cur.fetchall():
+            out.setdefault(ccn, []).append({
+                "title": title, "source": src, "published_date": dt,
+                "url": url, "snippet": sn,
+            })
+    return out
+
+
+# Condition → device_category mapping for PA PHC4 outcomes.
+_PHC4_COND_TO_CAT = {
+    "CABG":                  "cabg_conduit",
+    "Coronary Artery Bypass": "cabg_conduit",
+    "AMI":                   "drug_eluting_stent",
+    "Heart Attack":          "drug_eluting_stent",
+    "Pneumonia":             None,
+}
+
+
+def fetch_leapfrog_by_ccn(conn) -> dict:
+    """{ ccn: {safety_grade, profile_url} } — Leapfrog A-F hospital quality grade."""
+    sql = """
+        SELECT ccn, safety_grade, profile_url
+          FROM leapfrog_grade
+         WHERE ccn IS NOT NULL AND safety_grade IS NOT NULL
+    """
+    out: dict = {}
+    with conn.cursor() as cur:
+        cur.execute(sql)
+        for ccn, grade, url in cur.fetchall():
+            out[ccn] = {"safety_grade": grade, "profile_url": url}
+    return out
+
+
+def fetch_manufacturer_quality_by_category(conn) -> dict:
+    """{device_category: {warning_letters:N, oai_inspections:N, firms:[...]}}.
+
+    Joins scraped FDA 483 + Warning Letter tables through the 510k master
+    (by firm_name ↔ applicant ↔ product_code) down to device_category. This
+    is how manufacturer-level quality issues flow into per-device risk."""
+    sql = """
+        WITH pc_to_cat AS (
+          SELECT DISTINCT product_code, device_category
+            FROM bridge_hcpcs_to_product_code
+           WHERE device_category IS NOT NULL
+             AND product_code   IS NOT NULL
+        ),
+        applicants AS (
+          SELECT DISTINCT
+                 pc.device_category,
+                 regexp_replace(lower(coalesce(k.applicant,'')),
+                                '[^a-z0-9]+', ' ', 'g') AS firm_norm,
+                 k.applicant
+            FROM fda_510k k
+            JOIN pc_to_cat pc ON pc.product_code = k.product_code
+           WHERE k.applicant IS NOT NULL
+        )
+        SELECT a.device_category,
+               COUNT(DISTINCT i.id) FILTER (WHERE i.classification ILIKE 'OAI%'
+                                               OR i.classification ILIKE '%Official%') AS oai_inspections,
+               ARRAY_AGG(DISTINCT a.applicant)
+                 FILTER (WHERE i.id IS NOT NULL) AS flagged_firms
+          FROM applicants a
+          JOIN fda_483_inspection i
+            ON i.firm_name_norm = a.firm_norm
+           AND length(i.firm_name_norm) > 3
+         GROUP BY a.device_category
+        HAVING COUNT(DISTINCT i.id) FILTER (WHERE i.classification ILIKE 'OAI%'
+                                               OR i.classification ILIKE '%Official%') > 0
+    """
+    out: dict = {}
+    with conn.cursor() as cur:
+        cur.execute(sql)
+        for cat, oai, firms in cur.fetchall():
+            out[cat] = {
+                "oai_inspections":   int(oai or 0),
+                "flagged_firms":     list(firms or [])[:10],
+            }
+    return out
+
+
 def fetch_open_payments_by_ccn(conn) -> dict:
     """{ ccn: {total_payments, manufacturer_count} } — crude manufacturer-exposure proxy."""
     sql = """
@@ -608,25 +852,51 @@ def _linkage_confidence(exposure_discharges: int, comps: list,
 
 
 def _exposure_bonus(discharges: int) -> float:
-    """Additive volume bump that moves the hospital-specific score up
-    for high-volume hospitals *without* multiplying the global score.
+    """Additive volume bump — tighter than v1 so 183 discharges doesn't near-
+    max the bump. We want the exposure bonus to differentiate specialists
+    (thousands of discharges) from generalist hospitals, not saturate at
+    mid-volume.
 
-    Multiplicative scaling (old approach) created a bug where 107 discharges
-    × global 9.0 = 10.35 → capped at 10 — indistinguishable from a 10,000-
-    discharge specialist. An additive log bonus preserves rank ordering but
-    keeps the top of the scale reserved for cases that have both a severe
-    global signal AND extreme hospital volume.
-
-    Values:
-        20 discharges  → +0.52
-        100            → +0.80
-        500            → +1.08
-        5,000          → +1.48   (capped at 1.50)
+    New values (log10(1+N) * 0.25, capped at 1.0):
+        20 discharges  → +0.33
+        100            → +0.50
+        500            → +0.68
+        5,000          → +0.92
+        50,000         → +1.00 (capped)
     """
     if discharges <= 0:
         return 0.0
     import math
-    return round(min(math.log10(1 + discharges) * 0.4, 1.5), 2)
+    return round(min(math.log10(1 + discharges) * 0.25, 1.0), 2)
+
+
+def _manufacturer_bonus(op_agg: dict, mfr_cat_match: bool) -> float:
+    """Small additive bonus when manufacturer Open Payments overlap is
+    present AND the manufacturers making payments produce devices in this
+    category (via fda_510k.applicant → product_code → device_category).
+
+    If the manufacturer-to-category link is structurally confirmed, this
+    says "this hospital has financial ties to firms that make THIS device
+    family" — which genuinely changes the risk posture.
+
+    Values (require mfr_cat_match=True, otherwise return 0):
+        total_payments >= $1M  → +0.30
+        >= $100k               → +0.20
+        >= $10k                → +0.10
+        >0 but below           → +0.05
+    """
+    if not mfr_cat_match or not op_agg:
+        return 0.0
+    total = float(op_agg.get("total_payments") or 0)
+    if total >= 1_000_000:
+        return 0.30
+    if total >= 100_000:
+        return 0.20
+    if total >= 10_000:
+        return 0.10
+    if total > 0:
+        return 0.05
+    return 0.0
 
 
 def _quality_score(overall_rating) -> Optional[float]:
@@ -647,7 +917,15 @@ def build_row(hospital: dict, category: dict,
               op: dict, reg_class: dict = None,
               catalog_510k: dict = None,
               device_volume: dict = None,
-              complications: dict = None) -> dict:
+              complications: dict = None,
+              leapfrog: dict = None,
+              mfr_quality: dict = None,
+              sparcs: dict = None,
+              ca_tavr: dict = None,
+              pa_phc4: dict = None,
+              news: dict = None,
+              mfr_to_cats: dict = None,
+              op_mfrs_by_ccn: dict = None) -> dict:
     cat_slug = category["device_category"]
     ccn      = hospital["facility_id"]
     events = maude.get(cat_slug) or {}
@@ -658,6 +936,31 @@ def build_row(hospital: dict, category: dict,
     catalog = (catalog_510k or {}).get(cat_slug) or []
     volume   = (device_volume or {}).get((ccn, cat_slug)) or {}
     comps    = (complications or {}).get((ccn, cat_slug)) or []
+    leapfrog_ccn = (leapfrog or {}).get(ccn) or {}
+    mfr_q    = (mfr_quality or {}).get(cat_slug) or {}
+    sparcs_rows = (sparcs or {}).get((ccn, cat_slug)) or []
+    # CA TAVR only applies when this row's device_category is cardiac_valve
+    ca_tavr_row = None
+    if cat_slug == "cardiac_valve":
+        ca_tavr_row = (ca_tavr or {}).get(ccn)
+    # PA PHC4 — only the rows whose condition maps into this device_category
+    pa_phc4_rows = []
+    for entry in (pa_phc4 or {}).get(ccn, []):
+        mapped = _PHC4_COND_TO_CAT.get(entry.get("condition"))
+        if mapped == cat_slug:
+            pa_phc4_rows.append(entry)
+    news_rows = (news or {}).get(ccn, [])
+    # Structural manufacturer→device_category overlap:
+    # Does this CCN's Open-Payments manufacturer list include any firm that
+    # makes devices in this row's device_category (via fda_510k.applicant)?
+    mfr_cat_match = False
+    mfr_matched_firms: list[str] = []
+    if mfr_to_cats and op_mfrs_by_ccn:
+        for mk in op_mfrs_by_ccn.get(ccn, []):
+            cats_for_mk = mfr_to_cats.get(mk)
+            if cats_for_mk and cat_slug in cats_for_mk:
+                mfr_cat_match = True
+                mfr_matched_firms.append(mk)
 
     # ---- Global device-risk scoring (hospital-agnostic) ----
     maude_sc     = _maude_score(events)
@@ -671,20 +974,19 @@ def build_row(hospital: dict, category: dict,
     exposure_bonus = _exposure_bonus(exposure_discharges)
 
     # ---- Linkage confidence × damping ----
-    # Without evidence that THIS hospital touches this device, the global
-    # signal should not transfer at full strength. Damping is multiplicative
-    # on the global score; exposure is *additive* on top so a 107-discharge
-    # hospital doesn't get the same 10.0 as a 10,000-discharge specialist.
     hosp_link_conf, linkage_multiplier = _linkage_confidence(
         exposure_discharges, comps, op_agg,
     )
+
+    # Manufacturer bonus — only meaningful when the structural mfr→category
+    # match is present (user complaint #3: Open Payments was floating signal).
+    manufacturer_bonus = _manufacturer_bonus(op_agg, mfr_cat_match)
+
     hospital_final_score = round(
-        min(global_score * linkage_multiplier + exposure_bonus, 10.0), 2,
+        min(global_score * linkage_multiplier + exposure_bonus + manufacturer_bonus,
+            10.0), 2,
     )
 
-    # Pure exposure-adjusted view (what if we *assumed* full linkage?) —
-    # so the UI can still rank within a category by pure volume, independent
-    # of linkage-confidence damping.
     exposure_adjusted = round(min(global_score + exposure_bonus, 10.0), 2)
 
     quality = _quality_score(hospital.get("overall_rating"))
@@ -745,6 +1047,11 @@ def build_row(hospital: dict, category: dict,
                 "completed":    int(trial.get("completed") or 0),
                 "with_results": int(trial.get("with_results") or 0),
                 "active":       int(trial.get("active") or 0),
+                # Our ClinicalTrials.gov buckets are coarser than our
+                # device_category taxonomy (e.g. "pacemaker" bucket covers
+                # pacemaker_dual_chamber, pacemaker_lead, etc.). This flag
+                # tells consumers the match is broad rather than device-exact.
+                "clinical_match_precision": "broad",
             },
             "device_risk_confidence": device_conf,
             "global_score":           global_score,
@@ -804,6 +1111,8 @@ def build_row(hospital: dict, category: dict,
             "linkage_confidence":  hosp_link_conf,
             "linkage_multiplier":  linkage_multiplier,
             "exposure_bonus":      exposure_bonus,
+            "manufacturer_bonus":  manufacturer_bonus,
+            "manufacturer_category_match": mfr_cat_match,
             "hospital_final_score":    hospital_final_score,
 
             # What the score would be IF we assumed full linkage — so the UI
@@ -811,12 +1120,147 @@ def build_row(hospital: dict, category: dict,
             "exposure_adjusted_score": exposure_adjusted,
         },
 
-        "device_510k_catalog": {
-            "count":   len(catalog),
-            "devices": catalog,
+        # Trim catalog: drop the noisy zero-event entries that bloat the
+        # payload (most product codes have many 510k clearances, only a few
+        # have MAUDE events). Sort by event_count desc, decision_date desc,
+        # cap at 8. Kept _shown count separately so a UI can still say
+        # "showing 8 of 47 device clearances".
+        "device_510k_catalog": (lambda c: {
+            "count_total":  len(c),
+            "count_shown":  min(8, len([d for d in c if (d.get('maude') or {}).get('event_count', 0) > 0]) or len(c)),
+            "devices": (
+                # First: any with MAUDE events (most clinically relevant)
+                [{**d, "maude": d.get("maude")} for d in c
+                 if (d.get('maude') or {}).get('event_count', 0) > 0][:8]
+                # Then: fill up to 8 from the most-recent zero-event ones
+                or c[:8]
+            ),
+        })(catalog),
+        # Scraped / non-API signals (populated from TinyFish + CMS catalog).
+        "external_signals": {
+            # Leapfrog Hospital Safety Grade, A–F.  Joins on (name,state)
+            # via exact + pg_trgm fuzzy match, linked back to CCN.
+            "leapfrog": leapfrog_ccn or None,
+            # Manufacturer-level quality issues for this device category.
+            # FDA Warning Letters + 483 inspections joined to the 510k
+            # applicants whose product_codes sit in this device_category.
+            "manufacturer_quality": {
+                "oai_inspections":  mfr_q.get("oai_inspections") or 0,
+                "flagged_firms":    mfr_q.get("flagged_firms") or [],
+            } if mfr_q else None,
+            # NY SPARCS Potentially Preventable Complications for this
+            # (CCN × device_category) — structurally joined via the
+            # sparcs_ppc_to_device_category curated map and the strict
+            # PFI↔CCN crosswalk. Only populated for NY hospitals.
+            "state_complications": {
+                "source":   "NY SPARCS" if sparcs_rows else None,
+                "ppc_rows": sparcs_rows,
+            } if sparcs_rows else None,
+            # Device-specific state registry data. CA HCAI publishes TAVR
+            # outcomes per hospital — this is hospital × device × mortality
+            # at the cleanest public level we've found.
+            "ca_tavr_outcome": ca_tavr_row,
+            # PA PHC4 hospital performance — CABG/AMI condition-level outcomes
+            # mapped into device_category via _PHC4_COND_TO_CAT.
+            "pa_phc4_outcomes": pa_phc4_rows or None,
+            # Hospital-level news headlines (lawsuit, adverse event press,
+            # closure/layoff signals). Scraped via TinyFish per CCN.
+            "news": news_rows or None,
         },
         "meta": {
-            "linkage_type": "direct" if exposure_discharges > 0 else "indirect",
+            # Honest framing: we never have point-of-care UDI capture, so
+            # even "strong" DRG+payments+measures evidence is still inference,
+            # not device-level ground truth. Label it as such.
+            "linkage_type":        "multi_signal_inference",
+            "has_procedure_evidence": exposure_discharges > 0,
+            # Explicit step-by-step chain showing HOW the hospital is joined
+            # to the device. Each step lists the source table, the join key
+            # used, and the matched value — so a reviewer can spot-check the
+            # link without reading the UI.
+            "connection_chain": [
+                {
+                    "step": 1,
+                    "what": "hospital",
+                    "source": "cms_hospitals (CMS Hospital General Information)",
+                    "key": "facility_id (CCN)",
+                    "value": hospital["facility_id"],
+                    "label": hospital.get("facility_name"),
+                },
+                {
+                    "step": 2,
+                    "what": "procedure_volume",
+                    "source": "cms_hospital_drg_volume (CMS Medicare Inpatient PUF)",
+                    "key": "ccn",
+                    "value": hospital["facility_id"],
+                    "matched": {
+                        "discharges_2024": exposure_discharges,
+                        "drg_codes_billed": list(volume.get("drg_codes") or []),
+                    } if volume else {"matched": False},
+                },
+                {
+                    "step": 3,
+                    "what": "device_category",
+                    "source": "drg_to_device_category (curated map) + bridge_hcpcs_to_product_code",
+                    "key": "drg_code → device_category",
+                    "value": cat_slug,
+                    "matched": {
+                        "product_codes": list(category.get("product_codes") or []),
+                        "hcpcs_codes":   list(category.get("hcpcs_codes") or []),
+                        "drg_codes":     list(category.get("drg_codes") or []),
+                    },
+                },
+                {
+                    "step": 4,
+                    "what": "device_safety",
+                    "source": "fda_maude_events + fda_recalls",
+                    "key": "product_code",
+                    "value": category.get("product_code"),
+                    "matched": {
+                        "adverse_events": int(events.get("total_events") or 0),
+                        "deaths":         int(events.get("death_count") or 0),
+                        "active_recalls": int(rec.get("recall_count") or 0),
+                    },
+                },
+                {
+                    "step": 5,
+                    "what": "manufacturer_overlap",
+                    "source": "cms_open_payments → manufacturer_alias → fda_510k.applicant",
+                    "key": "manufacturer_norm → parent_name → product_code → device_category",
+                    "value": cat_slug,
+                    "matched": {
+                        "op_manufacturer_count": int(op_agg.get("manufacturer_count") or 0),
+                        "op_total_payments":     float(op_agg.get("total_payments") or 0.0),
+                        "device_category_match": bool(mfr_cat_match),
+                        "matched_firm_keys":     mfr_matched_firms[:5],
+                    },
+                },
+                {
+                    "step": 6,
+                    "what": "score",
+                    "source": "computed",
+                    "formula": "min(global × linkage_multiplier + exposure_bonus + manufacturer_bonus, 10)",
+                    "value": hospital_final_score,
+                    "components": {
+                        "global_score":        global_score,
+                        "linkage_multiplier":  linkage_multiplier,
+                        "exposure_bonus":      exposure_bonus,
+                        "manufacturer_bonus":  manufacturer_bonus,
+                    },
+                },
+            ],
+            # Time alignment — readers need to know which year each layer
+            # represents so they can weight a "2018 MAUDE death" against a
+            # "2024 claim" appropriately.
+            "time_alignment": {
+                "claims_year":         volume.get("data_year"),
+                "maude_window":        "2019-2024",
+                "recalls_window":      "2019-2024",
+                "open_payments_year":  2024,
+                "leapfrog_window":     "2024-2025",
+                "sparcs_window":       "2013-2023",
+                "ca_tavr_year":        2024,
+                "trials_window":       "rolling (no end-date filter)",
+            },
             "sources": [
                 "CMS Hospital General Information",
                 "CMS Medicare Inpatient PUF (CCN × DRG discharges)",
@@ -828,6 +1272,8 @@ def build_row(hospital: dict, category: dict,
                 "FDA GUDID (UDI-DI, brand, manufacturer)",
                 "ClinicalTrials.gov",
                 "CMS Open Payments",
+                "Leapfrog Hospital Safety Grade (TinyFish)",
+                "FDA 483 Inspection Classifications (TinyFish)",
                 "bridge_hcpcs_to_product_code",
                 "drg_to_device_category",
             ],
@@ -857,7 +1303,7 @@ def build_row(hospital: dict, category: dict,
         "final_score":        hospital_final_score,
         "hospital_device_link_confidence": hosp_link_conf,
         "device_risk_confidence":          device_conf,
-        "linkage_type":       "direct" if exposure_discharges > 0 else "indirect",
+        "linkage_type":       "multi_signal_inference",
         "payload":            payload,
     }
 
@@ -899,12 +1345,24 @@ def assemble(conn, limit_hospitals: Optional[int] = None,
         catalog_510k = fetch_510k_catalog_by_category(conn, maude_counts=maude_by_k)
         device_volume  = fetch_hospital_device_volume(conn)
         complications  = fetch_hospital_complications(conn)
+        leapfrog       = fetch_leapfrog_by_ccn(conn)
+        mfr_quality    = fetch_manufacturer_quality_by_category(conn)
+        sparcs         = fetch_sparcs_ppc_by_ccn(conn)
+        ca_tavr        = fetch_ca_tavr_by_ccn(conn)
+        pa_phc4        = fetch_pa_phc4_by_ccn(conn)
+        news           = fetch_news_by_ccn(conn)
+        mfr_to_cats    = fetch_manufacturer_to_categories(conn)
+        op_mfrs_by_ccn = fetch_op_manufacturers_by_ccn(conn)
+        log.info("mfr→cat map: %d firms | OP mfrs by ccn: %d ccns",
+                 len(mfr_to_cats), len(op_mfrs_by_ccn))
         log.info("aggregates: %d categories | maude=%d recalls=%d trials=%d "
                  "reg_class=%d 510k_catalog=%d K#_with_events=%d op_ccns=%d "
-                 "direct_volume_links=%d complication_links=%d",
+                 "direct_volume_links=%d complication_links=%d "
+                 "leapfrog_ccns=%d mfr_quality_cats=%d",
                  len(categories), len(maude), len(recalls), len(trials),
                  len(reg_class), len(catalog_510k), len(maude_by_k), len(op),
-                 len(device_volume), len(complications))
+                 len(device_volume), len(complications),
+                 len(leapfrog), len(mfr_quality))
 
         hospitals = fetch_hospitals(conn, limit=limit_hospitals, state=state, ccn=ccn)
         log.info("assembling for %d hospitals × %d categories = %d rows",
@@ -916,7 +1374,15 @@ def assemble(conn, limit_hospitals: Optional[int] = None,
                 batch.append(build_row(h, cat, maude, recalls, trials, op,
                                          reg_class, catalog_510k,
                                          device_volume=device_volume,
-                                         complications=complications))
+                                         complications=complications,
+                                         leapfrog=leapfrog,
+                                         mfr_quality=mfr_quality,
+                                         sparcs=sparcs,
+                                         ca_tavr=ca_tavr,
+                                         pa_phc4=pa_phc4,
+                                         news=news,
+                                         mfr_to_cats=mfr_to_cats,
+                                         op_mfrs_by_ccn=op_mfrs_by_ccn))
                 if len(batch) >= batch_size:
                     risk_db.upsert_risk_intelligence(conn, batch)
                     total += len(batch)

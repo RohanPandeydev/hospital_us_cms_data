@@ -1,0 +1,490 @@
+{
+  "type": "COMPLETE",
+  "run_id": "f6ee4395-dbd4-4290-b12a-bbd1b9b0c70b",
+  "status": "COMPLETED",
+  "timestamp": "2026-04-24T18:41:15.862Z",
+  "result": {
+    "result": [
+      {
+        "hospital_name": "AdventHealth Central Texas",
+        "city": "Killeen",
+        "state": "TX",
+        "zip": "76549-4110",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/adventhealth-central-texas"
+      },
+      {
+        "hospital_name": "Ascension Seton Northwest",
+        "city": "Austin",
+        "state": "TX",
+        "zip": "78759-5236",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/ascension-seton-northwest"
+      },
+      {
+        "hospital_name": "Baylor Scott & White All Saints Medical Center - Fort Worth",
+        "city": "Fort Worth",
+        "state": "TX",
+        "zip": "76104",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/baylor-scott-white-all-saints-medical-center-fort-worth"
+      },
+      {
+        "hospital_name": "Baylor Scott & White Medical Center - Irving",
+        "city": "Irving",
+        "state": "TX",
+        "zip": "75061",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/baylor-scott-white-medical-center-irving"
+      },
+      {
+        "hospital_name": "Baylor Scott & White Medical Center- Hillcrest",
+        "city": "Waco",
+        "state": "TX",
+        "zip": "76712-8897",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/baylor-scott-white-medical-center-hillcrest"
+      },
+      {
+        "hospital_name": "Baylor Scott and White The Heart Hospital Dallas",
+        "city": "Dallas",
+        "state": "TX",
+        "zip": "75226-1339",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/baylor-scott-and-white-the-heart-hospital-dallas"
+      },
+      {
+        "hospital_name": "CHRISTUS Good Shepherd Medical Center - Longview",
+        "city": "Longview",
+        "state": "TX",
+        "zip": "75601-5580",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/christus-good-shepherd-medical-center-longview"
+      },
+      {
+        "hospital_name": "CHRISTUS Mother Frances Hospital - Sulphur Springs",
+        "city": "Sulphur Springs",
+        "state": "TX",
+        "zip": "75482-0115",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/christus-mother-frances-hospital-sulphur-springs"
+      },
+      {
+        "hospital_name": "CHRISTUS Mother Frances Hospital - Tyler",
+        "city": "Tyler",
+        "state": "TX",
+        "zip": "75701-2036",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/christus-mother-frances-hospital-tyler"
+      },
+      {
+        "hospital_name": "CHRISTUS Santa Rosa Hospital - San Marcos",
+        "city": "San Marcos",
+        "state": "TX",
+        "zip": "78666-7544",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/christus-santa-rosa-hospital-san-marcos"
+      },
+      {
+        "hospital_name": "CHRISTUS Spohn Hospital Alice",
+        "city": "Alice",
+        "state": "TX",
+        "zip": "78332-4169",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/christus-spohn-hospital-alice"
+      },
+      {
+        "hospital_name": "Del Sol Medical Center",
+        "city": "El Paso",
+        "state": "TX",
+        "zip": "79925",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/del-sol-medical-center"
+      },
+      {
+        "hospital_name": "Harlingen Medical Center",
+        "city": "Harlingen",
+        "state": "TX",
+        "zip": "78550",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/harlingen-medical-center"
+      },
+      {
+        "hospital_name": "Houston Methodist Baytown Hospital",
+        "city": "Baytown",
+        "state": "TX",
+        "zip": "77521-2122",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/houston-methodist-baytown-hospital"
+      },
+      {
+        "hospital_name": "Houston Methodist Clear Lake Hospital",
+        "city": "Houston",
+        "state": "TX",
+        "zip": "77058",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/houston-methodist-clear-lake-hospital"
+      },
+      {
+        "hospital_name": "Houston Methodist Hospital",
+        "city": "Houston",
+        "state": "TX",
+        "zip": "77030-2707",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/houston-methodist-hospital"
+      },
+      {
+        "hospital_name": "Houston Methodist Sugar Land Hospital",
+        "city": "Sugar Land",
+        "state": "TX",
+        "zip": "77479",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/houston-methodist-sugar-land-hospital"
+      },
+      {
+        "hospital_name": "Houston Methodist The Woodlands Hospital",
+        "city": "The Woodlands",
+        "state": "TX",
+        "zip": "77385",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/houston-methodist-the-woodlands-hospital"
+      },
+      {
+        "hospital_name": "Houston Methodist West Hospital",
+        "city": "Houston",
+        "state": "TX",
+        "zip": "77094",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/houston-methodist-west-hospital"
+      },
+      {
+        "hospital_name": "Baylor Scott & White Medical Center - Grapevine",
+        "city": "Grapevine",
+        "state": "TX",
+        "zip": "76051",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/baylor-scott-white-medical-center-grapevine"
+      },
+      {
+        "hospital_name": "Baylor Scott & White Medical Center - Lake Pointe",
+        "city": "Rowlett",
+        "state": "TX",
+        "zip": "75088-4552",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/baylor-scott-white-medical-center-lake-pointe"
+      },
+      {
+        "hospital_name": "Baylor Scott & White Medical Center - McKinney",
+        "city": "McKinney",
+        "state": "TX",
+        "zip": "75071",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/baylor-scott-white-medical-center-mckinney"
+      },
+      {
+        "hospital_name": "Baylor Scott & White Medical Center - Pflugerville",
+        "city": "Pflugerville",
+        "state": "TX",
+        "zip": "78660-0317",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/baylor-scott-white-medical-center-pflugerville"
+      },
+      {
+        "hospital_name": "Baylor Scott & White Medical Center - Plano",
+        "city": "Plano",
+        "state": "TX",
+        "zip": "75093",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/baylor-scott-white-medical-center-plano"
+      },
+      {
+        "hospital_name": "Baylor Scott & White Medical Center - Round Rock",
+        "city": "Round Rock",
+        "state": "TX",
+        "zip": "78665-1032",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/baylor-scott-white-medical-center-round-rock"
+      },
+      {
+        "hospital_name": "Baylor Scott & White Medical Center - Waxahachie",
+        "city": "Waxahachie",
+        "state": "TX",
+        "zip": "75165-2275",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/baylor-scott-white-medical-center-waxahachie"
+      },
+      {
+        "hospital_name": "Baylor Scott & White Medical Center Centennial",
+        "city": "Frisco",
+        "state": "TX",
+        "zip": "75035-8298",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/baylor-scott-white-medical-center-centennial"
+      },
+      {
+        "hospital_name": "Brooke Army Medical Center",
+        "city": "JBSA Fort Sam Houston",
+        "state": "TX",
+        "zip": "78234-6200",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/brooke-army-medical-center"
+      },
+      {
+        "hospital_name": "CHRISTUS Good Shepherd Medical Center-Marshall",
+        "city": "Marshall",
+        "state": "TX",
+        "zip": "75670-5336",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/christus-good-shepherd-medical-center-marshall"
+      },
+      {
+        "hospital_name": "CHRISTUS Southeast Texas St. Elizabeth",
+        "city": "Beaumont",
+        "state": "TX",
+        "zip": "77702-1809",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/christus-southeast-texas-st-elizabeth"
+      },
+      {
+        "hospital_name": "CHRISTUS Spohn Hospital Beeville",
+        "city": "Beeville",
+        "state": "TX",
+        "zip": "78102-5312",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/christus-spohn-hospital-beeville"
+      },
+      {
+        "hospital_name": "CHRISTUS St. Michael Health System",
+        "city": "Texarkana",
+        "state": "TX",
+        "zip": "75503-2372",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/christus-st-michael-health-system"
+      },
+      {
+        "hospital_name": "CHRISTUS St. Michael Hospital - Atlanta",
+        "city": "Atlanta",
+        "state": "TX",
+        "zip": "75551-3245",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/christus-st-michael-hospital-atlanta"
+      },
+      {
+        "hospital_name": "CHRISTUS Spohn Hospital Corpus Christi - South",
+        "city": "Corpus Christi",
+        "state": "TX",
+        "zip": "78414",
+        "safety_grade": "B",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/christus-spohn-hospital-corpus-christi-south"
+      },
+      {
+        "hospital_name": "CHRISTUS Spohn Hospital Kleberg",
+        "city": "Kingsville",
+        "state": "TX",
+        "zip": "78363-1197",
+        "safety_grade": "B",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/christus-spohn-hospital-kleberg"
+      },
+      {
+        "hospital_name": "CHRISTUS Spohn Shoreline Hospital",
+        "city": "Corpus Christi",
+        "state": "TX",
+        "zip": "78404",
+        "safety_grade": "B",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/christus-spohn-shoreline-hospital"
+      },
+      {
+        "hospital_name": "CHRISTUS Santa Rosa Hospital - New Braunfels",
+        "city": "New Braunfels",
+        "state": "TX",
+        "zip": "78130-4191",
+        "safety_grade": "C",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/christus-santa-rosa-hospital-new-braunfels"
+      },
+      {
+        "hospital_name": "CHRISTUS Santa Rosa Hospital - Westover Hills",
+        "city": "San Antonio",
+        "state": "TX",
+        "zip": "78251",
+        "safety_grade": "C",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/christus-santa-rosa-hospital-westover-hills"
+      },
+      {
+        "hospital_name": "CHRISTUS Health Pine Street",
+        "city": "Texarkana",
+        "state": "TX",
+        "zip": "75501-5100",
+        "safety_grade": "NG",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/christus-health-pine-street"
+      },
+      {
+        "hospital_name": "Memorial Hermann - Texas Medical Center",
+        "city": "Houston",
+        "state": "TX",
+        "zip": "77030-1501",
+        "safety_grade": "B",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/memorial-hermann-texas-medical-center"
+      },
+      {
+        "hospital_name": "Memorial Hermann Cypress Hospital",
+        "city": "Cypress",
+        "state": "TX",
+        "zip": "77433",
+        "safety_grade": "B",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/memorial-hermann-cypress-hospital"
+      },
+      {
+        "hospital_name": "Memorial Hermann Greater Heights Hospital",
+        "city": "Houston",
+        "state": "TX",
+        "zip": "77008",
+        "safety_grade": "B",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/memorial-hermann-greater-heights-hospital"
+      },
+      {
+        "hospital_name": "Memorial Hermann Katy Hospital",
+        "city": "Katy",
+        "state": "TX",
+        "zip": "77494",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/memorial-hermann-katy-hospital"
+      },
+      {
+        "hospital_name": "Memorial Hermann Memorial City Medical Center",
+        "city": "Houston",
+        "state": "TX",
+        "zip": "77024-2501",
+        "safety_grade": "B",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/memorial-hermann-memorial-city-medical-center"
+      },
+      {
+        "hospital_name": "Memorial Hermann Northeast",
+        "city": "Humble",
+        "state": "TX",
+        "zip": "77338-4297",
+        "safety_grade": "B",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/memorial-hermann-northeast"
+      },
+      {
+        "hospital_name": "Memorial Hermann Pearland Hospital",
+        "city": "Pearland",
+        "state": "TX",
+        "zip": "77584",
+        "safety_grade": "B",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/memorial-hermann-pearland-hospital"
+      },
+      {
+        "hospital_name": "Memorial Hermann Southeast",
+        "city": "Houston",
+        "state": "TX",
+        "zip": "77089",
+        "safety_grade": "B",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/memorial-hermann-southeast"
+      },
+      {
+        "hospital_name": "Memorial Hermann Southwest Hospital",
+        "city": "Houston",
+        "state": "TX",
+        "zip": "77074",
+        "safety_grade": "B",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/memorial-hermann-southwest-hospital"
+      },
+      {
+        "hospital_name": "Memorial Hermann Sugar Land Hospital",
+        "city": "Sugar Land",
+        "state": "TX",
+        "zip": "77479",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/memorial-hermann-sugar-land-hospital"
+      },
+      {
+        "hospital_name": "Memorial Hermann The Woodlands Hospital",
+        "city": "The Woodlands",
+        "state": "TX",
+        "zip": "77380",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/memorial-hermann-the-woodlands-hospital"
+      },
+      {
+        "hospital_name": "Medical City Alliance",
+        "city": "Fort Worth",
+        "state": "TX",
+        "zip": "76177",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/medical-city-alliance"
+      },
+      {
+        "hospital_name": "Medical City Arlington",
+        "city": "Arlington",
+        "state": "TX",
+        "zip": "76015-2998",
+        "safety_grade": "C",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/medical-city-arlington"
+      },
+      {
+        "hospital_name": "Medical City Dallas",
+        "city": "Dallas",
+        "state": "TX",
+        "zip": "75230-2598",
+        "safety_grade": "C",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/medical-city-dallas"
+      },
+      {
+        "hospital_name": "Medical City Denton",
+        "city": "Denton",
+        "state": "TX",
+        "zip": "76210",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/medical-city-denton"
+      },
+      {
+        "hospital_name": "Medical City Fort Worth",
+        "city": "Fort Worth",
+        "state": "TX",
+        "zip": "76104-3986",
+        "safety_grade": "C",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/medical-city-fort-worth"
+      },
+      {
+        "hospital_name": "Medical City Frisco",
+        "city": "Frisco",
+        "state": "TX",
+        "zip": "75034",
+        "safety_grade": "B",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/medical-city-frisco"
+      },
+      {
+        "hospital_name": "Medical City Las Colinas",
+        "city": "Irving",
+        "state": "TX",
+        "zip": "75039-2422",
+        "safety_grade": "C",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/medical-city-las-colinas"
+      },
+      {
+        "hospital_name": "Medical City Lewisville",
+        "city": "Lewisville",
+        "state": "TX",
+        "zip": "75057-3699",
+        "safety_grade": "C",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/medical-city-lewisville"
+      },
+      {
+        "hospital_name": "Medical City McKinney",
+        "city": "McKinney",
+        "state": "TX",
+        "zip": "75069-3499",
+        "safety_grade": "B",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/medical-city-mckinney"
+      },
+      {
+        "hospital_name": "Medical City North Hills",
+        "city": "North Richland Hills",
+        "state": "TX",
+        "zip": "76180-7399",
+        "safety_grade": "C",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/medical-city-north-hills"
+      }
+    ]
+  }
+}

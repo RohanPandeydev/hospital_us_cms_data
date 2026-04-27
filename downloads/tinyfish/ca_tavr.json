@@ -1,0 +1,218 @@
+{
+  "type": "COMPLETE",
+  "run_id": "1cc65de5-03ea-4af7-acd6-34d36d5a05d1",
+  "status": "COMPLETED",
+  "timestamp": "2026-04-24T19:22:03.160Z",
+  "result": {
+    "result": [
+      {
+        "facility_name": "Adventist Health Glendale",
+        "county": "Los Angeles",
+        "report_year": 2024,
+        "tavr_volume": 136,
+        "risk_adjusted_mortality_rate": 1.26,
+        "complication_rate_or_statewide_comparison": "Average"
+      },
+      {
+        "facility_name": "Adventist Health Specialty Bakersfield",
+        "county": "Kern",
+        "report_year": 2024,
+        "tavr_volume": 39,
+        "risk_adjusted_mortality_rate": 8.5,
+        "complication_rate_or_statewide_comparison": "Average"
+      },
+      {
+        "facility_name": "Adventist Health St. Helena",
+        "county": "Napa",
+        "report_year": 2024,
+        "tavr_volume": 70,
+        "risk_adjusted_mortality_rate": 1.66,
+        "complication_rate_or_statewide_comparison": "Average"
+      },
+      {
+        "facility_name": "Adventist Health White Memorial",
+        "county": "Los Angeles",
+        "report_year": 2024,
+        "tavr_volume": 60,
+        "risk_adjusted_mortality_rate": 2.96,
+        "complication_rate_or_statewide_comparison": "Average"
+      },
+      {
+        "facility_name": "Alta Bates Summit Medical Center",
+        "county": "Alameda",
+        "report_year": 2024,
+        "tavr_volume": 118,
+        "risk_adjusted_mortality_rate": 2.75,
+        "complication_rate_or_statewide_comparison": "Average"
+      },
+      {
+        "facility_name": "Antelope Valley Medical Center",
+        "county": "Los Angeles",
+        "report_year": 2024,
+        "tavr_volume": 111,
+        "risk_adjusted_mortality_rate": 2.53,
+        "complication_rate_or_statewide_comparison": "Average"
+      },
+      {
+        "facility_name": "Bakersfield Memorial Hospital",
+        "county": "Kern",
+        "report_year": 2024,
+        "tavr_volume": 100,
+        "risk_adjusted_mortality_rate": 1.52,
+        "complication_rate_or_statewide_comparison": "Average"
+      },
+      {
+        "facility_name": "California Pacific Medical Center \u00e2\u0080\u0093 Van Ness Campus",
+        "county": "San Francisco",
+        "report_year": 2024,
+        "tavr_volume": 159,
+        "risk_adjusted_mortality_rate": 1.24,
+        "complication_rate_or_statewide_comparison": "Average"
+      },
+      {
+        "facility_name": "Cedars \u00e2\u0080\u0093 Sinai Medical Center",
+        "county": "Los Angeles",
+        "report_year": 2024,
+        "tavr_volume": 681,
+        "risk_adjusted_mortality_rate": 0.78,
+        "complication_rate_or_statewide_comparison": "Average"
+      },
+      {
+        "facility_name": "Community Hospital of the Monterey Peninsula",
+        "county": "Monterey",
+        "report_year": 2024,
+        "tavr_volume": 60,
+        "risk_adjusted_mortality_rate": 2.2,
+        "complication_rate_or_statewide_comparison": "Average"
+      },
+      {
+        "facility_name": "Community Memorial Hospital \u00e2\u0080\u0093 San Buenaventura",
+        "county": "Ventura",
+        "report_year": 2024,
+        "tavr_volume": 91,
+        "risk_adjusted_mortality_rate": 3.79,
+        "complication_rate_or_statewide_comparison": "Average"
+      },
+      {
+        "facility_name": "Doctors Medical Center",
+        "county": "Stanislaus",
+        "report_year": 2024,
+        "tavr_volume": 96,
+        "risk_adjusted_mortality_rate": 2.49,
+        "complication_rate_or_statewide_comparison": "Average"
+      },
+      {
+        "facility_name": "Dominican Hospital",
+        "county": "Santa Cruz",
+        "report_year": 2024,
+        "tavr_volume": 63,
+        "risk_adjusted_mortality_rate": 0,
+        "complication_rate_or_statewide_comparison": "Average"
+      },
+      {
+        "facility_name": "Eisenhower Medical Center",
+        "county": "Riverside",
+        "report_year": 2024,
+        "tavr_volume": 210,
+        "risk_adjusted_mortality_rate": 1.07,
+        "complication_rate_or_statewide_comparison": "Average"
+      },
+      {
+        "facility_name": "El Camino Health",
+        "county": "Santa Clara",
+        "report_year": 2024,
+        "tavr_volume": 126,
+        "risk_adjusted_mortality_rate": 0.61,
+        "complication_rate_or_statewide_comparison": "Average"
+      },
+      {
+        "facility_name": "Emanate Health Inter \u00e2\u0080\u0093 Community Hospital",
+        "county": "Los Angeles",
+        "report_year": 2024,
+        "tavr_volume": 49,
+        "risk_adjusted_mortality_rate": 0,
+        "complication_rate_or_statewide_comparison": "Average"
+      },
+      {
+        "facility_name": "Enloe Health",
+        "county": "Butte",
+        "report_year": 2024,
+        "tavr_volume": 135,
+        "risk_adjusted_mortality_rate": 3.45,
+        "complication_rate_or_statewide_comparison": "Average"
+      },
+      {
+        "facility_name": "French Hospital Medical Center",
+        "county": "San Luis Obispo",
+        "report_year": 2024,
+        "tavr_volume": 82,
+        "risk_adjusted_mortality_rate": 0,
+        "complication_rate_or_statewide_comparison": "Average"
+      },
+      {
+        "facility_name": "Fresno Heart and Surgical Hospital",
+        "county": "Fresno",
+        "report_year": 2024,
+        "tavr_volume": 131,
+        "risk_adjusted_mortality_rate": 2.9,
+        "complication_rate_or_statewide_comparison": "Average"
+      },
+      {
+        "facility_name": "Garfield Medical Center",
+        "county": "Los Angeles",
+        "report_year": 2024,
+        "tavr_volume": 34,
+        "risk_adjusted_mortality_rate": 0,
+        "complication_rate_or_statewide_comparison": "Average"
+      },
+      {
+        "facility_name": "Good Samaritan Hospital \u00e2\u0080\u0093 San Jose",
+        "county": "Santa Clara",
+        "report_year": 2024,
+        "tavr_volume": 51,
+        "risk_adjusted_mortality_rate": 2.5,
+        "complication_rate_or_statewide_comparison": "Average"
+      },
+      {
+        "facility_name": "Grossmont Hospital",
+        "county": "San Diego",
+        "report_year": 2024,
+        "tavr_volume": 73,
+        "risk_adjusted_mortality_rate": 1.84,
+        "complication_rate_or_statewide_comparison": "Average"
+      },
+      {
+        "facility_name": "Henry Mayo Newhall Hospital",
+        "county": "Los Angeles",
+        "report_year": 2024,
+        "tavr_volume": 37,
+        "risk_adjusted_mortality_rate": 2.73,
+        "complication_rate_or_statewide_comparison": "Average"
+      },
+      {
+        "facility_name": "UC San Francisco Medical Center",
+        "county": "San Francisco",
+        "report_year": 2024,
+        "tavr_volume": 119,
+        "risk_adjusted_mortality_rate": 1.58,
+        "complication_rate_or_statewide_comparison": "Average"
+      },
+      {
+        "facility_name": "UCLA West Valley Medical Center",
+        "county": "Los Angeles",
+        "report_year": 2024,
+        "tavr_volume": 11,
+        "risk_adjusted_mortality_rate": 16.8,
+        "complication_rate_or_statewide_comparison": "Average"
+      },
+      {
+        "facility_name": "Washington Hospital \u00e2\u0080\u0093 Fremont",
+        "county": "Alameda",
+        "report_year": 2024,
+        "tavr_volume": 50,
+        "risk_adjusted_mortality_rate": 2.75,
+        "complication_rate_or_statewide_comparison": "Average"
+      }
+    ]
+  }
+}

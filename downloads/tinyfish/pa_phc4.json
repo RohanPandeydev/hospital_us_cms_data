@@ -1,0 +1,280 @@
+{
+  "type": "COMPLETE",
+  "run_id": "476be020-f240-4b94-a9ee-4888f480166b",
+  "status": "COMPLETED",
+  "timestamp": "2026-04-24T19:27:43.854Z",
+  "result": {
+    "result": [
+      {
+        "facility_name": "Abington Memorial",
+        "city": null,
+        "condition": "CABG",
+        "mortality_rate": "As Expected",
+        "readmission_rate": "As Expected",
+        "volume": 197,
+        "rating": "As Expected"
+      },
+      {
+        "facility_name": "Albert Einstein",
+        "city": null,
+        "condition": "CABG",
+        "mortality_rate": "As Expected",
+        "readmission_rate": "As Expected",
+        "volume": 146,
+        "rating": "As Expected"
+      },
+      {
+        "facility_name": "Allegheny General",
+        "city": null,
+        "condition": "CABG",
+        "mortality_rate": "As Expected",
+        "readmission_rate": "As Expected",
+        "volume": 489,
+        "rating": "As Expected"
+      },
+      {
+        "facility_name": "Bryn Mawr",
+        "city": null,
+        "condition": "CABG",
+        "mortality_rate": "NR",
+        "readmission_rate": "NR",
+        "volume": 1,
+        "rating": "Not Reported"
+      },
+      {
+        "facility_name": "Butler Memorial",
+        "city": null,
+        "condition": "CABG",
+        "mortality_rate": "As Expected",
+        "readmission_rate": "As Expected",
+        "volume": 427,
+        "rating": "As Expected"
+      },
+      {
+        "facility_name": "Chester County",
+        "city": null,
+        "condition": "CABG",
+        "mortality_rate": "As Expected",
+        "readmission_rate": "As Expected",
+        "volume": 175,
+        "rating": "As Expected"
+      },
+      {
+        "facility_name": "Conemaugh Memorial",
+        "city": null,
+        "condition": "CABG",
+        "mortality_rate": "As Expected",
+        "readmission_rate": "As Expected",
+        "volume": 208,
+        "rating": "As Expected"
+      },
+      {
+        "facility_name": "Crozer-Chester",
+        "city": null,
+        "condition": "CABG",
+        "mortality_rate": "As Expected",
+        "readmission_rate": "As Expected",
+        "volume": 51,
+        "rating": "As Expected"
+      },
+      {
+        "facility_name": "Doylestown",
+        "city": null,
+        "condition": "CABG",
+        "mortality_rate": "As Expected",
+        "readmission_rate": "As Expected",
+        "volume": 324,
+        "rating": "As Expected"
+      },
+      {
+        "facility_name": "Einstein MC Montgomery",
+        "city": null,
+        "condition": "CABG",
+        "mortality_rate": "As Expected",
+        "readmission_rate": "As Expected",
+        "volume": 126,
+        "rating": "As Expected"
+      },
+      {
+        "facility_name": "Excela Hlth Westmoreland",
+        "city": null,
+        "condition": "CABG",
+        "mortality_rate": "As Expected",
+        "readmission_rate": "As Expected",
+        "volume": 424,
+        "rating": "As Expected"
+      },
+      {
+        "facility_name": "Forbes",
+        "city": null,
+        "condition": "CABG",
+        "mortality_rate": "As Expected",
+        "readmission_rate": "As Expected",
+        "volume": 221,
+        "rating": "As Expected"
+      },
+      {
+        "facility_name": "Geisinger Community",
+        "city": null,
+        "condition": "CABG",
+        "mortality_rate": "As Expected",
+        "readmission_rate": "As Expected",
+        "volume": 165,
+        "rating": "As Expected"
+      },
+      {
+        "facility_name": "Geisinger Danville",
+        "city": null,
+        "condition": "CABG",
+        "mortality_rate": "As Expected",
+        "readmission_rate": "As Expected",
+        "volume": 503,
+        "rating": "As Expected"
+      },
+      {
+        "facility_name": "Geisinger Wyoming Valley",
+        "city": null,
+        "condition": "CABG",
+        "mortality_rate": "As Expected",
+        "readmission_rate": "As Expected",
+        "volume": 161,
+        "rating": "As Expected"
+      },
+      {
+        "facility_name": "Heritage Valley Beaver",
+        "city": null,
+        "condition": "CABG",
+        "mortality_rate": "Worse",
+        "readmission_rate": "As Expected",
+        "volume": 152,
+        "rating": "Worse"
+      },
+      {
+        "facility_name": "Hospital University PA",
+        "city": null,
+        "condition": "CABG",
+        "mortality_rate": "As Expected",
+        "readmission_rate": "As Expected",
+        "volume": 646,
+        "rating": "As Expected"
+      },
+      {
+        "facility_name": "Jefferson",
+        "city": null,
+        "condition": "CABG",
+        "mortality_rate": "As Expected",
+        "readmission_rate": "As Expected",
+        "volume": 275,
+        "rating": "As Expected"
+      },
+      {
+        "facility_name": "Jefferson Health NE",
+        "city": null,
+        "condition": "CABG",
+        "mortality_rate": "As Expected",
+        "readmission_rate": "Worse",
+        "volume": 301,
+        "rating": "Worse"
+      },
+      {
+        "facility_name": "Lancaster General",
+        "city": null,
+        "condition": "CABG",
+        "mortality_rate": "As Expected",
+        "readmission_rate": "As Expected",
+        "volume": 455,
+        "rating": "As Expected"
+      },
+      {
+        "facility_name": "Lankenau MC",
+        "city": null,
+        "condition": "CABG",
+        "mortality_rate": "As Expected",
+        "readmission_rate": "As Expected",
+        "volume": 732,
+        "rating": "As Expected"
+      },
+      {
+        "facility_name": "Lehigh Valley Allentown",
+        "city": null,
+        "condition": "CABG",
+        "mortality_rate": "As Expected",
+        "readmission_rate": "As Expected",
+        "volume": 526,
+        "rating": "As Expected"
+      },
+      {
+        "facility_name": "Lehigh Valley Pocono",
+        "city": null,
+        "condition": "CABG",
+        "mortality_rate": "As Expected",
+        "readmission_rate": "As Expected",
+        "volume": 68,
+        "rating": "As Expected"
+      },
+      {
+        "facility_name": "Mercy Fitzgerald",
+        "city": null,
+        "condition": "CABG",
+        "mortality_rate": "NR",
+        "readmission_rate": "NR",
+        "volume": 4,
+        "rating": "Not Reported"
+      },
+      {
+        "facility_name": "Methodist Division/TJUH",
+        "city": null,
+        "condition": "CABG",
+        "mortality_rate": "As Expected",
+        "readmission_rate": "As Expected",
+        "volume": 17,
+        "rating": "As Expected"
+      },
+      {
+        "facility_name": "Milton S Hershey",
+        "city": null,
+        "condition": "CABG",
+        "mortality_rate": "As Expected",
+        "readmission_rate": "As Expected",
+        "volume": 344,
+        "rating": "As Expected"
+      },
+      {
+        "facility_name": "Penn Highlands DuBois",
+        "city": null,
+        "condition": "CABG",
+        "mortality_rate": "Worse",
+        "readmission_rate": "As Expected",
+        "volume": 158,
+        "rating": "Worse"
+      },
+      {
+        "facility_name": "Penn Presbyterian",
+        "city": null,
+        "condition": "CABG",
+        "mortality_rate": "As Expected",
+        "readmission_rate": "As Expected",
+        "volume": 427,
+        "rating": "As Expected"
+      },
+      {
+        "facility_name": "Penn State Holy Spirit MC",
+        "city": null,
+        "condition": "CABG",
+        "mortality_rate": "Worse",
+        "readmission_rate": "As Expected",
+        "volume": 205,
+        "rating": "Worse"
+      },
+      {
+        "facility_name": "Penn State St Joseph",
+        "city": null,
+        "condition": "CABG",
+        "mortality_rate": "As Expected",
+        "readmission_rate": "As Expected",
+        "volume": 150,
+        "rating": "As Expected"
+      }
+    ]
+  }
+}
