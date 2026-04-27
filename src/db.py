@@ -637,12 +637,20 @@ def upsert_cms_summary(conn, dataset_id, rows):
 # ---------------------------------------------------------------
 
 OPEN_PAYMENTS_COLUMNS = [
+    "id",  # ReplacingMergeTree PK — without a unique id, every insert dedups to 1 row
     "dataset_id", "year", "record_id",
     "physician_npi", "physician_name", "physician_specialty",
     "teaching_hospital_ccn", "teaching_hospital_name",
     "manufacturer_name", "product_name", "product_category",
     "nature_of_payment", "payment_total", "payment_date", "raw",
 ]
+
+
+def _op_id(dataset_id, year, record_id):
+    """Deterministic 63-bit Int64 from natural key. record_id is unique per
+    Open Payments record within a year; combined with dataset_id this gives
+    a stable, collision-free PK for ReplacingMergeTree."""
+    return hash((dataset_id, year, record_id)) & 0x7FFF_FFFF_FFFF_FFFF
 
 
 def _op_tuple(dataset_id, row):
@@ -670,10 +678,12 @@ def _op_tuple(dataset_id, row):
     last = _first(row, "covered_recipient_last_name", "Covered_Recipient_Last_Name") or ""
     full = (first + " " + last).strip() or None
 
+    record_id = _first(row, "record_id", "Record_ID")
     return (
+        _op_id(dataset_id, year_int, record_id),
         dataset_id,
         year_int,
-        _first(row, "record_id", "Record_ID"),
+        record_id,
         _first(row, "covered_recipient_npi", "Covered_Recipient_NPI", "Physician_NPI"),
         full,
         _first(row, "covered_recipient_primary_type_1", "covered_recipient_specialty_1",

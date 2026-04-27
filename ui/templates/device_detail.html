@@ -1,0 +1,212 @@
+{% extends "base.html" %}
+{% block title %}{{ pc }} — Device Detail{% endblock %}
+{% block content %}
+
+<div class="page-header">
+  <h1>🩺 {{ pc }} — {{ header.device_name or 'Unknown device' }}</h1>
+  <p>
+    {% if header %}
+      Class {{ header.device_class or '?' }} ·
+      {{ header.medical_specialty_description or '—' }} ·
+      Regulation {{ header.regulation_number or '—' }} ·
+      {% if header.implant_flag == 'Y' %}<span class="risk risk-med">Implant</span>{% endif %}
+      {% if header.life_sustain_support_flag == 'Y' %}<span class="risk risk-high">Life-sustaining</span>{% endif %}
+    {% else %}
+      No FDA classification record found for this product code.
+    {% endif %}
+  </p>
+  <p><a href="/devices" style="color:var(--accent);">← back to all devices</a></p>
+</div>
+
+<!-- ============= Risk banner ============= -->
+{% if rate_per_1k is not none %}
+<div class="card" style="background:
+  {% if rate_per_1k >= 10 %}linear-gradient(135deg,#7f1d1d,#991b1b)
+  {% elif rate_per_1k >= 1 %}linear-gradient(135deg,#78350f,#92400e)
+  {% else %}linear-gradient(135deg,#14532d,#166534){% endif %};
+  color:white; padding:1.5rem; margin-bottom:1.5rem;">
+  <div style="display:flex; align-items:center; gap:1.5rem; flex-wrap:wrap;">
+    <div>
+      <div style="font-size:0.85rem; opacity:0.85;">complaint_rate_per_1k_procedures</div>
+      <div style="font-size:2.5rem; font-weight:800;">{{ "%.3f"|format(rate_per_1k) }}</div>
+      <div style="font-size:0.85rem; opacity:0.85;">{{ kpi[0]|int }} MAUDE events ÷ {{ "{:,}".format(kpi[4]|int) }} procedures</div>
+    </div>
+    <div style="font-size:0.85rem; line-height:1.6; max-width:500px;">
+      {% if rate_per_1k >= 10 %}
+        <strong>🔴 INVESTIGATE</strong> — this rate is well above the population mean. Check MAUDE narratives below for failure modes; cross-reference with recent recalls.
+      {% elif rate_per_1k >= 1 %}
+        <strong>🟡 MONITOR</strong> — moderate signal. Worth a periodic review and a watchlist entry.
+      {% else %}
+        <strong>🟢 NORMAL</strong> — rate consistent with safe high-volume devices.
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% else %}
+<div class="explain">No procedure-volume data found for HCPCS codes mapped to <code>{{ pc }}</code> yet. The bridge contains {{ hcpcs_rows|length }} HCPCS code(s) for this product.</div>
+{% endif %}
+
+<!-- ============= KPI strip ============= -->
+<div class="kpi">
+  <div class="box"><div class="label">MAUDE events</div><div class="value">{{ "{:,}".format(kpi[0]|int) }}</div></div>
+  <div class="box"><div class="label">Recalls</div><div class="value">{{ "{:,}".format(kpi[1]|int) }}</div></div>
+  <div class="box"><div class="label">Distinct manufacturers</div><div class="value">{{ "{:,}".format(kpi[2]|int) }}</div></div>
+  <div class="box"><div class="label">510(k) submissions</div><div class="value">{{ "{:,}".format(kpi[3]|int) }}</div></div>
+  <div class="box"><div class="label">Procedure volume (Part B)</div><div class="value">{{ "{:,}".format(kpi[4]|int) if kpi[4] else 0 }}</div></div>
+</div>
+
+<!-- ============= Time series chart ============= -->
+<div class="card">
+  <div class="card-title">MAUDE events by quarter</div>
+  <p class="card-subtitle">
+    Volume of adverse-event reports over time. The doc's <code>cms_complication_velocity</code> CUSUM detector
+    would fire when the slope rises sharply — change-point detection on this series gives a 60-90 day pre-recall lead time.
+    {% if not ts_rows %}<br><strong>No data:</strong> MAUDE re-ingest required (currently stale at 2020-04).{% endif %}
+  </p>
+  <div class="chart-container" style="height:280px;">
+    <canvas id="tsChart"></canvas>
+  </div>
+</div>
+
+<!-- ============= Two-column: manufacturers + 510(k) ============= -->
+<div class="grid-2">
+  <div class="card">
+    <div class="card-title">Top manufacturers in MAUDE</div>
+    <p class="card-subtitle">Manufacturers reported on adverse events for this product_code. Higher counts ≠ worse — also reflects market share.</p>
+    <table>
+      <thead><tr><th>Manufacturer</th><th>Events</th></tr></thead>
+      <tbody>
+        {% for r in mfr_rows %}
+        <tr><td>{{ r[0] }}</td><td style="text-align:right;">{{ "{:,}".format(r[1]|int) }}</td></tr>
+        {% endfor %}
+        {% if not mfr_rows %}<tr><td colspan="2" style="color:#888;">no MAUDE manufacturer records</td></tr>{% endif %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">510(k) applicants (FDA submissions)</div>
+    <p class="card-subtitle">Companies that submitted this product code to FDA. These are the legal manufacturers for regulatory purposes.</p>
+    <table>
+      <thead><tr><th>Applicant</th><th>K Number</th><th>Decision</th></tr></thead>
+      <tbody>
+        {% for r in k_rows %}
+        <tr>
+          <td>{{ (r[0] or '?')[:40] }}</td>
+          <td><code style="font-size:0.75rem;">{{ r[1] }}</code></td>
+          <td><span style="font-size:0.8rem;color:#888;">{{ r[2] }}</span></td>
+        </tr>
+        {% endfor %}
+        {% if not k_rows %}<tr><td colspan="3" style="color:#888;">no 510(k) records</td></tr>{% endif %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ============= Recall history ============= -->
+<div class="card">
+  <div class="card-title">Recall history</div>
+  <p class="card-subtitle">All FDA recalls for this product_code. Class I = serious harm/death possible; Class II = temporary harm; Class III = unlikely harm.</p>
+  <table class="scroll-wrap">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Class</th>
+        <th>Recalling Firm</th>
+        <th>Product</th>
+        <th>Reason</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for r in recall_rows %}
+      <tr>
+        <td style="white-space:nowrap;">{{ r[5] }}</td>
+        <td>
+          {% if r[1] == 'Class I' %}<span class="risk risk-high">Class I</span>
+          {% elif r[1] == 'Class II' %}<span class="risk risk-med">Class II</span>
+          {% else %}<span class="risk risk-low">{{ r[1] or '?' }}</span>{% endif %}
+        </td>
+        <td>{{ (r[2] or '?')[:40] }}</td>
+        <td style="font-size:0.85rem;">{{ (r[3] or '')[:120] }}{% if (r[3] or '')|length > 120 %}…{% endif %}</td>
+        <td style="font-size:0.85rem;">{{ (r[4] or '')[:120] }}{% if (r[4] or '')|length > 120 %}…{% endif %}</td>
+      </tr>
+      {% endfor %}
+      {% if not recall_rows %}<tr><td colspan="5" style="color:#888;text-align:center;padding:1rem;">no recalls — clean record</td></tr>{% endif %}
+    </tbody>
+  </table>
+</div>
+
+<!-- ============= Hospitals + bridge ============= -->
+<div class="grid-2">
+  <div class="card">
+    <div class="card-title">Top hospitals using this device</div>
+    <p class="card-subtitle">Highest-volume providers from Medicare Part B (2023). Limited to the device-relevant Part B sample we've ingested.</p>
+    <table>
+      <thead><tr><th>Provider</th><th>State</th><th>Services</th><th>Patients</th></tr></thead>
+      <tbody>
+        {% for r in hosp_rows %}
+        <tr>
+          <td>{{ (r[0] or '?')[:35] }}</td>
+          <td>{{ r[1] }}</td>
+          <td style="text-align:right;">{{ "{:,}".format(r[3]|int) }}</td>
+          <td style="text-align:right;">{{ "{:,}".format(r[4]|int) }}</td>
+        </tr>
+        {% endfor %}
+        {% if not hosp_rows %}<tr><td colspan="4" style="color:#888;">no Part B providers</td></tr>{% endif %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Linked HCPCS billing codes</div>
+    <p class="card-subtitle">From <code>bridge_hcpcs_to_product_code</code>. These codes flow from CMS billing into this product_code for risk computation.</p>
+    <table>
+      <thead><tr><th>HCPCS</th><th>Device category</th><th>Confidence</th></tr></thead>
+      <tbody>
+        {% for r in hcpcs_rows %}
+        <tr>
+          <td><code>{{ r[0] }}</code></td>
+          <td>{{ r[1] }}</td>
+          <td>
+            {% if r[2] == 'high' %}<span class="risk risk-low">high</span>
+            {% elif r[2] == 'medium' %}<span class="risk risk-med">medium</span>
+            {% else %}<span class="risk risk-high">{{ r[2] }}</span>{% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+        {% if not hcpcs_rows %}<tr><td colspan="3" style="color:#888;">no HCPCS bridge entries — extend the bridge</td></tr>{% endif %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+(function() {
+  const ts = {{ ts_rows | tojson }};
+  if (!ts || ts.length === 0) return;
+  const ctx = document.getElementById('tsChart');
+  if (!ctx) return;
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ts.map(r => r[0]),
+      datasets: [{
+        label: 'MAUDE events',
+        data: ts.map(r => r[1]),
+        borderColor: '#dc2626',
+        backgroundColor: 'rgba(220, 38, 38, 0.1)',
+        fill: true,
+        tension: 0.3,
+        pointRadius: 2,
+      }]
+    },
+    options: {
+      maintainAspectRatio: false,
+      scales: { y: { beginAtZero: true, title: { display: true, text: 'events / quarter' } } },
+      plugins: { legend: { display: false } },
+    }
+  });
+})();
+</script>
+
+{% endblock %}

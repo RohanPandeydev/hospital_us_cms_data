@@ -934,6 +934,288 @@ def crosswalk(request: Request, device_category: str = "", code_type: str = "",
     )
 
 
+@app.get("/devices", response_class=HTMLResponse)
+def devices(request: Request, sort: str = "rate"):
+    """Device-centric recall-prediction view.
+
+    Joins Part B procedure volume × MAUDE adverse-event count × Recall history
+    via bridge_hcpcs_to_product_code → produces the doc's
+    `complaint_rate_per_1k_procedures` feature, ranked by risk.
+    """
+    sort_sql = {
+        "rate":   "rate_per_1k DESC",
+        "vol":    "proc_volume DESC",
+        "maude":  "maude_count DESC",
+        "recall": "recall_count DESC",
+    }.get(sort, "rate_per_1k DESC")
+
+    cols, rows = q(
+        f"""
+        WITH pb_vol AS (
+          SELECT b.product_code,
+                 anyLast(b.device_category) AS device_category,
+                 sum(pb.total_services)     AS proc_volume,
+                 sum(pb.total_beneficiaries) AS bene_count,
+                 count(distinct pb.npi)     AS providers
+          FROM cms_provider_summary pb
+          INNER JOIN bridge_hcpcs_to_product_code b ON pb.hcpcs_code = b.hcpcs_code
+          WHERE pb.dataset_id = 'medicare_physician_by_provider_service'
+          GROUP BY b.product_code
+        ),
+        m AS (SELECT product_code, count() AS maude_count FROM fda_maude_devices GROUP BY product_code),
+        r AS (SELECT product_code, count() AS recall_count FROM fda_recalls GROUP BY product_code),
+        c AS (SELECT product_code, anyLast(device_name) AS device_name,
+                     anyLast(device_class) AS device_class
+              FROM fda_device_classification GROUP BY product_code)
+        SELECT v.product_code,
+               v.device_category,
+               c.device_name,
+               c.device_class,
+               v.proc_volume,
+               v.bene_count,
+               v.providers,
+               ifNull(m.maude_count, 0)  AS maude_count,
+               ifNull(r.recall_count, 0) AS recall_count,
+               round(ifNull(m.maude_count, 0) * 1000.0 / nullIf(v.proc_volume, 0), 3) AS rate_per_1k
+        FROM pb_vol v
+        LEFT JOIN m ON v.product_code = m.product_code
+        LEFT JOIN r ON v.product_code = r.product_code
+        LEFT JOIN c ON v.product_code = c.product_code
+        WHERE v.proc_volume > 0
+        ORDER BY {sort_sql}
+        """,
+    )
+
+    _, kpi = q(
+        """
+        SELECT
+          (SELECT count(distinct product_code) FROM bridge_hcpcs_to_product_code) AS bridge_pcs,
+          (SELECT count(distinct hcpcs_code)   FROM bridge_hcpcs_to_product_code) AS bridge_codes,
+          (SELECT count() FROM cms_provider_summary
+             WHERE dataset_id='medicare_physician_by_provider_service')           AS partb_rows,
+          (SELECT count() FROM fda_maude_devices)                                 AS maude_devs,
+          (SELECT count() FROM fda_recalls)                                       AS recalls
+        """
+    )
+    kpi = kpi[0] if kpi else (0, 0, 0, 0, 0)
+
+    return TEMPLATES.TemplateResponse(
+        "devices.html",
+        {
+            "request": request, "active": "devices",
+            "cols": cols, "rows": rows,
+            "kpi": kpi, "sort": sort,
+        },
+    )
+
+
+@app.get("/devices/{product_code}", response_class=HTMLResponse)
+def device_detail(request: Request, product_code: str):
+    """Per-product-code detail page: time-series, manufacturers, recalls, hospitals."""
+    pc = product_code.upper()
+
+    # Header — FDA device classification
+    header = q_one(
+        "SELECT product_code, device_name, device_class, medical_specialty_description, "
+        "regulation_number, implant_flag, life_sustain_support_flag "
+        "FROM fda_device_classification WHERE product_code = {pc:String} LIMIT 1",
+        {"pc": pc},
+    )
+
+    # Linked HCPCS via bridge
+    _, hcpcs_rows = q(
+        "SELECT hcpcs_code, device_category, confidence FROM bridge_hcpcs_to_product_code "
+        "WHERE product_code = {pc:String} ORDER BY confidence DESC, hcpcs_code",
+        {"pc": pc},
+    )
+
+    # KPIs
+    _, kpi = q(
+        """
+        SELECT
+          (SELECT count() FROM fda_maude_devices WHERE product_code = {pc:String})        AS maude,
+          (SELECT count() FROM fda_recalls       WHERE product_code = {pc:String})        AS recalls,
+          (SELECT uniqExact(manufacturer)
+             FROM fda_maude_devices WHERE product_code = {pc:String})                     AS distinct_mfrs,
+          (SELECT count() FROM fda_510k          WHERE product_code = {pc:String})        AS k_numbers,
+          (SELECT sum(pb.total_services)
+             FROM cms_provider_summary pb
+             INNER JOIN bridge_hcpcs_to_product_code b ON pb.hcpcs_code = b.hcpcs_code
+            WHERE b.product_code = {pc:String}
+              AND pb.dataset_id  = 'medicare_physician_by_provider_service')              AS proc_volume
+        """,
+        {"pc": pc},
+    )
+    kpi = kpi[0] if kpi else (0, 0, 0, 0, 0)
+
+    # Time-series: MAUDE events by quarter (last 5 yrs of available data)
+    _, ts_rows = q(
+        """
+        SELECT toStartOfQuarter(e.date_received) AS quarter, count() AS events
+        FROM fda_maude_devices d FINAL
+        LEFT JOIN fda_maude_events e FINAL ON d.report_number = e.report_number
+        WHERE d.product_code = {pc:String} AND e.date_received IS NOT NULL
+        GROUP BY quarter ORDER BY quarter
+        """,
+        {"pc": pc},
+    )
+
+    # Top manufacturers seen in MAUDE for this product_code
+    _, mfr_rows = q(
+        "SELECT manufacturer, count() AS events FROM fda_maude_devices "
+        "WHERE product_code = {pc:String} AND manufacturer IS NOT NULL "
+        "GROUP BY manufacturer ORDER BY events DESC LIMIT 15",
+        {"pc": pc},
+    )
+
+    # 510(k) applicants (also potential manufacturers)
+    _, k_rows = q(
+        "SELECT applicant, k_number, decision_date, decision_description "
+        "FROM fda_510k WHERE product_code = {pc:String} "
+        "ORDER BY decision_date DESC LIMIT 15",
+        {"pc": pc},
+    )
+
+    # Recall history (fda_recalls schema: recall_class / firm_name / recall_initiation_date)
+    _, recall_rows = q(
+        "SELECT recall_number, recall_class, firm_name, "
+        "       product_description, reason_for_recall, recall_initiation_date "
+        "FROM fda_recalls WHERE product_code = {pc:String} "
+        "ORDER BY recall_initiation_date DESC NULLS LAST LIMIT 30",
+        {"pc": pc},
+    )
+
+    # Top hospitals billing this device-family (via Part B → bridge)
+    _, hosp_rows = q(
+        """
+        SELECT pb.provider_name, pb.provider_state, pb.provider_city,
+               sum(pb.total_services) AS svcs,
+               sum(pb.total_beneficiaries) AS benes
+        FROM cms_provider_summary pb
+        INNER JOIN bridge_hcpcs_to_product_code b ON pb.hcpcs_code = b.hcpcs_code
+        WHERE b.product_code = {pc:String}
+          AND pb.dataset_id  = 'medicare_physician_by_provider_service'
+        GROUP BY pb.provider_name, pb.provider_state, pb.provider_city
+        ORDER BY svcs DESC LIMIT 20
+        """,
+        {"pc": pc},
+    )
+
+    rate_per_1k = (kpi[0] * 1000.0 / kpi[4]) if (kpi[4] and kpi[4] > 0) else None
+
+    return TEMPLATES.TemplateResponse(
+        "device_detail.html",
+        {
+            "request": request, "active": "devices",
+            "pc": pc, "header": header,
+            "hcpcs_rows": hcpcs_rows,
+            "kpi": kpi, "rate_per_1k": rate_per_1k,
+            "ts_rows": ts_rows,
+            "mfr_rows": mfr_rows, "k_rows": k_rows,
+            "recall_rows": recall_rows, "hosp_rows": hosp_rows,
+        },
+    )
+
+
+@app.get("/manufacturers", response_class=HTMLResponse)
+def manufacturers(request: Request, sort: str = "drop", min_2024: int = 100000):
+    """Manufacturer payment-slope view.
+
+    Per the doc: in 12-18 months before a major device recall, royalty/consulting
+    payments to physicians drop 30-60%. We aggregate Open Payments (2022 / 2023
+    / 2024) by manufacturer and surface YoY slope. Mfr name is normalized via
+    manufacturer_alias to roll up subsidiaries; linked to product_code via
+    manufacturer_to_product_code so a slope alert points to a device family.
+    """
+    sort_sql = {
+        "drop":   "pct_23_24 ASC NULLS LAST",  # biggest declines first
+        "rise":   "pct_23_24 DESC NULLS LAST",
+        "amount": "y2024 DESC",
+        "name":   "manufacturer_name ASC",
+    }.get(sort, "pct_23_24 ASC NULLS LAST")
+
+    cols, rows = q(
+        f"""
+        WITH norm AS (
+          -- normalize mfr name: lowercase + strip non-alphanumeric
+          SELECT manufacturer_name,
+                 lower(replaceRegexpAll(manufacturer_name, '[^A-Za-z0-9]', '')) AS mfr_norm,
+                 year, payment_total, physician_npi
+          FROM cms_open_payments
+          WHERE manufacturer_name IS NOT NULL AND year IN (2022, 2023, 2024)
+        ),
+        rolled AS (
+          -- roll subsidiaries up to parent via manufacturer_alias
+          SELECT n.manufacturer_name,
+                 ifNull(a.parent_name, n.manufacturer_name) AS parent_name,
+                 n.year, n.payment_total, n.physician_npi
+          FROM norm n
+          LEFT JOIN manufacturer_alias a ON n.mfr_norm = a.alias_norm
+        ),
+        yearly AS (
+          SELECT parent_name, year,
+                 sum(payment_total) AS total_$,
+                 count() AS n_payments,
+                 uniqExact(physician_npi) AS n_physicians
+          FROM rolled
+          GROUP BY parent_name, year
+        ),
+        pivot AS (
+          SELECT parent_name AS manufacturer_name,
+                 sumIf(total_$, year=2022) AS y2022,
+                 sumIf(total_$, year=2023) AS y2023,
+                 sumIf(total_$, year=2024) AS y2024,
+                 sumIf(n_payments, year=2024) AS n_payments_2024,
+                 sumIf(n_physicians, year=2024) AS n_physicians_2024
+          FROM yearly GROUP BY parent_name
+        ),
+        with_pcs AS (
+          SELECT m.*,
+                 (SELECT groupArrayDistinct(product_code)
+                    FROM manufacturer_to_product_code
+                   WHERE lower(replaceRegexpAll(applicant_name, '[^A-Za-z0-9]', '')) =
+                         lower(replaceRegexpAll(m.manufacturer_name, '[^A-Za-z0-9]', ''))
+                  ) AS product_codes
+          FROM pivot m
+        )
+        SELECT manufacturer_name,
+               y2022, y2023, y2024,
+               round((y2023 - y2022) * 100.0 / nullIf(y2022, 0), 1) AS pct_22_23,
+               round((y2024 - y2023) * 100.0 / nullIf(y2023, 0), 1) AS pct_23_24,
+               round((y2024 - y2022) * 100.0 / nullIf(y2022, 0), 1) AS pct_2y,
+               n_payments_2024, n_physicians_2024,
+               product_codes
+        FROM with_pcs
+        WHERE y2024 >= {{min_2024:UInt64}}
+        ORDER BY {sort_sql}
+        LIMIT 200
+        """,
+        {"min_2024": min_2024},
+    )
+
+    _, kpi = q(
+        """
+        SELECT
+          (SELECT uniqExact(manufacturer_name) FROM cms_open_payments)         AS distinct_mfrs,
+          (SELECT count() FROM manufacturer_alias)                              AS aliases,
+          (SELECT count() FROM manufacturer_to_product_code)                    AS pc_links,
+          (SELECT countIf(year=2022) FROM cms_open_payments)                    AS rows_2022,
+          (SELECT countIf(year=2023) FROM cms_open_payments)                    AS rows_2023,
+          (SELECT countIf(year=2024) FROM cms_open_payments)                    AS rows_2024
+        """,
+    )
+    kpi = kpi[0] if kpi else (0, 0, 0, 0, 0, 0)
+
+    return TEMPLATES.TemplateResponse(
+        "manufacturers.html",
+        {
+            "request": request, "active": "manufacturers",
+            "cols": cols, "rows": rows,
+            "kpi": kpi, "sort": sort, "min_2024": min_2024,
+        },
+    )
+
+
 @app.get("/risk", response_class=HTMLResponse)
 def risk_intelligence(
     request: Request,

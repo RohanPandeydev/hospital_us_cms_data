@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% block title %}Manufacturer Trends{% endblock %}
+{% block content %}
+<div class="page-header">
+  <h1>📉 Manufacturer Payment Trends</h1>
+  <p>Year-over-year change in manufacturer → physician payments. Per the doc: a sustained 30-60% drop in royalty/consulting payments often appears 12-18 months <em>before</em> a major recall.</p>
+</div>
+
+<div class="explain">
+  <strong>How to read it:</strong>
+  We aggregate Open Payments by manufacturer × year. Subsidiaries are rolled up via <code>manufacturer_alias</code> (162 entries — Medtronic Vascular → Medtronic, etc.). Where the manufacturer also files 510(k)s, we link the relevant FDA <code>product_code</code>s.
+  <br><br>
+  <strong>What the YoY column means:</strong>
+  <span class="risk risk-high">red</span> = ≥30% decline (potential pre-recall signal per doc),
+  <span class="risk risk-med">yellow</span> = 10-30% decline,
+  <span class="risk risk-low">green</span> = stable or growing.
+  Caveats: 2022 and 2023 are currently smoke samples (10K rows each); the 2024 data is the full release (497K rows). Slope numbers will be noisy until a full backfill of 2022/2023.
+</div>
+
+<div class="kpi">
+  <div class="box"><div class="label">Distinct manufacturers</div><div class="value">{{ "{:,}".format(kpi[0]) }}</div></div>
+  <div class="box"><div class="label">Alias rules</div><div class="value">{{ "{:,}".format(kpi[1]) }}</div><div class="delta">subsidiary → parent</div></div>
+  <div class="box"><div class="label">Mfr → product_code links</div><div class="value">{{ "{:,}".format(kpi[2]) }}</div></div>
+  <div class="box"><div class="label">2022 / 2023 / 2024 rows</div><div class="value" style="font-size:1.1rem;">{{ "{:,}".format(kpi[3]) }} / {{ "{:,}".format(kpi[4]) }} / {{ "{:,}".format(kpi[5]) }}</div></div>
+</div>
+
+<div class="card">
+  <div class="card-title">Manufacturers ranked</div>
+  <p class="card-subtitle">
+    Sort by:
+    <a href="?sort=drop&min_2024={{ min_2024 }}"   {% if sort=='drop' %}style="font-weight:700;"{% endif %}>biggest drop 2023→2024</a> ·
+    <a href="?sort=rise&min_2024={{ min_2024 }}"   {% if sort=='rise' %}style="font-weight:700;"{% endif %}>biggest rise</a> ·
+    <a href="?sort=amount&min_2024={{ min_2024 }}" {% if sort=='amount' %}style="font-weight:700;"{% endif %}>2024 spend $</a> ·
+    <a href="?sort=name&min_2024={{ min_2024 }}"   {% if sort=='name' %}style="font-weight:700;"{% endif %}>name</a>
+    &nbsp; | &nbsp;
+    Min 2024 spend:
+    <a href="?sort={{ sort }}&min_2024=10000">$10K</a> ·
+    <a href="?sort={{ sort }}&min_2024=100000">$100K</a> ·
+    <a href="?sort={{ sort }}&min_2024=1000000">$1M</a> ·
+    <a href="?sort={{ sort }}&min_2024=10000000">$10M</a>
+  </p>
+
+  <table class="scroll-wrap">
+    <thead>
+      <tr>
+        <th>Manufacturer</th>
+        <th>2022 $</th>
+        <th>2023 $</th>
+        <th>2024 $</th>
+        <th>Δ 2022→2023</th>
+        <th>Δ 2023→2024</th>
+        <th>Payments 2024</th>
+        <th>Physicians 2024</th>
+        <th>Linked Product Codes</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for r in rows %}
+      <tr>
+        <td><strong>{{ r[0] }}</strong></td>
+        <td style="text-align:right;">${{ "{:,.0f}".format(r[1] or 0) }}</td>
+        <td style="text-align:right;">${{ "{:,.0f}".format(r[2] or 0) }}</td>
+        <td style="text-align:right;"><strong>${{ "{:,.0f}".format(r[3] or 0) }}</strong></td>
+        <td style="text-align:right;">
+          {% set p1 = r[4] %}
+          {% if p1 is none %}<span style="color:#888;">—</span>
+          {% elif p1 <= -30 %}<span class="risk risk-high">{{ "%.0f"|format(p1) }}%</span>
+          {% elif p1 <= -10 %}<span class="risk risk-med">{{ "%.0f"|format(p1) }}%</span>
+          {% else %}<span class="risk risk-low">{{ "%+.0f"|format(p1) }}%</span>
+          {% endif %}
+        </td>
+        <td style="text-align:right;">
+          {% set p2 = r[5] %}
+          {% if p2 is none %}<span style="color:#888;">—</span>
+          {% elif p2 <= -30 %}<span class="risk risk-high">{{ "%.0f"|format(p2) }}%</span>
+          {% elif p2 <= -10 %}<span class="risk risk-med">{{ "%.0f"|format(p2) }}%</span>
+          {% else %}<span class="risk risk-low">{{ "%+.0f"|format(p2) }}%</span>
+          {% endif %}
+        </td>
+        <td style="text-align:right;">{{ "{:,}".format((r[7] or 0)|int) }}</td>
+        <td style="text-align:right;">{{ "{:,}".format((r[8] or 0)|int) }}</td>
+        <td>
+          {% if r[9] %}
+            {% for pc in r[9][:8] %}<code style="font-size:0.75rem; margin-right:0.25rem;">{{ pc }}</code>{% endfor %}
+            {% if r[9]|length > 8 %}<span style="color:#888;">+{{ r[9]|length - 8 }} more</span>{% endif %}
+          {% else %}<span style="color:#888;">—</span>{% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+      {% if not rows %}
+      <tr><td colspan="9" style="text-align:center;color:#888;padding:2rem;">No manufacturers above the threshold. Lower min_2024.</td></tr>
+      {% endif %}
+    </tbody>
+  </table>
+</div>
+
+<div class="explain" style="margin-top:1rem;">
+  <strong>What this gives you (per doc):</strong>
+  the <code>manufacturer_payment_slope</code> feature (+2-4% AUC-PR uplift). Useful as a low-frequency annual signal when combined with the high-frequency MAUDE-rate signal on the <a href="/devices">Device Recall Predictor</a>. Both pointing the same direction = 22% recall-probability uplift per doc.
+  <br><br>
+  <strong>What it can't do alone:</strong>
+  fire monthly alerts (annual cadence), distinguish strategic divestiture from quality concerns, or capture private-equity-acquired subsidiary spend that didn't change CMS reporting hand.
+</div>
+{% endblock %}

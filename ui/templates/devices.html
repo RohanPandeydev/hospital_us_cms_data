@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block title %}Device Recall Predictor{% endblock %}
+{% block content %}
+<div class="page-header">
+  <h1>🩺 Device Recall Predictor</h1>
+  <p>Per-product-code recall risk: Medicare procedure volume × FDA MAUDE adverse-event count × prior recalls. The doc's <code>complaint_rate_per_1k_procedures</code> feature, computed end-to-end.</p>
+</div>
+
+<div class="explain">
+  <strong>How this is built:</strong>
+  Part B Physician procedure volume (CMS, by HCPCS) <strong>÷</strong> MAUDE adverse-event count (FDA, by product_code), bridged via <code>bridge_hcpcs_to_product_code</code>.
+  <strong>Higher rate = more reported failures per 1,000 billed procedures.</strong>
+  Caveats: MAUDE is known to underreport (doc cites 30-50% capture); high-volume devices naturally show more raw events even when safe.
+</div>
+
+<div class="kpi">
+  <div class="box"><div class="label">Bridge product codes</div><div class="value">{{ "{:,}".format(kpi[0]) }}</div><div class="delta">FDA categories mapped</div></div>
+  <div class="box"><div class="label">Bridge HCPCS codes</div><div class="value">{{ "{:,}".format(kpi[1]) }}</div><div class="delta">CPT + Level II</div></div>
+  <div class="box"><div class="label">Part B rows</div><div class="value">{{ "{:,}".format(kpi[2]) }}</div><div class="delta">device-relevant rows ingested</div></div>
+  <div class="box"><div class="label">MAUDE devices</div><div class="value">{{ "{:,}".format(kpi[3]) }}</div></div>
+  <div class="box"><div class="label">FDA recalls</div><div class="value">{{ "{:,}".format(kpi[4]) }}</div></div>
+</div>
+
+<div class="card">
+  <div class="card-title">Ranked product codes</div>
+  <p class="card-subtitle">
+    Sort by:
+    <a href="?sort=rate" {% if sort=='rate' %}style="font-weight:700;"{% endif %}>rate / 1k</a> ·
+    <a href="?sort=vol" {% if sort=='vol' %}style="font-weight:700;"{% endif %}>volume</a> ·
+    <a href="?sort=maude" {% if sort=='maude' %}style="font-weight:700;"{% endif %}>maude count</a> ·
+    <a href="?sort=recall" {% if sort=='recall' %}style="font-weight:700;"{% endif %}>recalls</a>
+  </p>
+
+  <table class="scroll-wrap">
+    <thead>
+      <tr>
+        <th>Product Code</th>
+        <th>Device Category (bridge)</th>
+        <th>Device Name (FDA)</th>
+        <th>Class</th>
+        <th>Procedure Volume</th>
+        <th>Beneficiaries</th>
+        <th>Providers</th>
+        <th>MAUDE Events</th>
+        <th>Recalls</th>
+        <th>Rate / 1k procs</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for r in rows %}
+      <tr>
+        <td><a href="/devices/{{ r[0] }}" style="color:var(--accent);"><strong>{{ r[0] }}</strong></a></td>
+        <td><code style="font-size:0.8rem;">{{ r[1] or '—' }}</code></td>
+        <td>{{ (r[2] or '—')[:40] }}</td>
+        <td>{% if r[3] %}<span class="risk risk-{% if r[3] in ('3','III') %}high{% elif r[3] in ('2','II') %}med{% else %}low{% endif %}">{{ r[3] }}</span>{% else %}—{% endif %}</td>
+        <td style="text-align:right;">{{ "{:,}".format(r[4]|int) }}</td>
+        <td style="text-align:right;">{{ "{:,}".format(r[5]|int) }}</td>
+        <td style="text-align:right;">{{ "{:,}".format(r[6]|int) }}</td>
+        <td style="text-align:right;">{{ "{:,}".format(r[7]|int) }}</td>
+        <td style="text-align:right;">{{ "{:,}".format(r[8]|int) }}</td>
+        <td style="text-align:right;">
+          {% set rate = r[9] or 0 %}
+          {% if rate >= 10 %}<span class="risk risk-high">{{ "%.2f"|format(rate) }}</span>
+          {% elif rate >= 1 %}<span class="risk risk-med">{{ "%.2f"|format(rate) }}</span>
+          {% else %}<span class="risk risk-low">{{ "%.3f"|format(rate) }}</span>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+      {% if not rows %}
+      <tr><td colspan="10" style="text-align:center;color:#888;padding:2rem;">
+        No joined rows yet. Run the targeted Part B ingest to populate <code>cms_provider_summary</code>.
+      </td></tr>
+      {% endif %}
+    </tbody>
+  </table>
+</div>
+
+<div class="explain" style="margin-top:1rem;">
+  <strong>What's still missing for the doc's full prediction:</strong>
+  CUSUM time-series detector (needs MAUDE refresh past 2020),
+  <code>manufacturer_payment_slope</code> (needs OP 2022/2023 backfill — wired, smoke-loaded only),
+  T8x complication-rate (Part B aggregated state, smoke-loaded only).
+</div>
+{% endblock %}
