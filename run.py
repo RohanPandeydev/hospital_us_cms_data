@@ -132,6 +132,265 @@ def cmd_probe(args):
     print(f"\n{up} UP, {down} DOWN")
 
 
+def cmd_risk_init(args):
+    """Create Postgres DB `cms_hospitals` if missing and apply risk_schema.sql."""
+    from src import risk_db
+    risk_db.ensure_database()
+    risk_db.apply_risk_schema()
+    print("OK: risk schema applied to Postgres cms_hospitals")
+
+
+def _log_failure(handle, total, err):
+    """Write the failure log on a fresh connection — the data-path transaction
+    is aborted by the time we get here."""
+    from src import risk_db
+    try:
+        with risk_db.connect() as log_conn:
+            risk_db.finish_log(log_conn, handle, 0, total, "error", str(err))
+    except Exception:
+        logging.exception("could not persist failure log")
+
+
+def cmd_risk_ingest(args):
+    """Pull one of the new risk-intelligence sources into Postgres.
+
+    Sources:
+      recalls          — FDA openFDA /device/enforcement.json
+      clinical_trials  — clinicaltrials.gov v2 (loops over device-family buckets)
+      open_payments    — requires --dataset <dkan-uuid> for the target program year
+    """
+    from src import risk_db, risk_sources
+
+    # start_log runs on its own short transaction so the handle survives even if
+    # the data-path tx aborts later.
+    with risk_db.connect() as log_conn:
+        handle = risk_db.start_log(log_conn, args.source, params={
+            "limit": args.limit, "dataset": getattr(args, "dataset", None),
+        })
+
+    total = 0
+    try:
+        with risk_db.connect() as conn:
+            if args.source == "510k":
+                batch = []
+                for row in risk_sources.iter_510k(limit=args.limit):
+                    batch.append(row)
+                    if len(batch) >= 500:
+                        total += risk_db.upsert_510k(conn, batch)
+                        batch = []
+                if batch:
+                    total += risk_db.upsert_510k(conn, batch)
+                print(f"OK: upserted {total} 510(k) clearances")
+
+            elif args.source == "maude":
+                # Year-sliced so we can go past the openFDA 25k skip cap.
+                # per_year_limit = args.limit, total cap has no practical limit.
+                batch = []
+                for row in risk_sources.iter_maude_year_sliced(
+                    args.year_from, args.year_to, per_year_limit=args.limit,
+                ):
+                    batch.append(row)
+                    if len(batch) >= 500:
+                        total += risk_db.upsert_maude(conn, batch)
+                        conn.commit()
+                        batch = []
+                if batch:
+                    total += risk_db.upsert_maude(conn, batch)
+                print(f"OK: upserted {total} MAUDE adverse-event reports "
+                      f"({args.year_from}-{args.year_to})")
+
+            elif args.source == "recalls":
+                from src import risk_recall_tagger
+                batch = []
+                # If the caller narrowed the year range from defaults, slice
+                # by year so we can go past the openFDA 25k skip cap.
+                if args.year_from != 2019 or args.year_to != 2024:
+                    recall_iter = risk_sources.iter_recalls_year_sliced(
+                        args.year_from, args.year_to, per_year_limit=args.limit,
+                    )
+                elif args.limit is None:
+                    # Full pull: year-slice across the default 2019-2024 window.
+                    recall_iter = risk_sources.iter_recalls_year_sliced(
+                        args.year_from, args.year_to,
+                    )
+                else:
+                    recall_iter = risk_sources.iter_recalls(limit=args.limit)
+                for row in recall_iter:
+                    batch.append(row)
+                    if len(batch) >= 500:
+                        total += risk_db.upsert_recalls(conn, batch)
+                        conn.commit()
+                        batch = []
+                if batch:
+                    total += risk_db.upsert_recalls(conn, batch)
+                tag = risk_recall_tagger.tag_all(
+                    conn, use_llm=not args.no_llm, llm_max_rows=args.llm_max_rows,
+                )
+                _by_method = tag.get("by_method", {})
+                print(f"OK: upserted {total} recalls; tagged "
+                      f"{tag['tagged']}/{tag['total']} with device_category")
+                if _by_method:
+                    parts = [f"{m}={c}" for m, c in sorted(_by_method.items(),
+                                                             key=lambda kv: -kv[1])]
+                    print("  match methods this run: " + ", ".join(parts))
+
+            elif args.source == "clinical_trials":
+                for bucket_term, device_category in risk_sources.CTG_DEVICE_BUCKETS:
+                    print(f"  bucket: {bucket_term!r} -> {device_category}")
+                    trial_batch, iv_batch = [], []
+                    for row in risk_sources.iter_trials(bucket_term, device_category,
+                                                          limit=args.limit):
+                        trial_batch.append(row)
+                        iv_batch.extend(row.get("interventions") or [])
+                        if len(trial_batch) >= 200:
+                            total += risk_db.upsert_trials(conn, trial_batch)
+                            risk_db.upsert_trial_interventions(conn, iv_batch)
+                            trial_batch, iv_batch = [], []
+                    if trial_batch:
+                        total += risk_db.upsert_trials(conn, trial_batch)
+                        risk_db.upsert_trial_interventions(conn, iv_batch)
+                print(f"OK: upserted {total} clinical trials")
+
+            elif args.source == "open_payments":
+                if not args.dataset:
+                    print("ERROR: --dataset <dkan-uuid> required for open_payments")
+                    sys.exit(2)
+                batch = []
+                for row in risk_sources.iter_open_payments(args.dataset, limit=args.limit):
+                    batch.append(row)
+                    if len(batch) >= 500:
+                        total += risk_db.upsert_open_payments(conn, batch)
+                        # Commit per batch so a mid-run crash (network drop,
+                        # SIGKILL, DKAN 5xx) doesn't roll back hours of work.
+                        conn.commit()
+                        batch = []
+                        if total % 5000 == 0:
+                            logging.info("open_payments: committed %d rows", total)
+                if batch:
+                    total += risk_db.upsert_open_payments(conn, batch)
+                    conn.commit()
+                print(f"OK: upserted {total} open-payments rows")
+
+            else:
+                print(f"ERROR: unknown source {args.source!r}")
+                sys.exit(2)
+    except Exception as e:
+        _log_failure(handle, total, e)
+        raise
+
+    # Success: finish the log on a fresh short transaction.
+    with risk_db.connect() as log_conn:
+        risk_db.finish_log(log_conn, handle, total, total, "ok")
+
+
+def cmd_risk_build(args):
+    """Assemble the unified risk-intelligence JSON rows."""
+    from src import risk_db
+    from src import risk_assembler
+    with risk_db.connect() as conn:
+        result = risk_assembler.assemble(
+            conn,
+            limit_hospitals=args.limit_hospitals,
+            state=args.state,
+            ccn=args.ccn,
+        )
+    print(f"OK: wrote {result['rows']} risk rows "
+          f"({result['hospitals']} hospitals × {result['categories']} categories)")
+
+
+def cmd_risk_load_medicare(args):
+    """Ingest CMS Medicare Inpatient PUF + Physician datasets + DRG map +
+    FDA Classification + build the unified code crosswalk.
+
+    These are the *direct hospital ↔ device linkage* layers:
+      * cms_hospital_drg_volume  — CCN × DRG × discharges (claims evidence)
+      * fda_device_classification — authoritative product-code metadata
+      * device_code_crosswalk     — every code type → device_category
+    """
+    from src import (risk_db, risk_drg_map, risk_ingest_medicare as ing,
+                     risk_fda_classification as fc, risk_crosswalk)
+    summary: dict = {}
+    with risk_db.connect() as conn:
+        if not args.skip_drg_map:
+            n = risk_drg_map.seed_drg_device_map(conn)
+            summary["drg_map_rows"] = n
+
+        if args.inpatient:
+            path = args.inpatient
+            if path.startswith("http"):
+                path = ing.download(path, "/tmp/cms_inpatient_drg.csv")
+            n = ing.load_inpatient(conn, path)
+            summary["inpatient_rows"] = n
+
+        if args.physician:
+            path = args.physician
+            if path.startswith("http"):
+                path = ing.download(path, "/tmp/cms_physician.csv")
+            n = ing.load_physician(conn, path)
+            summary["physician_rows"] = n
+
+        if not args.skip_classification:
+            n = fc.run(conn, limit=args.classification_limit)
+            summary["classification_rows"] = n
+
+        if not args.skip_crosswalk:
+            summary["crosswalk"] = risk_crosswalk.build(conn)
+
+    print("OK: Medicare/crosswalk load complete")
+    for k, v in summary.items():
+        print(f"  {k}: {v}")
+
+
+def cmd_risk_tag(args):
+    """Re-run the layered matcher (K# → PC → MFG → regex → LLM) over
+    fda_recalls rows with NULL device_category."""
+    from src import risk_db, risk_recall_tagger
+    with risk_db.connect() as conn:
+        res = risk_recall_tagger.tag_all(
+            conn, use_llm=not args.no_llm, llm_max_rows=args.llm_max_rows,
+        )
+    print(f"OK: {res['tagged']}/{res['total']} total tagged")
+    by_method = res.get("by_method", {})
+    if by_method:
+        print("  match methods this run: " + ", ".join(
+            f"{m}={c}" for m, c in sorted(by_method.items(), key=lambda kv: -kv[1])
+        ))
+    by_conf = res.get("by_confidence", {})
+    if by_conf:
+        print("  confidence mix:       " + ", ".join(
+            f"{c}={n}" for c, n in sorted(by_conf.items(), key=lambda kv: -kv[1])
+        ))
+
+
+def cmd_risk_show(args):
+    """Print one unified risk JSON row (pretty-printed)."""
+    import json
+    from src import risk_db
+    with risk_db.connect() as conn, conn.cursor() as cur:
+        if args.ccn and args.device_category:
+            cur.execute(
+                "SELECT payload FROM hospital_device_risk_intelligence "
+                "WHERE ccn = %s AND device_category = %s",
+                (args.ccn, args.device_category),
+            )
+        elif args.ccn:
+            cur.execute(
+                "SELECT payload FROM hospital_device_risk_intelligence "
+                "WHERE ccn = %s ORDER BY final_score DESC LIMIT 1",
+                (args.ccn,),
+            )
+        else:
+            cur.execute(
+                "SELECT payload FROM hospital_device_risk_intelligence "
+                "ORDER BY final_score DESC NULLS LAST LIMIT 1"
+            )
+        row = cur.fetchone()
+    if not row:
+        print("No matching row.")
+        return
+    print(json.dumps(row[0], indent=2, default=str))
+
+
 def cmd_status(args):
     sql = """
         SELECT dataset_id, dataset_name, started_at, finished_at,
@@ -173,6 +432,59 @@ def main():
     ing.add_argument("--dataset", help="Ingest a single dataset id (default: all)")
     ing.add_argument("--limit", type=int, help="Hard cap rows per dataset (for testing)")
 
+    # ---- Risk Intelligence pipeline (Postgres cms_hospitals) ----
+    sub.add_parser("risk-init",
+                    help="Create Postgres cms_hospitals DB + apply risk_schema.sql")
+
+    ri = sub.add_parser("risk-ingest",
+                         help="Pull a new risk source (maude/recalls/clinical_trials/open_payments) into Postgres")
+    ri.add_argument("--source", required=True,
+                     choices=["maude", "recalls", "clinical_trials", "open_payments", "510k"])
+    ri.add_argument("--limit", type=int,
+                     help="Cap rows (per bucket for clinical_trials, per year for maude/recalls)")
+    ri.add_argument("--dataset",
+                     help="DKAN UUID for Open Payments year (required for open_payments)")
+    ri.add_argument("--year-from", type=int, default=2019,
+                     help="Start year for year-sliced sources (maude, recalls)")
+    ri.add_argument("--year-to", type=int, default=2024,
+                     help="End year for year-sliced sources (maude, recalls)")
+    ri.add_argument("--no-llm", action="store_true",
+                     help="Skip the Groq LLM fallback for recall device_category tagging")
+    ri.add_argument("--llm-max-rows", type=int, default=None,
+                     help="Cap how many regex-miss rows we send to Groq (default: all)")
+
+    rb = sub.add_parser("risk-build",
+                         help="Assemble unified risk JSON per (hospital × device_category)")
+    rb.add_argument("--limit-hospitals", type=int,
+                     help="Cap the number of hospitals processed (for testing)")
+    rb.add_argument("--state", help="Filter hospitals to one state, e.g. CA")
+    rb.add_argument("--ccn", help="Build for a single CCN")
+
+    rt = sub.add_parser("risk-tag",
+                         help="Re-run the regex+Groq tagger over fda_recalls with NULL device_category")
+    rt.add_argument("--no-llm", action="store_true")
+    rt.add_argument("--llm-max-rows", type=int, default=None)
+
+    rs = sub.add_parser("risk-show",
+                         help="Pretty-print one unified risk JSON row")
+    rs.add_argument("--ccn")
+    rs.add_argument("--device-category", dest="device_category")
+
+    rlm = sub.add_parser("risk-load-medicare",
+                         help="Ingest CMS Medicare claims + FDA classification + build crosswalk")
+    rlm.add_argument("--inpatient",
+                      help="Path or URL of CMS Inpatient by Provider & Service CSV")
+    rlm.add_argument("--physician",
+                      help="Path or URL of CMS Physician by Provider & Service CSV")
+    rlm.add_argument("--skip-drg-map", action="store_true",
+                      help="Skip re-seeding drg_to_device_category")
+    rlm.add_argument("--skip-classification", action="store_true",
+                      help="Skip FDA classification ingest")
+    rlm.add_argument("--skip-crosswalk", action="store_true",
+                      help="Skip device_code_crosswalk rebuild")
+    rlm.add_argument("--classification-limit", type=int, default=None,
+                      help="Cap FDA classification rows (testing)")
+
     args = parser.parse_args()
     _setup_logging(args.verbose)
 
@@ -185,6 +497,12 @@ def main():
         "probe": cmd_probe,
         "refresh": cmd_refresh,
         "auto-bridge": cmd_auto_bridge,
+        "risk-init":   cmd_risk_init,
+        "risk-ingest": cmd_risk_ingest,
+        "risk-tag":    cmd_risk_tag,
+        "risk-build":  cmd_risk_build,
+        "risk-show":   cmd_risk_show,
+        "risk-load-medicare": cmd_risk_load_medicare,
     }
     try:
         dispatch[args.cmd](args)

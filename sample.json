@@ -1,0 +1,482 @@
+{
+  "meta": {
+    "sources": [
+      "CMS Hospital General Information",
+      "CMS Medicare Inpatient PUF (CCN \u00d7 DRG discharges)",
+      "CMS Hospital Compare measures",
+      "FDA MAUDE",
+      "FDA Device Enforcement (recalls)",
+      "FDA 510(k) Clearances",
+      "FDA Device Classification",
+      "FDA GUDID (UDI-DI, brand, manufacturer)",
+      "ClinicalTrials.gov",
+      "CMS Open Payments",
+      "bridge_hcpcs_to_product_code",
+      "drg_to_device_category"
+    ],
+    "linkage_type": "direct",
+    "schema_version": 2
+  },
+  "risk": {
+    "global_score": 9.0,
+    "linkage_confidence": "strong",
+    "linkage_multiplier": 1.0,
+    "exposure_multiplier": 1.15,
+    "hospital_final_score": 10.0,
+    "exposure_adjusted_score": 10.0
+  },
+  "device": {
+    "category": "pacemaker_dual_chamber",
+    "drg_codes": ["242", "243", "244", "258", "259"],
+    "hcpcs_codes": ["C1785"],
+    "product_code": "DTB",
+    "product_codes": ["DTB"],
+    "regulatory_class": "Class III"
+  },
+  "hospital": {
+    "ccn": "370215",
+    "city": "OKLAHOMA CITY",
+    "name": "OKLAHOMA HEART HOSPITAL, LLC",
+    "type": "Acute Care Hospitals",
+    "state": "OK",
+    "zip_code": "73120",
+    "ownership": "Physician",
+    "quality_score": 5.0
+  },
+  "hospital_context": {
+    "compare_measures": {
+      "has_data": false,
+      "measures": []
+    },
+    "linkage_evidence": ["medicare_inpatient_drg"],
+    "procedure_volume": {
+      "data_year": 2024,
+      "discharges": 107,
+      "drg_codes_billed": ["242", "243", "244"],
+      "weighted_exposure": 64.2,
+      "avg_medicare_payment": 14227.712418333333,
+      "has_direct_claims_linkage": true
+    },
+    "linkage_confidence": "strong",
+    "manufacturer_overlap": {
+      "npi_linked": false,
+      "manufacturer_count": 0,
+      "total_payments_usd": 0.0,
+      "manufacturer_exposure": "none"
+    }
+  },
+  "device_risk_global": {
+    "recall": {
+      "recalls": [
+        {
+          "firm_name": "Boston Scientific Corporation",
+          "match_method": "regex",
+          "product_code": null,
+          "recall_class": "Class II",
+          "recall_number": "Z-2000-2021",
+          "match_confidence": "medium",
+          "matched_k_number": null,
+          "reason_for_recall": "Latent release of small amounts of hydrogen within the pacemaker may cause a low voltage capacitor to become electrically compromised over time resulting in accelerated battery depletion of the battery and associated progression of displayed battery depletion indicators.",
+          "matched_product_code": null
+        },
+        {
+          "firm_name": "Boston Scientific Corporation",
+          "match_method": "regex",
+          "product_code": null,
+          "recall_class": "Class I",
+          "recall_number": "Z-0823-2025",
+          "match_confidence": "medium",
+          "matched_k_number": null,
+          "reason_for_recall": "A subset of devices from the ACCOLADE Family of Pacemakers and CRT-Ps, built before September 2018, have an increased potential to initiate Safety Mode during telemetry or other normal, higher-power operations due to latent high battery impedance.",
+          "matched_product_code": null
+        },
+        {
+          "firm_name": "Siemens Healthcare Diagnostics, Inc.",
+          "match_method": "regex",
+          "product_code": null,
+          "recall_class": "Class II",
+          "recall_number": "Z-0212-2019",
+          "match_confidence": "medium",
+          "matched_k_number": null,
+          "reason_for_recall": "The modules may have been shipped without a warning label for potential risk of interference to pacemaker functionality.",
+          "matched_product_code": null
+        },
+        {
+          "firm_name": "Medtronic Inc., Cardiac Rhythm and Heart Failure (CRHF)",
+          "match_method": "regex",
+          "product_code": null,
+          "recall_class": "Class I",
+          "recall_number": "Z-0808-2019",
+          "match_confidence": "medium",
+          "matched_k_number": null,
+          "reason_for_recall": "A  subset of Medtronic dual chamber pacemakers distributed worldwide between 10 March 2017 and 7 January 2019 under the brand names Adapta, Versa, and Sensia when programmed to a dual chamber mode with atrial-sensing, may experience a circuit error that affects device functionality",
+          "matched_product_code": null
+        },
+        {
+          "firm_name": "Medtronic Inc., Cardiac Rhythm and Heart Failure (CRHF)",
+          "match_method": "regex",
+          "product_code": null,
+          "recall_class": "Class II",
+          "recall_number": "Z-2493-2019",
+          "match_confidence": "medium",
+          "matched_k_number": null,
+          "reason_for_recall": "Medtronic is updating the Micra Instructions for Use (IFU) and the Micra Implant Procedure Tip Card to include specific information on the removal of the tether to release the Micra Pacemaker from the Micra Delivery System during implant.",
+          "matched_product_code": null
+        },
+        {
+          "firm_name": "AZIYO BIOLOGICS",
+          "match_method": "regex",
+          "product_code": null,
+          "recall_class": "Class II",
+          "recall_number": "Z-0039-2020",
+          "match_confidence": "medium",
+          "matched_k_number": null,
+          "reason_for_recall": "Possible suture brittleness or breakage along the Envelope seam before the expiration date of the device.",
+          "matched_product_code": null
+        },
+        {
+          "firm_name": "AZIYO BIOLOGICS",
+          "match_method": "regex",
+          "product_code": null,
+          "recall_class": "Class II",
+          "recall_number": "Z-0040-2020",
+          "match_confidence": "medium",
+          "matched_k_number": null,
+          "reason_for_recall": "Possible suture brittleness or breakage along the Envelope seam before the expiration date of the device.",
+          "matched_product_code": null
+        },
+        {
+          "firm_name": "Medtronic Inc., Cardiac Rhythm and Heart Failure (CRHF)",
+          "match_method": "regex",
+          "product_code": null,
+          "recall_class": "Class I",
+          "recall_number": "Z-0807-2019",
+          "match_confidence": "medium",
+          "matched_k_number": null,
+          "reason_for_recall": "A  subset of Medtronic dual chamber pacemakers distributed worldwide between 10 March 2017 and 7 January 2019 under the brand names Adapta, Versa, and Sensia when programmed to a dual chamber mode with atrial-sensing, may experience a circuit error that affects device functionality",
+          "matched_product_code": null
+        },
+        {
+          "firm_name": "Centurion Medical Products Corporation",
+          "match_method": "regex",
+          "product_code": null,
+          "recall_class": "Class II",
+          "recall_number": "Z-1054-2020",
+          "match_confidence": "medium",
+          "matched_k_number": null,
+          "reason_for_recall": "Incomplete seals on the sterile package may compromise the sterility",
+          "matched_product_code": null
+        },
+        {
+          "firm_name": "Medtronic Inc., Cardiac Rhythm and Heart Failure (CRHF)",
+          "match_method": "regex",
+          "product_code": null,
+          "recall_class": "Class I",
+          "recall_number": "Z-0809-2019",
+          "match_confidence": "medium",
+          "matched_k_number": null,
+          "reason_for_recall": "A  subset of Medtronic dual chamber pacemakers distributed worldwide between 10 March 2017 and 7 January 2019 under the brand names Adapta, Versa, and Sensia when programmed to a dual chamber mode with atrial-sensing, may experience a circuit error that affects device functionality",
+          "matched_product_code": null
+        },
+        {
+          "firm_name": "Medtronic Inc., Cardiac Rhythm and Heart Failure (CRHF)",
+          "match_method": "regex",
+          "product_code": null,
+          "recall_class": "Class I",
+          "recall_number": "Z-0811-2019",
+          "match_confidence": "medium",
+          "matched_k_number": null,
+          "reason_for_recall": "A  subset of Medtronic dual chamber pacemakers distributed worldwide between 10 March 2017 and 7 January 2019 under the brand names Adapta, Versa, and Sensia when programmed to a dual chamber mode with atrial-sensing, may experience a circuit error that affects device functionality",
+          "matched_product_code": null
+        },
+        {
+          "firm_name": "Medtronic Inc., Cardiac Rhythm and Heart Failure (CRHF)",
+          "match_method": "regex",
+          "product_code": null,
+          "recall_class": "Class I",
+          "recall_number": "Z-0806-2019",
+          "match_confidence": "medium",
+          "matched_k_number": null,
+          "reason_for_recall": "A  subset of Medtronic dual chamber pacemakers distributed worldwide between 10 March 2017 and 7 January 2019 under the brand names Adapta, Versa, and Sensia when programmed to a dual chamber mode with atrial-sensing, may experience a circuit error that affects device functionality",
+          "matched_product_code": null
+        },
+        {
+          "firm_name": "Medtronic Inc., Cardiac Rhythm and Heart Failure (CRHF)",
+          "match_method": "regex",
+          "product_code": null,
+          "recall_class": "Class I",
+          "recall_number": "Z-0810-2019",
+          "match_confidence": "medium",
+          "matched_k_number": null,
+          "reason_for_recall": "A  subset of Medtronic dual chamber pacemakers distributed worldwide between 10 March 2017 and 7 January 2019 under the brand names Adapta, Versa, and Sensia when programmed to a dual chamber mode with atrial-sensing, may experience a circuit error that affects device functionality",
+          "matched_product_code": null
+        },
+        {
+          "firm_name": "Medtronic Inc., Cardiac Rhythm and Heart Failure (CRHF)",
+          "match_method": "regex",
+          "product_code": null,
+          "recall_class": "Class II",
+          "recall_number": "Z-2492-2019",
+          "match_confidence": "medium",
+          "matched_k_number": null,
+          "reason_for_recall": "Medtronic is updating the Micra Instructions for Use (IFU) and the Micra Implant Procedure Tip Card to include specific information on the removal of the tether to release the Micra Pacemaker from the Micra Delivery System during implant.",
+          "matched_product_code": null
+        },
+        {
+          "firm_name": "ROi CPS LLC",
+          "match_method": "regex",
+          "product_code": null,
+          "recall_class": "Class II",
+          "recall_number": "Z-0737-2021",
+          "match_confidence": "medium",
+          "matched_k_number": null,
+          "reason_for_recall": "Gauze sponges contained in custom kits may be flaking or fraying.",
+          "matched_product_code": null
+        }
+      ],
+      "has_recall": true,
+      "recall_class": "Class I",
+      "recall_count": 15,
+      "match_methods": {
+        "regex": 15
+      },
+      "confidence_mix": {
+        "medium": 15
+      }
+    },
+    "scoring": {
+      "maude_score": 6.28,
+      "recall_floor": 9.0,
+      "recall_override": true
+    },
+    "global_score": 9.0,
+    "adverse_events": {
+      "death_count": 6,
+      "injury_count": 206,
+      "total_events": 319,
+      "malfunction_count": 106
+    },
+    "clinical_evidence": {
+      "active": 3,
+      "completed": 15,
+      "trial_count": 25,
+      "with_results": 4
+    },
+    "device_risk_confidence": "strong"
+  },
+  "device_510k_catalog": {
+    "count": 15,
+    "devices": [
+      {
+        "maude": {
+          "death_count": 0,
+          "event_count": 0,
+          "injury_count": 0,
+          "malfunction_count": 0
+        },
+        "k_number": "K990483",
+        "applicant": "Biotronik, Inc.",
+        "device_name": "RETROX RX 45-JBP 124774, 53-JBP 124775, 53-BP 124776, 60-124777",
+        "product_code": "DTB",
+        "decision_date": "1999-06-03",
+        "regulatory_class": "Class III"
+      },
+      {
+        "maude": {
+          "death_count": 0,
+          "event_count": 0,
+          "injury_count": 0,
+          "malfunction_count": 0
+        },
+        "k_number": "K954610",
+        "applicant": "Intermedics, Inc.",
+        "device_name": "MODEL 430-07 ENDOCARDIAL PACING LEAD",
+        "product_code": "DTB",
+        "decision_date": "1996-12-16",
+        "regulatory_class": "Class III"
+      },
+      {
+        "maude": {
+          "death_count": 0,
+          "event_count": 0,
+          "injury_count": 0,
+          "malfunction_count": 0
+        },
+        "k_number": "K955550",
+        "applicant": "Intermedics, Inc.",
+        "device_name": "CARDIFIX EZ BIPOLAR/UNIPOLAR ENDOCARDIAL PACING LEAD",
+        "product_code": "DTB",
+        "decision_date": "1996-06-19",
+        "regulatory_class": "Class III"
+      },
+      {
+        "maude": {
+          "death_count": 0,
+          "event_count": 0,
+          "injury_count": 0,
+          "malfunction_count": 0
+        },
+        "k_number": "K915188",
+        "applicant": "Cook Pacemaker Corp.",
+        "device_name": "MODEL P IN-LINE BIPOLAR ENDOCARDIAL TINED LEAD",
+        "product_code": "DTB",
+        "decision_date": "1992-09-11",
+        "regulatory_class": "Class III"
+      },
+      {
+        "maude": {
+          "death_count": 0,
+          "event_count": 0,
+          "injury_count": 0,
+          "malfunction_count": 0
+        },
+        "k_number": "K892528",
+        "applicant": "Daig Corp.",
+        "device_name": "FIVE-YEAR STERILE PACKAGING SHELF LIFE",
+        "product_code": "DTB",
+        "decision_date": "1990-01-18",
+        "regulatory_class": "Class III"
+      },
+      {
+        "maude": {
+          "death_count": 0,
+          "event_count": 0,
+          "injury_count": 0,
+          "malfunction_count": 0
+        },
+        "k_number": "K895447",
+        "applicant": "Pacesetter Systems",
+        "device_name": "ENDOCARDIAL SCREW-IN LEAD MODEL 1020T",
+        "product_code": "DTB",
+        "decision_date": "1989-12-20",
+        "regulatory_class": "Class III"
+      },
+      {
+        "maude": {
+          "death_count": 0,
+          "event_count": 0,
+          "injury_count": 0,
+          "malfunction_count": 0
+        },
+        "k_number": "K872971",
+        "applicant": "Oscor Medical Corp.",
+        "device_name": "PERMANENT MYOCARDIAL LEADS MP SERIES",
+        "product_code": "DTB",
+        "decision_date": "1988-02-12",
+        "regulatory_class": "Class III"
+      },
+      {
+        "maude": {
+          "death_count": 0,
+          "event_count": 0,
+          "injury_count": 0,
+          "malfunction_count": 0
+        },
+        "k_number": "K874792",
+        "applicant": "Medtronic Vascular",
+        "device_name": "MODEL 5013 TRANSVENOUS VENTRICULAR PACING LEAD",
+        "product_code": "DTB",
+        "decision_date": "1988-01-19",
+        "regulatory_class": "Class III"
+      },
+      {
+        "maude": {
+          "death_count": 0,
+          "event_count": 0,
+          "injury_count": 0,
+          "malfunction_count": 0
+        },
+        "k_number": "K864153",
+        "applicant": "Pace Medical",
+        "device_name": "PACE IMPLANT. LEAD/TINED/ATRIAL/J/MODEL 3290",
+        "product_code": "DTB",
+        "decision_date": "1987-01-06",
+        "regulatory_class": "Class III"
+      },
+      {
+        "maude": {
+          "death_count": 0,
+          "event_count": 0,
+          "injury_count": 0,
+          "malfunction_count": 0
+        },
+        "k_number": "K864738",
+        "applicant": "Intermedics, Inc.",
+        "device_name": "MODEL 366-14 INTERMEDICS LEAD CONNECTOR CAP",
+        "product_code": "DTB",
+        "decision_date": "1987-01-06",
+        "regulatory_class": "Class III"
+      },
+      {
+        "maude": {
+          "death_count": 0,
+          "event_count": 0,
+          "injury_count": 0,
+          "malfunction_count": 0
+        },
+        "k_number": "K864564",
+        "applicant": "Intermedics, Inc.",
+        "device_name": "MODEL 486-05 POLYFLEX(R) IMPLANTABLE PACING LEAD",
+        "product_code": "DTB",
+        "decision_date": "1986-12-05",
+        "regulatory_class": "Class III"
+      },
+      {
+        "maude": {
+          "death_count": 0,
+          "event_count": 0,
+          "injury_count": 0,
+          "malfunction_count": 0
+        },
+        "k_number": "K861767",
+        "applicant": "Telectronics, Inc.",
+        "device_name": "IMPLANTABLE ELECTRODE LEAD, MODEL 030-436",
+        "product_code": "DTB",
+        "decision_date": "1986-07-18",
+        "regulatory_class": "Class III"
+      },
+      {
+        "maude": {
+          "death_count": 0,
+          "event_count": 0,
+          "injury_count": 0,
+          "malfunction_count": 0
+        },
+        "k_number": "K861481",
+        "applicant": "Pacesetter Systems",
+        "device_name": "ENDOCARDIAL CARBON-TIP LEAD",
+        "product_code": "DTB",
+        "decision_date": "1986-06-06",
+        "regulatory_class": "Class III"
+      },
+      {
+        "maude": {
+          "death_count": 0,
+          "event_count": 0,
+          "injury_count": 0,
+          "malfunction_count": 0
+        },
+        "k_number": "K861464",
+        "applicant": "Pacesetter Systems",
+        "device_name": "LEAD BODY CHANGES TO HI PERFORM & FAST-PASS LEADS",
+        "product_code": "DTB",
+        "decision_date": "1986-05-19",
+        "regulatory_class": "Class III"
+      },
+      {
+        "maude": {
+          "death_count": 0,
+          "event_count": 0,
+          "injury_count": 0,
+          "malfunction_count": 0
+        },
+        "k_number": "K853914",
+        "applicant": "Pacesetter Systems",
+        "device_name": "PACESETTER SYS FAST PASS ENDOCARDIAL LEAD 856 INLI",
+        "product_code": "DTB",
+        "decision_date": "1985-12-03",
+        "regulatory_class": "Class III"
+      }
+    ]
+  }
+}

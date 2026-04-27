@@ -12,6 +12,8 @@ Key insight: unfiltered queries on huge datasets (outpatient, DMEPOS) can time
 out server-side. Iterating by state (~50 smaller queries) is far more reliable.
 """
 
+import csv
+import io
 import time
 import logging
 import requests
@@ -30,9 +32,13 @@ class CMSDataApiClient:
         self.max_retries = max_retries or config.CMS_MAX_RETRIES
         self.page_size = min(page_size, self.MAX_PAGE_SIZE)
         self.session = requests.Session()
+        # Browser-style UA: CMS data-api has started 403/504-ing bot UAs under
+        # load. The Mozilla token gets us through; the compatible fragment
+        # keeps the request honest.
         self.session.headers.update({
             "Accept": "application/json",
-            "User-Agent": "rp360-cms-ingest/0.1",
+            "User-Agent": ("Mozilla/5.0 (compatible; rp360-cms-ingest/0.2; "
+                           "+https://github.com/rp360)"),
         })
 
     # --------------------------- HTTP ---------------------------
@@ -143,3 +149,50 @@ class CMSDataApiClient:
     def count_dataset(self, uuid):
         """Row count via /data-viewer/stats. Returns None if unavailable."""
         return self.stats(uuid).get("total_rows")
+
+    # --------------------------- CSV bulk fallback ---------------------------
+
+    def iter_bulk_csv(self, uuid, limit=None, batch_size=1000):
+        """Yield pages of rows by streaming the bulk CSV at data_file_url.
+
+        Every /data-api/v1 dataset exposes a pre-built CSV via
+        /data-viewer/stats.data_file_url. This path avoids the JSON
+        size/offset pagination entirely, so it's the reliable way to
+        pull huge tables that time out on full-table JSON scans
+        (HCRIS, POS, physician-by-service, etc.).
+
+        Rows are yielded as lists (batch_size at a time) of dicts to
+        match the shape produced by iter_pages — ingest.py can feed
+        either path through the same upsert.
+        """
+        meta = self.stats(uuid)
+        csv_url = meta.get("data_file_url")
+        if not csv_url:
+            raise RuntimeError(
+                f"dataset {uuid}: no data_file_url exposed by /data-viewer/stats"
+            )
+        log.info("bulk CSV: %s (total_rows=%s, size=%s)",
+                 csv_url, meta.get("total_rows"), meta.get("csv_size"))
+
+        # Stream so we never buffer the whole file in memory.
+        with self.session.get(csv_url, stream=True, timeout=self.timeout) as r:
+            r.raise_for_status()
+            r.encoding = r.encoding or "utf-8"
+            # DictReader needs a text iterator. iter_lines(decode_unicode=True)
+            # splits on newlines from the raw response, preserving quoting.
+            reader = csv.DictReader(r.iter_lines(decode_unicode=True))
+            batch = []
+            yielded = 0
+            for row in reader:
+                batch.append(row)
+                if len(batch) >= batch_size:
+                    yield batch
+                    yielded += len(batch)
+                    batch = []
+                    if limit is not None and yielded >= limit:
+                        return
+            if batch:
+                if limit is not None:
+                    batch = batch[: max(0, limit - yielded)]
+                if batch:
+                    yield batch
