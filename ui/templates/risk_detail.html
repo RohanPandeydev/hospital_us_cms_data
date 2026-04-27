@@ -963,6 +963,48 @@
           </td>
         </tr>
       {% endfor %}
+
+      {# ───── Step ⁺ injected by template: Device makers (FDA 510(k) applicants) ───── #}
+      {% if payload.device_510k_catalog and payload.device_510k_catalog.devices %}
+        {% set _makers = [] %}
+        {% for d in payload.device_510k_catalog.devices %}
+          {% set _ap = d.applicant or d.firm or d.manufacturer %}
+          {% if _ap and _ap not in _makers %}{{ _makers.append(_ap) or "" }}{% endif %}
+        {% endfor %}
+        <tr style="background:#fef3c7;">
+          <td><strong>5b</strong></td>
+          <td>device_makers</td>
+          <td><code style="font-size:.85em">fda_510k (applicants for product_code)</code></td>
+          <td><code style="font-size:.85em">product_code → applicant</code></td>
+          <td><code>{{ payload.device.product_code or '—' }}</code> <span class="muted">(who actually makes this device family)</span></td>
+          <td style="font-size:.85em;">
+            <strong>{{ _makers|length }} maker(s):</strong>
+            {% if _makers %}
+              <code>{{ _makers[:6]|tojson }}</code>
+              {% if _makers|length > 6 %}<span class="muted"> + {{ _makers|length - 6 }} more</span>{% endif %}
+            {% else %}<span class="muted">no applicant data on the cleared 510(k)s</span>{% endif %}
+          </td>
+        </tr>
+      {% endif %}
+
+      {# ───── Final tie-back row: hospital × device × score ───── #}
+      <tr style="background:#dbeafe; border-top:2px solid #60a5fa;">
+        <td><strong>🏁</strong></td>
+        <td><strong>hospital_tieback</strong></td>
+        <td><code style="font-size:.85em">computed (steps 1-6 closing back on the hospital)</code></td>
+        <td><code style="font-size:.85em">ccn × device_category → final_score</code></td>
+        <td>
+          <code>{{ payload.hospital.facility_id if payload.hospital else (payload.ccn or '—') }}</code>
+          <span class="muted">({{ payload.hospital.facility_name if payload.hospital else '' }} × {{ payload.device.device_category if payload.device else '' }})</span>
+        </td>
+        <td style="font-size:.85em;">
+          {% set _fs = payload.risk.hospital_final_score if payload.risk else None %}
+          {% set _cls = 'High' if (_fs or 0) >= 7 else ('Amber' if (_fs or 0) >= 4 else 'Low') %}
+          <strong>Hospital final risk:</strong>
+          <code>{{ '%.2f'|format(_fs) if _fs is not none else '—' }}/10</code>
+          <span class="muted">({{ _cls }} concern · linkage: {{ payload.risk.linkage_confidence if payload.risk else '—' }})</span>
+        </td>
+      </tr>
     </tbody>
   </table>
 </div>

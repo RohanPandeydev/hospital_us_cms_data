@@ -818,16 +818,55 @@ def linkage(request: Request):
 # Risk Intelligence (Postgres-backed — cms_hospitals DB via src.risk_db)
 # =====================================================================
 # This block queries the unified `hospital_device_risk_intelligence` table
-# written by src/risk_assembler.py. Separate connection path from the main
-# ClickHouse explorer above — risk rows live only in Postgres.
+# (now in ClickHouse — was Postgres-only). _pg_rows is kept as the call-site
+# name so existing routes work; SQL is auto-translated PG → CH.
+
+import re as _re
+
+_PG_TO_CH_RE = [
+    # COUNT(*) FILTER (WHERE expr) → countIf(expr)
+    (_re.compile(r"COUNT\s*\(\s*\*\s*\)\s*FILTER\s*\(\s*WHERE\s+(.+?)\s*\)", _re.IGNORECASE | _re.DOTALL),
+     r"countIf(\1)"),
+    # ::numeric / ::float casts → drop (CH infers)
+    (_re.compile(r"::\s*numeric", _re.IGNORECASE), ""),
+    (_re.compile(r"::\s*float", _re.IGNORECASE), ""),
+    # NULLS LAST / NULLS FIRST clauses → drop (CH default)
+    (_re.compile(r"\s+NULLS\s+(?:FIRST|LAST)", _re.IGNORECASE), ""),
+    # IS TRUE / IS FALSE → = 1 / = 0 (CH bools are UInt8)
+    (_re.compile(r"\bIS\s+TRUE\b", _re.IGNORECASE), "= 1"),
+    (_re.compile(r"\bIS\s+FALSE\b", _re.IGNORECASE), "= 0"),
+    (_re.compile(r"\bIS\s+NOT\s+TRUE\b", _re.IGNORECASE), "!= 1"),
+    (_re.compile(r"\bIS\s+NOT\s+FALSE\b", _re.IGNORECASE), "!= 0"),
+]
+
+
+def _quote_ch(v):
+    """Render a Python value as a ClickHouse SQL literal."""
+    if v is None:
+        return "NULL"
+    if isinstance(v, bool):
+        return "1" if v else "0"
+    if isinstance(v, (int, float)):
+        return str(v)
+    s = str(v).replace("\\", "\\\\").replace("'", "\\'")
+    return f"'{s}'"
+
 
 def _pg_rows(sql, params=None):
-    """Run a Postgres query via src.risk_db and return (cols, rows) lists."""
-    from src import risk_db
-    with risk_db.connect() as conn, conn.cursor() as cur:
-        cur.execute(sql, params or [])
-        cols = [d[0] for d in (cur.description or [])]
-        rows = [[_json_safe(v) for v in r] for r in cur.fetchall()]
+    """Run a query against ClickHouse, accepting psycopg-style %s placeholders.
+
+    Auto-translates Postgres-only syntax (FILTER, NULLS LAST, IS TRUE, ::cast)
+    to the ClickHouse equivalent so call sites don't need to change.
+    """
+    for pat, repl in _PG_TO_CH_RE:
+        sql = pat.sub(repl, sql)
+    if params:
+        params_iter = iter(params)
+        sql = _re.sub(r"%s", lambda _: _quote_ch(next(params_iter)), sql)
+    with db.connect() as conn:
+        res = conn.query(sql)
+    cols = list(res.column_names)
+    rows = [[_json_safe(v) for v in r] for r in res.result_rows]
     return cols, rows
 
 
