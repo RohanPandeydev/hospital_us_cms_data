@@ -82,7 +82,14 @@ def _iter_pages(client, dataset, limit):
     elif source == "cms_data_api":
         filter_field = dataset.get("filter_field")
         columns = dataset.get("columns")
-        if filter_field:
+        # Datasets flagged `bulk_csv: True` pull via the pre-built CSV at
+        # /data-viewer/stats.data_file_url. That path bypasses the JSON
+        # size/offset pagination that times out server-side on HCRIS,
+        # POS, and physician-by-service sized tables.
+        if dataset.get("bulk_csv"):
+            for page in client.iter_bulk_csv(dataset["uuid"], limit=limit):
+                yield page
+        elif filter_field:
             # Per-state iteration: avoids server-side timeouts on big datasets
             for page in client.iter_pages_per_value(
                 dataset["uuid"], filter_field, US_STATES,
