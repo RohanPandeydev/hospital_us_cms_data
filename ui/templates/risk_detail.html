@@ -434,6 +434,80 @@
 </div>
 {% endif %}
 
+<!-- ================ STATE-REPORTED ADVERSE EVENTS (hospital-named) ================ -->
+{% if state_events %}
+<div class="card" style="border-left:4px solid
+  {% if state_events_device %}#dc2626{% else %}#6b7280{% endif %};">
+  <h3 class="card-title">
+    🏛️ State-reported adverse events at this hospital
+    <i class="info-icon">i<span class="info-tip">Massachusetts Department of Public Health publishes a yearly XLSX listing every NQF "Serious Reportable Event" (SRE) at every licensed hospital. Unlike FDA MAUDE — which has no hospital identifier — these reports are filed BY the hospital and tied to its name. We CCN-match the hospital name against CMS Hospital General Information so events here are guaranteed to be at this specific facility.</span></i>
+  </h3>
+  <p class="card-subtitle">
+    Source: <a href="https://www.mass.gov/lists/serious-reportable-events-reports" target="_blank" rel="noopener">MA DPH Serious Reportable Events</a> — annual XLSX, calendar years 2015–2022.
+    {% set total_events = state_events | sum(attribute='total_events') %}
+    {% set total_device = state_events_device | sum(attribute='total_events') %}
+    <strong>{{ total_events }}</strong> total reportable events;
+    <strong>{{ total_device }}</strong> device-related.
+  </p>
+
+  {% if state_events_device %}
+    <div class="explain" style="margin-top:.5rem;background:#fef2f2;border-left:3px solid #dc2626;">
+      <strong>Direct hospital-linked events (device-relevant):</strong>
+      this is the first card on the page that ties a specific event TO this hospital BY NAME.
+      Public FDA MAUDE cannot do this — it strips the reporter facility before publishing.
+    </div>
+    <table class="scroll-wrap">
+      <thead>
+        <tr>
+          <th>Year</th>
+          <th>Event type <i class="info-icon">i<span class="info-tip">Per MA's adoption of the NQF "Serious Reportable Events" list. "Device misuse or malfunction" and "Contaminated drugs/device/biologic" are the two purely-device categories. "Retained foreign object" includes unretrieved device fragments per CMS PSI-05.</span></i></th>
+          <th>Category</th>
+          <th style="text-align:right">Events</th>
+          <th>Source</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for ev in state_events_device %}
+        <tr>
+          <td>{{ ev.report_year }}</td>
+          <td><strong>{{ ev.event_type }}</strong></td>
+          <td><span class="muted">{{ ev.event_category }}</span></td>
+          <td style="text-align:right">
+            <span class="risk {{ 'risk-high' if ev.total_events >= 5 else ('risk-med' if ev.total_events >= 2 else 'risk-low') }}">
+              {{ ev.total_events }}
+            </span>
+          </td>
+          <td><a href="{{ ev.source_url }}" target="_blank" rel="noopener">XLSX</a></td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p class="muted">
+      This hospital reported other SREs (see below) but none in the device-related categories
+      (Product or Device Events, Retained Foreign Object, Burn, Metallic-MRI, Wrong O₂/gas, Restraint/bedrail, Electrical Shock).
+    </p>
+  {% endif %}
+
+  <details style="margin-top:.75rem;">
+    <summary class="muted" style="cursor:pointer;">All SRE categories ({{ state_events|length }} rows) — click to expand</summary>
+    <table style="margin-top:.5rem;">
+      <thead><tr><th>Year</th><th>Event type</th><th>Category</th><th style="text-align:right">Events</th></tr></thead>
+      <tbody>
+        {% for ev in state_events %}
+          <tr>
+            <td>{{ ev.report_year }}</td>
+            <td>{{ ev.event_type }}</td>
+            <td><span class="muted">{{ ev.event_category }}</span></td>
+            <td style="text-align:right">{{ ev.total_events }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </details>
+</div>
+{% endif %}
+
 <!-- ================ HOSPITAL COMPLICATIONS (device-adjacent) ================ -->
 {% if payload_hc_measures and payload_hc_measures.has_data %}
 <div class="card" style="border-left:4px solid #fbbf24;">

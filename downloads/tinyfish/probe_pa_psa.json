@@ -1,0 +1,48 @@
+{
+  "slug": "pa_psa",
+  "url": "http://patientsafety.pa.gov",
+  "ok": true,
+  "raw": {
+    "type": "COMPLETE",
+    "run_id": "dabde15e-4b32-498e-8231-d4d6d5a23d61",
+    "status": "COMPLETED",
+    "timestamp": "2026-04-28T06:31:55.127Z",
+    "result": {
+      "page_loads": true,
+      "shows_named_hospitals": true,
+      "covers_devices": true,
+      "latest_year": 2024,
+      "download_formats": [
+        "pdf",
+        "html"
+      ],
+      "direct_download_urls": [
+        "https://patientsafety.pa.gov/PatientSafetyAuthority/Documents/2024-annual-report.pdf",
+        "https://patientsafety.pa.gov/PatientSafetyAuthority/Documents/2023-annual-report.pdf",
+        "https://patientsafety.pa.gov/PatientSafetyAuthority/Documents/2022-annual-report.pdf"
+      ],
+      "access_model": "free",
+      "sample_event_excerpt": "When Penn Medicine Rehabilitation noted an increase in patient elopements (patients leaving the hospital outside of approved activities), this team developed an action plan to reduce the number of events.",
+      "verdict": "This site is not usable for an automated CCN-keyed ingest pipeline as hospital-level data is only available as anecdotal excerpts in PDF reports rather than structured machine-readable formats."
+    }
+  },
+  "extracted": {
+    "page_loads": true,
+    "shows_named_hospitals": true,
+    "covers_devices": true,
+    "latest_year": 2024,
+    "download_formats": [
+      "pdf",
+      "html"
+    ],
+    "direct_download_urls": [
+      "https://patientsafety.pa.gov/PatientSafetyAuthority/Documents/2024-annual-report.pdf",
+      "https://patientsafety.pa.gov/PatientSafetyAuthority/Documents/2023-annual-report.pdf",
+      "https://patientsafety.pa.gov/PatientSafetyAuthority/Documents/2022-annual-report.pdf"
+    ],
+    "access_model": "free",
+    "sample_event_excerpt": "When Penn Medicine Rehabilitation noted an increase in patient elopements (patients leaving the hospital outside of approved activities), this team developed an action plan to reduce the number of events.",
+    "verdict": "This site is not usable for an automated CCN-keyed ingest pipeline as hospital-level data is only available as anecdotal excerpts in PDF reports rather than structured machine-readable formats."
+  },
+  "elapsed_s": 138.1
+}

@@ -45,10 +45,30 @@ app = FastAPI(title="CMS Hospital Data Explorer")
 
 # --------------------------- db helpers ---------------------------
 
+_CH_CLIENT = None
+
+
+def _ch():
+    """Module-level ClickHouse client. db.connect() opens a fresh HTTP client
+    per call — each one runs `SELECT version(), timezone()` on init, adding
+    ~3s round-trip overhead. With 10 queries per page that becomes 30s+. The
+    HttpClient is safe to reuse across threads, so we hold one per process."""
+    global _CH_CLIENT
+    if _CH_CLIENT is None:
+        from src import config
+        import clickhouse_connect
+        _CH_CLIENT = clickhouse_connect.get_client(
+            host=config.CLICKHOUSE_HOST, port=config.CLICKHOUSE_PORT,
+            username=config.CLICKHOUSE_USER, password=config.CLICKHOUSE_PASSWORD,
+            database=config.CLICKHOUSE_DATABASE, secure=config.CLICKHOUSE_SECURE,
+            connect_timeout=15, send_receive_timeout=120,
+        )
+    return _CH_CLIENT
+
+
 def q(sql, parameters=None):
     """Run a ClickHouse query, return (columns, rows) as lists."""
-    with db.connect() as conn:
-        res = conn.query(sql, parameters=parameters or {})
+    res = _ch().query(sql, parameters=parameters or {})
     return list(res.column_names), list(res.result_rows)
 
 
@@ -1158,6 +1178,8 @@ def devices(request: Request, sort: str = "rate"):
 def device_detail(request: Request, product_code: str):
     """Per-product-code detail page: time-series, manufacturers, recalls, hospitals."""
     pc = product_code.upper()
+    _tick = lambda *_: None  # no-op; left in for easy re-instrumentation
+    _t0 = None
 
     # Header — FDA device classification
     header = q_one(
@@ -1166,6 +1188,7 @@ def device_detail(request: Request, product_code: str):
         "FROM fda_device_classification WHERE product_code = {pc:String} LIMIT 1",
         {"pc": pc},
     )
+    _t0 = _tick("header", _t0)
 
     # Linked HCPCS via bridge
     _, hcpcs_rows = q(
@@ -1193,6 +1216,7 @@ def device_detail(request: Request, product_code: str):
         {"pc": pc},
     )
     kpi = kpi[0] if kpi else (0, 0, 0, 0, 0)
+    _t0 = _tick("kpi", _t0)
 
     # Trend metrics for the plain-English verdict at the top of the page.
     # Anchor the 12-month window on the latest MAUDE date for this PC, NOT
@@ -1223,6 +1247,7 @@ def device_detail(request: Request, product_code: str):
     asof_date = trend[3]
     yoy_pct = round((m_12 - m_prev) * 100.0 / m_prev, 1) if m_prev > 0 else None
     verdict = _build_verdict(m_12, m_prev, yoy_pct, r_24, kpi[1] or 0, asof_date)
+    _t0 = _tick("trend+verdict", _t0)
 
     # Time-series: MAUDE events by month for the last 5 yrs. Monthly cadence
     # gives the CUSUM detector enough resolution to flag a 60-90 day pre-recall
@@ -1240,6 +1265,7 @@ def device_detail(request: Request, product_code: str):
         {"pc": pc},
     )
     ts_rows, cusum_alarms = _compute_cusum_series(ts_raw)
+    _t0 = _tick("ts+cusum", _t0)
 
     # Recall dates as date markers on the time-series chart — visual proof
     # of the doc's claim that MAUDE rate-rises lead recalls by 60-90 days.
@@ -1256,6 +1282,8 @@ def device_detail(request: Request, product_code: str):
         {"pc": pc},
     )
 
+    _t0 = _tick("recall_marks", _t0)
+
     # Top manufacturers seen in MAUDE for this product_code
     _, mfr_rows = q(
         "SELECT manufacturer, count() AS events FROM fda_maude_devices FINAL "
@@ -1263,6 +1291,7 @@ def device_detail(request: Request, product_code: str):
         "GROUP BY manufacturer ORDER BY events DESC LIMIT 15",
         {"pc": pc},
     )
+    _t0 = _tick("mfr", _t0)
 
     # 510(k) applicants (also potential manufacturers)
     _, k_rows = q(
@@ -1272,36 +1301,55 @@ def device_detail(request: Request, product_code: str):
         {"pc": pc},
     )
 
-    # Recall history with per-recall lead-time annotation. For each recall, count
-    # MAUDE events in the 90 days *before* the recall vs the 90-180 day window
-    # before — if the prior window rose materially, that's the doc's headline
-    # 60-90 day pre-recall lead-time signal made concrete on the row itself.
-    _, recall_rows = q(
+    # Recall list (no MAUDE annotation yet — we'll join in Python below).
+    _, recall_base = q(
         """
-        SELECT
-          r.recall_number,
-          r.recall_class,
-          r.firm_name,
-          r.product_description,
-          r.reason_for_recall,
-          r.recall_initiation_date,
-          (SELECT count() FROM fda_maude_devices d FINAL
-            JOIN fda_maude_events e FINAL ON d.report_number = e.report_number
-           WHERE d.product_code = {pc:String}
-             AND e.date_received >= r.recall_initiation_date - INTERVAL 90 DAY
-             AND e.date_received <  r.recall_initiation_date)                     AS m_pre_90,
-          (SELECT count() FROM fda_maude_devices d FINAL
-            JOIN fda_maude_events e FINAL ON d.report_number = e.report_number
-           WHERE d.product_code = {pc:String}
-             AND e.date_received >= r.recall_initiation_date - INTERVAL 180 DAY
-             AND e.date_received <  r.recall_initiation_date - INTERVAL 90 DAY)   AS m_pre_180_90
-        FROM fda_recalls r
-        WHERE r.product_code = {pc:String}
-        ORDER BY r.recall_initiation_date DESC NULLS LAST
+        SELECT recall_number, recall_class, firm_name,
+               product_description, reason_for_recall, recall_initiation_date
+        FROM fda_recalls
+        WHERE product_code = {pc:String}
+        ORDER BY recall_initiation_date DESC NULLS LAST
         LIMIT 30
         """,
         {"pc": pc},
     )
+
+    # Daily MAUDE counts for this PC over the last ~5 yrs — fetched once,
+    # then used in Python to compute per-recall 90d-pre and 90-180d-pre
+    # windows. Avoids 30 × 2 = 60 correlated FINAL subqueries on a 800K+
+    # row table (which was making this page take 30+s).
+    _, maude_daily = q(
+        """
+        SELECT toDate(e.date_received) AS d, count() AS n
+        FROM fda_maude_devices d FINAL
+        LEFT JOIN fda_maude_events e FINAL ON d.report_number = e.report_number
+        WHERE d.product_code = {pc:String}
+          AND e.date_received IS NOT NULL
+          AND e.date_received >= today() - INTERVAL 8 YEAR
+        GROUP BY d
+        """,
+        {"pc": pc},
+    )
+    daily_map = {row[0]: int(row[1]) for row in maude_daily}
+    _t0 = _tick("recalls+daily_map", _t0)
+
+    def _count_window(end_date, start_offset_days, end_offset_days):
+        """Sum MAUDE events in [end_date - start_offset, end_date - end_offset)."""
+        if not end_date:
+            return 0
+        from datetime import timedelta
+        total = 0
+        for delta in range(end_offset_days, start_offset_days):
+            d = end_date - timedelta(days=delta)
+            total += daily_map.get(d, 0)
+        return total
+
+    recall_rows = []
+    for r in recall_base:
+        d = r[5]
+        m_pre_90 = _count_window(d, 90, 0)        # last 90 days before recall
+        m_pre_180_90 = _count_window(d, 180, 90)  # 90-180 days before recall
+        recall_rows.append((r[0], r[1], r[2], r[3], r[4], r[5], m_pre_90, m_pre_180_90))
 
     # Top hospitals billing this device-family (via Part B → bridge)
     _, hosp_rows = q(
@@ -1317,6 +1365,94 @@ def device_detail(request: Request, product_code: str):
         ORDER BY svcs DESC LIMIT 20
         """,
         {"pc": pc},
+    )
+    _t0 = _tick("hosp_rows", _t0)
+
+    # Inferential "likely affected hospitals" — the closest free approximation to
+    # "which hospital had this adverse event". MAUDE strips the reporting hospital
+    # by FDA design, so we cannot answer that question directly. Instead:
+    # (a) bridge_product_code_to_measure tells us which CMS Hospital Compare
+    #     measure is most relevant to this product code (e.g. DXY pacemakers →
+    #     MORT_30_HF, the 30-day heart-failure mortality rate), and
+    # (b) cms_hospital_measures has every facility's score on that measure.
+    # We surface the worst-performing hospitals on the relevant outcome —
+    # statistically the hospitals most likely to have had problems with this
+    # device family, even though no single record proves causation.
+    _, measure_link = q(
+        "SELECT cms_measure_id, device_category, confidence "
+        "FROM bridge_product_code_to_measure WHERE product_code = {pc:String} LIMIT 1",
+        {"pc": pc},
+    )
+    measure_link = measure_link[0] if measure_link else None
+    bad_hospitals = []
+    if measure_link:
+        measure_id = measure_link[0]
+        _, bad_hospitals = q(
+            """
+            SELECT
+              h.facility_name,
+              h.state,
+              h.city,
+              m.score_num,
+              m.compared_to_national,
+              h.overall_rating
+            FROM cms_hospital_measures m FINAL
+            JOIN cms_hospitals h FINAL ON h.facility_id = m.facility_id
+            WHERE m.measure_id = {mid:String}
+              AND m.score_num IS NOT NULL
+              AND h.facility_name IS NOT NULL
+            ORDER BY m.score_num DESC
+            LIMIT 15
+            """,
+            {"mid": measure_id},
+        )
+    _t0 = _tick("bad_hospitals", _t0)
+
+    # FDA 483 inspections — match firms to known manufacturers of this product
+    # code via manufacturer_to_product_code. We previously also tried matching
+    # to top Part B hospitals but the per-row regex normalization on a 91K-row
+    # CMS Part B table made this query slow enough to timeout for some PCs.
+    # The 483 data is small (30 rows) — the manufacturer match alone is the
+    # signal-bearing part.
+    _, fda_483 = q(
+        """
+        SELECT i.firm_name, i.firm_city, i.firm_state, i.classification, i.inspection_end_date
+        FROM fda_483_inspection i
+        WHERE i.product_type = 'Devices'
+          AND i.firm_name_norm IN (
+            SELECT lower(replaceRegexpAll(applicant_name, '[^A-Za-z0-9]', ''))
+            FROM manufacturer_to_product_code
+            WHERE product_code = {pc:String}
+          )
+        ORDER BY i.inspection_end_date DESC
+        LIMIT 10
+        """,
+        {"pc": pc},
+    )
+    _t0 = _tick("fda_483", _t0)
+
+    # Massachusetts Serious Reportable Events — the only public US source we
+    # have that ties a NAMED hospital to a device-related adverse event.
+    # Public MAUDE strips the reporting hospital; MA DPH publishes annual
+    # XLSX workbooks with every SRE per hospital. Coverage 2015-2022, all MA
+    # acute-care + non-acute hospitals + ASCs. Data is NOT keyed to FDA
+    # product codes — MA reports general categories ("Device misuse or
+    # malfunction", "Retained foreign object") not specific devices. So this
+    # panel shows ALL MA device events (not filtered to {pc}) — the closest
+    # thing to "this hospital had a device adverse event" in the free public
+    # data, even though it can't be tied to one MAUDE record.
+    _, ma_sre = q(
+        """
+        SELECT hospital_name, ccn_match,
+               sum(if(is_device_related=1, event_count, 0)) AS device_events,
+               sum(event_count)                              AS all_events,
+               max(report_year)                              AS latest_year
+        FROM state_adverse_events
+        WHERE state = 'MA'
+        GROUP BY hospital_name, ccn_match
+        HAVING device_events > 0 AND lower(hospital_name) != 'total'
+        ORDER BY device_events DESC LIMIT 25
+        """,
     )
 
     rate_per_1k = (kpi[0] * 1000.0 / kpi[4]) if (kpi[4] and kpi[4] > 0) else None
@@ -1354,6 +1490,10 @@ def device_detail(request: Request, product_code: str):
             "recall_marks": recall_marks_js,
             "mfr_rows": mfr_rows, "k_rows": k_rows,
             "recall_rows": recall_rows, "hosp_rows": hosp_rows,
+            "measure_link": measure_link,
+            "bad_hospitals": bad_hospitals,
+            "fda_483": fda_483,
+            "ma_sre": ma_sre,
         },
     )
 

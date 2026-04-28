@@ -1,0 +1,50 @@
+{
+  "slug": "ma_sre_reports",
+  "url": "https://www.mass.gov/lists/serious-reportable-events-reports",
+  "ok": true,
+  "raw": {
+    "type": "COMPLETE",
+    "run_id": "8cc5182a-1c89-4376-b3be-f6dd8b388573",
+    "status": "COMPLETED",
+    "timestamp": "2026-04-28T06:36:41.579Z",
+    "result": {
+      "page_loads": true,
+      "shows_named_hospitals": true,
+      "covers_devices": true,
+      "latest_year": 2022,
+      "download_formats": [
+        "pdf",
+        "xlsx",
+        "html"
+      ],
+      "direct_download_urls": [
+        "https://www.mass.gov/doc/calendar-year-2022-serious-reportable-events-in-massachusetts-acute-care-hospitals/download",
+        "https://www.mass.gov/doc/calendar-year-2022-serious-reportable-events-in-massachusetts-non-acute-care-hospitals/download",
+        "https://www.mass.gov/doc/calendar-year-2022-serious-reportable-events-in-massachusetts-ambulatory-surgical-centers/download"
+      ],
+      "access_model": "free",
+      "sample_event_excerpt": "Mass General Hospital (2168) ... Product or device events, such as death or serious injury caused by contaminated drugs or devices",
+      "verdict": "This site is highly usable for an automated ingest pipeline due to the availability of machine-readable XLSX files with hospital names and categorized event counts."
+    }
+  },
+  "extracted": {
+    "page_loads": true,
+    "shows_named_hospitals": true,
+    "covers_devices": true,
+    "latest_year": 2022,
+    "download_formats": [
+      "pdf",
+      "xlsx",
+      "html"
+    ],
+    "direct_download_urls": [
+      "https://www.mass.gov/doc/calendar-year-2022-serious-reportable-events-in-massachusetts-acute-care-hospitals/download",
+      "https://www.mass.gov/doc/calendar-year-2022-serious-reportable-events-in-massachusetts-non-acute-care-hospitals/download",
+      "https://www.mass.gov/doc/calendar-year-2022-serious-reportable-events-in-massachusetts-ambulatory-surgical-centers/download"
+    ],
+    "access_model": "free",
+    "sample_event_excerpt": "Mass General Hospital (2168) ... Product or device events, such as death or serious injury caused by contaminated drugs or devices",
+    "verdict": "This site is highly usable for an automated ingest pipeline due to the availability of machine-readable XLSX files with hospital names and categorized event counts."
+  },
+  "elapsed_s": 423.9
+}

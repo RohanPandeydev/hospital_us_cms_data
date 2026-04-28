@@ -1,0 +1,52 @@
+{
+  "slug": "courtlistener",
+  "url": "https://www.courtlistener.com",
+  "ok": true,
+  "raw": {
+    "type": "COMPLETE",
+    "run_id": "d0502335-242c-4abb-9583-36576a3c44db",
+    "status": "COMPLETED",
+    "timestamp": "2026-04-28T06:32:58.417Z",
+    "result": {
+      "page_loads": true,
+      "shows_named_hospitals": true,
+      "covers_devices": true,
+      "latest_year": 2026,
+      "download_formats": [
+        "pdf",
+        "json",
+        "api",
+        "html"
+      ],
+      "direct_download_urls": [
+        "https://storage.courtlistener.com/pdf/2016/06/28/morrissey-manter_v._saint_francis_hospital__medical_center_1.pdf",
+        "https://free.law/pdf/non-profit-docs/2024-990.pdf",
+        "https://www.courtlistener.com/api/bulk-info/"
+      ],
+      "access_model": "free",
+      "sample_event_excerpt": "During the transfer of the patient, an admitting nurse unhooked the patient's temporary pacer from the external pacer box, and the pacer box was returned to the ambulance crew that had transferred the patient. Subsequently, members of the nursing staff at the defendants' facility were unable to connect the patient's transvenous pacer wire to an external temporary pacer box because the defendants lacked a proper adapter.",
+      "verdict": "This site is a legal archive of court opinions and filings, which while containing specific adverse events in lawsuits, lacks the structured medical metadata and CCN identifiers necessary for an automated ingest pipeline."
+    }
+  },
+  "extracted": {
+    "page_loads": true,
+    "shows_named_hospitals": true,
+    "covers_devices": true,
+    "latest_year": 2026,
+    "download_formats": [
+      "pdf",
+      "json",
+      "api",
+      "html"
+    ],
+    "direct_download_urls": [
+      "https://storage.courtlistener.com/pdf/2016/06/28/morrissey-manter_v._saint_francis_hospital__medical_center_1.pdf",
+      "https://free.law/pdf/non-profit-docs/2024-990.pdf",
+      "https://www.courtlistener.com/api/bulk-info/"
+    ],
+    "access_model": "free",
+    "sample_event_excerpt": "During the transfer of the patient, an admitting nurse unhooked the patient's temporary pacer from the external pacer box, and the pacer box was returned to the ambulance crew that had transferred the patient. Subsequently, members of the nursing staff at the defendants' facility were unable to connect the patient's transvenous pacer wire to an external temporary pacer box because the defendants lacked a proper adapter.",
+    "verdict": "This site is a legal archive of court opinions and filings, which while containing specific adverse events in lawsuits, lacks the structured medical metadata and CCN identifiers necessary for an automated ingest pipeline."
+  },
+  "elapsed_s": 200.7
+}

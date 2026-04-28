@@ -1,0 +1,48 @@
+{
+  "slug": "nj_patient_safety",
+  "url": "https://www.nj.gov/health/healthcarequality/health-care-professionals/patient-safety-initiative/",
+  "ok": true,
+  "raw": {
+    "type": "COMPLETE",
+    "run_id": "f07fe41a-864b-4433-9e01-cb28dc2e8316",
+    "status": "COMPLETED",
+    "timestamp": "2026-04-28T06:41:30.248Z",
+    "result": {
+      "page_loads": true,
+      "shows_named_hospitals": true,
+      "covers_devices": true,
+      "latest_year": 2023,
+      "download_formats": [
+        "pdf",
+        "html"
+      ],
+      "direct_download_urls": [
+        "https://www.nj.gov/health/healthcarequality/documents/psis-2023-technical-report.pdf",
+        "https://www.nj.gov/health/healthcarequality/documents/C38156_Patient_Safety_Report_Entire Report_2025_V3_Final.pdf",
+        "https://www.nj.gov/health/healthcarequality/documents/psis-2022-technical-report.pdf"
+      ],
+      "access_model": "free",
+      "sample_event_excerpt": "AtlantiCare Regional MC-Mainland Campus: 1 (for Indicator PSI 05 Retained surgical item or unretrieved device fragment)",
+      "verdict": "This site is unusable for an automated CCN-keyed ingest pipeline because hospital-specific adverse event data is provided only in PDF format as aggregated counts per indicator, with no machine-extractable raw data files (CSV/JSON/API) available."
+    }
+  },
+  "extracted": {
+    "page_loads": true,
+    "shows_named_hospitals": true,
+    "covers_devices": true,
+    "latest_year": 2023,
+    "download_formats": [
+      "pdf",
+      "html"
+    ],
+    "direct_download_urls": [
+      "https://www.nj.gov/health/healthcarequality/documents/psis-2023-technical-report.pdf",
+      "https://www.nj.gov/health/healthcarequality/documents/C38156_Patient_Safety_Report_Entire Report_2025_V3_Final.pdf",
+      "https://www.nj.gov/health/healthcarequality/documents/psis-2022-technical-report.pdf"
+    ],
+    "access_model": "free",
+    "sample_event_excerpt": "AtlantiCare Regional MC-Mainland Campus: 1 (for Indicator PSI 05 Retained surgical item or unretrieved device fragment)",
+    "verdict": "This site is unusable for an automated CCN-keyed ingest pipeline because hospital-specific adverse event data is provided only in PDF format as aggregated counts per indicator, with no machine-extractable raw data files (CSV/JSON/API) available."
+  },
+  "elapsed_s": 713.0
+}

@@ -38,41 +38,47 @@
 </div>
 {% endif %}
 
-<!-- ============= Risk banner ============= -->
-{% if rate_per_1k is not none %}
-<div class="card" style="background:
-  {% if rate_per_1k >= 10 %}linear-gradient(135deg,#7f1d1d,#991b1b)
-  {% elif rate_per_1k >= 1 %}linear-gradient(135deg,#78350f,#92400e)
-  {% else %}linear-gradient(135deg,#14532d,#166534){% endif %};
-  color:white; padding:1.5rem; margin-bottom:1.5rem;">
-  <div style="display:flex; align-items:center; gap:1.5rem; flex-wrap:wrap;">
-    <div>
-      <div style="font-size:0.85rem; opacity:0.85;">complaint_rate_per_1k_procedures</div>
-      <div style="font-size:2.5rem; font-weight:800;">{{ "%.3f"|format(rate_per_1k) }}</div>
-      <div style="font-size:0.85rem; opacity:0.85;">{{ kpi[0]|int }} MAUDE events ÷ {{ "{:,}".format(kpi[4]|int) }} procedures</div>
-    </div>
-    <div style="font-size:0.85rem; line-height:1.6; max-width:500px;">
-      {% if rate_per_1k >= 10 %}
-        <strong>🔴 INVESTIGATE</strong> — this rate is well above the population mean. Check MAUDE narratives below for failure modes; cross-reference with recent recalls.
-      {% elif rate_per_1k >= 1 %}
-        <strong>🟡 MONITOR</strong> — moderate signal. Worth a periodic review and a watchlist entry.
-      {% else %}
-        <strong>🟢 NORMAL</strong> — rate consistent with safe high-volume devices.
-      {% endif %}
+<!-- ============= Risk snapshot ============= -->
+{# A coherent set of stats consistent with the verdict above.
+   Removed the old gradient banner that computed `complaint_rate_per_1k_procedures`
+   as (lifetime MAUDE / partial Part B physician services) — that ratio was
+   nonsensical (e.g. 21,294 / 1k for DXY) because the denominator was outpatient
+   physician fees only, missing the inpatient DRG-billed bulk of implant
+   procedures. We now show counts and trends, NOT ratios. #}
+<div class="kpi">
+  <div class="box">
+    <div class="label">MAUDE last 12mo</div>
+    <div class="value">{{ "{:,}".format(m_12|int) }}</div>
+    <div class="delta">
+      {% if yoy_pct is not none %}
+        {% if yoy_pct >= 50 %}<span class="risk risk-high">{{ "+%.0f"|format(yoy_pct) }}% YoY</span>
+        {% elif yoy_pct >= 10 %}<span class="risk risk-med">{{ "+%.0f"|format(yoy_pct) }}% YoY</span>
+        {% elif yoy_pct <= -10 %}<span class="risk risk-low">{{ "%.0f"|format(yoy_pct) }}% YoY</span>
+        {% else %}{{ "%+.0f"|format(yoy_pct) }}% YoY
+        {% endif %}
+      {% else %}—{% endif %}
     </div>
   </div>
-</div>
-{% else %}
-<div class="explain">No procedure-volume data found for HCPCS codes mapped to <code>{{ pc }}</code> yet. The bridge contains {{ hcpcs_rows|length }} HCPCS code(s) for this product.</div>
-{% endif %}
-
-<!-- ============= KPI strip ============= -->
-<div class="kpi">
-  <div class="box"><div class="label">MAUDE events</div><div class="value">{{ "{:,}".format(kpi[0]|int) }}</div></div>
-  <div class="box"><div class="label">Recalls</div><div class="value">{{ "{:,}".format(kpi[1]|int) }}</div></div>
-  <div class="box"><div class="label">Distinct manufacturers</div><div class="value">{{ "{:,}".format(kpi[2]|int) }}</div></div>
-  <div class="box"><div class="label">510(k) submissions</div><div class="value">{{ "{:,}".format(kpi[3]|int) }}</div></div>
-  <div class="box"><div class="label">Procedure volume (Part B)</div><div class="value">{{ "{:,}".format(kpi[4]|int) if kpi[4] else 0 }}</div></div>
+  <div class="box">
+    <div class="label">MAUDE prev 12mo</div>
+    <div class="value" style="color:#888;">{{ "{:,}".format(m_prev|int) }}</div>
+    <div class="delta">baseline window</div>
+  </div>
+  <div class="box">
+    <div class="label">CUSUM alarms (60mo)</div>
+    <div class="value">{{ cusum_alarms|length }}</div>
+    <div class="delta">{% if last_alarm %}last: {{ last_alarm }}{% else %}none{% endif %}</div>
+  </div>
+  <div class="box">
+    <div class="label">Recalls last 24mo</div>
+    <div class="value">{{ r_24 }}</div>
+    <div class="delta">{% if last_recall %}last: {{ last_recall }}{% else %}none{% endif %}</div>
+  </div>
+  <div class="box">
+    <div class="label">Distinct manufacturers</div>
+    <div class="value">{{ "{:,}".format(kpi[2]|int) }}</div>
+    <div class="delta">{{ kpi[3] }} 510(k) submissions</div>
+  </div>
 </div>
 
 <!-- ============= Time series chart ============= -->
@@ -189,10 +195,16 @@
 <!-- ============= Hospitals + bridge ============= -->
 <div class="grid-2">
   <div class="card">
-    <div class="card-title">Top hospitals using this device</div>
-    <p class="card-subtitle">Highest-volume providers from Medicare Part B (2023). Limited to the device-relevant Part B sample we've ingested.</p>
+    <div class="card-title">Top billing physicians (Part B Physician)</div>
+    <p class="card-subtitle">
+      <strong>Note:</strong> Medicare Part B Physician records the <em>individual physician's</em> fee,
+      not the hospital. So these are the top-billing doctors for HCPCS codes mapped to this product —
+      not the hospitals where implants happened. For implantable devices, the bulk of billing flows
+      through inpatient DRGs (Part A), which Part B Physician doesn't see. Hospital-level signal
+      lives in the panel further down (Hospital Compare quality measures).
+    </p>
     <table>
-      <thead><tr><th>Provider</th><th>State</th><th>Services</th><th>Patients</th></tr></thead>
+      <thead><tr><th>Physician</th><th>State</th><th>Services</th><th>Patients</th></tr></thead>
       <tbody>
         {% for r in hosp_rows %}
         <tr>
@@ -229,6 +241,133 @@
     </table>
   </div>
 </div>
+
+<!-- ============= Hospital outcomes (inferential) ============= -->
+<div class="card">
+  <div class="card-title">Hospitals with worst outcomes on this device's relevant quality measure</div>
+  <p class="card-subtitle">
+    <strong>Important:</strong> MAUDE adverse-event reports are anonymized — FDA strips the
+    reporting hospital from public data. We <em>cannot</em> say "this exact event happened at this hospital."
+    {% if measure_link %}
+      Instead, we link this device to its closest CMS Hospital Compare quality measure
+      (<code>{{ measure_link[0] }}</code> — relevant for <strong>{{ measure_link[1] }}</strong>,
+      {{ measure_link[2] }} link) and surface the worst-performing hospitals on that measure.
+      These are statistically the hospitals where this device family's procedures most often go wrong —
+      not proof of a specific event but the closest free signal.
+    {% else %}
+      No quality measure is currently linked to this product code in
+      <code>bridge_product_code_to_measure</code> — extend the bridge to enable this view.
+    {% endif %}
+  </p>
+  <table class="scroll-wrap">
+    <thead>
+      <tr>
+        <th>Hospital</th>
+        <th>State</th>
+        <th>City</th>
+        <th>Score</th>
+        <th>vs National</th>
+        <th>Overall rating</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for r in bad_hospitals %}
+      <tr>
+        <td><strong>{{ (r[0] or '?')[:50] }}</strong></td>
+        <td>{{ r[1] }}</td>
+        <td>{{ r[2] or '—' }}</td>
+        <td style="text-align:right; font-weight:600;">{{ "%.2f"|format(r[3]) }}</td>
+        <td>
+          {% set cmp = (r[4] or '')|lower %}
+          {% if 'worse' in cmp %}<span class="risk risk-high">{{ r[4] }}</span>
+          {% elif 'better' in cmp %}<span class="risk risk-low">{{ r[4] }}</span>
+          {% elif 'no different' in cmp or 'same' in cmp %}<span class="risk risk-med">{{ r[4] }}</span>
+          {% else %}<span style="color:#888;">{{ r[4] or '—' }}</span>{% endif %}
+        </td>
+        <td>{% if r[5] %}<span class="risk risk-{% if r[5]|int <= 2 %}high{% elif r[5]|int <= 3 %}med{% else %}low{% endif %}">{{ r[5] }} ★</span>{% else %}<span style="color:#888;">—</span>{% endif %}</td>
+      </tr>
+      {% endfor %}
+      {% if not bad_hospitals %}<tr><td colspan="6" style="color:#888; text-align:center; padding:1rem;">No quality-measure data linked yet for this product code.</td></tr>{% endif %}
+    </tbody>
+  </table>
+</div>
+
+<!-- ============= MA Serious Reportable Events (hospital-named) ============= -->
+<div class="card" style="border-left: 6px solid #1d4ed8;">
+  <div class="card-title">🏥 Hospitals with reported device adverse events — Massachusetts (the only free public source that names hospitals)</div>
+  <p class="card-subtitle">
+    Public MAUDE strips the reporting hospital. Massachusetts DPH, however, publishes annual workbooks
+    listing every Serious Reportable Event (SRE) by named hospital — including device-related categories
+    like <em>"Device misuse or malfunction"</em> and <em>"Retained foreign object"</em>. This is the only
+    US source within $0 budget where you can say "this hospital had this device adverse event."
+    <br><br>
+    <strong>Caveats:</strong> MA only · 2015-2022 (no 2023+ yet) · the MA event categories are not tied
+    to FDA <code>product_code</code>, so the table below is <em>not</em> filtered to {{ pc }} —
+    these are <strong>all</strong> MA hospitals with any device-related SRE. Other states (NJ, PA, NY,
+    MN, CA, CT) have similar registries but most don't publish at named-hospital granularity.
+  </p>
+  <table class="scroll-wrap">
+    <thead>
+      <tr>
+        <th>Hospital</th>
+        <th>CCN</th>
+        <th>Device-related SREs</th>
+        <th>All SREs</th>
+        <th>Latest year</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for r in ma_sre %}
+      <tr>
+        <td><strong>{{ r[0] }}</strong></td>
+        <td>{% if r[1] %}<code>{{ r[1] }}</code>{% else %}<span style="color:#888;">unmatched</span>{% endif %}</td>
+        <td style="text-align:right; font-weight:600;">
+          {% if r[2] >= 50 %}<span class="risk risk-high">{{ r[2] }}</span>
+          {% elif r[2] >= 10 %}<span class="risk risk-med">{{ r[2] }}</span>
+          {% else %}<span class="risk risk-low">{{ r[2] }}</span>
+          {% endif %}
+        </td>
+        <td style="text-align:right; color:#888;">{{ r[3] }}</td>
+        <td>{{ r[4] }}</td>
+      </tr>
+      {% endfor %}
+      {% if not ma_sre %}<tr><td colspan="5" style="color:#888; text-align:center; padding:1rem;">No MA SRE data ingested yet — run <code>python run.py state-events-ingest</code></td></tr>{% endif %}
+    </tbody>
+  </table>
+  <p class="card-subtitle" style="margin-top:0.5rem; color:#888;">
+    Source: <a href="https://www.mass.gov/info-details/serious-reportable-events-sres-in-massachusetts" target="_blank" style="color:var(--accent);">MA DPH SRE program</a>
+    · NQF Serious Reportable Events list · ingested by <code>src/state_event_ingest.py</code>
+  </p>
+</div>
+
+<!-- ============= FDA 483 inspection letters ============= -->
+{% if fda_483 %}
+<div class="card">
+  <div class="card-title">FDA 483 / warning letter inspections involving manufacturers or providers for this device</div>
+  <p class="card-subtitle">
+    Public FDA inspection records that name a firm tied to this device family. Currently sparse
+    — we have a small TinyFish-scraped sample. A wider scrape would surface more.
+  </p>
+  <table>
+    <thead><tr><th>Firm</th><th>City</th><th>State</th><th>Classification</th><th>Inspected</th></tr></thead>
+    <tbody>
+      {% for r in fda_483 %}
+      <tr>
+        <td><strong>{{ r[0] }}</strong></td>
+        <td>{{ r[1] }}</td>
+        <td>{{ r[2] }}</td>
+        <td>
+          {% if r[3] and 'OAI' in r[3] %}<span class="risk risk-high">{{ r[3] }}</span>
+          {% elif r[3] and 'VAI' in r[3] %}<span class="risk risk-med">{{ r[3] }}</span>
+          {% else %}<span class="risk risk-low">{{ r[3] or '—' }}</span>{% endif %}
+        </td>
+        <td>{{ r[4] }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endif %}
 
 <script>
 (function() {

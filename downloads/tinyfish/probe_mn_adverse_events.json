@@ -1,0 +1,54 @@
+{
+  "slug": "mn_adverse_events",
+  "url": "https://www.health.state.mn.us/facilities/patientsafety/adverseevents/",
+  "ok": true,
+  "raw": {
+    "type": "COMPLETE",
+    "run_id": "89a9dae0-d6bd-4ad9-8889-003d11caeb10",
+    "status": "COMPLETED",
+    "timestamp": "2026-04-28T06:34:35.446Z",
+    "result": {
+      "description": "The website for the Minnesota Department of Health (MDH) Adverse Health Events Reporting System provides public access to hospital-level data through both an interactive search tool and annual PDF report chartbooks. While the site identifies specific hospitals and categorizes adverse events (including medical device malfunctions and retained foreign objects), it does not offer direct downloads in machine-readable formats like CSV or JSON. Data must be extracted from HTML search results or parsed from the PDF annual reports.",
+      "metadata": {
+        "page_loads": true,
+        "shows_named_hospitals": true,
+        "covers_devices": true,
+        "latest_year": 2025,
+        "download_formats": [
+          "pdf",
+          "html"
+        ],
+        "direct_download_urls": [
+          "https://www.health.state.mn.us/facilities/patientsafety/adverseevents/docs/2025ahereport.pdf",
+          "https://www.health.state.mn.us/facilities/patientsafety/adverseevents/docs/2024ahereport.pdf",
+          "https://www.health.state.mn.us/facilities/patientsafety/adverseevents/docs/2023ahereport.pdf"
+        ],
+        "access_model": "free",
+        "sample_event_excerpt": "Retention of a foreign object in a patient after surgery or other procedure",
+        "verdict": "The site is usable for automated ingest via scraping the HTML search results or parsing the PDF chartbooks, though it lacks native machine-readable formats like CSV or an API."
+      }
+    }
+  },
+  "extracted": {
+    "description": "The website for the Minnesota Department of Health (MDH) Adverse Health Events Reporting System provides public access to hospital-level data through both an interactive search tool and annual PDF report chartbooks. While the site identifies specific hospitals and categorizes adverse events (including medical device malfunctions and retained foreign objects), it does not offer direct downloads in machine-readable formats like CSV or JSON. Data must be extracted from HTML search results or parsed from the PDF annual reports.",
+    "metadata": {
+      "page_loads": true,
+      "shows_named_hospitals": true,
+      "covers_devices": true,
+      "latest_year": 2025,
+      "download_formats": [
+        "pdf",
+        "html"
+      ],
+      "direct_download_urls": [
+        "https://www.health.state.mn.us/facilities/patientsafety/adverseevents/docs/2025ahereport.pdf",
+        "https://www.health.state.mn.us/facilities/patientsafety/adverseevents/docs/2024ahereport.pdf",
+        "https://www.health.state.mn.us/facilities/patientsafety/adverseevents/docs/2023ahereport.pdf"
+      ],
+      "access_model": "free",
+      "sample_event_excerpt": "Retention of a foreign object in a patient after surgery or other procedure",
+      "verdict": "The site is usable for automated ingest via scraping the HTML search results or parsing the PDF chartbooks, though it lacks native machine-readable formats like CSV or an API."
+    }
+  },
+  "elapsed_s": 298.1
+}

@@ -266,6 +266,37 @@ ORDER BY (hcpcs_code, product_code);
 -- Ingestion audit log — insert-once per run (finish_ingest_log)
 -- ---------------------------------------------------------------
 
+-- ---------------------------------------------------------------
+-- State-mandated adverse-event registries (hospital-named events).
+-- Currently MA Department of Public Health "Serious Reportable Events"
+-- (NQF SRE list) — the only public US source we've verified that carries
+-- both a hospital identity and device-relevant event categories. MAUDE
+-- doesn't carry a hospital identifier; this table is the bridge.
+--
+-- Ingest source: mass.gov XLSX, one workbook per (year × facility_type).
+-- Variants: acute / non_acute / asc. CCN match only resolves for
+-- acute-care hospitals (the others aren't in cms_hospitals).
+-- ---------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS state_adverse_events (
+    state                String,           -- 'MA' for now; designed to accept MN/NJ later
+    report_year          Int32,            -- calendar year covered by the report
+    facility_type        String,           -- 'acute' | 'non_acute' | 'asc'
+    hospital_name        String,           -- raw name as published by the state
+    state_license_id     Nullable(String), -- e.g. MA's 4-digit licensee number from "(2168)"
+    ccn_match            Nullable(String), -- CMS CCN if name+state match resolved
+    ccn_match_confidence Nullable(String), -- 'exact' | 'fuzzy' | 'none'
+    event_category       String,           -- group header, e.g. 'Product or Device Events'
+    event_type           String,           -- column header, e.g. 'Device misuse or malfunction'
+    is_device_related    UInt8,            -- 1 for device/device-adjacent SREs, 0 otherwise
+    event_count          Int32,            -- number of events reported by this facility
+    source_url           String,           -- direct URL of the XLSX we ingested
+    source_doc_label     Nullable(String), -- human label, e.g. 'CY 2022 acute-care'
+    fetched_at           DateTime64(3) DEFAULT now64(3)
+)
+ENGINE = ReplacingMergeTree(fetched_at)
+ORDER BY (state, report_year, facility_type, hospital_name, event_type);
+
 CREATE TABLE IF NOT EXISTS cms_ingestion_log (
     run_id           String,                  -- uuid generated in Python
     dataset_id       String,
