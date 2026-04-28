@@ -300,11 +300,48 @@
     listing every Serious Reportable Event (SRE) by named hospital — including device-related categories
     like <em>"Device misuse or malfunction"</em> and <em>"Retained foreign object"</em>. This is the only
     US source within $0 budget where you can say "this hospital had this device adverse event."
+  </p>
+
+  <table style="font-size:0.85rem; margin:0.5rem 0; border:1px solid #ddd;">
+    <thead>
+      <tr style="background:#f9fafb;">
+        <th>Source</th><th>Hospital named</th><th>Date</th><th>Device name</th><th>Outcome</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>MA SRE</strong> (this panel)</td>
+          <td><span class="risk risk-low">✓ named</span></td>
+          <td>year only</td>
+          <td><span class="risk risk-high">✗ never</span></td>
+          <td><span class="risk risk-high">✗ never</span></td></tr>
+      <tr><td><strong>MAUDE</strong> (panels above)</td>
+          <td><span class="risk risk-high">✗ FDA-stripped</span></td>
+          <td>day</td>
+          <td><span class="risk risk-low">✓ brand + model</span></td>
+          <td><span class="risk risk-low">✓ injury/death</span></td></tr>
+      <tr><td>State APCD (paid)</td>
+          <td><span class="risk risk-low">✓</span></td>
+          <td>day</td>
+          <td>partial (DRG/HCPCS)</td>
+          <td>partial</td></tr>
+      <tr><td>PACER lawsuits (free, unstructured)</td>
+          <td><span class="risk risk-low">✓</span></td>
+          <td>day</td>
+          <td><span class="risk risk-low">✓ in complaint</span></td>
+          <td><span class="risk risk-low">✓</span></td></tr>
+    </tbody>
+  </table>
+  <p class="card-subtitle">
+    <strong>You can have any two of {hospital, device, date} for free, never all three.</strong> The MA
+    SRE workbook is a 2-row pivot — hospital × event-type counts per year. It does not carry brand,
+    model, day-of-event, or patient outcome (MA DPH redacts those for HIPAA). To name <em>both</em>
+    hospital and device for a specific event, your only paths are paid state claims data or
+    PACER lawsuit filings (when they exist).
     <br><br>
-    <strong>Caveats:</strong> MA only · 2015-2022 (no 2023+ yet) · the MA event categories are not tied
-    to FDA <code>product_code</code>, so the table below is <em>not</em> filtered to {{ pc }} —
-    these are <strong>all</strong> MA hospitals with any device-related SRE. Other states (NJ, PA, NY,
-    MN, CA, CT) have similar registries but most don't publish at named-hospital granularity.
+    <strong>Other caveats:</strong> MA only · 2015-2022 (no 2023+ yet) · the table is <em>not</em>
+    filtered to {{ pc }} — MA's event types are general, not tied to FDA <code>product_code</code>.
+    Other states (NJ, PA, NY, MN, CA, CT) have parallel registries but most don't publish at
+    named-hospital granularity (probe artifacts in <code>downloads/tinyfish/probe_*.json</code>).
   </p>
   <table class="scroll-wrap">
     <thead>
