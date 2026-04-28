@@ -132,6 +132,56 @@ def _compute_cusum_series(monthly_rows, k_mul: float = 0.5, h_mul: float = 5.0,
     return out, alarms
 
 
+def _build_verdict(m_12: int, m_prev: int, yoy_pct, r_24: int, r_lifetime: int,
+                   asof_date=None):
+    """One-sentence plain-English read on a product code's risk posture.
+
+    The numbers on the page are dense (rates, CUSUM, classes, recall counts).
+    A single readable sentence at the top — what the average person would say
+    after looking at this for 60 seconds — is what the user kept asking for
+    when they said "data is not understandable". Returns dict with `level`
+    (high/med/low/none) and `text`.
+    """
+    if m_12 == 0 and r_lifetime == 0:
+        return {"level": "none",
+                "text": "No recent MAUDE activity and no recall history. "
+                        "Either a quiet device or one we haven't ingested data for yet."}
+
+    parts = []
+    if m_prev > 0 and yoy_pct is not None:
+        if yoy_pct >= 50:
+            parts.append(f"MAUDE volume rose <strong>{yoy_pct:+.0f}%</strong> YoY ({m_12:,} vs {m_prev:,}) — a rising-failure signal.")
+        elif yoy_pct >= 10:
+            parts.append(f"MAUDE volume up {yoy_pct:+.0f}% YoY ({m_12:,} vs {m_prev:,}) — modest upward trend.")
+        elif yoy_pct <= -10:
+            parts.append(f"MAUDE volume down {yoy_pct:+.0f}% YoY ({m_12:,} vs {m_prev:,}) — declining failure reports.")
+        else:
+            parts.append(f"MAUDE volume stable YoY ({m_12:,} vs {m_prev:,}, {yoy_pct:+.0f}%).")
+    elif m_12 > 0:
+        parts.append(f"<strong>{m_12:,}</strong> MAUDE events in the last 12 months (no prior-year baseline yet).")
+
+    if r_24 > 0:
+        parts.append(f"<strong>{r_24}</strong> FDA recall(s) in the last 24 months.")
+    elif r_lifetime > 0:
+        parts.append(f"{r_lifetime} historical recall(s) but none in the last 24 months.")
+
+    # Decide level
+    if (yoy_pct is not None and yoy_pct >= 50) and r_24 > 0:
+        level = "high"  # both signals firing — doc's combined uplift case
+    elif (yoy_pct is not None and yoy_pct >= 50) or r_24 > 0:
+        level = "med"
+    elif (yoy_pct is not None and yoy_pct >= 10):
+        level = "med"
+    else:
+        level = "low"
+
+    if asof_date is not None:
+        asof_str = asof_date.isoformat() if hasattr(asof_date, "isoformat") else str(asof_date)
+        parts.append(f'<span style="color:#888;">(MAUDE through {asof_str})</span>')
+
+    return {"level": level, "text": " ".join(parts)}
+
+
 # --------------------------- routes ---------------------------
 
 @app.get("/", response_class=HTMLResponse)
@@ -1012,9 +1062,15 @@ def devices(request: Request, sort: str = "rate"):
     # was producing nonsense rates like 7,000 / 1k — denominator scope
     # already partial (Part B Physician misses inpatient/facility billing),
     # so window-mismatch on top of that was making the column meaningless.
+    #
+    # Anchor windows on max(date_received), not today(): there's typically a
+    # multi-month gap between "now" and the latest ingested MAUDE event, so
+    # today()-anchored windows compare partial-recent vs full-prior and
+    # spuriously show declines.
     cols, rows = q(
         f"""
-        WITH pb_vol AS (
+        WITH (SELECT max(date_received) FROM fda_maude_events FINAL) AS asof,
+        pb_vol AS (
           SELECT b.product_code,
                  anyLast(b.device_category) AS device_category,
                  sum(pb.total_services)     AS proc_volume,
@@ -1027,11 +1083,11 @@ def devices(request: Request, sort: str = "rate"):
         ),
         m_recent AS (
           SELECT d.product_code,
-                 countIf(e.date_received >= today() - INTERVAL 12 MONTH)                  AS maude_12mo,
-                 countIf(e.date_received >= today() - INTERVAL 24 MONTH
-                          AND e.date_received <  today() - INTERVAL 12 MONTH)             AS maude_prev_12mo,
-                 count()                                                                  AS maude_lifetime,
-                 max(e.date_received)                                                     AS maude_latest
+                 countIf(e.date_received >  asof - INTERVAL 12 MONTH AND e.date_received <= asof) AS maude_12mo,
+                 countIf(e.date_received >  asof - INTERVAL 24 MONTH
+                          AND e.date_received <= asof - INTERVAL 12 MONTH)                       AS maude_prev_12mo,
+                 count()                                                                         AS maude_lifetime,
+                 max(e.date_received)                                                            AS maude_latest
           FROM fda_maude_devices d FINAL
           LEFT JOIN fda_maude_events e FINAL ON d.report_number = e.report_number
           WHERE d.product_code IS NOT NULL
@@ -1138,6 +1194,36 @@ def device_detail(request: Request, product_code: str):
     )
     kpi = kpi[0] if kpi else (0, 0, 0, 0, 0)
 
+    # Trend metrics for the plain-English verdict at the top of the page.
+    # Anchor the 12-month window on the latest MAUDE date for this PC, NOT
+    # today() — there's typically a multi-month lag between "now" and the
+    # latest ingested MAUDE event, so today()-anchored windows compare
+    # partial-year-recent to full-year-prior and falsely show declines.
+    _, trend = q(
+        """
+        WITH (SELECT max(e.date_received)
+                FROM fda_maude_devices d FINAL
+                JOIN fda_maude_events  e FINAL ON d.report_number = e.report_number
+               WHERE d.product_code = {pc:String}) AS asof
+        SELECT
+          countIf(e.date_received >  asof - INTERVAL 12 MONTH AND e.date_received <= asof) AS m_12,
+          countIf(e.date_received >  asof - INTERVAL 24 MONTH
+                   AND e.date_received <= asof - INTERVAL 12 MONTH)                       AS m_prev,
+          (SELECT countIf(recall_initiation_date >= today() - INTERVAL 24 MONTH)
+             FROM fda_recalls WHERE product_code = {pc:String})                           AS r_24,
+          asof                                                                            AS asof_date
+        FROM fda_maude_devices d FINAL
+        LEFT JOIN fda_maude_events e FINAL ON d.report_number = e.report_number
+        WHERE d.product_code = {pc:String}
+        """,
+        {"pc": pc},
+    )
+    trend = trend[0] if trend else (0, 0, 0, None)
+    m_12, m_prev, r_24 = int(trend[0] or 0), int(trend[1] or 0), int(trend[2] or 0)
+    asof_date = trend[3]
+    yoy_pct = round((m_12 - m_prev) * 100.0 / m_prev, 1) if m_prev > 0 else None
+    verdict = _build_verdict(m_12, m_prev, yoy_pct, r_24, kpi[1] or 0, asof_date)
+
     # Time-series: MAUDE events by month for the last 5 yrs. Monthly cadence
     # gives the CUSUM detector enough resolution to flag a 60-90 day pre-recall
     # rise; quarterly was too coarse.
@@ -1186,12 +1272,34 @@ def device_detail(request: Request, product_code: str):
         {"pc": pc},
     )
 
-    # Recall history (fda_recalls schema: recall_class / firm_name / recall_initiation_date)
+    # Recall history with per-recall lead-time annotation. For each recall, count
+    # MAUDE events in the 90 days *before* the recall vs the 90-180 day window
+    # before — if the prior window rose materially, that's the doc's headline
+    # 60-90 day pre-recall lead-time signal made concrete on the row itself.
     _, recall_rows = q(
-        "SELECT recall_number, recall_class, firm_name, "
-        "       product_description, reason_for_recall, recall_initiation_date "
-        "FROM fda_recalls WHERE product_code = {pc:String} "
-        "ORDER BY recall_initiation_date DESC NULLS LAST LIMIT 30",
+        """
+        SELECT
+          r.recall_number,
+          r.recall_class,
+          r.firm_name,
+          r.product_description,
+          r.reason_for_recall,
+          r.recall_initiation_date,
+          (SELECT count() FROM fda_maude_devices d FINAL
+            JOIN fda_maude_events e FINAL ON d.report_number = e.report_number
+           WHERE d.product_code = {pc:String}
+             AND e.date_received >= r.recall_initiation_date - INTERVAL 90 DAY
+             AND e.date_received <  r.recall_initiation_date)                     AS m_pre_90,
+          (SELECT count() FROM fda_maude_devices d FINAL
+            JOIN fda_maude_events e FINAL ON d.report_number = e.report_number
+           WHERE d.product_code = {pc:String}
+             AND e.date_received >= r.recall_initiation_date - INTERVAL 180 DAY
+             AND e.date_received <  r.recall_initiation_date - INTERVAL 90 DAY)   AS m_pre_180_90
+        FROM fda_recalls r
+        WHERE r.product_code = {pc:String}
+        ORDER BY r.recall_initiation_date DESC NULLS LAST
+        LIMIT 30
+        """,
         {"pc": pc},
     )
 
@@ -1237,6 +1345,8 @@ def device_detail(request: Request, product_code: str):
             "pc": pc, "header": header,
             "hcpcs_rows": hcpcs_rows,
             "kpi": kpi, "rate_per_1k": rate_per_1k,
+            "verdict": verdict,
+            "m_12": m_12, "m_prev": m_prev, "yoy_pct": yoy_pct, "r_24": r_24,
             "ts_rows": ts_rows,
             "cusum_alarms": cusum_alarms,
             "last_alarm": last_alarm,
@@ -1507,6 +1617,26 @@ def risk_detail(request: Request, ccn: str, device_category: str):
         crosswalk_by_type[c["code_type"]].append(c)
     crosswalk_by_type = dict(crosswalk_by_type)
 
+    # State-mandated adverse-event registries (currently MA SREs) — the only
+    # public source that links a *named hospital* to a device-relevant event.
+    # We surface every device-related SRE this hospital reported, regardless
+    # of which device_category page is being viewed, because MA reports are
+    # not coded to FDA product_code — the link is hospital-level, not
+    # device-family-specific.
+    sae_cols, sae_rows = _pg_rows(
+        """SELECT report_year, facility_type, event_category, event_type,
+                  is_device_related, sum(event_count) AS total_events,
+                  any(source_url) AS source_url
+             FROM state_adverse_events FINAL
+            WHERE ccn_match = %s
+            GROUP BY report_year, facility_type, event_category, event_type,
+                     is_device_related
+            ORDER BY report_year DESC, total_events DESC""",
+        [ccn],
+    )
+    state_events = [dict(zip(sae_cols, r)) for r in sae_rows]
+    state_events_device = [r for r in state_events if r.get("is_device_related")]
+
     # FDA device classification for this category's product_code(s)
     cls_cols, cls_rows = _pg_rows(
         """SELECT DISTINCT c.product_code, c.device_name, c.device_class,
@@ -1532,5 +1662,7 @@ def risk_detail(request: Request, ccn: str, device_category: str):
             "provenance": provenance,
             "crosswalk_by_type": crosswalk_by_type,
             "classification": classification,
+            "state_events": state_events,
+            "state_events_device": state_events_device,
         },
     )

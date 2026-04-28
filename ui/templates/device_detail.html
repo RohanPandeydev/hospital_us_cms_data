@@ -18,6 +18,26 @@
   <p><a href="/devices" style="color:var(--accent);">← back to all devices</a></p>
 </div>
 
+{# One-sentence plain-English verdict — first thing the user sees, summarising the dense numbers below. #}
+{% if verdict %}
+<div class="card" style="border-left: 6px solid
+  {% if verdict.level == 'high' %}#dc2626
+  {% elif verdict.level == 'med' %}#f59e0b
+  {% elif verdict.level == 'low' %}#16a34a
+  {% else %}#6b7280{% endif %};
+  padding: 1rem 1.25rem; margin-bottom: 1rem; background: var(--bg-soft, #f9fafb);">
+  <div style="display:flex; align-items:center; gap:0.6rem;">
+    <span style="font-size:1.5rem;">
+      {% if verdict.level == 'high' %}🔴
+      {% elif verdict.level == 'med' %}🟡
+      {% elif verdict.level == 'low' %}🟢
+      {% else %}⚪{% endif %}
+    </span>
+    <div style="font-size:0.95rem; line-height:1.5;">{{ verdict.text|safe }}</div>
+  </div>
+</div>
+{% endif %}
+
 <!-- ============= Risk banner ============= -->
 {% if rate_per_1k is not none %}
 <div class="card" style="background:
@@ -115,8 +135,13 @@
 
 <!-- ============= Recall history ============= -->
 <div class="card">
-  <div class="card-title">Recall history</div>
-  <p class="card-subtitle">All FDA recalls for this product_code. Class I = serious harm/death possible; Class II = temporary harm; Class III = unlikely harm.</p>
+  <div class="card-title">Recall history with pre-recall MAUDE lead-time</div>
+  <p class="card-subtitle">
+    Class I = serious harm/death possible; Class II = temporary harm; Class III = unlikely harm.
+    The <strong>Lead-time</strong> column compares MAUDE volume in the 90 days <em>before</em> each recall
+    to the 90-180 day window before — concretely tests the doc's claim that adverse-event reports
+    rise 60-90 days ahead of FDA action. Empty rows = no MAUDE data ingested for that period yet.
+  </p>
   <table class="scroll-wrap">
     <thead>
       <tr>
@@ -125,10 +150,13 @@
         <th>Recalling Firm</th>
         <th>Product</th>
         <th>Reason</th>
+        <th>Lead-time (90d pre)</th>
       </tr>
     </thead>
     <tbody>
       {% for r in recall_rows %}
+      {# r layout: 0 number, 1 class, 2 firm, 3 product_desc, 4 reason, 5 date,
+         6 m_pre_90, 7 m_pre_180_90 #}
       <tr>
         <td style="white-space:nowrap;">{{ r[5] }}</td>
         <td>
@@ -139,9 +167,21 @@
         <td>{{ (r[2] or '?')[:40] }}</td>
         <td style="font-size:0.85rem;">{{ (r[3] or '')[:120] }}{% if (r[3] or '')|length > 120 %}…{% endif %}</td>
         <td style="font-size:0.85rem;">{{ (r[4] or '')[:120] }}{% if (r[4] or '')|length > 120 %}…{% endif %}</td>
+        <td style="white-space:nowrap; font-size:0.85rem;">
+          {% set pre = r[6]|int %}
+          {% set base = r[7]|int %}
+          {% if pre == 0 and base == 0 %}<span style="color:#888;">no MAUDE</span>
+          {% elif base == 0 %}<span style="color:#666;">{{ pre }} pre · no baseline</span>
+          {% else %}
+            {% set chg = ((pre - base) * 100.0 / base)|round(0,'common')|int %}
+            <span class="risk risk-{% if chg >= 50 %}high{% elif chg >= 10 %}med{% else %}low{% endif %}">
+              {{ pre }} vs {{ base }} ({{ '%+d'|format(chg) }}%)
+            </span>
+          {% endif %}
+        </td>
       </tr>
       {% endfor %}
-      {% if not recall_rows %}<tr><td colspan="5" style="color:#888;text-align:center;padding:1rem;">no recalls — clean record</td></tr>{% endif %}
+      {% if not recall_rows %}<tr><td colspan="6" style="color:#888;text-align:center;padding:1rem;">no recalls — clean record</td></tr>{% endif %}
     </tbody>
   </table>
 </div>
