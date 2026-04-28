@@ -33,11 +33,17 @@
   <div class="card-title">Ranked product codes</div>
   <p class="card-subtitle">
     Sort by:
-    <a href="?sort=trend"  {% if sort=='trend'  %}style="font-weight:700;"{% endif %}>YoY MAUDE % change</a> ·
-    <a href="?sort=maude"  {% if sort=='maude'  %}style="font-weight:700;"{% endif %}>MAUDE last 12mo</a> ·
-    <a href="?sort=rate"   {% if sort=='rate'   %}style="font-weight:700;"{% endif %}>rate / 1k</a> ·
-    <a href="?sort=vol"    {% if sort=='vol'    %}style="font-weight:700;"{% endif %}>procedure volume</a> ·
-    <a href="?sort=recall" {% if sort=='recall' %}style="font-weight:700;"{% endif %}>recalls 24mo</a>
+    <a href="?sort=trend&device_class={{ device_class }}"  {% if sort=='trend'  %}style="font-weight:700;"{% endif %}>YoY MAUDE % change</a> ·
+    <a href="?sort=maude&device_class={{ device_class }}"  {% if sort=='maude'  %}style="font-weight:700;"{% endif %}>MAUDE last 12mo</a> ·
+    <a href="?sort=rate&device_class={{ device_class }}"   {% if sort=='rate'   %}style="font-weight:700;"{% endif %}>rate / 1k</a> ·
+    <a href="?sort=vol&device_class={{ device_class }}"    {% if sort=='vol'    %}style="font-weight:700;"{% endif %}>procedure volume</a> ·
+    <a href="?sort=recall&device_class={{ device_class }}" {% if sort=='recall' %}style="font-weight:700;"{% endif %}>recalls 24mo</a>
+    &nbsp; | &nbsp;
+    Filter to FDA risk class:
+    <a href="?sort={{ sort }}&device_class="  {% if device_class=='' %}style="font-weight:700;"{% endif %}>all</a> ·
+    <a href="?sort={{ sort }}&device_class=1" {% if device_class=='1' %}style="font-weight:700;"{% endif %}>Class I (low)</a> ·
+    <a href="?sort={{ sort }}&device_class=2" {% if device_class=='2' %}style="font-weight:700;"{% endif %}>Class II (moderate)</a> ·
+    <a href="?sort={{ sort }}&device_class=3" {% if device_class=='3' %}style="font-weight:700;"{% endif %}><strong>Class III</strong> (highest — implants/life-sustaining)</a>
   </p>
 
   <table class="scroll-wrap">

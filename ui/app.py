@@ -1062,7 +1062,7 @@ def crosswalk(request: Request, device_category: str = "", code_type: str = "",
 
 
 @app.get("/devices", response_class=HTMLResponse)
-def devices(request: Request, sort: str = "rate"):
+def devices(request: Request, sort: str = "rate", device_class: str = ""):
     """Device-centric recall-prediction view.
 
     Joins Part B procedure volume × MAUDE adverse-event count × Recall history
@@ -1147,8 +1147,10 @@ def devices(request: Request, sort: str = "rate"):
         LEFT JOIN r         ON v.product_code = r.product_code
         LEFT JOIN c         ON v.product_code = c.product_code
         WHERE v.proc_volume >= 100  -- drop noise: PCs with <100 Part B services aren't comparable
+          AND ({{cls:String}} = '' OR c.device_class = {{cls:String}})
         ORDER BY {sort_sql}
         """,
+        {"cls": device_class},
     )
 
     _, kpi = q(
@@ -1170,6 +1172,7 @@ def devices(request: Request, sort: str = "rate"):
             "request": request, "active": "devices",
             "cols": cols, "rows": rows,
             "kpi": kpi, "sort": sort,
+            "device_class": device_class,
         },
     )
 
