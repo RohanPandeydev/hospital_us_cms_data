@@ -1455,6 +1455,24 @@ def device_detail(request: Request, product_code: str):
         """,
     )
 
+    # Detail rows — every device-related SRE with hospital, year, what
+    # event category and event type, and the count. This is what the user
+    # gets when they ask "what actually happened" — each row is a real
+    # filed adverse event from a named MA hospital.
+    _, ma_sre_detail = q(
+        """
+        SELECT hospital_name, ccn_match, report_year,
+               event_category, event_type, event_count
+        FROM state_adverse_events
+        WHERE state = 'MA'
+          AND is_device_related = 1
+          AND lower(hospital_name) != 'total'
+          AND event_count > 0
+        ORDER BY report_year DESC, event_count DESC, hospital_name
+        LIMIT 200
+        """,
+    )
+
     rate_per_1k = (kpi[0] * 1000.0 / kpi[4]) if (kpi[4] and kpi[4] > 0) else None
 
     # Lightweight summary surfaced in the page header so the data is readable
@@ -1494,6 +1512,7 @@ def device_detail(request: Request, product_code: str):
             "bad_hospitals": bad_hospitals,
             "fda_483": fda_483,
             "ma_sre": ma_sre,
+            "ma_sre_detail": ma_sre_detail,
         },
     )
 

@@ -334,6 +334,49 @@
       {% if not ma_sre %}<tr><td colspan="5" style="color:#888; text-align:center; padding:1rem;">No MA SRE data ingested yet — run <code>python run.py state-events-ingest</code></td></tr>{% endif %}
     </tbody>
   </table>
+
+  {% if ma_sre_detail %}
+  <details style="margin-top:1rem;">
+    <summary style="cursor:pointer; font-weight:600; padding:0.5rem 0;">
+      📋 Show all {{ ma_sre_detail|length }} individual device-related event rows
+      (hospital × year × event type)
+    </summary>
+    <p class="card-subtitle" style="margin-top:0.5rem;">
+      Each row is a single (hospital, year, event-type) bucket from the MA DPH workbook.
+      The <strong>count</strong> column is how many of that event type that hospital reported in that year.
+    </p>
+    <table class="scroll-wrap">
+      <thead>
+        <tr>
+          <th>Year</th>
+          <th>Hospital</th>
+          <th>CCN</th>
+          <th>Event category</th>
+          <th>Event type</th>
+          <th>Count</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for r in ma_sre_detail %}
+        <tr>
+          <td><strong>{{ r[2] }}</strong></td>
+          <td>{{ r[0] }}</td>
+          <td>{% if r[1] %}<code style="font-size:0.75rem;">{{ r[1] }}</code>{% else %}<span style="color:#888; font-size:0.75rem;">—</span>{% endif %}</td>
+          <td style="font-size:0.85rem;">{{ r[3] }}</td>
+          <td style="font-size:0.85rem;"><strong>{{ r[4] }}</strong></td>
+          <td style="text-align:right;">
+            {% if r[5] >= 5 %}<span class="risk risk-high">{{ r[5] }}</span>
+            {% elif r[5] >= 2 %}<span class="risk risk-med">{{ r[5] }}</span>
+            {% else %}<span class="risk risk-low">{{ r[5] }}</span>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </details>
+  {% endif %}
+
   <p class="card-subtitle" style="margin-top:0.5rem; color:#888;">
     Source: <a href="https://www.mass.gov/info-details/serious-reportable-events-sres-in-massachusetts" target="_blank" style="color:var(--accent);">MA DPH SRE program</a>
     · NQF Serious Reportable Events list · ingested by <code>src/state_event_ingest.py</code>
