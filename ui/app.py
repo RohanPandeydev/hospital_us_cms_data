@@ -1062,7 +1062,7 @@ def crosswalk(request: Request, device_category: str = "", code_type: str = "",
 
 
 @app.get("/devices", response_class=HTMLResponse)
-def devices(request: Request, sort: str = "rate", device_class: str = ""):
+def devices(request: Request, sort: str = "trend", device_class: str = ""):
     """Device-centric recall-prediction view.
 
     Joins Part B procedure volume × MAUDE adverse-event count × Recall history
@@ -1166,11 +1166,27 @@ def devices(request: Request, sort: str = "rate", device_class: str = ""):
     )
     kpi = kpi[0] if kpi else (0, 0, 0, 0, 0)
 
+    # Bucket the rows by FDA risk class so the template can render three
+    # separate sections (Class III shown first — highest risk, most relevant
+    # for the predictor's recall-attribution use case).
+    by_class = {"3": [], "2": [], "1": [], "other": []}
+    for r in rows:
+        cls = (r[3] or "").strip() if len(r) > 3 else ""
+        if cls in ("3", "III"):
+            by_class["3"].append(r)
+        elif cls in ("2", "II"):
+            by_class["2"].append(r)
+        elif cls in ("1", "I"):
+            by_class["1"].append(r)
+        else:
+            by_class["other"].append(r)
+
     return TEMPLATES.TemplateResponse(
         "devices.html",
         {
             "request": request, "active": "devices",
             "cols": cols, "rows": rows,
+            "rows_by_class": by_class,
             "kpi": kpi, "sort": sort,
             "device_class": device_class,
         },
