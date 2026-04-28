@@ -3,14 +3,22 @@
 {% block content %}
 <div class="page-header">
   <h1>🩺 Device Recall Predictor</h1>
-  <p>Per-product-code recall risk: Medicare procedure volume × FDA MAUDE adverse-event count × prior recalls. The doc's <code>complaint_rate_per_1k_procedures</code> feature, computed end-to-end.</p>
+  <p>Per-product-code risk dashboard. Each row is one FDA <code>product_code</code> linked to its
+  Medicare procedure volume (CMS Part B), recent MAUDE adverse-event activity, and FDA recall history.</p>
 </div>
 
 <div class="explain">
-  <strong>How this is built:</strong>
-  Part B Physician procedure volume (CMS, by HCPCS) <strong>÷</strong> MAUDE adverse-event count (FDA, by product_code), bridged via <code>bridge_hcpcs_to_product_code</code>.
-  <strong>Higher rate = more reported failures per 1,000 billed procedures.</strong>
-  Caveats: MAUDE is known to underreport (doc cites 30-50% capture); high-volume devices naturally show more raw events even when safe.
+  <strong>How to read this table:</strong>
+  <ul style="margin:0.5rem 0 0 1rem; padding:0;">
+    <li><strong>MAUDE 12mo / Prev 12mo / YoY %</strong> — adverse-event volume in the most recent 12 months,
+        the prior 12 months, and the percent change. <span class="risk risk-high">red ≥ +50%</span> is a
+        rising failure trend (the doc's complication-velocity signal).</li>
+    <li><strong>Recalls 24mo</strong> — FDA recalls initiated in the last 24 months. A non-zero number
+        plus a rising MAUDE % is the strongest combined signal in the doc (22% recall-probability uplift).</li>
+    <li><strong>Rate / 1k procs</strong> — MAUDE events 12mo ÷ Part B annual procedures × 1000. Apples-to-apples
+        12-month-over-12-month — but note Part B Physician misses inpatient and facility-billed procedures, so the
+        denominator is partial for implantables.</li>
+  </ul>
 </div>
 
 <div class="kpi">
@@ -25,42 +33,68 @@
   <div class="card-title">Ranked product codes</div>
   <p class="card-subtitle">
     Sort by:
-    <a href="?sort=rate" {% if sort=='rate' %}style="font-weight:700;"{% endif %}>rate / 1k</a> ·
-    <a href="?sort=vol" {% if sort=='vol' %}style="font-weight:700;"{% endif %}>volume</a> ·
-    <a href="?sort=maude" {% if sort=='maude' %}style="font-weight:700;"{% endif %}>maude count</a> ·
-    <a href="?sort=recall" {% if sort=='recall' %}style="font-weight:700;"{% endif %}>recalls</a>
+    <a href="?sort=trend"  {% if sort=='trend'  %}style="font-weight:700;"{% endif %}>YoY MAUDE % change</a> ·
+    <a href="?sort=maude"  {% if sort=='maude'  %}style="font-weight:700;"{% endif %}>MAUDE last 12mo</a> ·
+    <a href="?sort=rate"   {% if sort=='rate'   %}style="font-weight:700;"{% endif %}>rate / 1k</a> ·
+    <a href="?sort=vol"    {% if sort=='vol'    %}style="font-weight:700;"{% endif %}>procedure volume</a> ·
+    <a href="?sort=recall" {% if sort=='recall' %}style="font-weight:700;"{% endif %}>recalls 24mo</a>
   </p>
 
   <table class="scroll-wrap">
     <thead>
       <tr>
-        <th>Product Code</th>
-        <th>Device Category (bridge)</th>
-        <th>Device Name (FDA)</th>
+        <th>PC</th>
+        <th>Device</th>
         <th>Class</th>
-        <th>Procedure Volume</th>
-        <th>Beneficiaries</th>
-        <th>Providers</th>
-        <th>MAUDE Events</th>
-        <th>Recalls</th>
-        <th>Rate / 1k procs</th>
+        <th>Procs/yr</th>
+        <th>MAUDE 12mo</th>
+        <th>MAUDE prev 12mo</th>
+        <th>YoY %</th>
+        <th>Recalls 24mo</th>
+        <th>Latest recall</th>
+        <th>Rate /1k</th>
       </tr>
     </thead>
     <tbody>
       {% for r in rows %}
+      {# r layout:
+         0 product_code  1 device_category  2 device_name  3 device_class
+         4 proc_volume   5 bene_count       6 providers
+         7 maude_12mo    8 maude_prev_12mo  9 maude_lifetime  10 maude_latest
+         11 recall_24mo 12 recall_lifetime  13 recall_latest
+         14 rate_per_1k 15 maude_pct_change #}
       <tr>
         <td><a href="/devices/{{ r[0] }}" style="color:var(--accent);"><strong>{{ r[0] }}</strong></a></td>
-        <td><code style="font-size:0.8rem;">{{ r[1] or '—' }}</code></td>
-        <td>{{ (r[2] or '—')[:40] }}</td>
+        <td>
+          <div style="font-weight:600;">{{ (r[2] or '—')[:50] }}</div>
+          <div style="color:#888; font-size:0.75rem;">{{ r[1] or '' }}</div>
+        </td>
         <td>{% if r[3] %}<span class="risk risk-{% if r[3] in ('3','III') %}high{% elif r[3] in ('2','II') %}med{% else %}low{% endif %}">{{ r[3] }}</span>{% else %}—{% endif %}</td>
         <td style="text-align:right;">{{ "{:,}".format(r[4]|int) }}</td>
-        <td style="text-align:right;">{{ "{:,}".format(r[5]|int) }}</td>
-        <td style="text-align:right;">{{ "{:,}".format(r[6]|int) }}</td>
-        <td style="text-align:right;">{{ "{:,}".format(r[7]|int) }}</td>
-        <td style="text-align:right;">{{ "{:,}".format(r[8]|int) }}</td>
+        <td style="text-align:right; font-weight:600;">{{ "{:,}".format(r[7]|int) }}</td>
+        <td style="text-align:right; color:#888;">{{ "{:,}".format(r[8]|int) }}</td>
         <td style="text-align:right;">
-          {% set rate = r[9] or 0 %}
-          {% if rate >= 10 %}<span class="risk risk-high">{{ "%.2f"|format(rate) }}</span>
+          {% set yoy = r[15] %}
+          {% if yoy is none %}<span style="color:#888;">—</span>
+          {% elif yoy >= 50 %}<span class="risk risk-high">{{ "+%.0f"|format(yoy) }}%</span>
+          {% elif yoy >= 10 %}<span class="risk risk-med">{{ "+%.0f"|format(yoy) }}%</span>
+          {% elif yoy <= -10 %}<span class="risk risk-low">{{ "%.0f"|format(yoy) }}%</span>
+          {% else %}<span style="color:#888;">{{ "%+.0f"|format(yoy) }}%</span>
+          {% endif %}
+        </td>
+        <td style="text-align:right;">
+          {% if (r[11] or 0) > 0 %}<span class="risk risk-high">{{ r[11] }}</span>
+          {% elif (r[12] or 0) > 0 %}<span style="color:#888;">{{ r[12] }} (older)</span>
+          {% else %}<span style="color:#888;">0</span>
+          {% endif %}
+        </td>
+        <td style="white-space:nowrap; color:#888; font-size:0.8rem;">
+          {% if r[13] %}{{ r[13] }}{% else %}—{% endif %}
+        </td>
+        <td style="text-align:right;">
+          {% set rate = r[14] %}
+          {% if rate is none or rate == 0 %}<span style="color:#888;">—</span>
+          {% elif rate >= 10 %}<span class="risk risk-high">{{ "%.2f"|format(rate) }}</span>
           {% elif rate >= 1 %}<span class="risk risk-med">{{ "%.2f"|format(rate) }}</span>
           {% else %}<span class="risk risk-low">{{ "%.3f"|format(rate) }}</span>
           {% endif %}
@@ -69,7 +103,7 @@
       {% endfor %}
       {% if not rows %}
       <tr><td colspan="10" style="text-align:center;color:#888;padding:2rem;">
-        No joined rows yet. Run the targeted Part B ingest to populate <code>cms_provider_summary</code>.
+        No joined rows yet. Run the targeted Part B ingest + MAUDE refresh to populate.
       </td></tr>
       {% endif %}
     </tbody>
@@ -78,8 +112,8 @@
 
 <div class="explain" style="margin-top:1rem;">
   <strong>What's still missing for the doc's full prediction:</strong>
-  CUSUM time-series detector (needs MAUDE refresh past 2020),
-  <code>manufacturer_payment_slope</code> (needs OP 2022/2023 backfill — wired, smoke-loaded only),
-  T8x complication-rate (Part B aggregated state, smoke-loaded only).
+  full Open Payments 2022 / 2023 backfill (currently 10K smoke each — slope is noisy on the
+  <a href="/manufacturers">Manufacturers</a> page), T8x complication-rate from Part B aggregated state
+  (smoke-loaded), and full historical MAUDE pre-2024 (in progress — 2024-2025 first).
 </div>
 {% endblock %}

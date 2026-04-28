@@ -460,29 +460,28 @@ def _fda_event_tuple(row):
 
 
 FDA_DEVICE_COLUMNS = [
-    "report_number", "seq", "product_code", "brand_name", "generic_name",
+    # id is the ReplacingMergeTree PK — without a unique id, every (report_number, seq)
+    # device row defaults to id=0 and the engine collapses them all to one global row.
+    "id", "report_number", "seq", "product_code", "brand_name", "generic_name",
     "manufacturer", "model_number", "catalog_number", "lot_number",
     "udi_di", "udi_public", "device_age", "device_availability", "raw",
 ]
 
 
+def _device_id(report_number, seq):
+    """Deterministic 63-bit Int64 from (report_number, seq).
+
+    Stable id means re-ingesting the same (report_number, seq) overwrites
+    the prior row instead of accumulating duplicates."""
+    return hash((report_number, seq)) & 0x7FFF_FFFF_FFFF_FFFF
+
+
 def _replace_fda_devices(conn, events):
-    """Clear existing device rows for these report_numbers, then insert fresh.
-
-    DELETE on ClickHouse is a mutation — slow under heavy write load but fine
-    for our cadence (ingests run periodically, not continuously).
+    """Upsert device rows for each event. ReplacingMergeTree on a deterministic
+    id handles the dedup; no DELETE needed (and the prior DELETE was racing
+    against the INSERT — the async mutation often deleted the freshly-written
+    rows, which is why MAUDE devices looked nearly empty for refreshed PCs).
     """
-    report_numbers = [e.get("report_number") for e in events if e.get("report_number")]
-    if not report_numbers:
-        return
-
-    client = conn.client if isinstance(conn, _ConnWrapper) else conn
-    # Build an IN list safely via clickhouse_connect parameters
-    client.command(
-        "ALTER TABLE fda_maude_devices DELETE WHERE report_number IN {rns:Array(String)}",
-        parameters={"rns": report_numbers},
-    )
-
     values = []
     for event in events:
         rn = event.get("report_number")
@@ -490,6 +489,7 @@ def _replace_fda_devices(conn, events):
             continue
         for i, dev in enumerate(event.get("device") or [], start=1):
             values.append((
+                _device_id(rn, i),
                 rn, i,
                 dev.get("device_report_product_code"),
                 dev.get("brand_name"),
@@ -505,7 +505,8 @@ def _replace_fda_devices(conn, events):
                 dev.get("device_availability"),
                 _raw_json(dev),
             ))
-    _insert(conn, "fda_maude_devices", FDA_DEVICE_COLUMNS, values)
+    if values:
+        _insert(conn, "fda_maude_devices", FDA_DEVICE_COLUMNS, values)
 
 
 def upsert_fda_events(conn, rows):

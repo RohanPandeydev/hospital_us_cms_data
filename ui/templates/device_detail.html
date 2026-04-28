@@ -57,13 +57,23 @@
 
 <!-- ============= Time series chart ============= -->
 <div class="card">
-  <div class="card-title">MAUDE events by quarter</div>
+  <div class="card-title">MAUDE events by month — with CUSUM velocity & recall markers</div>
   <p class="card-subtitle">
-    Volume of adverse-event reports over time. The doc's <code>cms_complication_velocity</code> CUSUM detector
-    would fire when the slope rises sharply — change-point detection on this series gives a 60-90 day pre-recall lead time.
-    {% if not ts_rows %}<br><strong>No data:</strong> MAUDE re-ingest required (currently stale at 2020-04).{% endif %}
+    The bars are monthly adverse-event volume. The orange line is the
+    <strong>CUSUM statistic</strong> — Page's classic change-point detector. It accumulates how
+    much the recent series is above the device's own 12-month baseline; a red ⚠ above the bar marks
+    a month the statistic crossed 4σ (an alarm). Vertical red lines mark FDA recall-initiation dates,
+    so you can see whether MAUDE rose <em>before</em> a recall (the doc's claim of 60-90 days lead).
+    {% if not ts_rows %}<br><strong>No data yet</strong> — MAUDE refresh in progress for this product code.{% endif %}
   </p>
-  <div class="chart-container" style="height:280px;">
+  {% if last_alarm or last_recall %}
+  <p class="card-subtitle" style="margin-top:0.5rem;">
+    {% if last_alarm %}<span class="risk risk-high">⚠ last CUSUM alarm: {{ last_alarm }}</span>{% endif %}
+    {% if last_recall %}&nbsp;<span class="risk risk-med">last recall: {{ last_recall }}</span>{% endif %}
+    &nbsp;<span style="color:#888;">{{ cusum_alarms|length }} alarm month(s) in the last 60 mo.</span>
+  </p>
+  {% endif %}
+  <div class="chart-container" style="height:320px;">
     <canvas id="tsChart"></canvas>
   </div>
 </div>
@@ -182,28 +192,88 @@
 
 <script>
 (function() {
-  const ts = {{ ts_rows | tojson }};
+  const ts = {{ ts_rows | tojson }};        // [date, count, cusum, alarm_bool]
+  const recalls = {{ recall_marks | tojson }}; // [date, recall_class, n]
   if (!ts || ts.length === 0) return;
   const ctx = document.getElementById('tsChart');
   if (!ctx) return;
+
+  const labels = ts.map(r => r[0]);
+  const counts = ts.map(r => r[1]);
+  const cusum  = ts.map(r => r[2]);
+  // Alarm point overlay: render only on alarm months as a small red ⚠.
+  const alarmPoints = ts.map(r => r[3] ? r[1] : null);
+
+  // Recall-marker dataset: vertical-line effect via tall null-bordered points.
+  // We attach one synthetic dataset that places a red triangle on the recall month.
+  const recallByMonth = {};
+  recalls.forEach(r => { recallByMonth[r[0]] = r[1]; });
+  const recallPoints = labels.map(d => recallByMonth[d] ? Math.max(...counts, 1) * 1.05 : null);
+
   new Chart(ctx, {
-    type: 'line',
+    type: 'bar',
     data: {
-      labels: ts.map(r => r[0]),
-      datasets: [{
-        label: 'MAUDE events',
-        data: ts.map(r => r[1]),
-        borderColor: '#dc2626',
-        backgroundColor: 'rgba(220, 38, 38, 0.1)',
-        fill: true,
-        tension: 0.3,
-        pointRadius: 2,
-      }]
+      labels,
+      datasets: [
+        {
+          type: 'bar',
+          label: 'MAUDE events',
+          data: counts,
+          backgroundColor: 'rgba(220, 38, 38, 0.55)',
+          borderColor: '#dc2626',
+          borderWidth: 1,
+          yAxisID: 'y',
+          order: 3,
+        },
+        {
+          type: 'line',
+          label: 'CUSUM statistic',
+          data: cusum,
+          borderColor: '#f59e0b',
+          backgroundColor: 'rgba(245, 158, 11, 0.1)',
+          tension: 0.25,
+          pointRadius: 2,
+          fill: false,
+          yAxisID: 'y2',
+          order: 1,
+        },
+        {
+          type: 'scatter',
+          label: '⚠ CUSUM alarm',
+          data: alarmPoints.map((y, i) => y == null ? null : { x: labels[i], y }),
+          backgroundColor: '#7f1d1d',
+          borderColor: '#7f1d1d',
+          pointStyle: 'triangle',
+          pointRadius: 8,
+          showLine: false,
+          yAxisID: 'y',
+          order: 0,
+        },
+        {
+          type: 'scatter',
+          label: 'FDA recall',
+          data: recallPoints.map((y, i) => y == null ? null : { x: labels[i], y }),
+          backgroundColor: '#1d4ed8',
+          borderColor: '#1d4ed8',
+          pointStyle: 'rectRot',
+          pointRadius: 7,
+          showLine: false,
+          yAxisID: 'y',
+          order: 0,
+        }
+      ]
     },
     options: {
       maintainAspectRatio: false,
-      scales: { y: { beginAtZero: true, title: { display: true, text: 'events / quarter' } } },
-      plugins: { legend: { display: false } },
+      interaction: { mode: 'index', intersect: false },
+      scales: {
+        y:  { beginAtZero: true, position: 'left',
+              title: { display: true, text: 'events / month' } },
+        y2: { beginAtZero: true, position: 'right',
+              grid: { drawOnChartArea: false },
+              title: { display: true, text: 'CUSUM (Σ above baseline)' } },
+      },
+      plugins: { legend: { position: 'top' } },
     }
   });
 })();

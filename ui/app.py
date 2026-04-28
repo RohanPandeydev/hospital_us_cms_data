@@ -75,6 +75,63 @@ def json_safe_rows(rows):
     return [[_json_safe(v) for v in row] for row in rows]
 
 
+# --------------------------- analytics helpers ---------------------------
+
+def _compute_cusum_series(monthly_rows, k_mul: float = 0.5, h_mul: float = 5.0,
+                          min_baseline: int = 6):
+    """One-sided upper CUSUM on a monthly count series.
+
+    monthly_rows: list of (date, count). Output:
+      ts: list of (iso_date, count, cusum_stat, alarm_flag)
+      alarms: list of iso_dates where the alarm threshold was crossed.
+
+    The doc's `cms_complication_velocity` feature flags the moment a device's
+    adverse-event volume rises above its own baseline. We use the classic
+    Page CUSUM:
+        S_t = max(0, S_{t-1} + (x_t - mu_0 - k))
+        alarm when S_t > h
+    with mu_0 from the *median* of the bottom 60% of months (robust to
+    outliers and to gaps in the data — important because MAUDE has known
+    coverage holes that would inflate the mean otherwise). sigma is the
+    MAD-based estimate (median-abs-deviation × 1.4826 ≈ σ).
+
+    If we have <min_baseline non-zero months the data is too sparse to
+    detect anything reliably — we return the series with no alarms.
+    """
+    if not monthly_rows:
+        return [], []
+    counts = [(r[0], int(r[1] or 0)) for r in monthly_rows]
+    nonzero = [c for _, c in counts if c > 0]
+    if len(nonzero) < min_baseline:
+        return [
+            ((d.isoformat() if hasattr(d, "isoformat") else str(d)), c, 0.0, False)
+            for d, c in counts
+        ], []
+
+    # Robust baseline: median of bottom 60% of nonzero months.
+    sorted_nz = sorted(nonzero)
+    cutoff = max(1, int(len(sorted_nz) * 0.6))
+    baseline_pool = sorted_nz[:cutoff]
+    mu = sum(baseline_pool) / len(baseline_pool)
+    # MAD-based sigma — robust to spikes
+    med = sorted_nz[len(sorted_nz) // 2]
+    mad = sorted([abs(v - med) for v in sorted_nz])[len(sorted_nz) // 2]
+    sigma = max(1.0, mad * 1.4826)
+    k = k_mul * sigma
+    h = h_mul * sigma
+
+    out, alarms = [], []
+    s = 0.0
+    for d, c in counts:
+        s = max(0.0, s + (c - mu - k))
+        alarm = s > h
+        if alarm:
+            alarms.append(d.isoformat() if hasattr(d, "isoformat") else str(d))
+        out.append((d.isoformat() if hasattr(d, "isoformat") else str(d),
+                    c, round(s, 1), alarm))
+    return out, alarms
+
+
 # --------------------------- routes ---------------------------
 
 @app.get("/", response_class=HTMLResponse)
@@ -943,12 +1000,18 @@ def devices(request: Request, sort: str = "rate"):
     `complaint_rate_per_1k_procedures` feature, ranked by risk.
     """
     sort_sql = {
-        "rate":   "rate_per_1k DESC",
-        "vol":    "proc_volume DESC",
-        "maude":  "maude_count DESC",
-        "recall": "recall_count DESC",
-    }.get(sort, "rate_per_1k DESC")
+        "rate":     "rate_per_1k DESC NULLS LAST",
+        "vol":      "proc_volume DESC",
+        "maude":    "maude_12mo DESC",
+        "recall":   "recall_24mo DESC",
+        "trend":    "maude_pct_change DESC NULLS LAST",
+    }.get(sort, "maude_12mo DESC")
 
+    # Numerator = MAUDE events in last 12 months (matches denominator window:
+    # one year of Part B procedures). Lifetime MAUDE / one-year procedures
+    # was producing nonsense rates like 7,000 / 1k — denominator scope
+    # already partial (Part B Physician misses inpatient/facility billing),
+    # so window-mismatch on top of that was making the column meaningless.
     cols, rows = q(
         f"""
         WITH pb_vol AS (
@@ -962,8 +1025,25 @@ def devices(request: Request, sort: str = "rate"):
           WHERE pb.dataset_id = 'medicare_physician_by_provider_service'
           GROUP BY b.product_code
         ),
-        m AS (SELECT product_code, count() AS maude_count FROM fda_maude_devices GROUP BY product_code),
-        r AS (SELECT product_code, count() AS recall_count FROM fda_recalls GROUP BY product_code),
+        m_recent AS (
+          SELECT d.product_code,
+                 countIf(e.date_received >= today() - INTERVAL 12 MONTH)                  AS maude_12mo,
+                 countIf(e.date_received >= today() - INTERVAL 24 MONTH
+                          AND e.date_received <  today() - INTERVAL 12 MONTH)             AS maude_prev_12mo,
+                 count()                                                                  AS maude_lifetime,
+                 max(e.date_received)                                                     AS maude_latest
+          FROM fda_maude_devices d FINAL
+          LEFT JOIN fda_maude_events e FINAL ON d.report_number = e.report_number
+          WHERE d.product_code IS NOT NULL
+          GROUP BY d.product_code
+        ),
+        r AS (
+          SELECT product_code,
+                 countIf(recall_initiation_date >= today() - INTERVAL 24 MONTH) AS recall_24mo,
+                 count()                                                        AS recall_lifetime,
+                 max(recall_initiation_date)                                    AS recall_latest
+          FROM fda_recalls GROUP BY product_code
+        ),
         c AS (SELECT product_code, anyLast(device_name) AS device_name,
                      anyLast(device_class) AS device_class
               FROM fda_device_classification GROUP BY product_code)
@@ -974,14 +1054,23 @@ def devices(request: Request, sort: str = "rate"):
                v.proc_volume,
                v.bene_count,
                v.providers,
-               ifNull(m.maude_count, 0)  AS maude_count,
-               ifNull(r.recall_count, 0) AS recall_count,
-               round(ifNull(m.maude_count, 0) * 1000.0 / nullIf(v.proc_volume, 0), 3) AS rate_per_1k
+               ifNull(m.maude_12mo, 0)              AS maude_12mo,
+               ifNull(m.maude_prev_12mo, 0)         AS maude_prev_12mo,
+               ifNull(m.maude_lifetime, 0)          AS maude_lifetime,
+               m.maude_latest                       AS maude_latest,
+               ifNull(r.recall_24mo, 0)             AS recall_24mo,
+               ifNull(r.recall_lifetime, 0)         AS recall_lifetime,
+               r.recall_latest                      AS recall_latest,
+               -- Apples-to-apples 12-month rate: MAUDE 12mo ÷ annual procedures × 1000
+               round(ifNull(m.maude_12mo, 0) * 1000.0 / nullIf(v.proc_volume, 0), 3) AS rate_per_1k,
+               -- YoY change in MAUDE volume — proxies the doc's complication-velocity feature
+               round((ifNull(m.maude_12mo, 0) - ifNull(m.maude_prev_12mo, 0)) * 100.0
+                     / nullIf(m.maude_prev_12mo, 0), 1) AS maude_pct_change
         FROM pb_vol v
-        LEFT JOIN m ON v.product_code = m.product_code
-        LEFT JOIN r ON v.product_code = r.product_code
-        LEFT JOIN c ON v.product_code = c.product_code
-        WHERE v.proc_volume > 0
+        LEFT JOIN m_recent m ON v.product_code = m.product_code
+        LEFT JOIN r         ON v.product_code = r.product_code
+        LEFT JOIN c         ON v.product_code = c.product_code
+        WHERE v.proc_volume >= 100  -- drop noise: PCs with <100 Part B services aren't comparable
         ORDER BY {sort_sql}
         """,
     )
@@ -993,7 +1082,7 @@ def devices(request: Request, sort: str = "rate"):
           (SELECT count(distinct hcpcs_code)   FROM bridge_hcpcs_to_product_code) AS bridge_codes,
           (SELECT count() FROM cms_provider_summary
              WHERE dataset_id='medicare_physician_by_provider_service')           AS partb_rows,
-          (SELECT count() FROM fda_maude_devices)                                 AS maude_devs,
+          (SELECT count() FROM fda_maude_devices FINAL)                           AS maude_devs,
           (SELECT count() FROM fda_recalls)                                       AS recalls
         """
     )
@@ -1029,14 +1118,15 @@ def device_detail(request: Request, product_code: str):
         {"pc": pc},
     )
 
-    # KPIs
+    # KPIs. Use FINAL on fda_maude_devices because each (report_number, seq) is
+    # keyed on a synthesized id and ReplacingMergeTree leaves duplicates until merged.
     _, kpi = q(
         """
         SELECT
-          (SELECT count() FROM fda_maude_devices WHERE product_code = {pc:String})        AS maude,
+          (SELECT count() FROM fda_maude_devices FINAL WHERE product_code = {pc:String})  AS maude,
           (SELECT count() FROM fda_recalls       WHERE product_code = {pc:String})        AS recalls,
           (SELECT uniqExact(manufacturer)
-             FROM fda_maude_devices WHERE product_code = {pc:String})                     AS distinct_mfrs,
+             FROM fda_maude_devices FINAL WHERE product_code = {pc:String})               AS distinct_mfrs,
           (SELECT count() FROM fda_510k          WHERE product_code = {pc:String})        AS k_numbers,
           (SELECT sum(pb.total_services)
              FROM cms_provider_summary pb
@@ -1048,21 +1138,41 @@ def device_detail(request: Request, product_code: str):
     )
     kpi = kpi[0] if kpi else (0, 0, 0, 0, 0)
 
-    # Time-series: MAUDE events by quarter (last 5 yrs of available data)
-    _, ts_rows = q(
+    # Time-series: MAUDE events by month for the last 5 yrs. Monthly cadence
+    # gives the CUSUM detector enough resolution to flag a 60-90 day pre-recall
+    # rise; quarterly was too coarse.
+    _, ts_raw = q(
         """
-        SELECT toStartOfQuarter(e.date_received) AS quarter, count() AS events
+        SELECT toStartOfMonth(e.date_received) AS month, count() AS events
         FROM fda_maude_devices d FINAL
         LEFT JOIN fda_maude_events e FINAL ON d.report_number = e.report_number
-        WHERE d.product_code = {pc:String} AND e.date_received IS NOT NULL
-        GROUP BY quarter ORDER BY quarter
+        WHERE d.product_code = {pc:String}
+          AND e.date_received IS NOT NULL
+          AND e.date_received >= today() - INTERVAL 60 MONTH
+        GROUP BY month ORDER BY month
+        """,
+        {"pc": pc},
+    )
+    ts_rows, cusum_alarms = _compute_cusum_series(ts_raw)
+
+    # Recall dates as date markers on the time-series chart — visual proof
+    # of the doc's claim that MAUDE rate-rises lead recalls by 60-90 days.
+    _, recall_marks = q(
+        """
+        SELECT toStartOfMonth(recall_initiation_date) AS month,
+               recall_class, count() AS n
+        FROM fda_recalls
+        WHERE product_code = {pc:String}
+          AND recall_initiation_date IS NOT NULL
+          AND recall_initiation_date >= today() - INTERVAL 60 MONTH
+        GROUP BY month, recall_class ORDER BY month
         """,
         {"pc": pc},
     )
 
     # Top manufacturers seen in MAUDE for this product_code
     _, mfr_rows = q(
-        "SELECT manufacturer, count() AS events FROM fda_maude_devices "
+        "SELECT manufacturer, count() AS events FROM fda_maude_devices FINAL "
         "WHERE product_code = {pc:String} AND manufacturer IS NOT NULL "
         "GROUP BY manufacturer ORDER BY events DESC LIMIT 15",
         {"pc": pc},
@@ -1103,6 +1213,23 @@ def device_detail(request: Request, product_code: str):
 
     rate_per_1k = (kpi[0] * 1000.0 / kpi[4]) if (kpi[4] and kpi[4] > 0) else None
 
+    # Lightweight summary surfaced in the page header so the data is readable
+    # without scrolling: are there active alarms? when was the last recall?
+    last_alarm = cusum_alarms[-1] if cusum_alarms else None
+    last_recall = None
+    if recall_rows:
+        # recall_rows[0] is most-recent (ORDER BY recall_initiation_date DESC)
+        last_recall = recall_rows[0][5]
+        if hasattr(last_recall, "isoformat"):
+            last_recall = last_recall.isoformat()
+
+    # Recall markers as ISO strings for the chart
+    recall_marks_js = [
+        [(r[0].isoformat() if hasattr(r[0], "isoformat") else str(r[0])),
+         r[1], int(r[2])]
+        for r in recall_marks
+    ]
+
     return TEMPLATES.TemplateResponse(
         "device_detail.html",
         {
@@ -1111,6 +1238,10 @@ def device_detail(request: Request, product_code: str):
             "hcpcs_rows": hcpcs_rows,
             "kpi": kpi, "rate_per_1k": rate_per_1k,
             "ts_rows": ts_rows,
+            "cusum_alarms": cusum_alarms,
+            "last_alarm": last_alarm,
+            "last_recall": last_recall,
+            "recall_marks": recall_marks_js,
             "mfr_rows": mfr_rows, "k_rows": k_rows,
             "recall_rows": recall_rows, "hosp_rows": hosp_rows,
         },
