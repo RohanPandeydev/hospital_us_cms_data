@@ -82,11 +82,17 @@ def _iter_pages(client, dataset, limit):
     elif source == "cms_data_api":
         filter_field = dataset.get("filter_field")
         columns = dataset.get("columns")
+        # A manually-downloaded CSV (from the dataset's landing page) wins
+        # over the API paths — necessary when CMS data-api is down upstream.
+        csv_path = dataset.get("csv_path")
+        if csv_path:
+            for page in client.iter_local_csv(csv_path, limit=limit):
+                yield page
         # Datasets flagged `bulk_csv: True` pull via the pre-built CSV at
         # /data-viewer/stats.data_file_url. That path bypasses the JSON
         # size/offset pagination that times out server-side on HCRIS,
         # POS, and physician-by-service sized tables.
-        if dataset.get("bulk_csv"):
+        elif dataset.get("bulk_csv"):
             for page in client.iter_bulk_csv(dataset["uuid"], limit=limit):
                 yield page
         elif filter_field:
@@ -169,13 +175,18 @@ def ingest_dataset(dataset, limit=None, client=None):
     return fetched, upserted, status
 
 
-def ingest_all(dataset_ids=None, limit=None):
+def ingest_all(dataset_ids=None, limit=None, csv_path=None):
     targets = DATASETS
     if dataset_ids:
         targets = [d for d in DATASETS if d["id"] in dataset_ids]
         missing = set(dataset_ids) - {d["id"] for d in targets}
         if missing:
             log.warning("Unknown dataset ids skipped: %s", missing)
+    if csv_path:
+        # One-shot override: inject csv_path into every target so _iter_pages
+        # takes the local-file path. Only makes sense when targeting a single
+        # cms_data_api dataset — but we don't enforce here; the caller vets.
+        targets = [dict(d, csv_path=csv_path) for d in targets]
     results = {}
     interrupted = False
     for ds in targets:

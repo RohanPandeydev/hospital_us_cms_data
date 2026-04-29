@@ -7,3 +7,13 @@ __pycache__/
 *.log
 data/raw/
 .pytest_cache/
+
+# Large source data files — re-downloadable from CMS/openFDA/CDORS
+downloads/*.csv
+downloads/*.zip
+downloads/*.tsv
+downloads/*.json.zip
+downloads/*.json.gz
+# keep curated state + tinyfish JSON snapshots
+!downloads/state/*.json
+!downloads/tinyfish/*.json

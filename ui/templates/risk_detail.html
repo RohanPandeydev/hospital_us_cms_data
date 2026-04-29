@@ -89,135 +89,38 @@
       display:flex; align-items:stretch; gap:.5rem; flex-wrap:wrap;
       margin:1rem 0; font-size:.85rem;
     }
-    /* Force dark text on every descendant inside the pastel boxes —
-       overrides the dark-mode --text-primary white that bleeds in. */
-    .flow-step,
-    .flow-step * { color:#0f172a !important; }
-    .flow-step .muted, .flow-step .muted * { color:#475569 !important; }
-    .flow-step .src     { color:#64748b !important; font-size:.72em; margin-top:.4rem; }
     .flow-step {
-      flex:1 1 180px; min-width:180px; max-width:260px;
-      padding:.75rem .85rem; border-radius:8px;
+      flex:1; min-width:160px; padding:.75rem .85rem; border-radius:8px;
       background:#f7fafc; border:1px solid #d1d9e0;
-      overflow-wrap:anywhere; word-break:break-word;
     }
-    .flow-step code { background:#ffffffaa !important; padding:0 .25em; border-radius:3px; font-weight:600; }
-    .flow-step.device   { background:#fef3c7; border-color:#fbbf24; }
-    .flow-step.maker    { background:#dbeafe; border-color:#60a5fa; }
-    .flow-step.brand    { background:#ede9fe; border-color:#a78bfa; }
-    .flow-step.proc     { background:#dcfce7; border-color:#4ade80; }
-    .flow-step.hospital { background:#fee2e2; border-color:#f87171; }
-    .flow-step h4 { margin:0 0 .35rem; font-size:.78rem; text-transform:uppercase; letter-spacing:.04em; font-weight:700; color:#374151 !important; }
+    .flow-step.start  { background:#dbeafe; border-color:#60a5fa; }
+    .flow-step.proc   { background:#dcfce7; border-color:#4ade80; }
+    .flow-step.device { background:#fef3c7; border-color:#fbbf24; }
+    .flow-step.risk   { background:#fee2e2; border-color:#f87171; }
+    .flow-step.score  { background:#ede9fe; border-color:#a78bfa; }
+    .flow-step h4 { margin:0 0 .35rem; font-size:.78rem; text-transform:uppercase; color:#555; letter-spacing:.04em; }
     .flow-step .big { font-weight:700; font-size:1rem; }
     .flow-arrow {
-      align-self:center; padding:0 .25rem; font-weight:700;
+      align-self:center; padding:0 .25rem; color:#666; font-weight:700;
       display:flex; flex-direction:column; align-items:center; min-width:90px;
-      color:#94a3b8;
     }
-    .flow-arrow .label { font-size:.7rem; text-align:center; line-height:1.15; color:#94a3b8; }
-    .flow-arrow .arr { font-size:1.4rem; line-height:1; color:#94a3b8; }
-    .flow-pill {
-      display:inline-block; padding:.06rem .4rem; margin:.1rem .15rem .1rem 0;
-      background:#fff; border:1px solid #94a3b8; border-radius:4px;
-      font-size:.72rem; font-family:ui-monospace,monospace; color:#0f172a;
-    }
+    .flow-arrow .label { font-size:.7rem; color:#444; text-align:center; line-height:1.15; }
+    .flow-arrow .arr { font-size:1.4rem; line-height:1; }
     @media (max-width: 900px) {
       .flow { flex-direction:column; }
-      .flow-step { max-width:none; }
       .flow-arrow { transform: rotate(90deg); margin: -.25rem 0; }
     }
   </style>
 
-  {# Build unique applicants (manufacturers) and unique device_names (brands) #}
-  {% set _makers = [] %}
-  {% set _brands = [] %}
-  {% if payload.device_510k_catalog and payload.device_510k_catalog.devices %}
-    {% for d in payload.device_510k_catalog.devices %}
-      {% set _ap = d.applicant or d.firm or d.manufacturer %}
-      {% if _ap and _ap not in _makers %}{{ _makers.append(_ap) or "" }}{% endif %}
-      {% set _bn = d.device_name or d.brand_name %}
-      {% if _bn and _bn not in _brands %}{{ _brands.append(_bn) or "" }}{% endif %}
-    {% endfor %}
-  {% endif %}
-
   <div class="flow">
 
-    <!-- 1. Device family + safety -->
-    <div class="flow-step device">
-      <h4>1 · Device</h4>
-      <div class="big">{{ device_label }}</div>
-      <div class="muted">FDA product code{{ 's' if product_codes|length > 1 }}:</div>
-      <div>{% for p in product_codes %}<code>{{ p }}</code> {% endfor %}</div>
-      <div style="margin-top:.3rem;">{{ payload.device.regulatory_class or '—' }}</div>
-      <div style="margin-top:.4rem; padding-top:.35rem; border-top:1px dashed #d1a02f;">
-        <strong>{{ '{:,}'.format(total_events) }}</strong> adverse events
-        <span class="muted">({{ deaths }} D · {{ injuries }} I · {{ malf }} M)</span>
-        <div style="margin-top:.2rem;">
-          {% if has_recall %}<strong style="color:#b91c1c;">{{ recall_count }} active recall{{ 's' if recall_count != 1 }}</strong>
-          {% else %}<span class="muted">no active recalls</span>{% endif %}
-        </div>
-      </div>
-      <div class="src">FDA Classification + MAUDE + Recalls</div>
-    </div>
-
-    <div class="flow-arrow">
-      <div class="arr">→</div>
-      <div class="label">510(k) applicants<br>for <strong>{{ primary_pc or '—' }}</strong></div>
-    </div>
-
-    <!-- 2. Manufacturer -->
-    <div class="flow-step maker">
-      <h4>2 · Manufacturer</h4>
-      {% if _makers %}
-        <div class="big">{{ _makers|length }} maker{{ 's' if _makers|length != 1 }}</div>
-        <div style="margin-top:.3rem; line-height:1.4;">
-          {% for m in _makers[:4] %}<span class="flow-pill">{{ m }}</span>{% endfor %}
-          {% if _makers|length > 4 %}<span class="muted" style="font-size:.72rem;">+ {{ _makers|length - 4 }} more</span>{% endif %}
-        </div>
-      {% else %}
-        <div class="big">—</div><div class="muted">no applicant data</div>
-      {% endif %}
-      <div class="src">FDA 510(k) clearances</div>
-    </div>
-
-    <div class="flow-arrow">
-      <div class="arr">→</div>
-      <div class="label">cleared device names<br><span class="muted">trade / brand</span></div>
-    </div>
-
-    <!-- 3. Brand -->
-    <div class="flow-step brand">
-      <h4>3 · Brand</h4>
-      {% if _brands %}
-        <div class="big">{{ _brands|length }} brand{{ 's' if _brands|length != 1 }}</div>
-        <div style="margin-top:.3rem; line-height:1.4;">
-          {% for b in _brands[:3] %}<span class="flow-pill">{{ b[:40] }}{% if b|length > 40 %}…{% endif %}</span>{% endfor %}
-          {% if _brands|length > 3 %}<span class="muted" style="font-size:.72rem;">+ {{ _brands|length - 3 }} more</span>{% endif %}
-        </div>
-      {% else %}
-        <div class="big">—</div><div class="muted">no brand data</div>
-      {% endif %}
-      <div class="src">FDA 510(k) device_name field</div>
-    </div>
-
-    <div class="flow-arrow">
-      <div class="arr">→</div>
-      <div class="label">DRG ← device_category<br><span class="muted">curated map</span></div>
-    </div>
-
-    <!-- 4. Procedural (Medicare claims at this hospital) -->
-    <div class="flow-step proc">
-      <h4>4 · Procedural</h4>
-      {% if discharges > 0 %}
-        <div class="big">{{ '{:,}'.format(discharges) }} discharges</div>
-        <div class="muted">Billed DRGs:</div>
-        <div>{% for d in drg_billed %}<code>{{ d }}</code> {% endfor %}</div>
-        <div class="muted" style="font-size:.78em; margin-top:.3rem;">Medicare 2024 claims at this hospital under DRGs that involve {{ device_label|lower }}.</div>
-      {% else %}
-        <div class="big">no claims</div>
-        <div class="muted">no Medicare DRG-{{ drg_billed[0] if drg_billed else 'billing' }} 2024 records for this CCN</div>
-      {% endif %}
-      <div class="src">CMS Medicare Inpatient PUF</div>
+    <!-- 1. Hospital -->
+    <div class="flow-step start">
+      <h4>1 · Hospital</h4>
+      <div class="big">{{ payload.hospital.name or hospital_name or '—' }}</div>
+      <div class="muted">{{ payload.hospital.city or '' }}{% if payload.hospital.state %}, {{ payload.hospital.state }}{% endif %}</div>
+      <div style="margin-top:.4rem;"><span class="muted">Medicare ID:</span> <code>{{ ccn }}</code></div>
+      <div style="font-size:.75em; color:#666; margin-top:.35rem;">Source: CMS Provider Data</div>
     </div>
 
     <div class="flow-arrow">
@@ -225,18 +128,66 @@
       <div class="label">CCN match<br><strong>{{ ccn }}</strong></div>
     </div>
 
-    <!-- 5. Hospital (final, with risk score) -->
-    <div class="flow-step hospital">
-      <h4>5 · Hospital · final risk</h4>
-      <div class="big">{{ payload.hospital.name or hospital_name or '—' }}</div>
-      <div class="muted" style="font-size:.8em;">{{ payload.hospital.city or '' }}{% if payload.hospital.state %}, {{ payload.hospital.state }}{% endif %} · CCN <code>{{ ccn }}</code></div>
-      <div style="margin-top:.5rem; padding-top:.4rem; border-top:1px dashed #ef4444;">
-        <span style="font-size:1.6rem; font-weight:800;"><span class="risk {{ risk_class }}">{{ '%.2f'|format(hosp_score or 0) }}</span></span>
-        <span style="font-size:.85rem;">/ 10</span>
-        <div style="font-size:.85rem;">{{ risk_label }}</div>
-        <div class="muted" style="font-size:.75em; margin-top:.2rem;">linkage: <strong>{{ link_conf or '—' }}</strong></div>
+    <!-- 2. Procedure evidence (Medicare claims) -->
+    <div class="flow-step proc">
+      <h4>2 · Procedures (Medicare 2024)</h4>
+      {% if discharges > 0 %}
+        <div class="big">{{ '{:,}'.format(discharges) }} discharges</div>
+        <div class="muted">DRG codes billed:</div>
+        <div>{% for d in drg_billed %}<code>{{ d }}</code> {% endfor %}</div>
+      {% else %}
+        <div class="big">No claims found</div>
+        <div class="muted">This hospital didn't bill Medicare for the DRGs that involve this device family in 2024.</div>
+      {% endif %}
+      <div style="font-size:.75em; color:#666; margin-top:.35rem;">Source: CMS Inpatient PUF</div>
+    </div>
+
+    <div class="flow-arrow">
+      <div class="arr">→</div>
+      <div class="label">DRG → device_category<br><span class="muted">curated map</span></div>
+    </div>
+
+    <!-- 3. Device family -->
+    <div class="flow-step device">
+      <h4>3 · Device family</h4>
+      <div class="big">{{ device_label }}</div>
+      <div class="muted">FDA product code{{ 's' if product_codes|length > 1 }}:</div>
+      <div>{% for p in product_codes %}<code>{{ p }}</code> {% endfor %}</div>
+      <div style="margin-top:.3rem;">{{ payload.device.regulatory_class or '—' }}</div>
+      <div style="font-size:.75em; color:#666; margin-top:.35rem;">Source: bridge_hcpcs_to_product_code + drg_to_device_category</div>
+    </div>
+
+    <div class="flow-arrow">
+      <div class="arr">→</div>
+      <div class="label">product_code match<br>{% if primary_pc %}<strong>{{ primary_pc }}</strong>{% endif %}</div>
+    </div>
+
+    <!-- 4. Device safety data -->
+    <div class="flow-step risk">
+      <h4>4 · Device safety</h4>
+      <div class="big">{{ '{:,}'.format(total_events) }} adverse events</div>
+      <div>{{ deaths }} death{{ 's' if deaths != 1 }} · {{ injuries }} injur{{ 'ies' if injuries != 1 else 'y' }} · {{ malf }} malfunction{{ 's' if malf != 1 }}</div>
+      <div style="margin-top:.3rem;">
+        {% if has_recall %}<strong style="color:#dc2626;">{{ recall_count }} active recall{{ 's' if recall_count != 1 }}</strong>{% else %}<span class="muted">No active recalls</span>{% endif %}
       </div>
-      <div class="src">CMS Provider Data + computed score</div>
+      <div style="font-size:.75em; color:#666; margin-top:.35rem;">Source: FDA MAUDE + Device Enforcement</div>
+    </div>
+
+    <div class="flow-arrow">
+      <div class="arr">→</div>
+      <div class="label">global × link weight<br>+ bonuses</div>
+    </div>
+
+    <!-- 5. Score -->
+    <div class="flow-step score">
+      <h4>5 · Risk score</h4>
+      <div class="big" style="font-size:1.5rem;">
+        <span class="risk {{ risk_class }}">{{ '%.2f'|format(hosp_score or 0) }}</span> /10
+      </div>
+      <div>{{ risk_label }}</div>
+      <div class="muted" style="font-size:.8em; margin-top:.35rem;">
+        Linkage: <strong>{{ link_conf or '—' }}</strong>
+      </div>
     </div>
 
   </div>
@@ -480,6 +431,80 @@
       non-Medicare. Hospital-device link remains indirect for this category.
     </p>
   {% endif %}
+</div>
+{% endif %}
+
+<!-- ================ STATE-REPORTED ADVERSE EVENTS (hospital-named) ================ -->
+{% if state_events %}
+<div class="card" style="border-left:4px solid
+  {% if state_events_device %}#dc2626{% else %}#6b7280{% endif %};">
+  <h3 class="card-title">
+    🏛️ State-reported adverse events at this hospital
+    <i class="info-icon">i<span class="info-tip">Massachusetts Department of Public Health publishes a yearly XLSX listing every NQF "Serious Reportable Event" (SRE) at every licensed hospital. Unlike FDA MAUDE — which has no hospital identifier — these reports are filed BY the hospital and tied to its name. We CCN-match the hospital name against CMS Hospital General Information so events here are guaranteed to be at this specific facility.</span></i>
+  </h3>
+  <p class="card-subtitle">
+    Source: <a href="https://www.mass.gov/lists/serious-reportable-events-reports" target="_blank" rel="noopener">MA DPH Serious Reportable Events</a> — annual XLSX, calendar years 2015–2022.
+    {% set total_events = state_events | sum(attribute='total_events') %}
+    {% set total_device = state_events_device | sum(attribute='total_events') %}
+    <strong>{{ total_events }}</strong> total reportable events;
+    <strong>{{ total_device }}</strong> device-related.
+  </p>
+
+  {% if state_events_device %}
+    <div class="explain" style="margin-top:.5rem;background:#fef2f2;border-left:3px solid #dc2626;">
+      <strong>Direct hospital-linked events (device-relevant):</strong>
+      this is the first card on the page that ties a specific event TO this hospital BY NAME.
+      Public FDA MAUDE cannot do this — it strips the reporter facility before publishing.
+    </div>
+    <table class="scroll-wrap">
+      <thead>
+        <tr>
+          <th>Year</th>
+          <th>Event type <i class="info-icon">i<span class="info-tip">Per MA's adoption of the NQF "Serious Reportable Events" list. "Device misuse or malfunction" and "Contaminated drugs/device/biologic" are the two purely-device categories. "Retained foreign object" includes unretrieved device fragments per CMS PSI-05.</span></i></th>
+          <th>Category</th>
+          <th style="text-align:right">Events</th>
+          <th>Source</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for ev in state_events_device %}
+        <tr>
+          <td>{{ ev.report_year }}</td>
+          <td><strong>{{ ev.event_type }}</strong></td>
+          <td><span class="muted">{{ ev.event_category }}</span></td>
+          <td style="text-align:right">
+            <span class="risk {{ 'risk-high' if ev.total_events >= 5 else ('risk-med' if ev.total_events >= 2 else 'risk-low') }}">
+              {{ ev.total_events }}
+            </span>
+          </td>
+          <td><a href="{{ ev.source_url }}" target="_blank" rel="noopener">XLSX</a></td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p class="muted">
+      This hospital reported other SREs (see below) but none in the device-related categories
+      (Product or Device Events, Retained Foreign Object, Burn, Metallic-MRI, Wrong O₂/gas, Restraint/bedrail, Electrical Shock).
+    </p>
+  {% endif %}
+
+  <details style="margin-top:.75rem;">
+    <summary class="muted" style="cursor:pointer;">All SRE categories ({{ state_events|length }} rows) — click to expand</summary>
+    <table style="margin-top:.5rem;">
+      <thead><tr><th>Year</th><th>Event type</th><th>Category</th><th style="text-align:right">Events</th></tr></thead>
+      <tbody>
+        {% for ev in state_events %}
+          <tr>
+            <td>{{ ev.report_year }}</td>
+            <td>{{ ev.event_type }}</td>
+            <td><span class="muted">{{ ev.event_category }}</span></td>
+            <td style="text-align:right">{{ ev.total_events }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </details>
 </div>
 {% endif %}
 
@@ -1020,13 +1045,13 @@
           {% set _ap = d.applicant or d.firm or d.manufacturer %}
           {% if _ap and _ap not in _makers %}{{ _makers.append(_ap) or "" }}{% endif %}
         {% endfor %}
-        <tr class="trace-extra trace-makers">
+        <tr style="background:#fef3c7;">
           <td><strong>5b</strong></td>
           <td>device_makers</td>
-          <td><code>fda_510k (applicants for product_code)</code></td>
-          <td><code>product_code → applicant</code></td>
+          <td><code style="font-size:.85em">fda_510k (applicants for product_code)</code></td>
+          <td><code style="font-size:.85em">product_code → applicant</code></td>
           <td><code>{{ payload.device.product_code or '—' }}</code> <span class="muted">(who actually makes this device family)</span></td>
-          <td>
+          <td style="font-size:.85em;">
             <strong>{{ _makers|length }} maker(s):</strong>
             {% if _makers %}
               <code>{{ _makers[:6]|tojson }}</code>
@@ -1037,16 +1062,16 @@
       {% endif %}
 
       {# ───── Final tie-back row: hospital × device × score ───── #}
-      <tr class="trace-extra trace-tieback">
+      <tr style="background:#dbeafe; border-top:2px solid #60a5fa;">
         <td><strong>🏁</strong></td>
         <td><strong>hospital_tieback</strong></td>
-        <td><code>computed (steps 1-6 closing back on the hospital)</code></td>
-        <td><code>ccn × device_category → final_score</code></td>
+        <td><code style="font-size:.85em">computed (steps 1-6 closing back on the hospital)</code></td>
+        <td><code style="font-size:.85em">ccn × device_category → final_score</code></td>
         <td>
           <code>{{ payload.hospital.facility_id if payload.hospital else (payload.ccn or '—') }}</code>
           <span class="muted">({{ payload.hospital.facility_name if payload.hospital else '' }} × {{ payload.device.device_category if payload.device else '' }})</span>
         </td>
-        <td>
+        <td style="font-size:.85em;">
           {% set _fs = payload.risk.hospital_final_score if payload.risk else None %}
           {% set _cls = 'High' if (_fs or 0) >= 7 else ('Amber' if (_fs or 0) >= 4 else 'Low') %}
           <strong>Hospital final risk:</strong>
@@ -1054,17 +1079,6 @@
           <span class="muted">({{ _cls }} concern · linkage: {{ payload.risk.linkage_confidence if payload.risk else '—' }})</span>
         </td>
       </tr>
-      <style>
-        /* Force dark text on the two synthetic rows — pastel backgrounds need
-           dark text or they're invisible on the dark theme. */
-        tr.trace-extra,
-        tr.trace-extra td,
-        tr.trace-extra td * { color:#0f172a !important; font-size:.85em; }
-        tr.trace-extra .muted, tr.trace-extra .muted * { color:#475569 !important; }
-        tr.trace-extra code { background:#ffffff !important; color:#0f172a !important; padding:0 .25em; border-radius:3px; }
-        tr.trace-makers { background:#fef3c7 !important; }
-        tr.trace-tieback { background:#dbeafe !important; border-top:2px solid #60a5fa; }
-      </style>
     </tbody>
   </table>
 </div>
@@ -1075,23 +1089,11 @@
 <div class="card">
   <h3 class="card-title">📚 Data sources</h3>
   <p class="card-subtitle">Every dataset feeding this record (with their time windows).</p>
-  <div class="src-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem 1rem;">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem 1rem;">
     {% for s in payload.meta.sources %}
-      <div class="src-chip">{{ s }}</div>
+      <div style="padding:.35rem .5rem;border-left:3px solid #6366f1;background:#f8fafc;font-size:.88rem;">{{ s }}</div>
     {% endfor %}
   </div>
-  <style>
-    /* Light source chips need dark text — without this the dark theme inherits
-       white into them and they ghost out. */
-    .src-chip {
-      padding:.35rem .55rem;
-      border-left:3px solid #6366f1;
-      background:#f8fafc !important;
-      color:#0f172a !important;
-      font-size:.88rem;
-    }
-    .src-chip * { color:#0f172a !important; }
-  </style>
   {% if payload.meta.time_alignment %}
   <h4 style="margin-top:1rem;">🕒 Time windows</h4>
   <table style="margin:0">

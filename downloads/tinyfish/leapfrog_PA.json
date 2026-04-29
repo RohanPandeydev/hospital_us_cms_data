@@ -1,0 +1,490 @@
+{
+  "type": "COMPLETE",
+  "run_id": "a9a60253-3b37-4a2b-bb7c-d8d8f3156f0b",
+  "status": "COMPLETED",
+  "timestamp": "2026-04-24T18:46:24.161Z",
+  "result": {
+    "result": [
+      {
+        "hospital_name": "Conemaugh Nason Medical Center",
+        "city": "Roaring Spring",
+        "state": "PA",
+        "zip": "16673-1202",
+        "safety_grade": "aa",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/conemaugh-nason-medical-center"
+      },
+      {
+        "hospital_name": "Doylestown Hospital",
+        "city": "Doylestown",
+        "state": "PA",
+        "zip": "18901-2597",
+        "safety_grade": "aa",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/doylestown-hospital"
+      },
+      {
+        "hospital_name": "Geisinger Lewistown Hospital",
+        "city": "Lewistown",
+        "state": "PA",
+        "zip": "17044-1198",
+        "safety_grade": "aa",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/geisinger-lewistown-hospital"
+      },
+      {
+        "hospital_name": "Geisinger St. Luke's Hospital",
+        "city": "Orwigsburg",
+        "state": "PA",
+        "zip": "17961",
+        "safety_grade": "aa",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/geisinger-st-lukes-hospital"
+      },
+      {
+        "hospital_name": "Jefferson Einstein Montgomery Hospital",
+        "city": "East Norriton",
+        "state": "PA",
+        "zip": "19403",
+        "safety_grade": "aa",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/jefferson-einstein-montgomery-hospital"
+      },
+      {
+        "hospital_name": "Lancaster General Hospital",
+        "city": "Lancaster",
+        "state": "PA",
+        "zip": "17604-3555",
+        "safety_grade": "aa",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/lancaster-general-hospital"
+      },
+      {
+        "hospital_name": "Main Line Health-Bryn Mawr Hospital",
+        "city": "Bryn Mawr",
+        "state": "PA",
+        "zip": "19010-3160",
+        "safety_grade": "aa",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/main-line-health-bryn-mawr-hospital"
+      },
+      {
+        "hospital_name": "Main Line Health-Lankenau Medical Center",
+        "city": "Wynnewood",
+        "state": "PA",
+        "zip": "19096-3411",
+        "safety_grade": "aa",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/main-line-health-lankenau-medical-center"
+      },
+      {
+        "hospital_name": "Main Line Health-Riddle Hospital",
+        "city": "Media",
+        "state": "PA",
+        "zip": "19063-5177",
+        "safety_grade": "aa",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/main-line-health-riddle-hospital"
+      },
+      {
+        "hospital_name": "Roxborough Memorial Hospital",
+        "city": "Philadelphia",
+        "state": "PA",
+        "zip": "19128-1737",
+        "safety_grade": "aa",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/roxborough-memorial-hospital"
+      },
+      {
+        "hospital_name": "St. Luke's Hospital - Allentown Campus",
+        "city": "Allentown",
+        "state": "PA",
+        "zip": "18104",
+        "safety_grade": "aa",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/st-lukes-hospital-allentown-campus"
+      },
+      {
+        "hospital_name": "St. Luke's Hospital - Anderson Campus",
+        "city": "Easton",
+        "state": "PA",
+        "zip": "18045",
+        "safety_grade": "aa",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/st-lukes-hospital-anderson-campus"
+      },
+      {
+        "hospital_name": "St. Luke's Monroe Campus",
+        "city": "Stroudsburg",
+        "state": "PA",
+        "zip": "18360",
+        "safety_grade": "aa",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/st-lukes-monroe-campus"
+      },
+      {
+        "hospital_name": "St. Luke's Sacred Heart Campus",
+        "city": "Allentown",
+        "state": "PA",
+        "zip": "18102-3490",
+        "safety_grade": "aa",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/st-lukes-sacred-heart-campus"
+      },
+      {
+        "hospital_name": "St. Luke's University Hospital - Bethlehem Campus",
+        "city": "Bethlehem",
+        "state": "PA",
+        "zip": "18015-1065",
+        "safety_grade": "aa",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/st-lukes-university-hospital-bethlehem-campus"
+      },
+      {
+        "hospital_name": "St. Luke\u00e2\u0080\u0099s Hospital \u00e2\u0080\u0093 Easton Campus",
+        "city": "Easton",
+        "state": "PA",
+        "zip": "18042-3892",
+        "safety_grade": "aa",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/st-lukes-hospital-easton-campus"
+      },
+      {
+        "hospital_name": "UPMC Carlisle",
+        "city": "Carlisle",
+        "state": "PA",
+        "zip": "17015-6940",
+        "safety_grade": "aa",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/upmc-carlisle"
+      },
+      {
+        "hospital_name": "UPMC PASSAVANT",
+        "city": "Pittsburgh",
+        "state": "PA",
+        "zip": "15237",
+        "safety_grade": "aa",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/upmc-passavant"
+      },
+      {
+        "hospital_name": "UPMC Passavant - Cranberry",
+        "city": "Cranberry Township",
+        "state": "PA",
+        "zip": "16066",
+        "safety_grade": "aa",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/upmc-passavant-cranberry"
+      },
+      {
+        "hospital_name": "UPMC ST MARGARET",
+        "city": "Pittsburgh",
+        "state": "PA",
+        "zip": "15215-3301",
+        "safety_grade": "aa",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/upmc-st-margaret"
+      },
+      {
+        "hospital_name": "WellSpan Ephrata Community Hospital",
+        "city": "Ephrata",
+        "state": "PA",
+        "zip": "17522-1002",
+        "safety_grade": "aa",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/wellspan-ephrata-community-hospital"
+      },
+      {
+        "hospital_name": "Wellspan Good Samaritan Hospital",
+        "city": "Lebanon",
+        "state": "PA",
+        "zip": "17042-1281",
+        "safety_grade": "aa",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/wellspan-good-samaritan-hospital"
+      },
+      {
+        "hospital_name": "AHN Grove City",
+        "city": "Grove City",
+        "state": "PA",
+        "zip": "16127-4603",
+        "safety_grade": "a",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/ahn-grove-city"
+      },
+      {
+        "hospital_name": "AHN Wexford Hospital",
+        "city": "Wexford",
+        "state": "PA",
+        "zip": "15090",
+        "safety_grade": "a",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/ahn-wexford-hospital"
+      },
+      {
+        "hospital_name": "Allegheny Valley Hospital",
+        "city": "Natrona Heights",
+        "state": "PA",
+        "zip": "15065-1152",
+        "safety_grade": "a",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/allegheny-valley-hospital"
+      },
+      {
+        "hospital_name": "Canonsburg General Hospital",
+        "city": "Canonsburg",
+        "state": "PA",
+        "zip": "15317-9762",
+        "safety_grade": "a",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/canonsburg-general-hospital"
+      },
+      {
+        "hospital_name": "Geisinger Bloomsburg Hospital",
+        "city": "Bloomsburg",
+        "state": "PA",
+        "zip": "17815-1419",
+        "safety_grade": "a",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/geisinger-bloomsburg-hospital"
+      },
+      {
+        "hospital_name": "Geisinger Medical Center Muncy",
+        "city": "Muncy",
+        "state": "PA",
+        "zip": "17756",
+        "safety_grade": "a",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/geisinger-medical-center-muncy"
+      },
+      {
+        "hospital_name": "Independence Health Clarion Hospital",
+        "city": "Clarion",
+        "state": "PA",
+        "zip": "16214-8501",
+        "safety_grade": "a",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/independence-health-clarion-hospital"
+      },
+      {
+        "hospital_name": "Jefferson Abington Hospital",
+        "city": "Abington",
+        "state": "PA",
+        "zip": "19001-3720",
+        "safety_grade": "a",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/jefferson-abington-hospital"
+      },
+      {
+        "hospital_name": "Jefferson Einstein Philadelphia Hospital",
+        "city": "Philadelphia",
+        "state": "PA",
+        "zip": "19141-3098",
+        "safety_grade": "a",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/jefferson-einstein-philadelphia-hospital"
+      },
+      {
+        "hospital_name": "Jefferson Frankford",
+        "city": "Philadelphia",
+        "state": "PA",
+        "zip": "19124",
+        "safety_grade": "a",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/jefferson-frankford"
+      },
+      {
+        "hospital_name": "Jefferson Lansdale Hospital",
+        "city": "Lansdale",
+        "state": "PA",
+        "zip": "19446-1200",
+        "safety_grade": "a",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/jefferson-lansdale-hospital"
+      },
+      {
+        "hospital_name": "Jefferson Regional Medical Center",
+        "city": "Jefferson Hills",
+        "state": "PA",
+        "zip": "15025-3703",
+        "safety_grade": "a",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/jefferson-regional-medical-center-jefferson-hills-pa"
+      },
+      {
+        "hospital_name": "Lehigh Valley Hospital - Dickson City",
+        "city": "Dickson City",
+        "state": "PA",
+        "zip": "18519",
+        "safety_grade": "a",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/lehigh-valley-hospital-dickson-city"
+      },
+      {
+        "hospital_name": "Lehigh Valley Hospital - Hazleton",
+        "city": "Hazleton",
+        "state": "PA",
+        "zip": "18201",
+        "safety_grade": "a",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/lehigh-valley-hospital-hazleton"
+      },
+      {
+        "hospital_name": "Lehigh Valley Hospital - Pocono",
+        "city": "East Stroudsburg",
+        "state": "PA",
+        "zip": "18301-3006",
+        "safety_grade": "a",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/lehigh-valley-hospital-pocono"
+      },
+      {
+        "hospital_name": "Lehigh Valley Hospital - Schuylkill",
+        "city": "Pottsville",
+        "state": "PA",
+        "zip": "17901",
+        "safety_grade": "a",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/lehigh-valley-hospital-schuylkill"
+      },
+      {
+        "hospital_name": "Lower Bucks Hospital",
+        "city": "Bristol",
+        "state": "PA",
+        "zip": "19007-3190",
+        "safety_grade": "a",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/lower-bucks-hospital"
+      },
+      {
+        "hospital_name": "Mount Nittany Medical Center",
+        "city": "State College",
+        "state": "PA",
+        "zip": "16803",
+        "safety_grade": "a",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/mount-nittany-medical-center"
+      },
+      {
+        "hospital_name": "Penn State Health Hampden Medical Center",
+        "city": "Enola",
+        "state": "PA",
+        "zip": "17025",
+        "safety_grade": "a",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/penn-state-health-hampden-medical-center"
+      },
+      {
+        "hospital_name": "Penn State Health Lancaster Medical Center",
+        "city": "Lancaster",
+        "state": "PA",
+        "zip": "17601",
+        "safety_grade": "a",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/penn-state-health-lancaster-medical-center"
+      },
+      {
+        "hospital_name": "Penn State Health Milton S. Hershey Medical Center",
+        "city": "Hershey",
+        "state": "PA",
+        "zip": "17033-0850",
+        "safety_grade": "a",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/penn-state-health-milton-s-hershey-medical-center"
+      },
+      {
+        "hospital_name": "St. Clair Health",
+        "city": "Pittsburgh",
+        "state": "PA",
+        "zip": "15243-1873",
+        "safety_grade": "a",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/st-clair-health"
+      },
+      {
+        "hospital_name": "St. Luke's Carbon Campus",
+        "city": "Lehighton",
+        "state": "PA",
+        "zip": "18235",
+        "safety_grade": "a",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/st-lukes-carbon-campus"
+      },
+      {
+        "hospital_name": "St. Luke's Hospital - Miners Campus",
+        "city": "Coaldale",
+        "state": "PA",
+        "zip": "18218-1027",
+        "safety_grade": "a",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/st-lukes-hospital-miners-campus"
+      },
+      {
+        "hospital_name": "St. Luke's Upper Bucks Hospital",
+        "city": "Quakertown",
+        "state": "PA",
+        "zip": "18951",
+        "safety_grade": "a",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/st-lukes-upper-bucks-hospital"
+      },
+      {
+        "hospital_name": "Thomas Jefferson University Hospital - Methodist Hospital Campus",
+        "city": "Philadelphia",
+        "state": "PA",
+        "zip": "19148",
+        "safety_grade": "a",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/thomas-jefferson-university-hospital-methodist-hospital-campus"
+      },
+      {
+        "hospital_name": "UPMC Bedford",
+        "city": "Everett",
+        "state": "PA",
+        "zip": "15537-7046",
+        "safety_grade": "a",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/upmc-bedford"
+      },
+      {
+        "hospital_name": "UPMC East",
+        "city": "Monroeville",
+        "state": "PA",
+        "zip": "15146",
+        "safety_grade": "a",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/upmc-east"
+      },
+      {
+        "hospital_name": "UPMC Horizon - Greenville Campus",
+        "city": "Greenville",
+        "state": "PA",
+        "zip": "16125-1726",
+        "safety_grade": "a",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/upmc-horizon-greenville-campus"
+      },
+      {
+        "hospital_name": "UPMC Lititz",
+        "city": "Lititz",
+        "state": "PA",
+        "zip": "17543",
+        "safety_grade": "a",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/upmc-lititz"
+      },
+      {
+        "hospital_name": "UPMC Mercy",
+        "city": "Pittsburgh",
+        "state": "PA",
+        "zip": "15219-5166",
+        "safety_grade": "a",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/upmc-mercy"
+      },
+      {
+        "hospital_name": "UPMC Northwest",
+        "city": "Seneca",
+        "state": "PA",
+        "zip": "16346",
+        "safety_grade": "a",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/upmc-northwest"
+      },
+      {
+        "hospital_name": "UPMC Washington",
+        "city": "Washington",
+        "state": "PA",
+        "zip": "15301-3398",
+        "safety_grade": "a",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/upmc-washington"
+      },
+      {
+        "hospital_name": "Wellspan Waynesboro Hospital",
+        "city": "Waynesboro",
+        "state": "PA",
+        "zip": "17268",
+        "safety_grade": "a",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/wellspan-waynesboro-hospital"
+      },
+      {
+        "hospital_name": "WellSpan York Hospital",
+        "city": "York",
+        "state": "PA",
+        "zip": "17405-3645",
+        "safety_grade": "a",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/wellspan-york-hospital"
+      },
+      {
+        "hospital_name": "Conemaugh Memorial Medical Center",
+        "city": "Johnstown",
+        "state": "PA",
+        "zip": "15905-4398",
+        "safety_grade": "b",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/conemaugh-memorial-medical-center"
+      },
+      {
+        "hospital_name": "Forbes Hospital",
+        "city": "Monroeville",
+        "state": "PA",
+        "zip": "15146-3513",
+        "safety_grade": "b",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/forbes-hospital"
+      },
+      {
+        "hospital_name": "Geisinger Medical Center",
+        "city": "Danville",
+        "state": "PA",
+        "zip": "17822-2201",
+        "safety_grade": "b",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/geisinger-medical-center"
+      }
+    ]
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "slug": "ct_dph_adverse",
+  "url": "https://portal.ct.gov/dph/Health-Care-Quality-Safety/Adverse-Event-Program/Adverse-Event-Reports",
+  "ok": true,
+  "raw": {
+    "type": "COMPLETE",
+    "run_id": "12b483e4-ece1-4b0e-a998-1d838697544b",
+    "status": "COMPLETED",
+    "timestamp": "2026-04-28T06:35:25.299Z",
+    "result": {
+      "source": "Connecticut Department of Public Health",
+      "data_type": "hospital-level medical-device adverse event data",
+      "access_method": "annual legislative reports",
+      "formats": [
+        "PDF"
+      ],
+      "content_details": {
+        "shows_named_hospitals": true,
+        "covers_devices": true,
+        "device_event_types": [
+          "NQF 2B (use or function of a device)",
+          "NQF 1D (retention of foreign objects)"
+        ],
+        "data_format": "static PDF with aggregate counts",
+        "extraction_challenges": "requires manual extraction or advanced parsing for automation"
+      },
+      "metadata": {
+        "latest_year": 2023,
+        "access_model": "free"
+      },
+      "resources": {
+        "direct_download_urls": [
+          "https://portal.ct.gov/dph/-/media/departments-and-agencies/dph/hisr/hcqsar/healthcare/adverse-events-report-2023_final.pdf",
+          "https://portal.ct.gov/dph/-/media/departments-and-agencies/dph/hisr/hcqsar/healthcare/adverse-event-report-october-2019-2022_final.pdf",
+          "https://portal.ct.gov/dph/-/media/departments-and-agencies/dph/facility-licensing--investigations/adverse-events/copy-of-ae-2017-reporting-categories.xls"
+        ],
+        "download_formats": [
+          "pdf",
+          "xlsx"
+        ]
+      },
+      "sample": "In 2023, the CT Behavioral Health Hospital of Hebrew Senior Care reported four adverse events related to a fall with injury.",
+      "verdict": "The data is published in static PDF reports with hospital names only linked to aggregate counts or narrative sections, making it unsuitable for a direct automated CCN-keyed ingest pipeline without complex NLP or manual extraction."
+    }
+  },
+  "extracted": {
+    "source": "Connecticut Department of Public Health",
+    "data_type": "hospital-level medical-device adverse event data",
+    "access_method": "annual legislative reports",
+    "formats": [
+      "PDF"
+    ],
+    "content_details": {
+      "shows_named_hospitals": true,
+      "covers_devices": true,
+      "device_event_types": [
+        "NQF 2B (use or function of a device)",
+        "NQF 1D (retention of foreign objects)"
+      ],
+      "data_format": "static PDF with aggregate counts",
+      "extraction_challenges": "requires manual extraction or advanced parsing for automation"
+    },
+    "metadata": {
+      "latest_year": 2023,
+      "access_model": "free"
+    },
+    "resources": {
+      "direct_download_urls": [
+        "https://portal.ct.gov/dph/-/media/departments-and-agencies/dph/hisr/hcqsar/healthcare/adverse-events-report-2023_final.pdf",
+        "https://portal.ct.gov/dph/-/media/departments-and-agencies/dph/hisr/hcqsar/healthcare/adverse-event-report-october-2019-2022_final.pdf",
+        "https://portal.ct.gov/dph/-/media/departments-and-agencies/dph/facility-licensing--investigations/adverse-events/copy-of-ae-2017-reporting-categories.xls"
+      ],
+      "download_formats": [
+        "pdf",
+        "xlsx"
+      ]
+    },
+    "sample": "In 2023, the CT Behavioral Health Hospital of Hebrew Senior Care reported four adverse events related to a fall with injury.",
+    "verdict": "The data is published in static PDF reports with hospital names only linked to aggregate counts or narrative sections, making it unsuitable for a direct automated CCN-keyed ingest pipeline without complex NLP or manual extraction."
+  },
+  "elapsed_s": 348.0
+}

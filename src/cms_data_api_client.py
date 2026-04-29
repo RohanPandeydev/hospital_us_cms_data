@@ -152,6 +152,32 @@ class CMSDataApiClient:
 
     # --------------------------- CSV bulk fallback ---------------------------
 
+    def iter_local_csv(self, path, limit=None, batch_size=1000):
+        """Yield pages from a locally-downloaded CSV file.
+
+        Use this when CMS's data-api is down but you have the CSV saved
+        locally (e.g. downloaded manually from the dataset landing page).
+        Same pagination shape as iter_bulk_csv so the caller is unchanged.
+        """
+        log.info("local CSV: %s", path)
+        with open(path, newline="", encoding="utf-8") as f:
+            reader = csv.DictReader(f)
+            batch = []
+            yielded = 0
+            for row in reader:
+                batch.append(row)
+                if len(batch) >= batch_size:
+                    yield batch
+                    yielded += len(batch)
+                    batch = []
+                    if limit is not None and yielded >= limit:
+                        return
+            if batch:
+                if limit is not None:
+                    batch = batch[: max(0, limit - yielded)]
+                if batch:
+                    yield batch
+
     def iter_bulk_csv(self, uuid, limit=None, batch_size=1000):
         """Yield pages of rows by streaming the bulk CSV at data_file_url.
 

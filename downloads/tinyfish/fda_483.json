@@ -1,0 +1,110 @@
+{
+  "type": "COMPLETE",
+  "run_id": "fab92868-aca6-4b05-8f32-3a479ee1c79f",
+  "status": "COMPLETED",
+  "timestamp": "2026-04-24T18:30:31.227Z",
+  "result": {
+    "result": [
+      {
+        "firm_name": "CONTEMPORARY HEALTH SYSTEMS LLC",
+        "firm_city": "West Palm Beach",
+        "firm_state": "Florida",
+        "firm_country": "United States",
+        "classification": "No Action Indicated (NAI)",
+        "posted_date": null,
+        "product_type": "Devices",
+        "inspection_end_date": "04/09/2026"
+      },
+      {
+        "firm_name": "CONTEMPORARY HEALTH SYSTEMS LLC",
+        "firm_city": "West Palm Beach",
+        "firm_state": "Florida",
+        "firm_country": "United States",
+        "classification": "No Action Indicated (NAI)",
+        "posted_date": null,
+        "product_type": "Devices",
+        "inspection_end_date": "04/09/2026"
+      },
+      {
+        "firm_name": "AED Battery Exchange LLC",
+        "firm_city": "Wauconda",
+        "firm_state": "Illinois",
+        "firm_country": "United States",
+        "classification": "No Action Indicated (NAI)",
+        "posted_date": null,
+        "product_type": "Devices",
+        "inspection_end_date": "04/09/2026"
+      },
+      {
+        "firm_name": "AED Battery Exchange LLC",
+        "firm_city": "Wauconda",
+        "firm_state": "Illinois",
+        "firm_country": "United States",
+        "classification": "No Action Indicated (NAI)",
+        "posted_date": null,
+        "product_type": "Devices",
+        "inspection_end_date": "04/09/2026"
+      },
+      {
+        "firm_name": "Twins & Martin Equipment Corporation",
+        "firm_city": "Miami",
+        "firm_state": "Florida",
+        "firm_country": "United States",
+        "classification": "No Action Indicated (NAI)",
+        "posted_date": null,
+        "product_type": "Devices",
+        "inspection_end_date": "04/09/2026"
+      },
+      {
+        "firm_name": "Twins & Martin Equipment Corporation",
+        "firm_city": "Miami",
+        "firm_state": "Florida",
+        "firm_country": "United States",
+        "classification": "No Action Indicated (NAI)",
+        "posted_date": null,
+        "product_type": "Devices",
+        "inspection_end_date": "04/09/2026"
+      },
+      {
+        "firm_name": "INTEGRATED MEDCRAFT LLC",
+        "firm_city": "East Hampton",
+        "firm_state": "Connecticut",
+        "firm_country": "United States",
+        "classification": "Voluntary Action Indicated (VAI)",
+        "posted_date": null,
+        "product_type": "Devices",
+        "inspection_end_date": "04/08/2026"
+      },
+      {
+        "firm_name": "INTEGRATED MEDCRAFT LLC",
+        "firm_city": "East Hampton",
+        "firm_state": "Connecticut",
+        "firm_country": "United States",
+        "classification": "No Action Indicated (NAI)",
+        "posted_date": null,
+        "product_type": "Devices",
+        "inspection_end_date": "04/08/2026"
+      },
+      {
+        "firm_name": "Payne Glasses, LLC",
+        "firm_city": "Pittsburgh",
+        "firm_state": "Pennsylvania",
+        "firm_country": "United States",
+        "classification": "No Action Indicated (NAI)",
+        "posted_date": null,
+        "product_type": "Devices",
+        "inspection_end_date": "04/07/2026"
+      },
+      {
+        "firm_name": "The See Clear Company",
+        "firm_city": "Peachtree Corners",
+        "firm_state": "Georgia",
+        "firm_country": "United States",
+        "classification": "No Action Indicated (NAI)",
+        "posted_date": null,
+        "product_type": "Devices",
+        "inspection_end_date": "04/07/2026"
+      }
+    ]
+  }
+}

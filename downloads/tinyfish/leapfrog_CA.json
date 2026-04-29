@@ -1,0 +1,490 @@
+{
+  "type": "COMPLETE",
+  "run_id": "44bbd7de-e7cd-4f88-83b1-9ba4531af915",
+  "status": "COMPLETED",
+  "timestamp": "2026-04-24T18:37:45.472Z",
+  "result": {
+    "result": [
+      {
+        "hospital_name": "Adventist Health Glendale",
+        "city": "Glendale",
+        "state": "CA",
+        "zip": "91206-4098",
+        "safety_grade": "AA",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/adventist-health-glendale"
+      },
+      {
+        "hospital_name": "Bakersfield Memorial Hospital",
+        "city": "Bakersfield",
+        "state": "CA",
+        "zip": "93301-2237",
+        "safety_grade": "AA",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/bakersfield-memorial-hospital"
+      },
+      {
+        "hospital_name": "Eisenhower Medical Center",
+        "city": "Rancho Mirage",
+        "state": "CA",
+        "zip": "92270-3221",
+        "safety_grade": "AA",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/eisenhower-medical-center"
+      },
+      {
+        "hospital_name": "El Camino Hospital",
+        "city": "Mountain View",
+        "state": "CA",
+        "zip": "94040",
+        "safety_grade": "AA",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/el-camino-hospital"
+      },
+      {
+        "hospital_name": "French Hospital Medical Center",
+        "city": "San Luis Obispo",
+        "state": "CA",
+        "zip": "93401-4131",
+        "safety_grade": "AA",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/french-hospital-medical-center"
+      },
+      {
+        "hospital_name": "Hoag Hospital Irvine",
+        "city": "Irvine",
+        "state": "CA",
+        "zip": "92618",
+        "safety_grade": "AA",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/hoag-hospital-irvine"
+      },
+      {
+        "hospital_name": "Hoag Memorial Hospital Presbyterian",
+        "city": "Newport Beach",
+        "state": "CA",
+        "zip": "92663",
+        "safety_grade": "AA",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/hoag-memorial-hospital-presbyterian"
+      },
+      {
+        "hospital_name": "Kaiser Foundation Hospital - Roseville",
+        "city": "Roseville",
+        "state": "CA",
+        "zip": "95661-3027",
+        "safety_grade": "AA",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/kaiser-foundation-hospital-roseville"
+      },
+      {
+        "hospital_name": "Kaiser Permanente - San Diego Medical Center",
+        "city": "San Diego",
+        "state": "CA",
+        "zip": "92123",
+        "safety_grade": "AA",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/kaiser-permanente-san-diego-medical-center"
+      },
+      {
+        "hospital_name": "Kaiser Permanente Fontana Medical Center",
+        "city": "Fontana",
+        "state": "CA",
+        "zip": "92335-6720",
+        "safety_grade": "AA",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/kaiser-permanente-fontana-medical-center"
+      },
+      {
+        "hospital_name": "Kaiser Permanente Modesto Medical Center",
+        "city": "Modesto",
+        "state": "CA",
+        "zip": "95356-9718",
+        "safety_grade": "AA",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/kaiser-permanente-modesto-medical-center"
+      },
+      {
+        "hospital_name": "Kaiser Permanente Ontario Medical Center",
+        "city": "Ontario",
+        "state": "CA",
+        "zip": "91761",
+        "safety_grade": "AA",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/kaiser-permanente-ontario-medical-center"
+      },
+      {
+        "hospital_name": "Kaiser Permanente Orange County - Anaheim Medical Center",
+        "city": "Anaheim",
+        "state": "CA",
+        "zip": "92806",
+        "safety_grade": "AA",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/kaiser-permanente-orange-county-anaheim-medical-center"
+      },
+      {
+        "hospital_name": "Kaiser Permanente Orange County - Irvine Medical Center",
+        "city": "Irvine",
+        "state": "CA",
+        "zip": "92618",
+        "safety_grade": "AA",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/kaiser-permanente-orange-county-irvine-medical-center"
+      },
+      {
+        "hospital_name": "Kaiser Permanente San Rafael Medical Center",
+        "city": "San Rafael",
+        "state": "CA",
+        "zip": "94903-5114",
+        "safety_grade": "AA",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/kaiser-permanente-san-rafael-medical-center"
+      },
+      {
+        "hospital_name": "Kaiser Permanente Santa Clara Medical Center",
+        "city": "Santa Clara",
+        "state": "CA",
+        "zip": "95051-5173",
+        "safety_grade": "AA",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/kaiser-permanente-santa-clara-medical-center"
+      },
+      {
+        "hospital_name": "Kaiser Permanente South San Francisco Medical Center",
+        "city": "South San Francisco",
+        "state": "CA",
+        "zip": "94080-3208",
+        "safety_grade": "AA",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/kaiser-permanente-south-san-francisco-medical-center"
+      },
+      {
+        "hospital_name": "Loma Linda University Medical Center",
+        "city": "Loma Linda",
+        "state": "CA",
+        "zip": "92354",
+        "safety_grade": "AA",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/loma-linda-university-medical-center"
+      },
+      {
+        "hospital_name": "Loma Linda University Medical Center East Campus",
+        "city": "Loma Linda",
+        "state": "CA",
+        "zip": "92354",
+        "safety_grade": "AA",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/loma-linda-university-medical-center-east-campus"
+      },
+      {
+        "hospital_name": "Marian Regional Medical Center",
+        "city": "Santa Maria",
+        "state": "CA",
+        "zip": "93454-5906",
+        "safety_grade": "AA",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/marian-regional-medical-center"
+      },
+      {
+        "hospital_name": "Martin Luther King, Jr. Community Hospital",
+        "city": "Los Angeles",
+        "state": "CA",
+        "zip": "90059-3026",
+        "safety_grade": "AA",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/martin-luther-king-jr-community-hospital"
+      },
+      {
+        "hospital_name": "Mercy General Hospital",
+        "city": "Sacramento",
+        "state": "CA",
+        "zip": "95819-3626",
+        "safety_grade": "AA",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/mercy-general-hospital"
+      },
+      {
+        "hospital_name": "Mercy Medical Center",
+        "city": "Merced",
+        "state": "CA",
+        "zip": "95340-8319",
+        "safety_grade": "AA",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/mercy-medical-center-merced-ca"
+      },
+      {
+        "hospital_name": "Mercy San Juan Medical Center",
+        "city": "Carmichael",
+        "state": "CA",
+        "zip": "95608-0306",
+        "safety_grade": "AA",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/mercy-san-juan-medical-center"
+      },
+      {
+        "hospital_name": "Mills-Peninsula Medical Center",
+        "city": "Burlingame",
+        "state": "CA",
+        "zip": "94010-4506",
+        "safety_grade": "AA",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/mills-peninsula-medical-center"
+      },
+      {
+        "hospital_name": "Montclair Hospital Medical Center",
+        "city": "Montclair",
+        "state": "CA",
+        "zip": "91763-2326",
+        "safety_grade": "AA",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/montclair-hospital-medical-center"
+      },
+      {
+        "hospital_name": "Northridge Hospital Medical Center-Roscoe Boulevard Campus",
+        "city": "Northridge",
+        "state": "CA",
+        "zip": "91325-4105",
+        "safety_grade": "AA",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/northridge-hospital-medical-center-roscoe-boulevard-campus"
+      },
+      {
+        "hospital_name": "Novato Community Hospital",
+        "city": "Novato",
+        "state": "CA",
+        "zip": "94945-5009",
+        "safety_grade": "AA",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/novato-community-hospital"
+      },
+      {
+        "hospital_name": "Palmdale Regional Medical Center",
+        "city": "Palmdale",
+        "state": "CA",
+        "zip": "93551",
+        "safety_grade": "AA",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/palmdale-regional-medical-center"
+      },
+      {
+        "hospital_name": "Paradise Valley Hospital",
+        "city": "National City",
+        "state": "CA",
+        "zip": "91950-2099",
+        "safety_grade": "AA",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/paradise-valley-hospital"
+      },
+      {
+        "hospital_name": "Parkview Community Hospital Medical Center",
+        "city": "Riverside",
+        "state": "CA",
+        "zip": "92503-3998",
+        "safety_grade": "AA",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/parkview-community-hospital-medical-center"
+      },
+      {
+        "hospital_name": "Pomona Valley Hospital Medical Center",
+        "city": "Pomona",
+        "state": "CA",
+        "zip": "91767-2918",
+        "safety_grade": "AA",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/pomona-valley-hospital-medical-center"
+      },
+      {
+        "hospital_name": "Scripps Green Hospital",
+        "city": "La Jolla",
+        "state": "CA",
+        "zip": "92037-1027",
+        "safety_grade": "AA",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/scripps-green-hospital"
+      },
+      {
+        "hospital_name": "Scripps Memorial Hospital of Encinitas",
+        "city": "Encinitas",
+        "state": "CA",
+        "zip": "92024-5142",
+        "safety_grade": "AA",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/scripps-memorial-hospital-of-encinitas"
+      },
+      {
+        "hospital_name": "Sequoia Hospital",
+        "city": "Redwood City",
+        "state": "CA",
+        "zip": "94062-2799",
+        "safety_grade": "AA",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/sequoia-hospital"
+      },
+      {
+        "hospital_name": "Sharp Grossmont Hospital",
+        "city": "La Mesa",
+        "state": "CA",
+        "zip": "91942-3019",
+        "safety_grade": "AA",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/sharp-grossmont-hospital"
+      },
+      {
+        "hospital_name": "Sierra Nevada Memorial Hospital",
+        "city": "Grass Valley",
+        "state": "CA",
+        "zip": "95945-5723",
+        "safety_grade": "AA",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/sierra-nevada-memorial-hospital"
+      },
+      {
+        "hospital_name": "St. Elizabeth Community Hospital",
+        "city": "Red Bluff",
+        "state": "CA",
+        "zip": "96080-4397",
+        "safety_grade": "AA",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/st-elizabeth-community-hospital"
+      },
+      {
+        "hospital_name": "St. John\u00e2\u0080\u0099s Hospital Camarillo",
+        "city": "Camarillo",
+        "state": "CA",
+        "zip": "93010-1414",
+        "safety_grade": "AA",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/st-johns-hospital-camarillo"
+      },
+      {
+        "hospital_name": "Stanford Health Care",
+        "city": "Stanford",
+        "state": "CA",
+        "zip": "94305",
+        "safety_grade": "AA",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/stanford-health-care"
+      },
+      {
+        "hospital_name": "Sutter Santa Rosa Regional Hospital",
+        "city": "Santa Rosa",
+        "state": "CA",
+        "zip": "95403",
+        "safety_grade": "AA",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/sutter-santa-rosa-regional-hospital"
+      },
+      {
+        "hospital_name": "UC San Diego Health La Jolla - Jacobs Medical Center and Sulpizio Cardiovascular Center",
+        "city": "La Jolla",
+        "state": "CA",
+        "zip": "92037",
+        "safety_grade": "AA",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/uc-san-diego-health-la-jolla-jacobs-medical-center-and"
+      },
+      {
+        "hospital_name": "UCSF Health - Mission Bay",
+        "city": "San Francisco",
+        "state": "CA",
+        "zip": "94158-2351",
+        "safety_grade": "AA",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/ucsf-health-mission-bay"
+      },
+      {
+        "hospital_name": "UCSF Helen Diller Medical Center at Parnassus Heights",
+        "city": "San Francisco",
+        "state": "CA",
+        "zip": "94143-0296",
+        "safety_grade": "AA",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/ucsf-helen-diller-medical-center-at-parnassus-heights"
+      },
+      {
+        "hospital_name": "Woodland Memorial Hospital",
+        "city": "Woodland",
+        "state": "CA",
+        "zip": "95695-5199",
+        "safety_grade": "AA",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/woodland-memorial-hospital"
+      },
+      {
+        "hospital_name": "60th Medical Group, Travis AFB",
+        "city": "Travis AFB",
+        "state": "CA",
+        "zip": "94535-1801",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/60th-medical-group-travis-afb"
+      },
+      {
+        "hospital_name": "Adventist Health - Bakersfield",
+        "city": "Bakersfield",
+        "state": "CA",
+        "zip": "93301-2006",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/adventist-health-bakersfield"
+      },
+      {
+        "hospital_name": "Adventist Health - Delano",
+        "city": "Delano",
+        "state": "CA",
+        "zip": "93215-3690",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/adventist-health-delano"
+      },
+      {
+        "hospital_name": "Adventist Health Hanford",
+        "city": "Hanford",
+        "state": "CA",
+        "zip": "93230-3513",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/adventist-health-hanford"
+      },
+      {
+        "hospital_name": "Adventist Health Selma",
+        "city": "Selma",
+        "state": "CA",
+        "zip": "93662",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/adventist-health-selma"
+      },
+      {
+        "hospital_name": "Adventist Health Specialty Bakersfield",
+        "city": "Bakersfield",
+        "state": "CA",
+        "zip": "93308-6337",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/adventist-health-specialty-bakersfield"
+      },
+      {
+        "hospital_name": "Adventist Health Tulare",
+        "city": "Tulare",
+        "state": "CA",
+        "zip": "93274-2287",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/adventist-health-tulare"
+      },
+      {
+        "hospital_name": "Adventist Health Ukiah Valley",
+        "city": "Ukiah",
+        "state": "CA",
+        "zip": "95482-4531",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/adventist-health-ukiah-valley"
+      },
+      {
+        "hospital_name": "AHMC Seton Medical Center",
+        "city": "Daly City",
+        "state": "CA",
+        "zip": "94015-2229",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/ahmc-seton-medical-center"
+      },
+      {
+        "hospital_name": "Alhambra Hospital Medical Center",
+        "city": "Alhambra",
+        "state": "CA",
+        "zip": "91801-3199",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/alhambra-hospital-medical-center"
+      },
+      {
+        "hospital_name": "Alta Bates Summit Medical Center",
+        "city": "Oakland",
+        "state": "CA",
+        "zip": "94609",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/alta-bates-summit-medical-center"
+      },
+      {
+        "hospital_name": "Anaheim Global Medical Center",
+        "city": "Anaheim",
+        "state": "CA",
+        "zip": "92805-5806",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/anaheim-global-medical-center"
+      },
+      {
+        "hospital_name": "Arroyo Grande Community Hospital",
+        "city": "Arroyo Grande",
+        "state": "CA",
+        "zip": "93420-3899",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/arroyo-grande-community-hospital"
+      },
+      {
+        "hospital_name": "Barton Memorial Hospital",
+        "city": "South Lake Tahoe",
+        "state": "CA",
+        "zip": "96150-7026",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/barton-memorial-hospital"
+      },
+      {
+        "hospital_name": "California Pacific Medical Center - Mission Bernal Campus",
+        "city": "San Francisco",
+        "state": "CA",
+        "zip": "94110-4490",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/california-pacific-medical-center-mission-bernal-campus"
+      }
+    ]
+  }
+}

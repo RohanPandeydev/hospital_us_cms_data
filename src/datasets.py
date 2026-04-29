@@ -195,10 +195,13 @@ DATASETS = [
         "name": "Medicare Physician & Other Practitioners - by Provider and Service",
         "kind": "cms_summary",
         "source": "cms_data_api",
-        # Per-state JSON pagination times out: even a single state of
-        # physician-by-service is tens of MB. Stream the pre-built CSV
-        # instead via /data-viewer/stats.data_file_url.
-        "bulk_csv": True,
+        # CMS data-api/v1 (incl. /data-viewer/stats) is currently Akamai-blocked
+        # from this network — every UUID under that namespace returns HTTP 000
+        # in 0.2s. The pre-downloaded 2023 CSV (~3 GB, 9.66M rows) at the
+        # csv_path below has all the columns we need (Rndrng_NPI, HCPCS_Cd,
+        # Tot_Srvcs, Tot_Benes, Avg_Mdcr_Pymt_Amt, geo fields).
+        "csv_path": "downloads/physician_2023.csv",
+        "bulk_csv": True,  # kept as fallback if csv_path is missing
     },
     # --- Reference / master tables ---
     {
@@ -233,6 +236,22 @@ DATASETS = [
     },
     # --- Priority 3: Open Payments (manufacturer → hospital/physician $) ---
     # Same DKAN API as CMS provider-data but different host: openpaymentsdata.cms.gov
+    # 3 program years registered to enable manufacturer_payment_slope feature
+    # (slope detection wants ≥3 years of trend data).
+    {
+        "id": "op_2022_general",
+        "uuid": "df01c2f8-dc1f-4e79-96cb-8208beaf143c",
+        "name": "Open Payments 2022 - General Payment Data",
+        "kind": "open_payments",
+        "source": "open_payments",
+    },
+    {
+        "id": "op_2023_general",
+        "uuid": "fb3a65aa-c901-4a38-a813-b04b00dfa2a9",
+        "name": "Open Payments 2023 - General Payment Data",
+        "kind": "open_payments",
+        "source": "open_payments",
+    },
     {
         "id": "op_2024_general",
         "uuid": "e6b17c6a-2534-4207-a4a1-6746a14911ff",

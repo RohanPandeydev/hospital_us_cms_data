@@ -1,0 +1,17 @@
+{
+  "type": "COMPLETE",
+  "run_id": "2dde42ad-27b4-45c3-945c-f6ef47cb8a1f",
+  "status": "COMPLETED",
+  "timestamp": "2026-04-24T19:20:15.504Z",
+  "result": {
+    "result": [
+      {
+        "title": "Massive Wave Of Hospital Closures Looms Over Upstate New York",
+        "source": "Hudson Valley Post",
+        "published_date": "Jul 30, 2025",
+        "url": "https://hudsonvalleypost.com/wave-of-hospital-closures-looms-over-upstate-new-york/",
+        "snippet": "A disturbing new report reveals nearly 60% of Upstate New York hospitals may close. Some are in immediate danger. Here's what's fueling the crisis."
+      }
+    ]
+  }
+}

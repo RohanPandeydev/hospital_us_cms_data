@@ -1,0 +1,490 @@
+{
+  "type": "COMPLETE",
+  "run_id": "f509a7d7-2075-4a16-9534-4e52d4a6d30e",
+  "status": "COMPLETED",
+  "timestamp": "2026-04-24T18:44:20.753Z",
+  "result": {
+    "result": [
+      {
+        "hospital_name": "AdventHealth Apopka",
+        "city": "Apopka",
+        "state": "FL",
+        "zip": "32703",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/adventhealth-apopka"
+      },
+      {
+        "hospital_name": "AdventHealth Carrollwood",
+        "city": "Tampa",
+        "state": "FL",
+        "zip": "33614-2699",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/adventhealth-carrollwood"
+      },
+      {
+        "hospital_name": "AdventHealth Celebration",
+        "city": "Celebration",
+        "state": "FL",
+        "zip": "34747",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/adventhealth-celebration"
+      },
+      {
+        "hospital_name": "AdventHealth Dade City",
+        "city": "Dade City",
+        "state": "FL",
+        "zip": "33525-5294",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/adventhealth-dade-city"
+      },
+      {
+        "hospital_name": "AdventHealth DeLand",
+        "city": "DeLand",
+        "state": "FL",
+        "zip": "32720",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/adventhealth-deland"
+      },
+      {
+        "hospital_name": "AdventHealth East Orlando",
+        "city": "Orlando",
+        "state": "FL",
+        "zip": "32822",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/adventhealth-east-orlando"
+      },
+      {
+        "hospital_name": "AdventHealth Fish Memorial",
+        "city": "Orange City",
+        "state": "FL",
+        "zip": "32763-8468",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/adventhealth-fish-memorial"
+      },
+      {
+        "hospital_name": "AdventHealth Kissimmee",
+        "city": "Kissimmee",
+        "state": "FL",
+        "zip": "34744",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/adventhealth-kissimmee"
+      },
+      {
+        "hospital_name": "AdventHealth Ocala",
+        "city": "Ocala",
+        "state": "FL",
+        "zip": "34471-4059",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/adventhealth-ocala"
+      },
+      {
+        "hospital_name": "AdventHealth Orlando",
+        "city": "Orlando",
+        "state": "FL",
+        "zip": "32803",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/adventhealth-orlando"
+      },
+      {
+        "hospital_name": "AdventHealth Wesley Chapel",
+        "city": "WESLEY CHAPEL",
+        "state": "FL",
+        "zip": "33544",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/adventhealth-wesley-chapel"
+      },
+      {
+        "hospital_name": "AdventHealth Winter Park",
+        "city": "Winter Park",
+        "state": "FL",
+        "zip": "32792",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/adventhealth-winter-park"
+      },
+      {
+        "hospital_name": "AdventHealth Zephyrhills",
+        "city": "Zephyrhills",
+        "state": "FL",
+        "zip": "33541-1399",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/adventhealth-zephyrhills"
+      },
+      {
+        "hospital_name": "Baptist Medical Center Beaches",
+        "city": "Jacksonville Beach",
+        "state": "FL",
+        "zip": "32250-3205",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/baptist-medical-center-beaches"
+      },
+      {
+        "hospital_name": "Baptist Medical Center Nassau",
+        "city": "Fernandina Beach",
+        "state": "FL",
+        "zip": "32034-3098",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/baptist-medical-center-nassau"
+      },
+      {
+        "hospital_name": "Cape Coral Hospital",
+        "city": "Cape Coral",
+        "state": "FL",
+        "zip": "33990-2695",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/cape-coral-hospital"
+      },
+      {
+        "hospital_name": "HCA Florida North Florida Hospital",
+        "city": "Gainesville",
+        "state": "FL",
+        "zip": "32605-4392",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/hca-florida-north-florida-hospital"
+      },
+      {
+        "hospital_name": "HCA Florida South Tampa Hospital",
+        "city": "Tampa",
+        "state": "FL",
+        "zip": "33609-4057",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/hca-florida-south-tampa-hospital"
+      },
+      {
+        "hospital_name": "HCA Florida St. Lucie Hospital",
+        "city": "Port St Lucie",
+        "state": "FL",
+        "zip": "34952-7580",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/hca-florida-st-lucie-hospital"
+      },
+      {
+        "hospital_name": "Healthpark Medical Center",
+        "city": "Fort Myers",
+        "state": "FL",
+        "zip": "33908",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/healthpark-medical-center"
+      },
+      {
+        "hospital_name": "Jupiter Medical Center",
+        "city": "Jupiter",
+        "state": "FL",
+        "zip": "33458",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/jupiter-medical-center"
+      },
+      {
+        "hospital_name": "Lee Memorial Hospital",
+        "city": "Fort Myers",
+        "state": "FL",
+        "zip": "33901",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/lee-memorial-hospital"
+      },
+      {
+        "hospital_name": "Mayo Clinic-Jacksonville",
+        "city": "Jacksonville",
+        "state": "FL",
+        "zip": "32224",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/mayo-clinic-jacksonville"
+      },
+      {
+        "hospital_name": "Mease Countryside Hospital",
+        "city": "Safety Harbor",
+        "state": "FL",
+        "zip": "34695",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/mease-countryside-hospital"
+      },
+      {
+        "hospital_name": "Mease Dunedin Hospital",
+        "city": "Dunedin",
+        "state": "FL",
+        "zip": "34698",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/mease-dunedin-hospital"
+      },
+      {
+        "hospital_name": "Memorial Hospital Miramar",
+        "city": "Miramar",
+        "state": "FL",
+        "zip": "33029",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/memorial-hospital-miramar"
+      },
+      {
+        "hospital_name": "Morton Plant Hospital",
+        "city": "Clearwater",
+        "state": "FL",
+        "zip": "33756",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/morton-plant-hospital"
+      },
+      {
+        "hospital_name": "Morton Plant North Bay Hospital",
+        "city": "New Port Richey",
+        "state": "FL",
+        "zip": "34652",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/morton-plant-north-bay-hospital"
+      },
+      {
+        "hospital_name": "Orlando Health South Lake Hospital",
+        "city": "Clermont",
+        "state": "FL",
+        "zip": "34711",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/orlando-health-south-lake-hospital"
+      },
+      {
+        "hospital_name": "Oviedo Medical Center",
+        "city": "Oviedo",
+        "state": "FL",
+        "zip": "32765",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/oviedo-medical-center"
+      },
+      {
+        "hospital_name": "Sarasota Memorial Hospital",
+        "city": "Sarasota",
+        "state": "FL",
+        "zip": "34239",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/sarasota-memorial-hospital"
+      },
+      {
+        "hospital_name": "St. Anthony's Hospital",
+        "city": "Saint Petersburg",
+        "state": "FL",
+        "zip": "33705",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/st-anthonys-hospital"
+      },
+      {
+        "hospital_name": "St. Joseph's Hospital",
+        "city": "Tampa",
+        "state": "FL",
+        "zip": "33607",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/st-josephs-hospital-tampa-fl"
+      },
+      {
+        "hospital_name": "St. Joseph's Hospital - North",
+        "city": "Lutz",
+        "state": "FL",
+        "zip": "33558",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/st-josephs-hospital-north"
+      },
+      {
+        "hospital_name": "St. Joseph's Hospital - South",
+        "city": "Riverview",
+        "state": "FL",
+        "zip": "33578",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/st-josephs-hospital-south"
+      },
+      {
+        "hospital_name": "Winter Haven Hospital",
+        "city": "Winter Haven",
+        "state": "FL",
+        "zip": "33881",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/winter-haven-hospital"
+      },
+      {
+        "hospital_name": "AdventHealth Lake Wales",
+        "city": "Lake Wales",
+        "state": "FL",
+        "zip": "33853",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/adventhealth-lake-wales"
+      },
+      {
+        "hospital_name": "AdventHealth New Smyrna Beach",
+        "city": "New Smyrna Beach",
+        "state": "FL",
+        "zip": "32168",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/adventhealth-new-smyrna-beach"
+      },
+      {
+        "hospital_name": "AdventHealth North Pinellas",
+        "city": "Tarpon Springs",
+        "state": "FL",
+        "zip": "34689",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/adventhealth-north-pinellas"
+      },
+      {
+        "hospital_name": "AdventHealth Winter Garden",
+        "city": "Winter Garden",
+        "state": "FL",
+        "zip": "34787",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/adventhealth-winter-garden"
+      },
+      {
+        "hospital_name": "Ascension St. Vincent's Riverside",
+        "city": "Jacksonville",
+        "state": "FL",
+        "zip": "32204",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/ascension-st-vincents-riverside"
+      },
+      {
+        "hospital_name": "Baptist Health Doctors Hospital",
+        "city": "Coral Gables",
+        "state": "FL",
+        "zip": "33146",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/baptist-health-doctors-hospital"
+      },
+      {
+        "hospital_name": "Baptist Health Hospital | Doral",
+        "city": "Doral",
+        "state": "FL",
+        "zip": "33178",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/baptist-health-hospital-doral"
+      },
+      {
+        "hospital_name": "Baptist Health South Miami Hospital",
+        "city": "South Miami",
+        "state": "FL",
+        "zip": "33143",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/baptist-health-south-miami-hospital"
+      },
+      {
+        "hospital_name": "Baptist Health West Kendall Baptist Hospital",
+        "city": "Miami",
+        "state": "FL",
+        "zip": "33196",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/baptist-health-west-kendall-baptist-hospital"
+      },
+      {
+        "hospital_name": "Baptist Medical Center South",
+        "city": "Jacksonville",
+        "state": "FL",
+        "zip": "32258",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/baptist-medical-center-south-jacksonville-fl"
+      },
+      {
+        "hospital_name": "Bartow Regional Medical Center",
+        "city": "Bartow",
+        "state": "FL",
+        "zip": "33830",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/bartow-regional-medical-center"
+      },
+      {
+        "hospital_name": "Baycare Hospital Wesley Chapel",
+        "city": "Wesley Chapel",
+        "state": "FL",
+        "zip": "33544",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/baycare-hospital-wesley-chapel"
+      },
+      {
+        "hospital_name": "Broward Health Coral Springs",
+        "city": "Coral Springs",
+        "state": "FL",
+        "zip": "33065",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/broward-health-coral-springs"
+      },
+      {
+        "hospital_name": "Broward Health North",
+        "city": "Deerfield Beach",
+        "state": "FL",
+        "zip": "33064",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/broward-health-north"
+      },
+      {
+        "hospital_name": "Cleveland Clinic Hospital Weston",
+        "city": "Weston",
+        "state": "FL",
+        "zip": "33331",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/cleveland-clinic-hospital-weston"
+      },
+      {
+        "hospital_name": "Coral Gables Hospital",
+        "city": "Coral Gables",
+        "state": "FL",
+        "zip": "33134",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/coral-gables-hospital"
+      },
+      {
+        "hospital_name": "HCA Florida Englewood Hospital",
+        "city": "Englewood",
+        "state": "FL",
+        "zip": "34223",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/hca-florida-englewood-hospital"
+      },
+      {
+        "hospital_name": "HCA Florida Highlands Hospital",
+        "city": "Sebring",
+        "state": "FL",
+        "zip": "33870",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/hca-florida-highlands-hospital"
+      },
+      {
+        "hospital_name": "HCA Florida Kendall Hospital",
+        "city": "Miami",
+        "state": "FL",
+        "zip": "33175",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/hca-florida-kendall-hospital"
+      },
+      {
+        "hospital_name": "HCA Florida Lake City Hospital",
+        "city": "Lake City",
+        "state": "FL",
+        "zip": "32055",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/hca-florida-lake-city-hospital"
+      },
+      {
+        "hospital_name": "HCA Florida Oak Hill Hospital",
+        "city": "Brooksville",
+        "state": "FL",
+        "zip": "34613",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/hca-florida-oak-hill-hospital"
+      },
+      {
+        "hospital_name": "HCA Florida Raulerson Hospital",
+        "city": "Okeechobee",
+        "state": "FL",
+        "zip": "34972",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/hca-florida-raulerson-hospital"
+      },
+      {
+        "hospital_name": "HCA Florida Trinity Hospital",
+        "city": "Trinity",
+        "state": "FL",
+        "zip": "34655",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/hca-florida-trinity-hospital"
+      },
+      {
+        "hospital_name": "HCA Florida Twin Cities Hospital",
+        "city": "Niceville",
+        "state": "FL",
+        "zip": "32578",
+        "safety_grade": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/hca-florida-twin-cities-hospital"
+      }
+    ]
+  }
+}

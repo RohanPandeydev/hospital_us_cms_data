@@ -1,0 +1,161 @@
+{
+  "type": "COMPLETE",
+  "run_id": "1b662efb-8b55-42df-858e-a164432081b3",
+  "status": "COMPLETED",
+  "timestamp": "2026-04-24T19:03:04.228Z",
+  "result": {
+    "available_report_types": [
+      "Utilization Reports",
+      "Annual Financial Disclosure Reports (ADR)",
+      "Quarterly Financial Disclosure Reports (QFUR)",
+      "Skilled Nursing Facility (SNF) Annual Consolidated Financial Reports",
+      "Hospital Inpatient Mortality Indicators",
+      "Hospital Utilization Indicators",
+      "Hospital Volume Indicators",
+      "Hospital Postoperative Sepsis Indicators",
+      "Hospital Pediatric Quality Indicators",
+      "California Transcatheter Aortic Valve Replacement (TAVR) Outcomes",
+      "Hospital Community Benefit Plans",
+      "Hospital Chargemasters",
+      "Hospital Healthcare Financial Assistance Policies"
+    ],
+    "closest_to_adverse_events": "Patient Safety Indicators (PSI), specifically Hospital Postoperative Sepsis Indicators (PSI 13)",
+    "hospital_data": [
+      {
+        "facility_name": "Alameda Hospital",
+        "city": "Alameda",
+        "county": "Alameda",
+        "report_type": "Postoperative Sepsis",
+        "report_year": 2023,
+        "report_title": "AHRQ Postoperative Sepsis Rates 2023",
+        "adverse_event_count_if_shown": 0
+      },
+      {
+        "facility_name": "Alta Bates Summit Medical Center",
+        "city": "Oakland",
+        "county": "Alameda",
+        "report_type": "Postoperative Sepsis",
+        "report_year": 2023,
+        "report_title": "AHRQ Postoperative Sepsis Rates 2023",
+        "adverse_event_count_if_shown": 8
+      },
+      {
+        "facility_name": "Alta Bates Summit Medical Center \u00e2\u0080\u0093 Alta Bates Campus",
+        "city": "Berkeley",
+        "county": "Alameda",
+        "report_type": "Postoperative Sepsis",
+        "report_year": 2023,
+        "report_title": "AHRQ Postoperative Sepsis Rates 2023",
+        "adverse_event_count_if_shown": 2
+      },
+      {
+        "facility_name": "Eden Medical Center",
+        "city": "Castro Valley",
+        "county": "Alameda",
+        "report_type": "Postoperative Sepsis",
+        "report_year": 2023,
+        "report_title": "AHRQ Postoperative Sepsis Rates 2023",
+        "adverse_event_count_if_shown": 2
+      },
+      {
+        "facility_name": "Highland Hospital",
+        "city": "Oakland",
+        "county": "Alameda",
+        "report_type": "Postoperative Sepsis",
+        "report_year": 2023,
+        "report_title": "AHRQ Postoperative Sepsis Rates 2023",
+        "adverse_event_count_if_shown": 6
+      },
+      {
+        "facility_name": "Kaiser Foundation Hospital \u00e2\u0080\u0093 Fremont",
+        "city": "Fremont",
+        "county": "Alameda",
+        "report_type": "Postoperative Sepsis",
+        "report_year": 2023,
+        "report_title": "AHRQ Postoperative Sepsis Rates 2023",
+        "adverse_event_count_if_shown": 0
+      },
+      {
+        "facility_name": "Kaiser Foundation Hospital \u00e2\u0080\u0093 Oakland Medical Center",
+        "city": "Oakland",
+        "county": "Alameda",
+        "report_type": "Postoperative Sepsis",
+        "report_year": 2023,
+        "report_title": "AHRQ Postoperative Sepsis Rates 2023",
+        "adverse_event_count_if_shown": 7
+      },
+      {
+        "facility_name": "Kaiser Foundation Hospital \u00e2\u0080\u0093 San Leandro",
+        "city": "San Leandro",
+        "county": "Alameda",
+        "report_type": "Postoperative Sepsis",
+        "report_year": 2023,
+        "report_title": "AHRQ Postoperative Sepsis Rates 2023",
+        "adverse_event_count_if_shown": 6
+      },
+      {
+        "facility_name": "St. Rose Hospital",
+        "city": "Hayward",
+        "county": "Alameda",
+        "report_type": "Postoperative Sepsis",
+        "report_year": 2023,
+        "report_title": "AHRQ Postoperative Sepsis Rates 2023",
+        "adverse_event_count_if_shown": 1
+      },
+      {
+        "facility_name": "Stanford Health Care Tri-Valley",
+        "city": "Pleasanton",
+        "county": "Alameda",
+        "report_type": "Postoperative Sepsis",
+        "report_year": 2023,
+        "report_title": "AHRQ Postoperative Sepsis Rates 2023",
+        "adverse_event_count_if_shown": 2
+      },
+      {
+        "facility_name": "Washington Hospital \u00e2\u0080\u0093 Fremont",
+        "city": "Fremont",
+        "county": "Alameda",
+        "report_type": "Postoperative Sepsis",
+        "report_year": 2023,
+        "report_title": "AHRQ Postoperative Sepsis Rates 2023",
+        "adverse_event_count_if_shown": 1
+      },
+      {
+        "facility_name": "Sutter Amador Hospital",
+        "city": "Jackson",
+        "county": "Amador",
+        "report_type": "Postoperative Sepsis",
+        "report_year": 2023,
+        "report_title": "AHRQ Postoperative Sepsis Rates 2023",
+        "adverse_event_count_if_shown": 1
+      },
+      {
+        "facility_name": "Enloe Health",
+        "city": "Chico",
+        "county": "Butte",
+        "report_type": "Postoperative Sepsis",
+        "report_year": 2023,
+        "report_title": "AHRQ Postoperative Sepsis Rates 2023",
+        "adverse_event_count_if_shown": 2
+      },
+      {
+        "facility_name": "Oroville Hospital",
+        "city": "Oroville",
+        "county": "Butte",
+        "report_type": "Postoperative Sepsis",
+        "report_year": 2023,
+        "report_title": "AHRQ Postoperative Sepsis Rates 2023",
+        "adverse_event_count_if_shown": 6
+      },
+      {
+        "facility_name": "Mark Twain Medical Center",
+        "city": "San Andreas",
+        "county": "Calaveras",
+        "report_type": "Postoperative Sepsis",
+        "report_year": 2023,
+        "report_title": "AHRQ Postoperative Sepsis Rates 2023",
+        "adverse_event_count_if_shown": 0
+      }
+    ]
+  }
+}

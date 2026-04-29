@@ -1,0 +1,145 @@
+{
+  "type": "COMPLETE",
+  "run_id": "3b858f83-159b-4069-8e03-d4de5970e0b8",
+  "status": "COMPLETED",
+  "timestamp": "2026-04-24T18:30:04.912Z",
+  "result": {
+    "result": [
+      {
+        "hospital_name": "Clifton Springs Hospital and Clinic",
+        "city": "Clifton Springs",
+        "state": "NY",
+        "zip": "14432-1189",
+        "safety_grade": "A",
+        "score": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/clifton-springs-hospital-and-clinic"
+      },
+      {
+        "hospital_name": "Mather Hospital",
+        "city": "Port Jefferson",
+        "state": "NY",
+        "zip": "11777-2190",
+        "safety_grade": "A",
+        "score": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/mather-hospital"
+      },
+      {
+        "hospital_name": "Northern Westchester Hospital",
+        "city": "Mount Kisco",
+        "state": "NY",
+        "zip": "10549-3477",
+        "safety_grade": "A",
+        "score": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/northern-westchester-hospital"
+      },
+      {
+        "hospital_name": "NYU Langone Hospital - Brooklyn",
+        "city": "Brooklyn",
+        "state": "NY",
+        "zip": "11220-2559",
+        "safety_grade": "A",
+        "score": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/nyu-langone-hospital-brooklyn"
+      },
+      {
+        "hospital_name": "NYU Langone Hospitals",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10016-6402",
+        "safety_grade": "A",
+        "score": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/nyu-langone-hospitals"
+      },
+      {
+        "hospital_name": "NYU Langone Hospital\u00e2\u0080\u0094Long Island",
+        "city": "Mineola",
+        "state": "NY",
+        "zip": "11501-3957",
+        "safety_grade": "A",
+        "score": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/nyu-langone-hospital-long-island"
+      },
+      {
+        "hospital_name": "Saratoga Hospital",
+        "city": "Saratoga Springs",
+        "state": "NY",
+        "zip": "12866-1003",
+        "safety_grade": "A",
+        "score": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/saratoga-hospital"
+      },
+      {
+        "hospital_name": "South Shore University Hospital",
+        "city": "Bay Shore",
+        "state": "NY",
+        "zip": "11706-8458",
+        "safety_grade": "A",
+        "score": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/south-shore-university-hospital"
+      },
+      {
+        "hospital_name": "St. Charles Hospital",
+        "city": "Port Jefferson",
+        "state": "NY",
+        "zip": "11777-1928",
+        "safety_grade": "A",
+        "score": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/st-charles-hospital"
+      },
+      {
+        "hospital_name": "St. Francis Hospital and Heart Center",
+        "city": "Roslyn",
+        "state": "NY",
+        "zip": "11576-1347",
+        "safety_grade": "A",
+        "score": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/st-francis-hospital-and-heart-center"
+      },
+      {
+        "hospital_name": "White Plains Hospital",
+        "city": "White Plains",
+        "state": "NY",
+        "zip": "10601-4699",
+        "safety_grade": "A",
+        "score": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/white-plains-hospital"
+      },
+      {
+        "hospital_name": "Catholic Health System - Mount St. Mary's Hospital",
+        "city": "Lewiston",
+        "state": "NY",
+        "zip": "14092-1903",
+        "safety_grade": "A",
+        "score": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/catholic-health-system-mount-st-marys-hospital"
+      },
+      {
+        "hospital_name": "Glen Cove Hospital",
+        "city": "Glen Cove",
+        "state": "NY",
+        "zip": "11542-2254",
+        "safety_grade": "A",
+        "score": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/glen-cove-hospital"
+      },
+      {
+        "hospital_name": "Huntington Hospital",
+        "city": "Huntington",
+        "state": "NY",
+        "zip": "11743-2799",
+        "safety_grade": "A",
+        "score": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/huntington-hospital-huntington-ny"
+      },
+      {
+        "hospital_name": "Long Island Jewish Forest Hills",
+        "city": "Forest Hills",
+        "state": "NY",
+        "zip": "11375-2029",
+        "safety_grade": "A",
+        "score": "A",
+        "hospital_profile_url": "https://www.hospitalsafetygrade.org/h/long-island-jewish-forest-hills"
+      }
+    ]
+  }
+}

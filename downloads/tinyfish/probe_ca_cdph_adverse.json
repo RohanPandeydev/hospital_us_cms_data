@@ -1,0 +1,78 @@
+{
+  "slug": "ca_cdph_adverse",
+  "url": "https://www.cdph.ca.gov/Programs/CHCQ/LCP/Pages/AdverseEventsLanding.aspx",
+  "ok": true,
+  "raw": {
+    "type": "COMPLETE",
+    "run_id": "988d222b-2af0-4fb9-8975-9ade6b4e723c",
+    "status": "COMPLETED",
+    "timestamp": "2026-04-28T06:36:48.335Z",
+    "result": {
+      "evaluation": {
+        "source": "California Department of Public Health (CDPH) website",
+        "program": "Licensing and Certification (L&C) Program",
+        "sections_explored": [
+          "Reports (A-Z)",
+          "Hospital Administrative Penalties",
+          "Annual HAI Reports"
+        ],
+        "primary_source": "Hospital Administrative Penalties repository",
+        "data_description": "Lists specific hospitals with links to redacted 'Plans of Correction' (PDFs) describing 'Immediate Jeopardy' incidents, including medical device-related events like retained surgical items and equipment failures",
+        "dashboard_info": "Dashboard for newer adverse events (likely up to 2023 or 2024)",
+        "detailed_records": "Penalty documents updated through 2018; HAI reports through 2022",
+        "structured_data": {
+          "page_loads": true,
+          "shows_named_hospitals": true,
+          "covers_devices": true,
+          "latest_year": 2022,
+          "download_formats": [
+            "pdf",
+            "html"
+          ],
+          "direct_download_urls": [
+            "https://www.cdph.ca.gov/Programs/CHCQ/LCP/Pages/Hospital-Administrative-Penalties-by-Year.aspx",
+            "https://www.cdph.ca.gov/Programs/CHCQ/HAI/Pages/AnnualHAIReports.aspx",
+            "https://www.cdph.ca.gov/Programs/CHCQ/LCP/CDPH%20Document%20Library/Hospital%20Administrative%20Penalties/Los%20Angeles/Antelope-Valley-Hospital-POC-Redacted.pdf"
+          ],
+          "access_model": "free",
+          "sample_event_excerpt": "The facility failed to ensure that the patient did not have a retained foreign object after surgery."
+        },
+        "verdict": "The site provides detailed hospital-level incident data, but the reliance on unstructured, redacted PDFs for specific adverse event descriptions makes it difficult for an automated ingest pipeline without advanced OCR/NLP processing."
+      }
+    }
+  },
+  "extracted": {
+    "evaluation": {
+      "source": "California Department of Public Health (CDPH) website",
+      "program": "Licensing and Certification (L&C) Program",
+      "sections_explored": [
+        "Reports (A-Z)",
+        "Hospital Administrative Penalties",
+        "Annual HAI Reports"
+      ],
+      "primary_source": "Hospital Administrative Penalties repository",
+      "data_description": "Lists specific hospitals with links to redacted 'Plans of Correction' (PDFs) describing 'Immediate Jeopardy' incidents, including medical device-related events like retained surgical items and equipment failures",
+      "dashboard_info": "Dashboard for newer adverse events (likely up to 2023 or 2024)",
+      "detailed_records": "Penalty documents updated through 2018; HAI reports through 2022",
+      "structured_data": {
+        "page_loads": true,
+        "shows_named_hospitals": true,
+        "covers_devices": true,
+        "latest_year": 2022,
+        "download_formats": [
+          "pdf",
+          "html"
+        ],
+        "direct_download_urls": [
+          "https://www.cdph.ca.gov/Programs/CHCQ/LCP/Pages/Hospital-Administrative-Penalties-by-Year.aspx",
+          "https://www.cdph.ca.gov/Programs/CHCQ/HAI/Pages/AnnualHAIReports.aspx",
+          "https://www.cdph.ca.gov/Programs/CHCQ/LCP/CDPH%20Document%20Library/Hospital%20Administrative%20Penalties/Los%20Angeles/Antelope-Valley-Hospital-POC-Redacted.pdf"
+        ],
+        "access_model": "free",
+        "sample_event_excerpt": "The facility failed to ensure that the patient did not have a retained foreign object after surgery."
+      },
+      "verdict": "The site provides detailed hospital-level incident data, but the reliance on unstructured, redacted PDFs for specific adverse event descriptions makes it difficult for an automated ingest pipeline without advanced OCR/NLP processing."
+    }
+  },
+  "elapsed_s": 431.0
+}

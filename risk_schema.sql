@@ -289,3 +289,186 @@ CREATE TABLE IF NOT EXISTS risk_ingestion_log (
 );
 CREATE INDEX IF NOT EXISTS idx_risk_log_source ON risk_ingestion_log (source);
 CREATE INDEX IF NOT EXISTS idx_risk_log_run    ON risk_ingestion_log (run_id);
+
+
+-- =============================================================
+-- Layer 3: External / scraped intelligence (TinyFish + NPPES)
+-- =============================================================
+
+-- Leapfrog Hospital Safety Grade (A–F)
+-- Joined to cms_hospitals via (UPPER(facility_name), state).
+CREATE TABLE IF NOT EXISTS leapfrog_grade (
+    hospital_name TEXT NOT NULL,
+    city          TEXT,
+    state         TEXT,
+    zip           TEXT,
+    safety_grade  TEXT,     -- A/B/C/D/F
+    score         TEXT,
+    profile_url   TEXT,
+    ccn           TEXT,     -- resolved later via fuzzy-match to cms_hospitals
+    source        TEXT DEFAULT 'leapfrog_tinyfish',
+    fetched_at    TIMESTAMPTZ DEFAULT now(),
+    PRIMARY KEY (hospital_name, state)
+);
+CREATE INDEX IF NOT EXISTS idx_leapfrog_ccn ON leapfrog_grade (ccn);
+
+-- FDA 483 inspection classifications
+-- Joins to fda_510k.applicant / fda_recalls.firm_name via normalized firm_name.
+CREATE TABLE IF NOT EXISTS fda_483_inspection (
+    id              BIGSERIAL PRIMARY KEY,
+    firm_name       TEXT NOT NULL,
+    firm_name_norm  TEXT,         -- lower, no punctuation/suffixes, for joining
+    firm_city       TEXT,
+    firm_state      TEXT,
+    firm_country    TEXT,
+    classification  TEXT,         -- NAI / VAI / OAI — OAI is the concerning one
+    product_type    TEXT,         -- Devices / Drugs / Biologics / etc.
+    inspection_end_date DATE,
+    posted_date     DATE,
+    source          TEXT DEFAULT 'fda_483_tinyfish',
+    fetched_at      TIMESTAMPTZ DEFAULT now()
+);
+CREATE INDEX IF NOT EXISTS idx_483_firm_norm ON fda_483_inspection (firm_name_norm);
+CREATE INDEX IF NOT EXISTS idx_483_class ON fda_483_inspection (classification);
+
+-- (FDA Warning Letters table removed by user request — kept the FDA 483
+--  inspection signal which already captures regulatory enforcement.)
+
+-- EUDAMED Field Safety Corrective Action notices (EU equivalent of FDA recalls)
+-- Typically precedes FDA enforcement by weeks-to-months.
+CREATE TABLE IF NOT EXISTS eudamed_safety_notice (
+    eudamed_id         TEXT PRIMARY KEY,
+    notice_date        DATE,
+    manufacturer_name  TEXT,
+    manufacturer_norm  TEXT,
+    device_trade_name  TEXT,
+    risk_description   TEXT,
+    action_taken       TEXT,
+    detail_url         TEXT,
+    source             TEXT DEFAULT 'eudamed_tinyfish',
+    fetched_at         TIMESTAMPTZ DEFAULT now()
+);
+CREATE INDEX IF NOT EXISTS idx_eudamed_mfr_norm ON eudamed_safety_notice (manufacturer_norm);
+
+-- NPPES NPI Registry — physicians + their primary practice hospital link
+-- Only the columns we actually use for device/hospital joins.
+CREATE TABLE IF NOT EXISTS npi_registry (
+    npi                  TEXT PRIMARY KEY,
+    entity_type_code     SMALLINT,   -- 1=individual, 2=organization
+    provider_last_name   TEXT,
+    provider_first_name  TEXT,
+    provider_credential  TEXT,
+    primary_taxonomy     TEXT,       -- e.g. 207T00000X Neurological Surgery
+    primary_specialty    TEXT,       -- human-readable
+    practice_address1    TEXT,
+    practice_city        TEXT,
+    practice_state       TEXT,
+    practice_zip         TEXT,
+    org_name             TEXT,       -- for entity_type=2
+    ccn_affiliation      TEXT,       -- resolved via address / Open Payments teaching_hospital_ccn
+    fetched_at           TIMESTAMPTZ DEFAULT now()
+);
+CREATE INDEX IF NOT EXISTS idx_npi_state ON npi_registry (practice_state);
+CREATE INDEX IF NOT EXISTS idx_npi_ccn   ON npi_registry (ccn_affiliation);
+CREATE INDEX IF NOT EXISTS idx_npi_spec  ON npi_registry (primary_specialty);
+
+
+-- =============================================================
+-- NY SPARCS Potentially Preventable Complications (public adverse-event proxy)
+-- =============================================================
+CREATE TABLE IF NOT EXISTS sparcs_ppc_rate (
+    discharge_year INT,
+    pfi            TEXT,
+    hospital_name  TEXT,
+    ppc_group_num  INT,
+    ppc_group_name TEXT,
+    observed_rate  NUMERIC,
+    adjusted_rate  NUMERIC,
+    significance   TEXT,
+    ppc_version    TEXT,
+    ccn            TEXT,
+    fetched_at     TIMESTAMPTZ DEFAULT now(),
+    PRIMARY KEY (discharge_year, pfi, ppc_group_num)
+);
+CREATE INDEX IF NOT EXISTS idx_sparcs_ccn ON sparcs_ppc_rate (ccn);
+
+CREATE TABLE IF NOT EXISTS ny_pfi_to_ccn (
+    pfi  TEXT PRIMARY KEY,
+    ccn  TEXT,
+    fetched_at TIMESTAMPTZ DEFAULT now()
+);
+
+
+-- CA TAVR Outcomes (hospital × cardiac_valve device × mortality/complication)
+CREATE TABLE IF NOT EXISTS ca_tavr_outcome (
+    facility_name TEXT NOT NULL,
+    county        TEXT,
+    report_year   INT,
+    tavr_volume   INT,
+    risk_adjusted_mortality_rate NUMERIC,
+    statewide_comparison TEXT,
+    ccn           TEXT,
+    fetched_at    TIMESTAMPTZ DEFAULT now(),
+    PRIMARY KEY (facility_name, report_year)
+);
+CREATE INDEX IF NOT EXISTS idx_ca_tavr_ccn ON ca_tavr_outcome (ccn);
+
+-- PA PHC4 CABG/ortho outcomes
+CREATE TABLE IF NOT EXISTS pa_phc4_outcome (
+    facility_name TEXT NOT NULL,
+    condition     TEXT NOT NULL,
+    mortality_rate TEXT,
+    readmission_rate TEXT,
+    volume        INT,
+    rating        TEXT,
+    ccn           TEXT,
+    fetched_at    TIMESTAMPTZ DEFAULT now(),
+    PRIMARY KEY (facility_name, condition)
+);
+CREATE INDEX IF NOT EXISTS idx_pa_phc4_ccn ON pa_phc4_outcome (ccn);
+
+-- Hospital news headlines (lawsuit/malpractice/closure/etc.)
+CREATE TABLE IF NOT EXISTS hospital_news (
+    id            BIGSERIAL PRIMARY KEY,
+    ccn           TEXT,
+    title         TEXT,
+    source        TEXT,
+    published_date TEXT,
+    url           TEXT UNIQUE,
+    snippet       TEXT,
+    fetched_at    TIMESTAMPTZ DEFAULT now()
+);
+CREATE INDEX IF NOT EXISTS idx_hnews_ccn ON hospital_news (ccn);
+
+
+-- =============================================================
+-- Explicit manufacturer → product_code → device_category mapping
+-- Derived PURELY from fda_510k (FDA's own applicant + product_code
+-- columns on each 510(k) clearance). No regex, no fuzzy — every row
+-- is one (applicant, product_code) pair that FDA themselves filed.
+-- =============================================================
+CREATE TABLE IF NOT EXISTS manufacturer_to_product_code (
+    manufacturer_norm TEXT NOT NULL,   -- stripped of corporate suffix + punct
+    product_code      TEXT NOT NULL,
+    device_category   TEXT,             -- via bridge_hcpcs_to_product_code
+    applicant_name    TEXT,             -- one representative original spelling
+    k_number_count    INT DEFAULT 1,    -- how many 510ks back this pair
+    PRIMARY KEY (manufacturer_norm, product_code)
+);
+CREATE INDEX IF NOT EXISTS idx_mfr_pc_cat  ON manufacturer_to_product_code (device_category);
+CREATE INDEX IF NOT EXISTS idx_mfr_pc_norm ON manufacturer_to_product_code (manufacturer_norm);
+
+
+-- =============================================================
+-- Manufacturer alias seed — curated parent-company resolver.
+-- One row per (normalized variant, parent_name). Used when Open
+-- Payments records one spelling ("Medtronic, Inc.") and 510k records
+-- another ("Medtronic Sofamor Danek USA, Inc.") — both resolve to
+-- the same parent and therefore match the same device categories.
+-- =============================================================
+CREATE TABLE IF NOT EXISTS manufacturer_alias (
+    alias_norm  TEXT PRIMARY KEY,  -- normalized (no-punct, no-suffix, lowercase)
+    parent_name TEXT NOT NULL,     -- canonical parent company name
+    notes       TEXT
+);
+CREATE INDEX IF NOT EXISTS idx_mfr_alias_parent ON manufacturer_alias (parent_name);

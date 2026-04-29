@@ -1,0 +1,21 @@
+{
+  "type": "COMPLETE",
+  "run_id": "d399f6ca-5f49-4c35-a8b9-580e069e7bfd",
+  "status": "COMPLETED",
+  "timestamp": "2026-04-24T18:34:25.462Z",
+  "result": {
+    "task": "Navigate to FDA database page, filter Product Type to 'Devices', sort by most recent inspection end date descending, extract top 50 rows",
+    "fields": [
+      "inspection_end_date",
+      "establishment_name",
+      "city",
+      "state",
+      "product_type",
+      "inspection_type",
+      "classification",
+      "observations"
+    ],
+    "status": "ready",
+    "instructions": "Provide the specific URL to begin navigation and extraction."
+  }
+}

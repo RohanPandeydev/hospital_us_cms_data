@@ -59,7 +59,11 @@ def cmd_ingest(args):
     db.ensure_database()
     db.apply_schema()
     ids = [args.dataset] if args.dataset else None
-    results = ingest_all(dataset_ids=ids, limit=args.limit)
+    csv_path = getattr(args, "csv_path", None)
+    if csv_path and not args.dataset:
+        print("ERROR: --csv-path requires --dataset <id>")
+        sys.exit(2)
+    results = ingest_all(dataset_ids=ids, limit=args.limit, csv_path=csv_path)
     # Always refresh manual crosswalks — idempotent, fast.
     with db.connect() as conn:
         bridge_seeds.seed_all(conn)
@@ -298,6 +302,18 @@ def cmd_risk_build(args):
           f"({result['hospitals']} hospitals × {result['categories']} categories)")
 
 
+def cmd_state_events_ingest(args):
+    """Pull state-mandated adverse-event registries (currently MA SREs)
+    into `state_adverse_events`. This is the only public US source we've
+    verified that links a hospital identity to a device-related event —
+    public MAUDE has no hospital identifier.
+    """
+    from src import state_event_ingest as sei
+    summary = sei.ingest_ma(years=args.year, variants=args.variant)
+    for v, info in summary.items():
+        print(f"  {v}: {info['rows']} rows · {info['ccn_matched']} CCN-matched")
+
+
 def cmd_risk_load_medicare(args):
     """Ingest CMS Medicare Inpatient PUF + Physician datasets + DRG map +
     FDA Classification + build the unified code crosswalk.
@@ -431,6 +447,10 @@ def main():
     ing = sub.add_parser("ingest", help="Fetch CMS data into Postgres")
     ing.add_argument("--dataset", help="Ingest a single dataset id (default: all)")
     ing.add_argument("--limit", type=int, help="Hard cap rows per dataset (for testing)")
+    ing.add_argument("--csv-path",
+                     help="Ingest from a locally-downloaded CSV instead of the "
+                          "CMS data-api (useful when the API is down). "
+                          "Requires --dataset and only works with cms_data_api datasets.")
 
     # ---- Risk Intelligence pipeline (Postgres cms_hospitals) ----
     sub.add_parser("risk-init",
@@ -470,6 +490,19 @@ def main():
     rs.add_argument("--ccn")
     rs.add_argument("--device-category", dest="device_category")
 
+    sae = sub.add_parser("state-events-ingest",
+                          help="Ingest state-mandated adverse-event registries "
+                               "(currently MA SREs — the only public source "
+                               "with hospital-named device events).")
+    sae.add_argument("--state", default="MA", choices=["MA"],
+                     help="Which state's registry to pull (only MA today).")
+    sae.add_argument("--year", type=int, action="append",
+                     help="Restrict to specific year(s); repeat for multiple. "
+                          "Default: all published years.")
+    sae.add_argument("--variant", action="append",
+                     choices=["acute", "non_acute", "asc"],
+                     help="Restrict to facility variant(s). Default: all.")
+
     rlm = sub.add_parser("risk-load-medicare",
                          help="Ingest CMS Medicare claims + FDA classification + build crosswalk")
     rlm.add_argument("--inpatient",
@@ -503,6 +536,7 @@ def main():
         "risk-build":  cmd_risk_build,
         "risk-show":   cmd_risk_show,
         "risk-load-medicare": cmd_risk_load_medicare,
+        "state-events-ingest": cmd_state_events_ingest,
     }
     try:
         dispatch[args.cmd](args)

@@ -1,0 +1,80 @@
+{
+  "type": "COMPLETE",
+  "run_id": "57243de2-968e-4951-be2a-4e480f10bad0",
+  "status": "COMPLETED",
+  "timestamp": "2026-04-24T19:19:06.533Z",
+  "result": {
+    "result": [
+      {
+        "title": "U.S. Not-For-Profit Health Care Outstanding Ratings And Outlooks As Of March 31, 2026",
+        "source": "S&P Global",
+        "published_date": "1 week ago",
+        "url": "https://www.spglobal.com/ratings/en/regulatory/article/us-not-for-profit-health-care-outstanding-ratings-and-outlooks-as-of-march-31-2026-s101678965",
+        "snippet": "U.S. not-for-profit health care outstanding ratings and outlooks as of March 31, 2026. Obligor, State, Rating, Outlook, Entity type. Adena Health System, OH..."
+      },
+      {
+        "title": "HIPAA Violation Cases - Updated 2026",
+        "source": "The HIPAA Journal",
+        "published_date": "Jan 28, 2026",
+        "url": "https://www.hipaajournal.com/hipaa-violation-cases/",
+        "snippet": "MMG Fusion. MMG Fusion, a provider of software solutions to oral healthcare providers, was investigated by OCR in response to a complaint about an..."
+      },
+      {
+        "title": "Florida boy died of potassium overdose after getting 10x his prescription: suit",
+        "source": "New York Post",
+        "published_date": "Nov 12, 2025",
+        "url": "https://nypost.com/2025/11/12/us-news/florida-2-year-old-tragically-died-of-potassium-overdose-after-tot-got-10-times-correct-prescription-suit/",
+        "snippet": "A 2-year-old boy died in a Florida hospital after a doctor prescribed the underweight toddler 10 times the dosage of medicine he should have gotten,..."
+      },
+      {
+        "title": "Meet the heart behind the healing: UHS Cardiac Rehabilitation team",
+        "source": "NYUHS.org",
+        "published_date": "Nov 3, 2025",
+        "url": "https://www.nyuhs.org/news-search/meet-heart-behind-healing-uhs-cardiac-rehabilitation-team",
+        "snippet": "Whether you are recovering from a cardiac emergency or are navigating a heart condition diagnosis, UHS Cardiac Rehabilitation is here to support you on your..."
+      },
+      {
+        "title": "Nassau University Medical Center suing former CEO Megan Ryan amid uncertain future, political battle",
+        "source": "ABC7 New York",
+        "published_date": "Aug 14, 2025",
+        "url": "https://abc7ny.com/post/nassau-university-medical-center-suing-former-ceo-megan-ryan-amid-uncertain-future-political-battle/17538030/",
+        "snippet": "Nassau University Medical Center is suing its former CEO, Megan Ryan, over allegations of theft and document shredding."
+      },
+      {
+        "title": "WMCHealth put psychiatric patients at risk, attorney general finds",
+        "source": "Times Union",
+        "published_date": "Apr 21, 2025",
+        "url": "https://www.timesunion.com/capitol/article/wmchealth-attorney-general-inpatient-mental-health-20283422.php",
+        "snippet": "WMCHealth, the largest hospital system in the Hudson Valley, routinely discharged vulnerable mental health patients without adequate evaluation or..."
+      },
+      {
+        "title": "25-year-old Binghamton resident killed, three hurt in Delaware County crash",
+        "source": "Press & Sun-Bulletin",
+        "published_date": "May 17, 2024",
+        "url": "https://www.pressconnects.com/story/news/local/2024/05/17/route-23-stamford-ny-fatal-crash/73733136007/",
+        "snippet": "A 25-year-old Binghamton resident was killed Tuesday night in a one-car crash on Route 23 in the Town of Stamford."
+      },
+      {
+        "title": "Harlem\u00e2\u0080\u0099s CUNY School Of Medicine Achieves Outstanding Residency Placements On Match Day",
+        "source": "Harlem World Magazine",
+        "published_date": "Mar 18, 2024",
+        "url": "https://www.harlemworldmagazine.com/harlems-cuny-school-of-medicine-achieves-outstanding-residency-placements-on-match-day/",
+        "snippet": "On Match Day 2024, 55 fourth-year medical students from the CUNY School of Medicine in Harlem achieved remarkable residency placements across 13 specialty."
+      },
+      {
+        "title": "Prospect safety net hospitals continue to struggle under the legacy of Leonard Green\u00e2\u0080\u0099s past ownership",
+        "source": "Private Equity Stakeholder Project PESP",
+        "published_date": "Nov 8, 2023",
+        "url": "https://pestakeholder.org/news/prospect-safety-net-hospitals-continue-to-struggle-under-the-legacy-of-leonard-greens-past-ownership/",
+        "snippet": "Prospect Medical Holdings, a safety net hospital system with 16 hospitals across California, Connecticut, Pennsylvania, and Rhode Island,[1] is facing..."
+      },
+      {
+        "title": "Emergency room wait times at NY state hospitals ranked from 1 to 147 (Search all hospitals)",
+        "source": "Syracuse.com",
+        "published_date": "Mar 28, 2023",
+        "url": "https://www.syracuse.com/data/2023/03/emergency-room-wait-times-at-ny-state-hospitals-ranked-from-1-to-147-search-all-hospitals.html",
+        "snippet": "Patients at two of Syracuse's three hospitals spent some of the longest stretches in emergency rooms in all of New York last year, according to federal data."
+      }
+    ]
+  }
+}
