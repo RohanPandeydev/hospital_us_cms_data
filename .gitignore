@@ -14,6 +14,16 @@ downloads/*.zip
 downloads/*.tsv
 downloads/*.json.zip
 downloads/*.json.gz
+
+# Ingest-pipeline scratch dirs (CSVs + small JSON manifests, all re-creatable)
+downloads/cms_api/
+downloads/fda_recalls/
+downloads/maude_search/
+downloads/mdrfoi_diff/
+
 # keep curated state + tinyfish JSON snapshots
 !downloads/state/*.json
 !downloads/tinyfish/*.json
+
+# Local backup files (e.g. ui/app.py.bak from manual snapshots)
+*.bak
