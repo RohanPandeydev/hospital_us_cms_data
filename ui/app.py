@@ -258,6 +258,46 @@ def device_bucket_label(b: str | None) -> str:
 TEMPLATES.env.globals["device_bucket_label"] = device_bucket_label
 
 
+# CPT codes aren't in hcpcs_master, so trial+Open-Payments searches by code
+# return empty. This map gives each well-known CPT code a few keywords +
+# the device_category bucket it conceptually belongs to. We then OR-match
+# on trial titles/interventions and product names to fill those sections.
+CPT_KEYWORDS: dict[str, dict] = {
+    "33340": {"kws": ["watchman", "atrial appendage", "laa closure"],
+              "bucket": "laa_closure"},
+    "33361": {"kws": ["tavr", "transcatheter aortic", "aortic valve replacement"],
+              "bucket": "cardiac_valve"},
+    "33208": {"kws": ["pacemaker"],                       "bucket": "pacemaker"},
+    "33207": {"kws": ["pacemaker"],                       "bucket": "pacemaker"},
+    "33206": {"kws": ["pacemaker"],                       "bucket": "pacemaker"},
+    "33249": {"kws": ["defibrillator", "icd", "implantable cardioverter"],
+              "bucket": "defibrillator"},
+    "33264": {"kws": ["defibrillator", "icd"],            "bucket": "defibrillator"},
+    "33533": {"kws": ["bypass", "cabg", "coronary artery bypass"],
+              "bucket": "cabg_conduit"},
+    "33508": {"kws": ["bypass", "cabg"],                  "bucket": "cabg_conduit"},
+    "92928": {"kws": ["stent", "drug-eluting", "percutaneous coronary"],
+              "bucket": "drug_eluting_stent"},
+    "92920": {"kws": ["balloon angioplasty", "pci"],      "bucket": "coronary stent"},
+    "27130": {"kws": ["hip replacement", "hip arthroplasty"],
+              "bucket": "hip_knee_implant"},
+    "27447": {"kws": ["knee replacement", "knee arthroplasty"],
+              "bucket": "hip_knee_implant"},
+    "63685": {"kws": ["spinal cord stimulator", "neurostimulator"],
+              "bucket": "neurostim_implant"},
+    "61885": {"kws": ["deep brain stimulator", "neurostimulator"],
+              "bucket": "neurostim_implant"},
+    "43253": {"kws": ["endoscopic ultrasound", "eus-guided", "axios"],
+              "bucket": "ercp_lams"},
+    "66984": {"kws": ["cataract", "intraocular lens"],    "bucket": "intraocular_lens"},
+}
+
+
+def cpt_keywords(code: str) -> dict:
+    """Return {'kws': [...], 'bucket': str|None} for a CPT code, or {} if unknown."""
+    return CPT_KEYWORDS.get((code or "").upper(), {})
+
+
 app = FastAPI(title="HCPCS Explorer")
 
 
@@ -449,22 +489,38 @@ def hcpcs_detail(request: Request, code: str):
         LIMIT 10
     """, {"c": code})
 
-    # Open Payments — fuzzy product-name match (uses first word of description)
-    op_rows = []
-    if master and master[1]:
-        desc_token = (master[1].split()[0] if master[1] else "").lower()
-        if desc_token and len(desc_token) >= 4:
-            op_rows = q_rows("""
-                SELECT manufacturer_name, product_name,
-                       count() AS payments,
-                       round(sum(payment_total), 2) AS usd
-                FROM cms_open_payments
-                WHERE lowerUTF8(product_name) LIKE {tok:String}
-                GROUP BY manufacturer_name, product_name
-                ORDER BY usd DESC NULLS LAST
-                LIMIT 15
-            """, {"tok": f"%{desc_token}%"})
+    # Build search keywords. For CPT codes (5-digit), we use the curated
+    # CPT_KEYWORDS map. For everything else, fall back to the first word
+    # of the description.
+    cpt_info = cpt_keywords(code)
+    keywords: list[str] = list(cpt_info.get("kws") or [])
+    if not keywords and master and master[1]:
+        first = (master[1].split()[0] if master[1] else "").lower()
+        if first and len(first) >= 4:
+            keywords = [first]
 
+    # Open Payments — match if any keyword appears in product name
+    op_rows = []
+    if keywords:
+        # OR over multiple keyword LIKE patterns
+        where = " OR ".join(
+            f"lowerUTF8(product_name) LIKE {{k{i}:String}}"
+            for i in range(len(keywords))
+        )
+        params = {f"k{i}": f"%{kw}%" for i, kw in enumerate(keywords)}
+        op_rows = q_rows(f"""
+            SELECT manufacturer_name, product_name,
+                   count() AS payments,
+                   round(sum(payment_total), 2) AS usd
+            FROM cms_open_payments
+            WHERE ({where})
+            GROUP BY manufacturer_name, product_name
+            ORDER BY usd DESC NULLS LAST
+            LIMIT 15
+        """, params)
+
+    # Clinical trials — try direct HCPCS map first, then fall back to
+    # keyword search across trial titles + intervention text.
     trials = q_rows("""
         SELECT t.nct_id, t.brief_title, t.lead_sponsor,
                t.overall_status, t.device_category, t.start_date,
@@ -476,6 +532,32 @@ def hcpcs_detail(request: Request, code: str):
         ORDER BY t.start_date DESC NULLS LAST
         LIMIT 30
     """, {"c": code})
+
+    if not trials and (keywords or cpt_info.get("bucket")):
+        # Build the fallback search
+        clauses = []
+        params: dict = {}
+        for i, kw in enumerate(keywords):
+            clauses.append(f"lowerUTF8(t.brief_title) LIKE {{k{i}:String}} "
+                          f"OR lowerUTF8(t.official_title) LIKE {{k{i}:String}} "
+                          f"OR lowerUTF8(i.intervention_name) LIKE {{k{i}:String}}")
+            params[f"k{i}"] = f"%{kw}%"
+        if cpt_info.get("bucket"):
+            clauses.append("t.device_category = {bucket:String}")
+            params["bucket"] = cpt_info["bucket"]
+        if clauses:
+            trials = q_rows(f"""
+                SELECT DISTINCT t.nct_id, t.brief_title, t.lead_sponsor,
+                       t.overall_status, t.device_category, t.start_date,
+                       i.intervention_name, i.intervention_type,
+                       'fuzzy-match' AS hcpcs_confidence
+                FROM (SELECT * FROM clinical_trials FINAL) AS t
+                LEFT JOIN (SELECT * FROM clinical_trial_interventions FINAL) AS i
+                    ON t.nct_id = i.nct_id
+                WHERE ({' OR '.join(clauses)})
+                ORDER BY t.start_date DESC NULLS LAST
+                LIMIT 30
+            """, params)
 
     # DIRECT bridge: HCPCS → NPI (Physician PUF) → CCN (affiliations) → hospital.
     # Aggregates physician PUF rows by their affiliated hospitals — much more
