@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+{% block title %}Boston Scientific — HCPCS + Open Payments{% endblock %}
+{% block content %}
+
+<div class="page-header">
+  <h1>🏢 Boston Scientific Portfolio — HCPCS + Open Payments</h1>
+  <p>Two clean lenses on Boston Scientific in the CMS data:
+  <strong>HCPCS-keyed Medicare procedure billing</strong> (what BSC's devices are billed for and how often)
+  and <strong>Open Payments</strong> (what BSC paid US physicians).
+  Nothing else — no MAUDE, no quality measures.</p>
+</div>
+
+<div class="explain">
+  <strong>Two source lenses on this page:</strong>
+  <ul style="margin:0.4rem 0 0 1.2rem; line-height:1.6;">
+    <li><strong>HCPCS / CMS</strong> — every HCPCS code mapped to a BSC FDA product code (via <code>bridge_hcpcs_to_product_code</code>),
+        joined to <code>cms_provider_summary</code> for procedure volume from the Medicare Physician PUF.</li>
+    <li><strong>Open Payments</strong> — every dollar BSC paid a US physician, from <a href="https://openpaymentsdata.cms.gov/dataset/e6b17c6a-2534-4207-a4a1-6746a14911ff" target="_blank" rel="noopener">openpaymentsdata.cms.gov</a> (loads to <code>cms_open_payments</code>).</li>
+  </ul>
+</div>
+
+{# ─── HCPCS / CMS portfolio ─────────────────────────────────── #}
+<div class="card" style="border-left:6px solid var(--accent);">
+  <div class="card-title">CMS Procedure Volume — every HCPCS that bills a BSC device</div>
+  <p class="card-subtitle">
+    Source: <code>cms_provider_summary</code> (Physician PUF, dataset_id = <code>medicare_physician_by_provider_service</code>)
+    × <code>bridge_hcpcs_to_product_code</code>. Each row is one HCPCS code.
+  </p>
+
+  <div class="kpi" style="margin-top:0.5rem;">
+    <div class="box"><div class="label">Distinct HCPCS codes</div><div class="value">{{ hcpcs_totals[0] or 0 }}</div><div class="delta">BSC's billable footprint</div></div>
+    <div class="box"><div class="label">Total procedures billed</div><div class="value">{{ "{:,}".format(hcpcs_totals[1] or 0) }}</div><div class="delta">Sum of services across all codes</div></div>
+    <div class="box"><div class="label">Medicare patients</div><div class="value">{{ "{:,}".format(hcpcs_totals[2] or 0) }}</div><div class="delta">Distinct beneficiaries</div></div>
+    <div class="box"><div class="label">Performing physicians</div><div class="value">{{ "{:,}".format(hcpcs_totals[4] or 0) }}</div><div class="delta">Distinct NPIs</div></div>
+    <div class="box"><div class="label">Medicare $ paid</div><div class="value">${{ "{:,.0f}".format(hcpcs_totals[3] or 0) }}</div><div class="delta">To physicians, not to BSC</div></div>
+  </div>
+
+  <h4 style="margin:1.5rem 0 0.4rem 0; font-size:0.95rem;">Per-HCPCS detail (sorted by procedure volume)</h4>
+  <table class="scroll-wrap">
+    <thead>
+      <tr>
+        <th>HCPCS</th><th>FDA PC</th><th>Device category</th><th>Description</th>
+        <th>Services</th><th>Patients</th><th>Physicians</th><th>Medicare $</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for r in hcpcs_rows %}
+      <tr>
+        <td><a href="/hcpcs/{{ r[0] }}" style="color:var(--accent-light); text-decoration:none;"><code class="measure">{{ r[0] }}</code> ↗</a></td>
+        <td><code style="font-size:0.75rem;">{{ r[1] }}</code></td>
+        <td class="cell">{{ r[2] or '—' }}</td>
+        <td class="cell" style="font-size:0.78rem;">{{ r[3] or '—' }}</td>
+        <td><strong>{% if r[4] %}{{ "{:,}".format(r[4]) }}{% else %}—{% endif %}</strong></td>
+        <td>{% if r[5] %}{{ "{:,}".format(r[5]) }}{% else %}—{% endif %}</td>
+        <td>{% if r[7] %}{{ "{:,}".format(r[7]) }}{% else %}—{% endif %}</td>
+        <td>{% if r[6] %}${{ "{:,.0f}".format(r[6]) }}{% else %}—{% endif %}</td>
+      </tr>
+      {% else %}
+      <tr><td colspan="8" style="text-align:center; padding:1rem; color:var(--text-muted);">
+        No BSC HCPCS rows. Either the bridge has no BSC product codes, or the Physician PUF isn't loaded.
+      </td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <p class="card-subtitle" style="margin-top:1rem; font-size:0.78rem; color:var(--text-muted);">
+    Rows where <code>Services</code> is <code>—</code> mean the HCPCS is a Level II device code (C-code, L-code) — these
+    are billed via the Outpatient PUF / DMEPOS, not the Physician PUF. Those datasets are registered but not loaded for these codes.
+  </p>
+
+  <h4 style="margin:1.5rem 0 0.4rem 0; font-size:0.95rem;">Procedure volume by state — top 15</h4>
+  <p class="card-subtitle">
+    Where BSC-relevant procedures concentrate geographically.
+  </p>
+  <table>
+    <thead><tr><th>State</th><th>Services</th><th>Patients</th><th>Physicians</th><th>HCPCS used</th></tr></thead>
+    <tbody>
+      {% for r in by_state %}
+      <tr>
+        <td><strong>{{ r[0] }}</strong></td>
+        <td>{{ "{:,}".format(r[1]) }}</td>
+        <td>{{ "{:,}".format(r[2]) }}</td>
+        <td>{{ "{:,}".format(r[3]) }}</td>
+        <td>{{ r[4] }}</td>
+      </tr>
+      {% else %}<tr><td colspan="5" style="color:var(--text-muted);">No data.</td></tr>{% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{# ─── Open Payments ─────────────────────────────────────────── #}
+<div class="card" style="border-left:6px solid var(--warning);">
+  <div class="card-title">Open Payments — BSC → US physicians</div>
+  <p class="card-subtitle">
+    Source: <code>cms_open_payments</code> (Sunshine Act). Currently loaded:
+    <strong>year(s) {{ op_totals[4]|join(', ') if op_totals[4] else '—' }}</strong> · only Boston Scientific Corporation.
+  </p>
+
+  <div class="kpi" style="margin-top:0.5rem;">
+    <div class="box"><div class="label">Total payments</div><div class="value">{{ "{:,}".format(op_totals[0] or 0) }}</div><div class="delta">Individual $ events</div></div>
+    <div class="box"><div class="label">Distinct physicians paid</div><div class="value">{{ "{:,}".format(op_totals[1] or 0) }}</div><div class="delta">Recipient NPIs</div></div>
+    <div class="box"><div class="label">Distinct products</div><div class="value">{{ op_totals[2] or 0 }}</div><div class="delta">BSC product names tied to payments</div></div>
+    <div class="box"><div class="label">Total $ paid</div><div class="value">${{ "{:,.0f}".format(op_totals[3] or 0) }}</div><div class="delta">By BSC, in this dataset year</div></div>
+  </div>
+
+  <h4 style="margin:1.5rem 0 0.4rem 0; font-size:0.95rem;">By BSC product</h4>
+  <table>
+    <thead><tr><th>Product</th><th>Category</th><th>Payments</th><th>Physicians</th><th>Total $</th><th>Year</th></tr></thead>
+    <tbody>
+      {% for r in op_products %}
+      <tr>
+        <td class="cell"><strong>{{ r[0] }}</strong></td>
+        <td class="cell" style="font-size:0.78rem;">{{ r[1] or '—' }}</td>
+        <td>{{ "{:,}".format(r[2]) }}</td>
+        <td>{{ "{:,}".format(r[3]) }}</td>
+        <td><strong>${{ "{:,.0f}".format(r[4]) }}</strong></td>
+        <td>{{ r[5] or '—' }}</td>
+      </tr>
+      {% else %}<tr><td colspan="6" style="color:var(--text-muted);">No BSC payments loaded — run <code>python run.py ingest --dataset op_2024_general</code>.</td></tr>{% endfor %}
+    </tbody>
+  </table>
+
+  <h4 style="margin:1.5rem 0 0.4rem 0; font-size:0.95rem;">Top 25 physicians by BSC payments received</h4>
+  <p class="card-subtitle">
+    These NPIs have the highest dollar exposure to BSC marketing.
+    Useful for cross-reference with the HCPCS-billing physician list above (same NPI universe).
+  </p>
+  <table class="scroll-wrap">
+    <thead>
+      <tr><th>NPI</th><th>Name</th><th>Specialty</th><th>Total $</th><th>#Payments</th><th>Products</th></tr>
+    </thead>
+    <tbody>
+      {% for r in op_top_physicians %}
+      <tr>
+        <td><code style="font-size:0.75rem;">{{ r[0] }}</code></td>
+        <td class="cell">{{ r[1] or '—' }}</td>
+        <td class="cell" style="font-size:0.78rem;">{{ r[2] or '—' }}</td>
+        <td><strong>${{ "{:,.0f}".format(r[3]) }}</strong></td>
+        <td>{{ r[4] }}</td>
+        <td class="cell" style="font-size:0.78rem;">{{ r[5]|join(', ') if r[5] else '—' }}</td>
+      </tr>
+      {% else %}<tr><td colspan="6" style="color:var(--text-muted);">No physician rows.</td></tr>{% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<div class="card" style="border-left:4px solid var(--neutral);">
+  <div class="card-title">📖 What this page does</div>
+  <ul style="margin:0.5rem 0 0 1.2rem; line-height:1.7; color:var(--text-secondary);">
+    <li>For every BSC FDA product code (from MAUDE), find the matching HCPCS via the bridge.</li>
+    <li>Pull procedure volume for those HCPCS from the Physician PUF.</li>
+    <li>Pull every BSC-→-physician dollar from Open Payments.</li>
+    <li>Cross-reference is left to the eye — the same NPI may appear in both tables.</li>
+  </ul>
+</div>
+
+{% endblock %}

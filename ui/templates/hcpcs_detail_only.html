@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{{ code }} — Medicare Procedure Explorer</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f1117; --surface: #181c28; --surface2: #212738;
+      --text: #e8ecf4; --muted: #9ba3b8; --dim: #636d83;
+      --accent: #6366f1; --accent-l: #818cf8;
+      --border: rgba(255,255,255,.08); --good: #34d399; --warn: #fbbf24;
+      --bad: #f87171;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: 'Inter', system-ui, sans-serif;
+           background: var(--bg); color: var(--text); }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 24px 24px 80px; }
+    a { color: var(--accent-l); text-decoration: none; }
+    a:hover { color: white; }
+    a.back { color: var(--muted); font-size: 14px; }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, #1e2a4a, #1a1f3a);
+      border: 1px solid var(--border); border-radius: 14px;
+      padding: 28px; margin: 16px 0 24px;
+    }
+    .code-pill {
+      display: inline-block; font-family: ui-monospace, monospace;
+      background: rgba(99,102,241,.18); color: var(--accent-l);
+      padding: 6px 12px; border-radius: 8px; font-size: 16px; font-weight: 700;
+    }
+    .hero h1 { font-size: 28px; font-weight: 700; margin: 14px 0 6px;
+               letter-spacing: -.01em; }
+    .hero .sub { color: var(--muted); font-size: 14px; line-height: 1.55; max-width: 720px; }
+    .tags { margin-top: 14px; display: flex; gap: 6px; flex-wrap: wrap; }
+    .tag { display: inline-block; font-size: 11px; padding: 4px 10px;
+           border-radius: 6px; font-weight: 600;
+           background: var(--surface2); color: var(--muted); }
+    .tag.device { background: rgba(52,211,153,.15); color: var(--good); }
+    .tag.dhs    { background: rgba(251,191,36,.15); color: var(--warn); }
+
+    /* Quick summary card right below hero */
+    .quick {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 20px 22px; margin-bottom: 28px;
+    }
+    .quick h3 { margin: 0 0 8px; font-size: 14px; color: var(--accent-l);
+                font-weight: 700; text-transform: uppercase; letter-spacing: .05em; }
+    .quick p  { margin: 0; color: var(--text); font-size: 15px; line-height: 1.6; }
+
+    /* Sections */
+    h2 {
+      font-size: 20px; margin: 36px 0 4px; font-weight: 700;
+      letter-spacing: -.01em; display: flex; align-items: center; gap: 10px;
+    }
+    h2 .icon { font-size: 22px; }
+    .h2-sub { color: var(--muted); margin: 0 0 14px; font-size: 13px;
+              max-width: 820px; line-height: 1.5; }
+    .h2-sub strong { color: var(--text); }
+
+    .section {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; overflow: hidden;
+    }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 11px 14px; text-align: left; font-size: 13px;
+             border-bottom: 1px solid var(--border); }
+    th { background: var(--surface2); color: var(--muted); font-weight: 500;
+         font-size: 11px; letter-spacing: .04em; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: var(--surface2); }
+    td.num { text-align: right; font-variant-numeric: tabular-nums; color: var(--muted); }
+    td.mono { font-family: ui-monospace, monospace; font-size: 12px; }
+
+    .pill { display: inline-block; font-size: 10px; padding: 3px 8px;
+            border-radius: 5px; font-weight: 600; }
+    .pill.better { background: rgba(52,211,153,.15); color: var(--good); }
+    .pill.worse  { background: rgba(248,113,113,.15); color: var(--bad); }
+    .pill.same   { background: rgba(155,163,184,.15); color: var(--muted); }
+    .pill.warn   { background: rgba(251,191,36,.15); color: var(--warn); }
+
+    .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 14px; }
+    .kpi { background: var(--surface); border: 1px solid var(--border);
+           border-radius: 10px; padding: 14px; }
+    .kpi .label { color: var(--muted); font-size: 12px; margin-bottom: 4px;
+                  line-height: 1.3; }
+    .kpi .value { font-size: 22px; font-weight: 700; }
+    .kpi .sub { color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+    .empty { color: var(--dim); padding: 22px; text-align: center; font-size: 14px;
+             background: var(--surface); border: 1px dashed var(--border);
+             border-radius: 12px; }
+
+    .callout { background: rgba(99,102,241,.08); border: 1px solid rgba(99,102,241,.20);
+               border-radius: 10px; padding: 14px 18px; margin: 14px 0;
+               color: var(--muted); font-size: 13px; line-height: 1.55; }
+    .callout strong { color: var(--text); }
+    .callout.warn { background: rgba(251,191,36,.06); border-color: rgba(251,191,36,.22); }
+    .callout.warn strong { color: var(--warn); }
+
+    form.search { display: flex; gap: 8px; margin: 12px 0 0; }
+    form.search input {
+      flex: 1; padding: 10px 14px; font-size: 14px;
+      background: var(--surface); color: var(--text);
+      border: 1px solid var(--border); border-radius: 8px;
+      font-family: inherit; outline: none;
+    }
+    form.search input:focus { border-color: var(--accent); }
+    form.search button {
+      padding: 10px 16px; font-size: 13px; font-weight: 600;
+      background: var(--accent); color: white; border: 0; border-radius: 8px;
+      cursor: pointer; font-family: inherit;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back" href="/">← back to home</a>
+    <form class="search" action="/search" method="get">
+      <input name="q" placeholder="Look up another code or describe what you're looking for…">
+      <button type="submit">Search</button>
+    </form>
+
+    {% if not master %}
+      <div class="empty" style="margin-top:24px">
+        We don't have <strong>{{ code }}</strong> in our database.
+        It might be a CPT code (5-digit physician procedure code, AMA-licensed, not in the public Medicare file)
+        or a code that's been retired.
+      </div>
+    {% else %}
+      <!-- HERO -->
+      <div class="hero">
+        <span class="code-pill">{{ master[0] }}</span>
+        <h1>{{ master[1] or '(no short description)' }}</h1>
+        {% if master[2] %}<div class="sub">{{ master[2] }}</div>{% endif %}
+        <div class="tags">
+          {% if master[9] %}<span class="tag device">✓ Device</span>{% endif %}
+          {% if master[8] %}<span class="tag">Code family: {{ master[8] }}</span>{% endif %}
+          {% if master[3] %}<span class="tag">BETOS: {{ master[3] }}</span>{% endif %}
+          {% if master[10] %}<span class="tag">Effective: {{ master[10] }}</span>{% endif %}
+          {% if stark %}<span class="tag dhs">⚖ Stark Designated Health Service</span>{% endif %}
+        </div>
+      </div>
+
+      <!-- Plain-English summary -->
+      {% set si_for_summary = opps[0][1] if opps else '' %}
+      <div class="quick">
+        <h3>In plain English</h3>
+        <p>
+          <strong>{{ master[0] }}</strong> is the Medicare billing code for
+          <strong>{{ (master[2] or master[1] or 'this service')|lower }}</strong>.
+          {% if master[9] %}It refers to a piece of medical equipment or implantable device.{% endif %}
+          {% if si_for_summary == 'Y' %}
+            <strong style="color:var(--warn)">Hospitals don't bill this directly</strong> — durable-medical-equipment (DME) suppliers bill it through a separate Medicare program. That's why you'll see equipment vendors in the provider list, not hospitals.
+          {% elif si_for_summary in ('J1','J2','T','S') %}
+            Hospitals can bill Medicare separately for this procedure when it's done in their outpatient department.
+          {% elif si_for_summary == 'N' %}
+            Hospitals don't get paid separately for this — it's bundled into the payment for whatever procedure it's used in.
+          {% elif si_for_summary == 'E1' %}
+            <strong style="color:var(--bad)">Medicare doesn't cover this item.</strong>
+          {% endif %}
+        </p>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- 1. HOW MEDICARE PAYS — OPPS Addendum B                       -->
+      <!-- ============================================================ -->
+      <h2><span class="icon">💰</span>How Medicare pays for this</h2>
+      <p class="h2-sub">
+        The Outpatient Prospective Payment System (OPPS) is the rule book Medicare uses to pay hospitals for outpatient services.
+        Each code gets a <strong>Status Indicator (SI)</strong> letter that tells you how — or whether — Medicare pays.
+        Below: the most recent quarterly rule and history.
+      </p>
+      {% if opps %}
+      <div class="section"><table>
+        <thead><tr>
+          <th>Quarter</th><th>SI</th><th>How it's paid</th>
+          <th>Payment group</th><th class="num">Pay rate</th><th class="num">Patient copay</th>
+        </tr></thead>
+        <tbody>
+          {% for r in opps %}
+            {% set si = explain_si(r[1]) %}
+          <tr>
+            <td class="mono">{{ r[0] }}</td>
+            <td><strong style="font-size:14px">{{ r[1] or '—' }}</strong></td>
+            <td style="font-size:12px;color:var(--muted);max-width:380px;line-height:1.5">
+              <div style="font-weight:600;color:var(--text)">{{ si.label }}</div>
+              <div>{{ si.explain }}</div>
+            </td>
+            <td class="mono">{% if r[2] %}APC {{ r[2] }}{% else %}—{% endif %}</td>
+            <td class="num">{% if r[4] %}${{ "{:,.2f}".format(r[4]) }}{% else %}—{% endif %}</td>
+            <td class="num">{% if r[5] %}${{ "{:,.2f}".format(r[5]) }}{% else %}—{% endif %}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table></div>
+      {% else %}
+      <div class="empty">This code isn't in Medicare's outpatient payment rulebook (Addendum B). It's probably paid through a different program (DME, lab, physician fee schedule).</div>
+      {% endif %}
+
+      <!-- ============================================================ -->
+      <!-- 2. STARK LAW DHS                                              -->
+      <!-- ============================================================ -->
+      <h2><span class="icon">⚖</span>Is this a "Designated Health Service"?</h2>
+      <p class="h2-sub">
+        The <strong>Stark Law</strong> stops doctors from referring Medicare patients to a service that they (or their family) have a financial interest in. CMS publishes a yearly list of services this rule applies to — called <strong>Designated Health Services (DHS)</strong>.
+        If a code shows up here, it's subject to extra anti-self-referral compliance rules.
+      </p>
+      {% if stark %}
+      <div class="section"><table>
+        <thead><tr><th>Year</th><th>Health-service category</th><th>Description on the official list</th></tr></thead>
+        <tbody>
+          {% for r in stark %}
+          <tr>
+            <td class="num">{{ r[0] }}</td>
+            <td><strong>{{ r[1].title() }}</strong></td>
+            <td>{{ r[2] or '' }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table></div>
+      {% else %}
+      <div class="empty">This code is <strong>not</strong> on the Stark Law DHS list — no special self-referral rules apply.</div>
+      {% endif %}
+
+      <!-- ============================================================ -->
+      <!-- 3. BILLING SUMMARY                                            -->
+      <!-- ============================================================ -->
+      <h2><span class="icon">📊</span>How often is this code used?</h2>
+      <p class="h2-sub">
+        From Medicare's public provider-billing files. <strong>Each "record"</strong> is one provider's annual usage of this code.
+        Sum across all providers gives you the total nationwide volume.
+      </p>
+      {% if billing_summary[0] and billing_summary[0] > 0 %}
+      <div class="kpis">
+        <div class="kpi">
+          <div class="label">Provider-year records</div>
+          <div class="value">{{ "{:,}".format(billing_summary[0]) }}</div>
+          <div class="sub">One row per provider per year</div>
+        </div>
+        <div class="kpi">
+          <div class="label">Unique providers</div>
+          <div class="value">{{ "{:,}".format(billing_summary[1]) }}</div>
+          <div class="sub">Doctors or DME suppliers</div>
+        </div>
+        <div class="kpi">
+          <div class="label">Times billed (nationwide)</div>
+          <div class="value">{% if billing_summary[2] %}{{ "{:,.0f}".format(billing_summary[2]) }}{% else %}—{% endif %}</div>
+          <div class="sub">Total units of service</div>
+        </div>
+        <div class="kpi">
+          <div class="label">Medicare patients</div>
+          <div class="value">{% if billing_summary[3] %}{{ "{:,.0f}".format(billing_summary[3]) }}{% else %}—{% endif %}</div>
+          <div class="sub">Unique beneficiaries served</div>
+        </div>
+      </div>
+
+      {% if top_providers %}
+      <h2 style="font-size:16px;margin-top:24px"><span class="icon">🩺</span>Top 25 providers using this code</h2>
+      <p class="h2-sub">Ranked by total volume. For physician codes, these are doctors. For DME codes, these are equipment suppliers.</p>
+      <div class="section"><table>
+        <thead><tr><th>Provider name</th><th>State / City</th><th class="num">Times billed</th><th class="num">Avg payment</th></tr></thead>
+        <tbody>
+          {% for r in top_providers %}
+          <tr>
+            <td>{{ r[0] or '' }}</td>
+            <td style="color:var(--muted);font-size:12px">{{ r[2] or '' }}{% if r[3] %} · {{ r[3] }}{% endif %}</td>
+            <td class="num">{% if r[4] %}{{ "{:,.0f}".format(r[4]) }}{% else %}—{% endif %}</td>
+            <td class="num">{% if r[5] %}${{ "{:,.0f}".format(r[5]) }}{% else %}—{% endif %}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table></div>
+      {% endif %}
+
+      {% if top_states %}
+      <h2 style="font-size:16px;margin-top:24px"><span class="icon">🗺️</span>Top 10 states by volume</h2>
+      <div class="section"><table>
+        <thead><tr><th>State</th><th class="num">Providers</th><th class="num">Total services</th></tr></thead>
+        <tbody>
+          {% for r in top_states %}
+          <tr><td><strong>{{ r[0] }}</strong></td><td class="num">{{ "{:,}".format(r[1]) }}</td><td class="num">{% if r[2] %}{{ "{:,.0f}".format(r[2]) }}{% else %}—{% endif %}</td></tr>
+          {% endfor %}
+        </tbody>
+      </table></div>
+      {% endif %}
+      {% else %}
+      <div class="empty">No nationwide billing data found. This may be a code that hospitals bill directly under bundled payment (not separately reported) or one that's rarely used.</div>
+      {% endif %}
+
+      <!-- ============================================================ -->
+      <!-- 4. HOSPITALS — direct bridge                                  -->
+      <!-- ============================================================ -->
+      <h2><span class="icon">🏥</span>Hospitals connected to this code</h2>
+      <p class="h2-sub">
+        We connect HCPCS to hospitals by tracing: code → individual doctors who billed it → which hospitals those doctors work at (from CMS's Facility Affiliation file).
+        <strong>Heads-up:</strong> for equipment codes (CPAP, walkers, oxygen tanks), these numbers will be tiny because equipment suppliers — not hospital doctors — do most of the billing. For surgical codes like pacemaker insertion, this list is the most accurate hospital ranking you can build from public data.
+      </p>
+      {% if hospitals_direct %}
+      <div class="section"><table>
+        <thead><tr>
+          <th>Hospital</th><th>Location</th><th>Star rating</th>
+          <th class="num">Doctors</th>
+          <th class="num">Times billed</th>
+          <th class="num">Heart-failure readmit</th>
+        </tr></thead>
+        <tbody>
+          {% for r in hospitals_direct %}
+          <tr>
+            <td>
+              <a href="/hospital/{{ r[0] }}">{{ r[1] or '(name not matched)' }}</a>
+              <div class="mono" style="color:var(--dim);font-size:10px">CCN {{ r[0] }}</div>
+            </td>
+            <td style="color:var(--muted);font-size:12px">{{ r[2] or '' }}<br><span style="color:var(--dim)">{{ (r[3] or '')[:30] }}</span></td>
+            <td>{% if r[4] and r[4]|string != 'Not Available' %}★ {{ r[4] }}{% else %}<span style="color:var(--dim)">—</span>{% endif %}</td>
+            <td class="num">{{ r[5] }}</td>
+            <td class="num">{% if r[6] %}{{ "{:,.0f}".format(r[6]) }}{% else %}—{% endif %}</td>
+            <td class="num">
+              {% if r[8] %}
+                {% set ratio = r[8] %}
+                {% if ratio > 1.0 %}<span class="pill worse">{{ "{:.2f}".format(ratio) }}</span>
+                {% elif ratio < 1.0 %}<span class="pill better">{{ "{:.2f}".format(ratio) }}</span>
+                {% else %}<span class="pill same">{{ "{:.2f}".format(ratio) }}</span>
+                {% endif %}
+              {% else %}—{% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table></div>
+      <div class="callout">
+        <strong>How to read "Heart-failure readmit":</strong> Medicare's Hospital Readmissions Reduction Program (HRRP) ratio.
+        <strong style="color:var(--good)">Below 1.0</strong> = fewer patients come back than expected (good).
+        <strong style="color:var(--bad)">Above 1.0</strong> = more patients come back than expected (penalty).
+        It's shown here as a general hospital-quality signal — not a measure of this specific procedure.
+      </div>
+      {% else %}
+      <div class="empty">No physician-NPI to hospital match found for this code. Could mean it's purely billed by DME suppliers (e.g. CPAP equipment) or by entities not affiliated with hospitals.</div>
+      {% endif %}
+
+      <!-- ============================================================ -->
+      <!-- 5. INDUSTRY PAYMENTS                                          -->
+      <!-- ============================================================ -->
+      <h2><span class="icon">💼</span>Possibly-related industry payments to doctors</h2>
+      <p class="h2-sub">
+        <strong>Open Payments</strong> is CMS's database tracking money manufacturers pay to doctors — consulting fees, gifts, speaker honoraria, research funding.
+        It is <em>not</em> linked to HCPCS codes; we match by keyword against product names.
+      </p>
+      <div class="callout warn">
+        <strong>⚠ Fuzzy match — verify before drawing conclusions.</strong>
+        We search product names for the first word of this code's description.
+        Results may include unrelated products that happen to share that word (e.g. a code for "continuous positive airway pressure" matching unrelated products with "continuous" in the name).
+      </div>
+      {% if open_payments %}
+      <div class="section"><table>
+        <thead><tr><th>Manufacturer</th><th>Product</th><th class="num"># payments</th><th class="num">Total paid</th></tr></thead>
+        <tbody>
+          {% for r in open_payments %}
+          <tr>
+            <td>{{ r[0] or '' }}</td>
+            <td>{{ r[1] or '' }}</td>
+            <td class="num">{{ "{:,}".format(r[2]) }}</td>
+            <td class="num">{% if r[3] %}${{ "{:,.0f}".format(r[3]) }}{% else %}—{% endif %}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table></div>
+      {% else %}
+      <div class="empty">No product-name match in Open Payments.</div>
+      {% endif %}
+
+      <!-- ============================================================ -->
+      <!-- 6. CLINICAL TRIALS                                            -->
+      <!-- ============================================================ -->
+      <h2><span class="icon">🔬</span>Clinical trials studying this</h2>
+      <p class="h2-sub">
+        From <a href="https://clinicaltrials.gov" target="_blank">ClinicalTrials.gov</a>. We used AI to classify each trial's intervention text against the Medicare code list. Click any trial ID to read the full study protocol.
+      </p>
+      {% if trials %}
+      <div class="section"><table>
+        <thead><tr>
+          <th>Trial ID</th><th>Study title</th><th>Who's running it</th>
+          <th>Status</th><th>Device family</th><th>Type</th>
+        </tr></thead>
+        <tbody>
+          {% for r in trials %}
+          <tr>
+            <td class="mono"><a href="https://clinicaltrials.gov/study/{{ r[0] }}" target="_blank">{{ r[0] }}</a></td>
+            <td style="max-width:340px;font-size:12px;line-height:1.45">{{ (r[1] or '')[:100] }}</td>
+            <td style="max-width:200px;font-size:12px">{{ (r[2] or '')[:50] }}</td>
+            <td style="font-size:12px">
+              {% set s = (r[3] or '').replace('_',' ').title() %}
+              {% if 'Completed' in s %}<span class="pill same">{{ s }}</span>
+              {% elif 'Recruiting' in s %}<span class="pill better">{{ s }}</span>
+              {% elif 'Active' in s %}<span class="pill better">{{ s }}</span>
+              {% elif 'Not Yet' in s %}<span class="pill warn">{{ s }}</span>
+              {% else %}<span style="color:var(--muted)">{{ s }}</span>{% endif %}
+            </td>
+            <td style="font-size:12px">{{ device_bucket_label(r[4]) }}</td>
+            <td style="font-size:11px;color:var(--muted)">{{ (r[7] or '').title() }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table></div>
+      {% else %}
+      <div class="empty">No clinical trials linked to this code yet.</div>
+      {% endif %}
+
+    {% endif %}
+  </div>
+</body>
+</html>

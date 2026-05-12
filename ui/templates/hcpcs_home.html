@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Medicare Procedure Explorer</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f1117; --surface: #181c28; --surface2: #212738;
+      --text: #e8ecf4; --muted: #9ba3b8; --dim: #636d83;
+      --accent: #6366f1; --accent-l: #818cf8; --border: rgba(255,255,255,.08);
+      --good: #34d399; --warn: #fbbf24;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: 'Inter', system-ui, sans-serif;
+           background: var(--bg); color: var(--text); }
+    .wrap { max-width: 980px; margin: 0 auto; padding: 48px 24px 80px; }
+    a { color: var(--accent-l); text-decoration: none; }
+    a:hover { color: white; }
+    h1 { font-size: 34px; font-weight: 800; margin: 0 0 10px; letter-spacing: -.02em; }
+    .lede { color: var(--muted); margin: 0 0 28px; font-size: 16px; line-height: 1.55; max-width: 720px; }
+    .top-nav { display: flex; justify-content: flex-end; margin-bottom: -28px; font-size: 14px; }
+
+    /* Big search */
+    form.search { display: flex; gap: 10px; margin-bottom: 14px; }
+    form.search input {
+      flex: 1; padding: 16px 20px; font-size: 16px;
+      background: var(--surface); color: var(--text);
+      border: 1px solid var(--border); border-radius: 12px;
+      font-family: inherit; outline: none;
+    }
+    form.search input:focus { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(99,102,241,.15); }
+    form.search button {
+      padding: 16px 28px; font-size: 15px; font-weight: 600;
+      background: var(--accent); color: white; border: 0; border-radius: 12px;
+      cursor: pointer; font-family: inherit;
+    }
+    form.search button:hover { background: var(--accent-l); }
+    .search-hints { display: flex; gap: 14px; color: var(--dim); font-size: 13px;
+                    margin-bottom: 36px; flex-wrap: wrap; }
+    .search-hints span { color: var(--muted); }
+    .search-hints code {
+      background: var(--surface2); padding: 1px 7px; border-radius: 4px;
+      font-family: ui-monospace, monospace; font-size: 12px; color: var(--accent-l);
+    }
+
+    /* Cards */
+    .info-card {
+      background: linear-gradient(135deg, rgba(99,102,241,.08), rgba(99,102,241,.02));
+      border: 1px solid rgba(99,102,241,.18); border-radius: 14px;
+      padding: 20px 22px; margin-bottom: 30px;
+    }
+    .info-card h3 { margin: 0 0 6px; font-size: 15px; color: var(--accent-l); font-weight: 700; }
+    .info-card p  { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.55; }
+
+    .kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 40px; }
+    .kpi { background: var(--surface); border: 1px solid var(--border);
+           border-radius: 10px; padding: 16px; }
+    .kpi .label { color: var(--muted); font-size: 12px;
+                  margin-bottom: 6px; line-height: 1.3; }
+    .kpi .value { font-size: 24px; font-weight: 700; }
+    .kpi .sub { color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+    h2 { font-size: 22px; margin: 36px 0 6px; font-weight: 700; letter-spacing: -.01em; }
+    .h2-sub { color: var(--muted); margin: 0 0 16px; font-size: 13px; max-width: 720px; line-height: 1.5; }
+
+    table { width: 100%; border-collapse: collapse; background: var(--surface);
+            border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    th, td { padding: 12px 14px; text-align: left; font-size: 14px;
+             border-bottom: 1px solid var(--border); }
+    th { background: var(--surface2); color: var(--muted); font-weight: 500;
+         font-size: 12px; letter-spacing: .02em; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: var(--surface2); }
+    td.code a { color: var(--accent-l); text-decoration: none; font-weight: 600;
+                font-family: ui-monospace, monospace; }
+    td.code a:hover { color: white; }
+    td.num { text-align: right; font-variant-numeric: tabular-nums; color: var(--muted); }
+    .badge { display: inline-block; font-size: 10px; padding: 2px 7px;
+             border-radius: 4px; font-weight: 600; margin-left: 6px;
+             background: rgba(155,163,184,.15); color: var(--muted);
+             text-transform: uppercase; letter-spacing: .04em; }
+    .empty { color: var(--dim); padding: 24px; text-align: center; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top-nav">
+      <a href="/hospitals">🏥 Browse Hospitals →</a>
+    </div>
+
+    <h1>Medicare Procedure Explorer</h1>
+    <p class="lede">
+      Every medical procedure, device, drug, and supply that Medicare pays for has a 5-character billing code (HCPCS).
+      This tool lets you look up any code — like <a href="/hcpcs/33208">33208</a> for a pacemaker — and see what it is, what Medicare pays, who provides it, and which hospitals are connected to it.
+    </p>
+
+    <form class="search" action="/search" method="get">
+      <input name="q" placeholder='Type a code (33208) or words ("pacemaker", "CPAP", "hip replacement")' autofocus autocomplete="off">
+      <button type="submit">Look up</button>
+    </form>
+    <div class="search-hints">
+      <span>Try: <code>33208</code> (pacemaker)</span>
+      <span><code>E0601</code> (CPAP machine)</span>
+      <span><code>C9601</code> (drug-eluting stent)</span>
+      <span>or type <code>knee replacement</code></span>
+    </div>
+
+    <!-- Plain English explainer -->
+    <div class="info-card">
+      <h3>What you'll see for each code</h3>
+      <p>
+        <strong>What it is</strong> — official Medicare description, plus whether it's a device, drug, or service.
+        <strong>What Medicare pays</strong> — hospital outpatient rates (for procedures), supplier rates (for equipment).
+        <strong>Where it's used</strong> — top providers, top states, total volume.
+        <strong>Hospital links</strong> — which hospitals' doctors bill this code most.
+        <strong>Research</strong> — clinical trials studying related devices.
+      </p>
+    </div>
+
+    <h2>Warehouse at a glance</h2>
+    <p class="h2-sub">Everything we know across millions of Medicare billing records and CMS reference files.</p>
+    <div class="kpis">
+      <div class="kpi"><div class="label">Medicare billing codes</div><div class="value">{{ "{:,}".format(summary[0]) }}</div><div class="sub">HCPCS Level II master file</div></div>
+      <div class="kpi"><div class="label">Provider billing records</div><div class="value">{{ "{:,}".format(summary[1]) }}</div><div class="sub">Physicians + DME suppliers</div></div>
+      <div class="kpi"><div class="label">Hospital outpatient payment rules</div><div class="value">{{ "{:,}".format(summary[2]) }}</div><div class="sub">OPPS Addendum B (quarterly)</div></div>
+      <div class="kpi"><div class="label">Codes flagged by Stark Law</div><div class="value">{{ "{:,}".format(summary[3]) }}</div><div class="sub">Designated Health Services</div></div>
+      <div class="kpi"><div class="label">Clinical trials linked to codes</div><div class="value">{{ "{:,}".format(summary[4]) }}</div><div class="sub">From ClinicalTrials.gov</div></div>
+      <div class="kpi"><div class="label">Industry-to-doctor payments</div><div class="value">{{ "{:,}".format(summary[5]) }}</div><div class="sub">CMS Open Payments</div></div>
+    </div>
+
+    <h2>Most-studied medical devices</h2>
+    <p class="h2-sub">Device codes ranked by the number of clinical trials studying them. These tend to be the highest-stakes, most-researched implantable devices in modern medicine. Click any code to drill in.</p>
+    {% if top_codes %}
+    <table>
+      <thead>
+        <tr>
+          <th>Code</th>
+          <th>What it is</th>
+          <th>Type</th>
+          <th class="num">Billing records</th>
+          <th class="num">Linked trials</th>
+          <th class="num">Hospital pay rate</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for r in top_codes %}
+        <tr>
+          <td class="code"><a href="/hcpcs/{{ r[0] }}">{{ r[0] }}</a></td>
+          <td>{{ r[1] or '' }}</td>
+          <td><span class="badge">family: {{ r[2] or '' }}</span></td>
+          <td class="num">{{ "{:,}".format(r[3]) }}</td>
+          <td class="num">{{ "{:,}".format(r[4]) }}</td>
+          <td class="num">{% if r[5] %}${{ "{:,.2f}".format(r[5]) }}{% else %}<span style="color:#454d63">not separately paid</span>{% endif %}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <div class="empty">No codes loaded yet.</div>
+    {% endif %}
+
+    <p style="color:#636d83;font-size:12px;margin-top:18px;line-height:1.5">
+      <strong>Glossary refresher:</strong>
+      <strong style="color:#9ba3b8">HCPCS</strong> = Healthcare Common Procedure Coding System (Medicare's billing codes).
+      <strong style="color:#9ba3b8">Family</strong> = first letter of the code: A/E/K/L = supplies & DME, C = outpatient-hospital devices, G = temporary CMS codes, J = injectable drugs, S = non-Medicare, 5-digit numerics = CPT physician procedures.
+    </p>
+  </div>
+</body>
+</html>

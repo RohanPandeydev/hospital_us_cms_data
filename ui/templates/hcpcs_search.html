@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Search · {{ term }} — Medicare Procedure Explorer</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { margin: 0; font-family: 'Inter', system-ui, sans-serif;
+           background: #0f1117; color: #e8ecf4; }
+    .wrap { max-width: 980px; margin: 0 auto; padding: 32px 24px 80px; }
+    a.back { color: #9ba3b8; text-decoration: none; font-size: 14px; }
+    a.back:hover { color: #e8ecf4; }
+    h1 { font-size: 22px; margin: 16px 0 20px; font-weight: 600; }
+    h1 strong { color: #818cf8; }
+    form.search { display: flex; gap: 8px; margin-bottom: 28px; }
+    form.search input {
+      flex: 1; padding: 12px 16px; font-size: 15px;
+      background: #181c28; color: #e8ecf4;
+      border: 1px solid rgba(255,255,255,.08); border-radius: 8px;
+      font-family: inherit; outline: none;
+    }
+    form.search input:focus { border-color: #6366f1; }
+    form.search button {
+      padding: 12px 20px; font-size: 14px; font-weight: 600;
+      background: #6366f1; color: white; border: 0; border-radius: 8px;
+      cursor: pointer; font-family: inherit;
+    }
+    table { width: 100%; border-collapse: collapse; background: #181c28;
+            border: 1px solid rgba(255,255,255,.08); border-radius: 10px; overflow: hidden; }
+    th, td { padding: 11px 14px; text-align: left; font-size: 14px;
+             border-bottom: 1px solid rgba(255,255,255,.06); }
+    th { background: #212738; color: #9ba3b8; font-weight: 500;
+         font-size: 12px; letter-spacing: .04em; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: #1e2336; }
+    td.code a { color: #818cf8; text-decoration: none; font-weight: 600;
+                font-family: ui-monospace, monospace; }
+    td.code a:hover { color: white; }
+    .badge { display: inline-block; font-size: 10px; padding: 2px 7px;
+             border-radius: 4px; font-weight: 600;
+             background: rgba(155,163,184,.15); color: #9ba3b8; }
+    .badge.device { background: rgba(52,211,153,.15); color: #34d399; }
+    .empty { color: #636d83; padding: 28px; text-align: center; font-size: 14px;
+             background: #181c28; border: 1px dashed rgba(255,255,255,.08);
+             border-radius: 10px; }
+    .empty p { margin: 0 0 6px; }
+    .empty .sub { color: #454d63; font-size: 12px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back" href="/">← back to home</a>
+    <h1>Search results for "<strong>{{ term }}</strong>" — {{ rows|length }} match{% if rows|length != 1 %}es{% endif %}</h1>
+
+    <form class="search" action="/search" method="get">
+      <input name="q" value="{{ term }}" autofocus>
+      <button type="submit">Search</button>
+    </form>
+
+    {% if rows %}
+    <table>
+      <thead><tr><th>Code</th><th>What it is</th><th>Family</th><th>Tag</th></tr></thead>
+      <tbody>
+      {% for r in rows %}
+        <tr>
+          <td class="code"><a href="/hcpcs/{{ r[0] }}">{{ r[0] }}</a></td>
+          <td>{{ r[1] or '' }}</td>
+          <td><span class="badge">{{ r[2] or '' }}</span></td>
+          <td>{% if r[3] %}<span class="badge device">device</span>{% endif %}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <div class="empty">
+      <p>No Medicare codes match <strong>"{{ term }}"</strong>.</p>
+      <p class="sub">Try different keywords — "pacemaker", "knee replacement", "oxygen", "wheelchair" — or enter an exact code like <code>E0601</code>.</p>
+    </div>
+    {% endif %}
+  </div>
+</body>
+</html>

@@ -101,72 +101,14 @@ ENGINE = ReplacingMergeTree(fetched_at)
 ORDER BY (dataset_id, facility_id, year);
 
 -- ---------------------------------------------------------------
--- FDA MAUDE (adverse events + device details)
+-- FDA MAUDE + GUDID — REMOVED. The three tables (fda_maude_events,
+-- fda_maude_devices, fda_gudid_devices) were dropped because the
+-- project no longer uses openFDA data. Their DDL is kept here as
+-- comments for reference / quick restore.
+--
+-- To re-enable: uncomment these CREATE TABLE blocks, uncomment the
+-- two entries in src/datasets.py, and run `python run.py init`.
 -- ---------------------------------------------------------------
-
-CREATE TABLE IF NOT EXISTS fda_maude_events (
-    report_number       String,
-    event_type          Nullable(String),
-    date_received       Nullable(Date),
-    date_of_event       Nullable(Date),
-    event_location      Nullable(String),
-    report_source_code  Nullable(String),
-    mdr_report_key      Nullable(String),
-    manufacturer_name   Nullable(String),
-    facility_name       Nullable(String),
-    facility_state      Nullable(String),
-    facility_zip        Nullable(String),
-    patient_outcomes    Nullable(String),
-    device_problems     Nullable(String),
-    mdr_text            Nullable(String),
-    raw                 String,
-    fetched_at          DateTime64(3) DEFAULT now64(3)
-)
-ENGINE = ReplacingMergeTree(fetched_at)
-ORDER BY report_number;
-
--- Per-event device rows. Keyed by (report_number, seq) so re-ingest of the
--- same event with the same seq overwrites. If a re-ingest has fewer device
--- rows than before, the extras are cleared by the DELETE WHERE report_number
--- IN (...) mutation that ingest.py fires before inserting.
-CREATE TABLE IF NOT EXISTS fda_maude_devices (
-    report_number       String,
-    seq                 Int32,
-    product_code        Nullable(String),
-    brand_name          Nullable(String),
-    generic_name        Nullable(String),
-    manufacturer        Nullable(String),
-    model_number        Nullable(String),
-    catalog_number      Nullable(String),
-    lot_number          Nullable(String),
-    udi_di              Nullable(String),
-    udi_public          Nullable(String),
-    device_age          Nullable(String),
-    device_availability Nullable(String),
-    raw                 String,
-    fetched_at          DateTime64(3) DEFAULT now64(3)
-)
-ENGINE = ReplacingMergeTree(fetched_at)
-ORDER BY (report_number, seq);
-
-CREATE TABLE IF NOT EXISTS fda_gudid_devices (
-    primary_di          String,
-    product_code        Nullable(String),
-    product_codes_all   Nullable(String),
-    brand_name          Nullable(String),
-    company_name        Nullable(String),
-    device_description  Nullable(String),
-    gmdn_pt_name        Nullable(String),
-    catalog_number      Nullable(String),
-    version_model       Nullable(String),
-    is_kit              Nullable(UInt8),
-    is_combination      Nullable(UInt8),
-    public_version_date Nullable(Date),
-    raw                 String,
-    fetched_at          DateTime64(3) DEFAULT now64(3)
-)
-ENGINE = ReplacingMergeTree(fetched_at)
-ORDER BY primary_di;
 
 -- ---------------------------------------------------------------
 -- CMS data-api: Medicare utilization, DMEPOS, Open Payments
@@ -262,6 +204,34 @@ CREATE TABLE IF NOT EXISTS bridge_hcpcs_to_product_code (
 ENGINE = ReplacingMergeTree(fetched_at)
 ORDER BY (hcpcs_code, product_code);
 
+-- MAUDE-event → CMS-CCN bridge.
+-- MAUDE doesn't carry CCN; only `facility_name`, `facility_state`, and
+-- (sometimes) `facility_zip`. This table holds the inferred CCN per report
+-- using a multi-pass match: exact normalized name + state, then state +
+-- ngram similarity. Built by scripts/build_maude_ccn_bridge.py — re-runnable
+-- and idempotent (ReplacingMergeTree on report_number).
+--
+-- Joining this to fda_maude_devices gives the all-in-one row the
+-- requirement asks for: manufacturer + device + CCN.
+CREATE TABLE IF NOT EXISTS bridge_maude_to_ccn (
+    report_number       String,
+    facility_id         String,           -- CCN
+    match_method        String,           -- 'exact_name_state' | 'ngram_state'
+    confidence          String,           -- 'high' | 'medium' | 'low'
+    facility_name_maude Nullable(String),
+    facility_name_ccn   Nullable(String),
+    state               Nullable(String),
+    score               Nullable(Float64),
+    fetched_at          DateTime64(3) DEFAULT now64(3)
+)
+ENGINE = ReplacingMergeTree(fetched_at)
+ORDER BY report_number;
+
+-- vw_device_event_with_ccn was the all-in-one (MAUDE event × device × CCN)
+-- view. Dropped together with the FDA tables. The DDL is kept commented
+-- for reference; restore alongside the fda_maude_* CREATE TABLE blocks
+-- above if the project re-adds openFDA.
+
 -- ---------------------------------------------------------------
 -- Ingestion audit log — insert-once per run (finish_ingest_log)
 -- ---------------------------------------------------------------
@@ -297,6 +267,31 @@ CREATE TABLE IF NOT EXISTS state_adverse_events (
 ENGINE = ReplacingMergeTree(fetched_at)
 ORDER BY (state, report_year, facility_type, hospital_name, event_type);
 
+-- ---------------------------------------------------------------
+-- OPPS Addendum B — HCPCS → APC crosswalk + payment rates.
+-- Source: cms.gov/files/zip/{month}-{year}-opps-addendum-b.zip
+-- Published quarterly (Jan/Apr/Jul/Oct). Joining this with
+-- medicare_outpatient_by_provider_service (which is APC-keyed) lets you
+-- apportion APC volumes back to individual HCPCS codes.
+-- ---------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS opps_addendum_b (
+    hcpcs_code               String,
+    effective_quarter        String,        -- e.g. '2026Q1'
+    short_descriptor         Nullable(String),
+    status_indicator         Nullable(String),  -- 'S','T','J1','J2','Q1', etc.
+    apc_code                 Nullable(String),
+    relative_weight          Nullable(Float64),
+    payment_rate             Nullable(Float64),
+    national_copayment       Nullable(Float64),
+    minimum_copayment        Nullable(Float64),
+    pass_through_expiry_year Nullable(String),
+    raw                      String,
+    fetched_at               DateTime64(3) DEFAULT now64(3)
+)
+ENGINE = ReplacingMergeTree(fetched_at)
+ORDER BY (hcpcs_code, effective_quarter);
+
 CREATE TABLE IF NOT EXISTS cms_ingestion_log (
     run_id           String,                  -- uuid generated in Python
     dataset_id       String,
@@ -310,3 +305,38 @@ CREATE TABLE IF NOT EXISTS cms_ingestion_log (
 )
 ENGINE = MergeTree
 ORDER BY (dataset_id, started_at);
+
+-- ---------------------------------------------------------------
+-- Stark Law DHS (Designated Health Services) CPT/HCPCS list.
+-- Source: cms.gov/medicare/regulations-guidance/physician-self-referral
+--         /list-cpt-hcpcs-codes (AMA-licensed ZIP, one per effective year).
+-- One row per (code × dhs_category × effective_year). A code can belong to
+-- more than one DHS category (e.g. CT codes appear in both "Radiology" and
+-- "Inpatient/Outpatient Hospital Services"), so the natural key is composite.
+-- ---------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS stark_dhs_codes (
+    hcpcs_code        String,
+    dhs_category      String,          -- e.g. 'CLINICAL LABORATORY SERVICES'
+    effective_year    Int32,
+    short_description Nullable(String),
+    source_doc        String,          -- file name inside the ZIP
+    source_url        Nullable(String),
+    raw_line          Nullable(String),
+    fetched_at        DateTime64(3) DEFAULT now64(3)
+)
+ENGINE = ReplacingMergeTree(fetched_at)
+ORDER BY (hcpcs_code, dhs_category, effective_year);
+
+-- ---------------------------------------------------------------
+-- ClinicalTrials.gov v2 — study + intervention rows.
+-- Source: clinicaltrials.gov/api/v2/studies (JSON v2, paginated by pageToken).
+-- The base tables are managed by the older risk_db ingester (which writes
+-- into ClickHouse too); we add `hcpcs_code` / `hcpcs_confidence` columns so
+-- the Groq trial→HCPCS mapper can backfill mappings without a second table.
+-- The ALTER ... IF NOT EXISTS guards make this idempotent.
+-- ---------------------------------------------------------------
+
+ALTER TABLE clinical_trial_interventions
+    ADD COLUMN IF NOT EXISTS hcpcs_code Nullable(String),
+    ADD COLUMN IF NOT EXISTS hcpcs_confidence Nullable(String);

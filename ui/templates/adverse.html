@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+{% block title %}Adverse Events — CH × S3{% endblock %}
+{% block content %}
+<div class="page-header">
+  <h1>📑 MAUDE Adverse Events — ClickHouse + S3</h1>
+  <p>
+    Unified view: rows from the warehouse copy in ClickHouse
+    (<code>default.flattened_adverse_event</code>) and the raw MDRF parquet files
+    in S3 (<code>{{ bucket }}/us-data/maude-data/mdrf/{{ year }}/</code>) in a single
+    table — the <code>source</code> column shows where each row came from.
+  </p>
+</div>
+
+<form method="get" action="/adverse" class="filter-bar">
+  <select name="year">
+    {% for y in available_years %}
+      <option value="{{ y }}" {% if y==year %}selected{% endif %}>{{ y }}</option>
+    {% endfor %}
+  </select>
+  <input type="text" name="report_number" placeholder="Report number (exact match)" value="{{ report_number }}">
+  <input type="number" name="limit" min="1" max="500" value="{{ limit }}" placeholder="Limit per source">
+  <button type="submit">Load</button>
+</form>
+
+<div class="kpi">
+  <div class="box">
+    <div class="label">ClickHouse rows</div>
+    <div class="value">{{ "{:,}".format(ch_count) }}</div>
+    <div class="delta">default.flattened_adverse_event</div>
+  </div>
+  <div class="box">
+    <div class="label">S3 rows</div>
+    <div class="value">{{ "{:,}".format(s3_count) }}</div>
+    <div class="delta">{{ s3_picked or '— no file —' }}</div>
+  </div>
+  <div class="box">
+    <div class="label">S3 files in {{ year }}</div>
+    <div class="value">{{ s3_files|length }}</div>
+    <div class="delta">parquet objects under prefix</div>
+  </div>
+  <div class="box">
+    <div class="label">S3-MDR-old rows</div>
+    <div class="value">{{ "{:,}".format(old_count) }}</div>
+    <div class="delta">{{ old_picked or '— no file —' }}</div>
+  </div>
+</div>
+
+{% if s3_error %}
+<div class="card" style="border-color: var(--danger); background: var(--danger-bg);">
+  <strong>S3 read failed:</strong> <code>{{ s3_error }}</code>
+</div>
+{% endif %}
+{% if old_error %}
+<div class="card" style="border-color: var(--danger); background: var(--danger-bg);">
+  <strong>S3-MDR-old read failed:</strong> <code>{{ old_error }}</code>
+</div>
+{% endif %}
+
+<div class="card">
+  <div class="card-title">Adverse Events — merged</div>
+  <p class="card-subtitle">
+    {% if report_number %}
+      Filter: <code>report_number = '{{ report_number }}'</code> (applied to both sources).
+    {% else %}
+      First {{ limit }} rows per source (no sort — cheap scan). Use the
+      report-number search to look up a specific record.
+    {% endif %}
+  </p>
+  <table class="scroll-wrap">
+    <thead>
+      <tr>{% for c in unified_cols %}<th>{{ c }}</th>{% endfor %}</tr>
+    </thead>
+    <tbody>
+      {% for r in merged_rows %}
+      <tr>
+        <td>
+          {% if r[0] == 'ClickHouse' %}
+            <span class="risk" style="background: rgba(99,102,241,0.15); color: var(--accent-light);">ClickHouse</span>
+          {% elif r[0] == 'S3-MDR-old' %}
+            <span class="risk" style="background: rgba(251,191,36,0.15); color: var(--warning);">S3-MDR-old</span>
+          {% else %}
+            <span class="risk" style="background: rgba(251,146,60,0.15); color: #fb923c;">S3</span>
+          {% endif %}
+        </td>
+        <td><code style="font-size:0.75rem;">{{ r[1] or '—' }}</code></td>
+        {% for v in r[2:] %}
+          <td class="cell">{{ v if v not in (None, '') else '—' }}</td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+      {% if not merged_rows %}
+      <tr><td colspan="{{ unified_cols|length }}" class="muted">No rows.</td></tr>
+      {% endif %}
+    </tbody>
+  </table>
+</div>
+
+{% if s3_files %}
+<div class="card">
+  <div class="card-title">All S3 parquet files for {{ year }} (mdrf)</div>
+  <table class="scroll-wrap">
+    <thead><tr><th>Key</th><th>Size (bytes)</th></tr></thead>
+    <tbody>
+      {% for f in s3_files %}
+      <tr>
+        <td><code style="font-size:0.75rem;">{{ f.key }}</code></td>
+        <td>{{ "{:,}".format(f.size) }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endif %}
+
+{% if old_files %}
+<div class="card">
+  <div class="card-title">S3 parquet files under <code>mdr/year=other/</code> (legacy 1984–1997)</div>
+  <table class="scroll-wrap">
+    <thead><tr><th>Key</th><th>Size (bytes)</th></tr></thead>
+    <tbody>
+      {% for f in old_files %}
+      <tr>
+        <td><code style="font-size:0.75rem;">{{ f.key }}</code></td>
+        <td>{{ "{:,}".format(f.size) }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endif %}
+{% endblock %}

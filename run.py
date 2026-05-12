@@ -407,6 +407,21 @@ def cmd_risk_show(args):
     print(json.dumps(row[0], indent=2, default=str))
 
 
+def cmd_map_trials_to_hcpcs(args):
+    """Use Groq to map ClinicalTrials.gov interventions → HCPCS codes.
+
+    Reads `clinical_trial_interventions` rows with NULL hcpcs_code, builds a
+    candidate shortlist by token-overlap against hcpcs_master.long_desc,
+    and asks Groq to pick the best code (or 'none'). Writes back in place.
+    """
+    from src import trials_hcpcs_mapper
+    res = trials_hcpcs_mapper.map_all(
+        batch_size=args.batch_size,
+        limit=args.limit,
+    )
+    print(f"OK: {res}")
+
+
 def cmd_status(args):
     sql = """
         SELECT dataset_id, dataset_name, started_at, finished_at,
@@ -490,6 +505,13 @@ def main():
     rs.add_argument("--ccn")
     rs.add_argument("--device-category", dest="device_category")
 
+    mt = sub.add_parser("map-trials-to-hcpcs",
+                         help="Groq-map ClinicalTrials interventions → HCPCS codes")
+    mt.add_argument("--batch-size", type=int, default=10,
+                     help="Items per Groq call (default 10)")
+    mt.add_argument("--limit", type=int,
+                     help="Cap interventions processed (for testing)")
+
     sae = sub.add_parser("state-events-ingest",
                           help="Ingest state-mandated adverse-event registries "
                                "(currently MA SREs — the only public source "
@@ -537,6 +559,7 @@ def main():
         "risk-show":   cmd_risk_show,
         "risk-load-medicare": cmd_risk_load_medicare,
         "state-events-ingest": cmd_state_events_ingest,
+        "map-trials-to-hcpcs": cmd_map_trials_to_hcpcs,
     }
     try:
         dispatch[args.cmd](args)

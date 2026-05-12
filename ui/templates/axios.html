@@ -1,0 +1,478 @@
+{% extends "base.html" %}
+{% block title %}AXIOS / BSC Endoscopy{% endblock %}
+{% block content %}
+
+<div class="page-header">
+  <h1>🪡 AXIOS &amp; BSC Endoscopy — Probability Lens</h1>
+  <p>Joins three CMS datasets (procedure volume, Hospital Compare outcomes, national trend) with openFDA MAUDE complaints
+  to compute <strong>complaints per 1,000 procedures</strong> — the metric Boston Scientific cannot produce internally.</p>
+</div>
+
+{# ── Live data-completeness checklist ─────────────────────────── #}
+{% set ready_puf  = (completeness[0] or 0) > 0 %}
+{% set ready_axios = (completeness[2] or 0) > 0 %}
+{% set ready_hosp = (completeness[5] or 0) > 0 %}
+{% set ready_nppes = (completeness[6] or 0) > 0 %}
+{% set ready_trial = (completeness[7] or 0) > 0 %}
+{% set ready_op   = (completeness[8] or 0) > 0 %}
+<div class="card" style="border-left: 6px solid {{ 'var(--success)' if ready_puf and ready_axios and ready_hosp else 'var(--warning)' }};">
+  <div class="card-title">⚙️ Data completeness — what's loaded for the AXIOS requirement</div>
+  <table style="margin-top:0.5rem;">
+    <thead><tr><th style="width:1%;">✓</th><th>Required for</th><th>What's needed</th><th style="text-align:right;">Loaded</th><th>If missing — run this</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>{{ '✅' if ready_puf else '❌' }}</td>
+        <td>Dataset 1 — denominator</td>
+        <td>Physician PUF rows for ERCP CPTs</td>
+        <td style="text-align:right;"><strong>{{ "{:,}".format(completeness[0] or 0) }}</strong></td>
+        <td><code>python run.py ingest --dataset medicare_physician_by_provider_service</code></td>
+      </tr>
+      <tr>
+        <td>{{ '✅' if (completeness[1] or 0) > 1 else '⚠️' }}</td>
+        <td>Dataset 3 — YoY trend</td>
+        <td>Multi-year PUF (currently only {{ completeness[1] or 0 }} year)</td>
+        <td style="text-align:right;"><strong>{{ completeness[1] or 0 }} yr</strong></td>
+        <td>Drop additional <code>physician_YYYY.csv</code> into <code>downloads/</code></td>
+      </tr>
+      <tr>
+        <td>{{ '✅' if ready_axios else '❌' }}</td>
+        <td>Numerator — AXIOS-specific</td>
+        <td>MAUDE rows where brand contains "axios"</td>
+        <td style="text-align:right;"><strong>{{ "{:,}".format(completeness[2] or 0) }}</strong></td>
+        <td><code>python scripts/fetch_axios_maude.py</code> (brings in 2,367)</td>
+      </tr>
+      <tr>
+        <td>{{ '✅' if ready_hosp else '❌' }}</td>
+        <td>Dataset 2 — hospital-level outcomes</td>
+        <td>PSI-15 / PSI-09 / PSI-13 / PSI-90 / READM_30 measure rows</td>
+        <td style="text-align:right;"><strong>{{ "{:,}".format(completeness[5] or 0) }}</strong></td>
+        <td><code>python run.py ingest --dataset muwa-iene</code> (PSI), <code>9n3s-kdb3</code> (HRRP)</td>
+      </tr>
+      <tr>
+        <td>{{ '✅' if ready_nppes else '❌' }}</td>
+        <td>NPI ↔ CCN bridge (lets us tie ERCP NPIs to hospital outcomes)</td>
+        <td>NPPES registry rows</td>
+        <td style="text-align:right;"><strong>{{ "{:,}".format(completeness[6] or 0) }}</strong></td>
+        <td>Parse <code>downloads/nppes.zip</code> into <code>npi_registry</code></td>
+      </tr>
+      <tr>
+        <td>{{ '✅' if ready_trial else '⚠️' }}</td>
+        <td>Clinical evidence — trial signal</td>
+        <td>ClinicalTrials.gov rows mentioning AXIOS</td>
+        <td style="text-align:right;"><strong>{{ "{:,}".format(completeness[7] or 0) }}</strong></td>
+        <td>Add AXIOS bucket to <code>CTG_DEVICE_BUCKETS</code> in <code>src/risk_sources.py</code> + re-pull</td>
+      </tr>
+      <tr>
+        <td>{{ '✅' if ready_op else '⚠️' }}</td>
+        <td>Manufacturer payment exposure</td>
+        <td>Open Payments rows for Boston Scientific</td>
+        <td style="text-align:right;"><strong>{{ "{:,}".format(completeness[8] or 0) }}</strong></td>
+        <td><code>python run.py ingest --dataset op_2024_general</code></td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="card-subtitle" style="margin-top:0.75rem;">
+    <strong>Total MAUDE in DB:</strong> {{ "{:,}".format(completeness[4] or 0) }} events ·
+    <strong>Boston Scientific share:</strong> {{ "{:,}".format(completeness[3] or 0) }} ·
+    <strong>AXIOS-branded share:</strong> {{ "{:,}".format(completeness[2] or 0) }}.
+    The page calls every dataset by its real source — see the panel headers below for the URL each row came from.
+  </p>
+</div>
+
+{# ── Data sources reference ───────────────────────────────────── #}
+<div class="explain">
+  <strong>Source URLs (click to verify upstream).</strong>
+  <ul style="margin:0.4rem 0 0 1.2rem; line-height:1.6;">
+    <li><strong>Dataset 1 + 3</strong> (Physician PUF) →
+        <a href="https://data.cms.gov/provider-summary-by-type-of-service/medicare-physician-other-practitioners/medicare-physician-other-practitioners-by-provider-and-service" target="_blank" rel="noopener">data.cms.gov</a> · table <code>cms_provider_summary</code></li>
+    <li><strong>Dataset 2</strong> (Hospital Compare) → PSI-90 family from
+        <a href="https://data.cms.gov/provider-data/dataset/muwa-iene" target="_blank" rel="noopener">muwa-iene</a> + readmission from
+        <a href="https://data.cms.gov/provider-data/dataset/9n3s-kdb3" target="_blank" rel="noopener">9n3s-kdb3</a> · table <code>cms_hospital_measures</code></li>
+    <li><strong>MAUDE numerator</strong> → <a href="https://api.fda.gov/device/event.json?search=device.brand_name:axios" target="_blank" rel="noopener">openFDA</a> · tables <code>fda_maude_events</code> + <code>fda_maude_devices</code></li>
+  </ul>
+</div>
+
+{# ── BIG STORY: the rate ──────────────────────────────────────── #}
+<div class="card" style="border-left: 6px solid var(--accent); background: linear-gradient(135deg, rgba(99,102,241,0.06), transparent);">
+  <div class="card-title" style="font-size:1.1rem;">📐 The headline number — AXIOS only (strict scope)</div>
+  <div style="display:grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap:1.2rem; align-items:center; margin:1.2rem 0; text-align:center;">
+
+    <div>
+      <div style="color:var(--text-muted); font-size:0.7rem; text-transform:uppercase; letter-spacing:0.1em;">Numerator</div>
+      <div style="font-size:2rem; font-weight:700; color:var(--danger);">{{ "{:,}".format(maude_strict[1] or 0) }}</div>
+      <div style="font-size:0.8rem; color:var(--text-secondary);">MAUDE events<br>(last 12 mo)</div>
+      <div style="font-size:0.7rem; color:var(--text-muted); margin-top:0.3rem;">
+        brand contains "axios" + Boston Scientific only
+      </div>
+    </div>
+
+    <div style="font-size:2rem; color:var(--text-muted);">÷</div>
+
+    <div>
+      <div style="color:var(--text-muted); font-size:0.7rem; text-transform:uppercase; letter-spacing:0.1em;">Denominator</div>
+      <div style="font-size:2rem; font-weight:700; color:var(--accent-light);">{{ "{:,}".format((totals[0] or 0) | int) }}</div>
+      <div style="font-size:0.8rem; color:var(--text-secondary);">ERCP-family Medicare<br>procedures ({{ puf_year_label }})</div>
+      <div style="font-size:0.7rem; color:var(--text-muted); margin-top:0.3rem;">CPT 43240 / 43260–43278</div>
+    </div>
+
+    <div style="font-size:2rem; color:var(--text-muted);">=</div>
+
+    <div>
+      <div style="color:var(--text-muted); font-size:0.7rem; text-transform:uppercase; letter-spacing:0.1em;">Rate</div>
+      <div style="font-size:2.4rem; font-weight:800; color:var(--success);">{{ rate_strict if rate_strict is not none else '—' }}</div>
+      <div style="font-size:0.8rem; color:var(--text-secondary);">complaints<br>per 1,000 procedures</div>
+    </div>
+  </div>
+
+  <hr style="border:none; border-top:1px solid var(--border); margin:1rem 0;">
+
+  <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1.2rem; margin-top:0.5rem;">
+    <div style="padding:0.8rem; background: var(--bg-elevated); border-radius:var(--radius-sm); border-left:3px solid var(--success);">
+      <div style="font-size:0.7rem; color:var(--text-muted); text-transform:uppercase;">Strict (this page's headline)</div>
+      <div style="font-size:1.4rem; font-weight:700;">{{ maude_strict[1] or 0 }} complaints / 12 mo</div>
+      <div style="font-size:0.78rem; color:var(--text-secondary);">brand contains "axios" + manufacturer = Boston Scientific. This is the device the doc names.</div>
+    </div>
+    <div style="padding:0.8rem; background: var(--bg-elevated); border-radius:var(--radius-sm); border-left:3px solid var(--warning);">
+      <div style="font-size:0.7rem; color:var(--text-muted); text-transform:uppercase;">Broader BSC endoscopy family</div>
+      <div style="font-size:1.4rem; font-weight:700;">{{ maude_broad[1] or 0 }} complaints / 12 mo</div>
+      <div style="font-size:0.78rem; color:var(--text-secondary);">
+        Adds product codes <code>FCY/FAJ/EOQ/ODG</code> — duodenoscopes, colonoscopes, <strong>and bronchoscopes (EOQ)</strong>.
+        Use for BSC-wide endoscopy view, NOT for AXIOS-specific risk.
+      </div>
+    </div>
+  </div>
+
+  <div class="explain" style="margin-top:1rem;">
+    <strong>How to read this:</strong> for every 1,000 ERCP-family procedures performed in {{ puf_year_label }},
+    {{ rate_strict if rate_strict is not none else '?' }} resulted in a MAUDE complaint against an AXIOS-branded device.
+    <br><br>
+    <strong>Why two numbers?</strong> Restricting to brand="axios" gives a clean rate but a small numerator.
+    The "broader" figure includes the rest of the BSC endoscopy family (which the bridge currently maps to)
+    — but that family includes bronchoscopes that have nothing to do with AXIOS deployment, so don't conflate them.
+  </div>
+</div>
+
+{# ── DATASET 1 — Physician PUF ─────────────────────────────────── #}
+<div class="card">
+  <div class="card-title">1️⃣ Procedure volume — CMS Physician PUF
+    <span style="font-weight:400; color:var(--text-muted); font-size:0.78rem;">
+      · source: <a href="https://data.cms.gov/provider-summary-by-type-of-service/medicare-physician-other-practitioners/medicare-physician-other-practitioners-by-provider-and-service" target="_blank" rel="noopener">data.cms.gov</a>
+    </span>
+  </div>
+  <p class="card-subtitle">
+    Every Medicare-billed ERCP-family procedure for the year {{ puf_year_label }}. The source CSV is per-physician (NPI),
+    so we cannot count distinct hospitals from this dataset alone — that requires NPPES NPI→CCN linkage which isn't loaded yet.
+  </p>
+
+  <div class="kpi" style="margin-top:0.5rem;">
+    <div class="box"><div class="label">Total procedures billed</div><div class="value">{{ "{:,}".format((totals[0] or 0) | int) }}</div><div class="delta">PUF year: {{ puf_year_label }}</div></div>
+    <div class="box"><div class="label">Medicare beneficiaries</div><div class="value">{{ "{:,}".format((totals[1] or 0) | int) }}</div><div class="delta">Distinct patients</div></div>
+    <div class="box"><div class="label">Performing physicians (NPIs)</div><div class="value">{{ "{:,}".format((totals[2] or 0) | int) }}</div><div class="delta">Per-NPI is the only key in the PUF</div></div>
+    <div class="box"><div class="label">Medicare payments</div><div class="value">${{ "{:,.0f}".format(totals[3] or 0) }}</div><div class="delta">Sum of Avg_Mdcr_Pymt × services</div></div>
+  </div>
+
+  <h4 style="margin:1.5rem 0 0.4rem 0; font-size:0.95rem;">Volume by CPT code</h4>
+  <table class="scroll-wrap">
+    <thead>
+      <tr><th>CPT</th><th>Procedure (HCPCS_Desc from PUF row)</th><th>Services</th><th>Patients</th><th>Physicians</th><th>Medicare $</th></tr>
+    </thead>
+    <tbody>
+      {% for r in by_cpt %}
+      <tr>
+        <td><code class="measure">{{ r[0] }}</code></td>
+        <td class="cell">{{ r[1] or '—' }}</td>
+        <td><strong>{{ "{:,}".format((r[2] or 0) | int) }}</strong></td>
+        <td>{{ "{:,}".format((r[3] or 0) | int) }}</td>
+        <td>{{ "{:,}".format(r[4] or 0) }}</td>
+        <td>${{ "{:,.0f}".format(r[5] or 0) }}</td>
+      </tr>
+      {% else %}
+      <tr><td colspan="6" style="text-align:center; padding:1rem; color:var(--text-muted);">No PUF rows — load <code>downloads/physician_2023.csv</code>.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <h4 style="margin:1.5rem 0 0.4rem 0; font-size:0.95rem;">Volume by state — top 15</h4>
+  <p class="card-subtitle">
+    The geographic denominator. Compare with MAUDE event geography below to spot complaint clusters that aren't just volume artefacts.
+  </p>
+  <table>
+    <thead><tr><th>State</th><th>Services</th><th>Patients</th><th>Physicians</th></tr></thead>
+    <tbody>
+      {% for r in by_state %}
+      <tr>
+        <td><strong>{{ r[0] }}</strong></td>
+        <td>{{ "{:,}".format((r[1] or 0) | int) }}</td>
+        <td>{{ "{:,}".format((r[2] or 0) | int) }}</td>
+        <td>{{ "{:,}".format(r[3] or 0) }}</td>
+      </tr>
+      {% else %}<tr><td colspan="4" style="color:var(--text-muted);">No data.</td></tr>{% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{# ── DATASET 3 — limitation note ───────────────────────────────── #}
+<div class="card" style="border-left:4px solid var(--neutral);">
+  <div class="card-title">📈 National trend (Dataset 3) — currently single-year</div>
+  <p class="card-subtitle">
+    Only the {{ puf_year_label }} PUF CSV is loaded (CMS data-api/v1 is Akamai-blocked from this network, see <code>src/datasets.py:198-204</code>).
+    To enable a year-over-year trend, drop additional <code>physician_YYYY.csv</code> files into <code>downloads/</code> and re-run ingest.
+  </p>
+</div>
+
+{# ── DATASET 2 — Hospital Compare ──────────────────────────────── #}
+<div class="card">
+  <div class="card-title">2️⃣ Hospital outcomes — proxy measures for ERCP risk
+    <span style="font-weight:400; color:var(--text-muted); font-size:0.78rem;">
+      · source: CMS Hospital Compare (PSI-90 family + HRRP)
+    </span>
+  </div>
+  <p class="card-subtitle">
+    <strong>Honest framing:</strong> CMS does not publish ERCP-specific complication rates at the hospital level.
+    These five Patient Safety Indicators (PSIs) and the all-cause readmission rate are the closest proxies for the
+    actual top AXIOS complications: <strong>perforation</strong> (PSI-15), <strong>bleeding</strong> (PSI-09),
+    <strong>biliary infection</strong> (PSI-13), <strong>composite safety</strong> (PSI-90), and
+    <strong>30-day readmission</strong> (READM_30_HOSP_WIDE).
+  </p>
+
+  <h4 style="margin:1rem 0 0.4rem 0; font-size:0.95rem;">Coverage — how many hospitals have data for each proxy</h4>
+  <table>
+    <thead><tr><th>Measure</th><th>Description</th><th>Hospitals</th><th>Worse than national</th><th>Better than national</th></tr></thead>
+    <tbody>
+      {% for r in measure_coverage %}
+      <tr>
+        <td><code class="measure">{{ r[0] }}</code></td>
+        <td class="cell">{{ decode_measure(r[0])[0] if decode_measure(r[0]) else r[0] }}</td>
+        <td>{{ "{:,}".format(r[3]) }}</td>
+        <td>{% if r[1] %}<span class="risk risk-high">{{ r[1] }}</span>{% else %}0{% endif %}</td>
+        <td>{% if r[2] %}<span class="risk risk-low">{{ r[2] }}</span>{% else %}0{% endif %}</td>
+      </tr>
+      {% else %}
+      <tr><td colspan="5" style="text-align:center; padding:1rem; color:var(--text-muted);">
+        None of these PSI / readmission measures are loaded yet — see the data-completeness panel above.
+      </td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <h4 style="margin:1.5rem 0 0.4rem 0; font-size:0.95rem;">Hospitals scoring "Worse than national" — top 50</h4>
+  <p class="card-subtitle">
+    Cross-reference these CCNs with MAUDE event geography below. A complaint at a CCN flagged here is much more
+    likely to reflect the hospital than the device.
+  </p>
+  <table class="scroll-wrap">
+    <thead>
+      <tr><th>CCN</th><th>Hospital</th><th>State</th><th>Star</th><th>Measure</th><th>Description</th><th>Score</th><th>Period</th></tr>
+    </thead>
+    <tbody>
+      {% for r in ercp_measures %}
+      <tr>
+        <td><code style="font-size:0.75rem;">{{ r[0] }}</code></td>
+        <td class="cell">{{ r[1] or '—' }}</td>
+        <td>{{ r[2] or '—' }}</td>
+        <td>{{ r[3] or '—' }}</td>
+        <td><code class="measure">{{ r[4] or '—' }}</code></td>
+        <td class="cell" style="font-size:0.78rem; color:var(--text-secondary);">{{ decode_measure(r[4])[0] if r[4] and decode_measure(r[4]) else '' }}</td>
+        <td>{{ r[5] or '—' }}</td>
+        <td style="color:var(--text-muted); font-size:0.78rem;">{{ r[7] or '' }} → {{ r[8] or '' }}</td>
+      </tr>
+      {% else %}
+      <tr><td colspan="8" style="text-align:center; padding:1rem; color:var(--text-muted);">
+        No "Worse than national" rows. Either none flagged, or the PSI / HRRP datasets aren't ingested.
+      </td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{# ── 🎯 The all-three-in-one row (manufacturer + device + CCN) ── #}
+<div class="card" style="border-left:6px solid {{ 'var(--success)' if all_three_ready and (all_three_summary[0] or 0) > 0 else 'var(--warning)' }};">
+  <div class="card-title">🎯 manufacturer + device + CCN — all in one row
+    <span style="font-weight:400; color:var(--text-muted); font-size:0.78rem;">
+      · source: <code>vw_device_event_with_ccn</code>
+      (= fda_maude_devices ⨝ fda_maude_events ⨝ bridge_maude_to_ccn ⨝ cms_hospitals)
+    </span>
+  </div>
+  <p class="card-subtitle">
+    No single CMS dataset has manufacturer + device + CCN universally.
+    This view fixes that by inferring the CCN on every MAUDE event from
+    its <code>facility_name + state</code>, then joining the device row.
+    The result is the requirement's "all three in one row" — for the entire
+    United States, not just teaching hospitals (which is the limit of Open Payments).
+  </p>
+
+  {% if not all_three_ready %}
+    <div class="explain" style="border-left:4px solid var(--warning);">
+      <strong>The view doesn't exist yet.</strong>
+      Run the migration + matcher to create it:
+      <pre style="background:var(--bg-elevated); padding:0.5rem; border-radius:var(--radius-xs); margin-top:0.4rem;">
+# 1. Apply the schema (creates bridge_maude_to_ccn + vw_device_event_with_ccn)
+clickhouse-client --secure --host warehouse.dev.rp360.io --port 9440 \
+  --user default --password "$CLICKHOUSE_PASSWORD" \
+  --database hospital_us_cms_data \
+  --queries-file schema_clickhouse.sql
+
+# 2. Build the bridge (multi-pass exact + fuzzy match)
+python scripts/build_maude_ccn_bridge.py
+</pre>
+    </div>
+  {% else %}
+    <div class="kpi" style="margin:0.8rem 0 0.5rem 0;">
+      <div class="box"><div class="label">Total all-three rows</div><div class="value">{{ "{:,}".format(all_three_summary[0] or 0) }}</div><div class="delta">AXIOS / BSC endoscopy events with CCN</div></div>
+      <div class="box"><div class="label">Distinct hospitals</div><div class="value">{{ "{:,}".format(all_three_summary[1] or 0) }}</div><div class="delta">CCNs touched</div></div>
+      <div class="box"><div class="label">High confidence</div><div class="value" style="color:var(--success)">{{ all_three_summary[2] or 0 }}</div><div class="delta">exact name + state match</div></div>
+      <div class="box"><div class="label">Medium confidence</div><div class="value" style="color:var(--warning)">{{ all_three_summary[3] or 0 }}</div><div class="delta">ngram ≥ 0.85 + state</div></div>
+      <div class="box"><div class="label">Low confidence</div><div class="value" style="color:var(--text-muted)">{{ all_three_summary[4] or 0 }}</div><div class="delta">ngram ≥ 0.65 + state</div></div>
+    </div>
+
+    <table class="scroll-wrap">
+      <thead>
+        <tr>
+          <th>Manufacturer</th><th>Device brand</th><th>PC</th>
+          <th>CCN</th><th>Hospital</th><th>State</th><th>Star</th>
+          <th>Severity</th><th>Date</th><th>Match</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for r in all_three %}
+        <tr>
+          <td class="cell">{{ r[0] or '—' }}</td>
+          <td class="cell">{{ r[1] or '—' }}</td>
+          <td><code class="measure">{{ r[2] or '—' }}</code></td>
+          <td><code style="font-size:0.75rem;">{{ r[3] or '—' }}</code></td>
+          <td class="cell">{{ r[4] or '—' }}</td>
+          <td>{{ r[5] or '—' }}</td>
+          <td>{{ r[6] or '—' }}</td>
+          <td>
+            {% if r[7]=='Death' %}<span class="risk risk-high">Death</span>
+            {% elif r[7]=='Injury' %}<span class="risk risk-med">Injury</span>
+            {% elif r[7]=='Malfunction' %}<span class="risk risk-unknown">Malfunction</span>
+            {% else %}{{ r[7] or '—' }}{% endif %}
+          </td>
+          <td>{{ r[8] or '—' }}</td>
+          <td>
+            {% if r[9]=='high' %}<span class="risk risk-low">high · 1.0</span>
+            {% elif r[9]=='medium' %}<span class="risk risk-unknown">med · {{ '%.2f' | format(r[10] or 0) }}</span>
+            {% elif r[9]=='low' %}<span class="risk risk-med">low · {{ '%.2f' | format(r[10] or 0) }}</span>
+            {% else %}—{% endif %}
+          </td>
+        </tr>
+        {% else %}
+        <tr><td colspan="10" style="text-align:center; padding:1rem; color:var(--text-muted);">
+          Bridge built but no AXIOS / BSC endoscopy rows match — likely because the local MAUDE table
+          hasn't been populated with AXIOS events yet. Run <code>python scripts/fetch_axios_maude.py</code> first.
+        </td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% endif %}
+</div>
+
+{# ── openFDA MAUDE ────────────────────────────────────────────── #}
+<div class="card">
+  <div class="card-title">🔬 openFDA MAUDE complaints
+    <span style="font-weight:400; color:var(--text-muted); font-size:0.78rem;">
+      · source: <a href="https://api.fda.gov/device/event.json" target="_blank" rel="noopener">api.fda.gov/device/event.json</a>
+    </span>
+  </div>
+  <p class="card-subtitle">
+    Currently displaying the <strong>{{ scope }}</strong> scope. Switch with the buttons below.
+  </p>
+
+  <form method="get" action="/axios" class="filter-bar">
+    <input type="text" name="brand_filter" value="{{ brand_filter }}" placeholder="brand contains…">
+    <button type="submit" name="scope" value="strict" {% if scope=='strict' %}style="background:var(--success); color:#fff;"{% endif %}>Strict (AXIOS only)</button>
+    <button type="submit" name="scope" value="broad"  {% if scope=='broad'  %}style="background:var(--warning); color:#000;"{% endif %}>Broad (BSC endoscopy family)</button>
+  </form>
+
+  <div class="kpi" style="margin:1rem 0;">
+    <div class="box"><div class="label">Last 12 mo (current scope)</div><div class="value">{{ "{:,}".format(maude_kpi[1] or 0) }}</div><div class="delta">→ this is the numerator above</div></div>
+    <div class="box"><div class="label">Prior 12 mo</div><div class="value">{{ "{:,}".format(maude_kpi[2] or 0) }}</div><div class="delta">{% if yoy_pct is not none %}<span class="{{ 'bad' if yoy_pct > 0 else 'good' }}">{{ '+' if yoy_pct > 0 else '' }}{{ yoy_pct }}% YoY</span>{% else %}no baseline{% endif %}</div></div>
+    <div class="box"><div class="label">Lifetime</div><div class="value">{{ "{:,}".format(maude_kpi[0] or 0) }}</div><div class="delta">All ingested MAUDE history</div></div>
+    <div class="box"><div class="label">Deaths</div><div class="value" style="color:var(--danger)">{{ maude_kpi[3] or 0 }}</div><div class="delta">Lifetime — Class I severity</div></div>
+    <div class="box"><div class="label">Injuries</div><div class="value" style="color:var(--warning)">{{ maude_kpi[4] or 0 }}</div><div class="delta">Lifetime — patient harm</div></div>
+    <div class="box"><div class="label">Last report</div><div class="value" style="font-size:1.1rem;">{{ maude_kpi[6] or '—' }}</div><div class="delta">Latest event in DB</div></div>
+  </div>
+
+  <h4 style="margin:1rem 0 0.4rem 0; font-size:0.95rem;">Monthly complaint trend (last 36 months)</h4>
+  <div class="chart-container"><canvas id="monthlyChart"></canvas></div>
+
+  <h4 style="margin:1.5rem 0 0.4rem 0; font-size:0.95rem;">Top brands × product codes in matched events</h4>
+  <p class="card-subtitle" style="margin-bottom:0.5rem;">
+    Use this to sanity-check the scope: in <strong>strict</strong> mode you should see only AXIOS rows.
+    In <strong>broad</strong> mode you'll also see EXALT (bronchoscope, PC=EOQ) — that's expected.
+  </p>
+  <table>
+    <thead><tr><th>Brand</th><th>PC</th><th>Events</th><th>Deaths</th><th>Injuries</th><th>Latest</th></tr></thead>
+    <tbody>
+      {% for r in maude_brands %}
+      <tr>
+        <td class="cell">{{ r[0] or '—' }}</td>
+        <td><code class="measure">{{ r[1] or '—' }}</code></td>
+        <td><strong>{{ "{:,}".format(r[2]) }}</strong></td>
+        <td>{% if r[3] %}<span class="risk risk-high">{{ r[3] }}</span>{% else %}0{% endif %}</td>
+        <td>{% if r[4] %}<span class="risk risk-med">{{ r[4] }}</span>{% else %}0{% endif %}</td>
+        <td>{{ r[5] or '—' }}</td>
+      </tr>
+      {% else %}<tr><td colspan="6" style="color:var(--text-muted);">No matches in this scope.</td></tr>{% endfor %}
+    </tbody>
+  </table>
+
+  <h4 style="margin:1.5rem 0 0.4rem 0; font-size:0.95rem;">Most recent matched events (latest 50)</h4>
+  <p class="card-subtitle" style="margin-bottom:0.5rem;">
+    Each row is one MAUDE adverse-event report from openFDA. The "Source" link goes straight to the openFDA JSON
+    record, where the full narrative (<code>mdr_text</code>) is available alongside the parsed fields.
+    <br>
+    <strong>Why some columns show "—":</strong> Patient outcome and device-problem text are often blank for
+    Malfunction reports (no patient harm = no outcome to record). The PC column is what the manufacturer assigned
+    to the device — required field, so it's always populated.
+  </p>
+  <table class="scroll-wrap">
+    <thead>
+      <tr><th>Report #</th><th>Severity</th><th>Date</th><th>Brand</th><th>PC</th><th>Manufacturer</th><th>Patient outcome</th><th>Source</th></tr>
+    </thead>
+    <tbody>
+      {% for r in maude_recent %}
+      <tr>
+        <td><code style="font-size:0.75rem;">{{ r[0] }}</code></td>
+        <td>
+          {% if r[1]=='Death' %}<span class="risk risk-high">Death</span>
+          {% elif r[1]=='Injury' %}<span class="risk risk-med">Injury</span>
+          {% elif r[1]=='Malfunction' %}<span class="risk risk-unknown">Malfunction</span>
+          {% else %}<span class="risk risk-unknown">{{ r[1] or '—' }}</span>{% endif %}
+        </td>
+        <td>{{ r[2] or '—' }}</td>
+        <td class="cell">{{ r[3] or '—' }}</td>
+        <td><code class="measure">{{ r[4] or '—' }}</code></td>
+        <td class="cell">{{ r[5] or '—' }}</td>
+        <td class="cell">{{ r[6] or '—' }}</td>
+        <td>
+          <a href="https://api.fda.gov/device/event.json?search=report_number:%22{{ r[0] }}%22" target="_blank" rel="noopener" style="font-size:0.75rem;">openFDA ↗</a>
+        </td>
+      </tr>
+      {% else %}<tr><td colspan="8" style="color:var(--text-muted);">No recent matched events.</td></tr>{% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<script>
+const monthly = {{ maude_monthly|tojson }};
+new Chart(document.getElementById('monthlyChart'), {
+  type: 'line',
+  data: {
+    labels: monthly.map(r => r[0]),
+    datasets: [{
+      label: 'MAUDE events / month',
+      data: monthly.map(r => r[1]),
+      borderColor: '#f87171',
+      backgroundColor: 'rgba(248,113,113,0.15)',
+      tension: 0.3,
+      fill: true,
+    }],
+  },
+  options: {responsive:true, maintainAspectRatio:false,
+    plugins:{legend:{display:false}},
+    scales:{x:{ticks:{color:'#9ba3b8'}}, y:{ticks:{color:'#9ba3b8'}, beginAtZero:true}}},
+});
+</script>
+{% endblock %}

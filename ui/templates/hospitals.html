@@ -1,233 +1,153 @@
-{% extends "base.html" %}
-{% block title %}Hospital Explorer{% endblock %}
-{% block content %}
-<div class="page-header">
-  <h1>🏥 Hospital Explorer</h1>
-  <p>Search any of 5,426 US Medicare-certified hospitals. Click a row to open the full outcomes profile.</p>
-</div>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Hospitals & Readmissions — Medicare Procedure Explorer</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f1117; --surface: #181c28; --surface2: #212738;
+      --text: #e8ecf4; --muted: #9ba3b8; --dim: #636d83;
+      --accent: #6366f1; --accent-l: #818cf8; --border: rgba(255,255,255,.08);
+      --good: #34d399; --warn: #fbbf24; --bad: #f87171;
+    }
+    body { margin: 0; font-family: 'Inter', system-ui, sans-serif;
+           background: var(--bg); color: var(--text); }
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 24px; }
+    a { color: var(--accent-l); text-decoration: none; }
+    a:hover { color: white; }
+    h1 { font-size: 28px; margin: 12px 0 6px; font-weight: 700; letter-spacing: -.02em; }
+    .lede { color: var(--muted); margin: 0 0 24px; font-size: 14px; line-height: 1.55; max-width: 760px; }
+    .kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 24px; }
+    .kpi { background: var(--surface); border: 1px solid var(--border);
+           border-radius: 10px; padding: 14px; }
+    .kpi .label { color: var(--muted); font-size: 12px; margin-bottom: 4px; line-height: 1.3; }
+    .kpi .value { font-size: 24px; font-weight: 700; }
+    .kpi .sub { color: var(--dim); font-size: 11px; margin-top: 2px; }
 
-<div class="card">
-  <form method="get" action="/hospitals" class="filter-bar">
-    <select name="state">
-      <option value="">State: all</option>
-      {% for s in states %}<option value="{{s}}" {% if s==state %}selected{% endif %}>{{s}}</option>{% endfor %}
-    </select>
-    <select name="hospital_type">
-      <option value="">Type: all</option>
-      {% for t in types %}<option value="{{t}}" {% if t==hospital_type %}selected{% endif %}>{{t}}</option>{% endfor %}
-    </select>
-    <select name="rating">
-      <option value="">Min rating: any</option>
-      {% for r in ['1','2','3','4','5'] %}<option value="{{r}}" {% if r==rating %}selected{% endif %}>{{r}}★+</option>{% endfor %}
-    </select>
-    <input type="text" name="search" placeholder="Name contains…" value="{{ search }}">
-    <button type="submit">Filter</button>
-  </form>
-  {% if not hospital_info %}
-  <table class="scroll-wrap">
-    <thead><tr>
-      <th>CCN <i class="info-icon">i<span class="info-tip">CMS Certification Number — the 6-digit national ID assigned to every Medicare-certified hospital. It's the primary key we use to link CMS quality data across datasets.</span></i></th>
-      <th>Name</th>
-      <th>City</th>
-      <th>State</th>
-      <th>Type <i class="info-icon">i<span class="info-tip">Facility classification: Acute Care (most common), Critical Access (small rural), Children's, Psychiatric, Rehab. Determines what procedures and devices the hospital uses.</span></i></th>
-      <th>Ownership <i class="info-icon">i<span class="info-tip">Who operates the hospital: Voluntary non-profit, Proprietary (for-profit), or Government. Ownership correlates with outcomes and procedure mix.</span></i></th>
-      <th>Rating <i class="info-icon">i<span class="info-tip">CMS 1–5 star Overall Rating. Based on 57 measures across mortality, safety, readmissions, patient experience, timeliness, and effective care. 5★ = best. Many are unrated due to insufficient data.</span></i></th>
-      <th>ER <i class="info-icon">i<span class="info-tip">Whether the hospital provides 24/7 Emergency Services.</span></i></th>
-      <th></th>
-    </tr></thead>
-    <tbody>
-      {% for row in rows %}
-      <tr>
-        <td><code>{{ row[0] }}</code></td>
-        <td><strong>{{ row[1] }}</strong></td>
-        <td>{{ row[2] }}</td>
-        <td>{{ row[3] }}</td>
-        <td>{{ row[4] }}</td>
-        <td class="cell">{{ row[5] or '—' }}</td>
-        <td>
-          {% if row[6] and row[6]|string|first in ['1','2','3','4','5'] %}
-            <strong style="color: var(--warning);">{{ row[6] }}★</strong>
-          {% else %}<span class="muted">{{ row[6] or '—' }}</span>{% endif %}
-        </td>
-        <td>{{ row[7] or '—' }}</td>
-        <td><a href="/hospitals?facility_id={{ row[0] }}">profile →</a></td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-  {% endif %}
-</div>
+    .callout { background: rgba(99,102,241,.08); border: 1px solid rgba(99,102,241,.18);
+               border-radius: 10px; padding: 14px 18px; margin-bottom: 22px;
+               color: var(--muted); font-size: 13px; line-height: 1.55; }
+    .callout strong { color: var(--text); }
 
-{% if hospital_info %}
-<!-- Hospital profile -->
-<div class="card" style="background: linear-gradient(135deg, #1e1b4b 0%, #312e81 40%, #4338ca 100%); border: 1px solid rgba(99,102,241,0.3);">
-  <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">
-    <div>
-      <div style="font-size: 0.72rem; opacity: 0.7; letter-spacing: 0.05em; color: rgba(255,255,255,0.7);">CCN {{ hospital_info.facility_id }}</div>
-      <h2 style="margin: 0.2rem 0; font-size: 1.5rem; color: #fff;">{{ hospital_info.facility_name }}</h2>
-      <div style="color: rgba(255,255,255,0.85); font-size: 0.9rem;">
-        {{ hospital_info.city }}, {{ hospital_info.state }} {{ hospital_info.zip_code or '' }}
-        <br>{{ hospital_info.hospital_type }} · {{ hospital_info.hospital_ownership }}
-      </div>
+    form.filters { display: flex; gap: 8px; margin-bottom: 18px; align-items: center; flex-wrap: wrap; }
+    form.filters label { color: var(--muted); font-size: 13px; }
+    form.filters select, form.filters input {
+      padding: 10px 12px; font-size: 14px;
+      background: var(--surface); color: var(--text);
+      border: 1px solid var(--border); border-radius: 8px;
+      font-family: inherit; outline: none;
+    }
+    form.filters select { min-width: 380px; }
+    form.filters select:focus, form.filters input:focus { border-color: var(--accent); }
+    form.filters button {
+      padding: 10px 18px; font-size: 13px; font-weight: 600;
+      background: var(--accent); color: white; border: 0; border-radius: 8px;
+      cursor: pointer; font-family: inherit;
+    }
+    form.filters button:hover { background: var(--accent-l); }
+
+    table { width: 100%; border-collapse: collapse; background: var(--surface);
+            border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    th, td { padding: 11px 14px; text-align: left; font-size: 13px;
+             border-bottom: 1px solid var(--border); }
+    th { background: var(--surface2); color: var(--muted); font-weight: 500;
+         font-size: 11px; letter-spacing: .04em; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: var(--surface2); }
+    td.num { text-align: right; font-variant-numeric: tabular-nums; color: var(--muted); }
+    td.mono { font-family: ui-monospace, monospace; font-size: 12px; }
+    td a { font-weight: 600; }
+    .stars { color: var(--warn); font-weight: 600; }
+
+    .pill { display: inline-block; font-size: 10px; padding: 3px 8px;
+            border-radius: 5px; font-weight: 600; }
+    .pill.better { background: rgba(52,211,153,.15); color: var(--good); }
+    .pill.worse  { background: rgba(248,113,113,.15); color: var(--bad); }
+    .pill.same   { background: rgba(155,163,184,.15); color: var(--muted); }
+
+    .nav { display: flex; gap: 14px; margin-bottom: 8px; font-size: 14px; }
+    .nav a { color: var(--muted); }
+    .nav a:hover { color: var(--text); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="nav"><a href="/">← back to procedure search</a></div>
+
+    <h1>U.S. Hospitals — Quality & Readmission Scores</h1>
+    <p class="lede">
+      Every Medicare-certified hospital in the country, with the quality measure of your choice.
+      Click any hospital to see its full scorecard plus the medical codes it bills most often.
+    </p>
+
+    <div class="kpis">
+      <div class="kpi"><div class="label">Hospitals tracked</div><div class="value">{{ "{:,}".format(summary[0]) }}</div><div class="sub">Medicare-certified facilities</div></div>
+      <div class="kpi"><div class="label">States covered</div><div class="value">{{ summary[1] }}</div><div class="sub">All 50 states + territories</div></div>
+      <div class="kpi"><div class="label">Average CMS star rating</div><div class="value">{% if summary[2] %}★ {{ "{:.2f}".format(summary[2]) }}{% else %}—{% endif %}</div><div class="sub">1–5 scale (5 is best)</div></div>
     </div>
-    <div style="text-align: right;">
-      <div style="font-size: 0.72rem; opacity: 0.7; letter-spacing: 0.05em; color: rgba(255,255,255,0.7);">CMS Overall Rating</div>
-      <div style="font-size: 2.4rem; font-weight: 800; line-height: 1; color: #fff;">
-        {% if hospital_info.overall_rating and hospital_info.overall_rating|string|first in ['1','2','3','4','5'] %}
-          {{ hospital_info.overall_rating }}<span style="font-size: 1.3rem;">★</span>
-        {% else %}<span style="font-size: 1.2rem; opacity: 0.8;">Not rated</span>{% endif %}
-      </div>
+
+    <div class="callout">
+      <strong>How to use this page:</strong> pick a quality measure (most are 30-day readmission rates), optionally filter by state, and the table re-sorts by who performs <em>worst</em> on that measure first.
+      Lower readmission scores = better. The "vs. National" pill tells you whether the hospital is better, worse, or in line with the U.S. average.
     </div>
-  </div>
-</div>
 
-<!-- Summary KPIs -->
-<div class="kpi">
-  <div class="box" style="border-left: 3px solid var(--success);">
-    <div class="label good">Better than National <i class="info-icon">i<span class="info-tip">Count of CMS measures where this hospital performs statistically better than the national average. A CI-based test — just beating the average isn't enough; the difference must be statistically significant.</span></i></div>
-    <div class="value good">{{ risk_summary.better_count or 0 }}</div>
-    <div class="delta">of {{ risk_summary.total or 0 }} measures</div>
-  </div>
-  <div class="box" style="border-left: 3px solid var(--neutral);">
-    <div class="label">Same as National <i class="info-icon">i<span class="info-tip">Measures where the hospital's performance is statistically indistinguishable from the national average. Most hospitals fall here on most measures.</span></i></div>
-    <div class="value">{{ risk_summary.same_count or 0 }}</div>
-    <div class="delta">average performance</div>
-  </div>
-  <div class="box" style="border-left: 3px solid var(--danger);">
-    <div class="label bad">Worse than National <i class="info-icon">i<span class="info-tip">Measures where this hospital performs statistically worse than national average. These are the red-flag metrics — highest priority for quality improvement and for our device-risk ML models.</span></i></div>
-    <div class="value bad">{{ risk_summary.worse_count or 0 }}</div>
-    <div class="delta">🚩 investigate</div>
-  </div>
-  <div class="box" style="border-left: 3px solid var(--border);">
-    <div class="label">Not Available <i class="info-icon">i<span class="info-tip">Measures where the hospital's case volume is too low (fewer than ~25 cases) to compute a reliable score. CMS suppresses these to avoid misleading statistics on tiny denominators.</span></i></div>
-    <div class="value" style="color: var(--text-muted);">{{ risk_summary.not_available or 0 }}</div>
-    <div class="delta">too few cases</div>
-  </div>
-</div>
+    <form class="filters" method="get" action="/hospitals">
+      <label>Show me the:</label>
+      <select name="measure">
+        {% for m in measures_available %}
+          <option value="{{ m[0] }}" {% if m[0] == measure %}selected{% endif %}>
+            {{ decode_measure(m[0])[0] }} — {{ m[2] }} hospitals reporting
+          </option>
+        {% endfor %}
+      </select>
+      <label>In state:</label>
+      <input name="state" value="{{ state }}" placeholder="any (MA, CA…)" style="width: 90px;">
+      <input type="hidden" name="limit" value="100">
+      <button type="submit">Apply</button>
+    </form>
 
-<!-- Charts -->
-<div class="grid-2">
-  <div class="card">
-    <div class="card-title">🎯 Overall outcomes profile <i class="info-icon">i<span class="info-tip">Donut chart summarizing this hospital across ALL reported CMS measures. The slice sizes show how many measures fall into each category (better / same / worse / not available).</span></i></div>
-    <p class="card-subtitle">Green = hospital is better than average. Red = worse. Larger = more reported measures.</p>
-    <div class="chart-container"><canvas id="outcomesDonut"></canvas></div>
-  </div>
-  {% if cjr_info and cjr_info.comp_hip_knee %}
-  <div class="card" style="border-top: 3px solid var(--accent);">
-    <div class="card-title">🦴 Hip/Knee Device Outcomes (CJR) <i class="info-icon">i<span class="info-tip">CJR = Comprehensive Care for Joint Replacement. A Medicare bundled-payment program tracking outcomes of implanted hip and knee prostheses. This is the most device-specific outcome metric in all of CMS.</span></i></div>
-    <p class="card-subtitle">This hospital participates in Medicare's Joint Replacement Model. These numbers are direct device outcome metrics.</p>
-    <div class="kpi" style="margin: 1rem 0 0;">
-      <div class="box">
-        <div class="label">Complication rate <i class="info-icon">i<span class="info-tip">Rate of complications (infections, mechanical failures, revisions) per 100 hip/knee replacement procedures. Directly reflects implanted device outcomes at this hospital.</span></i></div>
-        <div class="value">{{ cjr_info.comp_hip_knee }}</div>
-        <div class="delta">per 100 procedures</div>
-      </div>
-      <div class="box">
-        <div class="label">Patient experience <i class="info-icon">i<span class="info-tip">HCAHPS = Hospital Consumer Assessment of Healthcare Providers and Systems. Patient survey score for joint-replacement satisfaction (linear-mean-roll score). Higher = better.</span></i></div>
-        <div class="value">{{ cjr_info.hcahps_hlmr or '—' }}</div>
-        <div class="delta">HCAHPS linear score</div>
-      </div>
-    </div>
-    <p class="muted" style="margin: 0.8rem 0 0; font-size: 0.82rem;">Market area: {{ cjr_info.msa or '—' }}</p>
-  </div>
-  {% else %}
-  <div class="card">
-    <div class="card-title">Device-specific data</div>
-    <p class="card-subtitle">This hospital is not in the CJR joint replacement program. Device outcomes available from PSI / HAI / HRRP measures below.</p>
-  </div>
-  {% endif %}
-</div>
-
-<!-- Red flags -->
-{% if top_worse %}
-<div class="card" style="border-left: 3px solid var(--danger);">
-  <div class="card-title">🚩 Top concerns — worst scored measures <i class="info-icon">i<span class="info-tip">CMS measures where this hospital is flagged as "Worse than national" or is above a published risk threshold. These are the ML model's highest-weight features for predicting device-related adverse outcomes.</span></i></div>
-  <p class="card-subtitle">These are the measures where this hospital is below average or exceeds risk thresholds.</p>
-  <table>
-    <thead><tr><th>Measure</th><th>Category</th><th>Score</th><th>vs. National</th></tr></thead>
-    <tbody>
-      {% for r in top_worse %}
-      {% set info = decode_measure(r[1]) %}
-      <tr>
-        <td>
-          <strong>{{ info[0] or r[1] }}</strong>
-          {% if info[2] %}<br><span class="muted" style="font-size:0.78rem;">{{ info[2] }}</span>{% endif %}
-        </td>
-        <td>{% if info[1] %}<span class="domain-tag">{{ info[1] }}</span>{% endif %}</td>
-        <td class="score-badge">{{ r[2] }}</td>
-        <td>
-          {% if r[3] and 'orse' in r[3]|lower %}<span class="risk risk-high">worse</span>
-          {% elif r[3] and 'better' in r[3]|lower %}<span class="risk risk-low">better</span>
-          {% else %}<span class="risk risk-unknown">{{ r[3] or '—' }}</span>{% endif %}
-        </td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-</div>
-{% endif %}
-
-<!-- All measures grouped by domain -->
-<div class="card">
-  <div class="card-title">All outcomes reported ({{ measures|length }})</div>
-  <p class="card-subtitle">Organized by clinical domain. Each measure shows the score, confidence interval where available, and comparison to national.</p>
-
-  {% set by_domain = {} %}
-  {% for m in measures %}
-    {% set info = decode_measure(m[1]) %}
-    {% set d = info[1] or 'Other' %}
-    {% if d not in by_domain %}{% set _ = by_domain.update({d: []}) %}{% endif %}
-    {% set _ = by_domain[d].append((m, info)) %}
-  {% endfor %}
-
-  {% for domain in ['Readmission','Mortality','Infection','Safety','Complication','Device-Specific','Patient Experience','Efficiency','Other'] %}
-    {% if domain in by_domain %}
-    <h3><span class="domain-tag">{{ domain }}</span> <span class="muted">({{ by_domain[domain]|length }})</span></h3>
-    <table class="scroll-wrap">
-      <thead><tr><th>Measure</th><th>Score</th><th>vs. National</th><th>Period</th></tr></thead>
+    <table>
+      <thead>
+        <tr>
+          <th>Hospital</th>
+          <th>Location</th>
+          <th>Type</th>
+          <th>Star rating</th>
+          <th class="num">Score</th>
+          <th>vs. National avg</th>
+          <th class="num"># patients</th>
+        </tr>
+      </thead>
       <tbody>
-        {% for m, info in by_domain[domain] %}
+        {% for r in rows %}
         <tr>
           <td>
-            {% if info[0] %}<strong>{{ info[0] }}</strong>{% endif %}
-            <br><code class="measure">{{ m[1] }}</code>
-            {% if m[7] %}<br><span class="muted" style="font-size:0.72rem;">Footnote {{ m[7] }}</span>{% endif %}
+            <a href="/hospital/{{ r[0] }}">{{ r[1] or '(name not on file)' }}</a>
+            <div class="mono" style="color:var(--dim);font-size:10px">CCN {{ r[0] }}</div>
           </td>
-          <td><strong>{{ m[2] }}</strong></td>
+          <td style="color:var(--muted)">{{ r[3] or '' }}{% if r[3] and r[2] %}, {% endif %}{{ r[2] or '' }}</td>
+          <td style="color:var(--muted);font-size:12px">{{ (r[4] or '')[:28] }}</td>
+          <td>{% if r[6] and r[6]|string != 'Not Available' %}<span class="stars">★ {{ r[6] }}</span>{% else %}—{% endif %}</td>
+          <td class="num">{% if r[8] is not none %}<strong style="color:var(--text)">{{ "{:.2f}".format(r[8]) }}</strong>{% elif r[7] %}{{ r[7] }}{% else %}—{% endif %}</td>
           <td>
-            {% if m[4] and 'orse' in m[4]|lower %}<span class="risk risk-high">{{ m[4] }}</span>
-            {% elif m[4] and 'better' in m[4]|lower %}<span class="risk risk-low">{{ m[4] }}</span>
-            {% elif m[4] %}<span class="risk risk-unknown">{{ m[4] }}</span>
-            {% else %}<span class="muted">—</span>{% endif %}
+            {% set c = (r[9] or '')|lower %}
+            {% if 'better' in c or 'less' in c %}<span class="pill better">Better than U.S.</span>
+            {% elif 'worse' in c or 'greater' in c %}<span class="pill worse">Worse than U.S.</span>
+            {% elif 'no different' in c %}<span class="pill same">Average</span>
+            {% elif r[9] %}<span class="pill same">{{ r[9] }}</span>
+            {% endif %}
           </td>
-          <td class="muted" style="font-size:0.78rem;">{{ m[5] or '' }} → {{ m[6] or '' }}</td>
+          <td class="num">{{ r[10] or '' }}</td>
         </tr>
         {% endfor %}
       </tbody>
     </table>
-    {% endif %}
-  {% endfor %}
-</div>
 
-<script>
-new Chart(document.getElementById('outcomesDonut'), {
-  type: 'doughnut',
-  data: {
-    labels: ['Better than national', 'Same as national', 'Worse than national', 'Not available'],
-    datasets: [{
-      data: [{{ risk_summary.better_count or 0 }}, {{ risk_summary.same_count or 0 }},
-             {{ risk_summary.worse_count or 0 }}, {{ risk_summary.not_available or 0 }}],
-      backgroundColor: ['#34d399', '#636d83', '#f87171', '#2a2f3d'],
-      borderWidth: 0,
-    }],
-  },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    plugins: {legend: {position: 'bottom'}},
-    cutout: '65%',
-  },
-});
-</script>
-{% endif %}
-{% endblock %}
+    <p style="color:var(--dim);font-size:12px;margin-top:14px;line-height:1.5">
+      Source: CMS Hospital Compare files. Readmission scores use a 3-year rolling window. Hospitals with too few cases for a reliable score may show "—".
+    </p>
+  </div>
+</body>
+</html>

@@ -89,19 +89,19 @@ DATASETS = [
     {"id": "yd3s-jyhd", "name": "HAI - National Benchmark",                       "kind": "national_measure"},
     {"id": "84jm-wiui", "name": "HCAHPS - State Benchmark",                       "kind": "state_measure"},
     {"id": "99ue-w85f", "name": "HCAHPS - National Benchmark",                    "kind": "national_measure"},
-    # --- Phase 3: FDA openFDA ---
-    {
-        "id": "fda_maude_events",
-        "name": "FDA MAUDE — Device Adverse Events",
-        "kind": "fda_events",
-        "source": "openfda",
-    },
-    {
-        "id": "fda_gudid",
-        "name": "FDA GUDID — Unique Device Identifier Database",
-        "kind": "fda_gudid",
-        "source": "openfda_udi",
-    },
+    # --- FDA MAUDE + GUDID removed from the default ingest registry.
+    # Existing rows in fda_maude_events / fda_maude_devices / fda_gudid_devices
+    # are preserved (drop the tables manually if you want them gone). The
+    # source code in src/fda_client.py is kept so the datasets can be
+    # re-enabled by uncommenting the entries below.
+    # {
+    #     "id": "fda_maude_events", "kind": "fda_events", "source": "openfda",
+    #     "name": "FDA MAUDE — Device Adverse Events",
+    # },
+    # {
+    #     "id": "fda_gudid", "kind": "fda_gudid", "source": "openfda_udi",
+    #     "name": "FDA GUDID — Unique Device Identifier Database",
+    # },
     # --- Phase 2: CMS data-api/v1 (Medicare utilization, DMEPOS) ---
     # data-api/v1 utilization datasets. Full-table scans time out server-side;
     # iterate by state (filter_field) and pull only the columns we actually
@@ -233,6 +233,24 @@ DATASETS = [
         "name": "HCPCS Level II Master (quarterly ZIP)",
         "kind": "hcpcs_master",
         "source": "cms_hcpcs_static",
+    },
+    {
+        "id": "stark_dhs",
+        "name": "Stark Law DHS CPT/HCPCS list (annual ZIP)",
+        "kind": "stark_dhs",
+        "source": "cms_stark_static",
+    },
+    {
+        "id": "opps_addendum_b",
+        "name": "OPPS Addendum B — HCPCS→APC crosswalk + payment rates",
+        "kind": "opps_addendum_b",
+        "source": "cms_opps_static",
+    },
+    {
+        "id": "clinical_trials",
+        "name": "ClinicalTrials.gov v2 — device-relevant studies",
+        "kind": "clinical_trials",
+        "source": "clinical_trials_gov",
     },
     # --- Priority 3: Open Payments (manufacturer → hospital/physician $) ---
     # Same DKAN API as CMS provider-data but different host: openpaymentsdata.cms.gov

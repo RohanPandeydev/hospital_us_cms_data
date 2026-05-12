@@ -1,0 +1,194 @@
+{% extends "base.html" %}
+{% block title %}HCPCS {{ code }}{% endblock %}
+{% block content %}
+
+<div class="page-header">
+  <h1>🔢 HCPCS <code style="color:var(--accent-light);">{{ code }}</code></h1>
+  <p>{% if master and master.short_desc %}<strong>{{ master.short_desc }}</strong>{% endif %}
+  {% if master and master.long_desc and master.long_desc != master.short_desc %}<br>{{ master.long_desc }}{% endif %}</p>
+  <p style="color:var(--text-muted); font-size:0.85rem;">
+    Three lenses: <strong>CMS</strong> (procedure billing) · <strong>Open Payments</strong> (manufacturer $)
+    · <strong>Clinical Trials</strong> (evidence). Nothing else.
+  </p>
+</div>
+
+{# ════════════════════════════════════════════════════════════
+   1. CMS — procedure billing
+   ════════════════════════════════════════════════════════════ #}
+<div class="card" style="border-left:6px solid var(--accent);">
+  <div class="card-title">1️⃣ CMS — procedure billing
+    <span style="font-weight:400; color:var(--text-muted); font-size:0.78rem;">· source: <code>cms_provider_summary</code></span>
+  </div>
+
+  <div class="kpi" style="margin-top:0.5rem;">
+    <div class="box"><div class="label">Services billed</div><div class="value">{{ "{:,}".format(puf_totals[0] or 0) }}</div></div>
+    <div class="box"><div class="label">Patients</div><div class="value">{{ "{:,}".format(puf_totals[1] or 0) }}</div></div>
+    <div class="box"><div class="label">Performing physicians</div><div class="value">{{ "{:,}".format(puf_totals[3] or 0) }}</div></div>
+    <div class="box"><div class="label">States</div><div class="value">{{ puf_totals[4] or 0 }}</div></div>
+    <div class="box"><div class="label">Medicare $ paid</div><div class="value">${{ "{:,.0f}".format(puf_totals[2] or 0) }}</div></div>
+  </div>
+
+  {% if puf_by_year %}
+  <h4 style="margin:1.2rem 0 0.4rem 0; font-size:0.95rem;">Year-over-year</h4>
+  <table>
+    <thead><tr><th>Year</th><th>Services</th><th>Patients</th><th>Medicare $</th></tr></thead>
+    <tbody>
+      {% for r in puf_by_year %}
+      <tr><td><strong>{{ r[0] }}</strong></td><td>{{ "{:,}".format(r[1]) }}</td><td>{{ "{:,}".format(r[2]) }}</td><td>${{ "{:,.0f}".format(r[3]) }}</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% endif %}
+
+  <div class="grid-2" style="margin-top:1.2rem;">
+    <div>
+      <h4 style="margin:0 0 0.4rem 0; font-size:0.95rem;">By state — top 25</h4>
+      <table>
+        <thead><tr><th>State</th><th>Services</th><th>Patients</th><th>Physicians</th></tr></thead>
+        <tbody>
+          {% for r in puf_by_state %}
+          <tr><td><strong>{{ r[0] }}</strong></td><td>{{ "{:,}".format(r[1]) }}</td><td>{{ "{:,}".format(r[2]) }}</td><td>{{ "{:,}".format(r[3]) }}</td></tr>
+          {% else %}<tr><td colspan="4" style="color:var(--text-muted);">No state data.</td></tr>{% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <h4 style="margin:0 0 0.4rem 0; font-size:0.95rem;">By provider type — top 15</h4>
+      <table>
+        <thead><tr><th>Provider type</th><th>Services</th><th>Physicians</th></tr></thead>
+        <tbody>
+          {% for r in puf_by_provider_type %}
+          <tr><td class="cell">{{ r[0] }}</td><td>{{ "{:,}".format(r[1]) }}</td><td>{{ "{:,}".format(r[2]) }}</td></tr>
+          {% else %}<tr><td colspan="3" style="color:var(--text-muted);">No data.</td></tr>{% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <h4 style="margin:1.5rem 0 0.4rem 0; font-size:0.95rem;">Top 25 physicians billing this code</h4>
+  <table class="scroll-wrap">
+    <thead><tr><th>NPI</th><th>Name</th><th>State</th><th>Services</th><th>Patients</th><th>Medicare $</th></tr></thead>
+    <tbody>
+      {% for r in puf_top_npi %}
+      <tr>
+        <td><code style="font-size:0.75rem;">{{ r[0] }}</code></td>
+        <td class="cell">{{ r[1] or '—' }}</td>
+        <td>{{ r[2] or '—' }}</td>
+        <td><strong>{{ "{:,}".format(r[3]) }}</strong></td>
+        <td>{{ "{:,}".format(r[4]) }}</td>
+        <td>${{ "{:,.0f}".format(r[5]) }}</td>
+      </tr>
+      {% else %}<tr><td colspan="6" style="color:var(--text-muted);">No physician rows.</td></tr>{% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{# ════════════════════════════════════════════════════════════
+   2. Open Payments — manufacturer-to-physician $
+   ════════════════════════════════════════════════════════════ #}
+<div class="card" style="border-left:6px solid var(--warning);">
+  <div class="card-title">2️⃣ Open Payments
+    <span style="font-weight:400; color:var(--text-muted); font-size:0.78rem;">· source: <code>cms_open_payments</code></span>
+  </div>
+  <p class="card-subtitle">
+    Linked two ways: <strong>(a)</strong> manufacturer payments tied to brand names registered in this HCPCS's device family,
+    and <strong>(b)</strong> NPIs that both bill this HCPCS AND received manufacturer payments (the highest-leverage list).
+    {% if brands %}<br>Brands matched: {% for b in brands[:8] %}<code>{{ b }}</code>{% if not loop.last %} · {% endif %}{% endfor %}{% endif %}
+  </p>
+
+  <div class="kpi" style="margin-top:0.5rem;">
+    <div class="box"><div class="label">Payments matched to this code</div><div class="value">{{ "{:,}".format(op_kpi[0] or 0) }}</div></div>
+    <div class="box"><div class="label">Distinct physicians paid</div><div class="value">{{ "{:,}".format(op_kpi[1] or 0) }}</div></div>
+    <div class="box"><div class="label">Distinct manufacturers</div><div class="value">{{ op_kpi[2] or 0 }}</div></div>
+    <div class="box"><div class="label">Total $ paid</div><div class="value">${{ "{:,.0f}".format(op_kpi[3] or 0) }}</div></div>
+  </div>
+
+  <h4 style="margin:1.5rem 0 0.4rem 0; font-size:0.95rem;">By manufacturer × product</h4>
+  <table class="scroll-wrap">
+    <thead><tr><th>Product</th><th>Manufacturer</th><th>Payments</th><th>Physicians</th><th>Total $</th><th>Year</th></tr></thead>
+    <tbody>
+      {% for r in op_by_product %}
+      <tr>
+        <td class="cell"><strong>{{ r[0] }}</strong></td>
+        <td class="cell">{{ r[1] }}</td>
+        <td>{{ "{:,}".format(r[2]) }}</td>
+        <td>{{ "{:,}".format(r[3]) }}</td>
+        <td><strong>${{ "{:,.0f}".format(r[4]) }}</strong></td>
+        <td>{{ r[5] or '—' }}</td>
+      </tr>
+      {% else %}<tr><td colspan="6" style="color:var(--text-muted);">No matching brand-tied payments. Either no brands registered for this code, or those brands aren't in Open Payments.</td></tr>{% endfor %}
+    </tbody>
+  </table>
+
+  <h4 style="margin:1.5rem 0 0.4rem 0; font-size:0.95rem;">Physicians billing this HCPCS who also received manufacturer payments</h4>
+  <p class="card-subtitle">The highest-exposure providers — they perform the procedure AND are paid by manufacturers.</p>
+  <table class="scroll-wrap">
+    <thead><tr><th>NPI</th><th>Name</th><th>Specialty</th><th>Manufacturers</th><th>Payments</th><th>Total $</th><th>Mfr names</th></tr></thead>
+    <tbody>
+      {% for r in op_npi_overlap %}
+      <tr>
+        <td><code style="font-size:0.75rem;">{{ r[0] }}</code></td>
+        <td class="cell">{{ r[1] or '—' }}</td>
+        <td class="cell" style="font-size:0.78rem;">{{ r[2] or '—' }}</td>
+        <td>{{ r[3] }}</td>
+        <td>{{ "{:,}".format(r[4]) }}</td>
+        <td><strong>${{ "{:,.0f}".format(r[5]) }}</strong></td>
+        <td class="cell" style="font-size:0.75rem;">{{ r[6]|join(', ') if r[6] else '—' }}</td>
+      </tr>
+      {% else %}<tr><td colspan="7" style="color:var(--text-muted);">No NPI overlap — none of the billing physicians have Open Payments rows in our database.</td></tr>{% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{# ════════════════════════════════════════════════════════════
+   3. Clinical Trials — evidence base
+   ════════════════════════════════════════════════════════════ #}
+<div class="card" style="border-left:6px solid var(--success);">
+  <div class="card-title">3️⃣ Clinical Trials
+    <span style="font-weight:400; color:var(--text-muted); font-size:0.78rem;">· source: <code>clinical_trials</code> + <code>clinical_trial_interventions</code></span>
+  </div>
+  <p class="card-subtitle">
+    Match logic: trials whose <code>device_category</code> matches the bridge label
+    {% if device_categories %}({% for d in device_categories %}<code>{{ d }}</code>{% if not loop.last %}, {% endif %}{% endfor %}){% endif %}
+    OR whose <code>intervention_name</code> contains a brand registered for this HCPCS.
+    Terminated / Withdrawn / Suspended status is the early-warning signal.
+  </p>
+
+  <div class="kpi" style="margin-top:0.5rem;">
+    <div class="box"><div class="label">Matching trials</div><div class="value">{{ "{:,}".format(trials_kpi[0] or 0) }}</div></div>
+    <div class="box"><div class="label">Stopped early</div><div class="value" style="color:var(--danger)">{{ trials_kpi[1] or 0 }}</div><div class="delta">Terminated / Withdrawn / Suspended</div></div>
+    <div class="box"><div class="label">Sponsors</div><div class="value">{{ trials_kpi[2] or 0 }}</div></div>
+    <div class="box"><div class="label">Total enrollment</div><div class="value">{{ "{:,}".format(trials_kpi[3] or 0) }}</div></div>
+  </div>
+
+  <h4 style="margin:1.5rem 0 0.4rem 0; font-size:0.95rem;">Trials</h4>
+  <table class="scroll-wrap">
+    <thead>
+      <tr>
+        <th>NCT</th><th>Title</th><th>Status</th><th>Phase</th>
+        <th>Enrolled</th><th>Sponsor</th><th>Start</th><th>End</th><th>Why stopped</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for r in trials %}
+      <tr>
+        <td><a href="https://clinicaltrials.gov/study/{{ r[0] }}" target="_blank" rel="noopener" style="font-size:0.75rem; color:var(--accent-light);"><code>{{ r[0] }}</code> ↗</a></td>
+        <td class="cell" style="font-size:0.82rem;">{{ r[1] or '—' }}</td>
+        <td>
+          {% if r[2] in ('Terminated','Withdrawn','Suspended') %}<span class="risk risk-high">{{ r[2] }}</span>
+          {% elif r[2] == 'Completed' %}<span class="risk risk-low">{{ r[2] }}</span>
+          {% else %}<span class="risk risk-unknown">{{ r[2] or '—' }}</span>{% endif %}
+        </td>
+        <td>{{ r[3] or '—' }}</td>
+        <td>{{ "{:,}".format(r[4] or 0) }}</td>
+        <td class="cell" style="font-size:0.78rem;">{{ r[5] or '—' }}</td>
+        <td>{{ r[6] or '—' }}</td>
+        <td>{{ r[7] or '—' }}</td>
+        <td class="cell" style="font-size:0.78rem; color:var(--danger);">{{ r[8] or '' }}</td>
+      </tr>
+      {% else %}<tr><td colspan="9" style="color:var(--text-muted);">No trials match this device category or any registered brand. Add to <code>CTG_DEVICE_BUCKETS</code> in <code>src/risk_sources.py</code> to ingest more.</td></tr>{% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}
