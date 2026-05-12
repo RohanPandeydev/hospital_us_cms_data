@@ -378,6 +378,27 @@ def hcpcs_detail(request: Request, code: str):
     """, {"c": code})
     master = master_rows[0] if master_rows else None
 
+    # FALLBACK: CPT codes (5-digit numeric, e.g. 33340 LAA closure) aren't
+    # in the public CMS HCPCS file because they're AMA-licensed. But we DO
+    # have their Medicare description in opps_addendum_b. Synthesize a
+    # master tuple so the rest of the page can render.
+    if master is None:
+        opps_desc = q_rows("""
+            SELECT any(short_descriptor) FROM opps_addendum_b
+            WHERE hcpcs_code = {c:String}
+        """, {"c": code})
+        synthetic_desc = opps_desc[0][0] if opps_desc and opps_desc[0][0] else None
+        if synthetic_desc:
+            family = code[0] if code and code[0].isalpha() else (
+                "CPT" if code.isdigit() else None
+            )
+            is_device = 0
+            # Tuple shape mirrors the SELECT above so the template works:
+            # (code, short_desc, long_desc, betos, pricing, coverage,
+            #  asc_grp, tos, family, is_device, effective_qtr)
+            master = (code, synthetic_desc, None, None, None, None,
+                      None, None, family, is_device, "from OPPS Addendum B")
+
     stark = q_rows("""
         SELECT effective_year, dhs_category, short_description
         FROM stark_dhs_codes

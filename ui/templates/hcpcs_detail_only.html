@@ -138,9 +138,10 @@
         {% if master[2] %}<div class="sub">{{ master[2] }}</div>{% endif %}
         <div class="tags">
           {% if master[9] %}<span class="tag device">✓ Device</span>{% endif %}
-          {% if master[8] %}<span class="tag">Code family: {{ master[8] }}</span>{% endif %}
+          {% if master[8] == 'CPT' %}<span class="tag" style="background:rgba(251,191,36,.15);color:#fbbf24">CPT code (AMA-licensed)</span>
+          {% elif master[8] %}<span class="tag">Code family: {{ master[8] }}</span>{% endif %}
           {% if master[3] %}<span class="tag">BETOS: {{ master[3] }}</span>{% endif %}
-          {% if master[10] %}<span class="tag">Effective: {{ master[10] }}</span>{% endif %}
+          {% if master[10] %}<span class="tag">{{ master[10] }}</span>{% endif %}
           {% if stark %}<span class="tag dhs">⚖ Stark Designated Health Service</span>{% endif %}
         </div>
       </div>
