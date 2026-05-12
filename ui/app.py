@@ -88,27 +88,46 @@ def format_score(measure_id: str, score, denominator) -> dict:
     except (TypeError, ValueError):
         denom = None
 
-    # HRRP ratios — 1.0 = expected, >1.0 worse, <1.0 better
+    # HRRP ratios — 1.0 = expected, >1.0 worse, <1.0 better.
+    # National 30-day all-cause readmission rates (CMS public reports,
+    # rounded for layman display) used to back-calculate actual counts:
+    #   actual_rate ≈ ratio × national_mean
+    #   readmits    ≈ actual_rate × denominator
+    HRRP_NATIONAL = {
+        "READM-30-AMI-HRRP":      0.168,
+        "READM-30-CABG-HRRP":     0.127,
+        "READM-30-COPD-HRRP":     0.193,
+        "READM-30-HF-HRRP":       0.216,
+        "READM-30-HIP-KNEE-HRRP": 0.041,
+        "READM-30-PN-HRRP":       0.164,
+    }
     if "HRRP" in mid:
+        national = HRRP_NATIONAL.get(mid)
+        est = ""
+        if national and denom:
+            actual_rate = v * national
+            readmits = round(actual_rate * denom)
+            est = (f"≈ {readmits:,} of {denom:,} patients readmitted "
+                   f"({actual_rate*100:.1f}%; national avg ≈ {national*100:.1f}%)")
         if v < 1.0:
             pct_better = (1.0 - v) * 100
             return {
                 "display": f"{v:.2f}",
                 "explain": f"Ratio of actual ÷ expected readmissions. {v:.2f} means this hospital readmits about {pct_better:.0f}% fewer patients than CMS predicts. Anything below 1.0 is better than expected.",
-                "estimate": "",
+                "estimate": est,
             }
         elif v > 1.0:
             pct_worse = (v - 1.0) * 100
             return {
                 "display": f"{v:.2f}",
                 "explain": f"Ratio of actual ÷ expected readmissions. {v:.2f} means about {pct_worse:.0f}% MORE patients readmitted than CMS predicts. >1.0 = Medicare reduces payment.",
-                "estimate": "",
+                "estimate": est,
             }
         else:
             return {
                 "display": f"{v:.2f}",
                 "explain": "Actual readmissions exactly match the CMS-predicted rate for this hospital's case mix.",
-                "estimate": "",
+                "estimate": est,
             }
 
     # Raw % readmission / mortality / outpatient-visit rates
