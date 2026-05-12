@@ -120,6 +120,13 @@ def _iter_pages(client, dataset, limit):
 def _count_total(client, dataset, limit):
     if limit is not None:
         return limit
+    # When ingesting from a local CSV (--csv-path or `bulk_csv`-flagged
+    # dataset with the file already on disk), skip the network probe.
+    # The probe hits data-viewer/stats which is Akamai-blocked from this
+    # network and burns up to 10 minutes (5 retries × 120s) before
+    # returning None. The progress bar just runs without a known total.
+    if dataset.get("csv_path"):
+        return None
     source = dataset.get("source", "cms_provider_data")
     if source == "openfda":
         return client.count("/device/event.json")
@@ -135,6 +142,27 @@ def ingest_dataset(dataset, limit=None, client=None):
         from . import hcpcs_ingest
         log.info("=== %s (%s) ===", dataset["id"], dataset["name"])
         fetched, upserted = hcpcs_ingest.ingest(limit=limit)
+        return fetched, upserted, "success"
+
+    # Stark DHS — annual ZIPs gated behind an AMA-license POST
+    if dataset.get("source") == "cms_stark_static":
+        from . import stark_dhs_ingest
+        log.info("=== %s (%s) ===", dataset["id"], dataset["name"])
+        fetched, upserted = stark_dhs_ingest.ingest(limit=limit)
+        return fetched, upserted, "success"
+
+    # OPPS Addendum B — quarterly ZIPs with HCPCS→APC crosswalk
+    if dataset.get("source") == "cms_opps_static":
+        from . import opps_addendum_b_ingest
+        log.info("=== %s (%s) ===", dataset["id"], dataset["name"])
+        fetched, upserted = opps_addendum_b_ingest.ingest(limit=limit)
+        return fetched, upserted, "success"
+
+    # ClinicalTrials.gov v2 API — pulls device-relevant trials across buckets
+    if dataset.get("source") == "clinical_trials_gov":
+        from . import clinical_trials_ingest
+        log.info("=== %s (%s) ===", dataset["id"], dataset["name"])
+        fetched, upserted = clinical_trials_ingest.ingest(limit=limit)
         return fetched, upserted, "success"
 
     client = client or _make_client(dataset)
