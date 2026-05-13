@@ -243,12 +243,14 @@ ORDER BY report_number;
 -- ---------------------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS device_to_procedure (
-    device_code      String,           -- HCPCS device code (usually C-prefix, SI=N)
-    procedure_code   String,           -- The CPT/HCPCS code that bills the procedure
-    description      String,           -- What the procedure does
-    device_category  Nullable(String), -- AICD | pacemaker | neurostim | DES | LAMS | etc.
-    notes            Nullable(String),
-    fetched_at       DateTime64(3) DEFAULT now64(3)
+    device_code            String,           -- HCPCS device code (usually C-prefix, SI=N)
+    procedure_code         String,           -- The CPT/HCPCS code that bills the procedure
+    description            String,           -- What the procedure does
+    device_category        Nullable(String), -- AICD | pacemaker | DBS | SCS | DES | LAA closure | LAMS | etc.
+    fda_class              Nullable(String), -- 'II' or 'III' (FDA risk classification)
+    manufacturer_product   Nullable(String), -- e.g. 'BSc Watchman', 'BSc Promus / Synergy', 'BSc FARAPULSE'
+    notes                  Nullable(String),
+    fetched_at             DateTime64(3) DEFAULT now64(3)
 )
 ENGINE = ReplacingMergeTree(fetched_at)
 ORDER BY (device_code, procedure_code);

@@ -349,6 +349,8 @@ LIMIT 25;
 ### Q16. Get billing for a packaged device code via the parent procedure
 The `device_to_procedure` crosswalk maps C-codes (which never get billed
 because SI=N "packaged") to the CPT procedure that bundles them.
+Each mapping is tagged with `fda_class` ('II' or 'III') and
+`manufacturer_product` (e.g. 'BSc Watchman', 'BSc Promus / Synergy').
 
 ```sql
 WITH map AS (
@@ -370,6 +372,36 @@ LIMIT 20;
 Sample C-codes worth trying: `C1721` (AICD), `C1778` (neurostim lead),
 `C1820` (rechargeable neurostim generator), `C9601` (drug-eluting
 coronary stent), `C2629` (Watchman LAA closure), `C2625` (AXIOS LAMS).
+
+### Q17. Boston Scientific volume across all product families
+Pivots the crosswalk by manufacturer + FDA class to show annual Medicare
+volume for every BSc Class II/III device family in one view.
+
+```sql
+WITH bsc AS (
+    SELECT DISTINCT procedure_code, device_category,
+           any(manufacturer_product) AS product,
+           any(fda_class) AS fda_class
+    FROM device_to_procedure FINAL
+    WHERE manufacturer_product LIKE 'BSc%'
+    GROUP BY procedure_code, device_category
+)
+SELECT bsc.device_category,
+       bsc.fda_class,
+       any(bsc.product) AS product,
+       sum(cps.total_services) AS services,
+       countDistinct(cps.npi) AS distinct_mds,
+       round(sum(cps.total_payment_amt), 0) AS paid_usd
+FROM bsc
+LEFT JOIN cms_provider_summary AS cps
+  ON cps.hcpcs_code = bsc.procedure_code
+  AND cps.dataset_id = 'medicare_physician_by_provider_service'
+GROUP BY bsc.device_category, bsc.fda_class
+ORDER BY services DESC NULLS LAST;
+```
+
+Swap `'BSc%'` for any other manufacturer once they're added to the
+`manufacturer_product` column (Medtronic, Abbott, Edwards, etc.).
 
 ---
 
