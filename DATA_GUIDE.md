@@ -22,7 +22,8 @@ A handbook for the 11 tables in the ClickHouse warehouse: what each one is, how 
 | 8 | `clinical_trial_interventions` | 26,136 | one (trial × intervention) row | `nct_id, intervention_name` |
 | 9 | `cms_hospitals` | 5,852 | one Medicare-certified hospital | `facility_id` (= CCN) |
 | 10 | `stark_dhs_codes` | 5,237 | one (HCPCS × Stark category × year) row | `hcpcs_code, dhs_category, effective_year` |
-| 11 | `cms_ingestion_log` | 108 | one ingestion run record | `run_id` |
+| 11 | `device_to_procedure` | 68 | C-code device → parent CPT crosswalk | `device_code, procedure_code` |
+| 12 | `cms_ingestion_log` | 108 | one ingestion run record | `run_id` |
 
 ---
 
@@ -342,6 +343,33 @@ WHERE m.is_device = 1
 ORDER BY trials.n_trials DESC, claims.billing_rows DESC
 LIMIT 25;
 ```
+
+---
+
+### Q16. Get billing for a packaged device code via the parent procedure
+The `device_to_procedure` crosswalk maps C-codes (which never get billed
+because SI=N "packaged") to the CPT procedure that bundles them.
+
+```sql
+WITH map AS (
+    SELECT procedure_code, description, device_category
+    FROM device_to_procedure FINAL
+    WHERE device_code = 'C1778'    -- ← change the C-code here
+)
+SELECT map.procedure_code, map.description, map.device_category,
+       cps.provider_name, cps.provider_state, cps.npi,
+       cps.total_services, cps.total_payment_amt
+FROM map
+INNER JOIN cms_provider_summary AS cps
+    ON cps.hcpcs_code = map.procedure_code
+   AND cps.dataset_id = 'medicare_physician_by_provider_service'
+ORDER BY cps.total_services DESC NULLS LAST
+LIMIT 20;
+```
+
+Sample C-codes worth trying: `C1721` (AICD), `C1778` (neurostim lead),
+`C1820` (rechargeable neurostim generator), `C9601` (drug-eluting
+coronary stent), `C2629` (Watchman LAA closure), `C2625` (AXIOS LAMS).
 
 ---
 

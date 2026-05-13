@@ -233,6 +233,27 @@ ORDER BY report_number;
 -- above if the project re-adds openFDA.
 
 -- ---------------------------------------------------------------
+-- Device → parent-procedure crosswalk.
+-- C-codes (and similar packaged HCPCS) are physical-device codes that
+-- are bundled into another code's payment under OPPS (SI=N). They never
+-- show up in cms_provider_summary because nobody bills them. This table
+-- maps each device code to the CPT/HCPCS procedure that DOES get billed
+-- when that device is used — e.g. C1778 neurostim lead → CPT 63685
+-- neurostim generator insertion. Many-to-many.
+-- ---------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS device_to_procedure (
+    device_code      String,           -- HCPCS device code (usually C-prefix, SI=N)
+    procedure_code   String,           -- The CPT/HCPCS code that bills the procedure
+    description      String,           -- What the procedure does
+    device_category  Nullable(String), -- AICD | pacemaker | neurostim | DES | LAMS | etc.
+    notes            Nullable(String),
+    fetched_at       DateTime64(3) DEFAULT now64(3)
+)
+ENGINE = ReplacingMergeTree(fetched_at)
+ORDER BY (device_code, procedure_code);
+
+-- ---------------------------------------------------------------
 -- Ingestion audit log — insert-once per run (finish_ingest_log)
 -- ---------------------------------------------------------------
 
