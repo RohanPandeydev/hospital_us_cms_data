@@ -104,13 +104,13 @@ def ingest(batch_size: int = 2000) -> tuple[int, int]:
             _int(_find(r, "Total Discharges Title XVIII", "Total Discharges (V + XVIII + XIX + Unknown)")),
             _int(_find(r, "Total Discharges Title XVIII")),
             _int(_find(r, "Total Discharges Title XIX")),
-            _num(_find(r, "Total Charges")),
+            _num(_find(r, "Combined Outpatient + Inpatient Total Charges",
+                       "Total Charges")),
             _num(_find(r, "Total Costs")),
-            _num(_find(r, "Total Medical Supply Costs", "Medical Supply Costs")),
-            _num(_find(r, "Total Capital Related Costs", "Capital Related Costs Total")),
-            _num(_find(r, "Total Unreimbursed and Uncompensated Care Costs",
-                       "Total Uncompensated Care Cost",
-                       "Uncompensated Care Total")),
+            None,  # Total Medical Supply Costs not in this DCAT extract
+            _num(_find(r, "Depreciation Cost")),  # capital proxy
+            _num(_find(r, "Cost of Uncompensated Care",
+                       "Cost of Charity Care")),
             url,
             json.dumps(r, ensure_ascii=False),
         ))

@@ -130,50 +130,77 @@ def _norm_header(h: str) -> str:
 
 
 def parse_pprrvu(text: str, year: int, quarter: int, source_url: str):
-    """Yield row tuples for ClickHouse insert."""
+    """Yield row tuples for ClickHouse insert.
+
+    PPRRVU is positional, not header-keyed — CMS splits column labels across
+    rows 6–9 of a multi-line preamble, then puts code rows starting around
+    row 10. We use fixed column indices based on the documented layout
+    (NPC ZIP includes a `PPRRVUyy.docx` describing each column).
+    """
     cf = CF.get(year, 32.3465)
-    # PPRRVU files have a multi-line preamble (release notes) before the
-    # data table. Scan until we find a row whose first field looks like
-    # a HCPCS code.
     rows = list(csv.reader(io.StringIO(text)))
-    header_idx = None
+    # Find the first data row: first column is a 5-char HCPCS/CPT code.
+    code_re = re.compile(r"^[A-Z0-9]{5}$")
+    data_start = None
     for i, row in enumerate(rows):
-        joined = ",".join((c or "").upper() for c in row)
-        if "HCPCS" in joined and ("MOD" in joined or "STATUS" in joined):
-            header_idx = i
+        if row and row[0] and code_re.match(row[0].strip()):
+            data_start = i
             break
-    if header_idx is None:
-        log.warning("No header row found in PPRRVU; treating row 0 as header.")
-        header_idx = 0
-    raw_header = rows[header_idx]
-    header = [_norm_header(h) for h in raw_header]
-    for row in rows[header_idx + 1:]:
-        if not row or not row[0] or len(row[0]) > 6:
+    if data_start is None:
+        log.warning("No HCPCS data rows found in PPRRVU")
+        return
+
+    # Column positions per CMS PPRRVU layout:
+    #   0 HCPCS  1 MOD  2 DESCRIPTION  3 STATUS  4 NOT_USED
+    #   5 WORK_RVU  6 NON_FAC_PE_RVU  7 NA_IND  8 FAC_PE_RVU  9 NA_IND
+    #  10 MP_RVU  11 NON_FAC_TOTAL  12 FAC_TOTAL  13 PCTC  14 GLOBAL_DAYS
+    #  19 MULT_PROC  20 BILAT_SURG  24 CONV_FACTOR
+    #  28 NON_FAC_PAYMENT  29 FAC_PAYMENT
+    IDX_HCPCS, IDX_MOD, IDX_DESC, IDX_STATUS = 0, 1, 2, 3
+    IDX_WORK, IDX_PE_NON, IDX_PE_FAC = 5, 6, 8
+    IDX_MP, IDX_TOT_NON, IDX_TOT_FAC = 10, 11, 12
+    IDX_GLOBAL, IDX_BILAT, IDX_CF = 14, 20, 24
+    IDX_PAY_NON, IDX_PAY_FAC = 28, 29
+
+    for row in rows[data_start:]:
+        if not row or not row[0]:
             continue
-        rec = dict(zip(header, row))
-        hcpcs = (rec.get("HCPCS") or "").strip()
-        if not hcpcs or not re.match(r"^[A-Z0-9]{5}$", hcpcs):
+        hcpcs = row[IDX_HCPCS].strip()
+        if not code_re.match(hcpcs):
             continue
-        modifier = (rec.get("MOD") or "").strip()
-        work = _num(rec.get("WORK_RVU"))
-        pe_fac = _num(rec.get("PE_FAC"))
-        pe_non = _num(rec.get("PE_NON_FAC"))
-        mp = _num(rec.get("MP_RVU"))
-        tot_fac = _num(rec.get("TOTAL_FAC"))
-        tot_non = _num(rec.get("TOTAL_NON_FAC"))
-        pay_fac = tot_fac * cf if tot_fac is not None else None
-        pay_non = tot_non * cf if tot_non is not None else None
+        modifier = (row[IDX_MOD] if len(row) > IDX_MOD else "").strip()
+        # Use the CSV-published payment columns (already CF-applied) when
+        # present; fall back to RVU × CF otherwise.
+        pay_non = _num(row[IDX_PAY_NON]) if len(row) > IDX_PAY_NON else None
+        pay_fac = _num(row[IDX_PAY_FAC]) if len(row) > IDX_PAY_FAC else None
+        tot_non = _num(row[IDX_TOT_NON]) if len(row) > IDX_TOT_NON else None
+        tot_fac = _num(row[IDX_TOT_FAC]) if len(row) > IDX_TOT_FAC else None
+        if pay_non is None and tot_non is not None:
+            pay_non = tot_non * cf
+        if pay_fac is None and tot_fac is not None:
+            pay_fac = tot_fac * cf
+        rec = {
+            "hcpcs": hcpcs, "mod": modifier,
+            "desc": row[IDX_DESC] if len(row) > IDX_DESC else None,
+            "status": row[IDX_STATUS] if len(row) > IDX_STATUS else None,
+            "work_rvu": row[IDX_WORK] if len(row) > IDX_WORK else None,
+            "pe_non_fac": row[IDX_PE_NON] if len(row) > IDX_PE_NON else None,
+            "pe_fac": row[IDX_PE_FAC] if len(row) > IDX_PE_FAC else None,
+        }
         yield (
             hcpcs, modifier or "",
             year, quarter,
-            rec.get("DESC") or None,
-            rec.get("STATUS") or None,
-            pe_fac, pe_non,
-            work, mp,
+            (row[IDX_DESC] or None) if len(row) > IDX_DESC else None,
+            (row[IDX_STATUS] or None) if len(row) > IDX_STATUS else None,
+            _num(row[IDX_PE_FAC]) if len(row) > IDX_PE_FAC else None,
+            _num(row[IDX_PE_NON]) if len(row) > IDX_PE_NON else None,
+            _num(row[IDX_WORK]) if len(row) > IDX_WORK else None,
+            _num(row[IDX_MP]) if len(row) > IDX_MP else None,
             tot_fac, tot_non,
             pay_fac, pay_non,
-            cf, rec.get("GLOBAL_DAYS") or None,
-            rec.get("BILATERAL") or None,
+            _num(row[IDX_CF]) if len(row) > IDX_CF else cf,
+            (row[IDX_GLOBAL] or None) if len(row) > IDX_GLOBAL else None,
+            (row[IDX_BILAT] or None) if len(row) > IDX_BILAT else None,
             json.dumps(rec, ensure_ascii=False),
         )
 
