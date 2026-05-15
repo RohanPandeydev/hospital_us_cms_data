@@ -830,3 +830,112 @@ CREATE TABLE IF NOT EXISTS hospital_vbp_safety (
 )
 ENGINE = ReplacingMergeTree(fetched_at)
 ORDER BY (ccn, fiscal_year);
+
+-- ---------------------------------------------------------------
+-- BSc AXIOS Stent — Probabilistic Hospital Attribution
+-- ---------------------------------------------------------------
+-- Method: P(hospital | MAUDE event) = hospital's share of national
+-- AXIOS-procedure billing volume (HCPCS 43274/43275/43266/43253/43240).
+-- Estimated events = P × 1,071 (actual BSc AXIOS MAUDE events as of session).
+-- Estimated deaths = P × 50 (actual deaths in those 1,071 events).
+-- Joined safety signals: SEP-1 sepsis bundle, CLABSI, HF readmit.
+-- Source MAUDE: default.flattened_adverse_event filtered to AXIOS brand.
+-- 827 hospitals; sanity-check sum(est_total_events) ≈ 1,071.
+CREATE TABLE IF NOT EXISTS bsc_axios_attribution (
+    ccn                            String,
+    facility_name                  Nullable(String),
+    state                          Nullable(String),
+    city                           Nullable(String),
+    axios_proc_services            Float64,
+    physician_count                UInt32,
+    pct_national_volume            Float64,
+    est_total_events               Float64,
+    est_deaths                     Float64,
+    est_injuries                   Float64,
+    est_malfunctions               Float64,
+    sep1_measure_score             Nullable(String),
+    hai1_measure_score             Nullable(String),
+    sep1_performance_rate          Nullable(Float64),
+    readm_hf_score                 Nullable(Float64),
+    method                         String DEFAULT 'volume_weighted_v1',
+    source_axios_events            UInt32 DEFAULT 1071,
+    hcpcs_used                     String DEFAULT '43274,43275,43266,43253,43240',
+    notes                          Nullable(String),
+    fetched_at                     DateTime64(3) DEFAULT now64(3)
+)
+ENGINE = ReplacingMergeTree(fetched_at)
+ORDER BY ccn;
+
+-- ---------------------------------------------------------------
+-- BSc Non-Coronary Stent — Combined Attribution
+-- ---------------------------------------------------------------
+-- Same method as AXIOS, broader: covers all 5 C-codes (C1874/C1875/
+-- C1876/C2617/C2625) by mapping each to its parent CPT, then summing
+-- national procedure volume across CPTs 37236/37238/43240/43253/49327.
+-- Source MAUDE total: 8,201 BSc non-coronary stent events (277 deaths)
+-- matching WALLFLEX / WALLSTENT / POLARIS / PERCUFLEX / ADVANIX /
+-- CONTOUR / AGILE / EXPRESS BIL brands.
+-- 273 hospitals.
+CREATE TABLE IF NOT EXISTS bsc_noncoronary_stent_attribution (
+    ccn                            String,
+    facility_name                  Nullable(String),
+    state                          Nullable(String),
+    city                           Nullable(String),
+    device_codes                   String DEFAULT 'C1874,C1875,C1876,C2617,C2625',
+    parent_cpts                    String DEFAULT '37236,37238,43240,43253,49327',
+    proc_services                  Float64,
+    physician_count                UInt32,
+    pct_national_volume            Float64,
+    est_total_events               Float64,
+    est_deaths                     Float64,
+    est_injuries                   Float64,
+    est_malfunctions               Float64,
+    sep1_measure_score             Nullable(String),
+    hai1_measure_score             Nullable(String),
+    sep1_performance_rate          Nullable(Float64),
+    readm_hf_score                 Nullable(Float64),
+    readm_ami_score                Nullable(Float64),
+    method                         String DEFAULT 'volume_weighted_v1',
+    source_maude_events            UInt32 DEFAULT 8201,
+    source_maude_deaths            UInt32 DEFAULT 277,
+    brand_pattern_used             String DEFAULT 'WALLFLEX,WALLSTENT,POLARIS,PERCUFLEX,ADVANIX,CONTOUR,AGILE,EXPRESS BIL',
+    fetched_at                     DateTime64(3) DEFAULT now64(3)
+)
+ENGINE = ReplacingMergeTree(fetched_at)
+ORDER BY ccn;
+
+-- ---------------------------------------------------------------
+-- BSc Device-Code-Level Attribution (one row per device_code × CCN)
+-- ---------------------------------------------------------------
+-- Per-device-code probabilistic attribution. Each C-code maps to
+-- its specific BSc product and parent CPT(s):
+--   C1874 → Eluvia DES (CPTs 37236/37238) — 475 events, 4 deaths
+--   C1876 → Innova (CPT 37236) — 756 events, 7 deaths
+--   C2617 → Vici Venous Stent (CPTs 37236/37238) — 1 event
+--   C2625 → AXIOS/Hot AXIOS (CPTs 43240/43253/49327) — 1019 events, 49 deaths
+-- 621 rows total. Same volume-weighted Bayesian prior as the others.
+CREATE TABLE IF NOT EXISTS bsc_device_code_attribution (
+    device_code              String,
+    bsc_product              String,
+    parent_cpts              String,
+    ccn                      String,
+    facility_name            Nullable(String),
+    state                    Nullable(String),
+    city                     Nullable(String),
+    proc_services            Float64,
+    physician_count          UInt32,
+    pct_national_volume      Float64,
+    est_total_events         Float64,
+    est_deaths               Float64,
+    est_injuries             Float64,
+    est_malfunctions         Float64,
+    sep1_measure_score       Nullable(String),
+    hai1_measure_score       Nullable(String),
+    readm_hf_score           Nullable(Float64),
+    readm_ami_score          Nullable(Float64),
+    maude_events             UInt32,
+    maude_deaths             UInt32,
+    fetched_at               DateTime64(3) DEFAULT now64(3)
+)
+ENGINE = ReplacingMergeTree(fetched_at)
+ORDER BY (device_code, ccn);
