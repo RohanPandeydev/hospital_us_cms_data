@@ -748,3 +748,85 @@ CREATE TABLE IF NOT EXISTS snf_citation_codes (
 )
 ENGINE = ReplacingMergeTree(fetched_at)
 ORDER BY (tag_prefix, tag_number);
+
+-- ---------------------------------------------------------------
+-- Hospital Value-Based Purchasing (HVBP) — Safety domain
+-- Source: data.cms.gov Provider Data Catalog dataset 'dgmq-aat3' (FY2026).
+-- Per-CCN performance on 6 HAI measures + SEP-1 sepsis + combined SSI.
+-- Each measure has: achievement_threshold, benchmark, baseline_rate,
+-- performance_rate, achievement_points, improvement_points, measure_score.
+-- These scores translate to actual Medicare payment adjustments —
+-- a hospital with low scores is being financially penalized for unsafe care.
+-- ---------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS hospital_vbp_safety (
+    ccn                              String,
+    fiscal_year                      String DEFAULT '',
+    facility_name                    Nullable(String),
+    address                          Nullable(String),
+    city                             Nullable(String),
+    state                            Nullable(String),
+    zip_code                         Nullable(String),
+    county                           Nullable(String),
+    -- HAI-1 CLABSI
+    hai1_achievement_threshold       Nullable(Float64),
+    hai1_benchmark                   Nullable(Float64),
+    hai1_baseline_rate               Nullable(Float64),
+    hai1_performance_rate            Nullable(Float64),
+    hai1_achievement_points          Nullable(String),
+    hai1_improvement_points          Nullable(String),
+    hai1_measure_score               Nullable(String),
+    -- HAI-2 CAUTI
+    hai2_achievement_threshold       Nullable(Float64),
+    hai2_benchmark                   Nullable(Float64),
+    hai2_baseline_rate               Nullable(Float64),
+    hai2_performance_rate            Nullable(Float64),
+    hai2_achievement_points          Nullable(String),
+    hai2_improvement_points          Nullable(String),
+    hai2_measure_score               Nullable(String),
+    combined_ssi_measure_score       Nullable(String),
+    -- HAI-3 SSI Colon
+    hai3_achievement_threshold       Nullable(Float64),
+    hai3_benchmark                   Nullable(Float64),
+    hai3_baseline_rate               Nullable(Float64),
+    hai3_performance_rate            Nullable(Float64),
+    hai3_achievement_points          Nullable(String),
+    hai3_improvement_points          Nullable(String),
+    hai3_measure_score               Nullable(String),
+    -- HAI-4 SSI Abdominal Hysterectomy
+    hai4_achievement_threshold       Nullable(Float64),
+    hai4_benchmark                   Nullable(Float64),
+    hai4_baseline_rate               Nullable(Float64),
+    hai4_performance_rate            Nullable(Float64),
+    hai4_achievement_points          Nullable(String),
+    hai4_improvement_points          Nullable(String),
+    hai4_measure_score               Nullable(String),
+    -- HAI-5 MRSA
+    hai5_achievement_threshold       Nullable(Float64),
+    hai5_benchmark                   Nullable(Float64),
+    hai5_baseline_rate               Nullable(Float64),
+    hai5_performance_rate            Nullable(Float64),
+    hai5_achievement_points          Nullable(String),
+    hai5_improvement_points          Nullable(String),
+    hai5_measure_score               Nullable(String),
+    -- HAI-6 C. diff
+    hai6_achievement_threshold       Nullable(Float64),
+    hai6_benchmark                   Nullable(Float64),
+    hai6_baseline_rate               Nullable(Float64),
+    hai6_performance_rate            Nullable(Float64),
+    hai6_achievement_points          Nullable(String),
+    hai6_improvement_points          Nullable(String),
+    hai6_measure_score               Nullable(String),
+    -- SEP-1 Sepsis bundle compliance
+    sep1_achievement_threshold       Nullable(Float64),
+    sep1_benchmark                   Nullable(Float64),
+    sep1_baseline_rate               Nullable(Float64),
+    sep1_performance_rate            Nullable(Float64),
+    sep1_achievement_points          Nullable(String),
+    sep1_improvement_points          Nullable(String),
+    sep1_measure_score               Nullable(String),
+    source_url                       Nullable(String),
+    raw                              String,
+    fetched_at                       DateTime64(3) DEFAULT now64(3)
+)
+ENGINE = ReplacingMergeTree(fetched_at)
+ORDER BY (ccn, fiscal_year);
