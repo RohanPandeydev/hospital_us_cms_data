@@ -648,3 +648,39 @@ CREATE TABLE IF NOT EXISTS hospital_hac_measures (
 )
 ENGINE = ReplacingMergeTree(fetched_at)
 ORDER BY (ccn, measure_name);
+
+-- ---------------------------------------------------------------
+-- Hospital Quality Summary — per-CCN count of measures "Better/Worse than national"
+-- Source: data.cms.gov 'Hospital General Information' (CMS Provider Data Catalog)
+-- The "Count of X Measures Worse" columns are the CMS-level proxy for
+-- "how many quality issues did this hospital have vs peers" — closest to
+-- a complaint-volume signal without scraping QCOR per hospital.
+-- ---------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS hospital_quality_summary (
+    ccn                              String,
+    hospital_overall_rating          Nullable(Int8),
+    mort_total                       Nullable(Int8),
+    mort_facility_count              Nullable(Int8),
+    mort_better                      Nullable(Int8),
+    mort_no_different                Nullable(Int8),
+    mort_worse                       Nullable(Int8),
+    safety_total                     Nullable(Int8),
+    safety_facility_count            Nullable(Int8),
+    safety_better                    Nullable(Int8),
+    safety_no_different              Nullable(Int8),
+    safety_worse                     Nullable(Int8),     -- device-infection / complication signal
+    readm_total                      Nullable(Int8),
+    readm_facility_count             Nullable(Int8),
+    readm_better                     Nullable(Int8),
+    readm_no_different               Nullable(Int8),
+    readm_worse                      Nullable(Int8),
+    pt_exp_total                     Nullable(Int8),
+    pt_exp_facility_count            Nullable(Int8),
+    te_total                         Nullable(Int8),
+    te_facility_count                Nullable(Int8),
+    source_url                       Nullable(String),
+    raw                              String,
+    fetched_at                       DateTime64(3) DEFAULT now64(3)
+)
+ENGINE = ReplacingMergeTree(fetched_at)
+ORDER BY ccn;
