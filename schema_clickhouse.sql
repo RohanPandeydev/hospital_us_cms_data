@@ -684,3 +684,24 @@ CREATE TABLE IF NOT EXISTS hospital_quality_summary (
 )
 ENGINE = ReplacingMergeTree(fetched_at)
 ORDER BY ccn;
+
+-- ---------------------------------------------------------------
+-- QCOR Hospital Deficiencies (Form 2567 citations) — TinyFish-scraped per-CCN
+-- Source: qcor.cms.gov per-hospital inspection reports.
+-- Only ingested for BSc-relevant hospital subset (top 20-50 stent-volume CCNs).
+-- ---------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS hospital_qcor_deficiencies (
+    deficiency_id      UInt64,             -- hash(ccn, survey_date, tag)
+    ccn                String,
+    survey_date        Nullable(String),   -- ISO date string
+    tag_number         Nullable(String),   -- 'A-0123' etc.
+    tag_description    Nullable(String),   -- short tag label
+    deficiency_text    Nullable(String),   -- the citation narrative
+    severity_scope     Nullable(String),   -- e.g. 'D', 'F', 'L', 'Immediate Jeopardy'
+    correction_date    Nullable(String),
+    source_url         Nullable(String),
+    scraped_at         DateTime64(3) DEFAULT now64(3),
+    raw                String
+)
+ENGINE = ReplacingMergeTree(scraped_at)
+ORDER BY deficiency_id;
