@@ -363,3 +363,267 @@ ORDER BY (hcpcs_code, dhs_category, effective_year);
 ALTER TABLE clinical_trial_interventions
     ADD COLUMN IF NOT EXISTS hcpcs_code Nullable(String),
     ADD COLUMN IF NOT EXISTS hcpcs_confidence Nullable(String);
+
+-- ---------------------------------------------------------------
+-- NEW SOURCES (NEW_SOURCES.md) — 12 tables
+-- ---------------------------------------------------------------
+
+-- P0-1: OIG LEIE — providers/entities excluded from federal healthcare programs
+-- Source: oig.hhs.gov/exclusions/downloadables/UPDATED.csv
+CREATE TABLE IF NOT EXISTS oig_leie_exclusions (
+    leie_id           UInt64,                 -- hash(lastname,firstname,busname,npi,excldate)
+    last_name         Nullable(String),
+    first_name        Nullable(String),
+    middle_name       Nullable(String),
+    business_name     Nullable(String),
+    general           Nullable(String),       -- general info / occupation
+    specialty         Nullable(String),
+    upin              Nullable(String),
+    npi               Nullable(String),
+    dob               Nullable(String),       -- ISO 'YYYY-MM-DD' string (parse at query time)
+    address           Nullable(String),
+    city              Nullable(String),
+    state             Nullable(String),
+    zip               Nullable(String),
+    exclusion_type    Nullable(String),       -- statute citation
+    exclusion_date    Nullable(String),       -- ISO 'YYYY-MM-DD'
+    reinstate_date    Nullable(String),       -- ISO 'YYYY-MM-DD'
+    waiver_date       Nullable(String),       -- ISO 'YYYY-MM-DD'
+    waiver_state      Nullable(String),
+    source_url        Nullable(String),
+    raw               String,
+    fetched_at        DateTime64(3) DEFAULT now64(3)
+)
+ENGINE = ReplacingMergeTree(fetched_at)
+ORDER BY leie_id;
+
+-- P0-2: Medicare Physician Fee Schedule — per-CPT/HCPCS payment rates
+-- Source: cms.gov/medicare/payment/fee-schedules/physician/pfs-relative-value-files (quarterly ZIP)
+CREATE TABLE IF NOT EXISTS mpfs_rates (
+    hcpcs_code               String,
+    modifier                 String,                 -- '' if none
+    effective_year           UInt16,
+    effective_quarter        UInt8,                  -- 1..4
+    short_descriptor         Nullable(String),
+    status_code              Nullable(String),       -- A/R/N/etc.
+    pe_facility_rvu          Nullable(Float64),      -- practice expense (facility)
+    pe_non_facility_rvu      Nullable(Float64),      -- practice expense (non-facility / office)
+    work_rvu                 Nullable(Float64),
+    malpractice_rvu          Nullable(Float64),
+    total_facility_rvu       Nullable(Float64),
+    total_non_facility_rvu   Nullable(Float64),
+    facility_payment         Nullable(Float64),      -- $ at office setting (non-facility)
+    non_facility_payment     Nullable(Float64),
+    conversion_factor        Nullable(Float64),
+    global_days              Nullable(String),
+    bilateral_indicator      Nullable(String),
+    raw                      String,
+    fetched_at               DateTime64(3) DEFAULT now64(3)
+)
+ENGINE = ReplacingMergeTree(fetched_at)
+ORDER BY (hcpcs_code, modifier, effective_year, effective_quarter);
+
+-- P0-3: Opt-Out Affidavits — providers who left Medicare
+-- Source: data.cms.gov/provider-characteristics/medicare-provider-supplier-enrollment/opt-out-affidavits
+CREATE TABLE IF NOT EXISTS medicare_opt_out (
+    npi                  String,
+    optout_effective     String DEFAULT '',     -- 'YYYY-MM-DD' or '' (sort-key tiebreaker)
+    first_name           Nullable(String),
+    last_name            Nullable(String),
+    specialty            Nullable(String),
+    optout_effective_date Nullable(String),    -- ISO 'YYYY-MM-DD'
+    optout_end_date      Nullable(String),     -- ISO 'YYYY-MM-DD'
+    last_updated         Nullable(String),     -- ISO 'YYYY-MM-DD'
+    first_name_alias     Nullable(String),
+    address_line1        Nullable(String),
+    address_line2        Nullable(String),
+    city                 Nullable(String),
+    state               Nullable(String),
+    zip                  Nullable(String),
+    source_url           Nullable(String),
+    raw                  String,
+    fetched_at           DateTime64(3) DEFAULT now64(3)
+)
+ENGINE = ReplacingMergeTree(fetched_at)
+ORDER BY (npi, optout_effective);
+
+-- P0-4: POS file — all Medicare-certified facilities (hospitals, ASCs, SNFs, dialysis, etc.)
+-- Source: cms.gov/data-research/statistics-trends-and-reports/provider-services-current-files
+CREATE TABLE IF NOT EXISTS pos_facilities (
+    ccn                  String,                -- provider/CCN
+    facility_name        Nullable(String),
+    facility_type        Nullable(String),      -- decoded from PRVDR_CTGRY_CD
+    provider_category_cd Nullable(String),      -- raw code
+    provider_subcategory_cd Nullable(String),
+    address              Nullable(String),
+    city                 Nullable(String),
+    state                Nullable(String),
+    zip_code             Nullable(String),
+    county_name          Nullable(String),
+    phone                Nullable(String),
+    bed_count            Nullable(Int32),
+    certification_date   Nullable(Date),
+    termination_date     Nullable(Date),
+    termination_code     Nullable(String),
+    medicaid_only        Nullable(UInt8),
+    chain_owner          Nullable(String),
+    fiscal_year_end      Nullable(String),
+    cbsa_code            Nullable(String),
+    snapshot_quarter     String,                 -- e.g. '2025Q1'
+    source_url           Nullable(String),
+    raw                  String,
+    fetched_at           DateTime64(3) DEFAULT now64(3)
+)
+ENGINE = ReplacingMergeTree(fetched_at)
+ORDER BY (ccn, snapshot_quarter);
+
+-- P1-5: Order & Referring NPI — NPIs eligible to order/refer Medicare items
+-- Source: data.cms.gov/provider-characteristics/medicare-provider-supplier-enrollment/order-and-referring
+CREATE TABLE IF NOT EXISTS order_referring_npi (
+    npi               String,
+    last_name         Nullable(String),
+    first_name        Nullable(String),
+    -- Eligibility flags for each service type (Y/N in source)
+    partb_eligible    Nullable(UInt8),
+    dme_eligible      Nullable(UInt8),
+    hha_eligible      Nullable(UInt8),
+    pmd_eligible      Nullable(UInt8),   -- Power Mobility Devices
+    hospice_eligible  Nullable(UInt8),
+    source_url        Nullable(String),
+    raw               String,
+    fetched_at        DateTime64(3) DEFAULT now64(3)
+)
+ENGINE = ReplacingMergeTree(fetched_at)
+ORDER BY npi;
+
+-- P1-6: Provider/Supplier Taxonomy Crosswalk — NUCC → CMS specialty
+-- Source: data.cms.gov/provider-characteristics/medicare-provider-supplier-enrollment/medicare-provider-and-supplier-taxonomy-crosswalk
+CREATE TABLE IF NOT EXISTS npi_taxonomy_crosswalk (
+    medicare_specialty_code   String,
+    medicare_provider_supplier_type Nullable(String),
+    provider_taxonomy_code    String,           -- NUCC taxonomy
+    provider_taxonomy_description Nullable(String),
+    source_url                Nullable(String),
+    raw                       String,
+    fetched_at                DateTime64(3) DEFAULT now64(3)
+)
+ENGINE = ReplacingMergeTree(fetched_at)
+ORDER BY (medicare_specialty_code, provider_taxonomy_code);
+
+-- P1-7: Medicare FFS Public Provider Enrollment
+-- Source: data.cms.gov/provider-characteristics/medicare-provider-supplier-enrollment/medicare-fee-for-service-public-provider-enrollment
+CREATE TABLE IF NOT EXISTS medicare_ffs_enrollment (
+    npi               String,
+    pecos_asct_cntl_id Nullable(String),
+    enrollment_id     Nullable(String),
+    provider_type_cd  String DEFAULT '',     -- non-nullable for sort key
+    provider_type_desc Nullable(String),
+    state_cd          Nullable(String),
+    first_name        Nullable(String),
+    last_name         Nullable(String),
+    org_name          Nullable(String),
+    gndr_sw           Nullable(String),
+    source_url        Nullable(String),
+    raw               String,
+    fetched_at        DateTime64(3) DEFAULT now64(3)
+)
+ENGINE = ReplacingMergeTree(fetched_at)
+ORDER BY (npi, provider_type_cd);
+
+-- P2-8: HCRIS — Hospital cost reports (Forms 2552-10)
+-- Source: cms.gov/data-research/statistics-trends-and-reports/cost-reports/hospital-2010-form
+CREATE TABLE IF NOT EXISTS hcris_hospital_cost_reports (
+    rpt_rec_num       UInt64,           -- HCRIS report record number (natural key)
+    ccn               String,
+    fy_bgn_dt         Nullable(Date),
+    fy_end_dt         Nullable(Date),
+    proc_dt           Nullable(Date),
+    initl_rpt_sw      Nullable(String),
+    last_rpt_sw       Nullable(String),
+    trnsmtl_num       Nullable(String),
+    fi_num            Nullable(String),
+    adr_vndr_cd       Nullable(String),
+    fy_year           Nullable(UInt16),
+    -- summary fields parsed from numeric table (S-3, S-10, A, G)
+    total_beds        Nullable(Int32),
+    total_discharges  Nullable(Int64),
+    medicare_discharges Nullable(Int64),
+    medicaid_discharges Nullable(Int64),
+    total_charges     Nullable(Float64),
+    total_costs       Nullable(Float64),
+    medical_supplies_cost Nullable(Float64),    -- Wkst A line for med supplies (device proxy)
+    capital_expenditure Nullable(Float64),
+    uncompensated_care_cost Nullable(Float64),  -- Wkst S-10
+    source_url        Nullable(String),
+    raw               String,
+    fetched_at        DateTime64(3) DEFAULT now64(3)
+)
+ENGINE = ReplacingMergeTree(fetched_at)
+ORDER BY (rpt_rec_num);
+
+-- P2-9: Medicare Revalidation List
+-- Source: data.cms.gov/tools/medicare-revalidation-list
+CREATE TABLE IF NOT EXISTS medicare_revalidation (
+    enrollment_id        String,
+    npi                  Nullable(String),
+    first_name           Nullable(String),
+    last_name            Nullable(String),
+    org_name             Nullable(String),
+    revalidation_due_date Nullable(Date),
+    revalidation_status  Nullable(String),
+    adjusted_revalidation_due_date Nullable(Date),
+    source_url           Nullable(String),
+    raw                  String,
+    fetched_at           DateTime64(3) DEFAULT now64(3)
+)
+ENGINE = ReplacingMergeTree(fetched_at)
+ORDER BY enrollment_id;
+
+-- P2-10: MA & Part D monthly enrollment by state
+-- Source: cms.gov/.../medicare-advantagepart-d-contract-and-enrollment-data/monthly-enrollment-state
+CREATE TABLE IF NOT EXISTS medicare_ma_partd_enrollment (
+    snapshot_month       String,             -- 'YYYY-MM'
+    contract_id          String,
+    plan_id              String,
+    state                Nullable(String),
+    county               Nullable(String),
+    fips_state_county    String DEFAULT '',     -- non-nullable for sort key
+    enrollment           Nullable(Int64),
+    source_url           Nullable(String),
+    raw                  String,
+    fetched_at           DateTime64(3) DEFAULT now64(3)
+)
+ENGINE = ReplacingMergeTree(fetched_at)
+ORDER BY (snapshot_month, contract_id, plan_id, fips_state_county);
+
+-- P2-11: MA Star Ratings (Part C and D performance)
+-- Source: cms.gov/medicare/health-drug-plans/part-c-d-performance-data
+CREATE TABLE IF NOT EXISTS medicare_star_ratings (
+    rating_year      UInt16,
+    contract_id      String,
+    measure_id       String,
+    measure_name     Nullable(String),
+    star_rating      Nullable(Float32),
+    raw_score        Nullable(String),
+    source_url       Nullable(String),
+    raw              String,
+    fetched_at       DateTime64(3) DEFAULT now64(3)
+)
+ENGINE = ReplacingMergeTree(fetched_at)
+ORDER BY (rating_year, contract_id, measure_id);
+
+-- P2-12: BETOS crosswalk — HCPCS → clinical category
+-- Source: data.cms.gov/.../betos-classification-system
+CREATE TABLE IF NOT EXISTS betos_crosswalk (
+    hcpcs_code         String,
+    betos_code         Nullable(String),
+    betos_description  Nullable(String),
+    rbcs_category      Nullable(String),       -- restructured BETOS classification system category
+    rbcs_subcategory   Nullable(String),
+    rbcs_family        Nullable(String),
+    source_url         Nullable(String),
+    raw                String,
+    fetched_at         DateTime64(3) DEFAULT now64(3)
+)
+ENGINE = ReplacingMergeTree(fetched_at)
+ORDER BY hcpcs_code;

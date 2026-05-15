@@ -33,8 +33,9 @@
 #   --skip-trials      skip ClinicalTrials.gov
 #   --skip-tinyfish    skip CMS data-api CSV resolution + ingest
 #   --skip-groq        skip Groq trial→HCPCS mapping
+#   --skip-new         skip Phase 8 (12 new sources — see NEW_SOURCES.md)
 #   --only <list>      run only listed phases (comma-separated). Valid:
-#                      provider,op,fda,stark,trials,hcpcs,tinyfish,groq
+#                      provider,op,fda,stark,trials,hcpcs,tinyfish,groq,new
 #
 # Env vars:
 #   LIMIT              per-dataset row cap (default: unlimited)
@@ -62,6 +63,7 @@ SKIP_STARK=0
 SKIP_TRIALS=0
 SKIP_TINYFISH=0
 SKIP_GROQ=0
+SKIP_NEW=0
 ONLY=""
 LIMIT="${LIMIT:-}"                            # cap rows per dataset
 TF_DOWNLOAD="${TF_DOWNLOAD:-1}"               # 1 = also download the CSV
@@ -81,6 +83,7 @@ while [ $# -gt 0 ]; do
     --skip-trials)    SKIP_TRIALS=1 ;;
     --skip-tinyfish)  SKIP_TINYFISH=1 ;;
     --skip-groq)      SKIP_GROQ=1 ;;
+    --skip-new)       SKIP_NEW=1 ;;
     --only=*)         ONLY="${1#--only=}" ;;
     --only)
       if [ $# -lt 2 ]; then
@@ -98,7 +101,7 @@ done
 in_only() { [[ ",$ONLY," == *",$1,"* ]]; }
 if [ -n "$ONLY" ]; then
   SKIP_PROVIDER=1; SKIP_OP=1; SKIP_FDA=1; SKIP_STARK=1
-  SKIP_TRIALS=1; SKIP_TINYFISH=1; SKIP_GROQ=1
+  SKIP_TRIALS=1; SKIP_TINYFISH=1; SKIP_GROQ=1; SKIP_NEW=1
   in_only provider  && SKIP_PROVIDER=0 || true
   in_only op        && SKIP_OP=0 || true
   in_only fda       && SKIP_FDA=0 || true
@@ -107,6 +110,7 @@ if [ -n "$ONLY" ]; then
   in_only tinyfish  && SKIP_TINYFISH=0 || true
   in_only groq      && SKIP_GROQ=0 || true
   in_only hcpcs     && SKIP_HCPCS=0 || true
+  in_only new       && SKIP_NEW=0 || true
 fi
 
 # --- logging ---
@@ -271,6 +275,35 @@ if [ "$SKIP_GROQ" -eq 0 ]; then
   [ -n "$LIMIT" ] && MAPPER_ARGS+=(--limit "$LIMIT")
   "$PY" run.py map-trials-to-hcpcs "${MAPPER_ARGS[@]}" || warn "Groq mapper failed"
   ok "Groq mapper complete"
+fi
+
+# ============================================================
+# 8. NEW SOURCES (see NEW_SOURCES.md)
+#    OIG LEIE, MPFS, Opt-Out, POS, Order&Referring, Taxonomy Crosswalk,
+#    FFS Enrollment, HCRIS, Revalidation, MA Monthly Enrollment,
+#    Star Ratings, BETOS (RBCS). Most ingesters resolve their CSV URL
+#    via the data.cms.gov DCAT catalog; PFS + Star Ratings hit cms.gov
+#    ZIPs directly. Each ingester is idempotent (ReplacingMergeTree).
+# ============================================================
+if [ "$SKIP_NEW" -eq 0 ]; then
+  hdr "8/8  New sources (12 ingesters)"
+  for mod in \
+      oig_leie_ingest \
+      opt_out_ingest \
+      pos_ingest \
+      order_referring_ingest \
+      taxonomy_crosswalk_ingest \
+      ffs_enrollment_ingest \
+      hcris_ingest \
+      revalidation_ingest \
+      ma_enrollment_ingest \
+      betos_ingest \
+      mpfs_ingest \
+      star_ratings_ingest; do
+    hdr "  python3 -m src.${mod}"
+    "$PY" -m "src.${mod}" || warn "  ${mod} failed (continuing)"
+  done
+  ok "New sources phase complete"
 fi
 
 # ============================================================
