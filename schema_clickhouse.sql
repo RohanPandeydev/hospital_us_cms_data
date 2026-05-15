@@ -627,3 +627,24 @@ CREATE TABLE IF NOT EXISTS betos_crosswalk (
 )
 ENGINE = ReplacingMergeTree(fetched_at)
 ORDER BY hcpcs_code;
+
+-- ---------------------------------------------------------------
+-- Hospital-Acquired Conditions (HAC) — CMS Deficit Reduction Act
+-- Source: data.cms.gov 'Deficit Reduction Act Hospital-Acquired Condition Measures'
+-- Per-hospital rates for: Foreign Object Retained After Surgery, Air Embolism,
+-- Blood Incompatibility, Falls and Trauma. The "Foreign Object" measure is the
+-- CMS-level proxy for device-left-behind events.
+-- ---------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS hospital_hac_measures (
+    ccn              String,
+    measure_name     String,
+    rate             Nullable(Float64),
+    footnote         Nullable(String),
+    start_quarter    Nullable(String),
+    end_quarter      Nullable(String),
+    source_url       Nullable(String),
+    raw              String,
+    fetched_at       DateTime64(3) DEFAULT now64(3)
+)
+ENGINE = ReplacingMergeTree(fetched_at)
+ORDER BY (ccn, measure_name);
