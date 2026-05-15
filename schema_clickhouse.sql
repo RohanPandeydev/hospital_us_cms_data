@@ -705,3 +705,46 @@ CREATE TABLE IF NOT EXISTS hospital_qcor_deficiencies (
 )
 ENGINE = ReplacingMergeTree(scraped_at)
 ORDER BY deficiency_id;
+
+-- ---------------------------------------------------------------
+-- Nursing Home Health Deficiencies — actual Form 2567-style citation text
+-- Source: data.cms.gov/provider-data 'Health Deficiencies' (apr 2026 release)
+-- Per-survey-date deficiency citations with severity codes, tag numbers,
+-- and the actual deficiency narrative. 418K rows covering ~15K SNFs.
+-- ---------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS snf_health_deficiencies (
+    deficiency_id        UInt64,           -- hash(ccn, survey_date, tag, location)
+    ccn                  String,
+    provider_name        Nullable(String),
+    state                Nullable(String),
+    survey_date          Nullable(String),  -- ISO 'YYYY-MM-DD'
+    survey_type          Nullable(String),
+    deficiency_prefix    Nullable(String),
+    deficiency_category  Nullable(String),
+    deficiency_tag       Nullable(String),
+    deficiency_text      Nullable(String),  -- actual citation narrative
+    scope_severity       Nullable(String),  -- 'D'..'L', 'J/K/L' = Immediate Jeopardy
+    correction_date      Nullable(String),
+    inspection_cycle     Nullable(UInt8),
+    is_standard          Nullable(UInt8),
+    is_complaint         Nullable(UInt8),
+    is_infection_control Nullable(UInt8),
+    source_url           Nullable(String),
+    raw                  String,
+    fetched_at           DateTime64(3) DEFAULT now64(3)
+)
+ENGINE = ReplacingMergeTree(fetched_at)
+ORDER BY deficiency_id;
+
+-- Citation Code Look-up table — F-Tag / E-Tag descriptions
+CREATE TABLE IF NOT EXISTS snf_citation_codes (
+    tag_prefix          String,
+    tag_number          String,
+    tag_combined        String,            -- 'F-0656'
+    tag_description     Nullable(String),
+    tag_category        Nullable(String),
+    source_url          Nullable(String),
+    fetched_at          DateTime64(3) DEFAULT now64(3)
+)
+ENGINE = ReplacingMergeTree(fetched_at)
+ORDER BY (tag_prefix, tag_number);
