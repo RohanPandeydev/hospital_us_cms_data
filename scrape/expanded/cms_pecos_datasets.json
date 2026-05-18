@@ -1,0 +1,75 @@
+{
+  "source": "data.cms.gov DCAT \u2014 PECOS / ownership",
+  "datasets": [
+    {
+      "id": "https://data.cms.gov/data-api/v1/dataset/ed289c89-0bb8-4221-a20a-85776066381b/data-viewer",
+      "title": "Federally Qualified Health Center All Owners",
+      "url": "https://data.cms.gov/provider-characteristics/hospitals-and-other-facilities/federally-qualified-health-center-all-owners"
+    },
+    {
+      "id": "https://data.cms.gov/data-api/v1/dataset/fc009b2d-7846-44b1-b4a1-692f0c143879/data-viewer",
+      "title": "Home Health Agency All Owners",
+      "url": "https://data.cms.gov/provider-characteristics/hospitals-and-other-facilities/home-health-agency-all-owners"
+    },
+    {
+      "id": "https://data.cms.gov/data-api/v1/dataset/e983965e-1603-4cb8-82b5-c40090e380d1/data-viewer",
+      "title": "Hospice All Owners",
+      "url": "https://data.cms.gov/provider-characteristics/hospitals-and-other-facilities/hospice-all-owners"
+    },
+    {
+      "id": "https://data.cms.gov/data-api/v1/dataset/029c119f-f79c-49be-9100-344d31d10344/data-viewer",
+      "title": "Hospital All Owners",
+      "url": "https://data.cms.gov/provider-characteristics/hospitals-and-other-facilities/hospital-all-owners"
+    },
+    {
+      "id": "https://data.cms.gov/data-api/v1/dataset/c04031db-54ce-461c-85d1-d2613d71f167/data-viewer",
+      "title": "Hospital Change of Ownership",
+      "url": "https://data.cms.gov/provider-characteristics/hospitals-and-other-facilities/hospital-change-of-ownership"
+    },
+    {
+      "id": "https://data.cms.gov/data-api/v1/dataset/60625dc8-b621-45f0-9423-077fd133b13e/data-viewer",
+      "title": "Hospital Change of Ownership - Owner Information",
+      "url": "https://data.cms.gov/provider-characteristics/hospitals-and-other-facilities/hospital-change-of-ownership-owner-information"
+    },
+    {
+      "id": "https://data.cms.gov/data-api/v1/dataset/090bac79-c8b2-4e8a-bc3e-6bee002bcd6e/data-viewer",
+      "title": "Income and Asset Ownership",
+      "url": "https://data.cms.gov/medicare-current-beneficiary-survey-mcbs/income-and-asset-ownership"
+    },
+    {
+      "id": "https://data.cms.gov/data-api/v1/dataset/129a6503-c0f1-4132-b186-4c0232c2d894/data-viewer",
+      "title": "Long-Term Care Facility Characteristics",
+      "url": "https://data.cms.gov/quality-of-care/long-term-care-facility-characteristics"
+    },
+    {
+      "id": "https://data.cms.gov/data-api/v1/dataset/2457ea29-fc82-48b0-86ec-3b0755de7515/data-viewer",
+      "title": "Medicare Fee-For-Service  Public Provider Enrollment",
+      "url": "https://data.cms.gov/provider-characteristics/medicare-provider-supplier-enrollment/medicare-fee-for-service-public-provider-enrollment"
+    },
+    {
+      "id": "https://data.cms.gov/data-api/v1/dataset/ab03c9bc-0c22-4ca4-b032-21dd3408210d/data-viewer",
+      "title": "Rural Health Clinic All Owners",
+      "url": "https://data.cms.gov/provider-characteristics/hospitals-and-other-facilities/rural-health-clinic-all-owners"
+    },
+    {
+      "id": "https://data.cms.gov/data-api/v1/dataset/afe44b85-cc6d-40d7-b5df-00ae8910d1d2/data-viewer",
+      "title": "Skilled Nursing Facility All Owners",
+      "url": "https://data.cms.gov/provider-characteristics/hospitals-and-other-facilities/skilled-nursing-facility-all-owners"
+    },
+    {
+      "id": "https://data.cms.gov/data-api/v1/dataset/f557a6ed-95b3-4a22-8433-4175db2dec1c/data-viewer",
+      "title": "Skilled Nursing Facility Change of Ownership",
+      "url": "https://data.cms.gov/provider-characteristics/hospitals-and-other-facilities/skilled-nursing-facility-change-of-ownership"
+    },
+    {
+      "id": "https://data.cms.gov/data-api/v1/dataset/a4358712-e910-4eaf-8f24-5e90ba3cf8d0/data-viewer",
+      "title": "Skilled Nursing Facility Change of Ownership - Owner Information",
+      "url": "https://data.cms.gov/provider-characteristics/hospitals-and-other-facilities/skilled-nursing-facility-change-of-ownership-owner-information"
+    },
+    {
+      "id": "https://data.cms.gov/data-api/v1/dataset/5f2c306f-3b1c-42cd-b037-187b2ce22126/data-viewer",
+      "title": "Skilled Nursing Facility Enrollments",
+      "url": "https://data.cms.gov/provider-characteristics/hospitals-and-other-facilities/skilled-nursing-facility-enrollments"
+    }
+  ]
+}

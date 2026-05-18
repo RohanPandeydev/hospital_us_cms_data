@@ -1,0 +1,81 @@
+{
+  "run_id": "3405673c-a750-46a0-aa19-1536b1f48efa",
+  "key": "joint_commission_quality",
+  "status": "COMPLETED",
+  "fetched_at": "2026-05-18T14:17:53",
+  "goal": "Navigate to https://www.qualitycheck.org/ to complete the goal: Search this Joint Commission Quality Check site for these 5 hospitals and extract their accreditation status, accreditation date, programs accredited (Hospital, Ambulatory, Lab, etc), and any awards or distinctions: MASSACHUSETTS GENERAL HOSPITAL Boston MA, CEDARS-SINAI MEDICAL CENTER Los Angeles CA, INDIANA UNIVERSITY HEALTH Indianapolis IN, COX MEDICAL CENTERS Springfield MO, BARNES JEWISH HOSPITAL St Louis MO.",
+  "result": {
+    "hospitals": [
+      {
+        "name": "MASSACHUSETTS GENERAL HOSPITAL",
+        "location": "Boston, MA",
+        "accreditation_date": "Hospital (July 13, 2024), Laboratory (May 17, 2025)",
+        "awards_distinctions": [
+          "Advanced Comprehensive Stroke Center",
+          "Ventricular Assist Device",
+          "Excellent Health Outcomes for All"
+        ],
+        "programs_accredited": [
+          "Hospital",
+          "Laboratory"
+        ],
+        "accreditation_status": "Accredited"
+      },
+      {
+        "name": "CEDARS-SINAI MEDICAL CENTER",
+        "location": "Los Angeles, CA",
+        "accreditation_date": "June 24, 2023",
+        "awards_distinctions": [],
+        "programs_accredited": [
+          "Hospital",
+          "Ventricular Assist Device",
+          "Maternal Levels of Care"
+        ],
+        "accreditation_status": "Accredited"
+      },
+      {
+        "name": "INDIANA UNIVERSITY HEALTH",
+        "location": "Indianapolis, IN",
+        "accreditation_date": "November 1, 2025",
+        "awards_distinctions": [
+          "Advanced Certifications: Primary Stroke Center",
+          "Advanced Comprehensive Stroke Center",
+          "Advanced Total Hip and Total Knee Replacement",
+          "Ventricular Assist Device"
+        ],
+        "programs_accredited": [
+          "Hospital",
+          "Behavioral Health Care and Human Services"
+        ],
+        "accreditation_status": "Accredited"
+      },
+      {
+        "name": "BARNES-JEWISH HOSPITAL",
+        "location": "St. Louis, MO",
+        "accreditation_date": "September 24, 2025",
+        "awards_distinctions": [],
+        "programs_accredited": [
+          "Hospital",
+          "Joint Replacement (Hip, Knee, Shoulder)",
+          "Advanced Comprehensive Stroke Center",
+          "Ventricular Assist Device",
+          "Comprehensive Cardiac Center"
+        ],
+        "accreditation_status": "Accredited"
+      },
+      {
+        "name": "COX MEDICAL CENTERS",
+        "notes": "This organization was not found on the Joint Commission Quality Check website. External information suggests that CoxHealth hospitals are currently accredited by DNV GL - Healthcare rather than the Joint Commission.",
+        "location": "Springfield, MO",
+        "accreditation_date": null,
+        "awards_distinctions": [],
+        "programs_accredited": [],
+        "accreditation_status": "Not found"
+      }
+    ]
+  },
+  "error": null,
+  "step_count": null,
+  "created_at": "2026-05-18T08:17:25Z",
+  "completed_at": null
+}

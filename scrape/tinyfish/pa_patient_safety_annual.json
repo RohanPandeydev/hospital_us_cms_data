@@ -1,0 +1,29 @@
+{
+  "run_id": "3133b86a-e5f8-4d43-b297-20d3c23a6bb1",
+  "key": "pa_patient_safety_annual",
+  "status": "COMPLETED",
+  "fetched_at": "2026-05-18T14:16:52",
+  "goal": "Navigate to http://patientsafety.pa.gov/PatientSafetyAuthority/Pages/default.aspx to complete the goal: Find the Pennsylvania Patient Safety Authority annual report for 2024 or the most recent year. Extract: top adverse-event categories reported, number of reports by category, any specific medical device-related events. If there are facility-level breakdowns or device-implant-related event counts mentioned, capture those.",
+  "result": {
+    "url": "http://patientsafety.pa.gov/PatientSafetyAuthority/Pages/default.aspx",
+    "reason": "website_inaccessible",
+    "status": "failure",
+    "conclusion": "target information not present due to server error, step must stop and report failure",
+    "observations": [
+      {
+        "result": "Upstream Error",
+        "attempt": 1,
+        "details": "server-side failure, no links or content available"
+      },
+      {
+        "result": "empty page",
+        "attempt": 2,
+        "details": "no interactable elements or links"
+      }
+    ]
+  },
+  "error": null,
+  "step_count": null,
+  "created_at": "2026-05-18T08:17:27Z",
+  "completed_at": null
+}

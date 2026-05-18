@@ -1,0 +1,79 @@
+{
+  "source": "openFDA UDI",
+  "query": "brand_name:AXIOS",
+  "fetched_at": "2026-05-18T14:45:29",
+  "total_matching": 8,
+  "returned": 8,
+  "devices": [
+    {
+      "brand_name": "Axios\u2122",
+      "model": "M00553660",
+      "catalog": null,
+      "company_name": "BOSTON SCIENTIFIC CORPORATION",
+      "description": "Stent and Electrocautery - Enhanced Delivery System",
+      "sizes": []
+    },
+    {
+      "brand_name": "Axios\u2122",
+      "model": "M00553750",
+      "catalog": null,
+      "company_name": "BOSTON SCIENTIFIC CORPORATION",
+      "description": "Stent and Delivery System",
+      "sizes": []
+    },
+    {
+      "brand_name": "Axios\u2122",
+      "model": "M00553680",
+      "catalog": "M00553680",
+      "company_name": "BOSTON SCIENTIFIC CORPORATION",
+      "description": "Stent and Electrocautery - Enhanced Delivery System",
+      "sizes": [
+        "Stent Length: 8 Millimeter",
+        "Stent Diameter: 6 Millimeter"
+      ]
+    },
+    {
+      "brand_name": "Axios\u2122",
+      "model": "M00553650",
+      "catalog": null,
+      "company_name": "BOSTON SCIENTIFIC CORPORATION",
+      "description": "Stent and Electrocautery - Enhanced Delivery System",
+      "sizes": []
+    },
+    {
+      "brand_name": "Axios\u2122",
+      "model": "M00553640",
+      "catalog": null,
+      "company_name": "BOSTON SCIENTIFIC CORPORATION",
+      "description": "Stent and Electrocautery - Enhanced Delivery System",
+      "sizes": []
+    },
+    {
+      "brand_name": "Axios\u2122",
+      "model": "M00553740",
+      "catalog": null,
+      "company_name": "BOSTON SCIENTIFIC CORPORATION",
+      "description": "Stent and Delivery System",
+      "sizes": []
+    },
+    {
+      "brand_name": "Axios\u2122",
+      "model": "M00553690",
+      "catalog": "M00553690",
+      "company_name": "BOSTON SCIENTIFIC CORPORATION",
+      "description": "Stent and Electrocautery - Enhanced Delivery System",
+      "sizes": [
+        "Stent Diameter: 8 Millimeter",
+        "Stent Length: 8 Millimeter"
+      ]
+    },
+    {
+      "brand_name": "Axios\u2122",
+      "model": "M00553670",
+      "catalog": null,
+      "company_name": "BOSTON SCIENTIFIC CORPORATION",
+      "description": "Stent and Electrocautery - Enhanced Delivery System",
+      "sizes": []
+    }
+  ]
+}

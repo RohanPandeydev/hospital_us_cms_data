@@ -1,0 +1,716 @@
+{
+  "source": "openFDA /device/udi (BSc broad)",
+  "fetched_at": "2026-05-18T14:43:06",
+  "total_matching": 12561,
+  "returned": 100,
+  "devices": [
+    {
+      "brand_name": "Charger\u2122",
+      "model": "H74939206080610",
+      "catalog": "H74939206080610",
+      "description": "PTA Balloon Dilatation Catheter",
+      "sizes": []
+    },
+    {
+      "brand_name": "Hydratome RX 49",
+      "model": "M00583010",
+      "catalog": null,
+      "description": "Sphincterotome",
+      "sizes": []
+    },
+    {
+      "brand_name": "Imager II",
+      "model": "M0064004040",
+      "catalog": "M0064004040",
+      "description": "Urology Torque Catheter",
+      "sizes": []
+    },
+    {
+      "brand_name": "Mach1\u2122",
+      "model": "H749343584960",
+      "catalog": null,
+      "description": "Guide Catheter",
+      "sizes": []
+    },
+    {
+      "brand_name": "Gemini",
+      "model": "M0063301090",
+      "catalog": null,
+      "description": "Paired Wire Helical Stone Retrieval Basket",
+      "sizes": []
+    },
+    {
+      "brand_name": "Cable, SureLink\u2122",
+      "model": "M004560002P0",
+      "catalog": null,
+      "description": "Cable for Diagnostic Catheter",
+      "sizes": []
+    },
+    {
+      "brand_name": "Expo\u2122",
+      "model": "H74908641511",
+      "catalog": null,
+      "description": "Angiographic Catheter",
+      "sizes": []
+    },
+    {
+      "brand_name": "Hydratome RX 44",
+      "model": "M00583070",
+      "catalog": null,
+      "description": "Sphincterotome",
+      "sizes": []
+    },
+    {
+      "brand_name": "FINISHING WIRE\u00ae SUPPORTRAK\u00ae",
+      "model": "6669",
+      "catalog": null,
+      "description": "Finishing Wire",
+      "sizes": []
+    },
+    {
+      "brand_name": "Expo\u2122",
+      "model": "H74908526031",
+      "catalog": null,
+      "description": "Angiographic Catheter",
+      "sizes": []
+    },
+    {
+      "brand_name": "ACUITY\u2122",
+      "model": "7060",
+      "catalog": null,
+      "description": "Universal Cutter",
+      "sizes": []
+    },
+    {
+      "brand_name": "Percuflex\u2122",
+      "model": "M006145374050",
+      "catalog": null,
+      "description": "Ureteral Stent Set",
+      "sizes": []
+    },
+    {
+      "brand_name": "Sterling\u2122",
+      "model": "H74939031501610",
+      "catalog": null,
+      "description": "PTA Balloon Dilatation Catheter",
+      "sizes": []
+    },
+    {
+      "brand_name": "Mach1\u2122",
+      "model": "H749343576120",
+      "catalog": null,
+      "description": "Guide Catheter",
+      "sizes": []
+    },
+    {
+      "brand_name": "Percuflex\u2122 Plus",
+      "model": "M006175571170",
+      "catalog": null,
+      "description": "Ureteral Stent Set",
+      "sizes": []
+    },
+    {
+      "brand_name": "Contour\u2122",
+      "model": "M0017600850",
+      "catalog": "M0017600850",
+      "description": "Embolization Particles",
+      "sizes": []
+    },
+    {
+      "brand_name": "SYNERGY\u2122",
+      "model": "H7493926020300",
+      "catalog": "H7493926020300",
+      "description": "Everolimus-Eluting Platinum Chromium Coronary Stent System",
+      "sizes": []
+    },
+    {
+      "brand_name": "RX Cholangiogram Kit",
+      "model": "M00575330",
+      "catalog": null,
+      "description": "RX Cholangiogram Kit with Olympus Compatible Biopsy Cap",
+      "sizes": []
+    },
+    {
+      "brand_name": "Percuflex\u2122 Plus SureDrive\u2122",
+      "model": "M0061458500",
+      "catalog": null,
+      "description": "Steerable Ureteral Stent Set",
+      "sizes": []
+    },
+    {
+      "brand_name": "Gemini",
+      "model": "M0063301120",
+      "catalog": null,
+      "description": "Paired Wire Helical Stone Retrieval Basket",
+      "sizes": []
+    },
+    {
+      "brand_name": "Charger\u2122",
+      "model": "H74939206060210",
+      "catalog": "H74939206060210",
+      "description": "PTA Balloon Dilatation Catheter",
+      "sizes": []
+    },
+    {
+      "brand_name": "NA",
+      "model": "CC10520U",
+      "catalog": null,
+      "description": "Cannula 10cm5mm tip20G EchoSharpStraight",
+      "sizes": []
+    },
+    {
+      "brand_name": "NC Quantum Apex\u2122",
+      "model": "H7493912412400",
+      "catalog": null,
+      "description": "PTCA Dilatation Catheter",
+      "sizes": []
+    },
+    {
+      "brand_name": "Expo\u2122",
+      "model": "H74908526041",
+      "catalog": null,
+      "description": "Angiographic Catheter",
+      "sizes": []
+    },
+    {
+      "brand_name": "Polaris\u2122 Ultra",
+      "model": "M006193123090",
+      "catalog": null,
+      "description": "Ureteral Stent Set",
+      "sizes": []
+    },
+    {
+      "brand_name": "LABSYSTEM\u2122 PRO",
+      "model": "M0042001268R0",
+      "catalog": "M0042001268R0",
+      "description": "CLEARSIGN\u2122 Amplifier For LABSYSTEM\u2122 PRO EP Recording System, 40 Channels",
+      "sizes": []
+    },
+    {
+      "brand_name": "Bionic Navigator\u2122 3D",
+      "model": "SC-7101-210-W10",
+      "catalog": null,
+      "description": "2.10 Installer",
+      "sizes": []
+    },
+    {
+      "brand_name": "VeriFLEX\u2122",
+      "model": "H7493893532270",
+      "catalog": "H7493893532270",
+      "description": "Coronary Stent System",
+      "sizes": []
+    },
+    {
+      "brand_name": "SMARTFREEZE\u2122",
+      "model": "M004CRBS6600",
+      "catalog": "M004CRBS6600",
+      "description": "Pressure Sensor Cable",
+      "sizes": []
+    },
+    {
+      "brand_name": "IMAGER\u2122 II",
+      "model": "M001316370",
+      "catalog": null,
+      "description": "Angiographic Catheter",
+      "sizes": []
+    },
+    {
+      "brand_name": "Compliance EndoKit\u2122",
+      "model": "CEK-723",
+      "catalog": "CEK-723",
+      "description": "Compliance EndoKit",
+      "sizes": []
+    },
+    {
+      "brand_name": "Ultra-soft\u2122 SV",
+      "model": "H7493791655200",
+      "catalog": null,
+      "description": "Balloon Dilatation Catheter",
+      "sizes": []
+    },
+    {
+      "brand_name": "Mach1\u2122",
+      "model": "H74934357190",
+      "catalog": null,
+      "description": "Guide Catheter",
+      "sizes": []
+    },
+    {
+      "brand_name": "EkoSonic\u00ae",
+      "model": "6795-002",
+      "catalog": "500-56112",
+      "description": "The EkoSonic\u00ae Endovascular Device consists of a single use Infusion Catheter and an Ultrasonic Core. The device delivers",
+      "sizes": [
+        "135 Centimeter"
+      ]
+    },
+    {
+      "brand_name": "Contour\u2122",
+      "model": "M006180543190",
+      "catalog": null,
+      "description": "Ureteral Stent Set",
+      "sizes": []
+    },
+    {
+      "brand_name": "Ureteral Catheter",
+      "model": "M0064002510",
+      "catalog": null,
+      "description": "Angled Tip Ureteral Catheter",
+      "sizes": []
+    },
+    {
+      "brand_name": "REBEL\u2122",
+      "model": "H7493927420450",
+      "catalog": "H7493927420450",
+      "description": "Platinum Chromium Coronary Stent System",
+      "sizes": []
+    },
+    {
+      "brand_name": "Coyote\u2122",
+      "model": "H74939185350890",
+      "catalog": null,
+      "description": "PTA Balloon Dilatation Catheter",
+      "sizes": []
+    },
+    {
+      "brand_name": "Percuflex\u2122",
+      "model": "M001245720",
+      "catalog": "M001245720",
+      "description": "Ureteral Stent System Kit",
+      "sizes": []
+    },
+    {
+      "brand_name": "Percuflex\u2122 Plus",
+      "model": "M006175284120",
+      "catalog": null,
+      "description": "Ureteral Stent Set",
+      "sizes": []
+    },
+    {
+      "brand_name": "SureTek\u2122",
+      "model": "DB-4605-C",
+      "catalog": null,
+      "description": "Burr Hole Cover Spares Kit",
+      "sizes": []
+    },
+    {
+      "brand_name": "Mach1\u2122",
+      "model": "H749343584490",
+      "catalog": null,
+      "description": "Guide Catheter",
+      "sizes": []
+    },
+    {
+      "brand_name": "Expo\u2122",
+      "model": "H749085262512",
+      "catalog": null,
+      "description": "Angiographic Catheter",
+      "sizes": []
+    },
+    {
+      "brand_name": "Sterling\u2122",
+      "model": "H74939031302210",
+      "catalog": null,
+      "description": "PTA Balloon Dilatation Catheter",
+      "sizes": []
+    },
+    {
+      "brand_name": "MUSTANG\u2122",
+      "model": "H74939171061070",
+      "catalog": "H74939171061070",
+      "description": "PTA Balloon Dilatation Catheter",
+      "sizes": []
+    },
+    {
+      "brand_name": "TRUEtome Hydra 44",
+      "model": "M00583160",
+      "catalog": null,
+      "description": "Cannulating Sphincterotome",
+      "sizes": []
+    },
+    {
+      "brand_name": "Flexima\u2122",
+      "model": "M001271910",
+      "catalog": null,
+      "description": "Nephrostomy Catheter System Kit",
+      "sizes": []
+    },
+    {
+      "brand_name": "Mach1\u2122",
+      "model": "H749343566980",
+      "catalog": null,
+      "description": "Guide Catheter",
+      "sizes": []
+    },
+    {
+      "brand_name": "ACUITY\u00ae Pro",
+      "model": "8115",
+      "catalog": "8115",
+      "description": "Guide Catheter",
+      "sizes": []
+    },
+    {
+      "brand_name": "Compliance EndoKit\u2122",
+      "model": "CEK-999",
+      "catalog": "CEK-999",
+      "description": "Compliance EndoKit",
+      "sizes": []
+    },
+    {
+      "brand_name": "Embozene\u00ae",
+      "model": "01-0301-07002-11",
+      "catalog": null,
+      "description": "Microspheres for Embolization",
+      "sizes": []
+    },
+    {
+      "brand_name": "Emerge\u2122",
+      "model": "H7493919120200",
+      "catalog": null,
+      "description": "PTCA Dilatation Catheter",
+      "sizes": []
+    },
+    {
+      "brand_name": "Emerge\u2122",
+      "model": "H7493918915150",
+      "catalog": null,
+      "description": "PTCA Dilatation Catheter",
+      "sizes": []
+    },
+    {
+      "brand_name": "Captivator EMR",
+      "model": "M00561610",
+      "catalog": null,
+      "description": "Endoscopic Mucosal Resection Device",
+      "sizes": []
+    },
+    {
+      "brand_name": "IMAGER\u2122 II",
+      "model": "M001316040",
+      "catalog": null,
+      "description": "Angiographic Catheter",
+      "sizes": []
+    },
+    {
+      "brand_name": "Sterling\u2122",
+      "model": "H74939031404080",
+      "catalog": null,
+      "description": "PTA Balloon Dilatation Catheter",
+      "sizes": []
+    },
+    {
+      "brand_name": "DYNAGEN\u2122 EL ICD VR",
+      "model": "D150",
+      "catalog": null,
+      "description": "Implantable Cardioverter Defibrillator VR",
+      "sizes": []
+    },
+    {
+      "brand_name": "Charger\u2122",
+      "model": "H74939206032010",
+      "catalog": "H74939206032010",
+      "description": "PTA Balloon Dilatation Catheter",
+      "sizes": []
+    },
+    {
+      "brand_name": "Embozene\u00ae",
+      "model": "01-0301-11001-11",
+      "catalog": null,
+      "description": "Microspheres for Embolization",
+      "sizes": []
+    },
+    {
+      "brand_name": "Apex\u2122",
+      "model": "H7493895812220",
+      "catalog": null,
+      "description": "PTCA Dilatation Catheter",
+      "sizes": []
+    },
+    {
+      "brand_name": "Innova\u2122 Vascular",
+      "model": "H74939293061870",
+      "catalog": "H74939293061870",
+      "description": "Self-Expanding Stent System",
+      "sizes": []
+    },
+    {
+      "brand_name": "Coyote\u2122",
+      "model": "H74939185351010",
+      "catalog": null,
+      "description": "PTA Balloon Dilatation Catheter",
+      "sizes": []
+    },
+    {
+      "brand_name": "Epic\u2122 Vascular",
+      "model": "H74939200071020",
+      "catalog": "H74939200071020",
+      "description": "Self-Expanding Stent System",
+      "sizes": []
+    },
+    {
+      "brand_name": "Woven",
+      "model": "M0042424030",
+      "catalog": null,
+      "description": "Diagnostic Electrode Catheter",
+      "sizes": []
+    },
+    {
+      "brand_name": "EndoVive Button Bolus Feeding Set",
+      "model": "M00580230",
+      "catalog": null,
+      "description": "Low Profile Button Bolus Feeding Set",
+      "sizes": []
+    },
+    {
+      "brand_name": "Mardis Soft",
+      "model": "M0061251300",
+      "catalog": null,
+      "description": "Ureteral Stent Set",
+      "sizes": []
+    },
+    {
+      "brand_name": "IDC\u2122",
+      "model": "M0013613060",
+      "catalog": "M0013613060",
+      "description": "Interlocking Detachable Coil",
+      "sizes": []
+    },
+    {
+      "brand_name": "Epic\u2122 Vascular",
+      "model": "H74939200061270",
+      "catalog": "H74939200061270",
+      "description": "Self-Expanding Stent System",
+      "sizes": []
+    },
+    {
+      "brand_name": "Gateway\u00ae",
+      "model": "M0032072220320",
+      "catalog": "M0032072220320",
+      "description": "PTA Balloon Catheter",
+      "sizes": []
+    },
+    {
+      "brand_name": "Renegade\u2122",
+      "model": "M001182480",
+      "catalog": null,
+      "description": "Fiber Braided Microcatheter",
+      "sizes": []
+    },
+    {
+      "brand_name": "Sterling\u00ae SL",
+      "model": "H74939148258090",
+      "catalog": null,
+      "description": "PTA Balloon Dilatation Catheter",
+      "sizes": []
+    },
+    {
+      "brand_name": "LABSYSTEM\u2122 PRO",
+      "model": "M00420020350",
+      "catalog": null,
+      "description": "PCIe DVI Image Capture Card",
+      "sizes": []
+    },
+    {
+      "brand_name": "Apex\u2122",
+      "model": "H7493895915200",
+      "catalog": null,
+      "description": "PTCA Dilatation Catheter",
+      "sizes": []
+    },
+    {
+      "brand_name": "AMS 700\u2122 CXR TENACIO\u2122 Pump",
+      "model": "72404465",
+      "catalog": "72404465",
+      "description": "Inflatable Penile Prosthesis, InhibiZone/Preconnected - Infrapubic",
+      "sizes": [
+        "10 Centimeter"
+      ]
+    },
+    {
+      "brand_name": "Jagwire",
+      "model": "M00556940",
+      "catalog": null,
+      "description": "High Performance Extendable Guidewire",
+      "sizes": []
+    },
+    {
+      "brand_name": "Compliance EndoKit\u2122",
+      "model": "CEK-835",
+      "catalog": "CEK-835",
+      "description": "Compliance EndoKit",
+      "sizes": []
+    },
+    {
+      "brand_name": "Charger\u2122",
+      "model": "H74939206100270",
+      "catalog": "H74939206100270",
+      "description": "PTA Balloon Dilatation Catheter",
+      "sizes": []
+    },
+    {
+      "brand_name": "Mach1\u2122",
+      "model": "H74934358190",
+      "catalog": null,
+      "description": "Guide Catheter",
+      "sizes": []
+    },
+    {
+      "brand_name": "Gateway\u00ae",
+      "model": "M0032072209300",
+      "catalog": "M0032072209300",
+      "description": "PTA Balloon Catheter",
+      "sizes": []
+    },
+    {
+      "brand_name": "Maverick\u00b2\u2122",
+      "model": "H7493892812250",
+      "catalog": null,
+      "description": "PTCA Dilatation Catheter",
+      "sizes": []
+    },
+    {
+      "brand_name": "RunWay\u2122",
+      "model": "H74938969740",
+      "catalog": null,
+      "description": "Guide Catheter",
+      "sizes": []
+    },
+    {
+      "brand_name": "Wiseguide \u2122",
+      "model": "H74919815480",
+      "catalog": null,
+      "description": "Guide Catheter",
+      "sizes": []
+    },
+    {
+      "brand_name": "TempLink\u2122",
+      "model": "M00420012920",
+      "catalog": "M00420012920",
+      "description": "Extention Cable",
+      "sizes": []
+    },
+    {
+      "brand_name": "Advanix\u2122 Biliary",
+      "model": "M00532180",
+      "catalog": null,
+      "description": "Biliary Stent",
+      "sizes": []
+    },
+    {
+      "brand_name": "Promus PREMIER\u2122",
+      "model": "H7493952820250",
+      "catalog": "H7493952820250",
+      "description": "Everolimus-Eluting Platinum Chromium Coronary Stent System",
+      "sizes": []
+    },
+    {
+      "brand_name": "Promus PREMIER\u2122",
+      "model": "H7493925216350",
+      "catalog": "H7493925216350",
+      "description": "Everolimus-Eluting Platinum Chromium Coronary Stent System",
+      "sizes": []
+    },
+    {
+      "brand_name": "Contour\u2122",
+      "model": "M0061802200",
+      "catalog": null,
+      "description": "Ureteral Stent",
+      "sizes": []
+    },
+    {
+      "brand_name": "Mach1\u2122",
+      "model": "H749343582980",
+      "catalog": null,
+      "description": "Guide Catheter",
+      "sizes": []
+    },
+    {
+      "brand_name": "Flexible Probe",
+      "model": "M0068407390",
+      "catalog": "M0068407390",
+      "description": "Flexible Probe",
+      "sizes": []
+    },
+    {
+      "brand_name": "Contour\u2122 SureDrive\u2122",
+      "model": "M0061458720",
+      "catalog": null,
+      "description": "Steerable Ureteral Stent Set",
+      "sizes": []
+    },
+    {
+      "brand_name": "Mach1\u2122",
+      "model": "H74934358670",
+      "catalog": null,
+      "description": "Guide Catheter",
+      "sizes": []
+    },
+    {
+      "brand_name": "SpyScope\u2122 DS II",
+      "model": "M00546610",
+      "catalog": null,
+      "description": "Access and Delivery Catheter",
+      "sizes": []
+    },
+    {
+      "brand_name": "Expel\u2122 Nephroureteral Stent System with Twist-Loc\u2122 Hub",
+      "model": "H7493935110280",
+      "catalog": "H7493935110280",
+      "description": "Nephroureteral Stent System",
+      "sizes": []
+    },
+    {
+      "brand_name": "MUSTANG\u2122",
+      "model": "H74939171031510",
+      "catalog": "H74939171031510",
+      "description": "PTA Balloon Dilatation Catheter",
+      "sizes": []
+    },
+    {
+      "brand_name": "Compliance EndoKit\u2122",
+      "model": "CEK-733",
+      "catalog": "CEK-733",
+      "description": "Compliance EndoKit",
+      "sizes": []
+    },
+    {
+      "brand_name": "Electrophysiology Cable",
+      "model": "M004921P0",
+      "catalog": null,
+      "description": "Non-Sterile Cable",
+      "sizes": []
+    },
+    {
+      "brand_name": "Compliance EndoKit\u2122",
+      "model": "CEK-795",
+      "catalog": "CEK-795",
+      "description": "Compliance EndoKit",
+      "sizes": []
+    },
+    {
+      "brand_name": "Mach1\u2122",
+      "model": "M001196960",
+      "catalog": null,
+      "description": "Guide Catheter",
+      "sizes": []
+    },
+    {
+      "brand_name": "Ranger\u2122",
+      "model": "H74939733504020",
+      "catalog": "H74939733504020",
+      "description": "MONORAIL\u2122 Paclitaxel-Coated PTA Balloon Catheter",
+      "sizes": [
+        "5 Millimeter",
+        "40 Millimeter",
+        "200 Centimeter"
+      ]
+    },
+    {
+      "brand_name": "PROMUS Element\u2122 Plus",
+      "model": "H7493911432220",
+      "catalog": "H7493911432220",
+      "description": "Everolimus-Eluting Platinum Chromium Coronary Stent System",
+      "sizes": []
+    }
+  ]
+}

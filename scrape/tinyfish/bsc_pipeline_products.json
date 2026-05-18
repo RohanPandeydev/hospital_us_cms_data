@@ -1,0 +1,105 @@
+{
+  "run_id": "836fabb6-8235-4347-b417-5bb668fd97da",
+  "key": "bsc_pipeline_products",
+  "status": "COMPLETED",
+  "fetched_at": "2026-05-18T14:15:51",
+  "goal": "Navigate to https://www.bostonscientific.com/en-US/medical-specialties.html to complete the goal: Extract Boston Scientific's complete US product portfolio organized by specialty (Endoscopy, Interventional Cardiology, Peripheral Interventions, Urology, Cardiac Rhythm Mgmt, Neuromodulation, etc.). For each specialty: list product names. Particular interest in AXIOS, WATCHMAN, ELUVIA, INNOVA, VICI, SYNERGY, PROMUS, EMBLEM S-ICD, PRECISION, OBTRYX.",
+  "result": {
+    "endoscopy": {
+      "key_product": "AXIOS\u2122 Stent and Electrocautery Enhanced Delivery System",
+      "other_products": {
+        "biliary_gi": [
+          "CRE Balloon Dilation Catheters",
+          "Extractor\u2122 Pro Retrieval Balloons",
+          "Resolution\u2122 Clip & Resolution 360\u2122",
+          "WallFlex\u2122 Biliary Stents",
+          "Expect\u2122 Slimline (EUS-FNA) Needles",
+          "Captivator\u2122 EMR"
+        ],
+        "pulmonology": [
+          "EXALT\u2122 Model B Single-Use Bronchoscope",
+          "CRE\u2122 Pulmonary Balloon",
+          "Zero Tip\u2122 Airway Retrieval Basket",
+          "Ultraflex\u2122 Tracheal/Bronchial Stents"
+        ]
+      }
+    },
+    "critical_care": [
+      "EndoVive\u2122 Enteral Access (PEG) Kits",
+      "Resolution 360\u2122 ULTRA Clip",
+      "CinchPad\u2122 Transport Pad",
+      "Pure\u2122 Enzymatic Detergent"
+    ],
+    "neuromodulation": {
+      "key_product": "PRECISION MONTAGE\u2122 MRI Spinal Cord Stimulator (SCS)",
+      "other_products": [
+        "WaveWriter Alpha\u2122 SCS System",
+        "Vercise Genus\u2122 Deep Brain Stimulation (DBS) System",
+        "G4\u2122 Radiofrequency (RF) Generator"
+      ]
+    },
+    "urology_pelvic_health": {
+      "key_product": "OBTRYX\u2122 II Transobturator Mid-Urethral Sling",
+      "other_products": {
+        "womens_health": [
+          "Bulkamid\u2122 Urethral Bulking System",
+          "Advantage Fit\u2122 Sling"
+        ],
+        "stone_management": [
+          "LithoVue\u2122 Elite Single-Use Ureteroscope",
+          "Stone Cone\u2122 Retrieval Coil",
+          "Dakota\u2122 Retrieval Device"
+        ],
+        "prostate_mens_health": [
+          "Rez\u016bm\u2122 Water Vapor Therapy",
+          "SpaceOAR\u2122 Hydrogel",
+          "AMS 800\u2122 Artificial Urinary Sphincter",
+          "AMS 700\u2122 Penile Prosthesis",
+          "GreenLight XPS\u2122 Laser"
+        ]
+      }
+    },
+    "peripheral_interventions": {
+      "key_products": [
+        "ELUVIA\u2122 Drug-Eluting Vascular Stent",
+        "INNOVA\u2122 Vascular Self-Expanding Stent",
+        "VICI\u2122 Venous Stent"
+      ],
+      "other_products": [
+        "Jetstream\u2122 Atherectomy",
+        "Ranger\u2122 Drug-Coated Balloon",
+        "EKOS\u2122 Endovascular System",
+        "Mustang\u2122 & Athletis\u2122 PTA Balloons",
+        "EMBOLD\u2122 Detachable Coils",
+        "Thruway\u2122 and ZIPwire\u2122 Guidewires"
+      ]
+    },
+    "cardiac_rhythm_management": {
+      "key_product": "EMBLEM\u2122 MRI S-ICD System",
+      "other_products": [
+        "FARAPULSE\u2122 Pulsed Field Ablation (PFA) System",
+        "RHYTHMIA HDx\u2122 Mapping System",
+        "Orion\u2122 High-Resolution Mapping Catheter"
+      ]
+    },
+    "interventional_cardiology": {
+      "key_products": [
+        "WATCHMAN FLX\u2122 Pro",
+        "SYNERGY\u2122 (XD, MEGATRON) Everolimus-Eluting Stents",
+        "PROMUS PREMIER\u2122 Everolimus-Eluting Stents"
+      ],
+      "other_products": [
+        "AGENT\u2122 Drug-Coated Balloon",
+        "ROTAPRO\u2122 Rotational Atherectomy",
+        "WOLVERINE\u2122 Cutting Balloon",
+        "AVVIGO\u2122 + Multi-Modality Guidance",
+        "Guidezilla\u2122 II",
+        "SENTINEL\u2122 Cerebral Protection System"
+      ]
+    }
+  },
+  "error": null,
+  "step_count": null,
+  "created_at": "2026-05-18T08:17:37Z",
+  "completed_at": null
+}

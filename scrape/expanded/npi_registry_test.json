@@ -1,0 +1,123 @@
+{
+  "source": "CMS NPI Registry API",
+  "fetched_at": "2026-05-18T14:43:10",
+  "query": "Cedars-Sinai CA",
+  "results": [
+    {
+      "addresses": [
+        {
+          "address_1": "8700 BEVERLY BLVD",
+          "address_purpose": "MAILING",
+          "address_type": "DOM",
+          "city": "LOS ANGELES",
+          "country_code": "US",
+          "country_name": "United States",
+          "postal_code": "90048",
+          "state": "CA"
+        },
+        {
+          "address_1": "8700 BEVERLY BLVD",
+          "address_purpose": "LOCATION",
+          "address_type": "DOM",
+          "city": "LOS ANGELES",
+          "country_code": "US",
+          "country_name": "United States",
+          "postal_code": "90048",
+          "state": "CA",
+          "telephone_number": "310-423-3277"
+        }
+      ],
+      "basic": {
+        "authorized_official_credential": "M.D.",
+        "authorized_official_first_name": "SHARON",
+        "authorized_official_last_name": "KIM",
+        "authorized_official_middle_name": "E",
+        "authorized_official_name_prefix": "Ms.",
+        "authorized_official_name_suffix": "--",
+        "authorized_official_telephone_number": "3104233277",
+        "authorized_official_title_or_position": "Resident physician",
+        "enumeration_date": "2011-05-31",
+        "last_updated": "2011-05-31",
+        "organization_name": "CEDARS-SINAI",
+        "organizational_subpart": "NO",
+        "status": "A"
+      },
+      "created_epoch": "1306871666000",
+      "endpoints": [],
+      "enumeration_type": "NPI-2",
+      "identifiers": [],
+      "last_updated_epoch": "1306871666000",
+      "number": "1700170321",
+      "other_names": [],
+      "practiceLocations": [],
+      "taxonomies": [
+        {
+          "code": "282N00000X",
+          "desc": "General Acute Care Hospital",
+          "license": null,
+          "primary": true,
+          "state": null,
+          "taxonomy_group": ""
+        }
+      ]
+    },
+    {
+      "addresses": [
+        {
+          "address_1": "8700 BEVERLY BLVD STE 3622",
+          "address_purpose": "MAILING",
+          "address_type": "DOM",
+          "city": "WEST HOLLYWOOD",
+          "country_code": "US",
+          "country_name": "United States",
+          "postal_code": "900481804",
+          "state": "CA"
+        },
+        {
+          "address_1": "8700 BEVERLY BLVD STE 3622",
+          "address_purpose": "LOCATION",
+          "address_type": "DOM",
+          "city": "WEST HOLLYWOOD",
+          "country_code": "US",
+          "country_name": "United States",
+          "postal_code": "900481804",
+          "state": "CA",
+          "telephone_number": "310-423-7417"
+        }
+      ],
+      "basic": {
+        "authorized_official_credential": "M.D.",
+        "authorized_official_first_name": "KASSANDRA",
+        "authorized_official_last_name": "MCMILLEN",
+        "authorized_official_middle_name": "KAY",
+        "authorized_official_name_prefix": "--",
+        "authorized_official_name_suffix": "--",
+        "authorized_official_telephone_number": "5017728882",
+        "authorized_official_title_or_position": "Resident physician",
+        "enumeration_date": "2014-10-22",
+        "last_updated": "2014-10-22",
+        "organization_name": "CEDARS-SINAI",
+        "organizational_subpart": "NO",
+        "status": "A"
+      },
+      "created_epoch": "1413984849000",
+      "endpoints": [],
+      "enumeration_type": "NPI-2",
+      "identifiers": [],
+      "last_updated_epoch": "1413984849000",
+      "number": "1689078446",
+      "other_names": [],
+      "practiceLocations": [],
+      "taxonomies": [
+        {
+          "code": "207VX0000X",
+          "desc": "Obstetrics & Gynecology, Obstetrics",
+          "license": null,
+          "primary": true,
+          "state": null,
+          "taxonomy_group": "193200000X - Multi-Specialty Group"
+        }
+      ]
+    }
+  ]
+}
