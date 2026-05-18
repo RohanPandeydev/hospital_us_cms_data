@@ -1,0 +1,21 @@
+{
+  "source": "CDC Open Data \u2014 Hospital/HAI datasets",
+  "fetched_at": "2026-05-18T14:31:45",
+  "datasets": [
+    {
+      "id": "mruq-6cah",
+      "name": "National Hospital Ambulatory Medical Care Survey, Outpatient Department restricted-data, 2012-2013",
+      "url": "https://data.cdc.gov/resource/mruq-6cah.json"
+    },
+    {
+      "id": "vdzy-6i9v",
+      "name": "Weekly Hospital Respiratory Admission Levels and Rates by Jurisdiction, National Healthcare Safety Network (NHSN)",
+      "url": "https://data.cdc.gov/resource/vdzy-6i9v.json"
+    },
+    {
+      "id": "whhs-7a5d",
+      "name": "Imputed Hospitalization Rate for RSV at the State Level",
+      "url": "https://data.cdc.gov/resource/whhs-7a5d.json"
+    }
+  ]
+}

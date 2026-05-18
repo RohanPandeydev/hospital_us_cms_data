@@ -1,0 +1,3231 @@
+<!DOCTYPE html>
+<html lang="en_us">
+<head>
+<!-- begin spin_special_output(head_start) -->
+<style type="text/css" wd_script_id="search_form_style" nonce="NTRjNWM2Y2E1OWIzODM4YmJiOGVjYmNlZTU4ODE0MWYyOTg2MjMwYg==">
+		.wd_search_form .wd_input_datepicker {
+			margin-right: 2px;
+		}
+		.wd_search_type_checkbox {
+			margin-left: 20px;
+		}
+		</style>
+<script type="text/javascript" src="js/jquery-webdriver.js" wd_script_id="jquery-webdriver.js" nonce="NTRjNWM2Y2E1OWIzODM4YmJiOGVjYmNlZTU4ODE0MWYyOTg2MjMwYg=="></script>
+<script type="text/javascript" src="js/webdriver.js" wd_script_id="webdriver.js" nonce="NTRjNWM2Y2E1OWIzODM4YmJiOGVjYmNlZTU4ODE0MWYyOTg2MjMwYg=="></script>
+<script type="text/javascript" wd_script_id="search_form_script" nonce="NTRjNWM2Y2E1OWIzODM4YmJiOGVjYmNlZTU4ODE0MWYyOTg2MjMwYg==">
+			function wd_toggle_search_form(link, advanced) {
+				var $ = webDriver.jQuery;
+				var $container = $(link).closest(".wd_search_form_container");
+				var basic_form = $container.find(".wd_search_form_basic");
+				var basic_query = basic_form.find('input[name="query"]');
+				var advanced_form = $container.find(".wd_search_form_advanced");
+				var advanced_query = advanced_form.find('input[name="query"]');
+
+				if (advanced) {
+					advanced_query.val(basic_query.val());
+					advanced_form.show();
+					basic_form.hide();
+				} else {
+					basic_query.val(advanced_query.val());
+					basic_form.show();
+					advanced_form.hide();
+				}
+			}
+
+			function wd_toggle_search_type_checkboxes(radio) {
+				var $ = webDriver.jQuery;
+				var $radio = $(radio);
+				var all = $radio.val() == "All" ? $radio.is(":checked") : !$radio.is(":checked");
+				var $checkboxes = $radio.closest(".wd_form_field").find(".wd_search_type_checkbox");
+				$checkboxes.find('input[type="checkbox"]').prop("disabled", all);
+				$checkboxes.toggle(!all);
+			}
+
+			webDriver.jQuery(function ($) {
+				$('.wd_search_type_radio input[type="radio"]').each(function() {wd_toggle_search_type_checkboxes(this);});
+			});
+		</script>
+<style type="text/css" wd_script_id="item_search_form_style" nonce="NTRjNWM2Y2E1OWIzODM4YmJiOGVjYmNlZTU4ODE0MWYyOTg2MjMwYg==">
+		.wd_item_search_form_container .wd_search_form_basic {
+			display: inline-block;
+		}
+		.wd_search_basic_fields {
+			display: inline-block;
+			background-color: #f1f1f1;
+			border: 1px solid #d3d3d3;
+			padding: 3px;
+			vertical-align: middle;
+		}
+		.wd_search_basic_fields > * {
+			vertical-align: middle;
+		}
+		.wd_item_search_form_container .wd_input_datepicker {
+			margin-right: 2px;
+		}
+		.wd_search_button {
+			color: #999999;
+		}
+		.wd_search_button.wd_highlight {
+			color: #000000;
+		}
+		.wd_search_advanced_link,
+		.wd_search_titles_only,
+		.wd_checkbox {
+			white-space: nowrap;
+		}
+		</style>
+<script type="text/javascript" wd_script_id="item_search_form_script" nonce="NTRjNWM2Y2E1OWIzODM4YmJiOGVjYmNlZTU4ODE0MWYyOTg2MjMwYg==">
+			function wd_item_search_form_toggle(link, advanced) {
+				var $ = webDriver.jQuery;
+				var $container = $(link).closest(".wd_item_search_form_container");
+				var $basic_form = $container.find(".wd_search_form_basic");
+				var $advanced_form = $container.find(".wd_search_form_advanced");
+
+				var $basic_inputs = $basic_form.find(":input");
+				$basic_inputs.each(function() {
+					var $advanced_input = $advanced_form.find(this.tagName+'[name="'+this.name+'"]');
+					if ($advanced_input.length > 0) {
+						if (advanced)
+							$advanced_input.val($(this).val());
+						else
+							$(this).val($advanced_input.val());
+					}
+				});
+
+				$basic_form.toggle(!advanced);
+				$advanced_form.toggle(advanced);
+			}
+
+			function wd_item_search_form_highlight(form) {
+				var $btn = $(form).find('input[type="submit"],button[type="submit"]');
+				$btn.addClass("wd_highlight");
+			}
+
+			function wd_item_search_form_submit(form, in_submit) {
+				var $form = $(form);
+
+				var have_url = false;
+				$form.find("select").each(function() {
+					var $select = $(this);
+					
+					if (!$select.val())
+						$select.prop("disabled", "disabled");
+
+					var url = $select.find("option:selected").attr("wd_url");
+					if (url && !have_url) {
+						$form.attr("action", url);
+						$select.prop("disabled", "disabled");
+						$form.find('input[name="s"]').prop("disabled", "disabled");
+						have_url = true;
+					}
+				});
+
+				$form.find("input").each(function() {
+					var $input = $(this);
+					
+					if (!$input.val())
+						$input.prop("disabled", "disabled");
+				});
+
+				if (!in_submit)
+					$form.submit();
+			}
+		</script>
+<link href="css/wd_wcag.css" type="text/css" rel="stylesheet" wd_script_id="wd_wcag.css">
+<script type="text/javascript" src="js/wd_wai_calendar_button.js" wd_script_id="wd_wai_calendar_button.js" nonce="NTRjNWM2Y2E1OWIzODM4YmJiOGVjYmNlZTU4ODE0MWYyOTg2MjMwYg=="></script>
+<script type="text/javascript" src="js/wd_wai_datepicker.js" wd_script_id="wd_wai_datepicker.js" nonce="NTRjNWM2Y2E1OWIzODM4YmJiOGVjYmNlZTU4ODE0MWYyOTg2MjMwYg=="></script>
+<script type="text/javascript" src="js/wd_wai_datepicker_day.js" wd_script_id="wd_wai_datepicker_day.js" nonce="NTRjNWM2Y2E1OWIzODM4YmJiOGVjYmNlZTU4ODE0MWYyOTg2MjMwYg=="></script>
+<link href="css/wd_wai_datepicker.css" type="text/css" rel="stylesheet" wd_script_id="wd_wai_datepicker.css">
+<script type="text/javascript" wd_script_id="form_wai_dp__scriptnf_start" nonce="NTRjNWM2Y2E1OWIzODM4YmJiOGVjYmNlZTU4ODE0MWYyOTg2MjMwYg==">
+							window.addEventListener("load" , function () {
+								let dp_input = document.getElementById("wd_wai_dp_input_nf_start");
+								let dp_button = document.getElementById("wd_wai_dp_button_nf_start");
+								let dp_dialog = document.getElementById("wd_datepicker_dialog_nf_start"  );
+								let wd_datePicker = new DatePicker(dp_input, dp_button, dp_dialog, "2004-01-06","2026-05-04"  );
+								wd_datePicker.init();
+							});   
+						</script>
+<script type="text/javascript" wd_script_id="form_wai_dp__scriptnf_end" nonce="NTRjNWM2Y2E1OWIzODM4YmJiOGVjYmNlZTU4ODE0MWYyOTg2MjMwYg==">
+							window.addEventListener("load" , function () {
+								let dp_input = document.getElementById("wd_wai_dp_input_nf_end");
+								let dp_button = document.getElementById("wd_wai_dp_button_nf_end");
+								let dp_dialog = document.getElementById("wd_datepicker_dialog_nf_end"  );
+								let wd_datePicker = new DatePicker(dp_input, dp_button, dp_dialog, "2004-01-06","2026-05-04"  );
+								wd_datePicker.init();
+							});   
+						</script>
+<script type="text/javascript" src="js/wd_form.js" wd_script_id="wd_form.js" nonce="NTRjNWM2Y2E1OWIzODM4YmJiOGVjYmNlZTU4ODE0MWYyOTg2MjMwYg=="></script>
+<link href="css/wd_form.css" type="text/css" rel="stylesheet" wd_script_id="wd_form.css">
+<style type="text/css" wd_script_id="template item:newsfeed_releases:system style" nonce="NTRjNWM2Y2E1OWIzODM4YmJiOGVjYmNlZTU4ODE0MWYyOTg2MjMwYg==">
+.wd_item {
+	overflow:auto;
+}
+.wd_item .wd_thumbnail {
+	float: left;
+	margin: 0 5px 5px 0;
+}
+.wd_item .wd_date {
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 1.167em;
+	color: #cccccc;
+}
+.wd_item .wd_title {
+	font-weight: bold;
+	font-size: 2em;
+}
+.wd_item .wd_subtitle {
+	font-weight: bold;
+}
+.wd_item .wd_summary p {
+	margin-bottom: 0;
+}
+.wd_asset_type_link_list {
+	display: inline-block;
+	margin: 10px 0 0 0;
+	padding: 2px;
+}
+.wd_item_wrapper {
+	margin-left: 149px;
+}
+.wd_item_wrapper:first-child,
+.wd_layout-masonry .wd_item_wrapper,
+.wd_layout-grid .wd_item_wrapper {
+	margin-left: 0;
+}
+.wd_layout-masonry .wd_item,
+.wd_layout-grid .wd_item {
+	border: 1px solid #e1e1e1;
+	padding: 5px;
+}
+.wd_layout-masonry .wd_thumbnail,
+.wd_layout-grid .wd_thumbnail {
+	float: none;
+	text-align: center;
+	margin: 0 0 5px 0;
+}
+</style>
+<link href="thirdparty/font-awesome/css/font-awesome.min.css" type="text/css" rel="stylesheet" wd_script_id="font-awesome.min.css">
+<style type="text/css" wd_script_id="template asset_type_link:base:system style" nonce="NTRjNWM2Y2E1OWIzODM4YmJiOGVjYmNlZTU4ODE0MWYyOTg2MjMwYg==">
+ul.wd_asset_type_link_list {
+	margin: 0;
+	padding: 0;
+	overflow: auto;
+	list-style: none;
+	color: #cccccc;
+	font-size: 0.8333em;
+}
+li.wd_asset_type_link {
+	float: left;
+	padding: 0.2em;
+	white-space: nowrap;
+}
+li.wd_asset_type_link ~ li.wd_asset_type_link {
+	padding-left: 0.5em;
+}
+li.wd_asset_type_link .wd_icon {
+	color: #4f5051;
+}
+li.wd_asset_type_link .wd_title {
+	font-size: 1em;
+	font-weight: normal;
+}
+li.wd_asset_type_link span.wd_count:before {
+	content: "(";
+}
+li.wd_asset_type_link span.wd_count:after {
+	content: ")";
+}</style>
+<style type="text/css" wd_script_id="template_list_simple_style" nonce="NTRjNWM2Y2E1OWIzODM4YmJiOGVjYmNlZTU4ODE0MWYyOTg2MjMwYg==">
+						ul.wd_layout-simple {
+							padding: 0;
+							margin: 10px 0;
+							list-style: none;
+						}
+					</style>
+<script type="text/javascript" nonce="NTRjNWM2Y2E1OWIzODM4YmJiOGVjYmNlZTU4ODE0MWYyOTg2MjMwYg==">webDriver.push_jQuery();</script>
+<script type="text/javascript" src="js/jquery-ui.js" wd_script_id="jquery-ui.js" nonce="NTRjNWM2Y2E1OWIzODM4YmJiOGVjYmNlZTU4ODE0MWYyOTg2MjMwYg=="></script>
+<script type="text/javascript" src="js/wd_resize.js" wd_script_id="wd_resize.js" nonce="NTRjNWM2Y2E1OWIzODM4YmJiOGVjYmNlZTU4ODE0MWYyOTg2MjMwYg=="></script>
+<link href="css/wd_linkmenu.css" type="text/css" rel="stylesheet" wd_script_id="wd_linkmenu.css">
+<script type="text/javascript" wd_script_id="wd_linkmenu_script" nonce="NTRjNWM2Y2E1OWIzODM4YmJiOGVjYmNlZTU4ODE0MWYyOTg2MjMwYg==">
+(function($, undefined) {
+	webDriver.resizeLinkMenu = function() {
+		$(this).data("wd_linkmenu_element").wd_linkmenu("resize");
+		return false;
+	};
+	
+	var wd_linkmenu = function(element, options) {
+		this.init(element, options);
+	};
+	
+	wd_linkmenu.prototype = {
+		init: function(element, options) {
+			var self = this;
+			
+			this.$element = $(element);
+			this._options = {
+				"class": "",
+				"label": "Menu",
+			};
+			
+			this.options(options);
+			
+			this.$active = this.$orig_active = this.$element.find(".wd_linkmenu-active");
+			var label = this.$active ? this.$active.text() : this._options["label"];
+			
+			this.$header = $("<div>")
+					.addClass("wd_linkmenu-header")
+					.attr("tabindex","0")
+					.data("wd_linkmenu_element", this.$element)
+					.attr("wd_resize", "resizeLinkMenu")
+					.on("click.wd_linkmenu", function(event) {
+						self.toggle();
+						event.preventDefault();
+					})
+					.insertBefore(this.$element)
+			;
+			if (this._options["class"])
+				this.$header.addClass(this._options["class"]);
+			var attr_string = this.$element.attr("wd_linkmenu_header");
+			if (attr_string) {
+				var attrs = JSON.parse(attr_string);
+				for(var name in attrs)
+					this.$header.attr(name, attrs[name]);
+			}
+			this.$label = $("<span>")
+					.addClass("wd_linkmenu-label")
+					.text(label)
+					.appendTo(this.$header);
+			this.$icon = $("<span class=\"wd_linkmenu-icon fa fa-chevron-down\" title=\"Open\"><\/span>")
+					.appendTo(this.$header);
+
+			this.$items = this.$element.children(".wd_linkmenu-item");
+			this.$items
+					.addClass("wd_linkmenu-listitem")
+					.prop("tabIndex", -1)
+			;
+			
+			// Remove any non-items (e.g. unintended text nodes)
+			this.$element.empty();
+			this.$element.append(this.$items);
+
+			this.$element.addClass("wd_linkmenu-list");
+			
+			// TODO: make tabs treat show/hide similar to Load, Resize
+			this.$element.closest("div.wd_assets").bind("wd_assets_show", function() {self.resize();});
+			this.$element.closest("div.wd_tab_content").bind("wd_tab_show", function() {self.resize();});
+
+			this.$element
+					.appendTo($("body"))
+					.hide()
+			;
+			
+			this.need_size = true;
+			this.resize();
+
+			this.$header.on("keydown.wd_linkmenu", function(event) {self.onkeydown(event,false);});
+			this.$header.on("blur.wd_linkmenu", function() {self.onblur();});
+			
+			this.$element.on("keydown.wd_linkmenu", function(event) {self.onkeydown(event,true);});
+			this.$element.on("blur.wd_linkmenu", function() {self.onblur();});
+			this.$element.on("mousemove.wd_linkmenu", function(event) {self.onmousemove(event);});
+			this.$items.not(".wd_disabled").on("click.wd_linkmenu", function() {self.onitemclick(this);})
+		},
+		
+		options: function(options) {
+			if (options) {
+				$.extend(this._options, options);
+			} else {
+				return this._options;
+			}
+		},
+		
+		reload: function(options) {
+			if (options) {
+				this.options(options);
+			}
+			
+			this.reset();
+		},
+
+		reset: function() {
+		},
+
+		onkeydown: function(event, on_item) {
+			var key = event.which || event.keyCode;
+			var used = false;
+			switch (key) {
+				case 13: // Return
+				case 32: // Space
+					if (!on_item) {
+						this.toggle();
+						used = true;
+					}
+					break;
+				case 27: // Escape
+					this.close();
+					used = true;
+					break;
+				case 9: // Tab
+					if (on_item)
+						this.$header[0].focus(); // Move focus back to normal flow
+					break;
+				case 33: // Page Up
+				case 36: // Home
+					if (!on_item)
+						this.open();
+					this.first();
+					used = true;
+					break;
+				case 34: // Page Down
+				case 35: // End
+					if (!on_item)
+						this.open();
+					this.last();
+					used = true;
+					break;
+				case 38: // Up
+				case 37: // Left
+					if (!on_item)
+						this.open();
+					this.prev();
+					used = true;
+					break;
+				case 40: // Down
+				case 39: // Right
+					if (!on_item)
+						this.open();
+					this.next();
+					used = true;
+					break;
+			}
+			
+			if (used) {
+				event.stopImmediatePropagation();
+				event.preventDefault();
+			}
+		},
+
+		onmousemove: function(event) {
+			var $item = $(event.target);
+			if ($item.hasClass("wd_linkmenu-listitem"))
+				this.goto($item);
+		},
+				
+		onitemclick: function(item) {
+			$item = $(item);
+			this.$label.text($item.text());
+			this.$orig_active = this.$active = $item;
+			this.close();
+			this.$header[0].focus();
+		},
+				
+		open: function() {
+			var self = this;
+			$(document).on("mousedown.wd_linkmenu touchstart.wd_linkmenu", function(event) {
+				if ($(event.target).closest(self.$header.add(self.$element)).length == 0)
+					self.close();
+			});
+			
+			this.$header.addClass("wd_linkmenu-active");
+			this.$element
+					.show()
+					.position({my:"left top",at:"left bottom",of:this.$header})
+			;
+			this.goto(this.$active);
+		},
+				
+		close: function() {
+			this.$element.hide();
+			this.set_active(this.$orig_active);
+			this.$header.removeClass("wd_linkmenu-active");
+			
+			$(document).off(".wd_linkmenu");
+		},
+				
+		onblur: function() {
+			if (!this.ignore_blur)
+				this.close();
+			this.ignore_blur = false;
+		},
+				
+		toggle: function() {
+			this.$element.is(":visible") ? this.close() : this.open();
+		},
+				
+		set_active: function($item) {
+			if ($item.length > 0) {
+				if (this.$active)
+					this.$active.removeClass("wd_linkmenu-active");
+				this.$active = $item;
+				this.$active.addClass("wd_linkmenu-active");
+			}
+		},
+				
+		goto: function($item) {
+			if ($item.length > 0) {
+				this.set_active($item);
+				this.ignore_blur = true;
+				this.$active[0].focus();
+			}
+		},
+				
+		next: function() {
+			if (!this.$active)
+				this.first();
+			else
+				this.goto(this.$active.next());
+		},
+
+		prev: function() {
+			if (!this.$active)
+				this.last();
+			else
+				this.goto(this.$active.prev());
+		},
+				
+		first: function() {
+			this.goto(this.$items.first());
+		},
+		
+		last: function() {
+			this.goto(this.$items.last());
+		},
+		
+		destroy: function() {
+			this.$items
+				.removeClass("wd_linkmenu-listitem")
+				.off(".wd_linkmenu")
+			;
+			this.$element
+				.off(".wd_linkmenu")
+				.removeClass("wd_linkmenu-list")
+				.insertBefore(this.$header)
+			;
+			this.$header.remove();
+		},
+		
+		resize: function() {
+			if (this.need_size && this.$label.is(":visible")) {
+				var temp_show = !this.$element.is(":visible");
+				if (temp_show) {
+					this.$element.show();
+				}
+				
+				this.$label.width("auto");
+				this.$element.width("auto");
+				this.$label.width(this.$element.width());
+				this.$element.width(this.$header.width());
+
+				if (temp_show) {
+					this.$element.hide();
+				}
+				this.need_size = false;
+			}
+		}
+	};
+
+	$.fn.wd_linkmenu = function(options) {
+		var args = Array.prototype.slice.call(arguments, 1);
+		var result = this;
+		
+		this.each(function() {
+			var instance = $(this).data("wd_linkmenu");
+			if (typeof options == "string") {
+				var res = instance[options].apply(instance, args);
+				if (typeof res != "undefined") {
+					result = res;
+					return false;
+				}
+			} else {
+                if (!instance) {
+					instance = new wd_linkmenu(this, options);
+					$(this).data("wd_linkmenu", instance);
+				}
+				
+                instance.reload(options);
+			}
+        });
+		
+		return result;
+    };
+})(webDriver.jQuery);
+</script>
+<script type="text/javascript" wd_script_id="wd_linkmenu_init_script" nonce="NTRjNWM2Y2E1OWIzODM4YmJiOGVjYmNlZTU4ODE0MWYyOTg2MjMwYg==">
+			webDriver.jQuery(function($) {
+				$(".wd_linkmenu").each(function() {
+					var $menu = $(this);
+					$menu.wd_linkmenu();
+				});
+			});
+		</script>
+<style type="text/css" wd_script_id="page_menu_style" nonce="NTRjNWM2Y2E1OWIzODM4YmJiOGVjYmNlZTU4ODE0MWYyOTg2MjMwYg==">
+		.wd_page_menu {
+			overflow: auto;
+		}
+		.wd_page_limit {
+			float: left;
+			margin: 0;
+			padding: 8px 0;
+		}
+		.wd_page_links {
+			float: right;
+			margin: 0;
+			padding: 0;
+			list-style-type: none;
+		}
+		.wd_page_link {
+			display: inline-block;
+			margin: 0;
+			padding: 8px;
+			border: 1px solid #cccccc;
+			border-left: none;
+		}
+		.wd_page_active {
+			background-color: #eeeeee;
+		}
+		.wd_page_link:first-child {
+			border-left: 1px solid #cccccc;
+			border-top-left-radius: 3px;
+			border-bottom-left-radius: 3px;
+		}
+		.wd_page_link:last-child {
+			border-top-right-radius: 3px;
+			border-bottom-right-radius: 3px;
+		}
+	</style>
+<script type="text/javascript" wd_script_id="view_printable_script" nonce="NTRjNWM2Y2E1OWIzODM4YmJiOGVjYmNlZTU4ODE0MWYyOTg2MjMwYg==">
+	function view_printable() {
+		var loc = window.location;
+		var sep = (loc.search == "") ? "?" : "&";
+		var url = loc.protocol+"//"+loc.host+loc.pathname+loc.search+sep+"printable"+loc.hash;
+		window.open(url, "_blank", "");
+	}
+</script>
+<style type="text/css" wd_script_id="toolbar_style" nonce="NTRjNWM2Y2E1OWIzODM4YmJiOGVjYmNlZTU4ODE0MWYyOTg2MjMwYg==">
+			div.wd_toolbar {
+				border-top: 1px solid #cccccc;
+				border-bottom: 1px solid #cccccc;
+				margin: 15px 0px 15px 0px;
+				padding: 5px;
+				line-height: 1;
+			}
+			div.wd_toolbar-page {
+				clear: both;
+			}
+			div.wd_toolbar ul.wd_tools {
+				display: inline-block;
+				width: 100%;
+				margin: 0;
+				padding: 5px 0;
+			}
+			div.wd_toolbar ul.wd_tools li.wd_tool {
+				display: block;
+				list-style-type: none;
+				margin-right: 5px;
+				padding: 0;
+				float: right;
+			}
+			span.wd_tool_icon > a:link,
+			span.wd_tool_icon > a:visited {
+				border-radius: 2px;
+				display: inline-block;
+				width: 30px;
+				height: 30px;
+				box-sizing: border-box;
+				margin: 0;
+				padding: 7px;
+				font-size: 16px;
+				line-height: 1;
+				text-align: center;
+				color: #ffffff;
+				background-color: #767676;
+			} 
+			span.wd_tool_icon > a:hover {
+				color: #ffffff;
+				background-color: #666666;
+				text-decoration: none;
+			}
+			div.wd_toolbar ul.wd_tools li.wd_tool-addthis {
+				float: left;
+			}
+		</style>
+<style type="text/css" wd_script_id="template page:newsfeed_releases:system style" nonce="NTRjNWM2Y2E1OWIzODM4YmJiOGVjYmNlZTU4ODE0MWYyOTg2MjMwYg==">
+.wd_category_header {
+	margin: 10px 0;
+	overflow: auto;
+}
+.wd_thumbnail {
+	float: left;
+	margin: 0 5px 5px 0;
+}
+.wd_item_list {
+	margin: 10px 0;
+	overflow: auto;
+}
+.wd_item {
+	padding: 0;
+	margin: 0 0 10px 0;
+}
+</style>
+<script type="text/javascript" nonce="NTRjNWM2Y2E1OWIzODM4YmJiOGVjYmNlZTU4ODE0MWYyOTg2MjMwYg==">webDriver.pop_jQuery();</script>
+
+<!-- end spin_special_output(head_start) -->
+ 
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="format-detection" content="telephone=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+	<title>News Releases - Boston Scientific</title>
+	
+ <meta name="keywords" content="" />
+ <meta name="description" content="At Boston Scientific, unwavering commitment to patients translates into the highest levels of research, quality, and innovation. Read the latest press releases." />
+ <meta name="twitter:card" content="summary" />
+ <meta property="og:site_name" content="Boston Scientific" />
+ <meta property="og:url" content="https://news.bostonscientific.com/news-releases" />
+ <meta name="image" property="og:image" content="https://news.bostonscientific.com/image/boston-scientific-logo-social-media-optimized.jpg" />
+ <meta name="twitter:image" content="https://news.bostonscientific.com/image/boston-scientific-logo-social-media-optimized.jpg" />
+
+    <meta name="msapplication-TileColor" content="#003c71">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon-32x32.png">
+
+  
+    <link href="./css/clientlib-corporate.bacbfb9d65d799a5125e6dfdacb08418.css" type="text/css" rel="stylesheet preload" as="style">
+    
+    <link rel="stylesheet" type="text/css" href="./bsc-new-header_files/corporate.min.a6bce281e9deb24ffd580ce04b1ba31c.css">
+    <link rel="stylesheet" type="text/css" href="./bsc-new-header_files/header.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="alternate" hreflang="en_US" href="http://www.bostonscientific.com/content/gwc/en-US/about-us.html">
+	
+	<link rel="alternate" href="https://news.bostonscientific.com/news-releases?pagetemplate=rss" type="application/rss+xml" title="News Releases - Boston Scientific">	
+	
+	<link rel="stylesheet" href="./css/corporate.min.a6bce281e9deb24ffd580ce04b1ba31c.css" type="text/css">
+	
+    <meta name="google-site-verification" content="z8PfcrQH1UV5JQMaYktOOrj3QS7HBlJvm9DlYO6y18c" />
+
+	<!-- Custom WD external files -->
+
+    <link rel="stylesheet" href="./css/clientlib-corporate.a45f023024375161e59db73dbc4505f2.css" type="text/css">
+
+    <link rel="stylesheet" href="./css/wd_normalize.css" type="text/css">
+    <link rel="stylesheet" href="./css/wdcontent.css" type="text/css">
+
+
+<!-- begin spin_special_output(head_end) -->
+<link rel="canonical" href="https://news.bostonscientific.com/news-releases" />
+<!-- end spin_special_output(head_end) -->
+</head>
+
+<body class="wd_pageid_24889">
+    <div class="experiencefragment">
+        <div id="experiencefragment-52bc65c53a" class="cmp-experiencefragment cmp-experiencefragment--header">
+        <div id="container-f1815f303e" class="cmp-container">
+        <div class="primary-navigation">
+        <a href="https://www.bostonscientific.com/en-US/Home.html#maincontent" class="bsds-skip-link" id="skiptomaincontent">Skip to main content</a>
+        <header class="bsds-nav-header js-nav-header">
+            <!-- Utility Nav -->
+            <nav class="bsds-nav-utility" aria-label="utility">
+                <ul class="bsds-nav">
+                <li class="bsds-nav-item section">
+                <a class="bsds-nav-link js-nav-link" href="https://news.bostonscientific.com/">News</a>
+                </li>
+                <li class="bsds-nav-item section">
+                <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/careers.html">Careers</a>
+                </li>
+                <li class="bsds-nav-item section">
+                <a class="bsds-nav-link js-nav-link" href="https://investors.bostonscientific.com/">Investors</a>
+                </li>
+                <li class="bsds-nav-item section">
+                <div class="bsds-dropdown">
+                <button class="bsds-button bsds-dropdown-trigger bsds-nav-link js-nav-region-selector-btn" aria-haspopup="true" aria-expanded="false">Region selector</button>
+                <ul class="bsds-dropdown-menu js-nav-region-selector-menu visually-hidden" role="menu" hidden="">
+                <li class="bsds-dropdown-item" role="none">
+                <a href="https://www.bostonscientific.com/es-ar/home.html" role="menuitem" class="bsds-link">Argentina
+                </a>
+                </li>
+                <li class="bsds-dropdown-item" role="none">
+                <a href="https://www.bostonscientific.com/pt-BR/home.html" role="menuitem" class="bsds-link">Brazil
+                </a>
+                </li>
+                <li class="bsds-dropdown-item" role="none">
+                <a href="https://www.bostonscientific.com/es-CL/home.html" role="menuitem" class="bsds-link">Chile
+                </a>
+                </li>
+                <li class="bsds-dropdown-item" role="none">
+                <a href="https://www.bostonscientific.cn/" role="menuitem" class="bsds-link">China
+                </a>
+                </li>
+                <li class="bsds-dropdown-item" role="none">
+                <a href="https://www.bostonscientific.com/es-co/home.html" role="menuitem" class="bsds-link">Colombia
+                </a>
+                </li>
+                <li class="bsds-dropdown-item" role="none">
+                <a href="https://www.bostonscientific.com/DE-Deutsch/startseite.html" role="menuitem" class="bsds-link">Deutschland
+                </a>
+                </li>
+                <li class="bsds-dropdown-item" role="none">
+                <a href="https://www.bostonscientific.com/es-ES/home.html" role="menuitem" class="bsds-link">Espanol
+                </a>
+                </li>
+                <li class="bsds-dropdown-item" role="none">
+                <a href="https://www.bostonscientific.com/en-EU/home.html" role="menuitem" class="bsds-link">Europe
+                </a>
+                </li>
+                <li class="bsds-dropdown-item" role="none">
+                <a href="https://www.bostonscientific.com/en-IN/home.html" role="menuitem" class="bsds-link">India
+                </a>
+                </li>
+                <li class="bsds-dropdown-item" role="none">
+                <a href="https://www.bostonscientific.com/jp-JP/home.html" role="menuitem" class="bsds-link">Japan
+                </a>
+                </li>
+                <li class="bsds-dropdown-item" role="none">
+                <a href="https://www.bostonscientific.com/kr-KR/home.html" role="menuitem" class="bsds-link">Korea
+                </a>
+                </li>
+                <li class="bsds-dropdown-item" role="none">
+                <a href="https://www.bostonscientific.com/es-MX/home.html" role="menuitem" class="bsds-link">Mexico
+                </a>
+                </li>
+                <li class="bsds-dropdown-item" role="none">
+                <a href="https://www.bostonscientific.com/es-pe/home.html" role="menuitem" class="bsds-link">Peru
+                </a>
+                </li>
+                <li class="bsds-dropdown-item" role="none">
+                <a href="https://www.bostonscientific.com/en-US/Home.html" role="menuitem" class="bsds-link">United States
+                </a>
+                </li>
+                </ul>
+                </div>
+                </li>
+                </ul>
+            </nav>
+            <!-- Nav Bar-->
+            <nav class="bsds-nav-primary js-nav-primary" aria-label="primary">
+                <div class="bsds-nav-bar">
+                <a href="https://www.bostonscientific.com/" class="bsds-nav-link-logo" aria-label="Advancing Science for Life - US - Boston Scientific">
+                <img src="./img/logo/logo-bsc.svg" alt="Boston Scientific home">
+                </a>
+                <ul class="bsds-nav">
+                <li class="bsds-nav-item bsds-nav-item-root js-item-root section">
+                    <button class="bsds-button-subtle bsds-nav-link js-nav-root-btn" id="nav-tree-3f338004b1" type="button" aria-haspopup="true" aria-controls="navPrimaryMenu" aria-expanded="false">For healthcare professionals</button>
+                </li>
+                <li class="bsds-nav-item bsds-nav-item-root js-item-root section">
+                <button class="bsds-button-subtle bsds-nav-link js-nav-root-btn" id="nav-tree-ad6525e301" type="button" aria-haspopup="true" aria-controls="navPrimaryMenu" aria-expanded="false">For patients and caregivers</button>
+                </li>
+                <li class="bsds-nav-item bsds-nav-item-root js-item-root section">
+                    <button class="bsds-button-subtle bsds-nav-link js-nav-root-btn" id="nav-tree-4a9259e4a9" type="button" aria-haspopup="true" aria-controls="navPrimaryMenu" aria-expanded="false">About Boston Scientific</button>
+                </li>
+                <li class="bsds-nav-item bsds-nav-item-search section"><button class="bsds-button-subtle bsds-nav-link js-nav-search-toggle" aria-label="Toggle search" aria-haspopup="true" aria-controls="navPrimarySearch" aria-expanded="false">
+                <span class="bsds-nav-link-search-text">Search</span>
+                </button>
+                </li>
+                <li class="bsds-nav-item bsds-nav-item-toggle">
+                <button class="bsds-button-subtle bsds-nav-link js-nav-xs-toggle-btn" aria-label="Toggle menu" aria-haspopup="true" aria-controls="navPrimaryMenu" aria-expanded="false">
+                Menu
+                </button>
+                </li>
+                </ul>
+                </div>
+                <!-- Search Panel -->
+                <input type="hidden" value="https://www.bostonscientific.com/en-US/search.html" name="searchPath" data-token="xx95585681-671a-43b4-bfa3-b43ea9b38ea5" data-organization="bostonscientificproductionfv9tfxih">
+                <link rel="stylesheet" href="./css/CoveoFullSearch.css">
+                <script class="coveo-script" src="./js/CoveoJsSearch.Lazy.min.js"></script>
+                <div id="navPrimarySearch" class="bsds-search-panel js-nav-search-panel" data-cmp-is="search" data-cmp-min-length="3" data-cmp-results-size="10">
+                <div id="searchbox" class="bsds-form-search js-form-search">
+                <div class="coveo-search-section">
+                <div class="CoveoAnalytics" data-search-hub="Corporate"></div>
+                <div class="CoveoSearchbox" data-enable-query-suggest-addon="true" data-query-suggest-character-threshold="3" data-enable-omnibox="true" data-placeholder="Search">
+                </div>
+                </div>
+                </div>
+                <div id="navSearchResults" class="cmp-search__results js-search-results" aria-label="Search results" data-cmp-hook-search="results" role="listbox" aria-multiselectable="false"></div>
+                <script data-cmp-hook-search="itemTemplate" type="x-template">
+                <a class="cmp-search__item" data-cmp-hook-search="item" role="option" aria-selected="false">
+                <span class="cmp-search__item-title" data-cmp-hook-search="itemTitle"></span>
+                </a>
+                </script>
+                </div>
+                <!-- Nav Menu -->
+                <div id="navPrimaryMenu" class="bsds-nav-menu js-nav-menu" tabindex="-1">
+                <button class="bsds-button-subtle bsds-nav-menu-back js-nav-menu-back" type="button">Back </button>
+                <div class="bsds-nav-menu-panels">
+                <div class="bsds-nav-menu-panel js-nav-menu-panel js-nav-menu-panel-xs">
+                <ul class="bsds-nav">
+                <li class="bsds-nav-item-parent js-item-nav-parent">
+                <button class="bsds-button-subtle bsds-nav-link js-nav-item-button" id="nav-tree-3f338004b1" aria-expanded="false">
+                <div class="bsds-nav-link-text">For healthcare professionals</div>
+                </button>
+                <div class="bsds-nav-menu-panel js-nav-menu-panel has-header">
+                <div class="bsds-nav-menu-panel-header">
+                <p class="bsds-nav-menu-panel-title">For healthcare professionals</p>
+                <p class="body-subtle">Find products, medical specialty information, and education opportunities.</p>
+                <a href="https://www.bostonscientific.com/en-US/header/healthcare-professionals.html" class="body-subtle bsds-nav-menu-panel-header-link">See all healthcare professional information</a>
+                </div>
+                <ul class="bsds-nav" aria-describedby="nav-tree-3f338004b1">
+                <li class="bsds-nav-item-parent js-item-nav-parent">
+                    <button class="bsds-button-subtle bsds-nav-link js-nav-item-button" id="nav-tree-3f338004b1-item-4356a87c6f" aria-expanded="false">
+                        <div class="bsds-nav-link-text"> Medical specialties</div>
+                        <div class="bsds-nav-link-description">Learn more about solutions for your specialty area</div>
+                    </button>
+                    <div class="bsds-nav-menu-panel js-nav-menu-panel">
+                        <ul class="bsds-nav" aria-describedby="nav-tree-3f338004b1-item-4356a87c6f">
+                        <li class="bsds-nav-item js-nav-item">
+                            <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/medical-specialties/critical-care.html">Critical Care</a>
+                        </li>
+                        <li class="bsds-nav-item js-nav-item">
+                            <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/medical-specialties/electrophysiology.html">Electrophysiology</a>
+                        </li>
+                        <li class="bsds-nav-item js-nav-item">
+                            <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/medical-specialties/female-pelvic-medicine.html">Female Pelvic Medicine</a>
+                        </li>
+                        <li class="bsds-nav-item js-nav-item">
+                            <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/medical-specialties/gastroenterology.html">Gastroenterology</a>
+                        </li>
+                        <li class="bsds-nav-item js-nav-item">
+                            <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/medical-specialties/gastrointestinal-surgery.html">Gastrointestinal Surgery</a>
+                        </li>
+                        <li class="bsds-nav-item js-nav-item">
+                            <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/medical-specialties/gynecology.html">Gynecology</a>
+                        </li>
+                        <li class="bsds-nav-item js-nav-item">
+                            <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/medical-specialties/heart-failure.html">Heart Failure</a>
+                        </li>
+                        <li class="bsds-nav-item js-nav-item">
+                            <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/medical-specialties/interventional-cardiology.html">Interventional Cardiology</a>
+                        </li>
+                        <li class="bsds-nav-item js-nav-item">
+                            <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/medical-specialties/interventional-radiology.html">Interventional Radiology</a>
+                        </li>
+                        <li class="bsds-nav-item js-nav-item">
+                            <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/medical-specialties/neurological-surgery.html">Neurological Surgery</a>
+                        </li>
+                        <li class="bsds-nav-item js-nav-item">
+                            <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/medical-specialties/otolaryngology.html">Otolaryngology</a>
+                        </li>
+                        <li class="bsds-nav-item js-nav-item">
+                            <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/medical-specialties/pain-management.html">Pain Management</a>
+                        </li>
+                        <li class="bsds-nav-item js-nav-item">
+                            <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/medical-specialties/pulmonology.html">Pulmonology</a>
+                        </li>
+                        <li class="bsds-nav-item js-nav-item">
+                            <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/medical-specialties/structural-heart.html">Structural Heart Valve</a>
+                        </li>
+                        <li class="bsds-nav-item js-nav-item">
+                            <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/medical-specialties/urology.html">Urology</a>
+                        </li>
+                        <li class="bsds-nav-item js-nav-item">
+                            <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/medical-specialties/vascular-surgery.html">Vascular Surgery</a>
+                        </li>
+                        <li class="bsds-nav-item js-nav-item">
+                            <a class="bsds-nav-link-see-all js-link-see-all" href="https://www.bostonscientific.com/en-US/medical-specialties.html">
+                            See all Medical specialties
+                            </a>
+                        </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="bsds-nav-item-parent js-item-nav-parent">
+                    <button class="bsds-button-subtle bsds-nav-link js-nav-item-button" id="nav-tree-3f338004b1-item-0a2e420e8a" aria-expanded="false">
+                        <div class="bsds-nav-link-text"> Products</div>
+                        <div class="bsds-nav-link-description">Browse products by specialty or category</div>
+                    </button>
+                    <div class="bsds-nav-menu-panel js-nav-menu-panel">
+                        <ul class="bsds-nav" aria-describedby="nav-tree-3f338004b1-item-0a2e420e8a">
+                        <li class="bsds-nav-item-parent js-item-nav-parent">
+                            <button class="bsds-button-subtle bsds-nav-link js-nav-item-button" id="nav-tree-3f338004b1-item-ea22995d48" aria-expanded="false">
+                                <div class="bsds-nav-link-text"> Products by medical specialties</div>
+                            </button>
+                            <div class="bsds-nav-menu-panel js-nav-menu-panel">
+                                <ul class="bsds-nav" aria-describedby="nav-tree-3f338004b1-item-ea22995d48">
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/medical-specialties/critical-care/products.html">Critical Care products</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/medical-specialties/electrophysiology/products.html">Electrophysiology products</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/medical-specialties/female-pelvic-medicine/products.html">Female Pelvic Medicine products</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/medical-specialties/gastroenterology/products.html">Gastroenterology products</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/medical-specialties/gastrointestinal-surgery/products.html">Gastrointestinal Surgery products</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/medical-specialties/gynecology/products.html">Gynecology products</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/medical-specialties/interventional-cardiology/products.html">Interventional Cardiology products</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/medical-specialties/interventional-radiology/products.html">Interventional Radiology products</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/medical-specialties/neurological-surgery/products.html">Neurological Surgery products</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/medical-specialties/otolaryngology/products.html">Otolaryngology products</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/medical-specialties/pain-management/products.html">Pain Management products</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/medical-specialties/pulmonology/products.html">Pulmonology products</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/medical-specialties/urology/products.html">Urology products</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/medical-specialties/vascular-surgery/products.html">Vascular Surgery products</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link-see-all js-link-see-all" href="https://www.bostonscientific.com/en-US/medical-specialties.html">
+                                    See all Medical specialties
+                                    </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="bsds-nav-item js-nav-item"><a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/healthcare-professionals/products/category.html">Products by category</a></li>
+                        <li class="bsds-nav-item js-nav-item">
+                            <a class="bsds-nav-link-see-all js-link-see-all" href="https://www.bostonscientific.com/en-US/products.html">
+                            See all Products
+                            </a>
+                        </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="bsds-nav-item-parent js-item-nav-parent">
+                    <button class="bsds-button-subtle bsds-nav-link js-nav-item-button" id="nav-tree-3f338004b1-item-96cd3c1001" aria-expanded="false">
+                        <div class="bsds-nav-link-text"> Customer support and services</div>
+                    </button>
+                    <div class="bsds-nav-menu-panel js-nav-menu-panel">
+                        <ul class="bsds-nav" aria-describedby="nav-tree-440eb98dfa-item-96cd3c1001">
+                            <li class="bsds-nav-item js-nav-item">
+                                <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/contact-us-email2.html">Contact us</a>
+                            </li>
+                            <li class="bsds-nav-item js-nav-item">
+                                <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/elabeling.html">Product literature</a>
+                            </li>
+                            <li class="bsds-nav-item js-nav-item">
+                                <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/reimbursement.html">Reimbursement resources and support</a>
+                            </li>
+                            <li class="bsds-nav-item js-nav-item">
+                                <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/customer-service/ordering/lab-agent.html">Lab Agent</a>
+                            </li>
+                            <li class="bsds-nav-item js-nav-item">
+                                <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/customer-service/product-security.html">Product security</a>
+                            </li>
+                            <li class="bsds-nav-item js-nav-item">
+                                <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/customer-service/expert-care.html">ExpertCare</a>
+                            </li>
+                            <li class="bsds-nav-item js-nav-item">
+                                <a class="bsds-nav-link-see-all js-link-see-all" href="https://www.bostonscientific.com/en-US/customer-service.html">
+                                    See all customer support
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="bsds-nav-item-parent js-item-nav-parent">
+                    <button class="bsds-button-subtle bsds-nav-link js-nav-item-button" id="nav-tree-3f338004b1-item-56e987ade5" aria-expanded="false">
+                        <div class="bsds-nav-link-text"> Professional education</div>
+                    </button>
+                    <div class="bsds-nav-menu-panel js-nav-menu-panel">
+                    <ul class="bsds-nav" aria-describedby="nav-tree-440eb98dfa-item-56e987ade5">
+                        <li class="bsds-nav-item js-nav-item">
+                            <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/education.html">Educare</a>
+                        </li>
+                        <li class="bsds-nav-item js-nav-item">
+                            <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/innovation-center.html">Innovation Center</a>
+                        </li>
+                        <li class="bsds-nav-item js-nav-item">
+                            <a class="bsds-nav-link-see-all js-link-see-all" href="https://www.bostonscientific.com/en-US/healthcare-professionals/professional-education.html">
+                                    See all professional education
+                            </a>
+                        </li>
+                    </ul>
+                    </div>
+                </li>
+                <li class="bsds-nav-item-parent js-item-nav-parent">
+                    <button class="bsds-button-subtle bsds-nav-link js-nav-item-button" id="nav-tree-3f338004b1-item-7e8f6a10f5" aria-expanded="false">
+                        <div class="bsds-nav-link-text"> Administrators</div>
+                    </button>
+                    <div class="bsds-nav-menu-panel js-nav-menu-panel">
+                    <ul class="bsds-nav" aria-describedby="nav-tree-440eb98dfa-item-7e8f6a10f5">
+                        <li class="bsds-nav-item js-nav-item">
+                            <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/healthcare-professionals/administrators/cardiovascular-resources.html">Cardiovascular administrators</a>
+                        </li>
+                        <li class="bsds-nav-item js-nav-item">
+                            <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/healthcare-professionals/administrators/gastroenterology-resources.html">Gastroenterology resources</a>
+                        </li>
+                        <li class="bsds-nav-item js-nav-item">
+                            <a class="bsds-nav-link-see-all js-link-see-all" href="https://www.bostonscientific.com/en-US/healthcare-professionals/administrators.html">
+                                    See all administrators
+                            </a>
+                        </li>
+                    </ul>
+                    </div>
+                </li>
+                </ul>
+                </div>
+                </li>
+                <li class="bsds-nav-item-parent js-item-nav-parent">
+                <button class="bsds-button-subtle bsds-nav-link js-nav-item-button" id="nav-tree-ad6525e301" aria-expanded="false">
+                <div class="bsds-nav-link-text">For patients and caregivers</div>
+                <div class="bsds-nav-link-description">Find the information you need, whether you've been diagnosed with a health condition, have an implanted device, or need support.</div>
+                </button>
+                <div class="bsds-nav-menu-panel js-nav-menu-panel has-header">
+                <div class="bsds-nav-menu-panel-header">
+                <p class="bsds-nav-menu-panel-title">For patients and caregivers</p>
+                <p class="body-subtle">Find the information you need, whether you've been diagnosed with a health condition, have an implanted device, or need support.</p>
+                <a href="https://www.bostonscientific.com/en-US/header/for-patients-and-caregivers.html" class="body-subtle bsds-nav-menu-panel-header-link">All patients and caregivers information</a>
+                </div>
+                <ul class="bsds-nav" aria-describedby="nav-tree-ad6525e301">
+                <li class="bsds-nav-item-parent js-item-nav-parent">
+                    <button class="bsds-button-subtle bsds-nav-link js-nav-item-button" id="nav-tree-ad6525e301-item-76203848e9" aria-expanded="false">
+                        <div class="bsds-nav-link-text"> Treatments and conditions</div>
+                        <div class="bsds-nav-link-description">Devices, procedures and therapies</div>
+                    </button>
+                    <div class="bsds-nav-menu-panel js-nav-menu-panel">
+                        <ul class="bsds-nav" aria-describedby="nav-tree-ad6525e301-item-76203848e9">
+                        <li class="bsds-nav-item-parent js-item-nav-parent">
+                            <button class="bsds-button-subtle bsds-nav-link js-nav-item-button" id="nav-tree-ad6525e301-item-df25b79605" aria-expanded="false">
+                                <div class="bsds-nav-link-text"> Cancer</div>
+                            </button>
+                            <div class="bsds-nav-menu-panel js-nav-menu-panel">
+                                <ul class="bsds-nav" aria-describedby="nav-tree-ad6525e301-item-df25b79605">
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/patients-caregivers/treatments-conditions/colorectal-cancer.html">Colorectal cancer</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/patients-caregivers/treatments-conditions/liver-cancer.html">Liver cancer</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/patients-caregivers/spaceoar-interstitial.html">Prostate cancer</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link-see-all js-link-see-all" href="https://www.bostonscientific.com/en-US/patients-caregivers/treatments-conditions.html#filter1">
+                                    See all Cancer
+                                    </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="bsds-nav-item-parent js-item-nav-parent">
+                            <button class="bsds-button-subtle bsds-nav-link js-nav-item-button" id="nav-tree-ad6525e301-item-8a82b8ed43" aria-expanded="false">
+                                <div class="bsds-nav-link-text"> Digestion and nutrition</div>
+                            </button>
+                            <div class="bsds-nav-menu-panel js-nav-menu-panel">
+                                <ul class="bsds-nav" aria-describedby="nav-tree-ad6525e301-item-8a82b8ed43">
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/patients-caregivers/treatments-conditions/enteral-feeding-tube.html">Enteral feeding </a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/patients-caregivers/treatments-conditions/esophageal-stents.html">Esophageal stents</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link-see-all js-link-see-all" href="https://www.bostonscientific.com/en-US/patients-caregivers/treatments-conditions.html#filter2">
+                                    See all Digestion and nutrition
+                                    </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="bsds-nav-item-parent js-item-nav-parent">
+                            <button class="bsds-button-subtle bsds-nav-link js-nav-item-button" id="nav-tree-ad6525e301-item-25f50878fd" aria-expanded="false">
+                                <div class="bsds-nav-link-text"> Heart &amp; vascular</div>
+                            </button>
+                            <div class="bsds-nav-menu-panel js-nav-menu-panel">
+                                <ul class="bsds-nav" aria-describedby="nav-tree-ad6525e301-item-25f50878fd">
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/patients-caregivers/watchman-interstitial.html">Atrial fibrillation (AFib)</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/patients-caregivers/treatments-conditions/cardiac-monitoring.html">Cardiac monitoring</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/patients-caregivers/treatments-conditions/crt.html">Cardiac resynchronization therapy</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/patients-caregivers/treatments-conditions/coronary-stents.html">Coronary artery disease</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/patients-caregivers/treatments-conditions/dvt.html">Deep vein thrombosis</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/patients-caregivers/treatments-conditions/defibrillators.html">Defibrillators</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/patients-caregivers/treatments-conditions/pacemakers.html">Pacemakers</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/patients-caregivers/treatments-conditions/pad.html">Peripheral artery disease</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/patients-caregivers/treatments-conditions/remote-monitoring-system.html">Remote monitoring system device support</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/patients-caregivers/treattheheart-interstitial.html">Severe aortic stenosis</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/patients-caregivers/varithena-interstitial.html">Varicose veins</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link-see-all js-link-see-all" href="https://www.bostonscientific.com/en-US/patients-caregivers/treatments-conditions.html#filter3">
+                                    See all Heart &amp; vascular
+                                    </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="bsds-nav-item-parent js-item-nav-parent">
+                            <button class="bsds-button-subtle bsds-nav-link js-nav-item-button" id="nav-tree-ad6525e301-item-26c87f1526" aria-expanded="false">
+                                <div class="bsds-nav-link-text"> Men's health</div>
+                            </button>
+                            <div class="bsds-nav-menu-panel js-nav-menu-panel">
+                                <ul class="bsds-nav" aria-describedby="nav-tree-ad6525e301-item-26c87f1526">
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/patients-caregivers/edcure-interstitial.html">Erectile dysfunction (ED)</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/patients-caregivers/greenlight-interstitial.html">GreenLight™ Laser Therapy</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/patients-caregivers/mykidneystone-interstitial.html">Kidney stone</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/patients-caregivers/greenlight-interstitial.html">Male urinary incontinence</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/patients-caregivers/rezum-interstitial.html">Rezūm Water Vapor Therapy</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link-see-all js-link-see-all" href="https://www.bostonscientific.com/en-US/patients-caregivers/treatments-conditions.html#filter4">
+                                    See all Men's health
+                                    </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="bsds-nav-item-parent js-item-nav-parent">
+                            <button class="bsds-button-subtle bsds-nav-link js-nav-item-button" id="nav-tree-ad6525e301-item-9f03b4a060" aria-expanded="false">
+                                <div class="bsds-nav-link-text"> Neurological conditions</div>
+                            </button>
+                            <div class="bsds-nav-menu-panel js-nav-menu-panel">
+                                <ul class="bsds-nav" aria-describedby="nav-tree-ad6525e301-item-9f03b4a060">
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/patients-caregivers/dbs-interstitial.html">Deep Brain Stimulation</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link-see-all js-link-see-all" href="https://www.bostonscientific.com/en-US/patients-caregivers/treatments-conditions.html#filter5">
+                                    See all Neurological conditions
+                                    </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="bsds-nav-item-parent js-item-nav-parent">
+                            <button class="bsds-button-subtle bsds-nav-link js-nav-item-button" id="nav-tree-ad6525e301-item-66ca274c6b" aria-expanded="false">
+                                <div class="bsds-nav-link-text"> Pain management</div>
+                            </button>
+                            <div class="bsds-nav-menu-panel js-nav-menu-panel">
+                                <ul class="bsds-nav" aria-describedby="nav-tree-ad6525e301-item-66ca274c6b">
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/patients-caregivers/rfa-interstitial.html">Radiofrequency ablation</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/patients-caregivers/scs-interstitial.html">Spinal Cord Stimulation</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/patients-caregivers/vertiflex-interstitial.html">Vertiflex</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link-see-all js-link-see-all" href="https://www.bostonscientific.com/en-US/patients-caregivers/treatments-conditions.html#filter5">
+                                    See all Pain management
+                                    </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="bsds-nav-item-parent js-item-nav-parent">
+                            <button class="bsds-button-subtle bsds-nav-link js-nav-item-button" id="nav-tree-ad6525e301-item-64a02b0755" aria-expanded="false">
+                                <div class="bsds-nav-link-text"> Women's health</div>
+                            </button>
+                            <div class="bsds-nav-menu-panel js-nav-menu-panel">
+                                <ul class="bsds-nav" aria-describedby="nav-tree-ad6525e301-item-64a02b0755">
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/patients-caregivers/chooseyou-interstitial.html">Bladder leakage and pelvic organ prolapse</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link-see-all js-link-see-all" href="https://www.bostonscientific.com/en-US/patients-caregivers/treatments-conditions.html#filter6">
+                                    See all Women's health
+                                    </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="bsds-nav-item js-nav-item">
+                            <a class="bsds-nav-link-see-all js-link-see-all" href="https://www.bostonscientific.com/en-US/patients-caregivers/treatments-conditions.html">
+                            See all Treatments and conditions
+                            </a>
+                        </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="bsds-nav-item-parent js-item-nav-parent">
+                    <button class="bsds-button-subtle bsds-nav-link js-nav-item-button" id="nav-tree-ad6525e301-item-b97aca7030" aria-expanded="false">
+                        <div class="bsds-nav-link-text"> Device support</div>
+                        <div class="bsds-nav-link-description">Device setup, user manuals and troubleshooting</div>
+                    </button>
+                    <div class="bsds-nav-menu-panel js-nav-menu-panel">
+                        <ul class="bsds-nav" aria-describedby="nav-tree-ad6525e301-item-b97aca7030">
+                        <li class="bsds-nav-item-parent js-item-nav-parent">
+                            <button class="bsds-button-subtle bsds-nav-link js-nav-item-button" id="nav-tree-ad6525e301-item-b0275c6a97" aria-expanded="false">
+                                <div class="bsds-nav-link-text"> Cancer</div>
+                            </button>
+                            <div class="bsds-nav-menu-panel js-nav-menu-panel">
+                                <ul class="bsds-nav" aria-describedby="nav-tree-ad6525e301-item-b0275c6a97">
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/patients-caregivers/device-support/cancer-treatment.html">Cancer treatment device support</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link-see-all js-link-see-all" href="https://www.bostonscientific.com/en-US/patients-caregivers/device-support.html#filter1">
+                                    See all Cancer
+                                    </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="bsds-nav-item-parent js-item-nav-parent">
+                            <button class="bsds-button-subtle bsds-nav-link js-nav-item-button" id="nav-tree-ad6525e301-item-b34e22f9da" aria-expanded="false">
+                                <div class="bsds-nav-link-text"> Digestion and Nutrition</div>
+                            </button>
+                            <div class="bsds-nav-menu-panel js-nav-menu-panel">
+                                <ul class="bsds-nav" aria-describedby="nav-tree-ad6525e301-item-b34e22f9da">
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/patients-caregivers/device-support/digestion-nutrition.html">Enteral feeding tube and esophageal stent device support</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link-see-all js-link-see-all" href="https://www.bostonscientific.com/en-US/patients-caregivers/device-support.html#filter2">
+                                    See all Digestion and Nutrition
+                                    </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="bsds-nav-item-parent js-item-nav-parent">
+                            <button class="bsds-button-subtle bsds-nav-link js-nav-item-button" id="nav-tree-ad6525e301-item-d13d2d8f88" aria-expanded="false">
+                                <div class="bsds-nav-link-text"> Heart and vascular</div>
+                            </button>
+                            <div class="bsds-nav-menu-panel js-nav-menu-panel">
+                                <ul class="bsds-nav" aria-describedby="nav-tree-ad6525e301-item-d13d2d8f88">
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/patients-caregivers/device-support/cardiac-monitor.html">Cardiac Monitor device support</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/patients-caregivers/device-support/crt.html">Cardiac Resynchronization Therapy (CRT) device support</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/patients-caregivers/device-support/coronary-stents.html">Coronary stent device support</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/patients-caregivers/device-support/defibrillator.html">Defibrillators device support</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/patients-caregivers/device-support/pacemaker.html">Pacemaker device support</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/patients-caregivers/device-support/peripheral-artery-vein-interventions.html">Peripheral Artery and Vein interventions device support</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/patients-caregivers/device-support/remote-monitoring-system.html">Remote Monitoring System device support</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/patients-caregivers/device-support/tavr.html">Transcatheter Aortic Valve Replacement device support</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/patients-caregivers/device-support/watchman.html">WATCHMAN™ Implant device support</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link-see-all js-link-see-all" href="https://www.bostonscientific.com/en-US/patients-caregivers/device-support.html#filter3">
+                                    See all Heart and vascular
+                                    </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="bsds-nav-item-parent js-item-nav-parent">
+                            <button class="bsds-button-subtle bsds-nav-link js-nav-item-button" id="nav-tree-ad6525e301-item-ac395395a0" aria-expanded="false">
+                                <div class="bsds-nav-link-text"> Men's health</div>
+                            </button>
+                            <div class="bsds-nav-menu-panel js-nav-menu-panel">
+                                <ul class="bsds-nav" aria-describedby="nav-tree-ad6525e301-item-ac395395a0">
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/patients-caregivers/device-support/penile-implants.html">Penile implant device support</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/patients-caregivers/device-support/mens-health.html">Men’s health device support</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link-see-all js-link-see-all" href="https://www.bostonscientific.com/en-US/patients-caregivers/device-support.html#filter4">
+                                    See all Men's health
+                                    </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="bsds-nav-item-parent js-item-nav-parent">
+                            <button class="bsds-button-subtle bsds-nav-link js-nav-item-button" id="nav-tree-ad6525e301-item-f456e85759" aria-expanded="false">
+                                <div class="bsds-nav-link-text"> Neurological conditions</div>
+                            </button>
+                            <div class="bsds-nav-menu-panel js-nav-menu-panel">
+                                <ul class="bsds-nav" aria-describedby="nav-tree-ad6525e301-item-f456e85759">
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/patients-caregivers/device-support/dbs.html">Deep Brain Stimulation device support</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link-see-all js-link-see-all" href="https://www.bostonscientific.com/en-US/patients-caregivers/device-support.html#filter5">
+                                    See all Neurological conditions
+                                    </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="bsds-nav-item-parent js-item-nav-parent">
+                            <button class="bsds-button-subtle bsds-nav-link js-nav-item-button" id="nav-tree-ad6525e301-item-1631c7eccf" aria-expanded="false">
+                                <div class="bsds-nav-link-text"> Pain management</div>
+                            </button>
+                            <div class="bsds-nav-menu-panel js-nav-menu-panel">
+                                <ul class="bsds-nav" aria-describedby="nav-tree-ad6525e301-item-1631c7eccf">
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/patients-caregivers/device-support/scs.html">Spinal Cord Stimulator (SCS) systems device support</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link-see-all js-link-see-all" href="https://www.bostonscientific.com/en-US/patients-caregivers/device-support.html#filter5">
+                                    See all Pain management
+                                    </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="bsds-nav-item-parent js-item-nav-parent">
+                            <button class="bsds-button-subtle bsds-nav-link js-nav-item-button" id="nav-tree-ad6525e301-item-a8743f2fe9" aria-expanded="false">
+                                <div class="bsds-nav-link-text"> Women’s health</div>
+                            </button>
+                            <div class="bsds-nav-menu-panel js-nav-menu-panel">
+                                <ul class="bsds-nav" aria-describedby="nav-tree-ad6525e301-item-a8743f2fe9">
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/patients-caregivers/device-support/womens-health.html">Women’s health</a>
+                                    </li>
+                                    <li class="bsds-nav-item js-nav-item">
+                                    <a class="bsds-nav-link-see-all js-link-see-all" href="https://www.bostonscientific.com/en-US/patients-caregivers/device-support/womens-health.html">
+                                    See all Women’s health
+                                    </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="bsds-nav-item js-nav-item">
+                            <a class="bsds-nav-link-see-all js-link-see-all" href="https://www.bostonscientific.com/en-US/patients-caregivers/device-support.html">
+                            See all Device support
+                            </a>
+                        </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="bsds-nav-item js-nav-item">
+                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/patients-caregivers/contact-patient-services.html">Contact patient services</a>
+                </li>
+                <li class="bsds-nav-item js-nav-item">
+                    <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/patients-caregivers/device-id-cards.html">Medical device ID cards</a>
+                </li>
+                </ul>
+                </div>
+                </li>
+                <li class="bsds-nav-item-parent js-item-nav-parent">
+                <button class="bsds-button-subtle bsds-nav-link js-nav-item-button" id="nav-tree-4a9259e4a9" aria-expanded="false">
+                <div class="bsds-nav-link-text">About Boston Scientific</div>
+                </button>
+                <div class="bsds-nav-menu-panel js-nav-menu-panel has-header">
+                <div class="bsds-nav-menu-panel-header">
+                <p class="bsds-nav-menu-panel-title">About Boston Scientific</p>
+                <p class="body-subtle">Find out who we are, explore careers at the company, and view our financial performance.</p>
+                <a href="https://www.bostonscientific.com/en-US/header/about-us.html" class="body-subtle bsds-nav-menu-panel-header-link">All about us</a>
+                </div>
+                <ul class="bsds-nav" aria-describedby="nav-tree-4a9259e4a9">
+                <li class="bsds-nav-item-parent js-item-nav-parent">
+                    <button class="bsds-button-subtle bsds-nav-link js-nav-item-button" id="nav-tree-4a9259e4a9-item-4ca8ce2871" aria-expanded="false">
+                        <div class="bsds-nav-link-text"> About us</div>
+                    </button>
+                    <div class="bsds-nav-menu-panel js-nav-menu-panel">
+                        <ul class="bsds-nav" aria-describedby="nav-tree-4a9259e4a9-item-4ca8ce2871">
+                        <li class="bsds-nav-item js-nav-item">
+                            <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/about-us/awards.html">Awards</a>
+                        </li>
+                        <li class="bsds-nav-item js-nav-item">
+                            <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/about-us/core-businesses.html">Core businesses</a>
+                        </li>
+                        <li class="bsds-nav-item js-nav-item">
+                            <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/about-us/leadership.html">Leadership</a>
+                        </li>
+                        <li class="bsds-nav-item js-nav-item">
+                            <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/about-us/locations.html">Locations</a>
+                        </li>
+                        <li class="bsds-nav-item js-nav-item">
+                            <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/about-us/ventures.html">Ventures</a>
+                        </li>
+                        <li class="bsds-nav-item js-nav-item">
+                            <a class="bsds-nav-link-see-all js-link-see-all" href="https://www.bostonscientific.com/en-US/about-us.html">
+                            See all about us
+                            </a>
+                        </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="bsds-nav-item-parent js-item-nav-parent">
+                    <button class="bsds-button-subtle bsds-nav-link js-nav-item-button" id="nav-tree-4a9259e4a9-item-973ef089b8" aria-expanded="false">
+                        <div class="bsds-nav-link-text"> Corporate responsibility</div>
+                    </button>
+                    <div class="bsds-nav-menu-panel js-nav-menu-panel">
+                        <ul class="bsds-nav" aria-describedby="nav-tree-4a9259e4a9-item-973ef089b8">
+                        <li class="bsds-nav-item js-nav-item">
+                            <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/corporate-social-responsibility.html">Corporate responsibility</a>
+                        </li>
+                        <li class="bsds-nav-item js-nav-item">
+                            <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/corporate-responsibility/care.html">Innovative care</a>
+                        </li>
+                        <li class="bsds-nav-item js-nav-item">
+                            <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/corporate-responsibility/people.html">Empowered people</a>
+                        </li>
+                        <li class="bsds-nav-item js-nav-item">
+                            <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/corporate-responsibility/planet.html">Healthier planet</a>
+                        </li>
+                        <li class="bsds-nav-item js-nav-item">
+                            <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/corporate-responsibility/integrity.html">Performance with integrity</a>
+                        </li>
+                        <li class="bsds-nav-item js-nav-item">
+                            <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/corporate-responsibility/resources.html">Resources</a>
+                        </li>
+                        <li class="bsds-nav-item js-nav-item">
+                            <a class="bsds-nav-link-see-all js-link-see-all" href="https://www.bostonscientific.com/en-US/corporate-responsibility.html">
+                            See all Corporate responsibility
+                            </a>
+                        </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="bsds-nav-item-parent js-item-nav-parent">
+                    <button class="bsds-button-subtle bsds-nav-link js-nav-item-button" id="nav-tree-4a9259e4a9-item-9b11648175" aria-expanded="false">
+                        <div class="bsds-nav-link-text"> Careers</div>
+                    </button>
+                    <div class="bsds-nav-menu-panel js-nav-menu-panel">
+                        <ul class="bsds-nav" aria-describedby="nav-tree-4a9259e4a9-item-9b11648175">
+                        <li class="bsds-nav-item js-nav-item">
+                            <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/careers/working-here/diversity-and-inclusion.html">Diversity, equity and inclusion (DE&I)</a>
+                        </li>
+                        <li class="bsds-nav-item js-nav-item">
+                            <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/careers/life-at-boston-scientific.html">Life at Boston Scientific</a>
+                        </li>
+                        <li class="bsds-nav-item js-nav-item">
+                            <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/careers/working-here.html">Working here</a>
+                        </li>
+                        <li class="bsds-nav-item js-nav-item">
+                            <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/careers/students.html">Students and early careers</a>
+                        </li>
+                        <li class="bsds-nav-item js-nav-item">
+                            <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/careers/search-apply.html">Search and apply</a>
+                        </li>
+                        <li class="bsds-nav-item js-nav-item">
+                            <a class="bsds-nav-link-see-all js-link-see-all" href="https://www.bostonscientific.com/en-US/careers.html">
+                            See all Careers
+                            </a>
+                        </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="bsds-nav-item-parent js-item-nav-parent">
+                    <button class="bsds-button-subtle bsds-nav-link js-nav-item-button" id="nav-tree-4a9259e4a9-item-a8369f4a52" aria-expanded="false">
+                        <div class="bsds-nav-link-text"> Investor relations</div>
+                    </button>
+                    <div class="bsds-nav-menu-panel js-nav-menu-panel">
+                        <ul class="bsds-nav" aria-describedby="nav-tree-4a9259e4a9-item-a8369f4a52">
+                        <li class="bsds-nav-item js-nav-item">
+                            <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/investor-relations-redirect.html">Investor relations</a>
+                        </li>
+                        <li class="bsds-nav-item js-nav-item">
+                            <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/environment-social-governance-redirect.html">Environmental, Social &amp; Governance (ESG)</a>
+                        </li>
+                        <li class="bsds-nav-item js-nav-item">
+                            <a class="bsds-nav-link-see-all js-link-see-all" href="https://www.bostonscientific.com/en-US/investor-relations-redirect.html">
+                            See all Investor relations
+                            </a>
+                        </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="bsds-nav-item-parent js-item-nav-parent">
+                    <button class="bsds-button-subtle bsds-nav-link js-nav-item-button" id="nav-tree-4a9259e4a9-item-2fc2f9a30a" aria-expanded="false">
+                        <div class="bsds-nav-link-text"> Press releases</div>
+                    </button>
+                    <div class="bsds-nav-menu-panel js-nav-menu-panel">
+                        <ul class="bsds-nav" aria-describedby="nav-tree-4a9259e4a9-item-2fc2f9a30a">
+                        <li class="bsds-nav-item js-nav-item">
+                            <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/featured-stories-redirect.html">Featured stories</a>
+                        </li>
+                        <li class="bsds-nav-item js-nav-item">
+                            <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/press-releases-redirect.html">Press releases</a>
+                        </li>
+                        <li class="bsds-nav-item js-nav-item">
+                            <a class="bsds-nav-link-see-all js-link-see-all" href="https://www.bostonscientific.com/en-US/press-releases-redirect.html">
+                            See all Press releases
+                            </a>
+                        </li>
+                        </ul>
+                    </div>
+                </li>
+                </ul>
+                </div>
+                </li>
+                </ul>
+                </div>
+                </div>
+                <ul class="bsds-nav bsds-nav-block js-utility-nav-xs visually-hidden">
+                <li class="bsds-nav-item">
+                <a class="bsds-nav-link js-nav-link" href="https://news.bostonscientific.com/">News</a>
+                </li>
+                <li class="bsds-nav-item">
+                <a class="bsds-nav-link js-nav-link" href="https://www.bostonscientific.com/en-US/careers.html">Careers</a>
+                </li>
+                <li class="bsds-nav-item">
+                <a class="bsds-nav-link js-nav-link" href="https://investors.bostonscientific.com/">Investors</a>
+                </li>
+                <li class="bsds-nav-item">
+                <div class="bsds-dropdown">
+                <button class="bsds-button bsds-dropdown-trigger bsds-nav-link js-nav-region-selector-btn" aria-haspopup="true" aria-expanded="false">Region selector</button>
+                <ul class="bsds-dropdown-menu js-nav-region-selector-menu visually-hidden" role="menu" hidden="">
+                <li class="bsds-dropdown-item" role="none">
+                <a href="https://www.bostonscientific.com/es-ar/home.html" role="menuitem" class="bsds-link">Argentina
+                </a>
+                </li>
+                <li class="bsds-dropdown-item" role="none">
+                <a href="https://www.bostonscientific.com/pt-BR/home.html" role="menuitem" class="bsds-link">Brazil
+                </a>
+                </li>
+                <li class="bsds-dropdown-item" role="none">
+                <a href="https://www.bostonscientific.com/es-CL/home.html" role="menuitem" class="bsds-link">Chile
+                </a>
+                </li>
+                <li class="bsds-dropdown-item" role="none">
+                <a href="https://www.bostonscientific.cn/" role="menuitem" class="bsds-link">China
+                </a>
+                </li>
+                <li class="bsds-dropdown-item" role="none">
+                <a href="https://www.bostonscientific.com/es-co/home.html" role="menuitem" class="bsds-link">Colombia
+                </a>
+                </li>
+                <li class="bsds-dropdown-item" role="none">
+                <a href="https://www.bostonscientific.com/DE-Deutsch/startseite.html" role="menuitem" class="bsds-link">Deutschland
+                </a>
+                </li>
+                <li class="bsds-dropdown-item" role="none">
+                <a href="https://www.bostonscientific.com/es-ES/home.html" role="menuitem" class="bsds-link">Espanol
+                </a>
+                </li>
+                <li class="bsds-dropdown-item" role="none">
+                <a href="https://www.bostonscientific.com/en-EU/home.html" role="menuitem" class="bsds-link">Europe
+                </a>
+                </li>
+                <li class="bsds-dropdown-item" role="none">
+                <a href="https://www.bostonscientific.com/en-IN/home.html" role="menuitem" class="bsds-link">India
+                </a>
+                </li>
+                <li class="bsds-dropdown-item" role="none">
+                <a href="https://www.bostonscientific.com/jp-JP/home.html" role="menuitem" class="bsds-link">Japan
+                </a>
+                </li>
+                <li class="bsds-dropdown-item" role="none">
+                <a href="https://www.bostonscientific.com/kr-KR/home.html" role="menuitem" class="bsds-link">Korea
+                </a>
+                </li>
+                <li class="bsds-dropdown-item" role="none">
+                <a href="https://www.bostonscientific.com/es-MX/home.html" role="menuitem" class="bsds-link">Mexico
+                </a>
+                </li>
+                <li class="bsds-dropdown-item" role="none">
+                <a href="https://www.bostonscientific.com/es-pe/home.html" role="menuitem" class="bsds-link">Peru
+                </a>
+                </li>
+                <li class="bsds-dropdown-item" role="none">
+                <a href="https://www.bostonscientific.com/en-US/Home.html" role="menuitem" class="bsds-link">United States
+                </a>
+                </li>
+                </ul>
+                </div>
+                </li>
+                </ul>
+                </div>
+            </nav>
+        </header>
+        </div>
+        </div>
+        </div>
+    </div>
+
+      <div class="modal fade" id="countrySelectorModal" role="dialog" aria-labelledby="countryOrRegionModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="countryOrRegionModal">Choose your Country or Region</h5>
+              <button id="countryModalClose" type="button" class="close" data-dismiss="modal" aria-label="Close modal">
+                <svg aria-hidden="true" focusable="false" enable-background="new 0 0 19 19" viewBox="0 0 19 19" width="19" height="19" xmlns="http://www.w3.org/2000/svg">
+                  <path fill="#383838" d="m11.5 9.5 6.1-6.1 1.3-1.3c.1-.1.1-.4 0-.6l-1.3-1.3c-.3-.2-.6-.2-.8-.1l-7.3 7.4-7.3-7.4c-.2-.1-.5-.1-.7 0l-1.4 1.4c-.1.2-.1.5 0 .7l7.3 7.3-7.3 7.3c-.1.2-.1.5 0 .7l1.3 1.3c.3.2.6.2.8.1l7.3-7.3 6.1 6.1 1.3 1.3c.2.2.5.2.7 0l1.3-1.3c.2-.2.2-.5 0-.7z"></path>
+                </svg>
+              </button>
+            </div>
+            <div class="modal-body">
+              <ul class="col-12">
+                <li>
+                  <a href="https://www.bostonscientific.com/pt-BR/home.html" title="Brazil">
+                    <img loading="lazy" src="./bsc-new-header_files/country-icon-br.svg" title="Brazil" alt="Brazil logo">
+                    <span>Brazil</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="http://www.bostonscientific.cn/" title="China">
+                    <img loading="lazy" src="./bsc-new-header_files/country-icon-cn.svg" title="China" alt="China logo">
+                    <span>China</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.bostonscientific.de/startseite.html" title="Deutschland">
+                    <img loading="lazy" src="./bsc-new-header_files/country-icon-de.svg" title="Deutschland" alt="Deutschland logo">
+                    <span>Deutschland</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.bostonscientific.com/en-EU/home.html" title="Europe">
+                    <img loading="lazy" src="./bsc-new-header_files/country-icon-eu.svg" title="Europe" alt="Europe logo">
+                    <span>Europe</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.bostonscientific.com/en-IN/home.html" title="India">
+                    <img loading="lazy" src="./bsc-new-header_files/country-icon-in.svg" title="India" alt="India logo">
+                    <span>India</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.bostonscientific.com/jp-JP/home.html" title="Japan">
+                    <img loading="lazy" src="./bsc-new-header_files/country-icon-jp.svg" title="Japan" alt="Japan logo">
+                    <span>Japan</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.bostonscientific.com/kr-KR/home.html" title="Korea">
+                    <img loading="lazy" src="./bsc-new-header_files/country-icon-kr.svg" title="Korea" alt="Korea logo">
+                    <span>Korea</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.bostonscientific.com/en-MY/home.html" title="Malaysia">
+                    <img loading="lazy" src="./bsc-new-header_files/country-icon-my.svg" title="Malaysia" alt="Malaysia logo">
+                    <span>Malaysia</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.bostonscientific.com/es-MX/home.html" title="Mexico">
+                    <img loading="lazy" src="./bsc-new-header_files/country-icon-mx.svg" title="Mexico" alt="Mexico logo">
+                    <span>Mexico</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.bostonscientific.com/es-ES/home.html" title="Spain">
+                    <img loading="lazy" src="./bsc-new-header_files/country-icon-es.svg" title="Spain" alt="Spain logo">
+                    <span>Spain</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="last-link" href="https://www.bostonscientific.com/en-US/Home.html" title="United States">
+                    <img loading="lazy" src="./bsc-new-header_files/country-icon-us.svg" title="United States" alt="United States logo">
+                    <span>United States</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="wd_main_nav">   
+        <div class="container">
+            
+            <!--  <div class="wd_mob_menu_toggl" data-toggle="collapse" data-target="#wd_menu_inner">
+                <span><i class="fa fa-chevron-down" aria-hidden="true"></i>Newsroom Menu</span>
+            </div> -->
+
+            <nav id="wd_menu_inner">
+
+                	<ul class="wd_first_tier">
+
+<li>
+	<a href="https://news.bostonscientific.com/home" target="_self">
+			Newsroom home	</a>
+	</li>
+
+
+<li class="active">
+	<a href="https://news.bostonscientific.com/news-releases" target="_self">
+			Press releases 	</a>
+	</li>
+
+
+<li>
+	<a href="https://news.bostonscientific.com/stories" target="_self">
+			Features	</a>
+	</li>
+
+
+<li>
+	<a href="https://news.bostonscientific.com/in-the-news" target="_self">
+			In the news	</a>
+	</li>
+
+
+<li>
+	<a href="https://news.bostonscientific.com/image-gallery" target="_self">
+			Image gallery	</a>
+	</li>
+
+
+<li>
+	<a href="https://news.bostonscientific.com/media-contacts" target="_self">
+			For journalists	</a>
+	</li>
+
+</ul>
+
+                
+                <div class="wd_search_wrap">
+                    <div class="inner-addon right-addon">
+                      <svg class="search-icon" aria-hidden="true" focusable="false" enable-background="new 0 0 30 30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg" width="15" height="15">
+                        <path fill="currentColor" d="m29.59 26a1.35 1.35 0 0 1 .41 1 1.37 1.37 0 0 1 -.41 1l-1.59 1.59a1.37 1.37 0 0 1 -1 .41 1.35 1.35 0 0 1 -1-.41l-5.9-5.86a1.34 1.34 0 0 1 -.41-1v-.93a11.81 11.81 0 0 1 -7.5 2.58 11.78 11.78 0 0 1 -8.62-3.58 11.73 11.73 0 0 1 -3.57-8.61 11.77 11.77 0 0 1 3.57-8.62 11.77 11.77 0 0 1 8.62-3.57 11.73 11.73 0 0 1 8.61 3.57 11.78 11.78 0 0 1 3.58 8.62 11.81 11.81 0 0 1 -2.58 7.5h.93a1.37 1.37 0 0 1 1 .41zm-22.71-8.51a7.23 7.23 0 0 0 5.31 2.2 7.2 7.2 0 0 0 5.3-2.2 7.2 7.2 0 0 0 2.2-5.3 7.23 7.23 0 0 0 -2.2-5.31 7.22 7.22 0 0 0 -5.3-2.19 7.26 7.26 0 0 0 -5.31 2.19 7.26 7.26 0 0 0 -2.19 5.31 7.22 7.22 0 0 0 2.19 5.3z"></path>
+                      </svg>
+                      
+                        <div class="wd_search_form_container"><form name="basic_search" method="get" action="https://news.bostonscientific.com/index.php?s=24916" class="wd_search_form wd_search_form_basic"><input type="hidden" name="s" value="search_results" /><input type="text" name="query" value="" size="32" placeholder="Search Newsroom..." title="Search Newsroom..." /> <input type="submit" name="submit" value="Search"></form>
+</div><!-- END SITE SEARCH -->
+                    </div>
+                </div>
+            </nav>
+        </div>
+      </div>
+
+      <div class="wd_mobile_nav">   
+        <div class="mobile_hamburger_container">
+            <div class="container">
+                <button class="wd_mobile_menu_toggle" data-toggle="collapse" data-target="#wd_mobile_menu_inner">
+                    <span><i class="fa fa-bars" aria-hidden="true"></i>Newsroom Menu</span>
+                </button>
+            </div>  
+        </div>
+        <div class="container mobile_nav_container collapse" id="wd_mobile_menu_inner">
+            
+            <!--  <div class="wd_mob_menu_toggl" data-toggle="collapse" data-target="#wd_menu_inner">
+                <span><i class="fa fa-chevron-down" aria-hidden="true"></i>Newsroom Menu</span>
+            </div> -->
+
+            <nav>
+
+                
+	<ul>
+		<li><a href="https://news.bostonscientific.com/home" target="_self">Newsroom home</a></li>
+		<li class="on"><a href="https://news.bostonscientific.com/news-releases" target="_self">Press releases </a></li>
+		<li><a href="https://news.bostonscientific.com/stories" target="_self">Features</a></li>
+		<li><a href="https://news.bostonscientific.com/in-the-news" target="_self">In the news</a></li>
+		<li><a href="https://news.bostonscientific.com/image-gallery" target="_self">Image gallery</a></li>
+		<li><a href="https://news.bostonscientific.com/media-contacts" target="_self">For journalists</a></li>
+	</ul>                
+                <div class="wd_search_wrap">
+                    <div class="inner-addon right-addon">
+                      <svg class="search-icon" aria-hidden="true" focusable="false" enable-background="new 0 0 30 30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg" width="15" height="15">
+                        <path fill="currentColor" d="m29.59 26a1.35 1.35 0 0 1 .41 1 1.37 1.37 0 0 1 -.41 1l-1.59 1.59a1.37 1.37 0 0 1 -1 .41 1.35 1.35 0 0 1 -1-.41l-5.9-5.86a1.34 1.34 0 0 1 -.41-1v-.93a11.81 11.81 0 0 1 -7.5 2.58 11.78 11.78 0 0 1 -8.62-3.58 11.73 11.73 0 0 1 -3.57-8.61 11.77 11.77 0 0 1 3.57-8.62 11.77 11.77 0 0 1 8.62-3.57 11.73 11.73 0 0 1 8.61 3.57 11.78 11.78 0 0 1 3.58 8.62 11.81 11.81 0 0 1 -2.58 7.5h.93a1.37 1.37 0 0 1 1 .41zm-22.71-8.51a7.23 7.23 0 0 0 5.31 2.2 7.2 7.2 0 0 0 5.3-2.2 7.2 7.2 0 0 0 2.2-5.3 7.23 7.23 0 0 0 -2.2-5.31 7.22 7.22 0 0 0 -5.3-2.19 7.26 7.26 0 0 0 -5.31 2.19 7.26 7.26 0 0 0 -2.19 5.31 7.22 7.22 0 0 0 2.19 5.3z"></path>
+                      </svg>
+                      
+                        <div class="wd_search_form_container"><form name="basic_search" method="get" action="https://news.bostonscientific.com/index.php?s=24916" class="wd_search_form wd_search_form_basic"><input type="hidden" name="s" value="search_results" /><input type="text" name="query" value="" size="32" placeholder="Search Newsroom..." title="Search Newsroom..." /> <input type="submit" name="submit" value="Search"></form>
+</div><!-- END SITE SEARCH -->
+                    </div>
+                </div>
+            </nav>
+        </div>
+      </div>
+
+      <main class="container-fluid " role="main" id="maincontent">
+        
+                            
+
+
+
+                <!-- Dedicated wrapper for default temp -->
+        <div id="wd_main_doc" class="container">
+          <div class="row">
+            <div class="col-12">
+              <!-- BEGIN CONTENT-WRAPPER -->	
+              <div class="wd_content-wrapper">
+                <div class="wd_content">
+                    <div id="wd_printable_content" class="fr-view"><section class="bsc-breadcrumb">
+	<nav>
+		<a href="http://www.bostonscientific.com/en-US/Home.html">Home</a>
+		<a href="index.php"><i class="fa fa-chevron-right"></i>Media Center</a>
+<a class="active"><i class="fa fa-chevron-right"></i>Press releases </a>	</nav>
+</section>
+<h1 class="page_header">Press releases </h1>
+
+<div class="wd_newsfeed_releases">
+<script type="text/javascript" wd_script_id="wd_wai_datepicker_translate_script" nonce="NTRjNWM2Y2E1OWIzODM4YmJiOGVjYmNlZTU4ODE0MWYyOTg2MjMwYg==">
+
+var wd_wai_langData = {
+		"dayLabels": ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+		"dayLabelsShort": ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],
+		"monthLabels": ["January","February","March","April","May","June","July","August","September","October","November","December"],
+	};
+
+</script>
+
+ <div class="wd_wai_datepicker">
+  <div 
+       class="wd_wai_datepickerDialog"  id="wd_datepicker_dialog_nf_start"
+       role="dialog"
+       aria-modal="true"
+       aria-labelledby="wd_wai_id_dialog_label_nf_start">
+    <div class="wd_wai_header">
+      <button class="wd_wai_prevYear" aria-label="previous year">
+        <span class="fa fa-angle-double-left fa-lg"></span>
+      </button>
+      <button class="wd_wai_prevMonth" aria-label="previous month">
+        <span class="fa fa-angle-left fa-lg"></span>
+      </button>
+      <div id="wd_wai_id_dialog_label_nf_start"
+          class="wd_wai_monthYear"
+          aria-live="polite">
+        Month Year
+      </div>
+      <button class="wd_wai_nextMonth" aria-label="next month">
+        <span class="fa fa-angle-right fa-lg"></span>
+      </button>
+      <button class="wd_wai_nextYear" aria-label="next year">
+        <span class="fa fa-angle-double-right fa-lg"></span>
+      </button>
+    </div>
+    <table id="wd_wai_myDatepickerGrid_nf_start"
+           class="wd_wai_dates"
+           role="grid"
+           aria-labelledby="wd_wai_id_dialog_label_nf_start">
+      <thead>
+        <tr class="wd_wai_week_row">
+          <th scope="col" abbr="Sunday">
+            Su
+          </th>
+          <th scope="col" abbr="Monday">
+            Mo
+          </th>
+          <th scope="col" abbr="Tuesday">
+            Tu
+          </th>
+          <th scope="col" abbr="Wednesday">
+            We
+          </th>
+          <th scope="col" abbr="Thursday">
+            Th
+          </th>
+          <th scope="col" abbr="Friday">
+            Fr
+          </th>
+          <th scope="col" abbr="Saturday">
+            Sa
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton"
+                    tabindex="-1"
+                    disabled="">
+              25
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton"
+                    tabindex="-1"
+                    disabled="">
+              26
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton"
+                    tabindex="-1"
+                    disabled="">
+              27
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton"
+                    tabindex="-1"
+                    disabled="">
+              28
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton"
+                    tabindex="-1"
+                    disabled="">
+              29
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton"
+                    tabindex="-1"
+                    disabled="">
+              30
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              1
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              2
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              3
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              4
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              5
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              6
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              7
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              8
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              9
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              10
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              11
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              12
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              13
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="0">
+              14
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              15
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              16
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              17
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              18
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              19
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              20
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              21
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              22
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              23
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              24
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              25
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              26
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              27
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              28
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              29
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              30
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              31
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton"
+                    tabindex="-1"
+                    disabled="">
+              1
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton"
+                    tabindex="-1"
+                    disabled="">
+              2
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton"
+                    tabindex="-1"
+                    disabled="">
+              3
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton"
+                    tabindex="-1"
+                    disabled="">
+              4
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton"
+                    tabindex="-1"
+                    disabled="">
+              5
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="wd_wai_dialogButtonGroup">
+      <button class="wd_wai_dialogButton wd_wai_dp_cancelbuton" value="Cancel">Cancel      </button>
+      <button class="wd_wai_dialogButton wd_wai_dp_okbuton" value="Go">Go</button>
+    </div>
+  </div>
+
+ </div>
+
+
+ <div class="wd_wai_datepicker">
+  <div 
+       class="wd_wai_datepickerDialog"  id="wd_datepicker_dialog_nf_end"
+       role="dialog"
+       aria-modal="true"
+       aria-labelledby="wd_wai_id_dialog_label_nf_end">
+    <div class="wd_wai_header">
+      <button class="wd_wai_prevYear" aria-label="previous year">
+        <span class="fa fa-angle-double-left fa-lg"></span>
+      </button>
+      <button class="wd_wai_prevMonth" aria-label="previous month">
+        <span class="fa fa-angle-left fa-lg"></span>
+      </button>
+      <div id="wd_wai_id_dialog_label_nf_end"
+          class="wd_wai_monthYear"
+          aria-live="polite">
+        Month Year
+      </div>
+      <button class="wd_wai_nextMonth" aria-label="next month">
+        <span class="fa fa-angle-right fa-lg"></span>
+      </button>
+      <button class="wd_wai_nextYear" aria-label="next year">
+        <span class="fa fa-angle-double-right fa-lg"></span>
+      </button>
+    </div>
+    <table id="wd_wai_myDatepickerGrid_nf_end"
+           class="wd_wai_dates"
+           role="grid"
+           aria-labelledby="wd_wai_id_dialog_label_nf_end">
+      <thead>
+        <tr class="wd_wai_week_row">
+          <th scope="col" abbr="Sunday">
+            Su
+          </th>
+          <th scope="col" abbr="Monday">
+            Mo
+          </th>
+          <th scope="col" abbr="Tuesday">
+            Tu
+          </th>
+          <th scope="col" abbr="Wednesday">
+            We
+          </th>
+          <th scope="col" abbr="Thursday">
+            Th
+          </th>
+          <th scope="col" abbr="Friday">
+            Fr
+          </th>
+          <th scope="col" abbr="Saturday">
+            Sa
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton"
+                    tabindex="-1"
+                    disabled="">
+              25
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton"
+                    tabindex="-1"
+                    disabled="">
+              26
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton"
+                    tabindex="-1"
+                    disabled="">
+              27
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton"
+                    tabindex="-1"
+                    disabled="">
+              28
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton"
+                    tabindex="-1"
+                    disabled="">
+              29
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton"
+                    tabindex="-1"
+                    disabled="">
+              30
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              1
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              2
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              3
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              4
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              5
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              6
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              7
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              8
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              9
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              10
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              11
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              12
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              13
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="0">
+              14
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              15
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              16
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              17
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              18
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              19
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              20
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              21
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              22
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              23
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              24
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              25
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              26
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              27
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              28
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              29
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              30
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton" tabindex="-1">
+              31
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton"
+                    tabindex="-1"
+                    disabled="">
+              1
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton"
+                    tabindex="-1"
+                    disabled="">
+              2
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton"
+                    tabindex="-1"
+                    disabled="">
+              3
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton"
+                    tabindex="-1"
+                    disabled="">
+              4
+            </button>
+          </td>
+          <td class="wd_wai_dateCell">
+            <button class="wd_wai_dateButton"
+                    tabindex="-1"
+                    disabled="">
+              5
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="wd_wai_dialogButtonGroup">
+      <button class="wd_wai_dialogButton wd_wai_dp_cancelbuton" value="Cancel">Cancel      </button>
+      <button class="wd_wai_dialogButton wd_wai_dp_okbuton" value="Go">Go</button>
+    </div>
+  </div>
+
+ </div>
+
+
+<div class="wd_item_search_form_container"><form name="item_basic_search_24889" method="get" action="https://news.bostonscientific.com/news-releases" onsubmit="wd_item_search_form_submit(this, true);" class="wd_search_form wd_search_form_basic"><div class="wd_search_basic_fields"><label for="item_basic_search_24889_year" class="wd_sr-only">Year</label>
+<select name="year" onchange="wd_item_search_form_highlight(this.form);" id="item_basic_search_24889_year">
+ <option value="">All Years</option>
+ <option value="2026">2026</option>
+ <option value="2025">2025</option>
+ <option value="2024">2024</option>
+ <option value="2023">2023</option>
+ <option value="2022">2022</option>
+ <option value="2021">2021</option>
+ <option value="2020">2020</option>
+ <option value="2019">2019</option>
+ <option value="2018">2018</option>
+ <option value="2017">2017</option>
+ <option value="2016">2016</option>
+ <option value="2015">2015</option>
+ <option value="2014">2014</option>
+ <option value="2013">2013</option>
+ <option value="2012">2012</option>
+ <option value="2011">2011</option>
+ <option value="2010">2010</option>
+ <option value="2009">2009</option>
+ <option value="2008">2008</option>
+ <option value="2007">2007</option>
+ <option value="2006">2006</option>
+ <option value="2005">2005</option>
+ <option value="2004">2004</option>
+</select>
+<label for="item_basic_search_24889_keywords" class="wd_sr-only">Keywords</label><input type="text" name="keywords" value="" size="32" placeholder="Search" wd_original_value="" onkeyup="if (this.value.trim().length &gt; 1 &amp;&amp; this.value != $(this).attr('wd_original_value')) wd_item_search_form_highlight(this.form);" id="item_basic_search_24889_keywords" /> <button type="submit" class="wd_search_button" title="Search">Go</button></div> <a class="wd_search_advanced_link" href="#" onclick="wd_item_search_form_toggle(this, true); return false;">Advanced Search</a></form>
+ <form method="get" class="wd_search_form wd_search_form_advanced" style="display:none;" name="item_advanced_search_24889" action="https://news.bostonscientific.com/news-releases" enctype="multipart/form-data" onsubmit="disable_submit(this, true);wd_item_search_form_submit(this, true);">
+   <input type="hidden" name="advanced" value="1" />
+   <div class="wd_form_field wd_form_field_pos_right">
+    <div class="wd_form_field_label">
+<label for="item_advanced_search_24889_keywords">Search</label>
+    </div>
+    <div class="wd_form_field_input">
+     <input type="text" name="keywords" value="" size="40" placeholder="Keywords" id="item_advanced_search_24889_keywords" />&nbsp;<span class="wd_search_titles_only"><input type="checkbox" name="titles_only" value="1" id="items_search_24889_titles_only" />&nbsp;<label for="items_search_24889_titles_only">Search Headlines Only</label></span>
+    </div>
+   </div>
+   <div class="wd_form_field wd_form_field_pos_right">
+    <div class="wd_form_field_label">
+<label for="item_advanced_search_24889_start">From</label>
+    </div>
+    <div class="wd_form_field_input">
+<input type="text" name="start" value="" size="32" placeholder="Date" dp_id="nf_start" dp_num="1" minDate="2004-01-06" maxDate="2026-05-04" id="wd_wai_dp_input_nf_start" /><button type="button" class="icon wd_wai_dp_button" id="wd_wai_dp_button_nf_start"  title="Choose Date"><span class="wd_datepicker-icon fa fa-calendar"></span></button>
+    </div>
+   </div>
+   <div class="wd_form_field wd_form_field_pos_right">
+    <div class="wd_form_field_label">
+<label for="item_advanced_search_24889_end">To</label>
+    </div>
+    <div class="wd_form_field_input">
+<input type="text" name="end" value="" size="32" placeholder="Date" dp_id="nf_end" dp_num="2" minDate="2004-01-06" maxDate="2026-05-04" id="wd_wai_dp_input_nf_end" /><button type="button" class="icon wd_wai_dp_button" id="wd_wai_dp_button_nf_end"  title="Choose Date"><span class="wd_datepicker-icon fa fa-calendar"></span></button>
+    </div>
+   </div>
+   <fieldset class="wd_form_field wd_form_field_pos_right">
+    <legend class="wd_form_field_label">Asset Types</legend>
+    <div class="wd_form_field_input">
+<span class="wd_checkbox"><input type="checkbox" name="asset_types[]" checked="yes" value="133" id="item_advanced_search_24889_asset_types_133" />&nbsp;<label for="item_advanced_search_24889_asset_types_133">Video</label></span> <span class="wd_checkbox"><input type="checkbox" name="asset_types[]" checked="yes" value="134" id="item_advanced_search_24889_asset_types_134" />&nbsp;<label for="item_advanced_search_24889_asset_types_134">Audio</label></span> <span class="wd_checkbox"><input type="checkbox" name="asset_types[]" checked="yes" value="135" id="item_advanced_search_24889_asset_types_135" />&nbsp;<label for="item_advanced_search_24889_asset_types_135">Photos</label></span> <span class="wd_checkbox"><input type="checkbox" name="asset_types[]" checked="yes" value="136" id="item_advanced_search_24889_asset_types_136" />&nbsp;<label for="item_advanced_search_24889_asset_types_136">Documents</label></span> <span class="wd_checkbox"><input type="checkbox" name="asset_types[]" checked="yes" value="137" id="item_advanced_search_24889_asset_types_137" />&nbsp;<label for="item_advanced_search_24889_asset_types_137">Events</label></span> <span class="wd_checkbox"><input type="checkbox" name="asset_types[]" checked="yes" value="149" id="item_advanced_search_24889_asset_types_149" />&nbsp;<label for="item_advanced_search_24889_asset_types_149">Standard</label></span>
+    </div>
+   </fieldset>
+   <input type="hidden" name="have_asset_types" value="1" />
+  <div class="wd_form_footer">
+   <div class="wd_form_buttons">
+<input type="submit" value="Search">&nbsp;<a href="#" onclick="wd_item_search_form_toggle(this, false); return false;">Basic Search</a>
+   </div>
+  </div>
+ </form>
+</div>
+
+
+<ul class="wd_layout-simple wd_item_list"><li class="wd_item">
+<div class="wd_item_wrapper">
+	<div class="wd_date">May 4, 2026</div>
+	<div class="wd_title"><a href="https://news.bostonscientific.com/2026-05-04-Boston-Scientific-announces-participation-in-Bernsteins-42nd-Annual-Strategic-Decisions-Conference-and-conference-call-discussing-second-quarter-2026-results">Boston Scientific announces participation in Bernstein's 42nd Annual Strategic Decisions Conference and conference call discussing second quarter 2026 results</a></div>
+	
+	<div class="wd_summary"><p>A live webcast and replay of both events will be available. Learn how to tune in.</p></div>
+	
+	
+</div>
+</li><li class="wd_item">
+<div class="wd_item_wrapper">
+	<div class="wd_date">Apr 26, 2026</div>
+	<div class="wd_title"><a href="https://news.bostonscientific.com/2026-04-26-Data-at-Heart-Rhythm-2026-highlight-key-Boston-Scientific-therapies">Data at Heart Rhythm 2026 highlight key Boston Scientific therapies</a></div>
+	
+	<div class="wd_summary"><p>Positive data for FARAPULSE™ Pulsed Field Ablation and WATCHMAN™ LAAC Devices underscore therapy safety and effectiveness in late-breaking clinical trial sessions</p></div>
+	
+	
+</div>
+</li><li class="wd_item">
+<div class="wd_item_wrapper">
+	<div class="wd_date">Apr 22, 2026</div>
+	<div class="wd_title"><a href="https://news.bostonscientific.com/2026-04-22-Boston-Scientific-announces-results-for-first-quarter-2026">Boston Scientific announces results for first quarter 2026</a></div>
+	
+	<div class="wd_summary"><p>"Our global team and the strength of our category leadership strategy enabled us to deliver solid results this quarter," said Mike Mahoney, chairman and chief executive officer.</p></div>
+	
+	
+</div>
+</li><li class="wd_item">
+<div class="wd_item_wrapper">
+	<div class="wd_date">Mar 30, 2026</div>
+	<div class="wd_title"><a href="https://news.bostonscientific.com/2026-03-30-Boston-Scientific-announces-conference-call-discussing-first-quarter-2026-results">Boston Scientific announces conference call discussing first quarter 2026 results</a></div>
+	
+	<div class="wd_summary"><p>A webcast and replay of the April 22 conference call will be available. Learn how to tune in.</p></div>
+	
+	
+</div>
+</li><li class="wd_item"><div class="wd_thumbnail"><a href="https://news.bostonscientific.com/2026-03-30-Boston-Scientific-receives-FDA-clearance-for-the-Asurys-TM-Fluid-Management-System"><img src="http://photos.prnewswire.com/prnthumb/20160203/329537LOGO" border="0"/></a></div>
+<div class="wd_item_wrapper">
+	<div class="wd_date">Mar 30, 2026</div>
+	<div class="wd_title"><a href="https://news.bostonscientific.com/2026-03-30-Boston-Scientific-receives-FDA-clearance-for-the-Asurys-TM-Fluid-Management-System">Boston Scientific receives FDA clearance for the Asurys™ Fluid Management System</a></div>
+	
+	<div class="wd_summary"><p>New technology designed to provide a single irrigation management system for ureteroscopy, cystoscopy, percutaneous nephrolithotomy (PCNL) and benign prostatic hyperplasia (BPH) procedures.</p></div>
+	
+	<ul class="wd_layout-simple wd_asset_type_link_list"><li class="wd_asset_type_link"><a href="https://news.bostonscientific.com/2026-03-30-Boston-Scientific-receives-FDA-clearance-for-the-Asurys-TM-Fluid-Management-System#assets_24889_137184-135">
+<span class="wd_icon fa fa-photo" title="Photos" style="font-size: 1.2em;"></span>
+<span class="wd_title">Photos</span>
+<span class="wd_count">1</span>
+</a>
+</li></ul>
+</div>
+</li><li class="wd_item">
+<div class="wd_item_wrapper">
+	<div class="wd_date">Mar 28, 2026</div>
+	<div class="wd_title"><a href="https://news.bostonscientific.com/2026-03-28-CHAMPION-AF-study-of-the-WATCHMAN-FLX-TM-Left-Atrial-Appendage-Closure-Device-as-a-first-line-therapy-for-stroke-risk-reduction-meets-all-primary-and-secondary-safety-and-efficacy-endpoints">CHAMPION-AF study of the WATCHMAN FLX™ Left Atrial Appendage Closure Device as a first-line therapy for stroke risk reduction meets all primary and secondary safety and efficacy endpoints</a></div>
+	
+	<div class="wd_summary"><p>Data highlights the WATCHMAN FLX device provided statistically superior protection from bleeding, demonstrated similar efficacy compared to blood thinners in patients with non-valvular atrial fibrillation.</p></div>
+	
+	
+</div>
+</li><li class="wd_item"><div class="wd_thumbnail"><a href="https://news.bostonscientific.com/2026-03-28-HI-PEITHO-trial-demonstrates-Boston-Scientific-EKOS-TM-Endovascular-System-is-superior-to-standard-of-care-for-treatment-of-acute-pulmonary-embolism"><img src="https://mma.prnewswire.com/media/2944763/EKOS__Acoustic_Pulse_Thrombolysis_Treatment_Boston_Scientific.jpg?p=thumbnail" border="0"/></a></div>
+<div class="wd_item_wrapper">
+	<div class="wd_date">Mar 28, 2026</div>
+	<div class="wd_title"><a href="https://news.bostonscientific.com/2026-03-28-HI-PEITHO-trial-demonstrates-Boston-Scientific-EKOS-TM-Endovascular-System-is-superior-to-standard-of-care-for-treatment-of-acute-pulmonary-embolism">HI-PEITHO trial demonstrates Boston Scientific EKOS™ Endovascular System is superior to standard of care for treatment of acute pulmonary embolism</a></div>
+	
+	<div class="wd_summary"><p>Global randomized trial demonstrated statistically significant reduction in clinical event rates in patients with intermediate-risk PE when treated with the EKOS device plus anticoagulation vs anticoagulation alone.</p></div>
+	
+	<ul class="wd_layout-simple wd_asset_type_link_list"><li class="wd_asset_type_link"><a href="https://news.bostonscientific.com/2026-03-28-HI-PEITHO-trial-demonstrates-Boston-Scientific-EKOS-TM-Endovascular-System-is-superior-to-standard-of-care-for-treatment-of-acute-pulmonary-embolism#assets_24889_137182-135">
+<span class="wd_icon fa fa-photo" title="Photos" style="font-size: 1.2em;"></span>
+<span class="wd_title">Photos</span>
+<span class="wd_count">1</span>
+</a>
+</li></ul>
+</div>
+</li><li class="wd_item">
+<div class="wd_item_wrapper">
+	<div class="wd_date">Mar 6, 2026</div>
+	<div class="wd_title"><a href="https://news.bostonscientific.com/2026-03-06-Boston-Scientific-to-host-investor-event-at-the-75th-Annual-Scientific-Session-of-the-American-College-of-Cardiology">Boston Scientific to host investor event at the 75th Annual Scientific Session of the American College of Cardiology</a></div>
+	
+	<div class="wd_summary"><p>The American College of Cardiology investor event on March 28 will feature a live webcast. Learn how to tune in or access the replay.</p></div>
+	
+	
+</div>
+</li><li class="wd_item">
+<div class="wd_item_wrapper">
+	<div class="wd_date">Feb 23, 2026</div>
+	<div class="wd_title"><a href="https://news.bostonscientific.com/2026-02-23-Boston-Scientific-elects-Cathy-Smith-and-Christophe-Weber-to-Board-of-Directors">Boston Scientific elects Cathy Smith and Christophe Weber to Board of Directors</a></div>
+	
+	<div class="wd_summary"><p>"Each brings deep leadership experience, strategic insight and a strong track record of value creation,” said CEO Mike Mahoney.</p></div>
+	
+	
+</div>
+</li><li class="wd_item">
+<div class="wd_item_wrapper">
+	<div class="wd_date">Feb 13, 2026</div>
+	<div class="wd_title"><a href="https://news.bostonscientific.com/2026-02-13-Boston-Scientific-to-participate-in-TD-Cowens-46th-Annual-Health-Care-Conference">Boston Scientific to participate in TD Cowen's 46th Annual Health Care Conference</a></div>
+	
+	<div class="wd_summary"><p>Boston Scientific Corporation (NYSE: BSX) will participate in TD Cowen's 46th Annual Health Care Conference on Tuesday, March 3, 2026. Mike Mahoney, chairman and chief executive officer, and...</p></div>
+	
+	
+</div>
+</li></ul>
+<div class="wd_page_menu"><div class="wd_page_limit">Show <span role="menu" wd_linkmenu_header="{&quot;title&quot;:&quot;Select number of items per page&quot;}" class="wd_linkmenu"><a href="https://news.bostonscientific.com/news-releases?l=5" aria-label="Show 5 per page" role="menuitem" class="wd_linkmenu-item">5</a><a href="https://news.bostonscientific.com/news-releases?l=10" aria-label="Show 10 per page" role="menuitem" aria-current="true" class="wd_linkmenu-item wd_linkmenu-active">10</a><a href="https://news.bostonscientific.com/news-releases?l=25" aria-label="Show 25 per page" role="menuitem" class="wd_linkmenu-item">25</a><a href="https://news.bostonscientific.com/news-releases?l=50" aria-label="Show 50 per page" role="menuitem" class="wd_linkmenu-item">50</a><a href="https://news.bostonscientific.com/news-releases?l=100" aria-label="Show 100 per page" role="menuitem" class="wd_linkmenu-item">100</a></span> per page</div><nav role="navigation" aria-label="Page Navigation"><ul class="wd_page_links"><li class="wd_page_link wd_page_prev"><span>&laquo;</span></li><li class="wd_page_link wd_page_active"><span aria-current="page" aria-label="Current page 1">1</span></li><li class="wd_page_link wd_page_mid2"><a aria-label="Show page 2" href="https://news.bostonscientific.com/news-releases?o=10">2</a></li><li class="wd_page_link wd_page_mid2"><a aria-label="Show page 3" href="https://news.bostonscientific.com/news-releases?o=20">3</a></li><li class="wd_page_link wd_page_mid2"><a aria-label="Show page 4" href="https://news.bostonscientific.com/news-releases?o=30">4</a></li><li class="wd_page_link wd_page_mid2"><a aria-label="Show page 5" href="https://news.bostonscientific.com/news-releases?o=40">5</a></li><li class="wd_page_link wd_page_mid2"><a aria-label="Show page 6" href="https://news.bostonscientific.com/news-releases?o=50">6</a></li><li class="wd_page_link wd_page_mid2"><a aria-label="Show page 7" href="https://news.bostonscientific.com/news-releases?o=60">7</a></li><li class="wd_page_link wd_page_mid2"><a aria-label="Show page 8" href="https://news.bostonscientific.com/news-releases?o=70">8</a></li><li class="wd_page_link wd_page_mid2"><a aria-label="Show page 9" href="https://news.bostonscientific.com/news-releases?o=80">9</a></li><li class="wd_page_link wd_page_skip2"><span>&hellip;</span></li><li class="wd_page_link wd_page_end"><a aria-label="Show page 152" href="https://news.bostonscientific.com/news-releases?o=1510">152</a></li><li class="wd_page_link wd_page_next"><a aria-label="Show next page" href="https://news.bostonscientific.com/news-releases?o=10">&raquo;</a></li></ul></nav></div>
+
+<div class="wd_toolbar wd_toolbar-main"><ul class="wd_tools"><li class="wd_tool wd_tool-print"><span class="wd_tool_icon"><a onclick="view_printable(); return false;" rel="nofollow" href="#print" title="print"><span class="fa fa-print"></span></a></span></li><li class="wd_tool wd_tool-socialshare_facebook"><span class="wd_tool_icon">
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fnews.bostonscientific.com%2Findex.php%3Fs%3D24889" target="_blank" title="Facebook Share" style="background-color:#4267B2;">
+                    <span class="fa fa-facebook"></span>
+		    <span class="wd_sr-only wd_sr-only-focusable"></span>
+                    </a>
+                </span></li><li class="wd_tool wd_tool-socialshare_linkedin"><span class="wd_tool_icon">
+                    <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fnews.bostonscientific.com%2Findex.php%3Fs%3D24889" target="_blank" title="Linkedin Share" style="background-color:#0077B5;">
+                    <span class="fa fa-linkedin"></span>
+		    <span class="wd_sr-only wd_sr-only-focusable"></span>
+                    </a>
+                </span></li><li class="wd_tool wd_tool-socialshare_twitter"><span class="wd_tool_icon">
+                    <a href="https://twitter.com/share?url=https%3A%2F%2Fnews.bostonscientific.com%2Findex.php%3Fs%3D24889" target="_blank" title="Twitter Share" style="background-color:#000;">
+                    <span class="fa fa-twitter"></span>
+		    <span class="wd_sr-only wd_sr-only-focusable"></span>
+                    </a>
+                </span></li><li class="wd_tool wd_tool-email"><span class="wd_tool_icon"><a onclick="window.location.href = 'mailto:?subject=News%20Releases%20-%20Boston%20Scientific&amp;body='+encodeURIComponent(window.location.href);return false;" href="#email" title="email"><span class="fa fa-envelope"></span></a></span></li><li class="wd_tool wd_tool-rss"><span class="wd_tool_icon"><a href="https://news.bostonscientific.com/rss-feed?rsspage=24889" title="rss"><span class="fa fa-rss"></span></a></span></li></ul></div>
+
+</div>
+</div>                </div><!-- END CONTENT -->
+              </div><!-- END CONTENT-WRAPPER -->	
+            </div>
+          </div>
+        </div><!-- END CONTAINER -->
+         
+
+         
+
+        <a class="bsc-backToTop js-bsc-backToTop" href="#">
+          <i class="fa fa-chevron-up"></i>
+          <span class="bsc-top-text">Top</span>
+        </a>
+
+        <div class="footer parbase">
+      
+          <footer role="contentinfo" class="bsc-footer">
+            
+            <div class="bsc-social-media container">
+              <div class="bsc-container">
+                  <!-- add flex-row-reverse to display social icons on the left at LG breakpoint -->
+                  <div class="row align-items-center flex-row-reverse">
+                    <div class="col-lg-4">
+                        <div class="bsc-social-wrapper">
+                          <ul class="list-unstyled list-inline">
+                              <li class="list-inline-item">
+                                <a class="bsc-social-icon-link" href="https://www.facebook.com/BostonScientific" target="_blank" title="Follow on Facebook">
+                                <i class="fa fa-facebook"></i>      
+                                <span>Follow on Facebook</span>
+                                </a>
+                              </li>
+                              <li class="list-inline-item">
+                                <a class="bsc-social-icon-link" href="https://www.linkedin.com/company/boston-scientific" title="Follow on LinkedIn">
+                                <i class="fa fa-linkedin"></i>
+                                <span>Follow on LinkedIn</span>
+                                </a>
+                              </li>
+                              <li class="list-inline-item">
+                                <a class="bsc-social-icon-link" href="https://www.instagram.com/bostonsci/" target="_blank" title="Follow on Instagram">
+                                   <i class="fa fa-instagram" aria-hidden="true"></i>
+                                   <span>Follow on Instagram</span>
+                                </a>
+                             </li>
+                              
+                          </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <p class="text-center text-lg-left bsc-tagline">Boston Scientific is dedicated to transforming lives through innovative medical solutions that improve the health of patients around the world.</p>
+                    </div>
+                  </div>
+                  <hr>
+              </div>
+            </div>
+            <div class="bsc-footer-nav container">
+              <div class="bsc-container">
+                  <nav class="row text-left text-md-left" aria-label="main footer navigation">
+                    <div class="col-md-6 col-lg-4 col-xl-4">
+                        <ul class="list-unstyled">
+                          <li class="bsc-footer-link-heading">Professionals</li>
+                          <li><a href="https://www.bostonscientific.com/en-US/medical-specialties.html" title="Medical Specialties ">Medical Specialties </a></li>
+                          <li><a href="https://www.bostonscientific.com/en-US/reimbursement.html" title="Reimbursement">Reimbursement</a></li>
+                          <li><a href="https://www.bostonscientific.com/en-US/education.html" title="EDUCARE – Medical Education and Training Courses">EDUCARE – Medical Education and Training Courses</a></li>
+                          <li><a href="https://www.bostonscientific.com/en-US/investigator-sponsored-research.html" title="Investigator-Sponsored Research Program">Investigator-Sponsored Research Program</a></li>
+                        </ul>
+                    </div>
+                  
+                    <div class="col-md-6 col-lg-4 col-xl-4">
+                        <ul class="list-unstyled">
+                          <li class="bsc-footer-link-heading">Patients</li>
+                          <li><a href="https://www.bostonscientific.com/en-US/patients-caregivers.html" title="Patients &amp; Caregivers - Support and Resources">Patients &amp; Caregivers - Support and Resources</a></li>
+                          
+                          <li><a href="https://www.bostonscientific.com/en-US/patients-caregivers/treatments-conditions.html" title="All Treatments and Conditions">All Treatments and Conditions</a></li>
+                          <li><a href="https://www.bostonscientific.com/en-US/patient-and-caregiver-support.html" title="Patient and Caregiver Support">Patient and Caregiver Support</a></li>
+                        </ul>
+                    </div>
+                  
+                    <div class="col-md-6 col-lg-4 col-xl-4">
+                        <ul class="list-unstyled">
+                          <li class="bsc-footer-link-heading">Products</li>
+                          <li><a href="https://www.bostonscientific.com/en-US/products.html" title="Products">Products</a></li>
+                          <li><a href="https://www.bostonscientific.com/en-US/customer-service.html" title="Customer support and services">Customer support and services</a></li>
+                          <li><a href="https://www.bostonscientific.com/imageready" title="ImageReady™ - MRI Information">ImageReady™ - MRI Information</a></li>
+                          <li><a href="https://www.bostonscientific.com/en-US/customer-service/product-security.html" title="Product Security">Product Security</a></li>
+                        </ul>
+                    </div>
+                  
+                    <div class="col-md-6 col-lg-4 col-xl-4">
+                        <ul class="list-unstyled">
+                          <li class="bsc-footer-link-heading">About</li>
+                          <li><a href="https://www.bostonscientific.com/en-US/about-us.html" title="About Us">About Us</a></li>
+                          <li><a href="https://www.bostonscientific.com/en-US/corporate-social-responsibility.html" title="Corporate Responsibility">Corporate responsibility</a></li>
+                          <li><a href="https://www.bostonscientific.com/en-US/careers.html" title="Careers">Careers</a></li>
+                          
+                        </ul>
+                    </div>
+                  
+                    <div class="col-md-6 col-lg-4 col-xl-4">
+                        <ul class="list-unstyled">
+                          <li class="bsc-footer-link-heading">Administrators</li>
+                          <li><a href="https://www.bostonscientific.com/en-US/healthcare-professionals/administrators.html" title="Administrators">Administrators</a></li>
+                        </ul>
+                    </div>
+                  
+                    <div class="col-md-6 col-lg-4 col-xl-4">
+                        <ul class="list-unstyled">
+                          <li class="bsc-footer-link-heading">Compliance &amp; Ethics</li>
+                          <li><a href="https://www.bostonscientific.com/en-US/corporate-responsibility/integrity/compliance-ethics.html" title="Compliance &amp; Ethics">Compliance &amp; ethics</a></li>
+                          <li><a href="https://www.bostonscientific.com/en-US/corporate-responsibility/integrity/policy-advocacy.html" title="Policy &amp; Advocacy">Policy &amp; Advocacy</a></li>
+                          <li><a href="https://www.bostonscientific.com/en-US/corporate-social-responsibility/people/labor-human-rights.html#uk-modern-slavery" title="UK Modern Slavery Disclosure Statement">UK Modern Slavery Disclosure Statement</a></li>
+                          <li><a href="JavaScript:Void(0)" id="cpraOT">Do not sell or share my personal information</a></li>
+                        </ul>
+                    </div>
+                  </nav>
+              </div>
+            </div>
+            <div class="bsc-trust container" id="complianceCode">
+              <div class="bsc-container">
+                  <p class="text-left"></p>
+              </div>
+            </div>
+            <div class="bsc-legal-links container">
+              <div class="bsc-container">
+                  <div class="row align-items-center">
+                    <div class="col-md-12 col-lg-6">
+                        <p class="text-left bsc-footer-copyright">©2026 Boston Scientific Corporation or its affiliates. All rights reserved.</p>
+                    </div>
+                    <div class="col-md-12 col-lg-6">
+                        <nav class="text-left text-lg-right" aria-label="secondary footer navigation">
+                          <ul class="list-unstyled list-inline">
+                              <li class="list-inline-item">
+                                <a href="https://www.bostonscientific.com/en-US/privacy-policy.html" title="Privacy Policy">Privacy Policy</a>
+                              </li>
+                          
+                              <li class="list-inline-item">
+                                <a href="https://www.bostonscientific.com/en-US/terms-of-use.html" title="Terms of Use">Terms of Use</a>
+                              </li>
+                          
+                              <li class="list-inline-item">
+                                <a href="https://www.bostonscientific.com/en-US/copyright-notice.html" title="Copyright Notice">Copyright Notice</a>
+                              </li>
+                          
+                              <li class="list-inline-item">
+                                <a href="https://www.bostonscientific.com/en-US/sitemap.html" title="Site Map">Site Map</a>
+                              </li>
+                          </ul>
+                        </nav>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </footer>
+    
+        </div>
+
+      </main>
+
+
+    <!-- </div>  -->
+    <!-- cmp-container -->
+  <!-- </div>  -->
+  <!-- root container responsivegrid -->
+
+	<!-- <script type="text/javascript" src="js/handlebars.min.5c3285ee5078da3ca05f8e12b877a647.js"></script>
+	<script type="text/javascript" src="js/corporate.min.59d10108a002d311955fdb3ac7e5177e.js"></script>
+ -->
+
+	<!-- WD Clamp Library -->
+	 <script type="text/javascript" src="js/clamp.min.js"></script>
+
+	<!-- Google Tag Manager -->
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-5224NF');</script>
+	<!-- End Google Tag Manager -->
+
+
+	<!-- NEW BOSTON JS CODE -->
+	<script type="text/javascript" src="./bsc-new-header_files/corporatelibs.js"></script>
+    <script type="text/javascript" src="./bsc-new-header_files/header.js"></script>
+    
+    <script src="js/wd_script.js"></script>
+
+	<script type="text/javascript">
+        /*Custom WD JS*/
+        $(document).ready(function(e){
+
+            /*Addying Custom Layout to FB on Hompage*/
+
+            //Grabing items
+            var hp_tiles = $('.wd_pageid_24897 .wd_featureboxes_middle .wd_standard-teaser .item');
+
+            //Clone 6th Item
+            var twitter_feed = $(hp_tiles[4]);
+            twitter_feed.clone().insertAfter(twitter_feed);
+
+            //Re-grab all items
+            hp_tiles = $('.wd_pageid_24897 .wd_featureboxes_middle .wd_standard-teaser .item');
+            twitter_feed = $(hp_tiles[4]).addClass('wd_twitter_feed');
+
+            hp_tiles.each(function(){
+
+                var bg_url = $(this).find('.itemlink img').attr('src');
+
+                //Make Tiles Clickable
+                var tile_link = $(this).find('.item_name > a:not(.itemlink)').attr('href'); 
+
+                if(tile_link){
+
+                    $(this).find('a.itemlink').on('click', function(e){
+                        e.preventDefault();
+                    })
+
+                    $(this).on('click', function(e){
+                        window.location.assign(tile_link);
+                    })
+                }
+                $(this).wrapInner('<div class="wd_tile"><div class="inner_wrap"></div></div>');
+                $(this).find('.wd_tile').css('background-image','url('+bg_url+')');
+                /* var tile_url = $(this).find('a').attr('href'),
+                cta_btn = '<a href="'+tile_url+'">See More</a>';
+                $(this).find('.inner_wrap').append(cta_btn);*/
+            });
+
+            //Adding Promo Title
+            var promo_tile_to = $('.wd_pageid_24897 .wd_featureboxes_middle .wd_standard-teaser .item:nth(1)');
+            var pr_img_src = $('.wd_featureboxes_promo_tile .wd_imagetable img').attr('src');
+            var pr_url = $('.wd_featureboxes_promo_tile .wd_featurebox a').attr('href');
+            var pr_title = $('.wd_featureboxes_promo_tile .wd_featurebox_title').text();
+
+            $('<div class="item wd_promo_tile"><a href="'+pr_url+'" class="wd_tile" style="background-image:url('+pr_img_src+')"><div class="inner_wrap"><div class="item_name">'+pr_title+'</div></div></a></div>').insertAfter(promo_tile_to);
+
+
+            // var pr_new_tile = $('.item.wd_promo_tile');
+            
+
+            // pr_new_tile.find('a.itemlink').on('click', function(e){
+            // 	e.preventDefault();
+            // }).on('click', function(e){
+            // 	window.location.assign(pr_url);
+            // });
+
+
+
+            // $(hp_tiles[0]).addClass('__fat');
+            // $(hp_tiles[5]).addClass('__fat');
+            // $(hp_tiles[1]).addClass('__slim');
+            // $(hp_tiles[3]).addClass('__slim');
+            /*Stories Page*/
+
+            // if( $('body.wd_pageid_35195').length > 0 && !$('body.wd_pageid_35195').hasClass('wd_item_page')) {
+            // 	$stories_tiles = $('.wd_pageid_35195 .wd_layout-masonry .wd_item').each(function(){
+            // 		 var bg_url = $(this).find('.wd_thumbnail img').attr('src');
+            // 			$(this).addClass('wd_tile');
+            // 			$(this).css('background-image','url('+bg_url+')');
+            // 			$(this).find('.wd_item_wrapper').addClass('inner_wrap');
+            // 		//Do the Clamp! Nevermind... there is no way to clamp  :P
+            // 	   // $clamp($(this).find('.inner_wrap .item_name'), {clamp: 2})
+            // 		//Make Tiles Clickable
+            // 		var tile_link = $(this).find('.wd_title a').attr('href');
+            // 		if(tile_link){
+            // 			$(this).on('click', function(e){
+            // 				window.location.assign(tile_link);
+            // 			})
+            // 		}
+            // 	});
+            // }
+    
+            /*Image Gallery*/
+
+            if( $('body.wd_pageid_24908').length > 0) {
+                
+
+                $gallery_tiles = $('.wd_pageid_24908 .wd_category_items .item').each(function(){
+                    
+
+                    var bg_url = $(this).find('.wd_imagetable img').attr('src');
+                        $(this).addClass('wd_tile');
+                        $(this).css('background-image','url('+bg_url+')');
+
+                        $(this).wrapInner('<div class="wd_item_wrapper inner_wrap" />');
+                    
+                    //$(this).find('.wd_item_wrapper').addClass('inner_wrap');
+                    //Do the Clamp! Nevermind... there is no way to clamp  :P
+                // $clamp($(this).find('.inner_wrap .item_name'), {clamp: 2})
+                    //Make Tiles Clickable
+
+
+                    
+
+
+                    var tile_link = $(this).find('.wd_imagetable a').attr('href');
+                    if(tile_link){
+                        $(this).on('click', function(e){
+                            window.location.assign(tile_link);
+                        })
+                    }
+
+
+
+                    $(this).find('.wd_imagetable').remove();
+                });
+            }
+
+            /*Homepage Right bottom FB Image Bg*/
+            var fb_elem = $('#wd_featurebox-standard_4189'),
+                img_url = fb_elem.find('.wd_imagetable img').attr('src');
+            if(img_url){
+                fb_elem.css('background-image', 'url("'+img_url+'")');  
+                fb_elem.addClass('wd_fb_img_bg');              
+            }
+
+            //Iframe Fix
+            $('.wd_featurebox iframe').wrap("<div class='wd_iframe_rapper'></div>");
+
+            /*Insert Twitter feed into a tile*/
+            twitter_feed.find('.wd_tile').empty();
+            $('#wd_featurebox-social_2').appendTo(twitter_feed.find('.wd_tile'));
+
+            //Custom BOTTOM FB
+            $('.wd_right_bottom > div').addClass('row')
+            $('.wd_right_bottom .wd_featurebox_container').wrap('<div class="col-md-6" />');
+
+            /*END Addying Custom Layout to FB on Hompage*/
+
+            /*Adding more button*/
+            var more_btn = '<p class="more"><a class="btn-primary btn-big btn" href="stories">View All</a></p>';
+
+            $('.wd_pageid_24897 .wd_featureboxes_middle .wd_featurebox').append(more_btn);
+            $("#wd_search_overlay input[type='text']")[0].setAttribute('tabindex', 0);
+            $("#wd_search_overlay input[type='submit']")[0].setAttribute('tabindex', 0);
+            $("#wd_search_overlay input[type='text']")[0].setAttribute('autofocus', true);
+
+            $('.wd_search_wrap').on('click', function(e) {
+                $(".wd_search_wrap input[type='text']")[0].blur();
+                setSearchInputFocus();
+                $('#wd_search_overlay').fadeIn();
+            });
+            $('.wd_search_wrap input[type=text]').on('focus', function(e) {
+                setSearchInputFocus();
+                $('#wd_search_overlay').fadeIn();
+            });
+            $('.wd_mobile_search input[type=text]').on('focus', function(e) {
+                $('#wd_mobile_search_overlay').fadeIn();
+            });
+            $(window).scroll(function() {
+                if ($(window).scrollTop() > 105) {
+                    $(".wd_mobile_search").addClass("wd_mobile-sticky");
+                } else {
+                    $(".wd_mobile_search").removeClass("wd_mobile-sticky");
+                }
+            });
+            $(window).on('click', function(event) {
+                if ($("#wd_search_overlay")[0].style.display == "block") {
+                    if (event.target.id == "wd_search_overlay") {
+                        closeWdOverlay("wd_search_overlay");
+                    }
+                }
+                if ($("#wd_mobile_search_overlay")[0].style.display == "block") {
+                    if (event.target.id == "wd_mobile_search_overlay") {
+                        closeWdOverlay("wd_mobile_search_overlay");
+                    }
+                }
+            });
+            $(window).on('touchstart', function(event) {
+                if ($("#wd_search_overlay")[0].style.display == "block") {
+                    if (event.target.id == "wd_search_overlay") {
+                        closeWdOverlay("wd_search_overlay");
+                    }
+                }
+                if ($("#wd_mobile_search_overlay")[0].style.display == "block") {
+                    if (event.target.id == "wd_mobile_search_overlay") {
+                        closeWdOverlay("wd_mobile_search_overlay");
+                    }
+                }
+            });
+        }); // end document ready
+
+        function closeWdOverlay(elementId) {
+            $('#' + elementId).fadeOut();
+        }
+        function setSearchInputFocus(){
+            //console.log('setSearchInputFocus');
+            setTimeout(function() {
+                $("#wd_search_overlay input[type='text']")[0].focus();
+            }, 100);
+        }
+
+        
+        
+        $(document).ready(function() {
+            // Make item image unclickable
+            $('.wd_featureboxes_hp_top .wd_articles-teaser .item > .itemlink').removeAttr('href');
+
+            // Replace homepage section titles as 'h2'
+            $('.wd_pageid_24897 .wd_featurebox_title').each(function(){
+                $(this).replaceWith(function() {
+                return $("<h2>", {
+                    class: this.className,
+                    html: $(this).html()
+                });
+                });
+            });
+
+            // Replace homeage header title 'div' to 'h1'
+            $('.wd_pageid_24897 .wd_featureboxes_top_banner .wd_featurebox_title').replaceWith(function() {
+                return $("<h1>", {
+                class: this.className,
+                html: $(this).html()
+                });
+            });
+
+            // Replace 'h1' with 'div'
+            $('.wd_pageid_24897 .wd_featureboxes_right_highlight .wd_featurebox_title h1').replaceWith(function() {
+                return $("<div>", {
+                class: this.className,
+                html: $(this).html()
+                });
+            });
+
+            // Replace 'h2' with 'h3' and remove empty 'div' wrapper
+            $('.wd_pageid_24897 .wd_featureboxes_right_highlight h2.wd_featurebox_title').replaceWith(function() {
+                return $("<h3>", {
+                class: this.className,
+                html: $(this).html()
+                });
+            });
+            $('.wd_pageid_24897 .wd_featureboxes_right_highlight h3.wd_featurebox_title a').unwrap();
+
+            // Replace Articles Teaser titles to 'h3'
+            //   $('.wd_pageid_24897 .wd_articles-teaser .item_name').replaceWith(function() {
+            //     return $("<h3>", {
+            //       class: this.className,
+            //       html: $(this).html()
+            //     });
+            //   });
+
+            // Add 'Read More' to homepage stories
+            $('.wd_featureboxes_hp_top .wd_articles-teaser .item').each(function() {
+                var itemLink = $('.item_name a', this).attr('href');
+                var itemName = $('.item_name a', this).text();
+                $(this).append($('<a class="wd_item_more" href="' + itemLink + '" aria-label="Read more about ' + itemName + '">Read more</a>'));
+            });
+
+            // Add 'Read More' to homepage press releases
+            $('.wd_featureboxes_top .wd_newsfeed_releases-teaser .item').each(function() {
+                var itemLink = $('.item_name a', this).attr('href');
+                var itemName = $('.item_name a', this).text();
+                $(this).append($('<a class="wd_item_more" href="' + itemLink + '" aria-label="Read more about ' + itemName + '">Read more</a>'));
+            });
+
+            // Add 'Read More' to Press Releases page items
+            $('.wd_newsfeed_releases .wd_item .wd_item_wrapper').each(function() {
+                var itemLink = $('.wd_title a', this).attr('href');
+                var itemName = $('.wd_title a', this).text();
+                $('.wd_summary p', this).append($('<span>&nbsp;<a class="wd_item_more" href="' + itemLink + '" aria-label="Read more about ' + itemName + '">Read more</a></span>'));
+            });
+
+            // Add 'Read More' to Features page items
+            $('.wd_pageid_35195 .wd_item .item-right-wrap').each(function() {
+                var itemLink = $('.wd_title a', this).attr('href');
+                var itemName = $('.wd_title a', this).text();
+                $(this).append($('<a class="wd_item_more" href="' + itemLink + '" aria-label="Read more about ' + itemName + '">Read more</a>'));
+            });
+        
+            // Modify logo alt text
+            $('a.bsds-nav-link-logo img').attr('alt', 'Boston Scientific logo');
+
+            // Give title to nav link buttons for screenreader
+            $('.bsds-nav-link.js-nav-item-button').each(function() {
+                var buttonTitle = $('.bsds-nav-link-text', this).text();
+                $(this).attr('title', buttonTitle);
+            });
+
+            // Replace button content with an SVG icon
+            $('#wd_menu_inner .wd_search_form_container input[type="submit"]').attr('value', '');
+            
+
+
+
+    
+        }); // end document ready
+	</script>
+
+
+
+    <script type="text/javascript" src="./js/container.7dab4327cc9611698e80655b91b35a23.js"></script>
+    <script type="text/javascript" src="./js/clientlib-base.3ab96a32e2cced24da96c26c761b6d6f.js"></script>
+    <script type="text/javascript" src="./js/clientlib-corporate.2902934ee36dc525f2f83267696840a9.js"></script>
+
+<!-- begin spin_special_output(body_end) -->
+<script wd_script_id="piwik_tracking_code"></script>
+<!-- Piwik Tracking Code -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+
+  _paq.push(["setCustomVariable", 1, "Content Type", "News Releases Feed", "page"]);
+
+  _paq.push(["setCustomVariable", 3, "Navigation Page", "Press releases ", "page"]);
+
+  _paq.push(["trackPageView"]);
+  _paq.push(["enableLinkTracking"]);
+  (function() {
+    var u="//stats.drivetheweb.com/";
+    _paq.push(["setTrackerUrl", u+"piwik.php"]);
+    _paq.push(["setSiteId", 804]);
+    var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0];
+    g.type="text/javascript"; g.async=true; g.defer=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<noscript>
+	<img src="https://stats.drivetheweb.com/piwik.php?idsite=804&rec=1" style="border:0" alt="" />
+</noscript>
+<!-- End Piwik Tracking Code -->
+		
+<!-- end spin_special_output(body_end) -->
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9fd9abc2ed67b33b',t:'MTc3OTA5NDgyMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

@@ -1,0 +1,608 @@
+{
+  "source": "CDC \u2014 Imputed Hospitalization Rate for RSV at the State Level",
+  "url": "https://data.cdc.gov/resource/whhs-7a5d.json",
+  "fetched_at": "2026-05-18T14:32:23",
+  "row_count": 200,
+  "rows": [
+    {
+      "state": "Alabama",
+      "week": "2022-09-25T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "4.173596234434173"
+    },
+    {
+      "state": "Alabama",
+      "week": "2022-10-02T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "3.0915759621716528"
+    },
+    {
+      "state": "Alabama",
+      "week": "2022-10-09T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "3.0114911420084973"
+    },
+    {
+      "state": "Alabama",
+      "week": "2022-10-16T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "2.73224846743715"
+    },
+    {
+      "state": "Alabama",
+      "week": "2022-10-23T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "2.1549941341196064"
+    },
+    {
+      "state": "Alabama",
+      "week": "2022-10-30T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "1.2261643839072947"
+    },
+    {
+      "state": "Alabama",
+      "week": "2022-11-06T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "1.461644527219973"
+    },
+    {
+      "state": "Alabama",
+      "week": "2022-11-13T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "1.5143691018700232"
+    },
+    {
+      "state": "Alabama",
+      "week": "2022-11-20T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "1.2592747259068626"
+    },
+    {
+      "state": "Alabama",
+      "week": "2022-11-27T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "1.1271463167486462"
+    },
+    {
+      "state": "Alabama",
+      "week": "2022-12-04T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.7806557662530504"
+    },
+    {
+      "state": "Alabama",
+      "week": "2022-12-11T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.9394801462094341"
+    },
+    {
+      "state": "Alabama",
+      "week": "2022-12-18T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.8508925306725743"
+    },
+    {
+      "state": "Alabama",
+      "week": "2022-12-25T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.6044261083144439"
+    },
+    {
+      "state": "Alabama",
+      "week": "2023-01-01T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.6321770766863527"
+    },
+    {
+      "state": "Alabama",
+      "week": "2023-01-08T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.37783095970120495"
+    },
+    {
+      "state": "Alabama",
+      "week": "2023-01-15T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.33427606929167025"
+    },
+    {
+      "state": "Alabama",
+      "week": "2023-01-22T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.3140666062701301"
+    },
+    {
+      "state": "Alabama",
+      "week": "2023-01-29T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.2872938584404"
+    },
+    {
+      "state": "Alabama",
+      "week": "2023-02-05T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.4168481533166485"
+    },
+    {
+      "state": "Alabama",
+      "week": "2023-02-12T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.15167734793836166"
+    },
+    {
+      "state": "Alabama",
+      "week": "2023-02-19T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.26196414090598985"
+    },
+    {
+      "state": "Alabama",
+      "week": "2023-02-26T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.3424157901315964"
+    },
+    {
+      "state": "Alabama",
+      "week": "2023-03-05T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.2408171846870209"
+    },
+    {
+      "state": "Alabama",
+      "week": "2023-03-12T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.2999074834235786"
+    },
+    {
+      "state": "Alabama",
+      "week": "2023-03-19T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.19146353424707274"
+    },
+    {
+      "state": "Alabama",
+      "week": "2023-03-26T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.13354428804427382"
+    },
+    {
+      "state": "Alabama",
+      "week": "2023-04-02T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.19860010776001932"
+    },
+    {
+      "state": "Alabama",
+      "week": "2023-04-09T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.1583333609823706"
+    },
+    {
+      "state": "Alabama",
+      "week": "2023-04-16T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.15490238125000783"
+    },
+    {
+      "state": "Alabama",
+      "week": "2023-04-23T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.1757597344714926"
+    },
+    {
+      "state": "Alabama",
+      "week": "2023-04-30T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.1463591439677142"
+    },
+    {
+      "state": "Alabama",
+      "week": "2023-05-07T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.12671259914790658"
+    },
+    {
+      "state": "Alabama",
+      "week": "2023-05-14T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.21535584285006065"
+    },
+    {
+      "state": "Alabama",
+      "week": "2023-05-21T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.15003123718554218"
+    },
+    {
+      "state": "Alabama",
+      "week": "2023-05-28T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.10121724613952848"
+    },
+    {
+      "state": "Alabama",
+      "week": "2023-06-04T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.13965358243950668"
+    },
+    {
+      "state": "Alabama",
+      "week": "2023-06-11T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.10729506659329685"
+    },
+    {
+      "state": "Alabama",
+      "week": "2023-06-18T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.25677887996968957"
+    },
+    {
+      "state": "Alabama",
+      "week": "2023-06-25T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.06407852154236708"
+    },
+    {
+      "state": "Alabama",
+      "week": "2023-07-02T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.05405165784125594"
+    },
+    {
+      "state": "Alabama",
+      "week": "2023-07-09T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.1330946439767847"
+    },
+    {
+      "state": "Alabama",
+      "week": "2023-07-16T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.1086664400479486"
+    },
+    {
+      "state": "Alabama",
+      "week": "2023-07-23T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.024500050516830966"
+    },
+    {
+      "state": "Alabama",
+      "week": "2023-07-30T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.09428020769933526"
+    },
+    {
+      "state": "Alabama",
+      "week": "2023-08-06T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.0989340026231802"
+    },
+    {
+      "state": "Alabama",
+      "week": "2023-08-13T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.11686069456415688"
+    },
+    {
+      "state": "Alabama",
+      "week": "2023-08-20T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.12246467824043943"
+    },
+    {
+      "state": "Alabama",
+      "week": "2023-08-27T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.21262037602402056"
+    },
+    {
+      "state": "Alabama",
+      "week": "2023-09-03T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.2558807813692814"
+    },
+    {
+      "state": "Alabama",
+      "week": "2023-09-10T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.36990460202642306"
+    },
+    {
+      "state": "Alabama",
+      "week": "2023-09-17T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.760217893339558"
+    },
+    {
+      "state": "Alabama",
+      "week": "2023-09-24T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "1.221222508161893"
+    },
+    {
+      "state": "Alabama",
+      "week": "2023-10-01T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "1.5568651663599502"
+    },
+    {
+      "state": "Alabama",
+      "week": "2023-10-08T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "2.205004546514787"
+    },
+    {
+      "state": "Alabama",
+      "week": "2023-10-15T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "2.826435934436105"
+    },
+    {
+      "state": "Alabama",
+      "week": "2023-10-22T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "3.7646011843913656"
+    },
+    {
+      "state": "Alabama",
+      "week": "2023-10-29T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "4.27382560973494"
+    },
+    {
+      "state": "Alabama",
+      "week": "2023-11-05T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "5.284171054574253"
+    },
+    {
+      "state": "Alabama",
+      "week": "2023-11-12T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "5.515039165313488"
+    },
+    {
+      "state": "Alabama",
+      "week": "2023-11-19T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "6.746021777278147"
+    },
+    {
+      "state": "Alabama",
+      "week": "2023-11-26T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "5.41241215527028"
+    },
+    {
+      "state": "Alabama",
+      "week": "2023-12-03T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "4.6923730772997665"
+    },
+    {
+      "state": "Alabama",
+      "week": "2023-12-10T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "3.7920827426921937"
+    },
+    {
+      "state": "Alabama",
+      "week": "2023-12-17T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "2.8833326275548874"
+    },
+    {
+      "state": "Alabama",
+      "week": "2023-12-24T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "2.13709738935237"
+    },
+    {
+      "state": "Alabama",
+      "week": "2023-12-31T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "1.5428307245158668"
+    },
+    {
+      "state": "Alabama",
+      "week": "2024-01-07T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "1.099961637333574"
+    },
+    {
+      "state": "Alabama",
+      "week": "2024-01-14T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.7774345926887186"
+    },
+    {
+      "state": "Alabama",
+      "week": "2024-01-21T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.739219088877307"
+    },
+    {
+      "state": "Alabama",
+      "week": "2024-01-28T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.38969152515725247"
+    },
+    {
+      "state": "Alabama",
+      "week": "2024-02-04T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.386310378100741"
+    },
+    {
+      "state": "Alabama",
+      "week": "2024-02-11T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.4948615027262139"
+    },
+    {
+      "state": "Alabama",
+      "week": "2024-02-18T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.38139440301645045"
+    },
+    {
+      "state": "Alabama",
+      "week": "2024-02-25T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.3677129231383834"
+    },
+    {
+      "state": "Alabama",
+      "week": "2024-03-03T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.3593077640551479"
+    },
+    {
+      "state": "Alabama",
+      "week": "2024-03-10T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.27487394554741207"
+    },
+    {
+      "state": "Alabama",
+      "week": "2024-03-17T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.33993091502178796"
+    },
+    {
+      "state": "Alabama",
+      "week": "2024-03-24T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.4321922571197153"
+    },
+    {
+      "state": "Alabama",
+      "week": "2024-03-31T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.47665426550813417"
+    },
+    {
+      "state": "Alabama",
+      "week": "2024-04-07T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.24736555221913772"
+    },
+    {
+      "state": "Alabama",
+      "week": "2024-04-14T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.37848789380898146"
+    },
+    {
+      "state": "Alabama",
+      "week": "2024-04-21T00:00:00.000",
+      "state_abb": "AL",
+      "nssp": "0.21326754376787818"
+    },
+    {
+      "state": "Alaska",
+      "week": "2022-09-25T00:00:00.000",
+      "state_abb": "AK",
+      "nssp": "0.28047415258861885"
+    },
+    {
+      "state": "Alaska",
+      "week": "2022-10-02T00:00:00.000",
+      "state_abb": "AK",
+      "nssp": "0.7266751409547918"
+    },
+    {
+      "state": "Alaska",
+      "week": "2022-10-09T00:00:00.000",
+      "state_abb": "AK",
+      "nssp": "1.2186090880164144"
+    },
+    {
+      "state": "Alaska",
+      "week": "2022-10-16T00:00:00.000",
+      "state_abb": "AK",
+      "nssp": "0.9985431132700464"
+    },
+    {
+      "state": "Alaska",
+      "week": "2022-10-23T00:00:00.000",
+      "state_abb": "AK",
+      "nssp": "3.620159060345218"
+    },
+    {
+      "state": "Alaska",
+      "week": "2022-10-30T00:00:00.000",
+      "state_abb": "AK",
+      "nssp": "2.512673847117437"
+    },
+    {
+      "state": "Alaska",
+      "week": "2022-11-06T00:00:00.000",
+      "state_abb": "AK",
+      "nssp": "5.670436147885708"
+    },
+    {
+      "state": "Alaska",
+      "week": "2022-11-13T00:00:00.000",
+      "state_abb": "AK",
+      "nssp": "7.729463358275544"
+    },
+    {
+      "state": "Alaska",
+      "week": "2022-11-20T00:00:00.000",
+      "state_abb": "AK",
+      "nssp": "8.319114909557355"
+    },
+    {
+      "state": "Alaska",
+      "week": "2022-11-27T00:00:00.000",
+      "state_abb": "AK",
+      "nssp": "9.663962836975347"
+    },
+    {
+      "state": "Alaska",
+      "week": "2022-12-04T00:00:00.000",
+      "state_abb": "AK",
+      "nssp": "8.241025698407237"
+    },
+    {
+      "state": "Alaska",
+      "week": "2022-12-11T00:00:00.000",
+      "state_abb": "AK",
+      "nssp": "4.408592762764102"
+    },
+    {
+      "state": "Alaska",
+      "week": "2022-12-18T00:00:00.000",
+      "state_abb": "AK",
+      "nssp": "2.2397876776821177"
+    },
+    {
+      "state": "Alaska",
+      "week": "2022-12-25T00:00:00.000",
+      "state_abb": "AK",
+      "nssp": "2.678331920025594"
+    },
+    {
+      "state": "Alaska",
+      "week": "2023-01-01T00:00:00.000",
+      "state_abb": "AK",
+      "nssp": "3.254510887694965"
+    },
+    {
+      "state": "Alaska",
+      "week": "2023-01-08T00:00:00.000",
+      "state_abb": "AK",
+      "nssp": "2.3711436467491893"
+    },
+    {
+      "state": "Alaska",
+      "week": "2023-01-15T00:00:00.000",
+      "state_abb": "AK",
+      "nssp": "2.845987724796281"
+    }
+  ]
+}

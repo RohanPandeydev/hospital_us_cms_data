@@ -1,0 +1,13 @@
+{
+  "service": "CDC WONDER Mortality (Underlying Cause of Death)",
+  "url": "https://wonder.cdc.gov/ucd-icd10.html",
+  "note": "CDC WONDER is a query interface, not raw API. Free per-state mortality data by ICD-10 cause.",
+  "axios_relevant_icd10_filters": [
+    "K85 (Acute pancreatitis)",
+    "K86 (Other diseases of pancreas)",
+    "K83 (Other diseases of biliary tract)",
+    "K80 (Cholelithiasis)",
+    "C25 (Pancreatic cancer)"
+  ],
+  "geographic": "US 50 states + DC, 1999-present"
+}

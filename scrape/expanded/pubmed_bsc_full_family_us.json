@@ -1,0 +1,2091 @@
+{
+  "source": "PubMed E-utils \u2014 multi-device search",
+  "fetched_at": "2026-05-18T14:29:45",
+  "devices_searched": [
+    "WATCHMAN",
+    "Eluvia",
+    "Innova",
+    "OBTRYX",
+    "Hot AXIOS",
+    "Precision Spinal Cord",
+    "Vici Venous",
+    "TAXUS",
+    "SYNERGY",
+    "Promus",
+    "Emblem S-ICD"
+  ],
+  "us_records": 167,
+  "records": [
+    {
+      "pmid": "41660190",
+      "title": "Visible light navigation for C1/C2 fixation and a rare complication related to C2 lamina fracture: case report.",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Orthopaedics and Traumatology, Li Ka Shing Faculty of Medicine, The University of Hong"
+      ]
+    },
+    {
+      "pmid": "32757198",
+      "title": "Recanalization of a complete colorectal anastomotic stenosis: an application of the Hot AXIOS stent.",
+      "year": "2021",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Gastroenterology, Timone University Hospital"
+      ]
+    },
+    {
+      "pmid": "42084394",
+      "title": "Multi-omics profiling of fungal balls in chronic pulmonary aspergillosis patients reveals microbiome dynamics and metabolic adaptations.",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Institute of Respiratory Medicine, School of Medicine, Tongji University",
+        "Department of Respiratory and Critical Care Medicine, Tongji Hospital",
+        "Department of Thoracic Surgery, Shanghai Pulmonary Hospital",
+        "Department of Respiratory and Critical Care Medicine, Shanghai Pulmonary Hospital",
+        "Department of Pathology, Shanghai Pulmonary Hospital"
+      ]
+    },
+    {
+      "pmid": "38635112",
+      "title": "Evaluation of the efficacy of combined device strategies for long femoropopliteal artery disease.",
+      "year": "2024",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Cardiovascular Medicine, Sapporo Higashi Tokushukai Hospital",
+        "Department of Cardiovascular Medicine, Sapporo City General Hospital",
+        "Department of Cardiovascular Surgery, Nayoro City General Hospital",
+        "Department of Cardiovascular Medicine, Tokeidai Memorial Hospital",
+        "Department of Cardiovascular Medicine, Sapporo-Kosei General Hospital"
+      ]
+    },
+    {
+      "pmid": "40780826",
+      "title": "Prognostic impact of guideline-directed medical therapy after functionally complete revascularisation in patients with obstructive coronary artery diseases.",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Cardiology, Renji Hospital",
+        "Department of Cardiology, Huadong Hospital Affiliated to Fudan University",
+        "Department of Cardiology, National Clinical Research Center for Cardiovascular Diseases",
+        "Medical Research and Biometrics Center, National Clinical Research Center for Cardiovascular Disease",
+        "Department of Cardiology, Sir Run Run Shaw Hospital",
+        "Department of Cardiology, Renmin Hospital of Wuhan University",
+        "Biomedical Instrument Institute, School of Biomedical Engineering, Shanghai Jiao Tong University",
+        "Department of Cardiology, Shanghai East Hospital"
+      ]
+    },
+    {
+      "pmid": "41465271",
+      "title": "Inorganic, Synthetic, Natural, and Innovative Hybrid Hydrogen Sulfide Donors and Inhibitors of Its Biosynthesis in the Treatment of Central and Peripheral Nervous System Injuries: A Systematic Analytical Review.",
+      "year": "2025",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Zalessky, Novosibirsk State Medical University",
+        "Department of Bioengineering, Institute of Living Systems, Don State Technical University",
+        "Sklifosovsky Institute of Clinical Medicine",
+        "Department of Hospital Therapy"
+      ]
+    },
+    {
+      "pmid": "41475572",
+      "title": "Biotypes of deeply phenotyped depressed patients reflect signatures of adverse childhood experience and depressive cognitive biases.",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Medicine and Surgery, Kore University of Enna",
+        "Psychiatry and Clinical Psychobiology Unit"
+      ]
+    },
+    {
+      "pmid": "42004841",
+      "title": "Magnetic resonance-guided Linac for stereotactic body radiotherapy of spinal metastases.",
+      "year": "2026",
+      "us_affiliations": [
+        "Department of Clinical Radiation Oncology, Keck School of Medicine of USC, Los Angeles, CA, USA.",
+        "Department of Clinical Radiation Oncology, Keck School of Medicine of USC, Los Angeles, CA, USA."
+      ],
+      "hospitals_extracted": [
+        "Department of Clinical Radiation Oncology"
+      ]
+    },
+    {
+      "pmid": "37995865",
+      "title": "Use of a Paclitaxel Drug-Eluting Stent for the Treatment of Hemodialysis Access Outflow Stenosis.",
+      "year": "2024",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Scientific Department of Mathematics and Information Systems, School of Economics and LIAAD-INESC Po"
+      ]
+    },
+    {
+      "pmid": "41781737",
+      "title": "Long-term thrombus-free left atrial appendage occlusion via magnetofluids.",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Southern University of Science and Technology",
+        "Fuwai Yunnan Hospital",
+        "Department of Mechanics and Engineering Science, College of Engineering, Peking University",
+        "Department of Structural Heart Disease, State Key Laboratory of Cardiovascular Disease, Fuwai Hospit",
+        "Nano Science and Technology Institute, University of Science and Technology of China"
+      ]
+    },
+    {
+      "pmid": "41621334",
+      "title": "Curcumin- and capsaicin-loaded nanoemulsions improve oxidative stress, intestinal morphology, and feed efficiency in slow-growing Korat chickens under high stocking density.",
+      "year": "2026",
+      "us_affiliations": [
+        "Department of Animal &amp; Avian Sciences, University of Maryland, College Park, Maryland, USA."
+      ],
+      "hospitals_extracted": [
+        "Avian Sciences, University of Maryland",
+        "School of Biotechnology, Institute of Agricultural Technology, Suranaree University of Technology",
+        "School of Animal Technology and Innovation, Institute of Agricultural Technology, Suranaree Universi"
+      ]
+    },
+    {
+      "pmid": "30250998",
+      "title": "Device updates successfully reduce T&#x2011;wave oversensing and inappropriate shocks in subcutaneous ICD patients.",
+      "year": "2018",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Division of Electrophysiology, Department of Cardiovascular Medicine, University of Muenster",
+        "Department of Cardiac and Thoracic Surgery, University of Muenster",
+        "Department of Internal Medicine II, Paracelsus Medical University"
+      ]
+    },
+    {
+      "pmid": "42095217",
+      "title": "Megestrol acetate in the management of cancer cachexia: a prospective quasi-experimental study focusing on body composition and patient-reported outcomes.",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Gannan Medical University",
+        "Department of Oncology, The First Affiliated Hospital of Gannan Medical University",
+        "Department of Oncology, The First Affiliated Hospital",
+        "Jiangxi Provincial Unit for Clinical Key Oncology Specialty Development",
+        "Jiangxi Clinical Research Center for Cancer"
+      ]
+    },
+    {
+      "pmid": "42035341",
+      "title": "Synergistic impact of nondipper heart rate and blood pressure on left ventricular hypertrophy in essential hypertension.",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Cardiology, Daping Hospital",
+        "Key Laboratory of Geriatric Cardiovascular and Cerebrovascular Disease Research, Chongqing Key Labor",
+        "Department of Cardiology, The Second Affiliated Hospital of Chongqing Medical University"
+      ]
+    },
+    {
+      "pmid": "41183181",
+      "title": "Randomized Controlled Trial of Mechanical Thrombectomy With Anticoagulation Versus Anticoagulation Alone for Acute Intermediate-High Risk Pulmonary Embolism: Primary Outcomes From the STORM-PE Trial.",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Pulmonary Circulation Centre, Department of Cardiac and Vascular Diseases, Jagiellonian University M",
+        "Massachusetts General Hospital and Harvard Medical School",
+        "Smidt Heart Institute, Cedars Sinai Medical Center",
+        "Interventional Cardiology, Baylor University Medical Center",
+        "Department of Cardiology, Democritus University of Thrace",
+        "Center for Thrombosis and Hemostasis, University Medical Center of the Johannes Gutenberg University",
+        "John Paul II Hospital",
+        "Northern Region Interventional Radiology Service, Auckland City Hospital"
+      ]
+    },
+    {
+      "pmid": "41834629",
+      "title": "A retrospective Chinese study on optical-electromagnetic navigation-guided biportal endoscopic unilateral laminotomy for bilateral decompression in lumbar spinal stenosis: improving precision and efficiency.",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Orthopaedic Surgery, Beijing Chaoyang Hospital",
+        "Clinical Center for Spinal Deformity, Capital Medical University of China",
+        "Treatment of Spinal Cord Injury in Spinal Deformity, Laboratory for Clinical Medicine",
+        "Department of Orthopaedic Surgery, Beijing Anzhen Hospital"
+      ]
+    },
+    {
+      "pmid": "42098773",
+      "title": "Tumor-targeted liposomal RNAi therapy suppresses breast cancer and modulates tumor microenvironment.",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Laboratory of Immunooncology, Department of Biomedical Science, CHA University",
+        "Laboratory of Nano-regenerative Medicine, Department of Biomedical Science, College of Life Science,"
+      ]
+    },
+    {
+      "pmid": "32076473",
+      "title": "Post-dilatation improves stent apposition in patients with ST-segment elevation myocardial infarction receiving primary percutaneous intervention: A multicenter, randomized controlled trial using optical coherence tomography.",
+      "year": "2020",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Cardiology, Ningbo First Hospital",
+        "Department of Cardiology, Fuwai Hospital",
+        "Department of Cardiology, Nanjing First Hospital",
+        "Department of Cardiology, the Second Affiliated Hospital of Zhejiang University School of Medicine"
+      ]
+    },
+    {
+      "pmid": "41509847",
+      "title": "Spontaneous contralateral pneumothorax: a rare but potential complication of anterior cervical total disk arthroplasty-a case report.",
+      "year": "2025",
+      "us_affiliations": [
+        "Elson S. Floyd College of Medicine, Washington State University, Spokane, WA, USA.",
+        "Alpine Orthopaedic and Spine, Spokane, WA, USA."
+      ],
+      "hospitals_extracted": [
+        "Floyd College of Medicine, Washington State University"
+      ]
+    },
+    {
+      "pmid": "36754106",
+      "title": "Immediate versus staged complete revascularization in patients with ST-segment elevation myocardial infarction and multivessel coronary artery disease: results from a prematurely discontinued randomized multicenter trial.",
+      "year": "2023",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Daegu Catholic University Medical Center",
+        "Daejeon Eulji Medical Center",
+        "Chonnam National University Hospital",
+        "Shihwa General Hospital",
+        "Jeonbuk National University Hospital",
+        "Gachon University Gil Hospital",
+        "Yeungnam University",
+        "Bucheon Sejong Hospital"
+      ]
+    },
+    {
+      "pmid": "37933462",
+      "title": "Comparing Predictors Influencing Restenosis Following High-Dose Drug-Coated Balloon Angioplasty and Fluoropolymer-Based Drug-Eluting Stenting in Femoropopliteal Artery Lesions.",
+      "year": "2025",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Cardiovascular Center, Kansai Rosai Hospital",
+        "Department of Diabetes Care Medicine, Graduate School of Medicine, Osaka University",
+        "Department of Clinical Engineering"
+      ]
+    },
+    {
+      "pmid": "39183676",
+      "title": "One-year Outcomes of Drug-Eluting Stent Versus Drug-Coated Balloon for Femoropopliteal Artery Lesions: BEASTARS Study Results.",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Cardiovascular Medicine, Asahi General Hospital",
+        "Department of Metabolic Medicine, Graduate School of Medicine, Osaka University",
+        "Division of Vascular Surgery, Department of Surgery, The Jikei University School of Medicine",
+        "Department of Cardiology, Tokyo Saiseikai Central Hospital",
+        "Department of Cardiology, Saiseikai Yokohama City Eastern Hospital",
+        "Department of Cardiology, Heart and Vascular Institute, Funabashi Municipal Medical Center",
+        "Department of Cardiovascular Medicine, Sendai Kousei Hospital",
+        "Department of Cardiology, Shonan Kamakura General Hospital"
+      ]
+    },
+    {
+      "pmid": "41976927",
+      "title": "Recurring Bleeding Events Requiring Red Blood Cell Transfusion After Left Atrial Appendage Closure Are Associated with Increased Mortality.",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Cardiovascular Medicine and Research Division, Semmelweis University Doctoral School",
+        "Heart and Vascular Center, Semmelweis University",
+        "Department of Cardiology, Central Hospital of Northern Pest-Military Hospital"
+      ]
+    },
+    {
+      "pmid": "40359573",
+      "title": "Eluvia stent in endovascular treatment of femoropopliteal occlusive disease: Early results of the challenge study.",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Vascular Surgery, The First Affiliated Hospital",
+        "Department of Vascular Surgery, Liyuan Hospital of Tongji Medical University",
+        "Department of Vascular Surgery, Hospital of Chengdu University of TCM",
+        "Department of Vascular Surgery, Zhongshan Hospital",
+        "Department of Vascular Surgery, The Second Affiliated Hospital of Soochow University",
+        "Hospital, Zhejiang University School of Medicine",
+        "Department of Vascular Surgery, The Affiliated Hospital of Qingdao University",
+        "Department of Vascular Surgery, Shanghai Jiaotong University"
+      ]
+    },
+    {
+      "pmid": "40240978",
+      "title": "Characteristics and Outcomes of Older Patients Undergoing Protected Percutaneous Coronary Intervention With Impella.",
+      "year": "2025",
+      "us_affiliations": [
+        "Department of Cardiology Yale University School of Medicine New Haven CT USA.",
+        "Center for Structural Heart Disease, Division of Cardiology Henry Ford Health System Detroit MI USA.",
+        "Clinical Trials Center Cardiovascular Research Foundation New York NY USA.",
+        "Clinical Trials Center Cardiovascular Research Foundation New York NY USA.",
+        "Clinical Trials Center Cardiovascular Research Foundation New York NY USA."
+      ],
+      "hospitals_extracted": [
+        "Department of Cardiology, University Heart Center"
+      ]
+    },
+    {
+      "pmid": "34902596",
+      "title": "Efficacy and Safety of \"I-Stop-Mini Adjustable\" Sling System versus Transobturator Midurethral \"Obtryx\" Sling System in Stress Urinary Incontinence: A Retrospective Cohort Study.",
+      "year": "2022",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "National Yang-Ming University"
+      ]
+    },
+    {
+      "pmid": "38469035",
+      "title": "Influence of Race/Ethnicity and Sex on Coronary Stent Outcomes in Diabetic Patients.",
+      "year": "2023",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Mount Sinai Medical Center",
+        "Central Cardiology Medical Clinic",
+        "MedStar Union Memorial Hospital",
+        "Baptist Hospital"
+      ]
+    },
+    {
+      "pmid": "32478459",
+      "title": "One-year outcomes of patients undergoing complex percutaneous coronary intervention with three contemporary drug-eluting stents.",
+      "year": "2021",
+      "us_affiliations": [
+        "The Zena and Michael A. Wiener Cardiovascular Institute, Icahn School of Medicine at Mount Sinai, New York, New York, USA.",
+        "The Zena and Michael A. Wiener Cardiovascular Institute, Icahn School of Medicine at Mount Sinai, New York, New York, USA.",
+        "The Zena and Michael A. Wiener Cardiovascular Institute, Icahn School of Medicine at Mount Sinai, New York, New York, USA.",
+        "The Zena and Michael A. Wiener Cardiovascular Institute, Icahn School of Medicine at Mount Sinai, New York, New York, USA.",
+        "The Zena and Michael A. Wiener Cardiovascular Institute, Icahn School of Medicine at Mount Sinai, New York, New York, USA."
+      ],
+      "hospitals_extracted": []
+    },
+    {
+      "pmid": "41973211",
+      "title": "The ABC of sealing following left atrial appendage closure.",
+      "year": "2026",
+      "us_affiliations": [
+        "Department of Cardiothoracic Surgery, Weill Cornell Medicine, New York, USA.",
+        "Department of Cardiothoracic Surgery, Weill Cornell Medicine, New York, USA."
+      ],
+      "hospitals_extracted": [
+        "Department of Cardiology, Aarhus University Hospital",
+        "Department of Cardiothoracic Surgery, University Hospital of Jena",
+        "Department of Internal Medicine 1, Cardiology, University Hospital of Jena"
+      ]
+    },
+    {
+      "pmid": "32826448",
+      "title": "Characteristics of recurrent in-stent restenosis after second- and third-generation drug-eluting stent implantation.",
+      "year": "2021",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Cardiovascular Medicine and Hypertension, Kagoshima University"
+      ]
+    },
+    {
+      "pmid": "41645487",
+      "title": "Three-year clinical outcomes of left atrial appendage occlusion with or without ablation: insight from the RECORD study.",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Cardiology, Sir Run Shaw Hospital",
+        "Department of Cardiology, The First Hospital of Lanzhou University",
+        "Department of Cardiology, Dalian Municipal Central Hospital",
+        "Department of Cardiology, The First Affiliated Hospital of USTC",
+        "Department of Cardiology, General Hospital of Northern Theater Command",
+        "Department of Cardiology, Royal Blackburn Hospital",
+        "Department of Cardiology, National University of Ireland",
+        "Department of Cardiology, Xijing Hospital"
+      ]
+    },
+    {
+      "pmid": "41377036",
+      "title": "Single centre experience of rotablation-assisted left main percutaneous coronary intervention.",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Max Hospital Bathinda Punjab",
+        "Paras Hospital Srinagar Jammu and Kashmir"
+      ]
+    },
+    {
+      "pmid": "37395475",
+      "title": "Biodegradable or durable polymer drug-eluting stents in patients with coronary artery disease: ten-year outcomes of the randomised NEXT Trial.",
+      "year": "2023",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Division of Cardiology, Hyogo Prefectural Amagasaki General Medical Center",
+        "Division of Cardiology, Kansai Rosai Hospital",
+        "Division of Cardiology, Mitsui Memorial Hospital",
+        "Department of Cardiology, National Hospital Organization Kyoto Medical Center",
+        "Department of Cardiovascular Medicine, Wakayama Medical University",
+        "Department of Cardiovascular Medicine, Saga University",
+        "Division of Cardiology, Hirakata Kohsai Hospital",
+        "Department of Cardiology, Shiga University of Medical Science Hospital"
+      ]
+    },
+    {
+      "pmid": "40762882",
+      "title": "Dedicated venous stent placement across the thoracic outlet: will novel venous stents transform axillosubclavian vein thrombosis treatment paradigm?",
+      "year": "2025",
+      "us_affiliations": [
+        "Section of Vascular and Interventional Radiology, Department of Radiology, University of Washington, 1959 Northeast Pacific Street, Seattle, WA, 98195, USA.",
+        "Division of Vascular and Interventional Radiology, Department of Radiology, The Ohio State University Wexner Medical Center, Columbus, OH, 43210, USA. umap02@osumc.edu.",
+        "Division of Vascular and Interventional Radiology, Department of Radiology, University of Southern California, 1500 San Pablo Street, Los Angeles, CA, 90033, USA.",
+        "Section of Vascular and Interventional Radiology, Department of Radiology, University of Washington, 1959 Northeast Pacific Street, Seattle, WA, 98195, USA.",
+        "Department of Radiology, University of Wisconsin, 1675 Highland Ave, Madison, WI, 53792, USA."
+      ],
+      "hospitals_extracted": [
+        "Division of Vascular and Interventional Radiology, Department of Radiology, The Ohio State Universit",
+        "Section of Vascular and Interventional Radiology, Department of Radiology, University of Washington",
+        "Department of Radiology, University of Wisconsin",
+        "Division of Vascular and Interventional Radiology, Department of Radiology, University of Southern C"
+      ]
+    },
+    {
+      "pmid": "41217462",
+      "title": "Vaginal Mesh Exposure After Single-Incision vs Full-Length Midurethral Sling Placement: A Retrospective Cohort Study.",
+      "year": "2026",
+      "us_affiliations": [
+        "School of Medicine, University of Washington, 1959 NE Pacific Street, Seattle, WA, 98195, USA. mattk93@uw.edu.",
+        "Department of Urology, New York Presbyterian Hospital - Weill Cornell Medical Center , New York, NY, USA.",
+        "Department of Urology, Cedars-Sinai Medical Center, Los Angeles, CA, USA."
+      ],
+      "hospitals_extracted": [
+        "Department of Urology, New York Presbyterian Hospital - Weill Cornell Medical Center",
+        "Department of Urology, Cedars-Sinai Medical Center",
+        "School of Medicine, University of Washington"
+      ]
+    },
+    {
+      "pmid": "41417955",
+      "title": "Safety and accuracy of robot-assisted pedicle screw fixation: a randomized controlled trial.",
+      "year": "2025",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Spine Surgery, Tongji Hospital",
+        "Department of Operation, Tongji Hospital",
+        "Key Laboratory of Spine and Spinal Cord Injury Repair and Regeneration, Ministry of Education, Depar",
+        "Key Laboratory of Exercise and Health Sciences of Ministry of Education",
+        "Hospital Affiliated to Shanghai Jiao Tong University School of Medicine"
+      ]
+    },
+    {
+      "pmid": "40772580",
+      "title": "The Hemoglobin, Albumin, Lymphocyte, and Platelet Score as a Simple Blood-Based Predictor of Residual Coronary Disease Burden in Diabetic Patients with Non-ST-Elevation Myocardial Infarction.",
+      "year": "2025",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Cardiology, Bulent Ecevit University Faculty of Medicine"
+      ]
+    },
+    {
+      "pmid": "34155526",
+      "title": "A Budget Impact Model for the use of Drug-Eluting Stents in Patients with Symptomatic Lower-Limb Peripheral Arterial Disease: An Australian Perspective.",
+      "year": "2021",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "The University of NSW",
+        "The George Institute for Global Health",
+        "Department of Vascular Surgery, Royal Perth Hospital",
+        "Department of Vascular Surgery, Prince of Wales Hospital"
+      ]
+    },
+    {
+      "pmid": "41677825",
+      "title": "Adverse childhood experiences and resting state functional connectivity of the triple brain network: a meta-analysis.",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Singapore Institute for Clinical Sciences",
+        "Department of Mental and Physical Health and Preventive Medicine"
+      ]
+    },
+    {
+      "pmid": "41893381",
+      "title": "Left Circumflex Artery Occlusion in Chronic Phase After Left Atrial Appendage Closure.",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Fukuoka Wajiro Hospital"
+      ]
+    },
+    {
+      "pmid": "41491022",
+      "title": "CIRSE Standards of Practice on Endovascular Treatment of Acute Pulmonary Embolism.",
+      "year": "2026",
+      "us_affiliations": [
+        "UCLA Medical Center, Los Angeles, United States."
+      ],
+      "hospitals_extracted": [
+        "UCLA Medical Center",
+        "John Radcliff Hospital",
+        "University Hospital Heraklion"
+      ]
+    },
+    {
+      "pmid": "33507383",
+      "title": "EUS-guided gallbladder drainage in high-risk surgical patients with acute cholecystitis-procedure outcomes and evaluation of mortality predictors.",
+      "year": "2022",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Intensive Care Unit, Hospital of Imola",
+        "Surgery Unit, Hospital of Imola",
+        "Department of Medical and Surgical Sciences, Gastroenterology Unit, Hospital of Imola"
+      ]
+    },
+    {
+      "pmid": "37341208",
+      "title": "Polymer-coated paclitaxel-eluting stents for the treatment of stenosed native arteriovenous fistulas: Long-term results from the ELUDIA study.",
+      "year": "2024",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Vascular Surgery, Singapore General Hospital",
+        "Department of Interventional Radiology, School of Medicine, University of Patras",
+        "Department of Surgery, Yong Loo Lin School of Medicine, National University of Singapore"
+      ]
+    },
+    {
+      "pmid": "41089641",
+      "title": "Evaluation of Advanced Endoscopic Stents for Pancreatic Pseudocyst Drainage: A 2-Year Study.",
+      "year": "2025",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Epidemiology Department, School of Public Health and Safety",
+        "Department of Internal Medicine, Firoozgar Hospital",
+        "Gastrointestinal and Liver Diseases Research Center, School of Medicine, Iran University of Medical "
+      ]
+    },
+    {
+      "pmid": "41465577",
+      "title": "Clinical Insights into Mesenchymal Stem Cell Applications for Spinal Cord Injury.",
+      "year": "2025",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Federal Scientific and Clinical Center for Specialized Types of Medical Care and Medical Technologie",
+        "Department of Neurology, Neurosurgery and Medical Genetics, Department of Medical Nanobiotechnology,"
+      ]
+    },
+    {
+      "pmid": "41410108",
+      "title": "Associations between early life adversity and the development of gray matter macrostructure and microstructure.",
+      "year": "2025",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Psychology, University of Oslo",
+        "Bergen Center for Brain Plasticity, Haukeland University Hospital",
+        "Institute of Clinical Medicine",
+        "Department of Biomedicine, University of Bergen",
+        "KG Jebsen Centre for Neurodevelopmental Disorders, University of Oslo",
+        "Department of Radiology, Haukeland University Hospital",
+        "Centre for Crisis Psychology, University of Bergen"
+      ]
+    },
+    {
+      "pmid": "41192661",
+      "title": "Drug-Eluting Stents for the Treatment of Arteriovenous Access Stenosis: A Systematic Review and Individual Patient Data (IPD) Meta-Analysis.",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Radiology, Aristotle University of Thessaloniki",
+        "Department of Vascular Surgery, Aristotle University of Thessaloniki"
+      ]
+    },
+    {
+      "pmid": "40254154",
+      "title": "Contemporary Femoropopliteal Stents: Reporting Gaps of Randomized Trials.",
+      "year": "2025",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Vascular Unit, 5th Department of Surgery, Aristotle University Medical School",
+        "Division of Vascular and Endovascular Surgery, Department of Surgery, Stony Brook University Hospita"
+      ]
+    },
+    {
+      "pmid": "39966131",
+      "title": "First-intention EUS-guided transluminal drainage with LAMS: an effective and safe method for management of fluid collections after any kind of surgery.",
+      "year": "2025",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Biomedical Sciences, Pieve Emanuele, Italy and Humanitas Clinical and Research Center ",
+        "Hospital, AP-HP, Paris, France and Sorbonne University",
+        "Department of Minimally Invasive Digestive Surgery, Antoine Beclere Hospital",
+        "Interventional Endoscopy Unit, Private Hospital Peupliers",
+        "Department of Clinical Medicine and Surgery"
+      ]
+    },
+    {
+      "pmid": "41319146",
+      "title": "Comparing the Clinical Performance of Paclitaxel-Coated Balloons and Paclitaxel-Eluting Stent for Treating Long Femoropopliteal Artery Disease: Results of the CAPELLA Study.",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Division of Vascular Surgery, Department of Surgery, The Jikei University School of Medicine",
+        "Department of Cardiology, Tenyoukai Central Hospital",
+        "Department of Cardiology, Tokyo Bay Urayasu Ichikawa Medical Center",
+        "Department of Cardiology, Sendai Kousei Hospital",
+        "Department of Cardiology, Rakuwakai Otowa Hospital",
+        "Department of Cardiology, Ogaki Municipal Hospital",
+        "Department of Cardiology, Saiseikai Yokohama City Eastern Hospital",
+        "Department of Cardiology, Miyazaki Medical Association Hospital"
+      ]
+    },
+    {
+      "pmid": "36042580",
+      "title": "Initial United Kingdom experience of endoscopic ultrasound-directed transgastric endoscopic retrograde cholangiopancreatography.",
+      "year": "2022",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Interventional Endoscopy, University Hospital Southampton NHS Foundation Trust",
+        "Biomedical Communications, University of Toronto",
+        "Department of Gastroenterology, Leeds Teaching Hospitals NHS Trust"
+      ]
+    },
+    {
+      "pmid": "40930604",
+      "title": "3-Year Outcomes of Drug-Eluting Stent vs Drug-Coated Balloon for Femoropopliteal Artery Lesions: Propensity Score-Matched Real-World Study.",
+      "year": "2025",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Vascular Institute, Funabashi Municipal Medical Center",
+        "Department of Cardiovascular Medicine, Asahi General Hospital",
+        "Department of Metabolic Medicine, Osaka University Graduate School of Medicine",
+        "Department of Cardiology, Tokyo Saiseikai Central Hospital",
+        "Department of Cardiology, Saiseikai Yokohama City Eastern Hospital",
+        "Department of Cardiovascular Medicine, Sendai Kousei Hospital",
+        "Department of Cardiology, Shonan Kamakura General Hospital",
+        "Division of Vascular Surgery, Department of Surgery, the Jikei University School of Medicine"
+      ]
+    },
+    {
+      "pmid": "40893486",
+      "title": "A scoring system combining CatLet score and clinical variables as a predictor of long-term prognosis in patients with chronic coronary syndrome after percutaneous coronary intervention.",
+      "year": "2025",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Cardiology, The Second Affiliated Hospital of Wannan Medical College"
+      ]
+    },
+    {
+      "pmid": "36339368",
+      "title": "Comparison of Different Types of Drug-Eluting Stents for De Novo Long Coronary Artery Lesions.",
+      "year": "2022",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Division of Cardiology, Busan Paik Hospital",
+        "Hospital, The Catholic University of Korea",
+        "Department of Cardiology, Heart Institute, Asan Medical Center",
+        "Division of Cardiology, Department of Internal Medicine, Keimyung University Dongsan Medical Center"
+      ]
+    },
+    {
+      "pmid": "41321231",
+      "title": "Estimation of radiation dose to the paediatric cardiac patient in a paediatric cardiac catheterisation laboratory: concerns and ways ahead.",
+      "year": "2025",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Radiation Oncology, Narayana Superspeciality Hospital"
+      ]
+    },
+    {
+      "pmid": "36427964",
+      "title": "Comparison of two outside-in transobturator midurethral slings in the treatment of female urodynamic stress incontinence.",
+      "year": "2022",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Obstetrics and Gynecology, Cathay General Hospital",
+        "Department of Obstetrics and Gynecology, Shuang Ho Hospital"
+      ]
+    },
+    {
+      "pmid": "41821729",
+      "title": "Traditional Chinese medicine in the treatment of diabetic kidney disease: the mechanisms of signaling pathways regulations.",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Clinical Pharmacy",
+        "Changsha Medical University"
+      ]
+    },
+    {
+      "pmid": "41575905",
+      "title": "Prognostic significance of residual functional SYNTAX score II in acute myocardial infarction.",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Cardiology, the Second Affiliated Hospital of Fujian Medical University",
+        "The Second Affiliated Hospital of Fujian Medical University"
+      ]
+    },
+    {
+      "pmid": "34339667",
+      "title": "Safety and efficacy of a novel electrocautery-enhanced lumen-apposing metal stent in interventional EUS procedures (with video).",
+      "year": "2022",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Gastroenterology Unit, Department of Medical and Surgical Sciences, University of Foggia",
+        "Department of Surgery, Prince of Wales Hospital",
+        "Department of Medicine, Haukeland University Hospital",
+        "Digestive Disease Center and Research Institute, Department of Internal Medicine, SoonChunHyang Univ",
+        "Rossi University Hospital",
+        "Department of Biomedical Sciences, Humanitas University"
+      ]
+    },
+    {
+      "pmid": "30386125",
+      "title": "Endoscopic ultrasound-guided transmural drainage by cautery-tipped lumen-apposing metal stent: exploring the possible indications.",
+      "year": "2018",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Humanitas University",
+        "Digestive Endoscopy Unit, Department of Gastroenterology, Humanitas Research Hospital"
+      ]
+    },
+    {
+      "pmid": "41033711",
+      "title": "Residual SYNTAX score and outcomes after TAVR+PCI versus SAVR+CABG: a propensity-matched, gender-based comparison.",
+      "year": "2025",
+      "us_affiliations": [
+        "Cardiology, Northwestern University Feinberg School of Medicine, Chicago, Illinois, USA.",
+        "Cardiology, Northwestern University Feinberg School of Medicine, Chicago, Illinois, USA."
+      ],
+      "hospitals_extracted": [
+        "Cardiology, Northwestern University Feinberg School of Medicine"
+      ]
+    },
+    {
+      "pmid": "42096662",
+      "title": "Multicenter, Randomized, Phase II Trial of Olaparib Plus Radium-223 Versus Radium-223 in Men With Castration-Resistant Prostate Cancer With Bone Metastases (COMRADE).",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "University of Kansas Medical Center",
+        "Ohio State University",
+        "National Cancer Institute at the National Institutes of Health",
+        "University of Pittsburgh Medical Center"
+      ]
+    },
+    {
+      "pmid": "40184125",
+      "title": "Efficacy of topical carbonic anhydrase inhibitors in treating taxane drug-induced cystoid macular edema: A case report.",
+      "year": "2025",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Fenghua Hospital of Traditional Chinese Medicine"
+      ]
+    },
+    {
+      "pmid": "41653506",
+      "title": "Preprocedural and Postprocedural CT Imaging Can Identify Patients at Risk for Complications After LAA Occlusion.",
+      "year": "2026",
+      "us_affiliations": [
+        "Tulane University School of Medicine, Department of Cardiovascular Medicine, New Orleans, Louisiana, USA.",
+        "Department of Internal Medicine, Florida State University College of Medicine Internal Medicine Residency Program at Lee Health, Cape Coral, Florida, USA.",
+        "Department of Internal Medicine, Florida State University College of Medicine Internal Medicine Residency Program at Lee Health, Cape Coral, Florida, USA.",
+        "Department of Cardiology, Lee Health Heart Institute, Fort Myers, Florida, USA.",
+        "Department of Cardiology, Lee Health Heart Institute, Fort Myers, Florida, USA."
+      ],
+      "hospitals_extracted": [
+        "Department of Internal Medicine, Florida State University College of Medicine Internal Medicine Resi",
+        "Tulane University School of Medicine",
+        "Department of Cardiology, Lee Health Heart Institute"
+      ]
+    },
+    {
+      "pmid": "40878986",
+      "title": "Periprocedural Results and Right Ventricular Outcomes of Computer Assisted Vacuum Thrombectomy Treatment of Acute Pulmonary Embolism: Interim Analysis of 300 Patients From the STRIKE-PE Study.",
+      "year": "2025",
+      "us_affiliations": [
+        "UCLA Health Los Angeles CA USA.",
+        "Miami Cardiac &amp; Vascular Institute Miami FL USA.",
+        "Cedars-Sinai Medical Center Los Angeles CA USA.",
+        "Piedmont Augusta Augusta GA USA.",
+        "University of Florida - Shands Hospital Gainesville FL USA."
+      ],
+      "hospitals_extracted": []
+    },
+    {
+      "pmid": "25170535",
+      "title": "Safety and efficacy of retropubic or transobturator midurethral slings in a randomized cohort of Turkish women.",
+      "year": "2014",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Urology, Marmara University School of Medicine"
+      ]
+    },
+    {
+      "pmid": "37291881",
+      "title": "One Year Outcomes of Zilver PTX Versus Eluvia for Femoropopliteal Disease in Real-World Practice: REALDES Study.",
+      "year": "2025",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Cardiovascular Surgery, Kushiro Kojinkai Memorial Hospital",
+        "Department of Surgery, Yamaguchi Prefectural Grand Medical Center",
+        "Department of Cardiovascular Surgery, Southern Tohoku General Hospital",
+        "Department of Cardiovascular Surgery, Sapporo Medical University Hospital",
+        "Department of Cardiovascular Surgery, Hakodate Municipal Hospital",
+        "Department of Cardiovascular Surgery, Kanazawa Medical Center",
+        "Department of Cardiology, Japanese Red Cross Kyoto Daini Hospital"
+      ]
+    },
+    {
+      "pmid": "41280332",
+      "title": "Microglial TREM2 and cognitive impairment: insights from Alzheimer's disease with implications for spinal cord injury and AI-assisted therapeutics.",
+      "year": "2025",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Orthopaedics, The Second Affiliated Hospital of Anhui Medical University",
+        "Institute of Orthopaedics, Research Center for Translational Medicine, The Second Affiliated Hospita"
+      ]
+    },
+    {
+      "pmid": "31833414",
+      "title": "Pivotal Study of Endovenous Stent Placement for Symptomatic Iliofemoral Venous Obstruction.",
+      "year": "2019",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Heart and Vascular Center, St Joseph Hospital",
+        "Division of Vascular Surgery, University of North Carolina School of Medicine"
+      ]
+    },
+    {
+      "pmid": "33636137",
+      "title": "Does study subject diversity influence cardiology research site performance?: Insights from 2 U.S. National Coronary Stent Registries.",
+      "year": "2021",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Mount Sinai Medical Center",
+        "Division of Cardiovascular Medicine, Stanford University School of Medicine",
+        "Department of Medicine, Duke University School of Medicine",
+        "Vanderbilt University Medical Center"
+      ]
+    },
+    {
+      "pmid": "29290601",
+      "title": "The initial report on 1-year outcomes of the feasibility study of the VENITI VICI VENOUS STENT in symptomatic iliofemoral venous obstruction.",
+      "year": "2018",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Joseph Hospital",
+        "Division of Vascular Surgery, University of North Carolina School of Medicine"
+      ]
+    },
+    {
+      "pmid": "41895360",
+      "title": "Outcomes of Intracardiac Versus Transesophageal Echocardiography to Guide Left Atrial Appendage Occlusion: A Real-World Propensity-Matched Study.",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Division of Cardiovascular Medicine, Department of Cardiovascular Medicine, Baystate Medical Center",
+        "Department of Cardiovascular Medicine, University of Massachusetts Medical School-Baystate",
+        "Department of Medicine, Jacobi Medical Center"
+      ]
+    },
+    {
+      "pmid": "41645163",
+      "title": "Risk factors for C5 nerve root palsy following posterior cervical spinal canal expansion and reconstruction: a systematic review and meta-analysis.",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Hunan University of Chinese Medicine",
+        "Department of Spine, Wangjing Hospital of China Academy of Chinese Medical Sciences"
+      ]
+    },
+    {
+      "pmid": "41747451",
+      "title": "Linking early adversity to trait level cortisol: The role of cultural resilience in latino adolescents.",
+      "year": "2026",
+      "us_affiliations": [
+        "Department of Psychology, Arizona State University, 950 South McAllister Ave, Tempe, AZ 85287, United States; Department of Psychiatry &amp; Behavioral Sciences, Boston Children's Hospital, Harvard Me",
+        "Department of Psychology, Arizona State University, 950 South McAllister Ave, Tempe, AZ 85287, United States.",
+        "Department of Psychology, Arizona State University, 950 South McAllister Ave, Tempe, AZ 85287, United States.",
+        "Center for Educational Research in Panama, Innova 104 Building, Office 27, Luis Bonilla Street, City of Knowledge, Panama, Panama; School of Social and Family Dynamics, Arizona State University, 950 S",
+        "Department of Psychology, Arizona State University, 950 South McAllister Ave, Tempe, AZ 85287, United States."
+      ],
+      "hospitals_extracted": [
+        "School of Social and Family Dynamics, Arizona State University",
+        "Department of Psychology, Arizona State University"
+      ]
+    },
+    {
+      "pmid": "42068676",
+      "title": "Radiotherapy and immunotherapy for advanced cancers: A meta-analysis of dose, sequencing, and survival patterns.",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Abdominal Oncology Ward, Cancer Center, West China Hospital of Sichuan University"
+      ]
+    },
+    {
+      "pmid": "33677117",
+      "title": "Vascular Response of a Polymer-Free Paclitaxel-Coated Stent (Zilver PTX) versus a Polymer-Coated Paclitaxel-Eluting Stent (Eluvia) in Healthy Swine Femoropopliteal Arteries.",
+      "year": "2021",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Medicine, School of Medicine, University of Maryland"
+      ]
+    },
+    {
+      "pmid": "33196581",
+      "title": "Cancer treatment resumption in patients with new-generation drug-eluting stents.",
+      "year": "2021",
+      "us_affiliations": [
+        "Novant Health, Charlotte, North Carolina, USA."
+      ],
+      "hospitals_extracted": [
+        "Department of Biostatistics, The University of Texas MD Anderson Cancer Center",
+        "Bahcesehir University",
+        "Novant Health",
+        "Department of Internal Medicine, Beaumont Hospital"
+      ]
+    },
+    {
+      "pmid": "41764781",
+      "title": "Complications of spine surgery.",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Cleveland Clinic Lerner College of Medicine",
+        "Department of Neurological Surgery, University of Miami",
+        "Department of Neurosurgery, Rush University Medical Center",
+        "Department of Neurosurgery, Thomas Jefferson University Hospital",
+        "Department of Neurosurgery, Lahey Hospital and Medical Center",
+        "The Miami Project to Cure Paralysis, University of Miami",
+        "Department of Neurological Surgery, Cleveland Clinic",
+        "Department of Neurosurgery, Johns Hopkins University School of Medicine"
+      ]
+    },
+    {
+      "pmid": "42082272",
+      "title": "Phase 2 study of palbociclib plus retifanlimab in patients with advanced dedifferentiated liposarcoma.",
+      "year": "2026",
+      "us_affiliations": [
+        "Department of Medicine, Memorial Sloan Kettering Cancer Center, New York, New York, USA.",
+        "Department of Medicine, Weill Cornell Medical College, New York, New York, USA.",
+        "Department of Epidemiology and Biostatistics, Memorial Sloan Kettering Cancer Center, New York, New York, USA.",
+        "Department of Surgery, Memorial Sloan Kettering Cancer Center, New York, New York, USA.",
+        "Department of Surgery, Memorial Sloan Kettering Cancer Center, New York, New York, USA."
+      ],
+      "hospitals_extracted": []
+    },
+    {
+      "pmid": "40845741",
+      "title": "Prophylactic VA-ECMO During Complex High-Risk PCI: A Randomized Controlled Trial.",
+      "year": "2025",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "The First School of Clinical Medicine of Lanzhou University",
+        "Heart Center, The First Hospital of Lanzhou University"
+      ]
+    },
+    {
+      "pmid": "32184149",
+      "title": "Prospective study of a single-incision sling versus a transobturator sling in women with stress urinary incontinence: 3-year results.",
+      "year": "2020",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Obstetrics and Gynecology, University of Texas Southwestern Medical Center",
+        "Department of Urology, Houston Methodist Hospital",
+        "Department of Obstetrics and Gynecology, Scripps Clinic",
+        "Health, Monash Medical Centre and Cabrini Hospital Melbourne",
+        "Health, University of Texas at Austin",
+        "Department of Surgery, Division of Urology, Cedars-Sinai Health System"
+      ]
+    },
+    {
+      "pmid": "39379621",
+      "title": "Differences in vascular tissue response after stent implantation between biolimus-eluting and everolimus-eluting stents: a sub-study of the NEXT study.",
+      "year": "2025",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Cardiology, Gifu University Graduate School of Medicine"
+      ]
+    },
+    {
+      "pmid": "34727339",
+      "title": "A case of pancreatic walled-off necrosis successfully treated with endoscopic ultrasonography-guided drainage using Hot AXIOS System in a patient with severe hemophilia A.",
+      "year": "2022",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Gastroenterology and Hepatology, Kyoto City Hospital",
+        "Department of Gastroenterology and Hepatology, Kyoto Prefectural University of Medicine",
+        "Department of Hematology, Japanese Red Cross Society Kyoto Daiichi Hospital",
+        "Outpatient Oncology Unit, University Hospital",
+        "Department of Gastroenterology and Hepatology, Japanese Red Cross Society Kyoto Daiichi Hospital"
+      ]
+    },
+    {
+      "pmid": "40992803",
+      "title": "Percutaneous Coronary Intervention in Multivessel Disease and Infarct-Related Cardiogenic Shock: A DanGer Shock Substudy.",
+      "year": "2025",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Cardiology, Rigshospitalet, Copenhagen University Hospital",
+        "Department of Internal Medicine and Cardiology, Heart Center Dresden, University Hospital",
+        "Department of Cardiology, Aarhus University Hospital",
+        "Department of Cardiology, Odense University Hospital",
+        "Department of Anesthesiology and Intensive Care, Odense University Hospital",
+        "Department of Cardiology, Royal Brompton and Harefield Hospitals",
+        "Department of Cardiology, University Hospital Bonn",
+        "Department of Cardiology, University Heart and Vascular Center"
+      ]
+    },
+    {
+      "pmid": "42096958",
+      "title": "VEGF-C silencing unlocks therapeutic synergy between MSCs and dexamethasone for osteoarthritis repair.",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Orthopedic Surgery, the Affiliated Hospital of Qingdao University",
+        "Department of Genetics and Cell Biology, School of Basic Medicine, Qingdao University",
+        "Department of Pathology, The Affiliated Hospital of Qingdao University",
+        "Qingdao Medical College, Qingdao University",
+        "Department of Reproductive Medicine, The Affiliated Hospital of Qingdao University"
+      ]
+    },
+    {
+      "pmid": "42060951",
+      "title": "Brief Report: A Pilot Study Evaluating the Feasibility, Safety, and Compliance With a Fasting-Mimicking Diet in Patients With Metastatic Non-Small Cell Lung Cancer.",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Longevity Institute, University of Southern California Leonard Davis School of Gerontology",
+        "Indiana University Melvin and Bren Simon Comprehensive Cancer Center",
+        "Department of Biostatistics and Health Data Science"
+      ]
+    },
+    {
+      "pmid": "41385969",
+      "title": "Obesity does not significantly impact clinical outcomes following anterior cervical discectomy and fusion.",
+      "year": "2026",
+      "us_affiliations": [
+        "Department of Orthopedic Surgery, Warren Alpert Medical School, Brown University, Providence, RI, USA.",
+        "Department of Orthopedic Surgery, Georgetown University School of Medicine, Washington, DC, USA.",
+        "Sidney Kimmel Medical College, Philadelphia, PA, USA.",
+        "Department of Orthopedic Surgery, Georgetown University School of Medicine, Washington, DC, USA.",
+        "Department of Orthopedic Surgery, Warren Alpert Medical School, Brown University, Providence, RI, USA."
+      ],
+      "hospitals_extracted": [
+        "Department of Orthopedic Surgery, Warren Alpert Medical School, Brown University",
+        "Department of Orthopedic Surgery, Georgetown University School of Medicine"
+      ]
+    },
+    {
+      "pmid": "37727972",
+      "title": "Comparative Evaluation of Two Paclitaxel-Coated Stents in an Experimental Setting.",
+      "year": "2025",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "University Hospital",
+        "Department of Thoracic Surgery, Dijon University Hospital",
+        "UMR 1231 Inserm, University of Burgundy",
+        "Department of Cardiac Surgery, Dijon University Hospital",
+        "Department of Vascular Surgery, Dijon University Hospital",
+        "UMR 1018, Inserm-Paris11-CESP, Versailles Saint-Quentin-en-Yvelines University"
+      ]
+    },
+    {
+      "pmid": "16925759",
+      "title": "How common are tape erosions? A comparison of two versions of the transobturator tension-free vaginal tape procedure.",
+      "year": "2006",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Urgogynaecology Unit, Southern General Hospital"
+      ]
+    },
+    {
+      "pmid": "41613187",
+      "title": "Assessment of safety and efficacy of risdiplam treatment in adults with spinal muscular atrophy.",
+      "year": "2025",
+      "us_affiliations": [
+        "Division of Neuromuscular Disorders, Department of Neurology, College of Medicine, The Ohio State University Wexner Medical Center, Columbus, OH, United States.",
+        "Division of Neuromuscular Disorders, Department of Neurology, College of Medicine, The Ohio State University Wexner Medical Center, Columbus, OH, United States.",
+        "Department of Biomedical Informatics and Center for Biostatistics, The Ohio State University, Columbus, OH, United States.",
+        "NextGen Precision Health, University of Missouri, Columbia, MO, United States.",
+        "Department of Neurology, Knox Community Hospital, Mount Vernon, OH, United States."
+      ],
+      "hospitals_extracted": [
+        "NextGen Precision Health",
+        "Division of Neuromuscular Disorders, Department of Neurology, College of Medicine, The Ohio State Un",
+        "Department of Biomedical Informatics and Center for Biostatistics, The Ohio State University",
+        "Department of Neurology, Knox Community Hospital",
+        "Ottawa Hospital Research Institute"
+      ]
+    },
+    {
+      "pmid": "33693285",
+      "title": "Final 5-Year Results in Randomized Japanese Patients Implanted With a Thin-Strut, Bioabsorbable, Polymer-Coated, Everolimus-Eluting SYNERGY Stent (From the EVOLVE II Study).",
+      "year": "2020",
+      "us_affiliations": [
+        "Boston Scientific Corporation Marlborough, MA USA."
+      ],
+      "hospitals_extracted": []
+    },
+    {
+      "pmid": "42101112",
+      "title": "Synergy Area With FDR-Controlled Evaluation (SAFE) to Robustly Assess Safety Profile in Clinical Trials.",
+      "year": "2026",
+      "us_affiliations": [
+        "Data and Statistical Sciences, AbbVie Inc., North Chicago, Illinois, USA.",
+        "Data and Statistical Sciences, AbbVie Inc., North Chicago, Illinois, USA.",
+        "Data and Statistical Sciences, AbbVie Inc., North Chicago, Illinois, USA.",
+        "Patient Safety, AbbVie Inc., North Chicago, Illinois, USA.",
+        "Data and Statistical Sciences, AbbVie Inc., North Chicago, Illinois, USA."
+      ],
+      "hospitals_extracted": []
+    },
+    {
+      "pmid": "35780463",
+      "title": "Efficacy of the new adjustable I-stop-mini sling system in women with stress urinary incontinence and intrinsic sphincter deficiency: A retrospective cohort study.",
+      "year": "2023",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Institute of Clinical Medicine",
+        "School of Medicine, National Yang Ming Chiao Tung University",
+        "Department of Obstetrics and Gynecology, National Yang Ming Chiao Tung University",
+        "Department of Medical Research, China Medical University Hospital",
+        "Department of Obstetrics and Gynecology, Taipei Veterans General Hospital",
+        "Faculty of Medicine, College of Medicine, Fu-Jen Catholic University"
+      ]
+    },
+    {
+      "pmid": "41873916",
+      "title": "Redo Left Atrial Appendage Closure With a Different Device After Initial Dislodgement.",
+      "year": "2025",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Hospital, Fudan University",
+        "Department of Cardiology, Binzhou Medical University Affiliated Zibo Central Hospital",
+        "Department of Cardiology, Zhongshan Hospital"
+      ]
+    },
+    {
+      "pmid": "41971172",
+      "title": "Enhancing the resistant starch content of cassava starch via heat-moisture treatment for application as a prebiotic in chicken feed.",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Faculty of Veterinary Medicine, Kasetsart University",
+        "Institute of Grand Health",
+        "Department of Anatomy, Faculty of Veterinary Medicine, Kasetsart University",
+        "Department of Physiology, Faculty of Veterinary Medicine, Kasetsart University"
+      ]
+    },
+    {
+      "pmid": "40090612",
+      "title": "Editor's Choice - Comparative Analysis of Three Year Results of Two Paclitaxel Related Stents for the Management of Femoropopliteal Disease in a Real World Setting.",
+      "year": "2025",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Cardiovascular Surgery, Kushiro Kojinkai Memorial Hospital",
+        "Department of Cardiovascular Surgery, Southern Tohoku General Hospital",
+        "Department of Cardiovascular Surgery, National Hospital Organisation",
+        "Department of Cardiovascular Surgery, Sapporo Medical University Hospital",
+        "Department of Cardiovascular Surgery, Hakodate Municipal Hospital",
+        "Department of Cardiology, Japanese Red Cross Kyoto Daini Hospital"
+      ]
+    },
+    {
+      "pmid": "33733963",
+      "title": "Outcomes of the paclitaxel-eluting Eluvia stent for long femoropopliteal lesions in Asian patients with predominantly chronic limb-threatening ischemia.",
+      "year": "2021",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Surgery, Division of Vascular Surgery, University Medical Center Utrecht",
+        "Department of Surgery, Changi General Hospital",
+        "Department of Vascular Surgery, Northwest Clinics"
+      ]
+    },
+    {
+      "pmid": "42135052",
+      "title": "[Efficacy and safety between minimally invasive left intercostal small incision and median sternotomy coronary artery bypass grafting inmulti-vessel coronary disease patients with concomitant diabetes].",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Cardiac Surgery, Fuwai Huazhong Cardiovascular Hospital"
+      ]
+    },
+    {
+      "pmid": "32410915",
+      "title": "Everolimus-Eluting Biodegradable Abluminal Coating Stent versus Durable Conformal Coating Stent: Termination of the Inflammatory Response Associated with Neointimal Healing in a Porcine Coronary Model.",
+      "year": "2020",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Cardiovascular and Internal Medicine, Kanazawa University Graduate School of Medicine",
+        "Osaka University of Human Sciences",
+        "Department of Molecular Vascular Physiology, Kanazawa University Graduate School of Medicine"
+      ]
+    },
+    {
+      "pmid": "41168831",
+      "title": "An inactivated vaccine against acquired Toxoplasma gondii infection in pigs as a tool to minimize the zoonotic transmission risk.",
+      "year": "2025",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "SALUVET-Innova, Faculty of Veterinary Sciences, Complutense University of Madrid",
+        "SALUVET, Animal Health Department"
+      ]
+    },
+    {
+      "pmid": "42132758",
+      "title": "Chemical insights on covalent organic frameworks for ferroptosis and pyroptosis in cancer.",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "National Research Laboratory for Convergence Degradation Biology, Korea University",
+        "Department of Chemistry, Chungbuk National University",
+        "Department of Applied Chemistry, Kyung Hee University",
+        "Department of Chemistry, Korea University"
+      ]
+    },
+    {
+      "pmid": "41961031",
+      "title": "Percutaneous Left Atrial Appendage Balloon-Occlusive Aspiration Thrombectomy With Subsequent Occluder Implant.",
+      "year": "2026",
+      "us_affiliations": [
+        "Medical University of South Carolina, Charleston, South Carolina, USA.",
+        "Medical University of South Carolina, Charleston, South Carolina, USA.",
+        "Medical University of South Carolina, Charleston, South Carolina, USA.",
+        "Medical University of South Carolina, Charleston, South Carolina, USA. Electronic address: amoroson@musc.edu."
+      ],
+      "hospitals_extracted": [
+        "Medical University of South Carolina"
+      ]
+    },
+    {
+      "pmid": "41567537",
+      "title": "Autonomic dysfunction and hemodynamic management after acute spinal cord injury: blood pressure targets, perfusion strategies, and emerging therapies.",
+      "year": "2025",
+      "us_affiliations": [
+        "McGovern Medical School at UTHealth Houston, Houston, TX, United States.",
+        "Texas A&amp;M University, College Station, TX, United States."
+      ],
+      "hospitals_extracted": [
+        "M University",
+        "McGovern Medical School at UTHealth Houston"
+      ]
+    },
+    {
+      "pmid": "41875551",
+      "title": "A high-precision image-guided platform for studying spinal cord toxicity under ultra-high dose rate electron irradiation.",
+      "year": "2026",
+      "us_affiliations": [
+        "Biomedical Imaging and Radiation Technology Laboratory (BIRTLab), Department of Radiation Oncology, University of Texas Southwestern Medical Center, Dallas, TX, United States of America.",
+        "Biomedical Imaging and Radiation Technology Laboratory (BIRTLab), Department of Radiation Oncology, University of Texas Southwestern Medical Center, Dallas, TX, United States of America.",
+        "Biomedical Imaging and Radiation Technology Laboratory (BIRTLab), Department of Radiation Oncology, University of Texas Southwestern Medical Center, Dallas, TX, United States of America.",
+        "Department of Human Oncology, School of Medicine and Public Health, University of Wisconsin, Madison, WI, United States of America.",
+        "Department of Radiation Oncology and Molecular Radiation Sciences, School of Medicine, Johns Hopkins University, Baltimore, MD, United States of America."
+      ],
+      "hospitals_extracted": [
+        "Department of Radiation Oncology and Molecular Radiation Sciences, School of Medicine, Johns Hopkins",
+        "Department of Radiation Oncology, University of Texas Southwestern Medical Center",
+        "Department of Human Oncology, School of Medicine and Public Health",
+        "Department of Mechanical Engineering, Whiting School of Engineering, Johns Hopkins University"
+      ]
+    },
+    {
+      "pmid": "40886741",
+      "title": "Insulin therapy and outcomes of revascularization procedures for chronic limb-threatening ischemia in the BEST-CLI trial.",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Endovascular Surgery, University of California San Diego",
+        "Division of Vascular and Endovascular Surgery, University of California",
+        "Division of Vascular and Endovascular Surgery, Boston Medical Center",
+        "Department of Biostatistics, Boston University School of Public Health",
+        "Section of Vascular Medicine and Intervention Massachusetts General Hospital",
+        "Division of Vascular and Endovascular Surgery, Department of Surgery, Beth Israel Deaconess Medical ",
+        "Division of Vascular Surgery and Endovascular Therapy, Department of Surgery, Yale University School"
+      ]
+    },
+    {
+      "pmid": "29784119",
+      "title": "Venous Stents: Current Status and Future Directions.",
+      "year": "2018",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Radiology, Perelman School of Medicine of the University of Pennsylvania"
+      ]
+    },
+    {
+      "pmid": "33348215",
+      "title": "Erosion of soft tissue by polypropylene mesh products.",
+      "year": "2021",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Trinity Centre for Bioengineering, Trinity College Dublin, The University of Dublin"
+      ]
+    },
+    {
+      "pmid": "40870545",
+      "title": "A Critical Narrative Review of Coaxial Double-Pigtail Stenting Within the LAMS in the Management of Pancreatic Fluid Collections.",
+      "year": "2025",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Gastroenterology and Endoscopy Unit, Papardo Hospital"
+      ]
+    },
+    {
+      "pmid": "41317973",
+      "title": "Contemporary outcomes of lower extremity vein bypass for chronic limb-threatening ischemia based on a post hoc comparison of the BEST-CLI and PREVENT III multicenter prospective randomized controlled trials.",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Center for Surgery and Public Health",
+        "Division of Vascular Surgery, Albany Medical Center Hospital",
+        "Avedisian School of Medicine, Boston Medical Center",
+        "Department of Biostatistics, Boston University School of Public Health",
+        "Endovascular Surgery, University of California",
+        "Warren Alpert Medical School of Brown University",
+        "Department of Vascular Surgery, University of Southern California",
+        "Endovascular Surgery, Massachusetts General Hospital"
+      ]
+    },
+    {
+      "pmid": "40885461",
+      "title": "Characteristics of multidisciplinary limb preservation teams and their impact on outcomes in the BEST-CLI trial.",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Surgery, Keck Medical Center of USC",
+        "Avedisian School of Medicine, Boston Medical Center",
+        "Boston University School of Public Health",
+        "Section of Vascular Medicine and Intervention, Massachusetts General Hospital",
+        "Division of Vascular and Endovascular Surgery, University of California",
+        "Division of Vascular Surgery, London Health Sciences Center",
+        "Department of Interventional Radiology, Gundersen Health System",
+        "Division of Vascular and Endovascular Surgery, University of Massachusetts Medical Center"
+      ]
+    },
+    {
+      "pmid": "42087741",
+      "title": "Efficacy and safety of disitamab vedotin (RC48) combined with camrelizumab and S-1 for neoadjuvant therapy of locally advanced gastric cancer with HER2-overexpressing: Preliminary results of a prospective, single-arm, phase II study.",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Gastrointestinal Surgery, Shandong Cancer Hospital and Institute",
+        "Gastric Surgery Ward, Shandong Cancer Hospital and Institute",
+        "Department of Gastroenterology, Shandong Cancer Hospital and Institute"
+      ]
+    },
+    {
+      "pmid": "42094890",
+      "title": "Cascading effects of geopolitical risk on environmental quality and public health in BRICS.",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Economics, COMSATS University Islamabad",
+        "School of Economics and Management Hanshan Normal University"
+      ]
+    },
+    {
+      "pmid": "42058638",
+      "title": "Nivolumab plus ipilimumab and cobimetinib in previously treated microsatellite-stable/DNA mismatch repair-proficient metastatic colorectal cancer: the phase II CheckMate 142 trial.",
+      "year": "2026",
+      "us_affiliations": [
+        "Department of Gastrointestinal Medical Oncology, University of Texas MD Anderson Cancer Center, Houston, USA.",
+        "Clinical Science, Bristol Myers Squibb, Princeton, USA.",
+        "Biostatistics, Bristol Myers Squibb, Princeton, USA.",
+        "Tubular Organ GI Program, Bristol Myers Squibb, Princeton, USA.",
+        "Translational Medicine, Bristol Myers Squibb, Princeton, USA."
+      ],
+      "hospitals_extracted": [
+        "Department of Gastrointestinal Medical Oncology, University of Texas MD Anderson Cancer Center",
+        "Department of Medicine, Duke University Medical Center"
+      ]
+    },
+    {
+      "pmid": "41864303",
+      "title": "Safety and efficacy of Watchman extraction using a double transseptal approach.",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Division of Cardiology, Tor Vergata University of Rome",
+        "Department of Experimental Medicine, Tor Vergata University",
+        "Interventional Electrophysiology, Scripps Clinic",
+        "Cardiac Arrhythmia Center, Division of Cardiology at the Montefiore Medical Center",
+        "Bernards Medical Center and Arrhythmia Research Group"
+      ]
+    },
+    {
+      "pmid": "42115531",
+      "title": "Combined single-cell RNA sequencing and mendelian randomization to identify biomarkers associated with circadian rhythm in sarcopenia.",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "The First Clinical Medical School",
+        "Department of Rehabilitation Medicine, First Affiliated Hospital of Gannan Medical University",
+        "School of Rehabilitation, Gannan Medical University"
+      ]
+    },
+    {
+      "pmid": "42003302",
+      "title": "Impact of device implantation depth on blood flow dynamics after left atrial appendage closure.",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Fetal, Pediatric and Adult Congenital Cardiology, M3C National CHD Reference Centre, B",
+        "Cardiology Department, Hospital Universitario de Salamanca",
+        "Cardiology Department, Centre Hospitalier Universitaire de Charleroi",
+        "Cardiology Department, Aarhus University Hospital",
+        "Cardiology Department, Hospital de la Santa Creu i Sant Pau"
+      ]
+    },
+    {
+      "pmid": "41761865",
+      "title": "Retinal microvascular dysfunction in mild cognitive impairment: Associations with cerebral small vessel disease, plasma biomarkers, and cognitive decline.",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Li Ka Shing Institute of Health Sciences",
+        "Huzhou Third Municipal Hospital",
+        "Division of Neurology, Department of Medicine and Therapeutics, Prince of Wales Hospital",
+        "Department of Neurology, West China Hospital",
+        "Department of Geriatrics, The First Affiliated Hospital of Wenzhou Medical University",
+        "Department of Neurology, Xuanwu Hospital",
+        "Gerald Choa, Neuroscience Institute, The Chinese University of Hong Kong",
+        "Ophthalmology Department, First Affiliated Hospital of Wenzhou Medical University"
+      ]
+    },
+    {
+      "pmid": "39780368",
+      "title": "Comparative Outcomes of Supera Interwoven Nitinol Versus Eluvia Fluoropolymer-Based Drug-Eluting Stents for the Treatment of Severely Calcified Femoropopliteal Artery Lesions: Results of the ELDORADO Study.",
+      "year": "2025",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Cardiology, Tenyoukai Central Hospital",
+        "Department of Cardiology, Tokyo Bay Urayasu Ichikawa Medical Center",
+        "Department of Cardiology, Sendai Kousei Hospital",
+        "Department of Cardiology, Rakuwakai Otowa Hospital",
+        "Department of Cardiology, Ogaki Municipal Hospital",
+        "Department of Cardiology, Saiseikai Yokohama City Eastern Hospital",
+        "Department of Cardiology, Miyazaki Medical Association Hospital"
+      ]
+    },
+    {
+      "pmid": "41205838",
+      "title": "Influence of specialty on endovascular practice patterns and outcomes in the BEST-CLI Trial.",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Division of Vascular Surgery, UC San Diego Health",
+        "Dartmouth Health Heart and Vascular Center",
+        "Avedisian School of Medicine, Boston Medical Center",
+        "School of Public Health",
+        "Division of Vascular and Endovascular Surgery, University of California",
+        "Division of Vascular and Endovascular Surgery, University of Arizona College of Medicine",
+        "Division of Vascular and Endovascular Surgery, University of Florida",
+        "Department of Interventional Radiology, Gundersen Health System"
+      ]
+    },
+    {
+      "pmid": "41499089",
+      "title": "Update on XEN Gel Stent: A Narrative Review on Indications, Surgical Technique, and Postoperative Management.",
+      "year": "2026",
+      "us_affiliations": [
+        "AbbVie S.L.U., North Chicago, IL, USA."
+      ],
+      "hospitals_extracted": [
+        "Department of Ophthalmology, Hospital Clinic",
+        "Department of Ophthalmology, Hospital Universitario Miguel Servet",
+        "Department of Ophthalmology, Hospital La Fe"
+      ]
+    },
+    {
+      "pmid": "41689196",
+      "title": "Results from a Multicentre Italian Registry on the Use of a Novel \"Custom/Off the Shelf\" Inner-Branch Device for Endovascular Repair of Complex Aortic Lesions.",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Vascular Surgery, Department of Cardiothoracic and Vascular Surgery, Careggi University Teaching Hos",
+        "Unit of Vascular and Endovascular Surgery, Santa Maria della Misericordia University Hospital",
+        "Vascular and Endovascular Surgery Unit, Misericordia Hospital",
+        "Giuseppe Mazzini Hospital"
+      ]
+    },
+    {
+      "pmid": "42119489",
+      "title": "Analysis of the compatibility rules of Zhizi Baipi decoction:A multidimensional integrated study based on chemical profile-metabolic conversion-pharmacodynamics correlation.",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "College of Pharmacy, Anhui University of Chinese Medicine"
+      ]
+    },
+    {
+      "pmid": "41263729",
+      "title": "Rationales Behind Physiology-Guided Revascularization: Diagnostic Impact of Quantitative Flow Ratio in the FAVOR III China Trial.",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Cardiology, Renji Hospital",
+        "Department of Cardiology, Fujian Medical University Union Hospital",
+        "Catheterization Laboratories, Fuwai Hospital",
+        "Department of Cardiology, Second Affiliated Hospital of Harbin Medical University",
+        "Department of Cardiology, Beijing Tiantan Hospital",
+        "Department of Cardiology, Sixth Medical Centre, Chinese PLA General Hospital",
+        "Department of Cardiology, Huadong Hospital Affiliated to Fudan University",
+        "Department of Cardiology, National Clinical Research Center for Cardiovascular Diseases"
+      ]
+    },
+    {
+      "pmid": "36067976",
+      "title": "Midterm and Long-Term Outcomes following Dedicated Endovenous Nitinol Stent Placement for Symptomatic Iliofemoral Venous Obstruction: Three- to 5-Year Results of the VIRTUS Study.",
+      "year": "2022",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Division of Vascular and Endovascular Surgery, Department of Surgery, New York University Langone He",
+        "Joseph Hospital",
+        "Division of Vascular Surgery, University of North Carolina School of Medicine"
+      ]
+    },
+    {
+      "pmid": "41673517",
+      "title": "New Measurements Using Computed Tomography Predict Success of Left Atrial Appendage Closure.",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Cardiology, Sapporo East Tokushukai Hospital",
+        "Department of Cardiology, Sapporo Heart Center, Sapporo Cardio Vascular Clinic",
+        "Department of Cardiology, Kurashiki Central Hospital",
+        "Department of Cardiology, Keio University School of Medicine",
+        "Department of Cardiology, Shonan Kamakura General Hospital",
+        "Department of Cardiology, Kokura Memorial Hospital",
+        "Department of Cardiology, Teikyo University School of Medicine",
+        "Department of Cardiology, New Tokyo Hospital"
+      ]
+    },
+    {
+      "pmid": "42140045",
+      "title": "MAUDE Registry Analysis of Pericardial Effusions Following Watchman and Amulet Left Atrial Appendage Occlusion.",
+      "year": "2026",
+      "us_affiliations": [
+        "University of Rochester Medical Center, Rochester, New York, USA; Louis Stokes Veterans Affairs Medical Center, Cleveland, Ohio, USA.",
+        "University of Rochester Medical Center, Rochester, New York, USA.",
+        "University of Rochester Medical Center, Rochester, New York, USA.",
+        "University of Rochester Medical Center, Rochester, New York, USA. Electronic address: Fred_Ling@URMC.Rochester.edu."
+      ],
+      "hospitals_extracted": [
+        "University of Rochester Medical Center"
+      ]
+    },
+    {
+      "pmid": "41820254",
+      "title": "Chronic Limb-Threatening Ischemia Owing to Popliteal Artery Aneurysms With Repeated Occlusion After Stent Graft Placement That was Successfully Treated With Supera Stent Reinforcement: A Case Report.",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Cardiovascular Medicine, Tsukuba Medical Center Hospital",
+        "Department of Cardiovascular Medicine, Asahi General Hospital",
+        "Department of Cardiovascular Medicine, Tokyo Metropolitan Tama Medical Center"
+      ]
+    },
+    {
+      "pmid": "41461935",
+      "title": "CIRSE Standards of Practice on Endovascular Treatment of Acute Pulmonary Embolism.",
+      "year": "2025",
+      "us_affiliations": [
+        "UCLA Medical Center, Los Angeles, USA."
+      ],
+      "hospitals_extracted": [
+        "UCLA Medical Center",
+        "John Radcliff Hospital",
+        "Department of Medical Sciences, Surgical and Advanced Technologies, University Hospital Policlinico ",
+        "University Hospital Heraklion"
+      ]
+    },
+    {
+      "pmid": "34622700",
+      "title": "Retrograde Carotid Stenting Using Newly Released Venous Stent for Cerebral Malperfusion in Type A Aortic Dissection.",
+      "year": "2022",
+      "us_affiliations": [
+        "Inova Fairfax Hospital, Falls Church, VA, USA.",
+        "Inova Fairfax Hospital, Falls Church, VA, USA.",
+        "Inova Fairfax Hospital, Falls Church, VA, USA.",
+        "Fairfax Radiology Associates, Fairfax, VA, USA.",
+        "Inova Heart and Vascular Institute, Falls Church, VA, USA."
+      ],
+      "hospitals_extracted": [
+        "Inova Fairfax Hospital"
+      ]
+    },
+    {
+      "pmid": "41528068",
+      "title": "Safety and Efficacy of Left Atrial Appendage Occlusion in Cardiac Amyloidosis: A Single-Center Retrospective Study.",
+      "year": "2026",
+      "us_affiliations": [
+        "Department of Cardiovascular Medicine, Cleveland Clinic, Cleveland, Ohio, USA.",
+        "Department of Cardiovascular Medicine, Cleveland Clinic, Cleveland, Ohio, USA.",
+        "Department of Cardiology, University of Iowa, Iowa City, Iowa, USA.",
+        "Department of Cardiovascular Medicine, Cleveland Clinic, Cleveland, Ohio, USA.",
+        "Department of Cardiovascular Medicine, Cleveland Clinic, Cleveland, Ohio, USA."
+      ],
+      "hospitals_extracted": [
+        "Department of Cardiovascular Medicine, Cleveland Clinic",
+        "Department of Cardiology, University of Iowa"
+      ]
+    },
+    {
+      "pmid": "41421566",
+      "title": "Subjective evaluation by expert endoscopists in on-label indications of a novel cautery-tipped lumen-apposing metal stent with a conventional delivery system (Hot-Spaxus&#xa9;): a pilot study.",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Unidad de Endoscopias, Servicio de Aparato Digestivo, Hospital Universitari de Bellvitge"
+      ]
+    },
+    {
+      "pmid": "41652317",
+      "title": "Late migration of a left atrial appendage closure device to the bifurcation of common iliac arteries: a case report and novel percutaneous retrieval technique.",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Cardiology, The second Hospital and Clinical Medical School of Lanzhou University"
+      ]
+    },
+    {
+      "pmid": "41803650",
+      "title": "MedFusion-gP-AKI: development and multicenter validation of a machine learning fusion model for early prediction of KDIGO stage 3 acute kidney injury in critically ill traumatic cervicothoracic spinal cord injury patients.",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Minimally Invasive Spine and Precision Orthopedics, The First Affiliated Hospital of X",
+        "Department of Critical Care Medicine, Chongqing University Three Gorges Hospital",
+        "State Key Laboratory of Pathogenesis, Prevention and Treatment of High Incidence Diseases in Central",
+        "Department of Anesthesiology, The First Affiliated Hospital of Xinjiang Medical University",
+        "Department of Critical Care Medicine, The First Affiliated Hospital of Xinjiang Medical University"
+      ]
+    },
+    {
+      "pmid": "40008421",
+      "title": "Evaluating the Appropriate Use Criteria for Coronary Revascularization in Stable Ischemic Heart Disease Using Randomized Data From the ISCHEMIA Trial.",
+      "year": "2025",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Medicine, Stanford University School of Medicine",
+        "National Heart Lung and Blood Institute, National Institutes of Health"
+      ]
+    },
+    {
+      "pmid": "41568290",
+      "title": "Innovative Design of Aerostatic Bearings with Enhanced Dynamic Stability Inspired by the&#xa0;Laval Nozzle Principle.",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Centre for Precision Manufacturing, DMEM, University of Strathclyde"
+      ]
+    },
+    {
+      "pmid": "41867916",
+      "title": "Outcomes of Watchman device implantation in atrial fibrillation patients contraindicated for long-term anticoagulation: a single-center experience.",
+      "year": "2026",
+      "us_affiliations": [
+        "Department of Cardiology, Mercy Health Saint Vincent Medical Center Toledo, OH 43608, USA.",
+        "Department of Cardiology, Mercy Health Saint Vincent Medical Center Toledo, OH 43608, USA.",
+        "Department of Cardiology, Mercy Health Saint Vincent Medical Center Toledo, OH 43608, USA.",
+        "Department of Cardiology, Mercy Health Saint Vincent Medical Center Toledo, OH 43608, USA.",
+        "Department of Cardiology, Mercy Health Saint Vincent Medical Center Toledo, OH 43608, USA."
+      ],
+      "hospitals_extracted": [
+        "Department of Cardiology, Mercy Health Saint Vincent Medical Center Toledo"
+      ]
+    },
+    {
+      "pmid": "38421183",
+      "title": "A New Step-Up Dual Endoscopic Approach for Large-Size Infected Pancreatic Necrosis: Percutaneous Endoscopic Necrosectomy Followed by Transluminal Endoscopic Drainage/Necrosectomy.",
+      "year": "2024",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Gastroenterology and Digestive Endoscopy Unit, Santa Maria Della Misericordia Hospital of Perugia"
+      ]
+    },
+    {
+      "pmid": "32180687",
+      "title": "Safety and Efficacy of Second-Generation Drug-Eluting Stents in Real-World Practice: Insights from the Multicenter Grand-DES Registry.",
+      "year": "2020",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Internal Medicine and Cardiovascular Center, Seoul National University Hospital"
+      ]
+    },
+    {
+      "pmid": "34845122",
+      "title": "Management of infected post-pancreatic resection fluid collections under endoscopic ultrasound guidance using lumen apposing metal stent: A case series and review of the literature.",
+      "year": "2021",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Gastroenterology, Southampton General Hospital",
+        "Department of Hepatobiliary and Pancreatic Surgery, Southampton General Hospital",
+        "Department of Interventional Radiology, Southampton General Hospital"
+      ]
+    },
+    {
+      "pmid": "39218866",
+      "title": "The association between stent type and developing angina pectoris following percutaneous coronary intervention.",
+      "year": "2024",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Cardiovascular Medicine, School of Medicine, Shiraz University of Medical Sciences",
+        "School of Medicine, Shiraz University of Medical Sciences"
+      ]
+    },
+    {
+      "pmid": "39148336",
+      "title": "High-Dose Drug-Coated Balloon Versus Polymer-Based Drug-Eluting Stent for Femoropopliteal Artery Disease Treatment.",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Kishiwada Tokushukai Hospital",
+        "Osaka Saiseikai Nakatsu Hospital",
+        "Takatsu General Hospital",
+        "Osaka Police Hospital",
+        "Matsuyama Red Cross Hospital",
+        "Kokura Memorial Hospital",
+        "Morinomiya Hospital",
+        "Nara Medical University"
+      ]
+    },
+    {
+      "pmid": "31726460",
+      "title": "Endoscopic Necrosectomy of Walled-Off Necrosis following Severe Pancreatitis Using a Hot AxiosTM Stent - A Case Series.",
+      "year": "2019",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Gastroenterology, University Hospital Regensburg",
+        "Department of Radiology, University Hospital Regensburg"
+      ]
+    },
+    {
+      "pmid": "42136269",
+      "title": "The Mechanisms and Research Progress of Electroacupuncture Modulation of the Anterior Cingulate Cortex in Alleviating Paclitaxel-induced Pain and Cognitive Impairment.",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Anesthesiology, The Affiliated Traditional Chinese Medicine Hospital",
+        "Department of Anesthesiology, The First Affiliated Hospital of Guangzhou Medical University",
+        "Graduate School, Guangzhou Medical University",
+        "School of Life Sciences, South China Normal University",
+        "Hospital of Guangzhou Medical University",
+        "College of Integrated Traditional Chinese and Western Medicine, Guangzhou Medical University"
+      ]
+    },
+    {
+      "pmid": "30257546",
+      "title": "De-novo Gastrointestinal Anastomosis with Lumen Apposing Metal Stent.",
+      "year": "2018",
+      "us_affiliations": [
+        "Division of Gastroenterology and Hepatology, Department of Digestive Diseases and Transplantation, Einstein Healthcare Network, Philadelphia, PA, USA.",
+        "Department of Internal Medicine, Yale-Waterbury Internal Medicine Program, Yale school of medicine, Waterbury, CT, USA.",
+        "Gastrointestinal Care Consultants PA, Houston, TX, USA."
+      ],
+      "hospitals_extracted": [
+        "Division of Gastroenterology and Hepatology, Department of Digestive Diseases and Transplantation, E"
+      ]
+    },
+    {
+      "pmid": "35652710",
+      "title": "Concomitant Drug-Coated Balloon Angioplasty With Bail-Out Use of Eluvia Drug-Eluting Stent: Is There Any Downside to a Double Dose of Paclitaxel?",
+      "year": "2022",
+      "us_affiliations": [
+        "University of Colorado, 1600 N Wheeling Street, Aurora, CO 80045 USA. Ehrin.armstrong@gmail.com."
+      ],
+      "hospitals_extracted": []
+    },
+    {
+      "pmid": "41317301",
+      "title": "Mini or Retropubic Sling in Women with Intrinsic Sphincter Deficiency at 12 Months-A Randomized Controlled Trial (Mini RISD).",
+      "year": "2025",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Mercy Hospital for Women",
+        "Monash Medical Centre, Pelvic Floor Unit, Monash Health"
+      ]
+    },
+    {
+      "pmid": "40940664",
+      "title": "Integrated metabolic-inflammatory risk assessment: HbA1c/HDL-c and hsCRP-to-albumin ratios synergistically predict major adverse cardiovascular events in post-PCI STEMI patients.",
+      "year": "2025",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Cardiology, Tianjin Medical University General Hospital",
+        "Department of Emergency, Qilu Hospital of Shandong University",
+        "Department of Cardiology, Tianjin Chest Hospital"
+      ]
+    },
+    {
+      "pmid": "42064858",
+      "title": "Left atrial appendage closure devices: a contemporary review of techniques, tips and tricks.",
+      "year": "2026",
+      "us_affiliations": [
+        "Department of Cardiology, Geisinger Medical Center, Danville, PA, United States.",
+        "Division of Cardiovascular Disease, Department of Medicine, Albert Einstein Healthcare Network, Philadelphia, PA, United States.",
+        "Department of Internal Medicine, Baylor College of Medicine, Houston, TX, United States.",
+        "Department of Cardiology, Emory University, Atlanta, GA, United States.",
+        "Texas Heart Institute and Baylor College of Medicine, Houston, TX, United States."
+      ],
+      "hospitals_extracted": [
+        "Department of Cardiology, Emory University",
+        "Department of Cardiology I- Coronary and Peripheral Vascular Disease, Heart Failure Medicine, Univer",
+        "Department of Cardiology, Geisinger Medical Center",
+        "Division of Cardiovascular Disease, Department of Medicine, Albert Einstein Healthcare Network"
+      ]
+    },
+    {
+      "pmid": "41041103",
+      "title": "Outcome of Percutaneous Coronary Intervention for Left Versus Non-left Main Coronary Artery in Acute Coronary Syndrome: A Comparative Study.",
+      "year": "2025",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Health System Research",
+        "Department of Cardiology, United Hospital Limited",
+        "Department of Cardiology, MH Samorita Hospital and Medical College"
+      ]
+    },
+    {
+      "pmid": "38237633",
+      "title": "Lumen-apposing metal stents for the treatment of pancreatic and peripancreatic fluid collections and bleeding risk: a propensity matched study.",
+      "year": "2024",
+      "us_affiliations": [
+        "Division of Digestive Diseases, University of Cincinnati, Cincinnati, United States."
+      ],
+      "hospitals_extracted": [
+        "Division of Hospital and Ambulatory Medicine",
+        "Gastroenterology, Asan Medical Center",
+        "Gastroenterology Department, Enrique Baltodano Briceno Hospital",
+        "Gastroenterology, Ahli Hospital",
+        "Internal Medicine, Soon Chung Hyang University School of Medicine",
+        "Department of Medicine, Haukeland University Hospital",
+        "Gastroenterology, University of Foggia Department of Medical and Surgical Sciences",
+        "Department of Internal Medicine, Soon Chung Hyang University School of Medicine"
+      ]
+    },
+    {
+      "pmid": "41644018",
+      "title": "High-quality chronic limb-threatening ischemia care requires above average performance in surgical bypass and endovascular treatment.",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Division of Vascular and Endovascular Therapy, University of Florida Health",
+        "Department of Biostatics, Boston University School of Public Health",
+        "Division of Vascular and Endovascular Surgery, University of Massachusetts Chan Medical School",
+        "Section of Vascular Medicine and Intervention, Massachusetts General Hospital",
+        "Heart and Vascular Center, Dartmouth Hitchcock Medical Center",
+        "Department of Surgery, Boston University Chobanian and Avedisian School of Medicine",
+        "Division of Vascular Surgery and Endovascular Therapy, University of Alabama at Birmingham"
+      ]
+    },
+    {
+      "pmid": "36971496",
+      "title": "Efficacy of minimally invasive pectopexy with concomitant I-stop-mini sling for women with pelvic organ prolapse and overt stress urinary incontinence: A retrospective cohort study.",
+      "year": "2023",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Institute of Clinical Medicine",
+        "School of Medicine, National Yang Ming Chiao Tung University",
+        "Department of Obstetrics and Gynecology, National Yang Ming Chiao Tung University",
+        "Department of Medical Research, China Medical University Hospital",
+        "Department of Obstetrics and Gynecology, Taipei Veterans General Hospital",
+        "Faculty of Medicine, College of Medicine, Fu-Jen Catholic University"
+      ]
+    },
+    {
+      "pmid": "38887337",
+      "title": "Endoscopic Combined Drainage of One Giant and Multiple Small Pancreatic Pseudocysts: A Case Report.",
+      "year": "2024",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Gastroenterology, The First Affiliated Hospital of Shihezi University"
+      ]
+    },
+    {
+      "pmid": "40475732",
+      "title": "Predictive Value of Residual SYNTAX Score II for Patients With Complex Coronary Disease and Chronic Renal Insufficiency After Percutaneous Coronary Intervention.",
+      "year": "2025",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Cardiology, The Affiliated Dongguan Songshan Lake Central Hospital",
+        "Department of Cardiology, Cangzhou Central Hospital"
+      ]
+    },
+    {
+      "pmid": "41939965",
+      "title": "Transient Cortical Blindness and Hemi-Spatial Neglect Following Watchman Device Implantation.",
+      "year": "2026",
+      "us_affiliations": [
+        "Department of Internal Medicine, Louisiana State University, Shreveport, Louisiana, USA.",
+        "Division of Cardiology, Louisiana State University, Shreveport, Louisiana, USA.",
+        "Department of Internal Medicine, Louisiana State University, Shreveport, Louisiana, USA.",
+        "Department of Internal Medicine, Louisiana State University, Shreveport, Louisiana, USA.",
+        "Division of Cardiology, Louisiana State University, Shreveport, Louisiana, USA."
+      ],
+      "hospitals_extracted": [
+        "Department of Internal Medicine, Louisiana State University",
+        "Division of Cardiology, Louisiana State University"
+      ]
+    },
+    {
+      "pmid": "38929223",
+      "title": "Single Center Experience of Eus-Guided Cystogastrostomy and Lumen-Apposing Metal Stent (LAMS) Positioning in Children with Pancreatic Fluid Collections: A Case Series.",
+      "year": "2024",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Clinical and Experimental Sciences"
+      ]
+    },
+    {
+      "pmid": "42092724",
+      "title": "Overcoming intratumoral transport barriers: Advances in local immunotherapy delivery platforms.",
+      "year": "2026",
+      "us_affiliations": [
+        "Center for BioNanoengineering, Houston Methodist Research Institute, Houston, TX 77030, USA; Texas A&amp;M University Naresh K. Vashisht College of Medicine, Bryan, TX 77807, USA.",
+        "Center for BioNanoengineering, Houston Methodist Research Institute, Houston, TX 77030, USA. Electronic address: ychua@houstonmethodist.org.",
+        "Center for BioNanoengineering, Houston Methodist Research Institute, Houston, TX 77030, USA; Department of Surgery, Houston Methodist Hospital, Houston, TX 77030, USA; Department of Radiation Oncology"
+      ],
+      "hospitals_extracted": [
+        "Department of Surgery, Houston Methodist Hospital"
+      ]
+    },
+    {
+      "pmid": "41638370",
+      "title": "Relationship between age and the comparative outcomes of revascularization procedures in the BEST-CLI trial: A spline model analysis.",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Division of Interventional Radiology, Baptist Health Heart and Vascular Care",
+        "Division of Vascular and Endovascular Surgery, University of California San Francisco",
+        "Division of Cardiology, Department of Medicine, Columbia University",
+        "Division of Cardiovascular Medicine, University of Florida",
+        "Department of Biostatics, Boston University",
+        "Division of Vascular Surgery, Southern Illinois University School of Medicine",
+        "Operative Care Division, Portland VA Medical Center",
+        "Section of Vascular Medicine and Intervention Massachusetts General Hospital"
+      ]
+    },
+    {
+      "pmid": "40275862",
+      "title": "Validation of the Prognostic Ability of Eight Risk Scores for Cardiovascular Events in NSTEMI Patients with Multi-Vessel Disease.",
+      "year": "2025",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Clinical Research Institute, Shanghai General Hospital",
+        "Academy of Medical Engineering and Translational Medicine, Tianjin University",
+        "Department of Cardiology, Tianjin Chest Hospital"
+      ]
+    },
+    {
+      "pmid": "40470578",
+      "title": "Long-Term (5-Years) Outcomes of Current Drug-Eluting Stents in Percutaneous Coronary Intervention: A Network Meta-Analysis of Randomized Controlled Trials.",
+      "year": "2025",
+      "us_affiliations": [
+        "Department of Internal Medicine, Cleveland Clinic Foundation, Cleveland, Ohio, USA.",
+        "Department of Internal Medicine, Cleveland Clinic Foundation, Cleveland, Ohio, USA.",
+        "Department of Cardiology, Franciscan Health, Lafayette, Indiana, USA.",
+        "Krannert Cardiovascular Research Center, Indiana University School of Medicine, Indianapolis, Indiana, USA.",
+        "Department of Cardiovascular Medicine, Heart, Vascular and Thoracic Institute, Cleveland Clinic Foundation, Cleveland, Ohio, USA."
+      ],
+      "hospitals_extracted": [
+        "Department of Cardiology, Franciscan Health",
+        "Department of Internal Medicine, Rawalpindi Medical University",
+        "Department of Internal Medicine, Cleveland Clinic Foundation",
+        "Department of Cardiovascular Medicine, Heart, Vascular and Thoracic Institute, Cleveland Clinic Foun",
+        "Department of Internal Medicine, Dow University of Health Sciences",
+        "Krannert Cardiovascular Research Center, Indiana University School of Medicine"
+      ]
+    },
+    {
+      "pmid": "42121507",
+      "title": "Functional Reduced-Fat Mozzarella Cheese from \"Essential Oil-Fed\" Milk and Inulin Fortification.",
+      "year": "2026",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Soil, Plant and Foods Science, University of Bari",
+        "Department of Veterinary Medicine, University of Bari Aldo Moro"
+      ]
+    },
+    {
+      "pmid": "39130696",
+      "title": "The Supreme Biodegradable Polymer DES in Acute and Chronic Coronary Syndromes: A PIONEER III Substudy.",
+      "year": "2023",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "The Christ Hospital Heart and Vascular Institute and the Lindner Research Center",
+        "Columbia University Medical Center",
+        "Centre for Cardiovascular Medicine and Devices, William Harvey Research Institute, Queen Mary Univer",
+        "Mercy Gilbert Medical Center",
+        "Bern University Hospital",
+        "North Carolina Heart and Vascular, University of North Carolina",
+        "Shonan Kamakura General Hospital",
+        "Bellvitge Hospital"
+      ]
+    },
+    {
+      "pmid": "37354778",
+      "title": "Percutaneous Coronary Intervention in Men, Women, and Minorities With a Previous Coronary Artery Bypass Graft Surgery (from the Pooled PLATINUM Diversity and PROMUS Element Plus Registries).",
+      "year": "2023",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Central Cardiology Medical Clinic",
+        "Interventional Cardiology, Baptist Hospital",
+        "Inova Heart and Vascular Institute, Inova Health System",
+        "Department of Biomedical Sciences, Humanitas University",
+        "Department of Interventional Cardiology, Medstar Union Memorial Hospital",
+        "Division of Cardiovascular Medicine, Department of Internal Medicine, University of Iowa Carver Coll",
+        "Interventional Cardiology, Baystate Medical Center",
+        "Division of Cardiology, Department of Medicine, Duke University Health System"
+      ]
+    },
+    {
+      "pmid": "33051767",
+      "title": "Lumen-apposing metal stents for approved and off-label indications: a single-centre experience.",
+      "year": "2021",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Gastroenterology and Hepatology, University Hospital of Ghent"
+      ]
+    },
+    {
+      "pmid": "34106607",
+      "title": "Five-year clinical outcomes of the first Korean-made sirolimus-eluting coronary stent with abluminal biodegradable polymer.",
+      "year": "2021",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Cardiology, Ajou University School of Medicine",
+        "Hospital, College of Medicine, The Catholic University of Korea",
+        "Department of Cardiology, Yonsei University Wonju Christian Hospital"
+      ]
+    },
+    {
+      "pmid": "41489742",
+      "title": "Watchman FLX versus Watchman 2.5 for left atrial appendage closure: a propensity score-matched analysis.",
+      "year": "2025",
+      "us_affiliations": [
+        "Texas Cardiac Arrhythmia Institute, St David's Medical Center, Austin, TX, USA.",
+        "Texas Cardiac Arrhythmia Institute, St David's Medical Center, Austin, TX, USA.",
+        "Texas Cardiac Arrhythmia Institute, St David's Medical Center, Austin, TX, USA.",
+        "Texas Cardiac Arrhythmia Institute, St David's Medical Center, Austin, TX, USA.",
+        "Texas Cardiac Arrhythmia Institute, St David's Medical Center, Austin, TX, USA."
+      ],
+      "hospitals_extracted": [
+        "MetroHealth Medical Center",
+        "Department of Cardiology, Hospital Centre of Biel",
+        "Department of Cardiology, Inselspital, Bern University Hospital",
+        "Department of Biomedicine and Prevention, Division of Cardiology, University of Tor Vergata",
+        "Interventional Electrophysiology, Scripps Clinic",
+        "Graduate School for Health Sciences"
+      ]
+    },
+    {
+      "pmid": "32384579",
+      "title": "Clinical outcomes of double stent strategy for unprotected left main distal bifurcation lesions using current generation drug eluting stent comparing to early generation drug eluting stent; The Milan and New Tokyo (MITO) registry.",
+      "year": "2021",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Interventional Cardiology Unit, EMO-GVM, Centro Cuore Columbus, Milan, and Villa Maria Cecilia Hospi",
+        "Department of cardiology, Ogaki Municipal Hospital",
+        "Interventional Cardiology Unit, New Tokyo Hospital"
+      ]
+    }
+  ]
+}

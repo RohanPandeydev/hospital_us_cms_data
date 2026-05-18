@@ -220,3 +220,18 @@ USA filter applied everywhere:
 - Author affiliations from PubMed scrubbed for non-US records
 - State portals are inherently per-state
 - Federal sources (FDA, CMS) are US-only by definition
+
+---
+
+## §9 Additional free sources fetched (expansion pass)
+
+| # | Source | URL | Output |
+|---|---|---|---|
+| 92 | **CMS HCAHPS Patient Experience Survey** (per-hospital, all US) | `https://data.cms.gov/provider-data/sites/default/files/resources/...HCAHPS-Hospital.csv` | `scrape/expanded/hcahps_hospital.csv.gz` (2.1 MB) + `hcahps_by_hospital_summary.json` (4,792 hospitals) |
+| 93 | **PubMed E-utils — BSc full device family** | NCBI E-utils | `scrape/expanded/pubmed_bsc_full_family_us.json` (PRECISION, OBTRYX, INNOVA, ELUVIA, WATCHMAN, TAXUS, SYNERGY, Promus, Emblem S-ICD, Hot AXIOS, Vici) |
+| 94 | **PubMed — per top-10 academic hospital** | NCBI E-utils | `scrape/expanded/pubmed_bsc_per_hospital.json` (BSc publication counts per Mayo / Cleveland / Cedars / Mass General / Hopkins / UCLA / UCSF / Stanford / NYU / Mt Sinai) |
+| 95 | **BSc corporate news releases** | `news.bostonscientific.com/news-releases` | `scrape/expanded/bsc_page_news-releases.html` |
+| 96 | **ProPublica Surgeon Scorecard** | `projects.propublica.org/surgeons/` | `scrape/expanded/propublica_surgeon_scorecard.html` |
+| 97 | **MedRxiv preprints** | `medrxiv.org/search/...` | `scrape/expanded/medrxiv_bsc_preprints.html` |
+| 98 | **CDC NHSN hospital infection/admission data** | `data.cdc.gov/api/views.json` | `scrape/expanded/cdc_*.json` (3 hospital datasets indexed + 200-row samples) |
+| 99 | **HRSA Data Warehouse downloads** | `data.hrsa.gov/data/download` | `scrape/expanded/hrsa_data_warehouse.json` (30 files) |
