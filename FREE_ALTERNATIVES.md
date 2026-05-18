@@ -221,3 +221,39 @@ The §10 sources are **complementary**, not substitutes for the primary 6. They 
 - **Broader literature** — PubMed beyond AXIOS to all BSc devices
 
 The fundamental ceiling — specific MAUDE event → specific CCN — remains unbreakable from free public data alone.
+
+---
+
+## §11 — Exhaustive expansion round (final)
+
+Final aggressive scrape. Anything new free + USA + BSc-relevant.
+
+| # | Source | URL | What it gives |
+|---|---|---|---|
+| 15 | **CMS PECOS Hospital All Owners** | data.cms.gov DCAT | 5 MB CSV — every US hospital + ownership chain |
+| 16 | **CMS PECOS Change of Ownership** | data.cms.gov | 4 MB CSV — ownership transitions + owner info |
+| 17 | **HCAHPS Top-Line Per Hospital** | parsed from `hcahps_hospital.csv.gz` | 4,792 hospitals × top survey scores |
+| 18 | **NPI Registry — top 30 BSc systems** | npiregistry.cms.hhs.gov/api | ~145 NPIs across academic medical centers |
+| 19 | **ClinicalTrials.gov — all BSc US** | clinicaltrials.gov/api/v2 | 403 BSc US trials (full pagination) |
+| 20 | **PubMed — top-14 AMC × BSc** | NCBI E-utils | 280 publications across 14 academic medical centers |
+| 21 | **Wikidata SPARQL — US hospitals** | query.wikidata.org | 200 hospitals with metadata (incl. CCN where present) |
+| 22 | **ProPublica Nonprofit Explorer 990** | propublica.org/nonprofits/api | Form 990 financials for 7 top non-profit hospitals |
+| 23 | **HRSA AHRF download index** | data.hrsa.gov | 30+ download links for Area Health Resources Files |
+| 24 | **CDC NHSN HAI catalog + sample data** | data.cdc.gov | 3 hospital infection datasets + 200-row samples |
+| 25 | **MN Adverse Health Events** | health.state.mn.us | Annual report index page (PDFs linked for manual review) |
+| 26 | **15-state Socrata catalog discovery** | per-state open data | Hospital datasets indexed across IL/OH/GA/MI/NC/VA/WI/OK/UT/MN/OR/MD/HI/CT/NJ |
+
+### Sources we attempted but couldn't pull as direct data (blocked or form-only)
+
+| Source | Why blocked |
+|---|---|
+| Mass.gov SRE | Akamai bot detection |
+| HHS OCR Breach Portal | JSF form, needs interactive browser session |
+| DOJ press releases | Akamai blocks |
+| Leapfrog Safety Grade CSV | Paid/login tier |
+| US Census CBP healthcare | API returns text, parsing failed |
+| TX DSHS PUDF files | Requires email registration |
+
+### Total final source count
+
+99 distinct external sources documented across §1-§11.

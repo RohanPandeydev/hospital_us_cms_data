@@ -1,0 +1,53 @@
+{
+  "hospital": "Mayo Clinic",
+  "organizations": [
+    {
+      "ein": 860800150,
+      "strein": "86-0800150",
+      "name": "Mayo Clinic",
+      "sub_name": "Mayo Clinic Mayo Clinic Arizona",
+      "city": "Rochester",
+      "state": "MN",
+      "ntee_code": "E21",
+      "raw_ntee_code": "E21",
+      "subseccd": 3,
+      "has_subseccd": true,
+      "have_filings": null,
+      "have_extracts": null,
+      "have_pdfs": null,
+      "score": 122.61874
+    },
+    {
+      "ein": 593337028,
+      "strein": "59-3337028",
+      "name": "Mayo Clinic",
+      "sub_name": "Mayo Clinic Mayo Clinic Jacksonville",
+      "city": "Rochester",
+      "state": "MN",
+      "ntee_code": "E21",
+      "raw_ntee_code": "E21",
+      "subseccd": 3,
+      "has_subseccd": true,
+      "have_filings": null,
+      "have_extracts": null,
+      "have_pdfs": null,
+      "score": 122.61874
+    },
+    {
+      "ein": 590714831,
+      "strein": "59-0714831",
+      "name": "Mayo Clinic",
+      "sub_name": "Mayo Clinic Mayo Clinic Florida",
+      "city": "Rochester",
+      "state": "MN",
+      "ntee_code": "E21",
+      "raw_ntee_code": "E21",
+      "subseccd": 3,
+      "has_subseccd": true,
+      "have_filings": null,
+      "have_extracts": null,
+      "have_pdfs": null,
+      "score": 122.61874
+    }
+  ]
+}

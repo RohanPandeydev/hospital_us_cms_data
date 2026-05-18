@@ -1,0 +1,53 @@
+{
+  "hospital": "Stanford Health",
+  "organizations": [
+    {
+      "ein": 222476636,
+      "strein": "22-2476636",
+      "name": "Stamford Health Inc",
+      "sub_name": "Stamford Health Inc",
+      "city": "Stamford",
+      "state": "CT",
+      "ntee_code": "E210",
+      "raw_ntee_code": "E210",
+      "subseccd": 3,
+      "has_subseccd": true,
+      "have_filings": null,
+      "have_extracts": null,
+      "have_pdfs": null,
+      "score": 89.629196
+    },
+    {
+      "ein": 946174066,
+      "strein": "94-6174066",
+      "name": "Stanford Health Care 227",
+      "sub_name": "Stanford Health Care 227",
+      "city": "Stanford",
+      "state": "CA",
+      "ntee_code": "E220",
+      "raw_ntee_code": "E220",
+      "subseccd": 3,
+      "has_subseccd": true,
+      "have_filings": null,
+      "have_extracts": null,
+      "have_pdfs": null,
+      "score": 88.5796
+    },
+    {
+      "ein": 464071746,
+      "strein": "46-4071746",
+      "name": "Stanford Health Care Advantage",
+      "sub_name": "Stanford Health Care Advantage",
+      "city": "Dublin",
+      "state": "CA",
+      "ntee_code": "D11",
+      "raw_ntee_code": "D11",
+      "subseccd": 3,
+      "has_subseccd": true,
+      "have_filings": null,
+      "have_extracts": null,
+      "have_pdfs": null,
+      "score": 88.5796
+    }
+  ]
+}

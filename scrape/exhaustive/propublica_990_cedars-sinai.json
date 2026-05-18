@@ -1,0 +1,53 @@
+{
+  "hospital": "Cedars-Sinai",
+  "organizations": [
+    {
+      "ein": 951644600,
+      "strein": "95-1644600",
+      "name": "Cedars Sinai Medical Center",
+      "sub_name": "Cedars Sinai Medical Center",
+      "city": "W Hollywood",
+      "state": "CA",
+      "ntee_code": "E220",
+      "raw_ntee_code": "E220",
+      "subseccd": 3,
+      "has_subseccd": true,
+      "have_filings": null,
+      "have_extracts": null,
+      "have_pdfs": null,
+      "score": 100.46424
+    },
+    {
+      "ein": 201645949,
+      "strein": "20-1645949",
+      "name": "Cedars Sinai Marina Hospital",
+      "sub_name": "Cedars Sinai Marina Hospital",
+      "city": "Marina Dl Rey",
+      "state": "CA",
+      "ntee_code": "E20",
+      "raw_ntee_code": "E20",
+      "subseccd": 3,
+      "has_subseccd": true,
+      "have_filings": null,
+      "have_extracts": null,
+      "have_pdfs": null,
+      "score": 100.46424
+    },
+    {
+      "ein": 300990905,
+      "strein": "30-0990905",
+      "name": "Cedars Sinai Health System",
+      "sub_name": "Cedars Sinai Health System",
+      "city": "Los Angeles",
+      "state": "CA",
+      "ntee_code": "E21",
+      "raw_ntee_code": "E21",
+      "subseccd": 3,
+      "has_subseccd": true,
+      "have_filings": null,
+      "have_extracts": null,
+      "have_pdfs": null,
+      "score": 100.46424
+    }
+  ]
+}

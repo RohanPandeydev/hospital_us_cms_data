@@ -1,0 +1,703 @@
+{
+  "source": "CMS NPI Registry API",
+  "fetched_at": "2026-05-18T14:56:43",
+  "systems": {
+    "Cedars-Sinai": [
+      {
+        "npi": "1700170321",
+        "name": "CEDARS-SINAI",
+        "state": "CA",
+        "city": "LOS ANGELES"
+      },
+      {
+        "npi": "1689078446",
+        "name": "CEDARS-SINAI",
+        "state": "CA",
+        "city": "WEST HOLLYWOOD"
+      }
+    ],
+    "Cleveland Clinic": [
+      {
+        "npi": "1558319491",
+        "name": "CLEVELAND CLINIC",
+        "state": "OH",
+        "city": "EUCLID"
+      },
+      {
+        "npi": "1275791162",
+        "name": "CLEVELAND CLINIC",
+        "state": "OH",
+        "city": "CLEVELAND"
+      },
+      {
+        "npi": "1356508964",
+        "name": "CLEVELAND CLINIC",
+        "state": "OH",
+        "city": "CLEVELAND"
+      },
+      {
+        "npi": "1053563767",
+        "name": "CLEVELAND CLINIC",
+        "state": "OH",
+        "city": "NORTH ROYALTON"
+      },
+      {
+        "npi": "1336316389",
+        "name": "CLEVELAND CLINIC",
+        "state": "OH",
+        "city": "CLEVELAND"
+      },
+      {
+        "npi": "1841616752",
+        "name": "CLEVELAND CLINIC",
+        "state": "OH",
+        "city": "ROCKY RIVER"
+      },
+      {
+        "npi": "1487102679",
+        "name": "CLEVELAND CLINIC",
+        "state": "OH",
+        "city": "CLEVELAND"
+      },
+      {
+        "npi": "1104099217",
+        "name": "CLEVELAND CLINIC",
+        "state": "OH",
+        "city": "CLEVELAND"
+      },
+      {
+        "npi": "1629255575",
+        "name": "CLEVELAND CLINIC",
+        "state": "OH",
+        "city": "CLEVELAND"
+      },
+      {
+        "npi": "1962837658",
+        "name": "CLEVELAND CLINIC",
+        "state": "OH",
+        "city": "CLEVELAND"
+      }
+    ],
+    "Mayo Clinic": [
+      {
+        "npi": "1881018208",
+        "name": "MAYO CLINIC",
+        "state": "MN",
+        "city": "ROCHESTER"
+      },
+      {
+        "npi": "1538568928",
+        "name": "MAYO CLINIC",
+        "state": "MN",
+        "city": "ROCHESTER"
+      },
+      {
+        "npi": "1821326570",
+        "name": "MAYO CLINIC",
+        "state": "MN",
+        "city": "ROCHESTER"
+      },
+      {
+        "npi": "1164758868",
+        "name": "MAYO CLINIC",
+        "state": "MN",
+        "city": "ROCHESTER"
+      },
+      {
+        "npi": "1588895643",
+        "name": "MAYO CLINIC",
+        "state": "MN",
+        "city": "ROCHESTER"
+      },
+      {
+        "npi": "1023405065",
+        "name": "MAYO CLINIC",
+        "state": "FL",
+        "city": "JACKSONVILLE"
+      },
+      {
+        "npi": "1912403536",
+        "name": "MAYO CLINIC",
+        "state": "MN",
+        "city": "ROCHESTER"
+      },
+      {
+        "npi": "1114343860",
+        "name": "MAYO CLINIC",
+        "state": "MN",
+        "city": "ROCHESTER"
+      },
+      {
+        "npi": "1427235068",
+        "name": "MAYO CLINIC",
+        "state": "MN",
+        "city": "ROCHESTER"
+      },
+      {
+        "npi": "1922074434",
+        "name": "MAYO CLINIC",
+        "state": "MN",
+        "city": "ROCHESTER"
+      }
+    ],
+    "Mass General": [],
+    "Johns Hopkins": [
+      {
+        "npi": "1083099923",
+        "name": "JOHNS HOPKINS",
+        "state": "MD",
+        "city": "BALTIMORE"
+      },
+      {
+        "npi": "1699020917",
+        "name": "JOHNS HOPKINS",
+        "state": "MD",
+        "city": "BALTIMORE"
+      }
+    ],
+    "UCSF": [
+      {
+        "npi": "1417115031",
+        "name": "UCSF",
+        "state": "CA",
+        "city": "SAN FRANCISCO"
+      },
+      {
+        "npi": "1184950529",
+        "name": "UCSF",
+        "state": "CA",
+        "city": "SAN FRANCISCO"
+      },
+      {
+        "npi": "1073877064",
+        "name": "UCSF",
+        "state": "CA",
+        "city": "SAN FRANCISCO"
+      },
+      {
+        "npi": "1558805440",
+        "name": "UCSF",
+        "state": "CA",
+        "city": "SAN FRANCISCO"
+      },
+      {
+        "npi": "1376733923",
+        "name": "UCSF",
+        "state": "CA",
+        "city": "SAN FRANCISCO"
+      },
+      {
+        "npi": "1164153870",
+        "name": "UCSF",
+        "state": "CA",
+        "city": "SAN FRANCISCO"
+      },
+      {
+        "npi": "1184749483",
+        "name": "UCSF",
+        "state": "CA",
+        "city": "SAN FRANCISCO"
+      },
+      {
+        "npi": "1780862854",
+        "name": "UCSF",
+        "state": "CA",
+        "city": "SAN FRANCISCO"
+      },
+      {
+        "npi": "1902342793",
+        "name": "UCSF",
+        "state": "CA",
+        "city": "SAN FRANCISCO"
+      },
+      {
+        "npi": "1588809016",
+        "name": "UCSF",
+        "state": "CA",
+        "city": "SAN FRANCISCO"
+      }
+    ],
+    "Stanford": [],
+    "UCLA": [
+      {
+        "npi": "1700112406",
+        "name": "UCLA",
+        "state": "CA",
+        "city": "SANTA MONICA"
+      },
+      {
+        "npi": "1861758252",
+        "name": "UCLA",
+        "state": "CA",
+        "city": "LOS ANGELES"
+      },
+      {
+        "npi": "1811296072",
+        "name": "UCLA",
+        "state": "CA",
+        "city": "LOS ANGELES"
+      },
+      {
+        "npi": "1669895470",
+        "name": "UCLA",
+        "state": "CA",
+        "city": "LOS ANGELES"
+      },
+      {
+        "npi": "1538610761",
+        "name": "UCLA",
+        "state": "CA",
+        "city": "LOS ANGELES"
+      },
+      {
+        "npi": "1013342948",
+        "name": "UCLA",
+        "state": "CA",
+        "city": "LOS ANGELES"
+      },
+      {
+        "npi": "1457600165",
+        "name": "UCLA",
+        "state": "CA",
+        "city": "LOS ANGELES"
+      },
+      {
+        "npi": "1477753556",
+        "name": "UCLA",
+        "state": "CA",
+        "city": "LOS ANGELES"
+      },
+      {
+        "npi": "1164764809",
+        "name": "UCLA",
+        "state": "CA",
+        "city": "LOS ANGELES"
+      },
+      {
+        "npi": "1659639979",
+        "name": "UCLA",
+        "state": "CA",
+        "city": "LOS ANGELES"
+      }
+    ],
+    "NYU Langone": [
+      {
+        "npi": "1023450996",
+        "name": "NYU LANGONE",
+        "state": "NY",
+        "city": "NEW YORK"
+      }
+    ],
+    "Mount Sinai": [
+      {
+        "npi": "1528486917",
+        "name": "MOUNT SINAI",
+        "state": "NY",
+        "city": "NEW YORK"
+      },
+      {
+        "npi": "1740940444",
+        "name": "MOUNT SINAI",
+        "state": "NY",
+        "city": "NEW YORK"
+      },
+      {
+        "npi": "1235514548",
+        "name": "MOUNT SINAI",
+        "state": "NY",
+        "city": "JAMAICA"
+      },
+      {
+        "npi": "1649684127",
+        "name": "MOUNT SINAI",
+        "state": "NY",
+        "city": "NEW YORK"
+      },
+      {
+        "npi": "1457644882",
+        "name": "MOUNT SINAI",
+        "state": "NY",
+        "city": "NEW YORK"
+      },
+      {
+        "npi": "1700028305",
+        "name": "MOUNT SINAI",
+        "state": "IL",
+        "city": "CHICAGO"
+      },
+      {
+        "npi": "1629410592",
+        "name": "MOUNT SINAI",
+        "state": "NY",
+        "city": "NEW YORK"
+      },
+      {
+        "npi": "1093221244",
+        "name": "MOUNT SINAI",
+        "state": "NY",
+        "city": "NEW YORK"
+      }
+    ],
+    "Brigham": [],
+    "Northwestern": [
+      {
+        "npi": "1780833657",
+        "name": "NORTHWESTERN",
+        "state": "IL",
+        "city": "CHICAGO"
+      }
+    ],
+    "Penn Medicine": [],
+    "Duke": [],
+    "Vanderbilt": [],
+    "Cox Health": [
+      {
+        "npi": "1063252922",
+        "name": "COX HEALTH",
+        "state": "MO",
+        "city": "BRANSON"
+      },
+      {
+        "npi": "1083301204",
+        "name": "COX HEALTH",
+        "state": "MO",
+        "city": "SPRINGFIELD"
+      }
+    ],
+    "HonorHealth": [
+      {
+        "npi": "1811951429",
+        "name": "HONORHEALTH",
+        "state": "AZ",
+        "city": "SCOTTSDALE"
+      },
+      {
+        "npi": "1619773157",
+        "name": "HONORHEALTH",
+        "state": "AZ",
+        "city": "PEORIA"
+      },
+      {
+        "npi": "1528169125",
+        "name": "HONORHEALTH",
+        "state": "AZ",
+        "city": "PHOENIX"
+      },
+      {
+        "npi": "1770690695",
+        "name": "HONORHEALTH",
+        "state": "AZ",
+        "city": "PHOENIX"
+      },
+      {
+        "npi": "1972201903",
+        "name": "HONORHEALTH",
+        "state": "AZ",
+        "city": "SCOTTSDALE"
+      },
+      {
+        "npi": "1417152745",
+        "name": "HONORHEALTH",
+        "state": "AZ",
+        "city": "SCOTTSDALE"
+      },
+      {
+        "npi": "1386456762",
+        "name": "HONORHEALTH",
+        "state": "AZ",
+        "city": "PEORIA"
+      },
+      {
+        "npi": "1093800591",
+        "name": "HONORHEALTH",
+        "state": "AZ",
+        "city": "SCOTTSDALE"
+      },
+      {
+        "npi": "1144762402",
+        "name": "HONORHEALTH",
+        "state": "AZ",
+        "city": "PHOENIX"
+      },
+      {
+        "npi": "1861219404",
+        "name": "HONORHEALTH",
+        "state": "AZ",
+        "city": "MESA"
+      }
+    ],
+    "Barnes-Jewish": [],
+    "Indiana University Health": [
+      {
+        "npi": "1386924447",
+        "name": "INDIANA UNIVERSITY HEALTH",
+        "state": "IN",
+        "city": "INDIANAPOLIS"
+      },
+      {
+        "npi": "1144266024",
+        "name": "INDIANA UNIVERSITY HEALTH INC",
+        "state": "IN",
+        "city": "INDIANAPOLIS"
+      }
+    ],
+    "Banner Health": [
+      {
+        "npi": "1427740570",
+        "name": "BANNER HEALTH",
+        "state": "CA",
+        "city": "SUSANVILLE"
+      },
+      {
+        "npi": "1124532924",
+        "name": "BANNER HEALTH",
+        "state": "CO",
+        "city": "FORT COLLINS"
+      },
+      {
+        "npi": "1114301017",
+        "name": "BANNER HEALTH",
+        "state": "AZ",
+        "city": "PAYSON"
+      },
+      {
+        "npi": "1275320327",
+        "name": "BANNER HEALTH",
+        "state": "AZ",
+        "city": "LAKESIDE"
+      },
+      {
+        "npi": "1538402995",
+        "name": "BANNER HEALTH",
+        "state": "AZ",
+        "city": "PHOENIX"
+      },
+      {
+        "npi": "1942613435",
+        "name": "BANNER HEALTH",
+        "state": "AZ",
+        "city": "CASA GRANDE"
+      },
+      {
+        "npi": "1023327137",
+        "name": "BANNER HEALTH",
+        "state": "AZ",
+        "city": "PHOENIX"
+      },
+      {
+        "npi": "1861077414",
+        "name": "BANNER HEALTH",
+        "state": "AZ",
+        "city": "PAYSON"
+      },
+      {
+        "npi": "1245940287",
+        "name": "BANNER HEALTH",
+        "state": "AZ",
+        "city": "PINE"
+      },
+      {
+        "npi": "1396156139",
+        "name": "BANNER HEALTH",
+        "state": "AZ",
+        "city": "PEORIA"
+      }
+    ],
+    "Hoag": [],
+    "Saint Agnes": [],
+    "Scripps": [],
+    "Sutter Health": [
+      {
+        "npi": "1902421571",
+        "name": "CALIFORNIA PACIFIC MEDICAL CENTER",
+        "state": "CA",
+        "city": "SAN FRANCISCO"
+      },
+      {
+        "npi": "1750559928",
+        "name": "SUTTER HEALTH",
+        "state": "CA",
+        "city": "DAVIS"
+      },
+      {
+        "npi": "1346621349",
+        "name": "SUTTER HEALTH",
+        "state": "CA",
+        "city": "MODESTO"
+      },
+      {
+        "npi": "1881736940",
+        "name": "SUTTER HEALTH",
+        "state": "ND",
+        "city": "FARGO"
+      },
+      {
+        "npi": "1265755615",
+        "name": "SUTTER HEALTH",
+        "state": "CA",
+        "city": "SAN FRANCISCO"
+      }
+    ],
+    "Kaiser": [
+      {
+        "npi": "1285910570",
+        "name": "KAISER",
+        "state": "CO",
+        "city": "DENVER"
+      },
+      {
+        "npi": "1043696479",
+        "name": "KAISER",
+        "state": "CA",
+        "city": "CHINO"
+      },
+      {
+        "npi": "1295193209",
+        "name": "KAISER",
+        "state": "CA",
+        "city": "WALNUT CREEK"
+      },
+      {
+        "npi": "1821162306",
+        "name": "KAISER",
+        "state": "CA",
+        "city": "WALNUT CREEK"
+      },
+      {
+        "npi": "1487722534",
+        "name": "KAISER",
+        "state": "CA",
+        "city": "NOVATO"
+      },
+      {
+        "npi": "1255616280",
+        "name": "KAISER",
+        "state": "CA",
+        "city": "SAN LEANDRO"
+      },
+      {
+        "npi": "1376914168",
+        "name": "KAISER",
+        "state": "CO",
+        "city": "PARKER"
+      },
+      {
+        "npi": "1790223212",
+        "name": "KAISER",
+        "state": "CA",
+        "city": "SAN DIEGO"
+      },
+      {
+        "npi": "1700914025",
+        "name": "KAISER",
+        "state": "MD",
+        "city": "SILVER SPRING"
+      },
+      {
+        "npi": "1609118785",
+        "name": "KAISER",
+        "state": "CA",
+        "city": "SAN LEANDRO"
+      }
+    ],
+    "Providence": [
+      {
+        "npi": "1841467461",
+        "name": "NEW HOPE OF INDIANA, INC.",
+        "state": "IN",
+        "city": "INDIANAPOLIS"
+      },
+      {
+        "npi": "1184803280",
+        "name": "OASIS",
+        "state": "CA",
+        "city": "ANAHEIM"
+      },
+      {
+        "npi": "1801918982",
+        "name": "PROVIDENCE",
+        "state": "MI",
+        "city": "BIRMINGHAM"
+      },
+      {
+        "npi": "1043610157",
+        "name": "PROVIDENCE",
+        "state": "WA",
+        "city": "SEATTLE"
+      },
+      {
+        "npi": "1316473564",
+        "name": "PROVIDENCE",
+        "state": "OR",
+        "city": "PORTLAND"
+      },
+      {
+        "npi": "1821567991",
+        "name": "PROVIDENCE",
+        "state": "MS",
+        "city": "FOXWORTH"
+      },
+      {
+        "npi": "1821248402",
+        "name": "PROVIDENCE",
+        "state": "WA",
+        "city": "MARYSVILLE"
+      },
+      {
+        "npi": "1417209628",
+        "name": "PROVIDENCE",
+        "state": "WA",
+        "city": "SPOKANE"
+      },
+      {
+        "npi": "1124246244",
+        "name": "PROVIDENCE",
+        "state": "CA",
+        "city": "LANCASTER"
+      },
+      {
+        "npi": "1053636126",
+        "name": "ST. VINCENT'S HOSPITOL",
+        "state": "OR",
+        "city": "PORTLAND"
+      }
+    ],
+    "UCSD": [
+      {
+        "npi": "1619079464",
+        "name": "UCSD",
+        "state": "CA",
+        "city": "LA JOLLA"
+      },
+      {
+        "npi": "1225287469",
+        "name": "UCSD",
+        "state": "CA",
+        "city": "SAN DIEGO"
+      },
+      {
+        "npi": "1730611864",
+        "name": "UCSD",
+        "state": "CA",
+        "city": "LA JOLLA"
+      }
+    ],
+    "UCI": [],
+    "Houston Methodist": [
+      {
+        "npi": "1992178693",
+        "name": "HOUSTON METHODIST",
+        "state": "TX",
+        "city": "HOUSTON"
+      }
+    ],
+    "MD Anderson": [
+      {
+        "npi": "1144669508",
+        "name": "MD ANDERSON",
+        "state": "TX",
+        "city": "HOUSTON"
+      }
+    ]
+  }
+}

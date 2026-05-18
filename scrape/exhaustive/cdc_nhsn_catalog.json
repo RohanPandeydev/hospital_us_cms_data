@@ -1,0 +1,11 @@
+{
+  "source": "CDC Open Data",
+  "fetched_at": "2026-05-18T14:54:39",
+  "datasets": [
+    {
+      "id": "vdzy-6i9v",
+      "name": "Weekly Hospital Respiratory Admission Levels and Rates by Jurisdiction, National Healthcare Safety Network (NHSN)",
+      "url": "https://data.cdc.gov/resource/vdzy-6i9v.json"
+    }
+  ]
+}

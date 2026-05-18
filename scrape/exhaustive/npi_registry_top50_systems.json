@@ -1,0 +1,1040 @@
+{
+  "source": "CMS NPI Registry API",
+  "fetched_at": "2026-05-18T14:55:19",
+  "systems": {
+    "Cedars-Sinai": [
+      {
+        "npi": "1700170321",
+        "name": "CEDARS-SINAI",
+        "state": "CA",
+        "city": "LOS ANGELES",
+        "taxonomy": "General Acute Care Hospital"
+      },
+      {
+        "npi": "1689078446",
+        "name": "CEDARS-SINAI",
+        "state": "CA",
+        "city": "WEST HOLLYWOOD",
+        "taxonomy": "Obstetrics & Gynecology, Obstetrics"
+      }
+    ],
+    "Cleveland Clinic": [
+      {
+        "npi": "1558319491",
+        "name": "CLEVELAND CLINIC",
+        "state": "OH",
+        "city": "EUCLID",
+        "taxonomy": "Clinic/Center"
+      },
+      {
+        "npi": "1275791162",
+        "name": "CLEVELAND CLINIC",
+        "state": "OH",
+        "city": "CLEVELAND",
+        "taxonomy": "General Acute Care Hospital"
+      },
+      {
+        "npi": "1356508964",
+        "name": "CLEVELAND CLINIC",
+        "state": "OH",
+        "city": "CLEVELAND",
+        "taxonomy": "Chronic Disease Hospital"
+      },
+      {
+        "npi": "1053563767",
+        "name": "CLEVELAND CLINIC",
+        "state": "OH",
+        "city": "NORTH ROYALTON",
+        "taxonomy": "General Acute Care Hospital"
+      },
+      {
+        "npi": "1336316389",
+        "name": "CLEVELAND CLINIC",
+        "state": "OH",
+        "city": "CLEVELAND",
+        "taxonomy": "General Acute Care Hospital"
+      },
+      {
+        "npi": "1841616752",
+        "name": "CLEVELAND CLINIC",
+        "state": "OH",
+        "city": "ROCKY RIVER",
+        "taxonomy": "Clinic/Center, Physical Therapy"
+      },
+      {
+        "npi": "1487102679",
+        "name": "CLEVELAND CLINIC",
+        "state": "OH",
+        "city": "CLEVELAND",
+        "taxonomy": "Pharmacist, Ambulatory Care"
+      },
+      {
+        "npi": "1104099217",
+        "name": "CLEVELAND CLINIC",
+        "state": "OH",
+        "city": "CLEVELAND",
+        "taxonomy": "General Acute Care Hospital"
+      },
+      {
+        "npi": "1629255575",
+        "name": "CLEVELAND CLINIC",
+        "state": "OH",
+        "city": "CLEVELAND",
+        "taxonomy": "General Acute Care Hospital"
+      },
+      {
+        "npi": "1962837658",
+        "name": "CLEVELAND CLINIC",
+        "state": "OH",
+        "city": "CLEVELAND",
+        "taxonomy": "Chronic Disease Hospital"
+      }
+    ],
+    "Mayo Clinic": [
+      {
+        "npi": "1881018208",
+        "name": "MAYO CLINIC",
+        "state": "MN",
+        "city": "ROCHESTER",
+        "taxonomy": "Clinic/Center, Multi-Specialty"
+      },
+      {
+        "npi": "1538568928",
+        "name": "MAYO CLINIC",
+        "state": "MN",
+        "city": "ROCHESTER",
+        "taxonomy": "Clinic/Center, Multi-Specialty"
+      },
+      {
+        "npi": "1821326570",
+        "name": "MAYO CLINIC",
+        "state": "MN",
+        "city": "ROCHESTER",
+        "taxonomy": "Ambulance, Air Transport"
+      },
+      {
+        "npi": "1164758868",
+        "name": "MAYO CLINIC",
+        "state": "MN",
+        "city": "ROCHESTER",
+        "taxonomy": "Hospice Care, Community Based"
+      },
+      {
+        "npi": "1588895643",
+        "name": "MAYO CLINIC",
+        "state": "MN",
+        "city": "ROCHESTER",
+        "taxonomy": "Case Management"
+      },
+      {
+        "npi": "1023405065",
+        "name": "MAYO CLINIC",
+        "state": "FL",
+        "city": "JACKSONVILLE",
+        "taxonomy": "Clinic/Center, Medical Specialty"
+      },
+      {
+        "npi": "1912403536",
+        "name": "MAYO CLINIC",
+        "state": "MN",
+        "city": "ROCHESTER",
+        "taxonomy": "Clinic/Center, Multi-Specialty"
+      },
+      {
+        "npi": "1114343860",
+        "name": "MAYO CLINIC",
+        "state": "MN",
+        "city": "ROCHESTER",
+        "taxonomy": "Internal Medicine, Infectious Disease"
+      },
+      {
+        "npi": "1427235068",
+        "name": "MAYO CLINIC",
+        "state": "MN",
+        "city": "ROCHESTER",
+        "taxonomy": "Clinic/Center, Medical Specialty"
+      },
+      {
+        "npi": "1922074434",
+        "name": "MAYO CLINIC",
+        "state": "MN",
+        "city": "ROCHESTER",
+        "taxonomy": "Clinic/Center, Multi-Specialty"
+      }
+    ],
+    "Mass General": [],
+    "Johns Hopkins": [
+      {
+        "npi": "1083099923",
+        "name": "JOHNS HOPKINS",
+        "state": "MD",
+        "city": "BALTIMORE",
+        "taxonomy": "General Acute Care Hospital"
+      },
+      {
+        "npi": "1699020917",
+        "name": "JOHNS HOPKINS",
+        "state": "MD",
+        "city": "BALTIMORE",
+        "taxonomy": "General Acute Care Hospital"
+      }
+    ],
+    "UCSF": [
+      {
+        "npi": "1417115031",
+        "name": "UCSF",
+        "state": "CA",
+        "city": "SAN FRANCISCO",
+        "taxonomy": "Special Hospital"
+      },
+      {
+        "npi": "1184950529",
+        "name": "UCSF",
+        "state": "CA",
+        "city": "SAN FRANCISCO",
+        "taxonomy": "General Acute Care Hospital"
+      },
+      {
+        "npi": "1073877064",
+        "name": "UCSF",
+        "state": "CA",
+        "city": "SAN FRANCISCO",
+        "taxonomy": "Student in an Organized Health Care Education/Training Program"
+      },
+      {
+        "npi": "1558805440",
+        "name": "UCSF",
+        "state": "CA",
+        "city": "SAN FRANCISCO",
+        "taxonomy": "Psychiatric Hospital"
+      },
+      {
+        "npi": "1376733923",
+        "name": "UCSF",
+        "state": "CA",
+        "city": "SAN FRANCISCO",
+        "taxonomy": "General Acute Care Hospital"
+      },
+      {
+        "npi": "1164153870",
+        "name": "UCSF",
+        "state": "CA",
+        "city": "SAN FRANCISCO",
+        "taxonomy": "Anesthesiology"
+      },
+      {
+        "npi": "1184749483",
+        "name": "UCSF",
+        "state": "CA",
+        "city": "SAN FRANCISCO",
+        "taxonomy": "General Acute Care Hospital, Critical Access"
+      },
+      {
+        "npi": "1780862854",
+        "name": "UCSF",
+        "state": "CA",
+        "city": "SAN FRANCISCO",
+        "taxonomy": "General Acute Care Hospital"
+      },
+      {
+        "npi": "1902342793",
+        "name": "UCSF",
+        "state": "CA",
+        "city": "SAN FRANCISCO",
+        "taxonomy": "Psychiatric Hospital"
+      },
+      {
+        "npi": "1588809016",
+        "name": "UCSF",
+        "state": "CA",
+        "city": "SAN FRANCISCO",
+        "taxonomy": "General Acute Care Hospital"
+      }
+    ],
+    "Stanford": [],
+    "UCLA": [
+      {
+        "npi": "1700112406",
+        "name": "UCLA",
+        "state": "CA",
+        "city": "SANTA MONICA",
+        "taxonomy": "General Acute Care Hospital, Critical Access"
+      },
+      {
+        "npi": "1861758252",
+        "name": "UCLA",
+        "state": "CA",
+        "city": "LOS ANGELES",
+        "taxonomy": "Psychiatric Unit"
+      },
+      {
+        "npi": "1811296072",
+        "name": "UCLA",
+        "state": "CA",
+        "city": "LOS ANGELES",
+        "taxonomy": "General Acute Care Hospital"
+      },
+      {
+        "npi": "1669895470",
+        "name": "UCLA",
+        "state": "CA",
+        "city": "LOS ANGELES",
+        "taxonomy": "General Acute Care Hospital"
+      },
+      {
+        "npi": "1538610761",
+        "name": "UCLA",
+        "state": "CA",
+        "city": "LOS ANGELES",
+        "taxonomy": "Clinical Medical Laboratory"
+      },
+      {
+        "npi": "1013342948",
+        "name": "UCLA",
+        "state": "CA",
+        "city": "LOS ANGELES",
+        "taxonomy": "General Acute Care Hospital"
+      },
+      {
+        "npi": "1457600165",
+        "name": "UCLA",
+        "state": "CA",
+        "city": "LOS ANGELES",
+        "taxonomy": "General Acute Care Hospital"
+      },
+      {
+        "npi": "1477753556",
+        "name": "UCLA",
+        "state": "CA",
+        "city": "LOS ANGELES",
+        "taxonomy": "Clinic/Center, Adult Mental Health"
+      },
+      {
+        "npi": "1164764809",
+        "name": "UCLA",
+        "state": "CA",
+        "city": "LOS ANGELES",
+        "taxonomy": "General Acute Care Hospital"
+      },
+      {
+        "npi": "1659639979",
+        "name": "UCLA",
+        "state": "CA",
+        "city": "LOS ANGELES",
+        "taxonomy": "Psychiatric Hospital"
+      }
+    ],
+    "NYU Langone": [
+      {
+        "npi": "1023450996",
+        "name": "NYU LANGONE",
+        "state": "NY",
+        "city": "NEW YORK",
+        "taxonomy": "Clinic/Center, Student Health"
+      }
+    ],
+    "Mount Sinai": [
+      {
+        "npi": "1528486917",
+        "name": "MOUNT SINAI",
+        "state": "NY",
+        "city": "NEW YORK",
+        "taxonomy": "Chronic Disease Hospital"
+      },
+      {
+        "npi": "1740940444",
+        "name": "MOUNT SINAI",
+        "state": "NY",
+        "city": "NEW YORK",
+        "taxonomy": "Nurse Practitioner, Family"
+      },
+      {
+        "npi": "1235514548",
+        "name": "MOUNT SINAI",
+        "state": "NY",
+        "city": "JAMAICA",
+        "taxonomy": "Student in an Organized Health Care Education/Training Program"
+      },
+      {
+        "npi": "1649684127",
+        "name": "MOUNT SINAI",
+        "state": "NY",
+        "city": "NEW YORK",
+        "taxonomy": "Chronic Disease Hospital"
+      },
+      {
+        "npi": "1457644882",
+        "name": "MOUNT SINAI",
+        "state": "NY",
+        "city": "NEW YORK",
+        "taxonomy": "General Acute Care Hospital"
+      },
+      {
+        "npi": "1700028305",
+        "name": "MOUNT SINAI",
+        "state": "IL",
+        "city": "CHICAGO",
+        "taxonomy": "General Acute Care Hospital"
+      },
+      {
+        "npi": "1629410592",
+        "name": "MOUNT SINAI",
+        "state": "NY",
+        "city": "NEW YORK",
+        "taxonomy": "General Acute Care Hospital, Critical Access"
+      },
+      {
+        "npi": "1093221244",
+        "name": "MOUNT SINAI",
+        "state": "NY",
+        "city": "NEW YORK",
+        "taxonomy": "Otolaryngology, Otolaryngology/Facial Plastic Surgery"
+      }
+    ],
+    "Brigham and Women": [],
+    "Northwestern Memorial": [],
+    "University of Pennsylvania": [
+      {
+        "npi": "1003209834",
+        "name": "UNIVERSITY OF PENNSYLVANIA",
+        "state": "PA",
+        "city": "PHILADELPHIA",
+        "taxonomy": "General Acute Care Hospital"
+      },
+      {
+        "npi": "1265690010",
+        "name": "UNIVERSITY OF PENNSYLVANIA",
+        "state": "PA",
+        "city": "PHILADELPHIA",
+        "taxonomy": "General Acute Care Hospital"
+      },
+      {
+        "npi": "1205234382",
+        "name": "UNIVERSITY OF PENNSYLVANIA",
+        "state": "PA",
+        "city": "PHILADELPHIA",
+        "taxonomy": "Dentist, General Practice"
+      },
+      {
+        "npi": "1164736948",
+        "name": "UNIVERSITY OF PENNSYLVANIA",
+        "state": "PA",
+        "city": "PHILADELPHIA",
+        "taxonomy": "General Acute Care Hospital"
+      },
+      {
+        "npi": "1003175514",
+        "name": "UNIVERSITY OF PENNSYLVANIA",
+        "state": "PA",
+        "city": "PHILADELPHIA",
+        "taxonomy": "Psychiatric Unit"
+      }
+    ],
+    "Duke University": [
+      {
+        "npi": "1629269873",
+        "name": "DUKE UNIVERSITY",
+        "state": "NC",
+        "city": "DURHAM",
+        "taxonomy": "Specialist"
+      },
+      {
+        "npi": "1407964174",
+        "name": "DUKE UNIVERSITY",
+        "state": "NC",
+        "city": "DURHAM",
+        "taxonomy": "Clinic/Center, Mental Health (Including Community Mental Health Center)"
+      },
+      {
+        "npi": "1497801252",
+        "name": "DUKE UNIVERSITY",
+        "state": "NC",
+        "city": "DURHAM",
+        "taxonomy": "Psychologist, Clinical Child & Adolescent"
+      },
+      {
+        "npi": "1629165360",
+        "name": "DUKE UNIVERSITY",
+        "state": "NC",
+        "city": "DURHAM",
+        "taxonomy": "Anaplastologist"
+      },
+      {
+        "npi": "1841222395",
+        "name": "DUKE UNIVERSITY",
+        "state": "NC",
+        "city": "DURHAM",
+        "taxonomy": "Surgery"
+      },
+      {
+        "npi": "1215070826",
+        "name": "DUKE UNIVERSITY",
+        "state": "NC",
+        "city": "DURHAM",
+        "taxonomy": "Psychiatry & Neurology, Child & Adolescent Psychiatry"
+      },
+      {
+        "npi": "1760497424",
+        "name": "DUKE UNIVERSITY",
+        "state": "NC",
+        "city": "DURHAM",
+        "taxonomy": "Psychologist, Counseling"
+      },
+      {
+        "npi": "1033495106",
+        "name": "DUKE UNIVERSITY",
+        "state": "NC",
+        "city": "DURHAM",
+        "taxonomy": "Clinic/Center, Student Health"
+      },
+      {
+        "npi": "1851451090",
+        "name": "DUKE UNIVERSITY",
+        "state": "NC",
+        "city": "DURHAM",
+        "taxonomy": "Pharmacy, Clinic Pharmacy"
+      },
+      {
+        "npi": "1629516372",
+        "name": "DUKE UNIVERSITY",
+        "state": "NC",
+        "city": "RALEIGH",
+        "taxonomy": "Special Hospital"
+      }
+    ],
+    "Vanderbilt": [],
+    "Cox Health": [
+      {
+        "npi": "1063252922",
+        "name": "COX HEALTH",
+        "state": "MO",
+        "city": "BRANSON",
+        "taxonomy": "Clinic/Center, Health Services"
+      },
+      {
+        "npi": "1083301204",
+        "name": "COX HEALTH",
+        "state": "MO",
+        "city": "SPRINGFIELD",
+        "taxonomy": "General Acute Care Hospital"
+      }
+    ],
+    "HonorHealth": [
+      {
+        "npi": "1811951429",
+        "name": "HONORHEALTH",
+        "state": "AZ",
+        "city": "SCOTTSDALE",
+        "taxonomy": "General Acute Care Hospital"
+      },
+      {
+        "npi": "1619773157",
+        "name": "HONORHEALTH",
+        "state": "AZ",
+        "city": "PEORIA",
+        "taxonomy": "Clinic/Center, Emergency Care"
+      },
+      {
+        "npi": "1528169125",
+        "name": "HONORHEALTH",
+        "state": "AZ",
+        "city": "PHOENIX",
+        "taxonomy": "General Acute Care Hospital"
+      },
+      {
+        "npi": "1770690695",
+        "name": "HONORHEALTH",
+        "state": "AZ",
+        "city": "PHOENIX",
+        "taxonomy": "General Acute Care Hospital"
+      },
+      {
+        "npi": "1972201903",
+        "name": "HONORHEALTH",
+        "state": "AZ",
+        "city": "SCOTTSDALE",
+        "taxonomy": "General Acute Care Hospital"
+      },
+      {
+        "npi": "1417152745",
+        "name": "HONORHEALTH",
+        "state": "AZ",
+        "city": "SCOTTSDALE",
+        "taxonomy": "General Acute Care Hospital"
+      },
+      {
+        "npi": "1386456762",
+        "name": "HONORHEALTH",
+        "state": "AZ",
+        "city": "PEORIA",
+        "taxonomy": "Prosthetic/Orthotic Supplier"
+      },
+      {
+        "npi": "1093800591",
+        "name": "HONORHEALTH",
+        "state": "AZ",
+        "city": "SCOTTSDALE",
+        "taxonomy": "Prosthetic/Orthotic Supplier"
+      },
+      {
+        "npi": "1144762402",
+        "name": "HONORHEALTH",
+        "state": "AZ",
+        "city": "PHOENIX",
+        "taxonomy": "Pharmacy, Community/Retail Pharmacy"
+      },
+      {
+        "npi": "1861219404",
+        "name": "HONORHEALTH",
+        "state": "AZ",
+        "city": "MESA",
+        "taxonomy": "General Acute Care Hospital"
+      }
+    ],
+    "Barnes-Jewish": [],
+    "Indiana University Health": [
+      {
+        "npi": "1386924447",
+        "name": "INDIANA UNIVERSITY HEALTH",
+        "state": "IN",
+        "city": "INDIANAPOLIS",
+        "taxonomy": "General Acute Care Hospital, Children"
+      },
+      {
+        "npi": "1144266024",
+        "name": "INDIANA UNIVERSITY HEALTH INC",
+        "state": "IN",
+        "city": "INDIANAPOLIS",
+        "taxonomy": "General Acute Care Hospital"
+      }
+    ],
+    "Banner Health": [
+      {
+        "npi": "1427740570",
+        "name": "BANNER HEALTH",
+        "state": "CA",
+        "city": "SUSANVILLE",
+        "taxonomy": "Clinic/Center, Radiology"
+      },
+      {
+        "npi": "1124532924",
+        "name": "BANNER HEALTH",
+        "state": "CO",
+        "city": "FORT COLLINS",
+        "taxonomy": "Ambulance"
+      },
+      {
+        "npi": "1114301017",
+        "name": "BANNER HEALTH",
+        "state": "AZ",
+        "city": "PAYSON",
+        "taxonomy": "Medicare Defined Swing Bed Unit"
+      },
+      {
+        "npi": "1275320327",
+        "name": "BANNER HEALTH",
+        "state": "AZ",
+        "city": "LAKESIDE",
+        "taxonomy": "Clinic/Center, Rural Health"
+      },
+      {
+        "npi": "1538402995",
+        "name": "BANNER HEALTH",
+        "state": "AZ",
+        "city": "PHOENIX",
+        "taxonomy": "General Acute Care Hospital"
+      },
+      {
+        "npi": "1942613435",
+        "name": "BANNER HEALTH",
+        "state": "AZ",
+        "city": "CASA GRANDE",
+        "taxonomy": "Clinic/Center, Urgent Care"
+      },
+      {
+        "npi": "1023327137",
+        "name": "BANNER HEALTH",
+        "state": "AZ",
+        "city": "PHOENIX",
+        "taxonomy": "Pharmacy, Community/Retail Pharmacy"
+      },
+      {
+        "npi": "1861077414",
+        "name": "BANNER HEALTH",
+        "state": "AZ",
+        "city": "PAYSON",
+        "taxonomy": "Medicare Defined Swing Bed Unit"
+      },
+      {
+        "npi": "1245940287",
+        "name": "BANNER HEALTH",
+        "state": "AZ",
+        "city": "PINE",
+        "taxonomy": "Clinic/Center, Rural Health"
+      },
+      {
+        "npi": "1396156139",
+        "name": "BANNER HEALTH",
+        "state": "AZ",
+        "city": "PEORIA",
+        "taxonomy": "Non-Pharmacy Dispensing Site"
+      }
+    ],
+    "Hoag": [],
+    "Saint Agnes": [],
+    "Scripps": [],
+    "Sutter Health": [
+      {
+        "npi": "1902421571",
+        "name": "CALIFORNIA PACIFIC MEDICAL CENTER",
+        "state": "CA",
+        "city": "SAN FRANCISCO",
+        "taxonomy": "Clinic/Center, Multi-Specialty"
+      },
+      {
+        "npi": "1750559928",
+        "name": "SUTTER HEALTH",
+        "state": "CA",
+        "city": "DAVIS",
+        "taxonomy": "Non-Pharmacy Dispensing Site"
+      },
+      {
+        "npi": "1346621349",
+        "name": "SUTTER HEALTH",
+        "state": "CA",
+        "city": "MODESTO",
+        "taxonomy": "General Acute Care Hospital"
+      },
+      {
+        "npi": "1881736940",
+        "name": "SUTTER HEALTH",
+        "state": "ND",
+        "city": "FARGO",
+        "taxonomy": "Non-Pharmacy Dispensing Site"
+      },
+      {
+        "npi": "1265755615",
+        "name": "SUTTER HEALTH",
+        "state": "CA",
+        "city": "SAN FRANCISCO",
+        "taxonomy": "General Acute Care Hospital"
+      }
+    ],
+    "Kaiser Permanente": [
+      {
+        "npi": "1356459564",
+        "name": "KAISER FOUNDATION HEALTH PLAN OF COLORADO",
+        "state": "CO",
+        "city": "DENVER",
+        "taxonomy": "Clinic/Center, Multi-Specialty"
+      },
+      {
+        "npi": "1578606950",
+        "name": "KAISER FOUNDATION HEALTH PLAN OF GEORGIA, INC.",
+        "state": "GA",
+        "city": "AUSTELL",
+        "taxonomy": "Pharmacy, Managed Care Organization Pharmacy"
+      },
+      {
+        "npi": "1851530950",
+        "name": "KAISER FOUNDATION HEALTH PLAN OF GEORGIA, INC.",
+        "state": "GA",
+        "city": "DULUTH",
+        "taxonomy": "Pharmacy"
+      },
+      {
+        "npi": "1467104182",
+        "name": "KAISER FOUNDATION HEALTH PLAN OF GEORGIA, INC.",
+        "state": "GA",
+        "city": "KENNESAW",
+        "taxonomy": "Pharmacy, Home Infusion Therapy Pharmacy"
+      },
+      {
+        "npi": "1043378656",
+        "name": "KAISER FOUNDATION HEALTH PLAN OF THE MID ATLANTIC STATES, INC",
+        "state": "MD",
+        "city": "HALETHORPE",
+        "taxonomy": "Health Maintenance Organization"
+      },
+      {
+        "npi": "1689776916",
+        "name": "KAISER PERMANENTE",
+        "state": "WA",
+        "city": "LONGVIEW",
+        "taxonomy": "Preferred Provider Organization"
+      },
+      {
+        "npi": "1992711022",
+        "name": "KAISER PERMANENTE",
+        "state": "OR",
+        "city": "SALEM",
+        "taxonomy": "Dental Hygienist"
+      },
+      {
+        "npi": "1316048440",
+        "name": "KAISER PERMANENTE",
+        "state": "CA",
+        "city": "RICHMOND",
+        "taxonomy": "Pharmacist"
+      },
+      {
+        "npi": "1306928254",
+        "name": "KAISER PERMANENTE",
+        "state": "CA",
+        "city": "HOLLYWOOD",
+        "taxonomy": "Pharmacist"
+      },
+      {
+        "npi": "1194881573",
+        "name": "KAISER PERMANENTE",
+        "state": "CA",
+        "city": "SAN FRANCISCO",
+        "taxonomy": "Physical Therapist"
+      }
+    ],
+    "Providence": [
+      {
+        "npi": "1841467461",
+        "name": "NEW HOPE OF INDIANA, INC.",
+        "state": "IN",
+        "city": "INDIANAPOLIS",
+        "taxonomy": "Intermediate Care Facility, Mental Illness"
+      },
+      {
+        "npi": "1184803280",
+        "name": "OASIS",
+        "state": "CA",
+        "city": "ANAHEIM",
+        "taxonomy": "Case Management"
+      },
+      {
+        "npi": "1801918982",
+        "name": "PROVIDENCE",
+        "state": "MI",
+        "city": "BIRMINGHAM",
+        "taxonomy": "General Acute Care Hospital"
+      },
+      {
+        "npi": "1043610157",
+        "name": "PROVIDENCE",
+        "state": "WA",
+        "city": "SEATTLE",
+        "taxonomy": "General Acute Care Hospital"
+      },
+      {
+        "npi": "1316473564",
+        "name": "PROVIDENCE",
+        "state": "OR",
+        "city": "PORTLAND",
+        "taxonomy": "General Acute Care Hospital"
+      },
+      {
+        "npi": "1821567991",
+        "name": "PROVIDENCE",
+        "state": "MS",
+        "city": "FOXWORTH",
+        "taxonomy": "Driver"
+      },
+      {
+        "npi": "1821248402",
+        "name": "PROVIDENCE",
+        "state": "WA",
+        "city": "MARYSVILLE",
+        "taxonomy": "General Acute Care Hospital"
+      },
+      {
+        "npi": "1417209628",
+        "name": "PROVIDENCE",
+        "state": "WA",
+        "city": "SPOKANE",
+        "taxonomy": "General Acute Care Hospital, Children"
+      },
+      {
+        "npi": "1124246244",
+        "name": "PROVIDENCE",
+        "state": "CA",
+        "city": "LANCASTER",
+        "taxonomy": "Case Management"
+      },
+      {
+        "npi": "1053636126",
+        "name": "ST. VINCENT'S HOSPITOL",
+        "state": "OR",
+        "city": "PORTLAND",
+        "taxonomy": "General Acute Care Hospital, Critical Access"
+      }
+    ],
+    "UCSD": [
+      {
+        "npi": "1619079464",
+        "name": "UCSD",
+        "state": "CA",
+        "city": "LA JOLLA",
+        "taxonomy": "Psychiatric Unit"
+      },
+      {
+        "npi": "1225287469",
+        "name": "UCSD",
+        "state": "CA",
+        "city": "SAN DIEGO",
+        "taxonomy": "General Acute Care Hospital"
+      },
+      {
+        "npi": "1730611864",
+        "name": "UCSD",
+        "state": "CA",
+        "city": "LA JOLLA",
+        "taxonomy": "Student in an Organized Health Care Education/Training Program"
+      }
+    ],
+    "UCI": [],
+    "Memorial Hermann": [
+      {
+        "npi": "1568835312",
+        "name": "MEMORIAL HERMANN",
+        "state": "TX",
+        "city": "HOUSTON",
+        "taxonomy": "General Acute Care Hospital"
+      },
+      {
+        "npi": "1700919552",
+        "name": "MEMORIAL HERMANN",
+        "state": "TX",
+        "city": "HOUSTON",
+        "taxonomy": "Psychiatric Unit"
+      },
+      {
+        "npi": "1083001911",
+        "name": "MEMORIAL HERMANN",
+        "state": "TX",
+        "city": "MISSOURI CITY",
+        "taxonomy": "General Acute Care Hospital"
+      }
+    ],
+    "Houston Methodist": [
+      {
+        "npi": "1992178693",
+        "name": "HOUSTON METHODIST",
+        "state": "TX",
+        "city": "HOUSTON",
+        "taxonomy": "Nurse Practitioner"
+      }
+    ],
+    "MD Anderson": [
+      {
+        "npi": "1144669508",
+        "name": "MD ANDERSON",
+        "state": "TX",
+        "city": "HOUSTON",
+        "taxonomy": "Special Hospital"
+      }
+    ],
+    "Henry Ford": [],
+    "Beaumont": [
+      {
+        "npi": "1366218349",
+        "name": "STATESERV MEDICAL OF TEXAS, LLC",
+        "state": "TX",
+        "city": "NEDERLAND",
+        "taxonomy": "Durable Medical Equipment & Medical Supplies, Oxygen Equipment & Supplies"
+      }
+    ],
+    "Spectrum": [
+      {
+        "npi": "1508239450",
+        "name": "SPECTRA HUMAN SERVICES, INC.",
+        "state": "CO",
+        "city": "LAKEWOOD",
+        "taxonomy": "Community Based Residential Treatment Facility, Intellectual and/or Developmental Disabilities"
+      },
+      {
+        "npi": "1023259595",
+        "name": "SPECTRUM CENTER FOR AUTISM AND RELATED DISORDERS, INC",
+        "state": "AL",
+        "city": "DOTHAN",
+        "taxonomy": "Speech-Language Pathologist,  "
+      }
+    ],
+    "Tenet": [
+      {
+        "npi": "1588374516",
+        "name": "ABRAZO ARROWHEAD CAMPUS",
+        "state": "AZ",
+        "city": "GLENDALE",
+        "taxonomy": "Nursing Care"
+      },
+      {
+        "npi": "1669752408",
+        "name": "HAHNEMANN UNIVERSITY HOSPITAL",
+        "state": "PA",
+        "city": "PHILADELPHIA",
+        "taxonomy": "Clinic/Center"
+      },
+      {
+        "npi": "1902073463",
+        "name": "ST CHRISTOPHER'S HOSPITAL FOR CHILDREN",
+        "state": "PA",
+        "city": "PHILADELPHIA",
+        "taxonomy": "General Acute Care Hospital, Children"
+      },
+      {
+        "npi": "1679925242",
+        "name": "TENET",
+        "state": "TX",
+        "city": "SAN ANTONIO",
+        "taxonomy": "Clinic/Center, Primary Care"
+      }
+    ],
+    "HCA Healthcare": [],
+    "Ascension": [
+      {
+        "npi": "1891246427",
+        "name": "SAINT THOMAS",
+        "state": "NM",
+        "city": "TRUTH OR CONSEQUENCES",
+        "taxonomy": "Chronic Disease Hospital"
+      }
+    ],
+    "AdventHealth": [
+      {
+        "npi": "1447965132",
+        "name": "ADVENTHEALTH",
+        "state": "FL",
+        "city": "WINTER GARDEN",
+        "taxonomy": "Clinic/Center, Physical Therapy"
+      },
+      {
+        "npi": "1720292261",
+        "name": "FLETCHER HOSPITAL INC.",
+        "state": "NC",
+        "city": "HENDERSONVILLE",
+        "taxonomy": "Clinic/Center, Adult Mental Health"
+      },
+      {
+        "npi": "1477995124",
+        "name": "FLETCHER HOSPITAL INC.",
+        "state": "NC",
+        "city": "HENDERSONVILLE",
+        "taxonomy": "Family Medicine"
+      }
+    ],
+    "Northside": [
+      {
+        "npi": "1205039260",
+        "name": "HILL HEALTH CORPORATION",
+        "state": "CT",
+        "city": "NEW HAVEN",
+        "taxonomy": "Clinic/Center, Mental Health (Including Community Mental Health Center)"
+      }
+    ],
+    "Emory": [
+      {
+        "npi": "1215281746",
+        "name": "RHA HEALTH SERVICES NC, LLC",
+        "state": "NC",
+        "city": "ASHEVILLE",
+        "taxonomy": "Intermediate Care Facility, Intellectual Disabilities"
+      }
+    ]
+  }
+}

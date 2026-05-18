@@ -1,0 +1,2424 @@
+{
+  "source": "ClinicalTrials.gov v2",
+  "total": 403,
+  "studies": [
+    {
+      "nct_id": "NCT03064126",
+      "title": "RANGER\u2122 Paclitaxel Coated Balloon vs Standard Balloon Angioplasty",
+      "status": "COMPLETED",
+      "phase": "PHASE3"
+    },
+    {
+      "nct_id": "NCT02367235",
+      "title": "Analysis of Procedural Times Using Colpassist for Robotic-Assisted Sacrocolpopexy; a Randomized Cont",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT00180284",
+      "title": "SITELINE 2 Polyurethane",
+      "status": "COMPLETED",
+      "phase": "PHASE3"
+    },
+    {
+      "nct_id": "NCT02605447",
+      "title": "EVOLVE Short DAPT Study",
+      "status": "COMPLETED",
+      "phase": "PHASE4"
+    },
+    {
+      "nct_id": "NCT03419091",
+      "title": "LithoVue Single Use Disposable Ureteroscope",
+      "status": "UNKNOWN",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT07087977",
+      "title": "HoYAG vs TFL in miniPCNL With ClearPetra",
+      "status": "RECRUITING",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT00316108",
+      "title": "Boston Scientific Embolic Protection, Inc. (EPI): A Carotid Stenting Trial for High-Risk Surgical Pa",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT01736618",
+      "title": "S-ICD\u00ae System Post Approval Study",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT00741091",
+      "title": "A Carotid Stenting Boston Scientific Surveillance Program",
+      "status": "COMPLETED",
+      "phase": "PHASE4"
+    },
+    {
+      "nct_id": "NCT02145299",
+      "title": "The Lumen Study: Comparing Devices for Patients With Symptomatic Femoro-popliteal Chronic Total Occl",
+      "status": "TERMINATED",
+      "phase": "PHASE2"
+    },
+    {
+      "nct_id": "NCT01498692",
+      "title": "The PLATINUM Clinical Trial to Assess the PROMUS Element Stent System for Treatment of De Novo Coron",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT01383018",
+      "title": "PROPPER Prospective Registry of Outcomes With Penile Prosthesis",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT01688843",
+      "title": "Safety and Performance Study of the INGEVITY Lead",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT03689920",
+      "title": "Combining Mechanisms for Better Outcomes (COMBO)",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT06526546",
+      "title": "ADVENT Trial Long Term Outcomes Evaluating Atrial Fibrillation Progression Study",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT04676022",
+      "title": "SCS as an Option for Chronic Low Back and/or Leg Pain Instead of Surgery",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT03516695",
+      "title": "RadioEmbolization for the ADvancement of Y90 Glass Microspheres Registry",
+      "status": "TERMINATED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT00928421",
+      "title": "An Open-label, Single-dose Pilot Study to Evaluate Varisolve\u00ae (Polidocanol Endovenous Microfoam (PEM",
+      "status": "COMPLETED",
+      "phase": "PHASE2"
+    },
+    {
+      "nct_id": "NCT01802281",
+      "title": "Study of Uterine Prolapse Procedures - Randomized Trial",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT01050959",
+      "title": "Bion Occipital Nerve Stimulation (ONS) Compassionate Use Study",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT00180271",
+      "title": "MADIT-CRT: Multicenter Automatic Defibrillator Implantation With Cardiac Resynchronization Therapy",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT04112576",
+      "title": "Physiological Signals, Activity and Posture for Surface Mounted Insertable Cardiac Monitor in Heart ",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT00758121",
+      "title": "Correlation Of Respiratory Rate Level And Trend Evaluation in Heart Failure Patients",
+      "status": "TERMINATED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT00688298",
+      "title": "Post Market Clinical Study to Evaluate a Mid-Urethral Vaginal Tape Procedure With a Pre-Pubic Delive",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT03259763",
+      "title": "EUS-GE vs ES for Palliation of Gastric Outlet Obstruction",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT00573131",
+      "title": "Efficacy and Safety of OncoGel\u2122 Added to Chemotherapy and Radiation Before Surgery in Subjects With ",
+      "status": "TERMINATED",
+      "phase": "PHASE2"
+    },
+    {
+      "nct_id": "NCT04964817",
+      "title": "HFpEF and Symptomatic Obstructive Iliofemoral Venous Disease Study",
+      "status": "TERMINATED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT04088331",
+      "title": "Artificial Urinary Sphincter Clinical Outcomes",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT03729830",
+      "title": "Prospective Evaluation of Open Irrigated Ablation Catheters With High Resolution Mapping to Treat Pa",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT03104114",
+      "title": "Pharmacist-led Intervention on Adherence in Patients Undergoing Treatment With an Oral Oncology Medi",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT06310018",
+      "title": "Augmented Ultrasound-Facilitated, Catheter-Directed Fibrinolysis for PE",
+      "status": "SUSPENDED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT03416920",
+      "title": "A Smartphone-based Application Post-myocardial Infarction to Manage Cardiovascular Disease Risk",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT01350336",
+      "title": "Bronchial Thermoplasty in Severe Persistent Asthma",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT01307501",
+      "title": "Safety and Efficacy of Cryoablation for Metastatic Lung Tumors",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT00997503",
+      "title": "TAXUS Libert\u0113 Post Approval Study",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT01231373",
+      "title": "Polidocanol Endovenous Microfoam (PEM) Versus Vehicle for the Treatment of Saphenofemoral Junction (",
+      "status": "COMPLETED",
+      "phase": "PHASE3"
+    },
+    {
+      "nct_id": "NCT03606642",
+      "title": "SYNergy Stent\u00ae System Implantation With Mandatory Intra-VascularUltra-Sound Guidance and Dual Anti-P",
+      "status": "TERMINATED",
+      "phase": "PHASE2"
+    },
+    {
+      "nct_id": "NCT00637754",
+      "title": "Safety of Sports for Patients With Implantable Cardioverter-Defibrillators",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT01917968",
+      "title": "Uphold LITE Post-Market Surveillance Study",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT03721393",
+      "title": "Data Collection - Of Syncope Tilt Table Testing Study",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT00543348",
+      "title": "RCT of the Cutting Balloon Versus a High Pressure Balloon for the Treatment of Arteriovenous Fistula",
+      "status": "WITHDRAWN",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT04218526",
+      "title": "Deep Brain Stimulation of the Cuneiform Nucleus for Levodopa-resistant Freezing of Gait in Parkinson",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT01611285",
+      "title": "Uphold Versus Robotic Surgery for Pelvic Prolapse Repair: A Decision Analytic Approach",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT01760291",
+      "title": "Continued Access to PREVAIL (CAP2) - WATCHMAN Left Atrial Appendage (LAA) Closure Technology",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT01887717",
+      "title": "Efficacy Evaluation of TheraSphere to Treat Inoperable Liver Cancer With Blockage of the Portal Vein",
+      "status": "TERMINATED",
+      "phase": "PHASE3"
+    },
+    {
+      "nct_id": "NCT02364778",
+      "title": "Single-centre, Registry Trial, the Patients Presented With Stable Coronary Artery Disease",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT03826225",
+      "title": "Cardiac Monitor Employee Study",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT07434674",
+      "title": "Incidence of Long-TeRm Atrial Fibrillation After Acute Illness",
+      "status": "RECRUITING",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT02786173",
+      "title": "Peripheral Registry of Endovascular Clinical Outcomes \"The PRIME Registry\"",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT02052453",
+      "title": "ICD-ON Registry: Periop Management of Cardiac Devices",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT01583894",
+      "title": "Multiple Areas of Pain (MAP)",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT00677014",
+      "title": "Comparison of AV Optimization Methods Used in Cardiac Resynchronization Therapy (CRT)",
+      "status": "COMPLETED",
+      "phase": "PHASE4"
+    },
+    {
+      "nct_id": "NCT02159521",
+      "title": "Treatment of Chronic Deep Vein Thrombosis (DVT) and Post-Thrombotic Syndrome (PTS) With the EkoSonic",
+      "status": "COMPLETED",
+      "phase": "PHASE4"
+    },
+    {
+      "nct_id": "NCT06218199",
+      "title": "Diuretics vs. Afterload Reduction for Treatment of HeartLogic Alerts",
+      "status": "RECRUITING",
+      "phase": "PHASE4"
+    },
+    {
+      "nct_id": "NCT01466621",
+      "title": "Response to Cardiac Resynchronization Therapy of Previously Right Ventricular Paced Heart Failure Pa",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT06431815",
+      "title": "ADVENT Post Approval Study",
+      "status": "ACTIVE_NOT_RECRUITING",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT06213285",
+      "title": "APPEND-CT Registry",
+      "status": "ENROLLING_BY_INVITATION",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT03048825",
+      "title": "Colchicine and Spironolactone in Patients with MI / SYNERGY Stent Registry",
+      "status": "COMPLETED",
+      "phase": "PHASE3"
+    },
+    {
+      "nct_id": "NCT01643213",
+      "title": "Randomized Study of Failed SCS Trials Comparing Outcomes Using the Observational Mechanical Gateway ",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT01839396",
+      "title": "Deep Brain Stimulation (DBS) for the Treatment of Parkinson's Disease",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT03240588",
+      "title": "NAVITAS and ENVISION - Study to Characterize Select Objective Metrics & Clinical Outcomes in Chronic",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT07537478",
+      "title": "Respiration Measured Via End-tidal CO2 and Spirometry Study (RESPI)",
+      "status": "NOT_YET_RECRUITING",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT01619800",
+      "title": "The Effect of Blended Sensor Efficiency on Relieving the Heart's Inability to Increase Its Rate Duri",
+      "status": "TERMINATED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT04647253",
+      "title": "A Clinical Trial to Assess the Agent Paclitaxel Coated PTCA Balloon Catheter for the Treatment of Su",
+      "status": "ACTIVE_NOT_RECRUITING",
+      "phase": "PHASE3"
+    },
+    {
+      "nct_id": "NCT02366832",
+      "title": "Cryoablation for Phantom Limb Pain",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT07410598",
+      "title": "Safety and Tolerability of Patterned Stimulation for DBS in the Home Setting",
+      "status": "RECRUITING",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT03237858",
+      "title": "Multiple Cardiac Sensors for the Management of Heart Failure",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT04231409",
+      "title": "Fast-Acting Subperception Study (FAST)",
+      "status": "TERMINATED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT00628901",
+      "title": "A Prospective Study Comparing Contour SE\u2122 Microspheres to Embosphere\u00ae Microspheres for Treating Symp",
+      "status": "COMPLETED",
+      "phase": "PHASE4"
+    },
+    {
+      "nct_id": "NCT04790370",
+      "title": "Ultrasound-facilitated, Catheter-directed, Thrombolysis in Intermediate-high Risk Pulmonary Embolism",
+      "status": "ACTIVE_NOT_RECRUITING",
+      "phase": "PHASE4"
+    },
+    {
+      "nct_id": "NCT01182441",
+      "title": "Evaluation of the WATCHMAN Left Atrial Appendage (LAA) Closure Device in Patients With Atrial Fibril",
+      "status": "COMPLETED",
+      "phase": "PHASE3"
+    },
+    {
+      "nct_id": "NCT00896337",
+      "title": "EPIC Nitinol Stent System in the Treatment of Atherosclerotic Lesions in Iliac Arteries",
+      "status": "COMPLETED",
+      "phase": "PHASE3"
+    },
+    {
+      "nct_id": "NCT01596595",
+      "title": "Longitudinal Surveillance Study of the 4-SITE Lead/Header System",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT02460991",
+      "title": "A Study of ONCO-DOX in Locally Advanced Hepatocellular Carcinoma",
+      "status": "TERMINATED",
+      "phase": "PHASE3"
+    },
+    {
+      "nct_id": "NCT06492174",
+      "title": "A Clinical Trial to Assess the Agent Paclitaxel Coated PTCA Balloon Catheter for the Treatment of Su",
+      "status": "ACTIVE_NOT_RECRUITING",
+      "phase": "PHASE3"
+    },
+    {
+      "nct_id": "NCT00916682",
+      "title": "Structure and Function of Salivary Proteins",
+      "status": "UNKNOWN",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT03004586",
+      "title": "Endobronchial Ultrasound-Guided Transbronchial Needle Aspiration Using a 22 vs 25-Gauge Needle",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT01892462",
+      "title": "Circulating Biomarkers and Ventricular Tachyarrhythmia",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT00205894",
+      "title": "Occipital Nerve Stimulation to Treat Chronic Headaches",
+      "status": "COMPLETED",
+      "phase": "PHASE1"
+    },
+    {
+      "nct_id": "NCT06747013",
+      "title": "Treatment of Focal Ventricular Tachycardias Using a Pulsed Field Ablation From a Point Ablation Cath",
+      "status": "ENROLLING_BY_INVITATION",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT00371423",
+      "title": "Direct Stenting of TAXUS Libert\u00e9\u2122-SR Stent for the Treatment of Patients With de Novo Coronary Arter",
+      "status": "COMPLETED",
+      "phase": "PHASE3"
+    },
+    {
+      "nct_id": "NCT04131127",
+      "title": "Sentinel Low Risk Registry",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT06436924",
+      "title": "Safety and Efficacy of Workflows of High Volume Single Operators in a LAAO Device Implant Procedural",
+      "status": "RECRUITING",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT06827262",
+      "title": "Intracept Minimally-invasive PROcedure for VErtebrogenic Back Pain",
+      "status": "RECRUITING",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT01117779",
+      "title": "Tracking Renal Tumors After Cryoablation Evaluation",
+      "status": "TERMINATED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT05207813",
+      "title": "CLBP Single-Arm Long-Term Follow-up Study",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT05233098",
+      "title": "TheraSphere Post-Approval Study to Calculate the Radiation-absorbed Dose of Tc-99m MAA.",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT04732728",
+      "title": "LUX-Dx Insertable Cardiac Monitor Remote Programming and Performance Study",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT00790335",
+      "title": "Acute Venous Thrombosis: Thrombus Removal With Adjunctive Catheter-Directed Thrombolysis",
+      "status": "COMPLETED",
+      "phase": "PHASE3"
+    },
+    {
+      "nct_id": "NCT05963698",
+      "title": "The Fourth Left Atrial Appendage Occlusion Study",
+      "status": "RECRUITING",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT04059536",
+      "title": "Registry Study to Evaluate the Performance and Safety of Roxwood Medical Catheters in Arteries of Pa",
+      "status": "WITHDRAWN",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT03551496",
+      "title": "The DES BTK Vascular Stent System vs PTA in Subjects With Critical Limb Ischemia",
+      "status": "COMPLETED",
+      "phase": "PHASE3"
+    },
+    {
+      "nct_id": "NCT00131573",
+      "title": "An Implantable Microstimulator for the Chronic Treatment of Urinary Urgency-Frequency Syndrome",
+      "status": "COMPLETED",
+      "phase": "PHASE3"
+    },
+    {
+      "nct_id": "NCT01151280",
+      "title": "WallFlex Biliary Post Liver Transplant IDE Pilot",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT00528021",
+      "title": "A Study Evaluating the Safety and Efficacy of BGC20-0582 Lice Treatment Gel for Head Lice Infestatio",
+      "status": "COMPLETED",
+      "phase": "PHASE2"
+    },
+    {
+      "nct_id": "NCT05501262",
+      "title": "Comparative Effectiveness of Cryoablation Versus Steroid and Lidocaine Alone for Treatment of Morton",
+      "status": "RECRUITING",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT03701958",
+      "title": "Initial Case Series With Exalt Single-Use Duodenoscope",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT02553525",
+      "title": "Effects of Stimulation Patterns of Deep Brain Stimulation",
+      "status": "ENROLLING_BY_INVITATION",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT00977938",
+      "title": "The Dual Antiplatelet Therapy Study (DAPT Study)",
+      "status": "COMPLETED",
+      "phase": "PHASE4"
+    },
+    {
+      "nct_id": "NCT04979143",
+      "title": "Moses Vaporization: Is Use of Moses 2.0 in Holmium Laser Ablation of the Prostate More Efficient",
+      "status": "TERMINATED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT01428076",
+      "title": "Pharmacokinetic Study of Polidocanol Endovenous Microfoam (PEM)",
+      "status": "COMPLETED",
+      "phase": "PHASE1"
+    },
+    {
+      "nct_id": "NCT00133289",
+      "title": "ULTRA Study for Pacemaker Patients",
+      "status": "COMPLETED",
+      "phase": "PHASE4"
+    },
+    {
+      "nct_id": "NCT04798768",
+      "title": "Effectiveness of the EMPOWER\u2122 Modular Pacing System and EMBLEM\u2122 Subcutaneous ICD to Communicate Anti",
+      "status": "ACTIVE_NOT_RECRUITING",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT07069738",
+      "title": "Safety and Effectiveness of Left Bundle Branch Area Pacing Versus Conventional Cardiac Resynchroniza",
+      "status": "RECRUITING",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT03525808",
+      "title": "AXIOS Lumen Apposing Metal Stent for Walled Off Necrosis Drainage IDE Study",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT02091011",
+      "title": "LONGEVITY Study. Evaluation of the Device and Battery Longevity of Boston Scientific Market-released",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT01513759",
+      "title": "Submassive and Massive Pulmonary Embolism Treatment With Ultrasound Accelerated Thrombolysis Therapy",
+      "status": "COMPLETED",
+      "phase": "PHASE3"
+    },
+    {
+      "nct_id": "NCT01074034",
+      "title": "REASSURE AV Registry",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT03618095",
+      "title": "REPRISE IV: LOTUS Edge Valve System in Intermediate Surgical Risk Subjects",
+      "status": "TERMINATED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT04807439",
+      "title": "A U.S Post Approval Study Evaluating the SYNERGY XLV (MEGATRON) Stent System",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT01665053",
+      "title": "The EVOLVE II Clinical Trial To Assess the SYNERGY Stent System for the Treatment of Atherosclerotic",
+      "status": "COMPLETED",
+      "phase": "PHASE3"
+    },
+    {
+      "nct_id": "NCT01936948",
+      "title": "Safety of Endoscopic Resection of Large Colorectal Polyps: A Randomized Trial.",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT02433379",
+      "title": "Understanding Outcomes With the EMBLEM\u2122 S-ICD in Primary Prevention Patients With Low Ejection Fract",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT03048890",
+      "title": "VascTrac Peripheral Arterial Disease (PAD) Study",
+      "status": "UNKNOWN",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT00231296",
+      "title": "Safety and Efficacy of CryoCor\u2122 Cryoablation for PAF",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT03546686",
+      "title": "Peri-Operative Immune Checkpoint Inhibition and Cryoablation in Women With Triple-negative Breast Ca",
+      "status": "ACTIVE_NOT_RECRUITING",
+      "phase": "PHASE2"
+    },
+    {
+      "nct_id": "NCT06523166",
+      "title": "Direct Comparison of Cardiac CT With TEE to Evaluate Watchman FLX LAA Occluder Device Characteristic",
+      "status": "RECRUITING",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT00918372",
+      "title": "Coronary Artery Disease (CAD) in Women Marathon Runners",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT00489541",
+      "title": "TAXUS PERSEUS Small Vessel",
+      "status": "COMPLETED",
+      "phase": "PHASE3"
+    },
+    {
+      "nct_id": "NCT00387803",
+      "title": "Safety and Effectiveness of Cardiac Resynchronization Therapy With Defibrillation",
+      "status": "COMPLETED",
+      "phase": "PHASE2"
+    },
+    {
+      "nct_id": "NCT03295006",
+      "title": "A TheraSphere\u00ae Advanced Dosimetry Retrospective Global Study in HCC",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT00231426",
+      "title": "ASSURE Study - Arrhythmia Single Shock DFT Versus ULV: Risk Reduction Evaluation With ICD Implantati",
+      "status": "COMPLETED",
+      "phase": "PHASE4"
+    },
+    {
+      "nct_id": "NCT04909593",
+      "title": "Study to Evaluate Automated Intensity Management in Patients Undergoing a BSC SCS Temporary Trial",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT06266793",
+      "title": "Comparison of Holmium Laser and Thulium Laser for Mini PCNL",
+      "status": "ENROLLING_BY_INVITATION",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT03795298",
+      "title": "Comparison of Anticoagulation With Left Atrial Appendage Closure After AF Ablation",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT00871819",
+      "title": "Optimized Programming in Spinal Cord Stimulation (SCS) System",
+      "status": "COMPLETED",
+      "phase": "PHASE4"
+    },
+    {
+      "nct_id": "NCT06432036",
+      "title": "Yttrium-90 (Y90) Radioembolization for the Treatment of Early Stage Renal Cell Carcinoma, The RENEGA",
+      "status": "RECRUITING",
+      "phase": "PHASE1"
+    },
+    {
+      "nct_id": "NCT04835844",
+      "title": "RHYTHMIA vs CARTO in Redo Ablation Procedures for Atrial Fibrillation",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT05303467",
+      "title": "A Feasibility Study to Evaluate the Safety of the TheraSphere Glioblastoma (GBM) Device in Patients ",
+      "status": "RECRUITING",
+      "phase": "PHASE1"
+    },
+    {
+      "nct_id": "NCT04683692",
+      "title": "A Study to Assess the Use of The Sentinel Device During Atrial Fibrillation Ablation",
+      "status": "WITHDRAWN",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT01539629",
+      "title": "ELEVATE (Evaluation of Left Ventricular Autothreshold) 3.0",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT05404581",
+      "title": "Insula Neuromodulation for Chronic Neuropathic Pain",
+      "status": "RECRUITING",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT06096337",
+      "title": "Pulsed Field Ablation (PFA) vs Anti-Arrhythmic Drug (AAD) Therapy as a First Line Treatment for Pers",
+      "status": "ACTIVE_NOT_RECRUITING",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT02698670",
+      "title": "Prospective Registry on User Experience With The Mapping System For Ablation Procedures",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT04674969",
+      "title": "Drug-Eluting Registry: Real-World Treatment of Lesions in the Peripheral Vasculature",
+      "status": "RECRUITING",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT02060630",
+      "title": "Best Endovascular vs. Best Surgical Therapy in Patients With Critical Limb Ischemia",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT04223830",
+      "title": "Initial Case Series With Exalt Single-Use Duodenoscope - Expanded User Experience",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT01161589",
+      "title": "First Arrhythmia Collection of Transvenous and Simultaneous Subcutaneous Implantable Defibrillator D",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT06364215",
+      "title": "Posterior Wall Substrate Modification Using Irreversible Electroporation for Paroxysmal Atrial Fibri",
+      "status": "TERMINATED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT02384096",
+      "title": "A Study to Evaluate the Effect of Precision Spectra\u2122 Programming Features and Lead Options on Patien",
+      "status": "TERMINATED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT00129545",
+      "title": "WATCHMAN Left Atrial Appendage System for Embolic PROTECTion in Patients With Atrial Fibrillation",
+      "status": "COMPLETED",
+      "phase": "PHASE2"
+    },
+    {
+      "nct_id": "NCT01134159",
+      "title": "Registry Experience at the Washington Hospital Center, Des - Taxus Liberte Versus Xience V",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT03094221",
+      "title": "Clinical Utility and Validation of the Rhythmia Mapping System for the Treatment of Cardiac Arrhythm",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT00487981",
+      "title": "Spinal Cord Stimulation for Painful Diabetic Neuropathy",
+      "status": "TERMINATED",
+      "phase": "PHASE4"
+    },
+    {
+      "nct_id": "NCT02262845",
+      "title": "Short Term Pancreatic Stenting Registry",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT01072877",
+      "title": "Efficacy and Safety Study of Polidocanol Injectable Foam for the Treatment of Saphenofemoral Junctio",
+      "status": "COMPLETED",
+      "phase": "PHASE3"
+    },
+    {
+      "nct_id": "NCT00301522",
+      "title": "Randomized Trial Evaluating Slow-Release Formulation TAXUS Paclitaxel-Eluting Coronary Stents to Tre",
+      "status": "COMPLETED",
+      "phase": "PHASE2"
+    },
+    {
+      "nct_id": "NCT01608490",
+      "title": "Lung Volume Reduction Coil Treatment in Patients With Emphysema (RENEW) Study",
+      "status": "TERMINATED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT03053141",
+      "title": "RHythmia mAPping and Signal acquisitiOn for Data analYsis (RHAPSODY)",
+      "status": "RECRUITING",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT03959683",
+      "title": "ShockPulse-SE vs. Trilogy Trial: Comparing the Performance of Two Intracorporeal Lithotripters for R",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT01616342",
+      "title": "Management of Chronic Pain in Military Patients With Injuries Sustained During Active Duty",
+      "status": "UNKNOWN",
+      "phase": "PHASE4"
+    },
+    {
+      "nct_id": "NCT04453020",
+      "title": "Deep Brain Stimulation Effects in Patients With Chronic Refractory Obesity",
+      "status": "WITHDRAWN",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT01572246",
+      "title": "Effects of Monopolar Electrocautery Use During Surgery on Implanted Cardiac Defibrillators",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT06132568",
+      "title": "VITALYST Early Feasibility Study in High-Risk PCI Patients (VITALYST EFS)",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT00283413",
+      "title": "Symbiot III: A Prospective Randomized Trial Evaluating the Symbiot Covered Stent System in Saphenous",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT07190807",
+      "title": "Managing Pain Using Optimized Sequences by Adjusting Parameters With Independent Current Control",
+      "status": "RECRUITING",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT02202434",
+      "title": "Safety and Efficacy Study of Lotus Valve for Transcatheter Aortic Valve Replacement",
+      "status": "TERMINATED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT04197583",
+      "title": "Double-J PLUS Postmarket Registry Study",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT03998566",
+      "title": "Radiopaque Hydrogel Spacer in Patients Undergoing Radiotherapy for Pancreatic Cancer",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT00371709",
+      "title": "TAXUS ATLAS: TAXUS Libert\u00e9\u2122-SR Stent for the Treatment of de Novo Coronary Artery Lesions",
+      "status": "COMPLETED",
+      "phase": "PHASE3"
+    },
+    {
+      "nct_id": "NCT01197833",
+      "title": "Endovenous Ablation With and Without Polidocanol Endovenous Microfoam Treatment for Patients With Gr",
+      "status": "COMPLETED",
+      "phase": "PHASE3"
+    },
+    {
+      "nct_id": "NCT00399841",
+      "title": "Spinal Cord Stimulation (SCS) for Neuropathic Pain of Back or Lower Extremity",
+      "status": "TERMINATED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT05027971",
+      "title": "Flexiva Pulse Registry",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT01500434",
+      "title": "The PLATINUM Clinical Trial to Assess the PROMUS Element Stent System for Treatment of Long De Novo ",
+      "status": "COMPLETED",
+      "phase": "PHASE3"
+    },
+    {
+      "nct_id": "NCT04103749",
+      "title": "Global Prospective Case Series Using a Single-Use Duodenoscope",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT02923726",
+      "title": "Assessment of Primary Prevention Patients Receiving An ICD - Systematic Evaluation of ATP",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT07215481",
+      "title": "Automated Image-Guided Programming of Deep Brain Stimulation (DBS) for Parkinson's Disease",
+      "status": "NOT_YET_RECRUITING",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT00231114",
+      "title": "Asthma Intervention Research 2 (AIR2) Trial",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT06735534",
+      "title": "Repeat Ablation of Persistent Atrial Fibrillation, Including Mitral Isthmus Catheter Ablation, With ",
+      "status": "RECRUITING",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT02232984",
+      "title": "Quadripolar CRT-D On Currently Approved Lead SystemS",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT02988713",
+      "title": "Study to Characterize Effects of Programming in SCS Patients Undergoing a Temporary Trial",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT00521534",
+      "title": "Impact of Resynchronization Therapy on Sleep Disordered Breathing in Advanced Congestive Heart Failu",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT00158964",
+      "title": "EASYTRAK 4 Steerable LV Lead",
+      "status": "COMPLETED",
+      "phase": "PHASE2"
+    },
+    {
+      "nct_id": "NCT01912339",
+      "title": "Safety and Efficacy Study for the Treatment of BPH (Enlarged Prostate)",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT05653843",
+      "title": "MANTIS Endoscopic Clipping Study",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT02802020",
+      "title": "WallFlex Pancreatic Metal Stent for Pancreatic Duct Strictures",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT06192758",
+      "title": "Dose Escalation Study Evaluating Safety of TheraSphere Prostate Cancer (PCa) Device",
+      "status": "ACTIVE_NOT_RECRUITING",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT01675011",
+      "title": "Embozene Microspheres for Uterine Fibroid Embolization (UFE)",
+      "status": "TERMINATED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT06894498",
+      "title": "Five PLus Year EffIcacy of Endoscopic Sleeve Gastroplasty (ESG) for Sustained WeigHT Loss",
+      "status": "RECRUITING",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT01896115",
+      "title": "CUSTOM-DBS: Current Steering to Optimize Deep Brain Stimulation",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT00286078",
+      "title": "Treatment for Migraines With an Implantable Device",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT02832284",
+      "title": "iNod System Human Feasibility Assessment",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT04147884",
+      "title": "A Feasibility Study of the Millipede Transcatheter Annuloplasty Ring System in Patients With Functio",
+      "status": "ACTIVE_NOT_RECRUITING",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT03171259",
+      "title": "SCOPE CLI (Shifting Care and Outcomes for Patients With Endangered Limbs - Critical Limb Ischemia)",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT04790344",
+      "title": "LUX-Dx TRENDS Evaluates Diagnostics Sensors in Heart Failure Patients Receiving Boston Scientific's ",
+      "status": "ACTIVE_NOT_RECRUITING",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT01296022",
+      "title": "A PRospective, rAndomizEd Comparison of subcuTaneOous and tRansvenous ImplANtable Cardioverter Defib",
+      "status": "UNKNOWN",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT00433966",
+      "title": "Harmonizing Outcomes With Revascularization and Stents in Acute Myocardial Infarction",
+      "status": "COMPLETED",
+      "phase": "PHASE3"
+    },
+    {
+      "nct_id": "NCT02139969",
+      "title": "GreenLight XPS Laser System Retrospective Chart Review",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT02492880",
+      "title": "CoverEdge Algorithm Programming Study",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT04612244",
+      "title": "The FARAPULSE ADVENT PIVOTAL Trial PFA System vs SOC Ablation for Paroxysmal Atrial Fibrillation",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT03205072",
+      "title": "POCS in Liver Transplantation Patients",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT00670111",
+      "title": "Restoration of Chronotropic Competence in Heart Failure Patients With Normal Ejection Fraction",
+      "status": "TERMINATED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT04673032",
+      "title": "Radiofrequency (RF) Ablation Prospective Outcomes Study",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT00370773",
+      "title": "Comparison of Intraspinal Nerve Root Stimulation With Dorsal Column Stimulation",
+      "status": "TERMINATED",
+      "phase": "PHASE4"
+    },
+    {
+      "nct_id": "NCT01784588",
+      "title": "Post Market Study Of Single Incision Sling Versus Transobturator Sling for Stress Urinary Incontinen",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT05809596",
+      "title": "HEAL-LAA Clinical Trial",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT05567003",
+      "title": "Percutaneous Endoluminal Benign Biliary Laser",
+      "status": "TERMINATED",
+      "phase": "PHASE4"
+    },
+    {
+      "nct_id": "NCT06170606",
+      "title": "POLARx Post Approval Study (POLARx PAS)",
+      "status": "ACTIVE_NOT_RECRUITING",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT02003378",
+      "title": "Comparison of Physiologic Response With Rate Adaptive Pacing Driven by Minute Ventilation and Accele",
+      "status": "UNKNOWN",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT05766943",
+      "title": "Reduction of Myopotential Interference With Smart Pass in S-ICD Patients",
+      "status": "RECRUITING",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT07035431",
+      "title": "Endo-SPONGE for Treatment of Anastomotic or Hartmann's Stump Leakages in Lower Pelvic Area",
+      "status": "RECRUITING",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT00384722",
+      "title": "EASYTRAK 3 Downsize Lead",
+      "status": "COMPLETED",
+      "phase": "PHASE2"
+    },
+    {
+      "nct_id": "NCT01229137",
+      "title": "Physiological Response to Exercise: Sensor Evaluation at Specified Exertions",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT03593681",
+      "title": "Compare Fallopian Tube Cells Collected by Cytuity With Removed Ovarian/Tubal Tissue to Determine Pre",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT04192591",
+      "title": "A 5-year Superion\u2122 IDS Clinical Outcomes Post-Approval Evaluation (SCOPE)",
+      "status": "ACTIVE_NOT_RECRUITING",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT04320849",
+      "title": "Human Use Condition Study- Evaluation of Implanted Leads in Humans",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT05312970",
+      "title": "Varithena Versus Endothermal Ablation of the Great Saphenous Vein (VERITAS)",
+      "status": "TERMINATED",
+      "phase": "PHASE4"
+    },
+    {
+      "nct_id": "NCT04480892",
+      "title": "Fibrinolytic Deficit in Patients With Acute PE",
+      "status": "UNKNOWN",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT06451614",
+      "title": "SpaceIT Hydrogel System for Perirectal Spacing",
+      "status": "ACTIVE_NOT_RECRUITING",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT04496544",
+      "title": "Safety Assessment of Femoropopliteal Endovascular Treatment With PAclitaxel-coated Devices (SAFE-PAD",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT05882344",
+      "title": "Cholinergic Deep Brain Stimulation for Alzheimer's Disease",
+      "status": "ENROLLING_BY_INVITATION",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT01711294",
+      "title": "Evaluation of PCLs Using Three EUS-FNA Needles",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT00688181",
+      "title": "The Prefyx PPS\u2122 System eRegistry",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT04801901",
+      "title": "Distal Transradial Access for Percutaneous Coronary Intervention",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT04905069",
+      "title": "Effectiveness of the SpaceOAR Vue System in Subjects With Prostate Cancer",
+      "status": "ACTIVE_NOT_RECRUITING",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT00287573",
+      "title": "Randomized Trial Evaluating Slow-Release Formulation TAXUS Paclitaxel-Eluting Coronary Stent in the ",
+      "status": "COMPLETED",
+      "phase": "PHASE2"
+    },
+    {
+      "nct_id": "NCT00387244",
+      "title": "Efficacy of the Spinal Cord Stimulation System as Salvage Therapy",
+      "status": "TERMINATED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT01483027",
+      "title": "Efficacy Evaluation of TheraSphere Following Failed First Line Chemotherapy in Metastatic Colorectal",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT05443594",
+      "title": "A Prospective Single Arm Open Label Study of the FARAPULSE Pulsed Field Ablation System in Subjects ",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT00605631",
+      "title": "The Prevention of Myocardial Enlargement and Dilatation Post Myocardial Infarction Study",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT05753449",
+      "title": "Burst-Type Deep Brain Stimulation of the Subthalamic Nucleus in Parkinson's Disease",
+      "status": "TERMINATED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT01624740",
+      "title": "High Rate Spinal Cord Stimulation (SCS) for Chronic Pain",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT01128166",
+      "title": "Evaluation of Multisensor Data in Heart Failure Patients With Implanted Devices",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT07190794",
+      "title": "RESCUE: Discontinuation of GLP-1",
+      "status": "RECRUITING",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT00180258",
+      "title": "Comparison of Medical Therapy, Pacing and Defibrillation in Heart Failure",
+      "status": "COMPLETED",
+      "phase": "PHASE2"
+    },
+    {
+      "nct_id": "NCT03647085",
+      "title": "Data Collection Atrial Fibrillation Exploratory Study",
+      "status": "TERMINATED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT01294449",
+      "title": "Multicenter Automatic Defibrillator Implantation Trial With Cardiac Resynchronization Therapy Post A",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT01419171",
+      "title": "The OMEGA Clinical Trial",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT07187115",
+      "title": "A Global Study Comparing Pulsed Field Ablation With Electrographic Flow Mapping Versus Posterior Wal",
+      "status": "RECRUITING",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT01086215",
+      "title": "Registry of AngioJet Use in the Peripheral Vascular System",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT06959524",
+      "title": "AGENT DCB STANCE: Safety and Effectiveness Study of AGENT Drug-Coated Balloon Compared to Standard o",
+      "status": "RECRUITING",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT01436435",
+      "title": "The Jetstream (JET) Post-market Registry",
+      "status": "COMPLETED",
+      "phase": "PHASE4"
+    },
+    {
+      "nct_id": "NCT02071173",
+      "title": "Evaluation of ACUITY\u2122 X4 Quadripolar Coronary Venous Leads and RELIANCE\u2122 4-FRONT Defibrillation Lead",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT00646048",
+      "title": "A Phase I Evaluation of the Safety of the TriVascular Stent-Graft System in the Treatment of Abdomin",
+      "status": "COMPLETED",
+      "phase": "PHASE1"
+    },
+    {
+      "nct_id": "NCT03766035",
+      "title": "Cholangioscopy in Primary Sclerosing Cholangitis (PSC)",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT02089672",
+      "title": "RF Lesion Monitoring With 8mm IntellaTip MiFi XP",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT02071134",
+      "title": "Registry of Deep Brain Stimulation With the VERCISE\u2122 System: Vercise DBS Registry",
+      "status": "RECRUITING",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT01957787",
+      "title": "Study of Cryoablation for Metastatic Lung Tumors",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT05953961",
+      "title": "90Y Transarterial Radioembolization Versus Microwave Ablation in Small Hepatocellular Carcinoma With",
+      "status": "RECRUITING",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT00371475",
+      "title": "A Study of the TAXUS Libert\u00e9 Stent for the Treatment of Long De Novo Coronary Artery Lesions",
+      "status": "COMPLETED",
+      "phase": "PHASE3"
+    },
+    {
+      "nct_id": "NCT06174805",
+      "title": "AXIOS\u2122 Gastroenterostomy for Gastric Outlet Obstruction IDE",
+      "status": "SUSPENDED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT01687166",
+      "title": "Clinical Evaluation of the Blazer Open-Irrigated Ablation Catheter for the Treatment of Paroxysmal A",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT00812201",
+      "title": "Evaluation of Left Ventricular AutoThreshold",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT04200937",
+      "title": "IT Matters: The Erectile Restoration Registry",
+      "status": "ENROLLING_BY_INVITATION",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT00569751",
+      "title": "TAXUS ARRIVE 2: A Multi-Center Safety Surveillance Program",
+      "status": "COMPLETED",
+      "phase": "PHASE4"
+    },
+    {
+      "nct_id": "NCT06170619",
+      "title": "Obsidio\u2122 Conformable Embolic Registry",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT04817839",
+      "title": "Optimal Duration of Post-Operative Activity Restriction After Midurethral Sling Procedures",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT03173534",
+      "title": "WATCH-TAVR, WATCHMAN for Patients With Atrial Fibrillation Undergoing Transcatheter Aortic Valve Rep",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT04087811",
+      "title": "Postmarket Registry for Evaluation of the Superion\u00ae Spacer",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT07502599",
+      "title": "Fainting Detection And Early Warning In Syncope Evaluation Study (ARISE)",
+      "status": "NOT_YET_RECRUITING",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT07535268",
+      "title": "REPRESENT-PF Registry",
+      "status": "RECRUITING",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT04133168",
+      "title": "Boston Scientific's Cryoballoon in the Treatment of Symptomatic Drug Refractory Paroxysmal Atrial Fi",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT02396758",
+      "title": "Optimum Duration of Acoustic Pulse Thrombolysis Procedure in Acute Pulmonary Embolism",
+      "status": "COMPLETED",
+      "phase": "PHASE4"
+    },
+    {
+      "nct_id": "NCT02511678",
+      "title": "Multicenter Study of Cryoablation for Palliation of Painful Bone Metastases",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT04019535",
+      "title": "Diastolic Hyperemia Free Index for Assessment of Moderate Coronary Stenoses",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT00205868",
+      "title": "Spinal Cord Stimulation for Low Back Pain",
+      "status": "COMPLETED",
+      "phase": "PHASE4"
+    },
+    {
+      "nct_id": "NCT00292474",
+      "title": "TAXUS IV-SR: Treatment of De Novo Coronary Disease Using a Single Paclitaxel-Eluting Stent",
+      "status": "COMPLETED",
+      "phase": "PHASE2"
+    },
+    {
+      "nct_id": "NCT01912924",
+      "title": "A Prospective Trial for the Effectiveness of the Use of Spinal Cord Stimulation (SCS) in Failed Knee",
+      "status": "WITHDRAWN",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT00511862",
+      "title": "TheraSphere for the Treatment of Liver Metastases",
+      "status": "COMPLETED",
+      "phase": "PHASE2"
+    },
+    {
+      "nct_id": "NCT01556490",
+      "title": "Efficacy Evaluation of TheraSphere in Patients With Inoperable Liver Cancer",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT00600327",
+      "title": "Carotid Artery Revascularization Using the Boston Scientific EPI Filter Wire EZ\u2122 and the EndoTex\u2122 Ne",
+      "status": "COMPLETED",
+      "phase": "PHASE3"
+    },
+    {
+      "nct_id": "NCT03350542",
+      "title": "A Clinical Trial to Assess the SYNERGY 48 mm Stent System for the Treatment of Atherosclerotic Lesio",
+      "status": "COMPLETED",
+      "phase": "PHASE3"
+    },
+    {
+      "nct_id": "NCT00758420",
+      "title": "Randomized, Single Blind, Placebo Controlled, to Evaluate Efficacy and Safety of Polidocanol Injecta",
+      "status": "COMPLETED",
+      "phase": "PHASE2"
+    },
+    {
+      "nct_id": "NCT00158951",
+      "title": "Device Evaluation of Contak Renewal 2and Easytrak 2 - DECREASE-HF",
+      "status": "COMPLETED",
+      "phase": "PHASE2"
+    },
+    {
+      "nct_id": "NCT02238847",
+      "title": "Pre-operative Biliary SEMS RCT During Neoadjuvant Therapy",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT07412626",
+      "title": "Evaluation of the HeartLogic Diagnostic in Optimizing Guideline-directed Medical Therapy in Patients",
+      "status": "NOT_YET_RECRUITING",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT05623306",
+      "title": "SEEG-Guided DBS for OCD",
+      "status": "RECRUITING",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT06521463",
+      "title": "SIMPLAAFY Clinical Trial",
+      "status": "ACTIVE_NOT_RECRUITING",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT01292928",
+      "title": "SuperNOVA Clinical Stenting Trial",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT01936467",
+      "title": "Comparison of Two Needle Aspiration Techniques for Endoscopic Ultrasound-guided Fine Needle Aspirati",
+      "status": "COMPLETED",
+      "phase": "PHASE3"
+    },
+    {
+      "nct_id": "NCT02112877",
+      "title": "VIRTUS: An Evaluation of the Vici\u2122 Venous Stent System in Patients With Chronic Iliofemoral Venous O",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT02574481",
+      "title": "ELUVIA\u2122 Drug-eluting Stent Versus Zilver\u00ae PTX\u00ae Stent",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT03504839",
+      "title": "Same Day Subcutaneous ICD And Send Home (DASH)",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT01036529",
+      "title": "Spinal Cord Stimulation With Precision\u00ae System Versus Reoperation for Failed Back Surgery Syndrome",
+      "status": "TERMINATED",
+      "phase": "PHASE4"
+    },
+    {
+      "nct_id": "NCT03605745",
+      "title": "Minimally Invasive Prostatic Vapor Ablation for the Treatment of BPH in Large Prostates (Rez\u016bm XL)",
+      "status": "TERMINATED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT01550575",
+      "title": "Patient Retrospective Outcomes (PRO)",
+      "status": "RECRUITING",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT01159431",
+      "title": "External Trigeminal Nerve Stimulation for Epilepsy",
+      "status": "COMPLETED",
+      "phase": "PHASE2"
+    },
+    {
+      "nct_id": "NCT00080470",
+      "title": "An Implantable Microstimulator for the Chronic Treatment of Refractory Urinary Urge Incontinence",
+      "status": "COMPLETED",
+      "phase": "PHASE3"
+    },
+    {
+      "nct_id": "NCT06710223",
+      "title": "Cryoablation and Arterial Infusion of SD-101 in Combination With Durvalumab and Tremelimumab",
+      "status": "RECRUITING",
+      "phase": "PHASE1"
+    },
+    {
+      "nct_id": "NCT04580940",
+      "title": "SpyGlass\u2122 Discover Percutaneous",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT00209053",
+      "title": "SMART Trial Longitudinal Follow-Up:Off-Pump Versus On-Pump Coronary Artery Bypass Surgery",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT00371748",
+      "title": "A Study of the TAXUS Libert\u00e9 Stent for the Treatment of de Novo Coronary Artery Lesions in Small Ves",
+      "status": "COMPLETED",
+      "phase": "PHASE3"
+    },
+    {
+      "nct_id": "NCT01110538",
+      "title": "The Massachusetts General Hospital Optical Coherence Tomography Registry",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT01422889",
+      "title": "ION US Post-Approval Study",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT06335082",
+      "title": "A Registry Based Collaborative to Measure Efficiency, Effectiveness, and Safety of Farapulse PFA Tec",
+      "status": "ENROLLING_BY_INVITATION",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT03525262",
+      "title": "Prostate Oncologic Therapy While Ensuring Neurovascular Conservation (POTEN-C)",
+      "status": "ACTIVE_NOT_RECRUITING",
+      "phase": "PHASE2"
+    },
+    {
+      "nct_id": "NCT02166762",
+      "title": "Correlating QLV Interval to Left Ventricular (LV) Lead Position in Patients Receiving Cardiac Resync",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT02097290",
+      "title": "Evaluation of Automatic Threshold Algorithms",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT03257436",
+      "title": "Strategic Management to Improve CRT Using Multi-Site Pacing Post Approval Study (Reference # C1918)",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT02026466",
+      "title": "Outcomes, Patient Health Status, and Efficiency in Chronic Total Occlusion",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT02652481",
+      "title": "ENABLE MRI (Magnetic Resonance Imaging)",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT00114972",
+      "title": "SYNTAX Study: TAXUS Drug-Eluting Stent Versus Coronary Artery Bypass Surgery for the Treatment of Na",
+      "status": "UNKNOWN",
+      "phase": "PHASE3"
+    },
+    {
+      "nct_id": "NCT01064076",
+      "title": "S-ICD\u00ae System IDE Clinical Study",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT04580914",
+      "title": "Clinical Evaluation of the StablePoint Catheter and Force Sensing System for Paroxysmal Atrial Fibri",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT02093793",
+      "title": "Safety and Effectiveness Study of the Precision SCS Systems Adapted for High-Rate Spinal Cord Stimul",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT00418301",
+      "title": "Changes in Cerebral Blood Flow in Patients Treated With Spinal Cord Stimulation for Low Back and Leg",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT05968664",
+      "title": "Novel Stimulation Patterns to Improve the Effectiveness of Spinal Cord Stimulation",
+      "status": "RECRUITING",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT05093764",
+      "title": "Quantification of Debris Captured Using TCEP During VIV TAVR With BVF",
+      "status": "RECRUITING",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT03664609",
+      "title": "Deep Brain Stimulation (DBS) Retrospective Outcomes Study",
+      "status": "RECRUITING",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT02080975",
+      "title": "Determination of Catheter Contact by Evaluation of Microelectrode Near-Field Signals",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT00370695",
+      "title": "Spinal Cord Stimulation for Chronic and Intractable Back Pain",
+      "status": "TERMINATED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT00321139",
+      "title": "Assessment of Translesional Markers and Metabolomics",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT00827853",
+      "title": "Study Comparing Two Methods of Expanding Stents Placed in Legs of Diabetics With Peripheral Vascular",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT00757666",
+      "title": "APPROPRIATE - Rate Adaptive Pacing Sensor",
+      "status": "TERMINATED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT04346537",
+      "title": "INGEVITY+ Active Fixation Pace/Sense Lead Clinical Study",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT02639494",
+      "title": "Self-Centering Guide Catheter Feasibility Study",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT02392351",
+      "title": "Renal Denervation Using the Vessix Renal Denervation System for the Treatment of Hypertension (REDUC",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT03040622",
+      "title": "The Evaluation of Thrombogenicity in Patients Undergoing WATCHMAN Left Atrial Appendage Closure Tria",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT03579641",
+      "title": "Precision Event Monitoring for Patients With Heart Failure Using HeartLogic",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT07015424",
+      "title": "Randomized Study on Transoral Outlet Reduction and Lifestyle Changes for Weight Regain After Gastric",
+      "status": "RECRUITING",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT03426124",
+      "title": "An International Pulmonary Embolism Registry Using EKOS",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT03495297",
+      "title": "A Randomised Trial of S-ICD Implantation With and Without Defibrillation Testing",
+      "status": "ACTIVE_NOT_RECRUITING",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT01975090",
+      "title": "The SENTRY Clinical Study",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT03089281",
+      "title": "Strategic Management to Optimize Response To Cardiac Resynchronization Therapy",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT01774019",
+      "title": "Preoperative Biliary Drainage in Resectable Pancreatic or Periampullary Cancer",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT06914765",
+      "title": "ESG in Obese Adolescents",
+      "status": "ENROLLING_BY_INVITATION",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT01945580",
+      "title": "Xenform Postmarket Surveillance Study",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT03075215",
+      "title": "Strategic MAnagement to Optimize Response To Cardiac Resynchronization Therapy Registry",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT00947310",
+      "title": "Multicenter Automatic Defibrillator Implantation Trial - Reduce Inappropriate Therapy",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT01414400",
+      "title": "Prospective Study to Investigate the Frequency of Possible Bacterial Entry Into the Bloodstream (Bac",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT03735667",
+      "title": "ACURATE IDE: Safety and Effectiveness Study of ACURATE Valve for Transcatheter Aortic Valve Replacem",
+      "status": "ACTIVE_NOT_RECRUITING",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT01719055",
+      "title": "RELIEF - A Global Prospective Observational Post-Market Study to Evaluate Long-Term Effectiveness of",
+      "status": "RECRUITING",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT00907361",
+      "title": "The MagnaSafe Registry: Determining the Risks of Magnetic Resonance Imaging (MRI) in the Presence of",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT04997369",
+      "title": "Catheterless Water Vapor Therapy for the Treatment of BPH",
+      "status": "SUSPENDED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT00158977",
+      "title": "CONTAK RENEWAL 3 AVT",
+      "status": "COMPLETED",
+      "phase": "PHASE3"
+    },
+    {
+      "nct_id": "NCT02240810",
+      "title": "PLATINUM Diversity",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT00146848",
+      "title": "PEGASUS CRT Study: Atrial Support Study in Cardiac Resynchronization Therapy",
+      "status": "COMPLETED",
+      "phase": "PHASE4"
+    },
+    {
+      "nct_id": "NCT00484315",
+      "title": "TAXUS PERSEUS Workhorse",
+      "status": "COMPLETED",
+      "phase": "PHASE3"
+    },
+    {
+      "nct_id": "NCT01580709",
+      "title": "Endoscopic Retrograde Cholangiopancreatography (ERCP) Based Sampling of Indeterminate Bile Duct Stri",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT02702271",
+      "title": "Investigational Device Evaluation of the WATCHMAN FLX\u2122 LAA Closure Technology",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT00399516",
+      "title": "Effect of Pulse Width With Spinal Cord Stimulation",
+      "status": "COMPLETED",
+      "phase": "PHASE4"
+    },
+    {
+      "nct_id": "NCT06982235",
+      "title": "Stone and Laser Therapies Post-Market Study (SALT)",
+      "status": "RECRUITING",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT00823212",
+      "title": "The PLATINUM Clinical Trial to Assess the PROMUS Element Stent System for Treatment of De Novo Coron",
+      "status": "COMPLETED",
+      "phase": "PHASE3"
+    },
+    {
+      "nct_id": "NCT00148954",
+      "title": "RIGHT: Rhythm ID Going Head-to-Head Trial",
+      "status": "COMPLETED",
+      "phase": "PHASE4"
+    },
+    {
+      "nct_id": "NCT00111488",
+      "title": "Guidant Microwave Ablation System for the Treatment of Atrial Fibrillation",
+      "status": "TERMINATED",
+      "phase": "PHASE3"
+    },
+    {
+      "nct_id": "NCT02683980",
+      "title": "Ablation Efficacy of Contact Side Firing Fiber in Predefined Settings for Treating BPH",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT02928497",
+      "title": "Assessment of the WATCHMAN\u2122 Device in Patients Unsuitable for Oral Anticoagulation",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT05303662",
+      "title": "Prevalence of Multidrug Resistant Micro-organism Carriage in Patients Undergoing an ERCP in Four Dif",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT03421340",
+      "title": "Non-Complex Biliary Stones DSC vs ERC",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT02482701",
+      "title": "The Captivator EMR Registry",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT02059057",
+      "title": "LVRC IDE Crossover Study (Crossover From IDE Trial CLN0009)",
+      "status": "TERMINATED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT01253200",
+      "title": "Clinical Evaluation of the Blazer\u00ae Open-Irrigated Catheter for Treatment of Type 1 Atrial Flutter",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT03243292",
+      "title": "Bronchial Thermoplasty 10+ Year Study",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT02462720",
+      "title": "COMFORT: A Multicenter, Open-label, Randomized, Crossover Study",
+      "status": "COMPLETED",
+      "phase": "PHASE4"
+    },
+    {
+      "nct_id": "NCT00510627",
+      "title": "Study Comparing Radio Frequency Ablation Plus Chemotherapy and Chemotherapy Alone in Patients With S",
+      "status": "WITHDRAWN",
+      "phase": "PHASE4"
+    },
+    {
+      "nct_id": "NCT00442364",
+      "title": "Safety Study of Varisolve\u00ae Procedure for Treatment of Varicose Veins in Patients With Right-to-left ",
+      "status": "COMPLETED",
+      "phase": "PHASE2"
+    },
+    {
+      "nct_id": "NCT04820036",
+      "title": "A Physiologic Analysis of Endoscopic Sleeve Gastroplasty (ESG)",
+      "status": "ACTIVE_NOT_RECRUITING",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT01635881",
+      "title": "Evaluation of Coronary Luminal Diameter Enlargement With Emerge\u2122 1.20 mm PTCA Dilatation Catheter",
+      "status": "COMPLETED",
+      "phase": "PHASE3"
+    },
+    {
+      "nct_id": "NCT00569491",
+      "title": "TAXUS ARRIVE: TAXUS Peri-Approval Registry: A Multi-Center Safety Surveillance Program",
+      "status": "COMPLETED",
+      "phase": "PHASE4"
+    },
+    {
+      "nct_id": "NCT01781078",
+      "title": "ImageReady(TM) MR Conditional Pacing System Clinical Study",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT03491397",
+      "title": "Genicular Artery Embolization for the Treatment of Knee Osteoarthritis",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT00692276",
+      "title": "Investigating Superion\u2122 In Spinal Stenosis",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT00751998",
+      "title": "Spy II Clinical Registry",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT00955708",
+      "title": "Longitudinal Surveillance Registry (LSR) of ACUITY Spiral",
+      "status": "TERMINATED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT01242722",
+      "title": "Evaluation of Left Ventricular Autothreshold, Phase Two",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT03875651",
+      "title": "A Clinical Trial to Confirm Safety & Effectiveness of the SYNERGY 4.50 mm and 5.00 mm Stent for Trea",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT04394546",
+      "title": "CHAMPION-AF Clinical Trial",
+      "status": "ACTIVE_NOT_RECRUITING",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT06481436",
+      "title": "Use of Artificial Intelligence by Urogynecologic Patients",
+      "status": "ACTIVE_NOT_RECRUITING",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT03482375",
+      "title": "Prospective Evaluation of Residual Bile Duct Stone by Peroral Cholangioscopy After Conventional ERCP",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT04618471",
+      "title": "Paresthesia-Free Fast-Acting Subperception (FAST) Study",
+      "status": "ACTIVE_NOT_RECRUITING",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT00479765",
+      "title": "A Phase 1 / 2 Dose Escalation Study of Locally-Administered OncoGel\u2122 in Subjects With Recurrent Glio",
+      "status": "TERMINATED",
+      "phase": "PHASE1"
+    },
+    {
+      "nct_id": "NCT00433771",
+      "title": "A Study of the WallFlex\u2122 Biliary Fully-covered Stent for the Palliative Treatment of Malignant Bile ",
+      "status": "COMPLETED",
+      "phase": "PHASE3"
+    },
+    {
+      "nct_id": "NCT00344630",
+      "title": "TC-WYRE: TAXUS Express Stent vs. Cypher Stent - What's Your Real Life Experience?",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT01538628",
+      "title": "SpaceOAR System Pivotal Study",
+      "status": "COMPLETED",
+      "phase": "PHASE3"
+    },
+    {
+      "nct_id": "NCT02683993",
+      "title": "Utilizing Holmium Laser for FURS Renal Stone Lithotripsy Comparing Stone Breaking vs. Stone Dusting ",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT03251937",
+      "title": "Value of Multiple Modalities Using the Spectra WaveWriter Spinal Cord Stimulator System",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT01510327",
+      "title": "PLATINUM Trial to Assess the PROMUS Element Stent System for Treatment of De Novo Coronary Artery Le",
+      "status": "COMPLETED",
+      "phase": "PHASE3"
+    },
+    {
+      "nct_id": "NCT03257254",
+      "title": "Effect of VarIthena on Wound Healing in Venous Leg Ulcers (VLU)",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT05063565",
+      "title": "TheraSphere With Durvalumab and Tremelimumab for HCC",
+      "status": "ACTIVE_NOT_RECRUITING",
+      "phase": "PHASE2"
+    },
+    {
+      "nct_id": "NCT03074201",
+      "title": "Prospective Evaluation of the Ability of Spyglass Cholangioscopy to Facilitate Radiation Free ERCP",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT06014866",
+      "title": "Conduction System Pacing With INGEVITY+",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT01335945",
+      "title": "Safety and Efficacy of Cryoablation for Abdominal Pain Associated With Pancreatic Cancer",
+      "status": "TERMINATED",
+      "phase": "PHASE1"
+    },
+    {
+      "nct_id": "NCT06891456",
+      "title": "Pulsed Field Ablation for Post-Infarction Ventricular Tachycardia",
+      "status": "RECRUITING",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT01030705",
+      "title": "Common Sensing and Right Ventricular Automatic Capture (COGNATE)",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT03729453",
+      "title": "Intra-operative Pancreatoscopy in Patients With IPMN",
+      "status": "ACTIVE_NOT_RECRUITING",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT00597142",
+      "title": "A Prospective, Multi-center, Single Arm Study Evaluating the Express\u2122 Renal Premounted Stent System ",
+      "status": "COMPLETED",
+      "phase": "PHASE4"
+    },
+    {
+      "nct_id": "NCT00386724",
+      "title": "Effectiveness of Precision Spinal Cord Stimulation With Artisan Paddle Electrode",
+      "status": "TERMINATED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT06765356",
+      "title": "Pragmatic Evaluation of a Pentaspline Pulsed Field Ablation System to Treat Atrial Fibrillation and ",
+      "status": "ACTIVE_NOT_RECRUITING",
+      "phase": "PHASE4"
+    },
+    {
+      "nct_id": "NCT04682483",
+      "title": "Cardiogenic Shock Working Group Registry",
+      "status": "RECRUITING",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT03767881",
+      "title": "AXIOS\u2122 for Gallbladder Drainage as an Alternative to Percutaneous Drainage IDE",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT05515341",
+      "title": "A DirEct to PatieNt Study in Chronic Pain",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT00334451",
+      "title": "RAPID-RF: Remote Active Monitoring in Patients With Heart Failure",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT04971993",
+      "title": "Step and Walking Pattern From Cardiac Monitor Study",
+      "status": "TERMINATED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT04563793",
+      "title": "Postmarket Outcomes Study for Evaluation of the Superion\u2122 Spacer",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT06138821",
+      "title": "Effect of Endoscopic Sleeve Gastroplasty in Patients With Obesity and MASH: A Randomized Controlled ",
+      "status": "RECRUITING",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT02164721",
+      "title": "Multicenter Automatic Defibrillator Implantation Trial - Chemotherapy-Induced Cardiomyopathy",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT07041125",
+      "title": "Concomitant LAAC/AF Ablation (Watchman FLX Pro)",
+      "status": "RECRUITING",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT00158925",
+      "title": "The EASYTRAK EPI Clinical Investigation",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT04586166",
+      "title": "Single-incision Versus Retropubic Mid-Urethral Sling (Solyx) for SUI During Minimally Invasive Sacro",
+      "status": "ACTIVE_NOT_RECRUITING",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT05822635",
+      "title": "SpyGlass Surgical Study",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT01273623",
+      "title": "The Jetstream G3\u2122 Calcium Study",
+      "status": "COMPLETED",
+      "phase": "PHASE4"
+    },
+    {
+      "nct_id": "NCT01589978",
+      "title": "PROMUS Element Plus US Post-Approval Study",
+      "status": "COMPLETED",
+      "phase": "PHASE4"
+    },
+    {
+      "nct_id": "NCT04149535",
+      "title": "PROTECTED TAVR: Stroke PROTECTion With SEntinel During Transcatheter Aortic Valve Replacement",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT02787785",
+      "title": "Multicenter Automatic Defibrillator Implantation Trial With Subcutaneous Implantable Cardioverter De",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT01461265",
+      "title": "Safety and Efficacy of Cryoablation for the Palliation of Painful Bone Metastases",
+      "status": "COMPLETED",
+      "phase": "PHASE1"
+    },
+    {
+      "nct_id": "NCT02314000",
+      "title": "Effectiveness of the Precision Spinal Cord Stimulator System at Sub-Perception Amplitude",
+      "status": "COMPLETED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT01599065",
+      "title": "Comparison of a MAGNET Protocol Versus \"off-on\" Protocol for Patients With Implantable Cardioverter ",
+      "status": "COMPLETED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT00824928",
+      "title": "Salvage Cryotherapy in Recurrent Prostate Cancer",
+      "status": "TERMINATED",
+      "phase": null
+    },
+    {
+      "nct_id": "NCT01775735",
+      "title": "Occipital Nerve Stimulation (ONS) for Migraine: OPTIMISE",
+      "status": "TERMINATED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT00205855",
+      "title": "An Implantable Spinal Cord Stimulation Pain Management System",
+      "status": "COMPLETED",
+      "phase": "PHASE3"
+    },
+    {
+      "nct_id": "NCT00478673",
+      "title": "Post-Approval Study of the NexStent Carotid Stent System and the FilterWire EZ Embolic Protection Sy",
+      "status": "TERMINATED",
+      "phase": "PHASE4"
+    },
+    {
+      "nct_id": "NCT01546168",
+      "title": "Deviating the Esophagus in Atrial Fibrillation Ablation",
+      "status": "TERMINATED",
+      "phase": "NA"
+    },
+    {
+      "nct_id": "NCT04159025",
+      "title": "EBUS-Miniforceps Biopsy Specimen Acquisition for PD-L1 Testing in Nonsmall Cell Lung Cancer",
+      "status": "COMPLETED",
+      "phase": "NA"
+    }
+  ]
+}

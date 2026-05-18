@@ -1,0 +1,53 @@
+{
+  "hospital": "Cleveland Clinic",
+  "organizations": [
+    {
+      "ein": 264367036,
+      "strein": "26-4367036",
+      "name": "Cleveland Clinic Nevada",
+      "sub_name": "Cleveland Clinic Nevada",
+      "city": "Independence",
+      "state": "OH",
+      "ntee_code": null,
+      "raw_ntee_code": null,
+      "subseccd": 3,
+      "has_subseccd": true,
+      "have_filings": null,
+      "have_extracts": null,
+      "have_pdfs": null,
+      "score": 100.45193
+    },
+    {
+      "ein": 912153073,
+      "strein": "91-2153073",
+      "name": "Cleveland Clinic Foundation",
+      "sub_name": "Cleveland Clinic Foundation Group Return",
+      "city": "Independence",
+      "state": "OH",
+      "ntee_code": "E030",
+      "raw_ntee_code": "E030",
+      "subseccd": 3,
+      "has_subseccd": true,
+      "have_filings": null,
+      "have_extracts": null,
+      "have_pdfs": null,
+      "score": 94.96808
+    },
+    {
+      "ein": 340714585,
+      "strein": "34-0714585",
+      "name": "The Cleveland Clinic Foundation",
+      "sub_name": "The Cleveland Clinic Foundation",
+      "city": "Cleveland",
+      "state": "OH",
+      "ntee_code": "E210",
+      "raw_ntee_code": "E210",
+      "subseccd": 3,
+      "has_subseccd": true,
+      "have_filings": null,
+      "have_extracts": null,
+      "have_pdfs": null,
+      "score": 91.07542
+    }
+  ]
+}

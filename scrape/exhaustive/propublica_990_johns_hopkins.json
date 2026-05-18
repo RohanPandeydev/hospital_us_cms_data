@@ -1,0 +1,53 @@
+{
+  "hospital": "Johns Hopkins",
+  "organizations": [
+    {
+      "ein": 520595110,
+      "strein": "52-0595110",
+      "name": "Johns Hopkins University",
+      "sub_name": "Johns Hopkins University",
+      "city": "Baltimore",
+      "state": "MD",
+      "ntee_code": "B430",
+      "raw_ntee_code": "B430",
+      "subseccd": 3,
+      "has_subseccd": true,
+      "have_filings": null,
+      "have_extracts": null,
+      "have_pdfs": null,
+      "score": 103.72126
+    },
+    {
+      "ein": 475649093,
+      "strein": "47-5649093",
+      "name": "John Hopkins University",
+      "sub_name": "John Hopkins University Johns Hopkins Global Inc",
+      "city": "Baltimore",
+      "state": "MD",
+      "ntee_code": null,
+      "raw_ntee_code": null,
+      "subseccd": 3,
+      "has_subseccd": true,
+      "have_filings": null,
+      "have_extracts": null,
+      "have_pdfs": null,
+      "score": 101.19109
+    },
+    {
+      "ein": 831496989,
+      "strein": "83-1496989",
+      "name": "John Hopkins University",
+      "sub_name": "John Hopkins University Johns Hopkins Global Iii Inc",
+      "city": "Baltimore",
+      "state": "MD",
+      "ntee_code": null,
+      "raw_ntee_code": null,
+      "subseccd": 3,
+      "has_subseccd": true,
+      "have_filings": null,
+      "have_extracts": null,
+      "have_pdfs": null,
+      "score": 99.04204
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "hospital": "UCSF",
+  "organizations": [
+    {
+      "ein": 992929034,
+      "strein": "99-2929034",
+      "name": "Ucsf Golf Club",
+      "sub_name": "Ucsf Golf Club",
+      "city": "San Francisco",
+      "state": "CA",
+      "ntee_code": "N6A",
+      "raw_ntee_code": "N6A",
+      "subseccd": 7,
+      "has_subseccd": true,
+      "have_filings": null,
+      "have_extracts": null,
+      "have_pdfs": null,
+      "score": 84.8042
+    },
+    {
+      "ein": 473177207,
+      "strein": "47-3177207",
+      "name": "Ucsf Student Life",
+      "sub_name": "Ucsf Student Life",
+      "city": "San Francisco",
+      "state": "CA",
+      "ntee_code": "E03",
+      "raw_ntee_code": "E03",
+      "subseccd": 3,
+      "has_subseccd": true,
+      "have_filings": null,
+      "have_extracts": null,
+      "have_pdfs": null,
+      "score": 84.8042
+    },
+    {
+      "ein": 941156295,
+      "strein": "94-1156295",
+      "name": "Ucsf Health Community Hospitals",
+      "sub_name": "Ucsf Health Community Hospitals",
+      "city": "San Francisco",
+      "state": "CA",
+      "ntee_code": "E220",
+      "raw_ntee_code": "E220",
+      "subseccd": 3,
+      "has_subseccd": true,
+      "have_filings": null,
+      "have_extracts": null,
+      "have_pdfs": null,
+      "score": 76.88819
+    }
+  ]
+}

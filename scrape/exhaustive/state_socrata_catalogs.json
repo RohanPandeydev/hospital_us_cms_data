@@ -1,0 +1,20 @@
+{
+  "IL": [],
+  "GA": {
+    "error": "HTTPSConnectionPool(host='data.georgia.gov', port=443): Max retries exceeded with url: /api/views.js"
+  },
+  "MI": [],
+  "NC": {
+    "error": "HTTPSConnectionPool(host='data.nc.gov', port=443): Max retries exceeded with url: /api/views.json?q="
+  },
+  "WI": {
+    "error": "HTTPSConnectionPool(host='data.wisconsin.gov', port=443): Max retries exceeded with url: /api/views."
+  },
+  "UT": {
+    "error": "HTTPSConnectionPool(host='data.utah.gov', port=443): Max retries exceeded with url: /api/views.json?"
+  },
+  "OR": [],
+  "MD": [],
+  "CT": [],
+  "NJ": []
+}

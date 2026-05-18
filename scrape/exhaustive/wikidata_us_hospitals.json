@@ -1,0 +1,806 @@
+{
+  "source": "Wikidata SPARQL",
+  "count": 200,
+  "rows": [
+    {
+      "hospital": "http://www.wikidata.org/entity/Q4928315",
+      "hospitalLabel": "Bloomingdale Insane Asylum"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q4943882",
+      "hospitalLabel": "Booth Memorial Hospital Cleveland"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q4947809",
+      "hospitalLabel": "Boston City Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q4947861",
+      "hospitalLabel": "Boston Consumptives Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q4948037",
+      "hospitalLabel": "Boston Psychopathic Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q4948059",
+      "hospitalLabel": "Boston Regional Medical Center"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q4962760",
+      "hospitalLabel": "Brewster Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q4967276",
+      "hospitalLabel": "Briggs Sanitorium"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q4967301",
+      "hospitalLabel": "Brigham Hall"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q4972326",
+      "hospitalLabel": "Broadview Developmental Center"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q4976144",
+      "hospitalLabel": "Brown General Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5015845",
+      "hospitalLabel": "Cabrini Medical Center"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5027285",
+      "hospitalLabel": "Camp Joe Holt"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5027346",
+      "hospitalLabel": "Camp Letterman"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5046035",
+      "hospitalLabel": "Carraway Methodist Medical Center"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5060156",
+      "hospitalLabel": "Centinela Freeman Regional Medical Center, Memorial Campus"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5061283",
+      "hospitalLabel": "Central Islip Psychiatric Center"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5061608",
+      "hospitalLabel": "Central Park Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5061846",
+      "hospitalLabel": "Central State Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5061847",
+      "hospitalLabel": "Central State Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5074514",
+      "hospitalLabel": "Charity Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5090110",
+      "hospitalLabel": "Chelsea Naval Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5093965",
+      "hospitalLabel": "Chestnut Lodge"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5095499",
+      "hospitalLabel": "Chicago Beach Hotel"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5095711",
+      "hospitalLabel": "Chicago Municipal Tuberculosis Sanitarium"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5098051",
+      "hospitalLabel": "Children's Country Home"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5098146",
+      "hospitalLabel": "Children's Island Sanitarium"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5116628",
+      "hospitalLabel": "Church Home and Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5120333",
+      "hospitalLabel": "Cincinnati Work House and Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5122975",
+      "hospitalLabel": "CityPlex Towers"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5126974",
+      "hospitalLabel": "Clarinda Treatment Complex"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5131284",
+      "hospitalLabel": "Clement Atkinson Memorial Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5134276",
+      "hospitalLabel": "Clinton Valley Center"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5144596",
+      "hospitalLabel": "Coler-Goldwater Specialty Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5149728",
+      "hospitalLabel": "Columbia Hospital for Women"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5154817",
+      "hospitalLabel": "Community Memorial Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5168692",
+      "hospitalLabel": "Copper Bell Bed and Breakfast"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5181910",
+      "hospitalLabel": "Cranberry Specialty Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5189574",
+      "hospitalLabel": "Crownsville Hospital Center"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5205610",
+      "hospitalLabel": "DMC Surgery Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5210454",
+      "hospitalLabel": "Dale General Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5212681",
+      "hospitalLabel": "Dammasch State Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5283418",
+      "hospitalLabel": "District of Columbia General Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5284930",
+      "hospitalLabel": "Dixmont State Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5287554",
+      "hospitalLabel": "Doctors Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5287555",
+      "hospitalLabel": "Doctors Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5304101",
+      "hospitalLabel": "Dr. Fred Stone, Sr., Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5314146",
+      "hospitalLabel": "Dunbar Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5322104",
+      "hospitalLabel": "E. R. Johnstone Training and Research Center"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5325945",
+      "hospitalLabel": "Earl K. Long Medical Center"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5330781",
+      "hospitalLabel": "Eastman Dental Dispensary"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5330811",
+      "hospitalLabel": "Eastmoreland Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5337928",
+      "hospitalLabel": "Edgewood State Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5350015",
+      "hospitalLabel": "Eitel Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5362376",
+      "hospitalLabel": "Elizabeth Bard Memorial Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5365909",
+      "hospitalLabel": "Ellis Island Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5375454",
+      "hospitalLabel": "Encino-Tarzana Regional Medical Center"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5380888",
+      "hospitalLabel": "Enumclaw Regional Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5399704",
+      "hospitalLabel": "Essex County Hospital Center"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5399745",
+      "hospitalLabel": "Essex Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5419571",
+      "hospitalLabel": "Exchange Hotel"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5430353",
+      "hospitalLabel": "Fairfield State Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5430890",
+      "hospitalLabel": "Fairview Training Center"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5435104",
+      "hospitalLabel": "Fargo City Detention Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5436611",
+      "hospitalLabel": "Fasbender Clinic"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5444174",
+      "hospitalLabel": "Fergus Falls Regional Treatment Center"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5455733",
+      "hospitalLabel": "Fitzsimons Army Medical Center"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5467808",
+      "hospitalLabel": "Ford Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5468893",
+      "hospitalLabel": "Forest Haven"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5471365",
+      "hospitalLabel": "Fort Howard Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5471366",
+      "hospitalLabel": "Fort Howard Veterans Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5476908",
+      "hospitalLabel": "Fox River Pavilion"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5477093",
+      "hospitalLabel": "Foxborough State Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5491771",
+      "hospitalLabel": "Franklin Regional Medical Center"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5501787",
+      "hospitalLabel": "French Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5516503",
+      "hospitalLabel": "Gaebler Children's Center"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5522617",
+      "hospitalLabel": "Gardner State Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5532726",
+      "hospitalLabel": "Genesee Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5567855",
+      "hospitalLabel": "Glen Lake Sanatorium"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5568757",
+      "hospitalLabel": "Glenn Dale Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5582913",
+      "hospitalLabel": "Good Samaritan Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5588502",
+      "hospitalLabel": "Gouverneur Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5588910",
+      "hospitalLabel": "Government House"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5591217",
+      "hospitalLabel": "Grace Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5591218",
+      "hospitalLabel": "Grace Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5665293",
+      "hospitalLabel": "Harrisburg State Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5731315",
+      "hospitalLabel": "Henryton State Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5758974",
+      "hospitalLabel": "Highland Park General Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5890041",
+      "hospitalLabel": "Homer G. Phillips Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5910081",
+      "hospitalLabel": "Hot Lake Hotel"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q5928866",
+      "hospitalLabel": "Hudson River State Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q6117950",
+      "hospitalLabel": "Jacksonville Developmental Center"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q6175475",
+      "hospitalLabel": "Jefferson General Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q6348460",
+      "hospitalLabel": "Kaiser Richmond Field Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q6412987",
+      "hospitalLabel": "Kings Park Psychiatric Center"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q6457524",
+      "hospitalLabel": "LDS Moapa Stake Office Building"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q6471444",
+      "hospitalLabel": "Lafayette Home Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q6479319",
+      "hospitalLabel": "Lakeville Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q6479328",
+      "hospitalLabel": "Lakeville State Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q6504068",
+      "hospitalLabel": "Lawrence Flick State Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q3145294",
+      "hospitalLabel": "Adventist Health St. Helena"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q3157429",
+      "hospitalLabel": "Jackson Memorial Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q6506452",
+      "hospitalLabel": "LeRoy Sanitarium"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q6518782",
+      "hospitalLabel": "Lehi Commercial and Savings Bank-Lehi Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q6533195",
+      "hospitalLabel": "Letchworth Village"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q6533682",
+      "hospitalLabel": "Letterman Army Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q6552042",
+      "hospitalLabel": "Linda Vista Community Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q6552968",
+      "hospitalLabel": "Lindy Boggs Medical Center"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q6672308",
+      "hospitalLabel": "Long Beach Medical Center"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q6672675",
+      "hospitalLabel": "Long Island College Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q6692379",
+      "hospitalLabel": "Lovering Colony State Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q6708476",
+      "hospitalLabel": "Lynchburg Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q6736364",
+      "hospitalLabel": "Maine Eye and Ear Infirmary"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q6751697",
+      "hospitalLabel": "Mansfield Training School and Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q6752027",
+      "hospitalLabel": "Manteno State Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q6759870",
+      "hospitalLabel": "Margaret Sanger Clinic"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q6771636",
+      "hospitalLabel": "Marlboro Psychiatric Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q6776058",
+      "hospitalLabel": "Martin Luther King, Jr. Multi-Service Ambulatory Care Center"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q6783579",
+      "hospitalLabel": "Mason General Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q6784289",
+      "hospitalLabel": "Massachusetts Homeopathic Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q6786642",
+      "hospitalLabel": "Ripley Memorial Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q6798136",
+      "hospitalLabel": "Mayview State Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q6805293",
+      "hospitalLabel": "Medfield State Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q6806528",
+      "hospitalLabel": "Medical facilities in Tulsa"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q6815463",
+      "hospitalLabel": "Memorial Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q6815467",
+      "hospitalLabel": "Memorial Hospital of Rhode Island"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q6818783",
+      "hospitalLabel": "Mercy Medical Center"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q6825261",
+      "hospitalLabel": "Metropolitan State Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q6833796",
+      "hospitalLabel": "Michael Reese Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q6841622",
+      "hospitalLabel": "Middle Tennessee Mental Health Institute"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q6841912",
+      "hospitalLabel": "Middlesex County Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q6842113",
+      "hospitalLabel": "Middletown State Homeopathic Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q6843418",
+      "hospitalLabel": "Midwest Proton Radiotherapy Institute"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q6868208",
+      "hospitalLabel": "Minnesota Correctional Facility \u2013 Willow River/Moose Lake"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q6868554",
+      "hospitalLabel": "Minnesota State Sanatorium for Consumptives"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q6886823",
+      "hospitalLabel": "Mobile City Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q6893716",
+      "hospitalLabel": "Mohave County Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q6902598",
+      "hospitalLabel": "Monson Developmental Center"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q6919109",
+      "hospitalLabel": "Mound City Civil War Naval Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q6922934",
+      "hospitalLabel": "Mount Pleasant Mental Health Institute"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q6933040",
+      "hospitalLabel": "Muhlenberg Regional Medical Center"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q6933191",
+      "hospitalLabel": "Muirdale Tuberculosis Sanatorium"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q6973393",
+      "hospitalLabel": "National Home for Disabled Volunteer Soldiers, Marion Branch"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q6981796",
+      "hospitalLabel": "Naval Convalescent Hospital, Banning"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q6981837",
+      "hospitalLabel": "Naval Hospital Oakland"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q6981839",
+      "hospitalLabel": "Naval Hospital Philadelphia"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q7013099",
+      "hospitalLabel": "New York Cancer Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q7014128",
+      "hospitalLabel": "New York State Inebriate Asylum"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q7018783",
+      "hospitalLabel": "Newport Barracks"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q7053351",
+      "hospitalLabel": "Norristown State Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q7055475",
+      "hospitalLabel": "North General Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q7055654",
+      "hospitalLabel": "North Hollywood Medical Center"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q7056420",
+      "hospitalLabel": "North Princeton Developmental Center"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q7057643",
+      "hospitalLabel": "Northampton State Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q7061534",
+      "hospitalLabel": "Norwich State Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q7083971",
+      "hospitalLabel": "Old Fernald-Laughton Memorial Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q7084472",
+      "hospitalLabel": "Old Marine Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q7084600",
+      "hospitalLabel": "Old Naval Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q7085039",
+      "hospitalLabel": "Old St. Luke's Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q7085173",
+      "hospitalLabel": "Old Sycamore Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q7089420",
+      "hospitalLabel": "Omaha Emergency Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q7108756",
+      "hospitalLabel": "Otis Air Force Base Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q7118414",
+      "hospitalLabel": "PBI Regional Medical Center"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q7148954",
+      "hospitalLabel": "Paul A. Dever State School"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q7162890",
+      "hospitalLabel": "Penikese Island Leper Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q7162938",
+      "hospitalLabel": "Peninsula Hospital Center"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q7164688",
+      "hospitalLabel": "Pensacola Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q7173298",
+      "hospitalLabel": "Peter Claver Building"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q7182730",
+      "hospitalLabel": "Philadelphia Lazaretto"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q7182753",
+      "hospitalLabel": "Philadelphia Naval Asylum"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q7182823",
+      "hospitalLabel": "Philadelphia State Hospital at Byberry"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q7191536",
+      "hospitalLabel": "Piedmont Sanatorium"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q7195072",
+      "hospitalLabel": "Pine Bluff State Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q7195324",
+      "hospitalLabel": "Pine Ridge Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q7209367",
+      "hospitalLabel": "Polhemus Memorial Clinic"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q7227750",
+      "hospitalLabel": "Pondville State Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q7240559",
+      "hospitalLabel": "Prentice Women's Hospital Building"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q7252450",
+      "hospitalLabel": "Providence Lying-In Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q7252520",
+      "hospitalLabel": "Provident Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q7252521",
+      "hospitalLabel": "Provident Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q7257412",
+      "hospitalLabel": "Public Health Service Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q7272155",
+      "hospitalLabel": "Quincy Medical Center"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q7331128",
+      "hospitalLabel": "Richwood Area Community Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q7338172",
+      "hospitalLabel": "Riverdell Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q7338555",
+      "hospitalLabel": "Riverside Osteopathic Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q7351992",
+      "hospitalLabel": "Roberts Chapel United Methodist Church"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q7368774",
+      "hospitalLabel": "Rosewood Center"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q7371157",
+      "hospitalLabel": "Round Top hospitals"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q7377431",
+      "hospitalLabel": "Rudolph Latto House"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q7383489",
+      "hospitalLabel": "Rutland Heights State Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q7397227",
+      "hospitalLabel": "Sacred Heart Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q7397235",
+      "hospitalLabel": "Sacred Heart Medical Center University District"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q7400973",
+      "hospitalLabel": "Saint Anthony's Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q7406593",
+      "hospitalLabel": "Salvation Army Women's Home and Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q7423354",
+      "hospitalLabel": "Saratoga County Homestead"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q7426530",
+      "hospitalLabel": "Satterlee General Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q7441748",
+      "hospitalLabel": "Searcy Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q7446637",
+      "hospitalLabel": "Seidle Memorial Hospital"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q30281108",
+      "hospitalLabel": "UMass Memorial Medical Center"
+    },
+    {
+      "hospital": "http://www.wikidata.org/entity/Q59676202",
+      "hospitalLabel": "Thomas Jefferson University Hospital"
+    }
+  ]
+}

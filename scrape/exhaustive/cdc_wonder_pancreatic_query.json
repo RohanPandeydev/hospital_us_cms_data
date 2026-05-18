@@ -1,0 +1,12 @@
+{
+  "source": "CDC WONDER Underlying Cause of Death",
+  "manual_url": "https://wonder.cdc.gov/ucd-icd10.html",
+  "icd10_filter": [
+    "K85 \u2014 Acute pancreatitis",
+    "K86 \u2014 Other diseases of pancreas",
+    "K83 \u2014 Other diseases biliary",
+    "K80 \u2014 Cholelithiasis",
+    "C25 \u2014 Pancreatic neoplasm"
+  ],
+  "instructions": "Form-based query. Apply ICD-10 filter, group by State + Year, download as TXT"
+}

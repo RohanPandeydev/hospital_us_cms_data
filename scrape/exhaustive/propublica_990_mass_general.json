@@ -1,0 +1,53 @@
+{
+  "hospital": "Mass General",
+  "organizations": [
+    {
+      "ein": 854372153,
+      "strein": "85-4372153",
+      "name": "Mass General Brigham Incorporated",
+      "sub_name": "Mass General Brigham Incorporated Mass General Brigham Amsurg Inc",
+      "city": "Somerville",
+      "state": "MA",
+      "ntee_code": "E21",
+      "raw_ntee_code": "E21",
+      "subseccd": 3,
+      "has_subseccd": true,
+      "have_filings": null,
+      "have_extracts": null,
+      "have_pdfs": null,
+      "score": 96.359665
+    },
+    {
+      "ein": 882110204,
+      "strein": "88-2110204",
+      "name": "Mass General Brigham Incorporated",
+      "sub_name": "Mass General Brigham Incorporated Mass General Brigham Comm Divison",
+      "city": "Somerville",
+      "state": "MA",
+      "ntee_code": "E21",
+      "raw_ntee_code": "E21",
+      "subseccd": 3,
+      "has_subseccd": true,
+      "have_filings": null,
+      "have_extracts": null,
+      "have_pdfs": null,
+      "score": 96.359665
+    },
+    {
+      "ein": 43236175,
+      "strein": "04-3236175",
+      "name": "Mass General Brigham Incorporated",
+      "sub_name": "Mass General Brigham Incorporated Mass General Brigham Comm Physician",
+      "city": "Somerville",
+      "state": "MA",
+      "ntee_code": "E21",
+      "raw_ntee_code": "E21",
+      "subseccd": 3,
+      "has_subseccd": true,
+      "have_filings": null,
+      "have_extracts": null,
+      "have_pdfs": null,
+      "score": 96.359665
+    }
+  ]
+}

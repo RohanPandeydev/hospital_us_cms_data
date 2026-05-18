@@ -1,0 +1,16 @@
+{
+  "source": "NY SPARCS ED \u2014 AXIOS-relevant filter",
+  "filter_keywords": [
+    "pancrea",
+    "bili",
+    "cholangitis",
+    "cholecystitis",
+    "gastrointestinal",
+    "gi hemorrhage",
+    "ercp",
+    "jaundice"
+  ],
+  "matched": 0,
+  "sampled": 50,
+  "rows": []
+}
