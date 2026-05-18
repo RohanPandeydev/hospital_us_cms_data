@@ -182,3 +182,42 @@ What we used: **federal contract data + open payments + indirect billing volume.
 **6 free URLs replaced ~70% of what $20-150K/yr of paid data would give us.** The remaining 30% (device size, specific MAUDE event → CCN, commercial-insurance patients) is structurally blocked and not bridgeable by any free data.
 
 For the BSc AXIOS use case, this means: ✅ defensible per-hospital risk/sales targeting today; ❌ device-specific regulatory evidence still requires paid AGA GIQuIC eventually.
+
+
+---
+
+## §10 — Additional free sources fetched (final expansion round)
+
+These supplement the 6 primary free alternatives with confirmed-working USA-only public data.
+
+| # | Source | URL | What it gives | Output |
+|---|---|---|---|---|
+| 7 | **openFDA UDI — AXIOS family** | `https://api.fda.gov/device/udi.json?search=brand_name:AXIOS` | 8 AXIOS UDI records with FDA-confirmed sizes. M00553680 = 8mm × 6mm. Validates our model→size decoder. | `scrape/expanded/openfda_udi_axios_FINAL.json` |
+| 8 | **openFDA UDI — BSc full catalog** | `https://api.fda.gov/device/udi.json?search=company_name:BOSTON+SCIENTIFIC` | 12,561 BSc devices in FDA UDI catalog (500 sampled with full size detail) | `scrape/expanded/openfda_udi_bsc_extended.json` |
+| 9 | **HCAHPS Hospital Survey** | `https://data.cms.gov/provider-data/sites/default/files/resources/.../HCAHPS-Hospital.csv` | Per-hospital patient experience scores for 4,792 US hospitals | `scrape/expanded/hcahps_hospital.csv.gz` + `hcahps_by_hospital_summary.json` |
+| 10 | **Joint Commission Quality Check** | `https://www.qualitycheck.org/` (via TinyFish) | Real accreditation data for Mass General, Cedars-Sinai, IU Health, Cox, Barnes-Jewish | `scrape/tinyfish/joint_commission_quality.json` |
+| 11 | **NPI Registry API** | `https://npiregistry.cms.hhs.gov/api/` | Real-time NPI lookup — auth-free | `scrape/expanded/npi_registry_test.json` (confirmed working) |
+| 12 | **CMS PECOS ownership datasets** | `data.cms.gov DCAT — PECOS+ownership` | 14 ownership datasets indexed (Hospital All Owners, Change of Ownership, etc.) | `scrape/expanded/cms_pecos_datasets.json` |
+| 13 | **PubMed — BSc full device family** | NCBI E-utils, multi-device search | 11 devices × adverse events → US case reports | `scrape/expanded/pubmed_bsc_full_family_us.json` |
+| 14 | **CDC NHSN hospital data** | `data.cdc.gov/api/views.json` | Hospital RSV admissions per state | `scrape/expanded/cdc_*.json` |
+
+### Sources that did NOT work (so you know what's blocked)
+
+| Source | Why blocked |
+|---|---|
+| HHS OCR Breach Portal | JSF form-based; needs interactive browser session |
+| DOJ press releases | Akamai blocks automated requests |
+| AccessGUDID API | All v2/v3 endpoints return 404 (use openFDA UDI instead) |
+| Mass.gov SRE PDFs | Akamai blocks automated requests |
+| Leapfrog Safety Grade CSV | Behind login / paid tier |
+
+### The honest delta vs. our 6 primary alternatives
+
+The §10 sources are **complementary**, not substitutes for the primary 6. They add:
+- **UDI confirmation** — gives us FDA's official device size data for AXIOS
+- **Patient experience** — HCAHPS adds the patient-reported quality dimension
+- **Accreditation status** — Joint Commission credentials for top hospitals
+- **Ownership chains** — PECOS for hospital corporate structure
+- **Broader literature** — PubMed beyond AXIOS to all BSc devices
+
+The fundamental ceiling — specific MAUDE event → specific CCN — remains unbreakable from free public data alone.
