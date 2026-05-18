@@ -1,478 +1,470 @@
 {% extends "base.html" %}
-{% block title %}AXIOS / BSC Endoscopy{% endblock %}
+{% block title %}{{ cfg.label }} ({{ code }}) — BSc Device Intelligence{% endblock %}
 {% block content %}
 
-<div class="page-header">
-  <h1>🪡 AXIOS &amp; BSC Endoscopy — Probability Lens</h1>
-  <p>Joins three CMS datasets (procedure volume, Hospital Compare outcomes, national trend) with openFDA MAUDE complaints
-  to compute <strong>complaints per 1,000 procedures</strong> — the metric Boston Scientific cannot produce internally.</p>
+<style>
+  .ax-hero {
+    background: linear-gradient(135deg, #1a2240 0%, #1e1830 100%);
+    border-radius: var(--radius);
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border);
+  }
+  .ax-hero h1 { font-size: 2rem; margin: 0; font-weight: 700; }
+  .ax-hero .subtitle { color: var(--text-secondary); margin-top: 0.4rem; font-size: 0.95rem; }
+  .ax-stat-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  .ax-stat {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 1rem;
+  }
+  .ax-stat .val { font-size: 1.6rem; font-weight: 700; color: var(--text-primary); }
+  .ax-stat .lbl { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-top: 0.3rem; }
+  .ax-stat.danger .val { color: var(--danger); }
+  .ax-stat.warning .val { color: var(--warning); }
+  .ax-stat.success .val { color: var(--success); }
+
+  .code-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .code-tab {
+    padding: 0.6rem 1rem;
+    border-radius: 999px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.15s;
+  }
+  .code-tab:hover { background: var(--bg-surface-hover); border-color: var(--border-hover); color: var(--text-primary); }
+  .code-tab.active {
+    background: var(--gradient-accent);
+    border-color: var(--accent);
+    color: white;
+    box-shadow: 0 0 12px var(--accent-glow);
+  }
+  .code-tab small { display: block; opacity: 0.85; font-size: 0.7rem; margin-top: 0.15rem; }
+
+  .ax-section {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .ax-section h2 { font-size: 1.15rem; margin: 0 0 1rem; font-weight: 600; }
+  .ax-section h2 .icon { margin-right: 0.4rem; }
+  .ax-section .sub { font-size: 0.85rem; color: var(--text-secondary); margin-top: -0.5rem; margin-bottom: 1rem; }
+
+  .chain {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.8rem;
+    margin-top: 1rem;
+  }
+  .chain-step {
+    background: var(--bg-elevated);
+    border-radius: var(--radius-sm);
+    padding: 0.8rem;
+    text-align: center;
+    border: 1px solid var(--border);
+    position: relative;
+  }
+  .chain-step::after {
+    content: "→";
+    position: absolute;
+    right: -1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--accent);
+    font-size: 1.4rem;
+    font-weight: 700;
+    z-index: 1;
+  }
+  .chain-step:last-child::after { content: ""; }
+  .chain-step .num { font-size: 0.7rem; color: var(--accent-light); font-weight: 600; }
+  .chain-step .name { font-size: 0.85rem; font-weight: 600; margin-top: 0.3rem; }
+  .chain-step .key { font-size: 0.7rem; color: var(--text-muted); margin-top: 0.4rem; font-family: monospace; word-break: break-all; }
+  .chain-step .count { font-size: 0.95rem; font-weight: 700; color: var(--success); margin-top: 0.3rem; }
+
+  table.ax {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+  }
+  table.ax thead th {
+    background: var(--bg-elevated);
+    text-align: left;
+    padding: 0.6rem 0.8rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-bottom: 1px solid var(--border);
+  }
+  table.ax tbody td { padding: 0.55rem 0.8rem; border-bottom: 1px solid var(--border); }
+  table.ax tbody tr:hover { background: var(--bg-surface-hover); }
+  table.ax .num { text-align: right; font-variant-numeric: tabular-nums; }
+  .pill {
+    display: inline-block;
+    padding: 0.15rem 0.5rem;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    background: var(--neutral-bg);
+    color: var(--text-secondary);
+  }
+  .pill.bad { background: var(--danger-bg); color: var(--danger); }
+  .pill.warn { background: var(--warning-bg); color: var(--warning); }
+  .pill.good { background: var(--success-bg); color: var(--success); }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .grid-3 { display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem; }
+
+  .narrative-card {
+    background: var(--bg-elevated);
+    border-left: 4px solid var(--danger);
+    padding: 1rem;
+    margin-bottom: 0.8rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+  }
+  .narrative-card .meta { font-size: 0.72rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+  .narrative-card .meta strong { color: var(--danger); }
+  .narrative-card .text { color: var(--text-secondary); line-height: 1.5; }
+
+  .caveat {
+    background: rgba(251, 191, 36, 0.05);
+    border-left: 4px solid var(--warning);
+    padding: 1rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+  }
+  .caveat strong { color: var(--warning); }
+
+  @media (max-width: 1200px) {
+    .ax-stat-grid { grid-template-columns: repeat(3, 1fr); }
+    .chain { grid-template-columns: 1fr; }
+    .chain-step::after { content: "↓"; right: 50%; top: auto; bottom: -1rem; transform: translateX(50%); }
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+{# ─── HERO ─── #}
+<div class="ax-hero">
+  <h1>🪡 {{ cfg.label }} <span style="color:var(--text-muted);font-weight:400;font-size:1.2rem;">({{ code }})</span></h1>
+  <div class="subtitle">
+    {{ cfg.device_category }} · Boston Scientific ·
+    Parent CPTs: <code>{{ cfg.cpts | join(', ') }}</code>
+  </div>
+
+  <div class="ax-stat-grid">
+    <div class="ax-stat"><div class="val">{{ "{:,}".format(hero[0]) }}</div><div class="lbl">Total MAUDE events</div></div>
+    <div class="ax-stat danger"><div class="val">{{ "{:,}".format(hero[1]) }}</div><div class="lbl">Deaths</div></div>
+    <div class="ax-stat warning"><div class="val">{{ "{:,}".format(hero[2]) }}</div><div class="lbl">Injuries</div></div>
+    <div class="ax-stat"><div class="val">{{ "{:,}".format(hero[3]) }}</div><div class="lbl">Malfunctions</div></div>
+    <div class="ax-stat success"><div class="val">{{ top_hospitals|length }}</div><div class="lbl">Hospitals (top-30)</div></div>
+    <div class="ax-stat"><div class="val">{{ hero[5] }}</div><div class="lbl">Brand variants</div></div>
+  </div>
+  <div style="margin-top:0.8rem; font-size:0.78rem; color:var(--text-muted);">
+    First event reported: <strong>{{ hero[6] or '—' }}</strong> · Most recent: <strong>{{ hero[7] or '—' }}</strong>
+  </div>
 </div>
 
-{# ── Live data-completeness checklist ─────────────────────────── #}
-{% set ready_puf  = (completeness[0] or 0) > 0 %}
-{% set ready_axios = (completeness[2] or 0) > 0 %}
-{% set ready_hosp = (completeness[5] or 0) > 0 %}
-{% set ready_nppes = (completeness[6] or 0) > 0 %}
-{% set ready_trial = (completeness[7] or 0) > 0 %}
-{% set ready_op   = (completeness[8] or 0) > 0 %}
-<div class="card" style="border-left: 6px solid {{ 'var(--success)' if ready_puf and ready_axios and ready_hosp else 'var(--warning)' }};">
-  <div class="card-title">⚙️ Data completeness — what's loaded for the AXIOS requirement</div>
-  <table style="margin-top:0.5rem;">
-    <thead><tr><th style="width:1%;">✓</th><th>Required for</th><th>What's needed</th><th style="text-align:right;">Loaded</th><th>If missing — run this</th></tr></thead>
-    <tbody>
-      <tr>
-        <td>{{ '✅' if ready_puf else '❌' }}</td>
-        <td>Dataset 1 — denominator</td>
-        <td>Physician PUF rows for ERCP CPTs</td>
-        <td style="text-align:right;"><strong>{{ "{:,}".format(completeness[0] or 0) }}</strong></td>
-        <td><code>python run.py ingest --dataset medicare_physician_by_provider_service</code></td>
-      </tr>
-      <tr>
-        <td>{{ '✅' if (completeness[1] or 0) > 1 else '⚠️' }}</td>
-        <td>Dataset 3 — YoY trend</td>
-        <td>Multi-year PUF (currently only {{ completeness[1] or 0 }} year)</td>
-        <td style="text-align:right;"><strong>{{ completeness[1] or 0 }} yr</strong></td>
-        <td>Drop additional <code>physician_YYYY.csv</code> into <code>downloads/</code></td>
-      </tr>
-      <tr>
-        <td>{{ '✅' if ready_axios else '❌' }}</td>
-        <td>Numerator — AXIOS-specific</td>
-        <td>MAUDE rows where brand contains "axios"</td>
-        <td style="text-align:right;"><strong>{{ "{:,}".format(completeness[2] or 0) }}</strong></td>
-        <td><code>python scripts/fetch_axios_maude.py</code> (brings in 2,367)</td>
-      </tr>
-      <tr>
-        <td>{{ '✅' if ready_hosp else '❌' }}</td>
-        <td>Dataset 2 — hospital-level outcomes</td>
-        <td>PSI-15 / PSI-09 / PSI-13 / PSI-90 / READM_30 measure rows</td>
-        <td style="text-align:right;"><strong>{{ "{:,}".format(completeness[5] or 0) }}</strong></td>
-        <td><code>python run.py ingest --dataset muwa-iene</code> (PSI), <code>9n3s-kdb3</code> (HRRP)</td>
-      </tr>
-      <tr>
-        <td>{{ '✅' if ready_nppes else '❌' }}</td>
-        <td>NPI ↔ CCN bridge (lets us tie ERCP NPIs to hospital outcomes)</td>
-        <td>NPPES registry rows</td>
-        <td style="text-align:right;"><strong>{{ "{:,}".format(completeness[6] or 0) }}</strong></td>
-        <td>Parse <code>downloads/nppes.zip</code> into <code>npi_registry</code></td>
-      </tr>
-      <tr>
-        <td>{{ '✅' if ready_trial else '⚠️' }}</td>
-        <td>Clinical evidence — trial signal</td>
-        <td>ClinicalTrials.gov rows mentioning AXIOS</td>
-        <td style="text-align:right;"><strong>{{ "{:,}".format(completeness[7] or 0) }}</strong></td>
-        <td>Add AXIOS bucket to <code>CTG_DEVICE_BUCKETS</code> in <code>src/risk_sources.py</code> + re-pull</td>
-      </tr>
-      <tr>
-        <td>{{ '✅' if ready_op else '⚠️' }}</td>
-        <td>Manufacturer payment exposure</td>
-        <td>Open Payments rows for Boston Scientific</td>
-        <td style="text-align:right;"><strong>{{ "{:,}".format(completeness[8] or 0) }}</strong></td>
-        <td><code>python run.py ingest --dataset op_2024_general</code></td>
-      </tr>
-    </tbody>
-  </table>
-  <p class="card-subtitle" style="margin-top:0.75rem;">
-    <strong>Total MAUDE in DB:</strong> {{ "{:,}".format(completeness[4] or 0) }} events ·
-    <strong>Boston Scientific share:</strong> {{ "{:,}".format(completeness[3] or 0) }} ·
-    <strong>AXIOS-branded share:</strong> {{ "{:,}".format(completeness[2] or 0) }}.
-    The page calls every dataset by its real source — see the panel headers below for the URL each row came from.
-  </p>
+{# ─── C-CODE TABS ─── #}
+<div class="code-tabs">
+  {% for c, info in configs.items() %}
+  <a href="/axios?code={{ c }}" class="code-tab {% if c == code %}active{% endif %}">
+    {{ c }}
+    <small>{{ info.label }} · {{ info.events }} events</small>
+  </a>
+  {% endfor %}
 </div>
 
-{# ── Data sources reference ───────────────────────────────────── #}
-<div class="explain">
-  <strong>Source URLs (click to verify upstream).</strong>
-  <ul style="margin:0.4rem 0 0 1.2rem; line-height:1.6;">
-    <li><strong>Dataset 1 + 3</strong> (Physician PUF) →
-        <a href="https://data.cms.gov/provider-summary-by-type-of-service/medicare-physician-other-practitioners/medicare-physician-other-practitioners-by-provider-and-service" target="_blank" rel="noopener">data.cms.gov</a> · table <code>cms_provider_summary</code></li>
-    <li><strong>Dataset 2</strong> (Hospital Compare) → PSI-90 family from
-        <a href="https://data.cms.gov/provider-data/dataset/muwa-iene" target="_blank" rel="noopener">muwa-iene</a> + readmission from
-        <a href="https://data.cms.gov/provider-data/dataset/9n3s-kdb3" target="_blank" rel="noopener">9n3s-kdb3</a> · table <code>cms_hospital_measures</code></li>
-    <li><strong>MAUDE numerator</strong> → <a href="https://api.fda.gov/device/event.json?search=device.brand_name:axios" target="_blank" rel="noopener">openFDA</a> · tables <code>fda_maude_events</code> + <code>fda_maude_devices</code></li>
-  </ul>
-</div>
+{# ─── METHODOLOGY ─── #}
+<div class="ax-section">
+  <h2><span class="icon">🔗</span> How we connected MAUDE events to hospitals</h2>
+  <div class="sub">No direct join key exists between FDA MAUDE and CMS hospital data. We built a 5-step bridge using device codes and physician procedure billing volume.</div>
 
-{# ── BIG STORY: the rate ──────────────────────────────────────── #}
-<div class="card" style="border-left: 6px solid var(--accent); background: linear-gradient(135deg, rgba(99,102,241,0.06), transparent);">
-  <div class="card-title" style="font-size:1.1rem;">📐 The headline number — AXIOS only (strict scope)</div>
-  <div style="display:grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap:1.2rem; align-items:center; margin:1.2rem 0; text-align:center;">
-
-    <div>
-      <div style="color:var(--text-muted); font-size:0.7rem; text-transform:uppercase; letter-spacing:0.1em;">Numerator</div>
-      <div style="font-size:2rem; font-weight:700; color:var(--danger);">{{ "{:,}".format(maude_strict[1] or 0) }}</div>
-      <div style="font-size:0.8rem; color:var(--text-secondary);">MAUDE events<br>(last 12 mo)</div>
-      <div style="font-size:0.7rem; color:var(--text-muted); margin-top:0.3rem;">
-        brand contains "axios" + Boston Scientific only
-      </div>
+  <div class="chain">
+    <div class="chain-step">
+      <div class="num">STEP 1 — FDA</div>
+      <div class="name">MAUDE adverse events</div>
+      <div class="key">default.flattened_adverse_event</div>
+      <div class="count">{{ "{:,}".format(hero[0]) }} events</div>
     </div>
-
-    <div style="font-size:2rem; color:var(--text-muted);">÷</div>
-
-    <div>
-      <div style="color:var(--text-muted); font-size:0.7rem; text-transform:uppercase; letter-spacing:0.1em;">Denominator</div>
-      <div style="font-size:2rem; font-weight:700; color:var(--accent-light);">{{ "{:,}".format((totals[0] or 0) | int) }}</div>
-      <div style="font-size:0.8rem; color:var(--text-secondary);">ERCP-family Medicare<br>procedures ({{ puf_year_label }})</div>
-      <div style="font-size:0.7rem; color:var(--text-muted); margin-top:0.3rem;">CPT 43240 / 43260–43278</div>
+    <div class="chain-step">
+      <div class="num">STEP 2 — Crosswalk</div>
+      <div class="name">Device → CPT</div>
+      <div class="key">device_to_procedure</div>
+      <div class="count">{{ chain_stats[0] }} mapping rows</div>
     </div>
-
-    <div style="font-size:2rem; color:var(--text-muted);">=</div>
-
-    <div>
-      <div style="color:var(--text-muted); font-size:0.7rem; text-transform:uppercase; letter-spacing:0.1em;">Rate</div>
-      <div style="font-size:2.4rem; font-weight:800; color:var(--success);">{{ rate_strict if rate_strict is not none else '—' }}</div>
-      <div style="font-size:0.8rem; color:var(--text-secondary);">complaints<br>per 1,000 procedures</div>
+    <div class="chain-step">
+      <div class="num">STEP 3 — CMS PUF</div>
+      <div class="name">Physicians billing CPT</div>
+      <div class="key">cms_provider_summary.HCPCS_Cd</div>
+      <div class="count">{{ "{:,}".format(chain_stats[1]) }} physicians</div>
+    </div>
+    <div class="chain-step">
+      <div class="num">STEP 4 — Bridge</div>
+      <div class="name">Physician → Hospital</div>
+      <div class="key">npi_facility_affiliation</div>
+      <div class="count">{{ "{:,}".format(chain_stats[2]) }} hospitals</div>
+    </div>
+    <div class="chain-step">
+      <div class="num">STEP 5 — Bayes</div>
+      <div class="name">Probabilistic share</div>
+      <div class="key">bsc_*_attribution</div>
+      <div class="count">P × {{ hero[0] }}</div>
     </div>
   </div>
 
-  <hr style="border:none; border-top:1px solid var(--border); margin:1rem 0;">
-
-  <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1.2rem; margin-top:0.5rem;">
-    <div style="padding:0.8rem; background: var(--bg-elevated); border-radius:var(--radius-sm); border-left:3px solid var(--success);">
-      <div style="font-size:0.7rem; color:var(--text-muted); text-transform:uppercase;">Strict (this page's headline)</div>
-      <div style="font-size:1.4rem; font-weight:700;">{{ maude_strict[1] or 0 }} complaints / 12 mo</div>
-      <div style="font-size:0.78rem; color:var(--text-secondary);">brand contains "axios" + manufacturer = Boston Scientific. This is the device the doc names.</div>
-    </div>
-    <div style="padding:0.8rem; background: var(--bg-elevated); border-radius:var(--radius-sm); border-left:3px solid var(--warning);">
-      <div style="font-size:0.7rem; color:var(--text-muted); text-transform:uppercase;">Broader BSC endoscopy family</div>
-      <div style="font-size:1.4rem; font-weight:700;">{{ maude_broad[1] or 0 }} complaints / 12 mo</div>
-      <div style="font-size:0.78rem; color:var(--text-secondary);">
-        Adds product codes <code>FCY/FAJ/EOQ/ODG</code> — duodenoscopes, colonoscopes, <strong>and bronchoscopes (EOQ)</strong>.
-        Use for BSC-wide endoscopy view, NOT for AXIOS-specific risk.
-      </div>
-    </div>
-  </div>
-
-  <div class="explain" style="margin-top:1rem;">
-    <strong>How to read this:</strong> for every 1,000 ERCP-family procedures performed in {{ puf_year_label }},
-    {{ rate_strict if rate_strict is not none else '?' }} resulted in a MAUDE complaint against an AXIOS-branded device.
+  <div class="caveat" style="margin-top:1.2rem;">
+    <strong>Math:</strong> P(hospital | event) = hospital's national share of {{ cfg.label }} procedure volume.
+    estimated_events = P × {{ hero[0] }} · estimated_deaths = P × {{ hero[1] }}.
     <br><br>
-    <strong>Why two numbers?</strong> Restricting to brand="axios" gives a clean rate but a small numerator.
-    The "broader" figure includes the rest of the BSC endoscopy family (which the bridge currently maps to)
-    — but that family includes bronchoscopes that have nothing to do with AXIOS deployment, so don't conflate them.
+    <strong>Honest caveat:</strong> FDA redacts reporter facility name from public MAUDE per 21 CFR 803.9(b).
+    We cannot say "this event happened at this hospital." We can say "this hospital
+    <em>probably</em> had ~N {{ cfg.label }} events, given its share of procedure volume."
   </div>
 </div>
 
-{# ── DATASET 1 — Physician PUF ─────────────────────────────────── #}
-<div class="card">
-  <div class="card-title">1️⃣ Procedure volume — CMS Physician PUF
-    <span style="font-weight:400; color:var(--text-muted); font-size:0.78rem;">
-      · source: <a href="https://data.cms.gov/provider-summary-by-type-of-service/medicare-physician-other-practitioners/medicare-physician-other-practitioners-by-provider-and-service" target="_blank" rel="noopener">data.cms.gov</a>
-    </span>
-  </div>
-  <p class="card-subtitle">
-    Every Medicare-billed ERCP-family procedure for the year {{ puf_year_label }}. The source CSV is per-physician (NPI),
-    so we cannot count distinct hospitals from this dataset alone — that requires NPPES NPI→CCN linkage which isn't loaded yet.
-  </p>
-
-  <div class="kpi" style="margin-top:0.5rem;">
-    <div class="box"><div class="label">Total procedures billed</div><div class="value">{{ "{:,}".format((totals[0] or 0) | int) }}</div><div class="delta">PUF year: {{ puf_year_label }}</div></div>
-    <div class="box"><div class="label">Medicare beneficiaries</div><div class="value">{{ "{:,}".format((totals[1] or 0) | int) }}</div><div class="delta">Distinct patients</div></div>
-    <div class="box"><div class="label">Performing physicians (NPIs)</div><div class="value">{{ "{:,}".format((totals[2] or 0) | int) }}</div><div class="delta">Per-NPI is the only key in the PUF</div></div>
-    <div class="box"><div class="label">Medicare payments</div><div class="value">${{ "{:,.0f}".format(totals[3] or 0) }}</div><div class="delta">Sum of Avg_Mdcr_Pymt × services</div></div>
-  </div>
-
-  <h4 style="margin:1.5rem 0 0.4rem 0; font-size:0.95rem;">Volume by CPT code</h4>
-  <table class="scroll-wrap">
-    <thead>
-      <tr><th>CPT</th><th>Procedure (HCPCS_Desc from PUF row)</th><th>Services</th><th>Patients</th><th>Physicians</th><th>Medicare $</th></tr>
-    </thead>
-    <tbody>
-      {% for r in by_cpt %}
-      <tr>
-        <td><code class="measure">{{ r[0] }}</code></td>
-        <td class="cell">{{ r[1] or '—' }}</td>
-        <td><strong>{{ "{:,}".format((r[2] or 0) | int) }}</strong></td>
-        <td>{{ "{:,}".format((r[3] or 0) | int) }}</td>
-        <td>{{ "{:,}".format(r[4] or 0) }}</td>
-        <td>${{ "{:,.0f}".format(r[5] or 0) }}</td>
-      </tr>
-      {% else %}
-      <tr><td colspan="6" style="text-align:center; padding:1rem; color:var(--text-muted);">No PUF rows — load <code>downloads/physician_2023.csv</code>.</td></tr>
-      {% endfor %}
-    </tbody>
-  </table>
-
-  <h4 style="margin:1.5rem 0 0.4rem 0; font-size:0.95rem;">Volume by state — top 15</h4>
-  <p class="card-subtitle">
-    The geographic denominator. Compare with MAUDE event geography below to spot complaint clusters that aren't just volume artefacts.
-  </p>
-  <table>
-    <thead><tr><th>State</th><th>Services</th><th>Patients</th><th>Physicians</th></tr></thead>
-    <tbody>
-      {% for r in by_state %}
-      <tr>
-        <td><strong>{{ r[0] }}</strong></td>
-        <td>{{ "{:,}".format((r[1] or 0) | int) }}</td>
-        <td>{{ "{:,}".format((r[2] or 0) | int) }}</td>
-        <td>{{ "{:,}".format(r[3] or 0) }}</td>
-      </tr>
-      {% else %}<tr><td colspan="4" style="color:var(--text-muted);">No data.</td></tr>{% endfor %}
-    </tbody>
-  </table>
+{# ─── TIME TREND ─── #}
+<div class="ax-section">
+  <h2><span class="icon">📈</span> Event count over time</h2>
+  <div class="sub">Stacked: death / injury / malfunction by year of event</div>
+  <div style="height:300px;"><canvas id="chartYear"></canvas></div>
 </div>
 
-{# ── DATASET 3 — limitation note ───────────────────────────────── #}
-<div class="card" style="border-left:4px solid var(--neutral);">
-  <div class="card-title">📈 National trend (Dataset 3) — currently single-year</div>
-  <p class="card-subtitle">
-    Only the {{ puf_year_label }} PUF CSV is loaded (CMS data-api/v1 is Akamai-blocked from this network, see <code>src/datasets.py:198-204</code>).
-    To enable a year-over-year trend, drop additional <code>physician_YYYY.csv</code> files into <code>downloads/</code> and re-run ingest.
-  </p>
-</div>
-
-{# ── DATASET 2 — Hospital Compare ──────────────────────────────── #}
-<div class="card">
-  <div class="card-title">2️⃣ Hospital outcomes — proxy measures for ERCP risk
-    <span style="font-weight:400; color:var(--text-muted); font-size:0.78rem;">
-      · source: CMS Hospital Compare (PSI-90 family + HRRP)
-    </span>
-  </div>
-  <p class="card-subtitle">
-    <strong>Honest framing:</strong> CMS does not publish ERCP-specific complication rates at the hospital level.
-    These five Patient Safety Indicators (PSIs) and the all-cause readmission rate are the closest proxies for the
-    actual top AXIOS complications: <strong>perforation</strong> (PSI-15), <strong>bleeding</strong> (PSI-09),
-    <strong>biliary infection</strong> (PSI-13), <strong>composite safety</strong> (PSI-90), and
-    <strong>30-day readmission</strong> (READM_30_HOSP_WIDE).
-  </p>
-
-  <h4 style="margin:1rem 0 0.4rem 0; font-size:0.95rem;">Coverage — how many hospitals have data for each proxy</h4>
-  <table>
-    <thead><tr><th>Measure</th><th>Description</th><th>Hospitals</th><th>Worse than national</th><th>Better than national</th></tr></thead>
-    <tbody>
-      {% for r in measure_coverage %}
-      <tr>
-        <td><code class="measure">{{ r[0] }}</code></td>
-        <td class="cell">{{ decode_measure(r[0])[0] if decode_measure(r[0]) else r[0] }}</td>
-        <td>{{ "{:,}".format(r[3]) }}</td>
-        <td>{% if r[1] %}<span class="risk risk-high">{{ r[1] }}</span>{% else %}0{% endif %}</td>
-        <td>{% if r[2] %}<span class="risk risk-low">{{ r[2] }}</span>{% else %}0{% endif %}</td>
-      </tr>
-      {% else %}
-      <tr><td colspan="5" style="text-align:center; padding:1rem; color:var(--text-muted);">
-        None of these PSI / readmission measures are loaded yet — see the data-completeness panel above.
-      </td></tr>
-      {% endfor %}
-    </tbody>
-  </table>
-
-  <h4 style="margin:1.5rem 0 0.4rem 0; font-size:0.95rem;">Hospitals scoring "Worse than national" — top 50</h4>
-  <p class="card-subtitle">
-    Cross-reference these CCNs with MAUDE event geography below. A complaint at a CCN flagged here is much more
-    likely to reflect the hospital than the device.
-  </p>
-  <table class="scroll-wrap">
-    <thead>
-      <tr><th>CCN</th><th>Hospital</th><th>State</th><th>Star</th><th>Measure</th><th>Description</th><th>Score</th><th>Period</th></tr>
-    </thead>
-    <tbody>
-      {% for r in ercp_measures %}
-      <tr>
-        <td><code style="font-size:0.75rem;">{{ r[0] }}</code></td>
-        <td class="cell">{{ r[1] or '—' }}</td>
-        <td>{{ r[2] or '—' }}</td>
-        <td>{{ r[3] or '—' }}</td>
-        <td><code class="measure">{{ r[4] or '—' }}</code></td>
-        <td class="cell" style="font-size:0.78rem; color:var(--text-secondary);">{{ decode_measure(r[4])[0] if r[4] and decode_measure(r[4]) else '' }}</td>
-        <td>{{ r[5] or '—' }}</td>
-        <td style="color:var(--text-muted); font-size:0.78rem;">{{ r[7] or '' }} → {{ r[8] or '' }}</td>
-      </tr>
-      {% else %}
-      <tr><td colspan="8" style="text-align:center; padding:1rem; color:var(--text-muted);">
-        No "Worse than national" rows. Either none flagged, or the PSI / HRRP datasets aren't ingested.
-      </td></tr>
-      {% endfor %}
-    </tbody>
-  </table>
-</div>
-
-{# ── 🎯 The all-three-in-one row (manufacturer + device + CCN) ── #}
-<div class="card" style="border-left:6px solid {{ 'var(--success)' if all_three_ready and (all_three_summary[0] or 0) > 0 else 'var(--warning)' }};">
-  <div class="card-title">🎯 manufacturer + device + CCN — all in one row
-    <span style="font-weight:400; color:var(--text-muted); font-size:0.78rem;">
-      · source: <code>vw_device_event_with_ccn</code>
-      (= fda_maude_devices ⨝ fda_maude_events ⨝ bridge_maude_to_ccn ⨝ cms_hospitals)
-    </span>
-  </div>
-  <p class="card-subtitle">
-    No single CMS dataset has manufacturer + device + CCN universally.
-    This view fixes that by inferring the CCN on every MAUDE event from
-    its <code>facility_name + state</code>, then joining the device row.
-    The result is the requirement's "all three in one row" — for the entire
-    United States, not just teaching hospitals (which is the limit of Open Payments).
-  </p>
-
-  {% if not all_three_ready %}
-    <div class="explain" style="border-left:4px solid var(--warning);">
-      <strong>The view doesn't exist yet.</strong>
-      Run the migration + matcher to create it:
-      <pre style="background:var(--bg-elevated); padding:0.5rem; border-radius:var(--radius-xs); margin-top:0.4rem;">
-# 1. Apply the schema (creates bridge_maude_to_ccn + vw_device_event_with_ccn)
-clickhouse-client --secure --host warehouse.dev.rp360.io --port 9440 \
-  --user default --password "$CLICKHOUSE_PASSWORD" \
-  --database hospital_us_cms_data \
-  --queries-file schema_clickhouse.sql
-
-# 2. Build the bridge (multi-pass exact + fuzzy match)
-python scripts/build_maude_ccn_bridge.py
-</pre>
-    </div>
-  {% else %}
-    <div class="kpi" style="margin:0.8rem 0 0.5rem 0;">
-      <div class="box"><div class="label">Total all-three rows</div><div class="value">{{ "{:,}".format(all_three_summary[0] or 0) }}</div><div class="delta">AXIOS / BSC endoscopy events with CCN</div></div>
-      <div class="box"><div class="label">Distinct hospitals</div><div class="value">{{ "{:,}".format(all_three_summary[1] or 0) }}</div><div class="delta">CCNs touched</div></div>
-      <div class="box"><div class="label">High confidence</div><div class="value" style="color:var(--success)">{{ all_three_summary[2] or 0 }}</div><div class="delta">exact name + state match</div></div>
-      <div class="box"><div class="label">Medium confidence</div><div class="value" style="color:var(--warning)">{{ all_three_summary[3] or 0 }}</div><div class="delta">ngram ≥ 0.85 + state</div></div>
-      <div class="box"><div class="label">Low confidence</div><div class="value" style="color:var(--text-muted)">{{ all_three_summary[4] or 0 }}</div><div class="delta">ngram ≥ 0.65 + state</div></div>
-    </div>
-
-    <table class="scroll-wrap">
-      <thead>
-        <tr>
-          <th>Manufacturer</th><th>Device brand</th><th>PC</th>
-          <th>CCN</th><th>Hospital</th><th>State</th><th>Star</th>
-          <th>Severity</th><th>Date</th><th>Match</th>
-        </tr>
-      </thead>
+<div class="grid-3">
+  {# ─── TOP HOSPITALS ─── #}
+  <div class="ax-section">
+    <h2><span class="icon">🏥</span> Top probable hospitals</h2>
+    <div class="sub">Ranked by estimated {{ cfg.label }} events (volume-weighted share × {{ hero[0] }} actual MAUDE events).</div>
+    <table class="ax">
+      <thead><tr>
+        <th>CCN</th><th>Hospital</th><th>ST</th>
+        <th class="num">Svc</th><th class="num">% Nat'l</th>
+        <th class="num">Est evt</th><th class="num">Est deaths</th>
+        <th>SEP-1</th><th>CLABSI</th>
+      </tr></thead>
       <tbody>
-        {% for r in all_three %}
+        {% for r in top_hospitals %}
         <tr>
-          <td class="cell">{{ r[0] or '—' }}</td>
-          <td class="cell">{{ r[1] or '—' }}</td>
-          <td><code class="measure">{{ r[2] or '—' }}</code></td>
-          <td><code style="font-size:0.75rem;">{{ r[3] or '—' }}</code></td>
-          <td class="cell">{{ r[4] or '—' }}</td>
-          <td>{{ r[5] or '—' }}</td>
-          <td>{{ r[6] or '—' }}</td>
+          <td><code>{{ r[0] }}</code></td>
+          <td>{% if r[0] %}<a href="/hospital/{{ r[0] }}" style="color:var(--accent-light);">{{ (r[1] or '?')[:38] }}</a>{% else %}{{ (r[1] or '?')[:38] }}{% endif %}</td>
+          <td>{{ r[2] or '—' }}</td>
+          <td class="num">{{ r[4]|int if r[4] else '—' }}</td>
+          <td class="num">{{ r[5] }}%</td>
+          <td class="num"><strong>{{ r[6] }}</strong></td>
+          <td class="num">{% if r[7] and r[7] > 0.5 %}<span class="pill bad">{{ r[7] }}</span>{% else %}{{ r[7] }}{% endif %}</td>
           <td>
-            {% if r[7]=='Death' %}<span class="risk risk-high">Death</span>
-            {% elif r[7]=='Injury' %}<span class="risk risk-med">Injury</span>
-            {% elif r[7]=='Malfunction' %}<span class="risk risk-unknown">Malfunction</span>
-            {% else %}{{ r[7] or '—' }}{% endif %}
-          </td>
-          <td>{{ r[8] or '—' }}</td>
-          <td>
-            {% if r[9]=='high' %}<span class="risk risk-low">high · 1.0</span>
-            {% elif r[9]=='medium' %}<span class="risk risk-unknown">med · {{ '%.2f' | format(r[10] or 0) }}</span>
-            {% elif r[9]=='low' %}<span class="risk risk-med">low · {{ '%.2f' | format(r[10] or 0) }}</span>
+            {% set s = r[9] or '' %}
+            {% if s in ['0 out of 10','1 out of 10','2 out of 10'] %}<span class="pill bad">{{ s }}</span>
+            {% elif s in ['3 out of 10','4 out of 10','5 out of 10'] %}<span class="pill warn">{{ s }}</span>
+            {% elif s %}<span class="pill good">{{ s }}</span>
             {% else %}—{% endif %}
           </td>
+          <td>{{ r[10] or '—' }}</td>
         </tr>
-        {% else %}
-        <tr><td colspan="10" style="text-align:center; padding:1rem; color:var(--text-muted);">
-          Bridge built but no AXIOS / BSC endoscopy rows match — likely because the local MAUDE table
-          hasn't been populated with AXIOS events yet. Run <code>python scripts/fetch_axios_maude.py</code> first.
-        </td></tr>
         {% endfor %}
       </tbody>
     </table>
-  {% endif %}
+  </div>
+
+  {# ─── SEVERITY + STATES ─── #}
+  <div>
+    <div class="ax-section">
+      <h2><span class="icon">⚠️</span> Event severity</h2>
+      <div style="height:200px;"><canvas id="chartSeverity"></canvas></div>
+    </div>
+    <div class="ax-section">
+      <h2><span class="icon">🌎</span> Top states by est. events</h2>
+      <table class="ax">
+        <thead><tr><th>ST</th><th class="num">Hosp</th><th class="num">Est evt</th><th class="num">Est deaths</th></tr></thead>
+        <tbody>
+          {% for s in state_rollup[:10] %}
+          <tr><td><strong>{{ s[0] }}</strong></td><td class="num">{{ s[1] }}</td><td class="num">{{ s[3] }}</td><td class="num">{{ s[4] }}</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
 
-{# ── openFDA MAUDE ────────────────────────────────────────────── #}
-<div class="card">
-  <div class="card-title">🔬 openFDA MAUDE complaints
-    <span style="font-weight:400; color:var(--text-muted); font-size:0.78rem;">
-      · source: <a href="https://api.fda.gov/device/event.json" target="_blank" rel="noopener">api.fda.gov/device/event.json</a>
-    </span>
-  </div>
-  <p class="card-subtitle">
-    Currently displaying the <strong>{{ scope }}</strong> scope. Switch with the buttons below.
-  </p>
-
-  <form method="get" action="/axios" class="filter-bar">
-    <input type="text" name="brand_filter" value="{{ brand_filter }}" placeholder="brand contains…">
-    <button type="submit" name="scope" value="strict" {% if scope=='strict' %}style="background:var(--success); color:#fff;"{% endif %}>Strict (AXIOS only)</button>
-    <button type="submit" name="scope" value="broad"  {% if scope=='broad'  %}style="background:var(--warning); color:#000;"{% endif %}>Broad (BSC endoscopy family)</button>
-  </form>
-
-  <div class="kpi" style="margin:1rem 0;">
-    <div class="box"><div class="label">Last 12 mo (current scope)</div><div class="value">{{ "{:,}".format(maude_kpi[1] or 0) }}</div><div class="delta">→ this is the numerator above</div></div>
-    <div class="box"><div class="label">Prior 12 mo</div><div class="value">{{ "{:,}".format(maude_kpi[2] or 0) }}</div><div class="delta">{% if yoy_pct is not none %}<span class="{{ 'bad' if yoy_pct > 0 else 'good' }}">{{ '+' if yoy_pct > 0 else '' }}{{ yoy_pct }}% YoY</span>{% else %}no baseline{% endif %}</div></div>
-    <div class="box"><div class="label">Lifetime</div><div class="value">{{ "{:,}".format(maude_kpi[0] or 0) }}</div><div class="delta">All ingested MAUDE history</div></div>
-    <div class="box"><div class="label">Deaths</div><div class="value" style="color:var(--danger)">{{ maude_kpi[3] or 0 }}</div><div class="delta">Lifetime — Class I severity</div></div>
-    <div class="box"><div class="label">Injuries</div><div class="value" style="color:var(--warning)">{{ maude_kpi[4] or 0 }}</div><div class="delta">Lifetime — patient harm</div></div>
-    <div class="box"><div class="label">Last report</div><div class="value" style="font-size:1.1rem;">{{ maude_kpi[6] or '—' }}</div><div class="delta">Latest event in DB</div></div>
+{# ─── BRAND VARIANTS + FAILURE MODES ─── #}
+<div class="grid-2">
+  <div class="ax-section">
+    <h2><span class="icon">🔖</span> Brand variants in MAUDE</h2>
+    <div class="sub">All product lines under {{ cfg.label }} that report events</div>
+    <table class="ax">
+      <thead><tr><th>Brand</th><th class="num">Events</th><th class="num">Deaths</th><th class="num">Inj</th><th class="num">Malfx</th></tr></thead>
+      <tbody>
+        {% for v in variants %}
+        <tr>
+          <td>{{ (v[0] or '')[:55] }}</td>
+          <td class="num">{{ "{:,}".format(v[1]) }}</td>
+          <td class="num">{% if v[2] %}<span class="pill bad">{{ v[2] }}</span>{% else %}—{% endif %}</td>
+          <td class="num">{{ v[3] }}</td>
+          <td class="num">{{ v[4] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
   </div>
 
-  <h4 style="margin:1rem 0 0.4rem 0; font-size:0.95rem;">Monthly complaint trend (last 36 months)</h4>
-  <div class="chart-container"><canvas id="monthlyChart"></canvas></div>
+  <div class="ax-section">
+    <h2><span class="icon">⚙️</span> Failure modes</h2>
+    <div class="sub">Top product problems from MAUDE</div>
+    <table class="ax">
+      <thead><tr><th>Failure mode</th><th class="num">Events</th></tr></thead>
+      <tbody>
+        {% for f in failures %}
+        <tr>
+          <td>{{ (f[0] or '')[:80] }}</td>
+          <td class="num">{{ "{:,}".format(f[1]) }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
 
-  <h4 style="margin:1.5rem 0 0.4rem 0; font-size:0.95rem;">Top brands × product codes in matched events</h4>
-  <p class="card-subtitle" style="margin-bottom:0.5rem;">
-    Use this to sanity-check the scope: in <strong>strict</strong> mode you should see only AXIOS rows.
-    In <strong>broad</strong> mode you'll also see EXALT (bronchoscope, PC=EOQ) — that's expected.
-  </p>
-  <table>
-    <thead><tr><th>Brand</th><th>PC</th><th>Events</th><th>Deaths</th><th>Injuries</th><th>Latest</th></tr></thead>
+{# ─── RED FLAGS ─── #}
+{% if red_flags %}
+<div class="ax-section">
+  <h2><span class="icon">🚨</span> Red-flag hospitals: high {{ cfg.label }} volume + poor sepsis score</h2>
+  <div class="sub">
+    SEP-1 score ≤ 2/10 (lowest Medicare sepsis-bundle compliance tier). These hospitals are
+    <strong>financially penalized</strong> by Medicare for safety failures AND carry elevated
+    {{ cfg.label }} event risk per our model.
+  </div>
+  <table class="ax">
+    <thead><tr><th>CCN</th><th>Hospital</th><th>ST</th><th class="num">Svc</th><th class="num">Est evt</th><th class="num">Est deaths</th><th>SEP-1</th></tr></thead>
     <tbody>
-      {% for r in maude_brands %}
+      {% for r in red_flags %}
       <tr>
-        <td class="cell">{{ r[0] or '—' }}</td>
-        <td><code class="measure">{{ r[1] or '—' }}</code></td>
-        <td><strong>{{ "{:,}".format(r[2]) }}</strong></td>
-        <td>{% if r[3] %}<span class="risk risk-high">{{ r[3] }}</span>{% else %}0{% endif %}</td>
-        <td>{% if r[4] %}<span class="risk risk-med">{{ r[4] }}</span>{% else %}0{% endif %}</td>
-        <td>{{ r[5] or '—' }}</td>
-      </tr>
-      {% else %}<tr><td colspan="6" style="color:var(--text-muted);">No matches in this scope.</td></tr>{% endfor %}
-    </tbody>
-  </table>
-
-  <h4 style="margin:1.5rem 0 0.4rem 0; font-size:0.95rem;">Most recent matched events (latest 50)</h4>
-  <p class="card-subtitle" style="margin-bottom:0.5rem;">
-    Each row is one MAUDE adverse-event report from openFDA. The "Source" link goes straight to the openFDA JSON
-    record, where the full narrative (<code>mdr_text</code>) is available alongside the parsed fields.
-    <br>
-    <strong>Why some columns show "—":</strong> Patient outcome and device-problem text are often blank for
-    Malfunction reports (no patient harm = no outcome to record). The PC column is what the manufacturer assigned
-    to the device — required field, so it's always populated.
-  </p>
-  <table class="scroll-wrap">
-    <thead>
-      <tr><th>Report #</th><th>Severity</th><th>Date</th><th>Brand</th><th>PC</th><th>Manufacturer</th><th>Patient outcome</th><th>Source</th></tr>
-    </thead>
-    <tbody>
-      {% for r in maude_recent %}
-      <tr>
-        <td><code style="font-size:0.75rem;">{{ r[0] }}</code></td>
-        <td>
-          {% if r[1]=='Death' %}<span class="risk risk-high">Death</span>
-          {% elif r[1]=='Injury' %}<span class="risk risk-med">Injury</span>
-          {% elif r[1]=='Malfunction' %}<span class="risk risk-unknown">Malfunction</span>
-          {% else %}<span class="risk risk-unknown">{{ r[1] or '—' }}</span>{% endif %}
-        </td>
+        <td><code>{{ r[0] }}</code></td>
+        <td>{% if r[0] %}<a href="/hospital/{{ r[0] }}" style="color:var(--accent-light);">{{ (r[1] or '?')[:38] }}</a>{% else %}{{ (r[1] or '?')[:38] }}{% endif %}</td>
         <td>{{ r[2] or '—' }}</td>
-        <td class="cell">{{ r[3] or '—' }}</td>
-        <td><code class="measure">{{ r[4] or '—' }}</code></td>
-        <td class="cell">{{ r[5] or '—' }}</td>
-        <td class="cell">{{ r[6] or '—' }}</td>
-        <td>
-          <a href="https://api.fda.gov/device/event.json?search=report_number:%22{{ r[0] }}%22" target="_blank" rel="noopener" style="font-size:0.75rem;">openFDA ↗</a>
-        </td>
+        <td class="num">{{ r[3]|int if r[3] else '—' }}</td>
+        <td class="num"><strong>{{ r[4] }}</strong></td>
+        <td class="num">{% if r[5] and r[5] > 0.3 %}<span class="pill bad">{{ r[5] }}</span>{% else %}{{ r[5] }}{% endif %}</td>
+        <td><span class="pill bad">{{ r[6] }}</span></td>
       </tr>
-      {% else %}<tr><td colspan="8" style="color:var(--text-muted);">No recent matched events.</td></tr>{% endfor %}
+      {% endfor %}
     </tbody>
   </table>
 </div>
+{% endif %}
 
+{# ─── DEATH NARRATIVES ─── #}
+{% if death_samples %}
+<div class="ax-section">
+  <h2><span class="icon">📑</span> Sample death event narratives</h2>
+  <div class="sub">Actual MAUDE death reports involving {{ cfg.label }} — hospital identity is FDA-redacted, but the failure mode is recorded.</div>
+  {% for d in death_samples %}
+  <div class="narrative-card">
+    <div class="meta">
+      <strong>DEATH</strong> · {{ d[0] or 'unknown date' }} · brand: {{ d[1] or '?' }}
+      {% if d[2] %} · problem: <code>{{ d[2][:60] }}</code>{% endif %}
+    </div>
+    <div class="text">{{ (d[3] or '')|replace('¿', '®') }}</div>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+{# ─── REPORTERS + CAVEATS ─── #}
+<div class="grid-2">
+  <div class="ax-section">
+    <h2><span class="icon">👤</span> Who reports these events?</h2>
+    <table class="ax">
+      <thead><tr><th>Reporter type</th><th class="num">Events</th></tr></thead>
+      <tbody>
+        {% for r in reporters %}
+        <tr><td>{{ r[0] }}</td><td class="num">{{ "{:,}".format(r[1]) }}</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="ax-section">
+    <h2><span class="icon">⚖️</span> What this dashboard can / cannot prove</h2>
+    <div class="caveat" style="margin-bottom:0.8rem;">
+      ✅ <strong>CAN prove:</strong> {{ cfg.label }} had <strong>{{ hero[0] }} adverse events</strong>
+      (<strong>{{ hero[1] }} deaths</strong>) across MAUDE, with failure modes recorded.
+    </div>
+    <div class="caveat" style="margin-bottom:0.8rem;">
+      ✅ <strong>CAN show:</strong> Which hospitals do high {{ cfg.label }}-procedure volume
+      AND carry safety penalties — defensible sales / risk targeting signal.
+    </div>
+    <div class="caveat" style="background:rgba(248,113,113,0.05);border-left-color:var(--danger);">
+      ❌ <strong>CANNOT prove:</strong> "Event X happened at Hospital Y." FDA strips reporter
+      facility name from public MAUDE. We provide <strong>probability estimates</strong>, not
+      deterministic attribution. Verifying any specific event-to-hospital match requires
+      Medicare LDS / ResDAC claims (DUA-restricted) or hospital purchase records.
+    </div>
+  </div>
+</div>
+
+{# ─── CHART.JS ─── #}
 <script>
-const monthly = {{ maude_monthly|tojson }};
-new Chart(document.getElementById('monthlyChart'), {
-  type: 'line',
-  data: {
-    labels: monthly.map(r => r[0]),
-    datasets: [{
-      label: 'MAUDE events / month',
-      data: monthly.map(r => r[1]),
-      borderColor: '#f87171',
-      backgroundColor: 'rgba(248,113,113,0.15)',
-      tension: 0.3,
-      fill: true,
-    }],
-  },
-  options: {responsive:true, maintainAspectRatio:false,
-    plugins:{legend:{display:false}},
-    scales:{x:{ticks:{color:'#9ba3b8'}}, y:{ticks:{color:'#9ba3b8'}, beginAtZero:true}}},
-});
+  const yearLabels = {{ by_year | map(attribute=0) | list | tojson }};
+  const yearDeath  = {{ by_year | map(attribute=2) | list | tojson }};
+  const yearInj    = {{ by_year | map(attribute=3) | list | tojson }};
+  const yearMalf   = {{ by_year | map(attribute=4) | list | tojson }};
+
+  new Chart(document.getElementById('chartYear'), {
+    type: 'bar',
+    data: {
+      labels: yearLabels,
+      datasets: [
+        { label: 'Deaths',       data: yearDeath, backgroundColor: '#f87171', stack: 's' },
+        { label: 'Injuries',     data: yearInj,   backgroundColor: '#fbbf24', stack: 's' },
+        { label: 'Malfunctions', data: yearMalf,  backgroundColor: '#6366f1', stack: 's' },
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { labels: { color: '#9ba3b8' } } },
+      scales: {
+        x: { stacked: true, ticks: { color: '#9ba3b8' }, grid: { color: 'rgba(255,255,255,0.04)' } },
+        y: { stacked: true, ticks: { color: '#9ba3b8' }, grid: { color: 'rgba(255,255,255,0.04)' } },
+      }
+    }
+  });
+
+  new Chart(document.getElementById('chartSeverity'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Deaths ({{ hero[1] }})','Injuries ({{ hero[2] }})','Malfunctions ({{ hero[3] }})'],
+      datasets: [{
+        data: [{{ hero[1] }}, {{ hero[2] }}, {{ hero[3] }}],
+        backgroundColor: ['#f87171', '#fbbf24', '#6366f1'],
+        borderColor: '#181c28',
+        borderWidth: 2,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'bottom', labels: { color: '#9ba3b8', font: { size: 11 } } } }
+    }
+  });
 </script>
+
 {% endblock %}

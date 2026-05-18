@@ -1,0 +1,64 @@
+{
+  "source": "Direct HTTP scrape \u2014 top BSc/AXIOS hospital quality pages",
+  "fetched_at": "2026-05-18T13:58:57",
+  "hospitals": [
+    {
+      "key": "cox_medical",
+      "url": "https://www.coxhealth.com/about/measuring-our-quality/",
+      "error": "HTTPSConnectionPool(host='www.coxhealth.com', port=443): Max retries exceeded with url: /about/measuring-our-quality/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x106"
+    },
+    {
+      "key": "honorhealth",
+      "url": "https://www.honorhealth.com/about-us/quality-care",
+      "status": 404,
+      "page_bytes": 46065,
+      "snippets": [],
+      "text_preview": "Page not found | HonorHealth Skip to main content Contact Us Search Site Toggle Menu Main navigation Find a Doctor Locations Medical Services Contact Us Appointments Secondary navigation MyChart Pay Bill Insurance Patient Resources Ways to Give Search Close Main Menu Search HonorHealth Close Search That page is not available Here are some options to help you find what you need: HonorHealth homepage Find a doctor Find a location Appointments Contact us Site search Contact Us Today Healthy Living Articles Classes Support groups Tours About ACO For suppliers HonorHealth Research Institute Newsroom Careers Benefits Culture and community More career areas Nursing careers Community Community Benefit Community Health Needs Assessment HonorHealth Foundation Volunteers Academic Affairs Residencies &amp; fellowships Medical students Library services CME For clinicians CareLink Credentialing Physician and APP resources Physician relations Secondary footer Find primary care Patient forms Request medical records Request a quote No Surprises Act billing Privacy policy Accessibility statement Patient relations Price transparency"
+    },
+    {
+      "key": "barnes_jewish",
+      "url": "https://www.barnesjewish.org/About-Us/Quality",
+      "status": 200,
+      "page_bytes": 120650,
+      "snippets": [],
+      "text_preview": "About Us - Barnes-Jewish Hospital CORONAVIRUS (COVID-19): CHECK HERE FOR UPDATES AND A FREE RISK SCREENING > --> Please note that we are seeing high patient volumes in the emergency department. Learn more >> . Know before you go to the ER ALERT\u2014Friday, July 19\u2014 Important Update About the Global IT Outage --> Find a doctor or make an appointment: 866.867.3627 General Information: 314.747.3000 MyChart MyChart --> Call Search MyChart Site Web Go &nbsp;Get Directions &nbsp;Contact Us Call Us Find a Doctor or Make an Appointment 866.867.3627 General Information 314.747.3000 Cancel Find a Doctor Request an Appointment Medical Services Cancer Clinics Dermatology Diabetes &amp; Endocrinology Digestive Diseases Ear, Nose &amp; Throat (ENT) Elder Care and Rehabilitation Emergency Medicine Geriatrics Heart &amp; Vascular Lung Diseases Nephrology Neurology &amp; Neurosurgery Ophthalmology Orthopedic Care Pain Management Palliative Care Plastic &amp; Reconstructive Surgery Psychiatry Radiology Rheumatology Spine and Spinal Cord Transplant Trauma &amp; Acute Care Surgery Urology Women &amp; Infants Wound/General Surgery Patient &amp; Visitor Information Billing and Financial Assistance Financial"
+    },
+    {
+      "key": "northwestern",
+      "url": "https://www.nm.org/about-us/awards-recognition",
+      "status": 404,
+      "page_bytes": 51066,
+      "snippets": [],
+      "text_preview": "Page Not Found | Northwestern Medicine Respiratory Virus and Vaccine Information Skip to content Appointments MyNM Patient Portal Pay a Bill Financial Assistance Careers Feinberg School of Medicine Give Now Northwestern Medicine menu Search Doctors Locations Conditions &amp; Services Conditions & Services Our world-class teams offer a comprehensive range of services, from primary care to treatment for the most complex conditions. Conditions & Services A-Z Featured Behavioral Health Cancer Care Dermatology Ear, Nose & Throat Gastroenterology Heart & Vascular Care Immediate Care Infectious Disease Neurosciences Ophthalmology Orthopaedics Primary Care Pulmonary and Thoracic Surgery Urology Women\u2019s Health Patients &amp; Visitors Patients & Visitors We want your experience to be excellent. From planning your visit, paying your bill and more, here are helpful resources for patients and visitors. All Patients & visitors Billing, Insurance & Records Financial Assistance Insurance Information Medical Records Pay a Bill For Your Visit Accessibility Resources eCheck-in Parking Options NM MyChart Telehealth More Resources Education & Support Get Involved Patient Experience Policies Signature S"
+    },
+    {
+      "key": "indiana_u_health",
+      "url": "https://iuhealth.org/about-iu-health/quality-and-safety",
+      "error": "HTTPSConnectionPool(host='iuhealth.org', port=443): Read timed out. (read timeout=10)"
+    },
+    {
+      "key": "cedars_sinai",
+      "url": "https://www.cedars-sinai.org/about/quality.html",
+      "status": 404,
+      "page_bytes": 10487,
+      "snippets": [],
+      "text_preview": "404 Page Not Found | Cedars-Sinai You need to enable JavaScript to run this app."
+    },
+    {
+      "key": "loma_linda",
+      "url": "https://lluh.org/quality-and-safety",
+      "status": 404,
+      "page_bytes": 58244,
+      "snippets": [],
+      "text_preview": "Page Not Found | Loma Linda University Health Skip to main content Secondary Navigation University Healthcare Utility Navigation About Us MyChart Give Jobs Search Site Menu Site Navigation Services &amp; Treatments Patients &amp; Visitors Find a Doctor Health Professionals About Us Behavioral Health Cancer Center Heart &amp; Vascular Neurology Neurosurgery Orthopaedics Rehabilitation Services Transplant Institute Locations Conditions Primary Care Giving Leonard Bailey, MD Wholeness Institute Search submit Search submit Utility Navigation About Us MyChart Give Jobs Search Site Keyword Search Services & Treatments Doctors & Providers Location Search Submit Back to Results Submit Back to Results Submit Back to Results Submit Home Page Not Found Page Not Found We\u2019re sorry, we can\u2019t find the page you\u2019re trying to access. Here are some suggestions and links you may find helpful: Check the URL\u2019s spelling in your browser\u2019s address bar Visit our site\u2019s homepage View our services and treatments Find a provider or location Learn about jobs or residencies/fellowships at our facilities Still need help? Find the best way to contact us . &nbsp; Search Our Site If you can\u2019t find what you\u2019re lookin"
+    },
+    {
+      "key": "mayo_az",
+      "url": "https://www.mayoclinic.org/about-mayo-clinic/quality",
+      "status": 403,
+      "page_bytes": 407,
+      "snippets": [],
+      "text_preview": "Access Denied Access Denied You don't have permission to access \"http&#58;&#47;&#47;www&#46;mayoclinic&#46;org&#47;about&#45;mayo&#45;clinic&#47;quality\" on this server. Reference&#32;&#35;18&#46;73cd717&#46;1779092936&#46;5eef9118 https&#58;&#47;&#47;errors&#46;edgesuite&#46;net&#47;18&#46;73cd717&#46;1779092936&#46;5eef9118"
+    }
+  ]
+}

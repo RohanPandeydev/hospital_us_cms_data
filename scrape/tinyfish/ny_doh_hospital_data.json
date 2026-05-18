@@ -1,0 +1,98 @@
+{
+  "run_id": "bbb26879-24e7-433f-8dad-bc15c4574d48",
+  "key": "ny_doh_hospital_data",
+  "status": "COMPLETED",
+  "fetched_at": "2026-05-18T13:58:47",
+  "goal": "Navigate to https://www.health.ny.gov/statistics/sparcs/ to complete the goal: Find New York SPARCS (Statewide Planning and Research Cooperative System) data on hospital procedure volume. Look for publicly downloadable annual reports or query tools showing per-hospital procedure counts in NY. Top hospitals by inpatient volume.",
+  "result": {
+    "note": "These figures represent total inpatient discharges submitted to SPARCS for the 2024 calendar year as of the latest audit report.",
+    "resources": [
+      {
+        "items": [
+          {
+            "url": "https://nyshc.health.ny.gov/web/nyapd/hospital-cost-transparency",
+            "name": "Volume and Estimated Cost of Hospital Services (NYS Health Connector)",
+            "description": "Interactive dashboard for frequency (volume) and estimated costs of major hospital procedures across New York State"
+          },
+          {
+            "url": "https://health.data.ny.gov/Health/Inpatient-Quality-Indicators-IQI-Volume-Measures-/cskh-k5ew",
+            "name": "Inpatient Quality Indicators (IQI) Volume Measures by Hospital",
+            "description": "Dataset with specific volume counts for various inpatient procedures by facility and year"
+          }
+        ],
+        "category": "Procedure Volume Query Tools and Dashboards"
+      },
+      {
+        "items": [
+          {
+            "url": "https://www.health.state.ny.us/statistics/sparcs/reports/audit/Inpatient_24.html",
+            "name": "SPARCS Inpatient 2024 Audit Report",
+            "description": "Annual report showing total volume of inpatient records submitted by each facility"
+          },
+          {
+            "url": "https://www.health.state.ny.us/statistics/sparcs/reports/audit/Outpatient_22.html",
+            "name": "SPARCS Outpatient 2022 Audit Report",
+            "description": "Annual report showing total volume of outpatient records submitted by each facility"
+          }
+        ],
+        "category": "Publicly Downloadable Annual Reports"
+      }
+    ],
+    "top_hospitals_by_inpatient_volume": [
+      {
+        "name": "North Shore University Hospital",
+        "rank": 1,
+        "records": 49286
+      },
+      {
+        "name": "Strong Memorial Hospital",
+        "rank": 2,
+        "records": 40440
+      },
+      {
+        "name": "NYU Langone Hospital-Long Island",
+        "rank": 3,
+        "records": 38766
+      },
+      {
+        "name": "Albany Medical Center Hospital",
+        "rank": 4,
+        "records": 36932
+      },
+      {
+        "name": "Stony Brook University Hospital",
+        "rank": 5,
+        "records": 36060
+      },
+      {
+        "name": "Rochester General Hospital",
+        "rank": 6,
+        "records": 28726
+      },
+      {
+        "name": "St. Peter's Hospital",
+        "rank": 7,
+        "records": 24804
+      },
+      {
+        "name": "Buffalo General Medical Center",
+        "rank": 8,
+        "records": 23823
+      },
+      {
+        "name": "Vassar Brothers Medical Center",
+        "rank": 9,
+        "records": 22686
+      },
+      {
+        "name": "University Hospital SUNY Health Science Center",
+        "rank": 10,
+        "records": 22143
+      }
+    ]
+  },
+  "error": null,
+  "step_count": null,
+  "created_at": "2026-05-18T08:17:35Z",
+  "completed_at": null
+}

@@ -1,0 +1,18 @@
+{
+  "dataset_id": "20bbdb95-5da1-4a0e-9888-36d0e59b4652",
+  "dataset_name": "Pre-2015 Utilization Rates for Selected Medical Procedures in California Hospitals",
+  "resource_name": "Utilization Rates for Selected Medical Procedures in California Hospitals, 2005 - 2015 (CSV)",
+  "resource_url": "https://data.chhs.ca.gov/dataset/20bbdb95-5da1-4a0e-9888-36d0e59b4652/resource/c3a3d941-0555-4017-82fe-b2a774944ad1/download/ca-oshpd-ahrq-v50-utilization-2005-2015.csv",
+  "format": "CSV",
+  "fetched_at": "2026-05-18T14:03:20",
+  "header": "Year,County,Hospital,OSHPDID,Procedure,Count,Rate,Longitude,Latitude",
+  "sample_rows_raw": [
+    "2005,AAAA,STATEWIDE AVERAGE,,Vaginal Birth after Cesarean (VBAC),7509,9.5,.,.",
+    "2005,AAAA,STATEWIDE AVERAGE,,Laparoscopic Cholecystectomy (Gall Bladder Surgery),29776,80.8,.,.",
+    "2005,AAAA,STATEWIDE AVERAGE,,Uncomplicated Primary Cesarean Delivery,66145,16.3,.,.",
+    "2005,AAAA,STATEWIDE AVERAGE,,Uncomplicated VBAC,6710,9.6,.,.",
+    "2005,AAAA,STATEWIDE AVERAGE,,Uncomplicated Cesarean Delivery,128970,27.1,.,.",
+    "2005,Alameda,Alameda Hospital,106010735,Uncomplicated VBAC,.,.,-122.25362,37.762953",
+    "2005,Alameda,Alameda Hospital,106010735,Uncomplicated Cesarean Delivery,.,.,-122.25362,37.762953"
+  ]
+}

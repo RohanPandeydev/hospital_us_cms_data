@@ -1,0 +1,35 @@
+{
+  "source": "Direct HTTP scrape \u2014 mass-tort firms tracking BSc",
+  "fetched_at": "2026-05-18T13:59:04",
+  "firms": [
+    {
+      "key": "morgan_morgan",
+      "url": "https://www.forthepeople.com/medical-malpractice/",
+      "status": 200,
+      "bsc_axios_mentions": []
+    },
+    {
+      "key": "lieff_cabraser",
+      "url": "https://www.lieffcabraser.com/medical-device/",
+      "status": 404,
+      "bsc_axios_mentions": []
+    },
+    {
+      "key": "levin_papantonio",
+      "url": "https://www.levinpapantonio.com/practice-areas/",
+      "error": "HTTPSConnectionPool(host='www.levinpapantonio.com', port=443): Max retries exceeded with url: /practice-areas/ (Caused by SSLError(SSLError(1, '[SSL: TLSV1_ALERT_PROTOCOL_VERSION] tlsv1 alert protocol"
+    },
+    {
+      "key": "simmons_hanly",
+      "url": "https://www.simmonsfirm.com/medical-device/",
+      "status": 404,
+      "bsc_axios_mentions": []
+    },
+    {
+      "key": "public_justice",
+      "url": "https://www.publicjustice.net/our-work/",
+      "status": 200,
+      "bsc_axios_mentions": []
+    }
+  ]
+}

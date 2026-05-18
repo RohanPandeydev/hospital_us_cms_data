@@ -1,0 +1,979 @@
+{
+  "source": "NY SPARCS 2023 inpatient discharges (AXIOS-relevant DRGs)",
+  "hospital_summary": [
+    {
+      "hospital_name": "New York-Presbyterian Hospital - Columbia Presbyterian Center",
+      "discharges": 21,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 6,
+      "ed_admits": 4,
+      "avg_los_days": 7.1,
+      "total_charges_usd": 4630236.79
+    },
+    {
+      "hospital_name": "New York-Presbyterian Hospital - New York Weill Cornell Center",
+      "discharges": 16,
+      "deaths_in_hospital": 1,
+      "major_extreme_risk_count": 3,
+      "ed_admits": 2,
+      "avg_los_days": 4.8,
+      "total_charges_usd": 3163031.76
+    },
+    {
+      "hospital_name": "Rochester General Hospital",
+      "discharges": 15,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 9,
+      "ed_admits": 14,
+      "avg_los_days": 13.7,
+      "total_charges_usd": 1384657.0699999998
+    },
+    {
+      "hospital_name": "Strong Memorial Hospital",
+      "discharges": 14,
+      "deaths_in_hospital": 1,
+      "major_extreme_risk_count": 8,
+      "ed_admits": 9,
+      "avg_los_days": 22.6,
+      "total_charges_usd": 2051367.5100000002
+    },
+    {
+      "hospital_name": "NYU Langone Hospitals",
+      "discharges": 14,
+      "deaths_in_hospital": 1,
+      "major_extreme_risk_count": 7,
+      "ed_admits": 7,
+      "avg_los_days": 15.1,
+      "total_charges_usd": 7177456.470000001
+    },
+    {
+      "hospital_name": "Mount Sinai Hospital",
+      "discharges": 14,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 4,
+      "ed_admits": 5,
+      "avg_los_days": 14.9,
+      "total_charges_usd": 4437037.56
+    },
+    {
+      "hospital_name": "Long Island Jewish Medical Center",
+      "discharges": 12,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 7,
+      "ed_admits": 9,
+      "avg_los_days": 11.8,
+      "total_charges_usd": 2536507.46
+    },
+    {
+      "hospital_name": "Staten Island University Hosp-North",
+      "discharges": 12,
+      "deaths_in_hospital": 1,
+      "major_extreme_risk_count": 5,
+      "ed_admits": 9,
+      "avg_los_days": 13.7,
+      "total_charges_usd": 2290963.1799999997
+    },
+    {
+      "hospital_name": "Harlem Hospital Center",
+      "discharges": 11,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 2,
+      "ed_admits": 3,
+      "avg_los_days": 6.5,
+      "total_charges_usd": 910412.3800000001
+    },
+    {
+      "hospital_name": "Vassar Brothers Medical Center",
+      "discharges": 11,
+      "deaths_in_hospital": 2,
+      "major_extreme_risk_count": 5,
+      "ed_admits": 7,
+      "avg_los_days": 8.0,
+      "total_charges_usd": 862493.27
+    },
+    {
+      "hospital_name": "North Shore University Hospital",
+      "discharges": 10,
+      "deaths_in_hospital": 1,
+      "major_extreme_risk_count": 6,
+      "ed_admits": 8,
+      "avg_los_days": 10.1,
+      "total_charges_usd": 2049201.69
+    },
+    {
+      "hospital_name": "Highland Hospital",
+      "discharges": 9,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 7,
+      "ed_admits": 9,
+      "avg_los_days": 24.2,
+      "total_charges_usd": 1009853.11
+    },
+    {
+      "hospital_name": "Montefiore Med Center - Jack D Weiler Hosp of A Einstein College Div",
+      "discharges": 9,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 6,
+      "ed_admits": 7,
+      "avg_los_days": 19.8,
+      "total_charges_usd": 6322690.7299999995
+    },
+    {
+      "hospital_name": "NewYork-Presbyterian Brooklyn Methodist Hospital",
+      "discharges": 9,
+      "deaths_in_hospital": 1,
+      "major_extreme_risk_count": 6,
+      "ed_admits": 8,
+      "avg_los_days": 19.6,
+      "total_charges_usd": 5328072.5
+    },
+    {
+      "hospital_name": "NYC Health + Hospitals/South Brooklyn Health",
+      "discharges": 9,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 3,
+      "ed_admits": 7,
+      "avg_los_days": 10.3,
+      "total_charges_usd": 1090971.31
+    },
+    {
+      "hospital_name": "Metropolitan Hospital Center",
+      "discharges": 8,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 0,
+      "ed_admits": 0,
+      "avg_los_days": 1.1,
+      "total_charges_usd": 271901.00999999995
+    },
+    {
+      "hospital_name": "Bellevue Hospital Center",
+      "discharges": 8,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 5,
+      "ed_admits": 7,
+      "avg_los_days": 24.6,
+      "total_charges_usd": 1852615.8000000003
+    },
+    {
+      "hospital_name": "Montefiore Medical Center - Henry & Lucy Moses Div",
+      "discharges": 8,
+      "deaths_in_hospital": 1,
+      "major_extreme_risk_count": 2,
+      "ed_admits": 2,
+      "avg_los_days": 13.0,
+      "total_charges_usd": 2120990.83
+    },
+    {
+      "hospital_name": "Mount Sinai West",
+      "discharges": 8,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 3,
+      "ed_admits": 2,
+      "avg_los_days": 12.0,
+      "total_charges_usd": 1594988.29
+    },
+    {
+      "hospital_name": "Kings County Hospital Center",
+      "discharges": 8,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 3,
+      "ed_admits": 6,
+      "avg_los_days": 7.1,
+      "total_charges_usd": 862716.1900000001
+    },
+    {
+      "hospital_name": "Good Samaritan Hospital Medical Center",
+      "discharges": 8,
+      "deaths_in_hospital": 1,
+      "major_extreme_risk_count": 2,
+      "ed_admits": 7,
+      "avg_los_days": 6.9,
+      "total_charges_usd": 1005380.4199999999
+    },
+    {
+      "hospital_name": "St. Peter's Hospital",
+      "discharges": 8,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 7,
+      "ed_admits": 8,
+      "avg_los_days": 10.8,
+      "total_charges_usd": 880150.0900000001
+    },
+    {
+      "hospital_name": "Long Island Jewish Forest Hills",
+      "discharges": 7,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 3,
+      "ed_admits": 5,
+      "avg_los_days": 12.3,
+      "total_charges_usd": 1490828.35
+    },
+    {
+      "hospital_name": "St. Joseph's Hospital Health Center",
+      "discharges": 7,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 3,
+      "ed_admits": 6,
+      "avg_los_days": 10.9,
+      "total_charges_usd": 546439.9199999999
+    },
+    {
+      "hospital_name": "Brookdale Hospital Medical Center",
+      "discharges": 7,
+      "deaths_in_hospital": 1,
+      "major_extreme_risk_count": 4,
+      "ed_admits": 4,
+      "avg_los_days": 13.7,
+      "total_charges_usd": 760891.17
+    },
+    {
+      "hospital_name": "Lenox Hill Hospital",
+      "discharges": 6,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 2,
+      "ed_admits": 3,
+      "avg_los_days": 4.0,
+      "total_charges_usd": 674391.0400000002
+    },
+    {
+      "hospital_name": "Crouse Hospital",
+      "discharges": 6,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 3,
+      "ed_admits": 3,
+      "avg_los_days": 8.0,
+      "total_charges_usd": 272554.08
+    },
+    {
+      "hospital_name": "Garnet Health Medical Center",
+      "discharges": 6,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 3,
+      "ed_admits": 6,
+      "avg_los_days": 5.5,
+      "total_charges_usd": 482115.07000000007
+    },
+    {
+      "hospital_name": "NYU Langone Hospital-Long Island",
+      "discharges": 6,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 2,
+      "ed_admits": 4,
+      "avg_los_days": 20.3,
+      "total_charges_usd": 3924765.25
+    },
+    {
+      "hospital_name": "United Health Services Hospitals Inc. - Wilson Medical Center",
+      "discharges": 6,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 5,
+      "ed_admits": 6,
+      "avg_los_days": 11.8,
+      "total_charges_usd": 487132.52999999997
+    },
+    {
+      "hospital_name": "Westchester Medical Center",
+      "discharges": 6,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 2,
+      "ed_admits": 5,
+      "avg_los_days": 15.0,
+      "total_charges_usd": 2290567.59
+    },
+    {
+      "hospital_name": "St Johns Episcopal Hospital So Shore",
+      "discharges": 6,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 3,
+      "ed_admits": 6,
+      "avg_los_days": 13.2,
+      "total_charges_usd": 957977.29
+    },
+    {
+      "hospital_name": "University Hospital SUNY Health Science Center",
+      "discharges": 6,
+      "deaths_in_hospital": 1,
+      "major_extreme_risk_count": 2,
+      "ed_admits": 4,
+      "avg_los_days": 10.5,
+      "total_charges_usd": 1548514.4699999997
+    },
+    {
+      "hospital_name": "Elmhurst Hospital Center",
+      "discharges": 5,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 4,
+      "ed_admits": 5,
+      "avg_los_days": 20.0,
+      "total_charges_usd": 991892.6200000001
+    },
+    {
+      "hospital_name": "Brooklyn Hospital Center - Downtown Campus",
+      "discharges": 5,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 1,
+      "ed_admits": 4,
+      "avg_los_days": 12.2,
+      "total_charges_usd": 950244.4299999999
+    },
+    {
+      "hospital_name": "Albany Medical Center Hospital",
+      "discharges": 5,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 2,
+      "ed_admits": 2,
+      "avg_los_days": 9.4,
+      "total_charges_usd": 448246.63
+    },
+    {
+      "hospital_name": "Lincoln Medical & Mental Health Center",
+      "discharges": 5,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 3,
+      "ed_admits": 5,
+      "avg_los_days": 10.2,
+      "total_charges_usd": 566950.05
+    },
+    {
+      "hospital_name": "Wyckoff Heights Medical Center",
+      "discharges": 5,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 4,
+      "ed_admits": 4,
+      "avg_los_days": 10.4,
+      "total_charges_usd": 533239.33
+    },
+    {
+      "hospital_name": "NYU Langone Hospital-Brooklyn",
+      "discharges": 5,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 3,
+      "ed_admits": 3,
+      "avg_los_days": 10.2,
+      "total_charges_usd": 1793332.25
+    },
+    {
+      "hospital_name": "Mount Sinai Hospital - Mount Sinai Hospital of Queens",
+      "discharges": 5,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 4,
+      "ed_admits": 5,
+      "avg_los_days": 16.6,
+      "total_charges_usd": 926560.5800000001
+    },
+    {
+      "hospital_name": "Good Samaritan Hospital of Suffern",
+      "discharges": 4,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 4,
+      "ed_admits": 3,
+      "avg_los_days": 9.0,
+      "total_charges_usd": 1050740.54
+    },
+    {
+      "hospital_name": "University Hospital of Brooklyn",
+      "discharges": 4,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 4,
+      "ed_admits": 3,
+      "avg_los_days": 8.5,
+      "total_charges_usd": 371722.0
+    },
+    {
+      "hospital_name": "Queens Hospital Center",
+      "discharges": 4,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 1,
+      "ed_admits": 4,
+      "avg_los_days": 8.5,
+      "total_charges_usd": 424586.4
+    },
+    {
+      "hospital_name": "St Luke's Cornwall Hospital/Newburgh",
+      "discharges": 4,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 3,
+      "ed_admits": 3,
+      "avg_los_days": 12.2,
+      "total_charges_usd": 860657.53
+    },
+    {
+      "hospital_name": "St. Francis Hospital & Heart Center",
+      "discharges": 4,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 2,
+      "ed_admits": 2,
+      "avg_los_days": 5.2,
+      "total_charges_usd": 332658.22
+    },
+    {
+      "hospital_name": "Mary Imogene Bassett Hospital",
+      "discharges": 4,
+      "deaths_in_hospital": 1,
+      "major_extreme_risk_count": 3,
+      "ed_admits": 2,
+      "avg_los_days": 9.5,
+      "total_charges_usd": 217631.48
+    },
+    {
+      "hospital_name": "Nassau University Medical Center",
+      "discharges": 4,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 2,
+      "ed_admits": 0,
+      "avg_los_days": 14.0,
+      "total_charges_usd": 416323.23000000004
+    },
+    {
+      "hospital_name": "Mercy Hospital of Buffalo",
+      "discharges": 4,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 3,
+      "ed_admits": 3,
+      "avg_los_days": 7.8,
+      "total_charges_usd": 175108.31
+    },
+    {
+      "hospital_name": "Mercy Hospital",
+      "discharges": 4,
+      "deaths_in_hospital": 1,
+      "major_extreme_risk_count": 1,
+      "ed_admits": 1,
+      "avg_los_days": 8.2,
+      "total_charges_usd": 862669.7999999999
+    },
+    {
+      "hospital_name": "Huntington Hospital",
+      "discharges": 4,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 2,
+      "ed_admits": 4,
+      "avg_los_days": 9.0,
+      "total_charges_usd": 447072.35
+    },
+    {
+      "hospital_name": "Buffalo General Medical Center",
+      "discharges": 4,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 3,
+      "ed_admits": 2,
+      "avg_los_days": 24.2,
+      "total_charges_usd": 883213.73
+    },
+    {
+      "hospital_name": "Stony Brook University Hospital",
+      "discharges": 4,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 2,
+      "ed_admits": 4,
+      "avg_los_days": 13.0,
+      "total_charges_usd": 771569.6699999999
+    },
+    {
+      "hospital_name": "Interfaith Medical Center",
+      "discharges": 4,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 2,
+      "ed_admits": 4,
+      "avg_los_days": 14.5,
+      "total_charges_usd": 388240.57999999996
+    },
+    {
+      "hospital_name": "Mount Sinai Morningside",
+      "discharges": 4,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 4,
+      "ed_admits": 3,
+      "avg_los_days": 18.5,
+      "total_charges_usd": 1214988.06
+    },
+    {
+      "hospital_name": "White Plains Hospital Center",
+      "discharges": 3,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 2,
+      "ed_admits": 3,
+      "avg_los_days": 11.3,
+      "total_charges_usd": 612552.0599999999
+    },
+    {
+      "hospital_name": "Maimonides Midwood Community Hospital",
+      "discharges": 3,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 0,
+      "ed_admits": 3,
+      "avg_los_days": 5.0,
+      "total_charges_usd": 105061.54000000001
+    },
+    {
+      "hospital_name": "Mount Sinai Beth Israel",
+      "discharges": 3,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 3,
+      "ed_admits": 3,
+      "avg_los_days": 25.3,
+      "total_charges_usd": 1200955.27
+    },
+    {
+      "hospital_name": "NewYork-Presbyterian/Queens",
+      "discharges": 3,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 3,
+      "ed_admits": 3,
+      "avg_los_days": 16.3,
+      "total_charges_usd": 783352.68
+    },
+    {
+      "hospital_name": "Memorial Hospital for Cancer and Allied Diseases",
+      "discharges": 3,
+      "deaths_in_hospital": 1,
+      "major_extreme_risk_count": 2,
+      "ed_admits": 1,
+      "avg_los_days": 4.0,
+      "total_charges_usd": 452174.0
+    },
+    {
+      "hospital_name": "Maimonides Medical Center",
+      "discharges": 3,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 2,
+      "ed_admits": 3,
+      "avg_los_days": 22.0,
+      "total_charges_usd": 1038201.3500000001
+    },
+    {
+      "hospital_name": "Millard Fillmore Suburban Hospital",
+      "discharges": 3,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 2,
+      "ed_admits": 3,
+      "avg_los_days": 13.0,
+      "total_charges_usd": 218495.56999999998
+    },
+    {
+      "hospital_name": "Peconic Bay Medical Center",
+      "discharges": 3,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 2,
+      "ed_admits": 1,
+      "avg_los_days": 5.7,
+      "total_charges_usd": 245903.46000000002
+    },
+    {
+      "hospital_name": "Northern Westchester Hospital",
+      "discharges": 3,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 2,
+      "ed_admits": 2,
+      "avg_los_days": 5.3,
+      "total_charges_usd": 239436.14999999997
+    },
+    {
+      "hospital_name": "UPSTATE University Hospital at Community General",
+      "discharges": 3,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 1,
+      "ed_admits": 1,
+      "avg_los_days": 12.7,
+      "total_charges_usd": 525326.54
+    },
+    {
+      "hospital_name": "Mount Sinai South Nassau",
+      "discharges": 3,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 2,
+      "ed_admits": 2,
+      "avg_los_days": 8.0,
+      "total_charges_usd": 504817.20999999996
+    },
+    {
+      "hospital_name": "St Catherine of Siena Hospital",
+      "discharges": 3,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 1,
+      "ed_admits": 1,
+      "avg_los_days": 12.3,
+      "total_charges_usd": 516138.26999999996
+    },
+    {
+      "hospital_name": "The Unity Hospital of Rochester",
+      "discharges": 3,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 0,
+      "ed_admits": 3,
+      "avg_los_days": 9.0,
+      "total_charges_usd": 130186.29000000001
+    },
+    {
+      "hospital_name": "South Shore University Hospital",
+      "discharges": 3,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 2,
+      "ed_admits": 2,
+      "avg_los_days": 6.3,
+      "total_charges_usd": 334960.83999999997
+    },
+    {
+      "hospital_name": "Samaritan Hospital",
+      "discharges": 3,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 2,
+      "ed_admits": 1,
+      "avg_los_days": 4.7,
+      "total_charges_usd": 109500.26
+    },
+    {
+      "hospital_name": "F.F. Thompson Hospital",
+      "discharges": 2,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 1,
+      "ed_admits": 2,
+      "avg_los_days": 14.5,
+      "total_charges_usd": 105663.48
+    },
+    {
+      "hospital_name": "Bon Secours Community Hospital",
+      "discharges": 2,
+      "deaths_in_hospital": 1,
+      "major_extreme_risk_count": 1,
+      "ed_admits": 2,
+      "avg_los_days": 14.5,
+      "total_charges_usd": 511900.51
+    },
+    {
+      "hospital_name": "Montefiore Nyack",
+      "discharges": 2,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 2,
+      "ed_admits": 2,
+      "avg_los_days": 13.0,
+      "total_charges_usd": 353471.35
+    },
+    {
+      "hospital_name": "HealthAlliance Hospital Mary's Avenue Campus",
+      "discharges": 2,
+      "deaths_in_hospital": 1,
+      "major_extreme_risk_count": 2,
+      "ed_admits": 2,
+      "avg_los_days": 6.5,
+      "total_charges_usd": 262005.34
+    },
+    {
+      "hospital_name": "Glen Cove Hospital",
+      "discharges": 2,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 2,
+      "ed_admits": 2,
+      "avg_los_days": 24.5,
+      "total_charges_usd": 474096.67
+    },
+    {
+      "hospital_name": "Mount Sinai Brooklyn",
+      "discharges": 2,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 1,
+      "ed_admits": 2,
+      "avg_los_days": 9.0,
+      "total_charges_usd": 302601.87
+    },
+    {
+      "hospital_name": "Erie County Medical Center",
+      "discharges": 2,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 2,
+      "ed_admits": 2,
+      "avg_los_days": 15.5,
+      "total_charges_usd": 161812.58000000002
+    },
+    {
+      "hospital_name": "Plainview Hospital",
+      "discharges": 2,
+      "deaths_in_hospital": 2,
+      "major_extreme_risk_count": 2,
+      "ed_admits": 2,
+      "avg_los_days": 20.0,
+      "total_charges_usd": 537132.66
+    },
+    {
+      "hospital_name": "St. Charles Hospital",
+      "discharges": 2,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 0,
+      "ed_admits": 0,
+      "avg_los_days": 1.5,
+      "total_charges_usd": 139018.2
+    },
+    {
+      "hospital_name": "SBH Health System",
+      "discharges": 2,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 2,
+      "ed_admits": 2,
+      "avg_los_days": 49.5,
+      "total_charges_usd": 612055.65
+    },
+    {
+      "hospital_name": "Flushing Hospital Medical Center",
+      "discharges": 2,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 2,
+      "ed_admits": 2,
+      "avg_los_days": 7.0,
+      "total_charges_usd": 72843.14
+    },
+    {
+      "hospital_name": "St Elizabeth Medical Center",
+      "discharges": 2,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 2,
+      "ed_admits": 1,
+      "avg_los_days": 17.5,
+      "total_charges_usd": 295661.63
+    },
+    {
+      "hospital_name": "Faxton-St Lukes Healthcare St Lukes Division",
+      "discharges": 2,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 0,
+      "ed_admits": 2,
+      "avg_los_days": 2.0,
+      "total_charges_usd": 76991.84
+    },
+    {
+      "hospital_name": "The University of Vermont Health Network - Champlain Valley Physicians Hospital",
+      "discharges": 2,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 2,
+      "ed_admits": 2,
+      "avg_los_days": 13.0,
+      "total_charges_usd": 234552.71
+    },
+    {
+      "hospital_name": "Montefiore New Rochelle Hospital",
+      "discharges": 1,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 1,
+      "ed_admits": 1,
+      "avg_los_days": 13.0,
+      "total_charges_usd": 156383.93
+    },
+    {
+      "hospital_name": "Staten Island University Hospital Prince's Bay",
+      "discharges": 1,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 0,
+      "ed_admits": 1,
+      "avg_los_days": 19.0,
+      "total_charges_usd": 234858.98
+    },
+    {
+      "hospital_name": "Syosset Hospital",
+      "discharges": 1,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 1,
+      "ed_admits": 1,
+      "avg_los_days": 22.0,
+      "total_charges_usd": 296536.99
+    },
+    {
+      "hospital_name": "BronxCare Hospital Center",
+      "discharges": 1,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 1,
+      "ed_admits": 1,
+      "avg_los_days": 69.0,
+      "total_charges_usd": 151829.11
+    },
+    {
+      "hospital_name": "Our Lady of Lourdes Memorial Hospital",
+      "discharges": 1,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 0,
+      "ed_admits": 1,
+      "avg_los_days": 4.0,
+      "total_charges_usd": 32779.26
+    },
+    {
+      "hospital_name": "St. Joseph's Medical Center",
+      "discharges": 1,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 1,
+      "ed_admits": 1,
+      "avg_los_days": 35.0,
+      "total_charges_usd": 258192.42
+    },
+    {
+      "hospital_name": "Jamaica Hospital Medical Center",
+      "discharges": 1,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 1,
+      "ed_admits": 1,
+      "avg_los_days": 21.0,
+      "total_charges_usd": 172459.87
+    },
+    {
+      "hospital_name": "Jacobi Medical Center",
+      "discharges": 1,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 0,
+      "ed_admits": 1,
+      "avg_los_days": 5.0,
+      "total_charges_usd": 58183.69
+    },
+    {
+      "hospital_name": "Cohen Children's Medical Center",
+      "discharges": 1,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 0,
+      "ed_admits": 1,
+      "avg_los_days": 2.0,
+      "total_charges_usd": 42951.77
+    },
+    {
+      "hospital_name": "North Central Bronx Hospital",
+      "discharges": 1,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 1,
+      "ed_admits": 1,
+      "avg_los_days": 17.0,
+      "total_charges_usd": 170029.26
+    },
+    {
+      "hospital_name": "Kenmore Mercy Hospital",
+      "discharges": 1,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 1,
+      "ed_admits": 1,
+      "avg_los_days": 7.0,
+      "total_charges_usd": 31808.81
+    },
+    {
+      "hospital_name": "Glens Falls Hospital",
+      "discharges": 1,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 1,
+      "ed_admits": 1,
+      "avg_los_days": 8.0,
+      "total_charges_usd": 47617.71
+    },
+    {
+      "hospital_name": "NewYork-Presbyterian/Hudson Valley Hospital",
+      "discharges": 1,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 1,
+      "ed_admits": 1,
+      "avg_los_days": 18.0,
+      "total_charges_usd": 123779.52
+    },
+    {
+      "hospital_name": "United Memorial Medical Center North Street Campus",
+      "discharges": 1,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 1,
+      "ed_admits": 1,
+      "avg_los_days": 3.0,
+      "total_charges_usd": 19479.73
+    },
+    {
+      "hospital_name": "Phelps Hospital",
+      "discharges": 1,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 0,
+      "ed_admits": 1,
+      "avg_los_days": 4.0,
+      "total_charges_usd": 84247.48
+    },
+    {
+      "hospital_name": "Auburn Community Hospital",
+      "discharges": 1,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 0,
+      "ed_admits": 1,
+      "avg_los_days": 14.0,
+      "total_charges_usd": 62550.93
+    },
+    {
+      "hospital_name": "New York-Presbyterian/Lower Manhattan Hospital",
+      "discharges": 1,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 1,
+      "ed_admits": 1,
+      "avg_los_days": 9.0,
+      "total_charges_usd": 157617.32
+    },
+    {
+      "hospital_name": "Long Island Community Hospital at NYU Langone Health",
+      "discharges": 1,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 1,
+      "ed_admits": 1,
+      "avg_los_days": 9.0,
+      "total_charges_usd": 290546.96
+    },
+    {
+      "hospital_name": "Canton-Potsdam Hospital",
+      "discharges": 1,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 1,
+      "ed_admits": 1,
+      "avg_los_days": 5.0,
+      "total_charges_usd": 23565.38
+    },
+    {
+      "hospital_name": "Richmond University Medical Center",
+      "discharges": 1,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 0,
+      "ed_admits": 1,
+      "avg_los_days": 24.0,
+      "total_charges_usd": 205362.5
+    },
+    {
+      "hospital_name": "Roswell Park Cancer Institute",
+      "discharges": 1,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 0,
+      "ed_admits": 0,
+      "avg_los_days": 5.0,
+      "total_charges_usd": 61375.18
+    },
+    {
+      "hospital_name": "SJRH - St Johns Division",
+      "discharges": 1,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 1,
+      "ed_admits": 1,
+      "avg_los_days": 12.0,
+      "total_charges_usd": 120111.01
+    },
+    {
+      "hospital_name": "Wynn Hospital",
+      "discharges": 1,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 0,
+      "ed_admits": 1,
+      "avg_los_days": 14.0,
+      "total_charges_usd": 89859.58
+    },
+    {
+      "hospital_name": "Long Island Jewish Valley Stream",
+      "discharges": 1,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 1,
+      "ed_admits": 1,
+      "avg_los_days": 5.0,
+      "total_charges_usd": 114684.95
+    },
+    {
+      "hospital_name": "Adirondack Medical Center-Saranac Lake Site",
+      "discharges": 1,
+      "deaths_in_hospital": 0,
+      "major_extreme_risk_count": 0,
+      "ed_admits": 0,
+      "avg_los_days": 1.0,
+      "total_charges_usd": 20437.4
+    }
+  ],
+  "row_count": 500,
+  "hospital_count": 108
+}

@@ -1,0 +1,29 @@
+{
+  "source": "Direct HTTP scrape of mass-tort law firm BSc tracking pages",
+  "fetched_at": "2026-05-18T13:57:16",
+  "trackers": [
+    {
+      "key": "morgan_morgan_bsc",
+      "url": "https://www.forthepeople.com/medical-malpractice/",
+      "status": 200,
+      "bsc_references": []
+    },
+    {
+      "key": "lieff_cabraser_bsc",
+      "url": "https://www.lieffcabraser.com/medical-device/",
+      "status": 404,
+      "bsc_references": []
+    },
+    {
+      "key": "bernstein_litowitz",
+      "url": "https://www.blbglaw.com/cases",
+      "status": 404,
+      "bsc_references": []
+    },
+    {
+      "key": "levin_papantonio",
+      "url": "https://www.levinpapantonio.com/practice-areas",
+      "error": "HTTPSConnectionPool(host='www.levinpapantonio.com', port=443): Max retries exceeded with url: /practice-areas (Caused by SSLError(SSLError(1, '[SSL: TLSV1_ALERT_PROTOCOL_VERSION] tlsv1 alert protocol "
+    }
+  ]
+}

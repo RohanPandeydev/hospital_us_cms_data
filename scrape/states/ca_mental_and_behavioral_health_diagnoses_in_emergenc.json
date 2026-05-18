@@ -1,0 +1,18 @@
+{
+  "dataset_id": "85b741c5-f5ff-4333-bee0-a50d63befde2",
+  "dataset_name": "Mental and Behavioral Health Diagnoses in Emergency Department and Inpatient Discharges by Healthy Places Index Ranking",
+  "resource_name": "Healthy Places Index (HPI) Diagnosis Group by Setting and Patient Category",
+  "resource_url": "https://data.chhs.ca.gov/dataset/85b741c5-f5ff-4333-bee0-a50d63befde2/resource/e86bd38d-1260-4824-8d8e-2c83671e110e/download/healthy-places-index-hpi-diagnosis-group-by-setting-and-patient-category.csv",
+  "format": "CSV",
+  "fetched_at": "2026-05-18T14:03:16",
+  "header": "Year,HPI Percentile Ranking,Encounter Setting,Category,Category Description,Diagnosis Group,Residence,Count",
+  "sample_rows_raw": [
+    "2020,0-25 (Least Healthy),Inpatient,Sex,Female,All Other Diagnoses,Homeless,1100",
+    "2020,0-25 (Least Healthy),Inpatient,Sex,Female,Co-Occuring Disorders,Homeless,4684",
+    "2020,0-25 (Least Healthy),Inpatient,Sex,Female,Mental Health Disorders,Homeless,1739",
+    "2020,0-25 (Least Healthy),Inpatient,Sex,Female,Substance Use Disorders,Homeless,1975",
+    "2020,0-25 (Least Healthy),Inpatient,Sex,Female,All Other Diagnoses,Not Homeless,386972",
+    "2020,0-25 (Least Healthy),Inpatient,Sex,Female,Co-Occuring Disorders,Not Homeless,28870",
+    "2020,0-25 (Least Healthy),Inpatient,Sex,Female,Mental Health Disorders,Not Homeless,73722"
+  ]
+}

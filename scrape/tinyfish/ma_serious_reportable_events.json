@@ -1,0 +1,12 @@
+{
+  "run_id": "05bb3932-1507-4c5c-9299-a6a2e083c957",
+  "key": "ma_serious_reportable_events",
+  "status": "COMPLETED",
+  "fetched_at": "2026-05-18T13:51:12",
+  "goal": "Navigate to https://www.mass.gov/lists/serious-reportable-event-reports to complete the goal: Find and open the most recent (2023 or 2024) Massachusetts Serious Reportable Events annual report. Extract the per-hospital breakdown of SREs: hospital name, total events, by event category (wrong-site surgery, retained foreign object, etc.). Particular interest in device/surgical events. Top 25 hospitals by SRE count.",
+  "result": {},
+  "error": null,
+  "step_count": null,
+  "created_at": "2026-05-18T08:17:29Z",
+  "completed_at": null
+}

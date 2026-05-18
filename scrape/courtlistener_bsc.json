@@ -1,0 +1,2207 @@
+{
+  "source": "CourtListener API v4",
+  "fetched_at": "2026-05-18T13:45:44",
+  "total_matching": 76825,
+  "returned": 20,
+  "results": [
+    {
+      "assignedTo": "James Rodney Gilstrap",
+      "assigned_to_id": 1211,
+      "attorney": [
+        "Stone Martin",
+        "Kevin Lee Burgess"
+      ],
+      "attorney_id": [
+        13586480,
+        13586481
+      ],
+      "caseName": "Massachusetts Institute of Technology v. Microsoft Corporation",
+      "case_name_full": "",
+      "cause": "35:271 Patent Infringement",
+      "chapter": null,
+      "court": "District Court, E.D. Texas",
+      "court_citation_string": "E.D. Tex.",
+      "court_id": "txed",
+      "dateArgued": null,
+      "dateFiled": "2026-05-15",
+      "dateTerminated": null,
+      "docketNumber": "2:26-cv-00400",
+      "docket_absolute_url": "/docket/73350655/massachusetts-institute-of-technology-v-microsoft-corporation/",
+      "docket_id": 73350655,
+      "firm": [
+        "McKool Smith P.C.",
+        "McKool Smith"
+      ],
+      "firm_id": [
+        694353,
+        337674
+      ],
+      "jurisdictionType": "Federal Question",
+      "juryDemand": "Plaintiff",
+      "meta": {
+        "timestamp": "2026-05-16T00:43:58.510554Z",
+        "date_created": "2026-05-15T19:38:48.125369Z",
+        "score": {
+          "bm25": 13454899000000.0
+        },
+        "more_docs": false
+      },
+      "pacer_case_id": "245792",
+      "party": [
+        "Massachusetts Institute of Technology",
+        "Microsoft Corporation"
+      ],
+      "party_id": [
+        19775920,
+        19775919
+      ],
+      "recap_documents": [
+        {
+          "absolute_url": "/docket/73350655/1/massachusetts-institute-of-technology-v-microsoft-corporation/",
+          "attachment_number": null,
+          "cites": [],
+          "description": "COMPLAINT for Patent Infringement against Microsoft Corporation ( Filing fee $ 405 receipt number ATXEDC-11542652.), filed by Massachusetts Institute of Technology. (Attachments: # 1 Exhibit A, # 2 Exhibit B, # 3 Exhibit C, # 4 Exhibit D, # 5 Exhibit E, # 6 Exhibit F, # 7 Civil Cover Sheet) (Counsel is reminded to file form required by LR CV-4(a).)(Burgess, Kevin) (Entered: 05/15/2026)",
+          "docket_entry_id": 464243642,
+          "document_number": 1,
+          "document_type": "PACER Document",
+          "entry_date_filed": "2026-05-15",
+          "entry_number": 1,
+          "filepath_local": "recap/gov.uscourts.txed.245792/gov.uscourts.txed.245792.1.0.pdf",
+          "id": 479411035,
+          "is_available": true,
+          "meta": {
+            "timestamp": "2026-05-16T00:50:13.627573Z",
+            "date_created": "2026-05-15T20:06:49.917340Z"
+          },
+          "pacer_doc_id": "175015394369",
+          "page_count": 33,
+          "short_description": "Complaint",
+          "snippet": "Case 2:26-cv-00400-JRG           Document 1       Filed 05/15/26      Page 1 of 33 PageID #: 1\n\n\n\n\n                             UNITED STATES DISTRICT COURT\n                              EASTERN DISTRICT OF TEXAS\n                                  MARSHALL DIVISION\n\n\n\n MASSACHUSETTS INSTITUTE OF\n TECHNOLOGY,                                         Case No.: 2:26-cv-400\n                Plaintiff,                           JURY TRIAL DEMANDED\n        v.\n\n MICROSOFT CORPORATION,\n\n                Def"
+        }
+      ],
+      "referredTo": null,
+      "referred_to_id": null,
+      "suitNature": "830 Patent",
+      "trustee_str": null
+    },
+    {
+      "assignedTo": null,
+      "assigned_to_id": null,
+      "attorney": [
+        "JONATHAN D. ORENT"
+      ],
+      "attorney_id": [
+        13584030
+      ],
+      "caseName": "Clifford v. ELI LILLY AND COMPANY",
+      "case_name_full": "",
+      "cause": "28:1332 Diversity-(Citizenship)",
+      "chapter": null,
+      "court": "District Court, E.D. Pennsylvania",
+      "court_citation_string": "E.D. Pa.",
+      "court_id": "paed",
+      "dateArgued": null,
+      "dateFiled": "2026-05-15",
+      "dateTerminated": null,
+      "docketNumber": "2:26-cv-03325",
+      "docket_absolute_url": "/docket/73348019/clifford-v-eli-lilly-and-company/",
+      "docket_id": 73348019,
+      "firm": [
+        "Motley Rice, LLC"
+      ],
+      "firm_id": [
+        805061
+      ],
+      "jurisdictionType": "Diversity",
+      "juryDemand": "Plaintiff",
+      "meta": {
+        "timestamp": "2026-05-15T15:18:27.187580Z",
+        "date_created": "2026-05-15T14:47:54.725664Z",
+        "score": {
+          "bm25": 13454899000000.0
+        },
+        "more_docs": false
+      },
+      "pacer_case_id": "654785",
+      "party": [
+        "Josh Clifford",
+        "LILLY USA, LLC",
+        "ELI LILLY AND COMPANY"
+      ],
+      "party_id": [
+        19772602,
+        19772603,
+        19772604
+      ],
+      "recap_documents": [
+        {
+          "absolute_url": "/docket/73348019/1/clifford-v-eli-lilly-and-company/",
+          "attachment_number": null,
+          "cites": [],
+          "description": "COMPLAINT Josh Clifford against All Defendants ( Filing fee $ 405 receipt number APAEDC-19267676.), filed by Josh Clifford. (Attachments: # 1 Civil Cover Sheet, # 2 Designation Form)(ORENT, JONATHAN) (Entered: 05/15/2026)",
+          "docket_entry_id": 464186993,
+          "document_number": 1,
+          "document_type": "PACER Document",
+          "entry_date_filed": "2026-05-15",
+          "entry_number": 1,
+          "filepath_local": "recap/gov.uscourts.paed.654785/gov.uscourts.paed.654785.1.0.pdf",
+          "id": 479353418,
+          "is_available": true,
+          "meta": {
+            "timestamp": "2026-05-15T15:42:00.393172Z",
+            "date_created": "2026-05-15T15:18:28.196808Z"
+          },
+          "pacer_doc_id": "153023834298",
+          "page_count": 56,
+          "short_description": "Complaint (Attorney)",
+          "snippet": "          Case 2:26-cv-03325         Document 1        Filed 05/15/26      Page 1 of 56\n\n\n\n\n                        UNITED STATES DISTRICT COURT\n                  FOR THE EASTERN DISTRICT OF PENNSYLVANIA\n\n\nIN RE: GLUCAGON-LIKE PEPTIDE-1      :                 MDL NO. 3163\nRECEPTOR AGONISTS (GLP-1 RAS)       :\nNON-ARTERITIC ANTERIOR ISCHEMIC:                      THIS DOCUMENT RELATES TO ALL\n                                    :                 CASES\nOPTIC NEUROPATHY                    :\nPRODUCTS"
+        }
+      ],
+      "referredTo": null,
+      "referred_to_id": null,
+      "suitNature": "367 P.I.: Health Care/Pharmaceutical Personal Injury Product Liability",
+      "trustee_str": null
+    },
+    {
+      "assignedTo": null,
+      "assigned_to_id": null,
+      "attorney": [],
+      "attorney_id": [],
+      "caseName": "Johnson v. Boston Scientific Corporation",
+      "case_name_full": "",
+      "cause": "",
+      "chapter": null,
+      "court": "District Court, C.D. California",
+      "court_citation_string": "C.D. Cal.",
+      "court_id": "cacd",
+      "dateArgued": null,
+      "dateFiled": "2026-05-14",
+      "dateTerminated": null,
+      "docketNumber": "2:26-cv-05211",
+      "docket_absolute_url": "/docket/73345552/johnson-v-boston-scientific-corporation/",
+      "docket_id": 73345552,
+      "firm": [],
+      "firm_id": [],
+      "jurisdictionType": "",
+      "juryDemand": "",
+      "meta": {
+        "timestamp": "2026-05-14T21:49:43.291438Z",
+        "date_created": "2026-05-14T21:49:29.474965Z",
+        "score": {
+          "bm25": 13454812000000.0
+        },
+        "more_docs": false
+      },
+      "pacer_case_id": "1020310",
+      "party": [
+        "Johnson",
+        "Boston Scientific Corporation"
+      ],
+      "party_id": [],
+      "recap_documents": [
+        {
+          "absolute_url": "/docket/73345552/3/johnson-v-boston-scientific-corporation/",
+          "attachment_number": null,
+          "cites": [],
+          "description": "",
+          "docket_entry_id": 464121590,
+          "document_number": 3,
+          "document_type": "PACER Document",
+          "entry_date_filed": "2026-05-14",
+          "entry_number": 3,
+          "filepath_local": null,
+          "id": 479286070,
+          "is_available": false,
+          "meta": {
+            "timestamp": "2026-05-14T22:05:09.279338Z",
+            "date_created": "2026-05-14T22:05:06.476743Z"
+          },
+          "pacer_doc_id": "031047781692",
+          "page_count": null,
+          "short_description": "Summons Request",
+          "snippet": ""
+        },
+        {
+          "absolute_url": "/docket/73345552/2/johnson-v-boston-scientific-corporation/",
+          "attachment_number": null,
+          "cites": [],
+          "description": "",
+          "docket_entry_id": 464121633,
+          "document_number": 2,
+          "document_type": "PACER Document",
+          "entry_date_filed": "2026-05-14",
+          "entry_number": 2,
+          "filepath_local": null,
+          "id": 479286114,
+          "is_available": false,
+          "meta": {
+            "timestamp": "2026-05-14T22:05:10.350384Z",
+            "date_created": "2026-05-14T22:05:07.739381Z"
+          },
+          "pacer_doc_id": "031047781662",
+          "page_count": null,
+          "short_description": "Civil Cover Sheet (CV-71)",
+          "snippet": ""
+        },
+        {
+          "absolute_url": "/docket/73345552/1/johnson-v-boston-scientific-corporation/",
+          "attachment_number": null,
+          "cites": [],
+          "description": "",
+          "docket_entry_id": 464121675,
+          "document_number": 1,
+          "document_type": "PACER Document",
+          "entry_date_filed": "2026-05-14",
+          "entry_number": 1,
+          "filepath_local": null,
+          "id": 479286156,
+          "is_available": false,
+          "meta": {
+            "timestamp": "2026-05-14T22:05:11.263734Z",
+            "date_created": "2026-05-14T22:05:09.232009Z"
+          },
+          "pacer_doc_id": "031047781622",
+          "page_count": null,
+          "short_description": "Complaint (Attorney Civil Case Opening)",
+          "snippet": ""
+        }
+      ],
+      "referredTo": null,
+      "referred_to_id": null,
+      "suitNature": "",
+      "trustee_str": null
+    },
+    {
+      "assignedTo": null,
+      "assigned_to_id": null,
+      "attorney": [],
+      "attorney_id": [],
+      "caseName": "Oldham v. Boston Scientific Corporation",
+      "case_name_full": "",
+      "cause": "",
+      "chapter": null,
+      "court": "District Court, C.D. California",
+      "court_citation_string": "C.D. Cal.",
+      "court_id": "cacd",
+      "dateArgued": null,
+      "dateFiled": "2026-05-14",
+      "dateTerminated": null,
+      "docketNumber": "2:26-cv-05185",
+      "docket_absolute_url": "/docket/73342203/oldham-v-boston-scientific-corporation/",
+      "docket_id": 73342203,
+      "firm": [],
+      "firm_id": [],
+      "jurisdictionType": "",
+      "juryDemand": "",
+      "meta": {
+        "timestamp": "2026-05-14T17:10:48.719176Z",
+        "date_created": "2026-05-14T17:06:20.629781Z",
+        "score": {
+          "bm25": 13454812000000.0
+        },
+        "more_docs": true
+      },
+      "pacer_case_id": "1020221",
+      "party": [
+        "Oldham",
+        "Boston Scientific Corporation"
+      ],
+      "party_id": [],
+      "recap_documents": [
+        {
+          "absolute_url": "/docket/73342203/5/oldham-v-boston-scientific-corporation/",
+          "attachment_number": null,
+          "cites": [],
+          "description": "",
+          "docket_entry_id": 464063425,
+          "document_number": 5,
+          "document_type": "PACER Document",
+          "entry_date_filed": "2026-05-14",
+          "entry_number": 5,
+          "filepath_local": null,
+          "id": 479226911,
+          "is_available": false,
+          "meta": {
+            "timestamp": "2026-05-14T17:32:13.824874Z",
+            "date_created": "2026-05-14T17:32:13.731084Z"
+          },
+          "pacer_doc_id": "031047777084",
+          "page_count": null,
+          "short_description": "Summons Request",
+          "snippet": ""
+        },
+        {
+          "absolute_url": "/docket/73342203/3/oldham-v-boston-scientific-corporation/",
+          "attachment_number": null,
+          "cites": [],
+          "description": "",
+          "docket_entry_id": 464063520,
+          "document_number": 3,
+          "document_type": "PACER Document",
+          "entry_date_filed": "2026-05-14",
+          "entry_number": 3,
+          "filepath_local": null,
+          "id": 479227006,
+          "is_available": false,
+          "meta": {
+            "timestamp": "2026-05-14T17:32:30.672448Z",
+            "date_created": "2026-05-14T17:32:30.588125Z"
+          },
+          "pacer_doc_id": "031047776826",
+          "page_count": null,
+          "short_description": "Summons Request",
+          "snippet": ""
+        },
+        {
+          "absolute_url": "/docket/73342203/2/oldham-v-boston-scientific-corporation/",
+          "attachment_number": null,
+          "cites": [],
+          "description": "",
+          "docket_entry_id": 464063545,
+          "document_number": 2,
+          "document_type": "PACER Document",
+          "entry_date_filed": "2026-05-14",
+          "entry_number": 2,
+          "filepath_local": null,
+          "id": 479227031,
+          "is_available": false,
+          "meta": {
+            "timestamp": "2026-05-14T17:32:36.525852Z",
+            "date_created": "2026-05-14T17:32:36.428305Z"
+          },
+          "pacer_doc_id": "031047776746",
+          "page_count": null,
+          "short_description": "Civil Cover Sheet (CV-71)",
+          "snippet": ""
+        }
+      ],
+      "referredTo": null,
+      "referred_to_id": null,
+      "suitNature": "",
+      "trustee_str": null
+    },
+    {
+      "assignedTo": "Jorge Luis Alonso",
+      "assigned_to_id": 86,
+      "attorney": [
+        "Steven P. Mandell"
+      ],
+      "attorney_id": [
+        13579055
+      ],
+      "caseName": "Seer, Inc. v. Nanomics Biotechnology Co., Ltd.",
+      "case_name_full": "",
+      "cause": "35:271 Patent Infringement",
+      "chapter": null,
+      "court": "District Court, N.D. Illinois",
+      "court_citation_string": "N.D. Ill.",
+      "court_id": "ilnd",
+      "dateArgued": null,
+      "dateFiled": "2026-05-12",
+      "dateTerminated": null,
+      "docketNumber": "1:26-cv-05498",
+      "docket_absolute_url": "/docket/73333204/seer-inc-v-nanomics-biotechnology-co-ltd/",
+      "docket_id": 73333204,
+      "firm": [
+        "Mandell P.C."
+      ],
+      "firm_id": [
+        1117059
+      ],
+      "jurisdictionType": "Federal Question",
+      "juryDemand": "Plaintiff",
+      "meta": {
+        "timestamp": "2026-05-14T09:49:06.638827Z",
+        "date_created": "2026-05-13T04:08:05.798267Z",
+        "score": {
+          "bm25": 13454640000000.0
+        },
+        "more_docs": false
+      },
+      "pacer_case_id": "500529",
+      "party": [
+        "Nanomics Biotechnology Co., Ltd.",
+        "Seer, Inc.",
+        "The Brigham and Women's Hospital"
+      ],
+      "party_id": [
+        19765368,
+        19765369,
+        19765370
+      ],
+      "recap_documents": [
+        {
+          "absolute_url": "/docket/73333204/1/seer-inc-v-nanomics-biotechnology-co-ltd/",
+          "attachment_number": null,
+          "cites": [],
+          "description": "COMPLAINT for Patent Infringement filed by The Brigham and Women's Hospital, Seer, Inc.; Jury Demand. Filing fee $ 405, receipt number AILNDC-25108635. (Attachments: # 1 Exhibit 1, # 2 Exhibit 2, # 3 Exhibit 3, # 4 Exhibit 4, # 5 Exhibit 5, # 6 Exhibit 6, # 7 Exhibit 7, # 8 Exhibit 8, # 9 Exhibit 9, # 10 Exhibit 10, # 11 Exhibit 11, # 12 Exhibit 12, # 13 Exhibit 13, # 14 Exhibit 14, # 15 Exhibit 15, # 16 Exhibit 16, # 17 Exhibit 17, # 18 Civil Cover Sheet)(Mandell, Steven) (Entered: 05/12/2026)",
+          "docket_entry_id": 463851210,
+          "document_number": 1,
+          "document_type": "PACER Document",
+          "entry_date_filed": "2026-05-12",
+          "entry_number": 1,
+          "filepath_local": "recap/gov.uscourts.ilnd.500529/gov.uscourts.ilnd.500529.1.0.pdf",
+          "id": 479009633,
+          "is_available": true,
+          "meta": {
+            "timestamp": "2026-05-14T09:49:06.606010Z",
+            "date_created": "2026-05-13T04:18:58.301898Z"
+          },
+          "pacer_doc_id": "067034601371",
+          "page_count": 56,
+          "short_description": "Complaint",
+          "snippet": "Case: 1:26-cv-05498 Document #: 1 Filed: 05/12/26 Page 1 of 56 PagelD #:1\n\nIN THE UNITED STATES DISTRICT COURT FOR\nTHE NORTHERN DISTRICT OF ILLINOIS\n\nSEER, INC. and\nTHE BRIGHAM AND WOMEN\u2019S HOSPITAL,\nINC.\nPlaintiffs,\nVv.\n\nNANOMICS BIOTECHNOLOGY CO., LTD.\n\nDefendant.\n\nCase No. 26-cv-5498\n\nJURY TRIAL DEMANDED\n\nCOMPLAINT FOR PATENT INFRINGEMENT\n\n\fCase: 1:26-cv-05498 Document #: 1 Filed: 05/12/26 Page 2 of 56 PagelD #:2\n\nPlaintiffs Seer, Inc. (\u201cSeer\u201d) and The Brigham and Women\u2019s Hospital, Inc. (\u201c\u201cBWH"
+        }
+      ],
+      "referredTo": null,
+      "referred_to_id": null,
+      "suitNature": "830 Patent",
+      "trustee_str": null
+    },
+    {
+      "assignedTo": "Julie Rebecca Rubin",
+      "assigned_to_id": null,
+      "attorney": [
+        "Steven Shipe",
+        "Jacquelyn E. Papish",
+        "Victor Obasaju",
+        "John Kelly"
+      ],
+      "attorney_id": [
+        13572048,
+        13572049,
+        13572046,
+        13572047
+      ],
+      "caseName": "In Re: Children's National Subpoena No. 25-1431-028 v. U.S. Department of Justice",
+      "case_name_full": "",
+      "cause": "Motion to Quash",
+      "chapter": null,
+      "court": "District Court, D. Maryland",
+      "court_citation_string": "D. Maryland",
+      "court_id": "mdd",
+      "dateArgued": null,
+      "dateFiled": "2026-05-08",
+      "dateTerminated": null,
+      "docketNumber": "8:26-cv-01825",
+      "docket_absolute_url": "/docket/73327480/in-re-childrens-national-subpoena-no-25-1431-028-v-us-department-of/",
+      "docket_id": 73327480,
+      "firm": [
+        "Barnes & Thornburg LLP",
+        "Ny",
+        "Dc"
+      ],
+      "firm_id": [
+        1320448,
+        7138,
+        826962,
+        1192063
+      ],
+      "jurisdictionType": "U.S. Government Defendant",
+      "juryDemand": "None",
+      "meta": {
+        "timestamp": "2026-05-12T15:19:00.782827Z",
+        "date_created": "2026-05-12T14:44:39.775282Z",
+        "score": {
+          "bm25": 13454294000000.0
+        },
+        "more_docs": false
+      },
+      "pacer_case_id": "605487",
+      "party": [
+        "Children's National Subpoena No. 25-1431-028",
+        "Children's National Hospital",
+        "U.S. Department of Justice"
+      ],
+      "party_id": [
+        19754456,
+        19754457,
+        19754455
+      ],
+      "recap_documents": [
+        {
+          "absolute_url": "/docket/73327480/2/1/in-re-childrens-national-subpoena-no-25-1431-028-v-us-department-of/",
+          "attachment_number": 1,
+          "cites": [
+            104758,
+            111437,
+            185086,
+            205266,
+            386024,
+            770617,
+            773616,
+            799929,
+            1472778,
+            2497025,
+            2500459,
+            4250965,
+            9352828,
+            9418026,
+            9419755,
+            9426661,
+            9426832,
+            9434042,
+            9813126
+          ],
+          "description": "MOTION to Limit Subpoena Duces Tecum as to Children's National Subpoena No. 25-1431-028 by Children's National Hospital. (Attachments: # 1 Memorandum in Support #(2) Exhibit A, # 3 Exhibit B, # 4 Exhibit C, # 5 Exhibit D, # 6 Text of Proposed Order Re: Motion to Limit Subpoena) (Shipe, Steven) (Entered: 05/08/2026)",
+          "docket_entry_id": 463743131,
+          "document_number": 2,
+          "document_type": "Attachment",
+          "entry_date_filed": "2026-05-08",
+          "entry_number": 2,
+          "filepath_local": "recap/gov.uscourts.mdd.605487/gov.uscourts.mdd.605487.2.1.pdf",
+          "id": 479350390,
+          "is_available": true,
+          "meta": {
+            "timestamp": "2026-05-15T15:05:01.982763Z",
+            "date_created": "2026-05-15T15:02:53.756947Z"
+          },
+          "pacer_doc_id": "093015739653",
+          "page_count": 29,
+          "short_description": "Memorandum in Support Re: Motion to Limit Subpoena",
+          "snippet": "                        UNITED STATES DISTRICT COURT\n                           DISTRICT OF MARYLAND\n\n\nIn Re: Children\u2019s National Subpoena No.       Case No.:\n25-1431-028                                   ____________________________\n\n\n\n                   MEMORANDUM OF LAW IN SUPPORT OF\n                  MOTION TO LIMIT SUBPOENA DUCES TECUM\n\n\n\n\n                                          1\n\f                                                    TABLE OF CONTENTS\n\n\n\nINTRODUCTION ......................"
+        }
+      ],
+      "referredTo": null,
+      "referred_to_id": null,
+      "suitNature": "890 Other Statutory Actions",
+      "trustee_str": null
+    },
+    {
+      "assignedTo": null,
+      "assigned_to_id": null,
+      "attorney": [],
+      "attorney_id": [],
+      "caseName": "Mansour v. Boston Scientific Corporation",
+      "case_name_full": "",
+      "cause": "",
+      "chapter": null,
+      "court": "District Court, C.D. California",
+      "court_citation_string": "C.D. Cal.",
+      "court_id": "cacd",
+      "dateArgued": null,
+      "dateFiled": "2026-05-08",
+      "dateTerminated": null,
+      "docketNumber": "8:26-cv-01121",
+      "docket_absolute_url": "/docket/73319642/mansour-v-boston-scientific-corporation/",
+      "docket_id": 73319642,
+      "firm": [],
+      "firm_id": [],
+      "jurisdictionType": "",
+      "juryDemand": "",
+      "meta": {
+        "timestamp": "2026-05-08T23:06:10.086676Z",
+        "date_created": "2026-05-08T23:06:09.968446Z",
+        "score": {
+          "bm25": 13454294000000.0
+        },
+        "more_docs": true
+      },
+      "pacer_case_id": "1019391",
+      "party": [
+        "Mansour",
+        "Boston Scientific Corporation"
+      ],
+      "party_id": [],
+      "recap_documents": [
+        {
+          "absolute_url": "/docket/73319642/2/mansour-v-boston-scientific-corporation/",
+          "attachment_number": null,
+          "cites": [],
+          "description": "",
+          "docket_entry_id": 463503512,
+          "document_number": 2,
+          "document_type": "PACER Document",
+          "entry_date_filed": "2026-05-08",
+          "entry_number": 2,
+          "filepath_local": null,
+          "id": 478651286,
+          "is_available": false,
+          "meta": {
+            "timestamp": "2026-05-08T23:37:02.348928Z",
+            "date_created": "2026-05-08T23:37:01.621142Z"
+          },
+          "pacer_doc_id": "031047735488",
+          "page_count": null,
+          "short_description": "Civil Cover Sheet (CV-71)",
+          "snippet": ""
+        },
+        {
+          "absolute_url": "/docket/73319642/1/mansour-v-boston-scientific-corporation/",
+          "attachment_number": null,
+          "cites": [],
+          "description": "",
+          "docket_entry_id": 463503541,
+          "document_number": 1,
+          "document_type": "PACER Document",
+          "entry_date_filed": "2026-05-08",
+          "entry_number": 1,
+          "filepath_local": null,
+          "id": 478651315,
+          "is_available": false,
+          "meta": {
+            "timestamp": "2026-05-08T23:37:07.333071Z",
+            "date_created": "2026-05-08T23:37:07.240130Z"
+          },
+          "pacer_doc_id": "031047735381",
+          "page_count": null,
+          "short_description": "Notice of Removal (Attorney Civil Case Opening)",
+          "snippet": ""
+        },
+        {
+          "absolute_url": "/docket/73319642/3/mansour-v-boston-scientific-corporation/",
+          "attachment_number": null,
+          "cites": [],
+          "description": "",
+          "docket_entry_id": 463503495,
+          "document_number": 3,
+          "document_type": "PACER Document",
+          "entry_date_filed": "2026-05-08",
+          "entry_number": 3,
+          "filepath_local": null,
+          "id": 478651269,
+          "is_available": false,
+          "meta": {
+            "timestamp": "2026-05-08T23:36:58.554211Z",
+            "date_created": "2026-05-08T23:36:58.457789Z"
+          },
+          "pacer_doc_id": "031047735543",
+          "page_count": null,
+          "short_description": "Certificate/Notice of Interested Parties",
+          "snippet": ""
+        }
+      ],
+      "referredTo": null,
+      "referred_to_id": null,
+      "suitNature": "",
+      "trustee_str": null
+    },
+    {
+      "assignedTo": null,
+      "assigned_to_id": null,
+      "attorney": [
+        "Kiel Ireland, Chief Deputy Attorney General",
+        "Sophia Shams",
+        "Jeffrey Michael Schwab, -",
+        "Douglas C. Dreier, -",
+        "Daniel Winik",
+        "Benjamin N. Gutman, Solicitor General",
+        "Dustin Buehler, -",
+        "Brian Simmonds Marshall",
+        "Bradley Hinshelwood, Trial Attorney"
+      ],
+      "attorney_id": [
+        13575392,
+        13567080,
+        13567759,
+        13567760,
+        13567761,
+        13567762,
+        13572698,
+        13572699,
+        13575391
+      ],
+      "caseName": "State of Oregon v. Trump",
+      "case_name_full": "",
+      "cause": "",
+      "chapter": null,
+      "court": "Court of Appeals for the Federal Circuit",
+      "court_citation_string": "Fed. Cir.",
+      "court_id": "cafc",
+      "dateArgued": null,
+      "dateFiled": "2026-05-08",
+      "dateTerminated": null,
+      "docketNumber": "26-1804",
+      "docket_absolute_url": "/docket/73318531/state-of-oregon-v-trump/",
+      "docket_id": 73318531,
+      "firm": [
+        "Direct: 530-510-6595, Oregon Department of Justice, Trial Division, Special Litigation Unit",
+        "United States Department of Justice, Commercial Litigation Branch, Civil Division, International Trade Field Office",
+        "United States Department of Justice, Environment & Natural Resources Division",
+        "Oregon Department of Justice, Trial Division, Special Litigation Unit",
+        "United States Department of Justice, Appellate Staff, Civil Division",
+        "United States Department of Justice, Civil Division",
+        "Direct: 702-486-3420, Nevada Attorney General's Office, Office of the Attorney General",
+        "Jeffrey Michael Schwab",
+        "United States Department of Justice",
+        "Direct: 503-378-4402, Oregon Department of Justice",
+        "Direct: 202-514-4452, United States Department of Justice"
+      ],
+      "firm_id": [
+        623459,
+        1062467,
+        1318307,
+        1319271,
+        989135,
+        1117785,
+        97361,
+        39985,
+        329585,
+        1009524,
+        884409
+      ],
+      "jurisdictionType": "",
+      "juryDemand": "",
+      "meta": {
+        "timestamp": "2026-05-08T20:43:42.616591Z",
+        "date_created": "2026-05-08T20:43:42.503783Z",
+        "score": {
+          "bm25": 13454294000000.0
+        },
+        "more_docs": false
+      },
+      "pacer_case_id": "24360",
+      "party": [
+        "DEPARTMENT OF HOMELAND SECURITY",
+        "BASIC FUN, INC.",
+        "BURLAP AND BARREL, INC.",
+        "OFFICE OF THE UNITED STATES TRADE REPRESENTATIVE",
+        "JAMIESON GREER, U.S. Trade Representative",
+        "STATE OF OREGON",
+        "UNITED STATES",
+        "DONALD J. TRUMP, in his official capacity as President of the United States",
+        "EXECUTIVE OFFICE OF THE PRESIDENT",
+        "RODNEY S. SCOTT, Commissioner of U.S. Customs and Border Protection",
+        "UNITED STATES CUSTOMS AND BORDER PROTECTION",
+        "STATE OF WASHINGTON",
+        "STATE OF NEVADA",
+        "MARKWAYNE MULLIN, Secretary of Homeland Security"
+      ],
+      "party_id": [
+        19760034,
+        19760035,
+        19760036,
+        19760037,
+        19760038,
+        19760039,
+        19746857,
+        19746858,
+        19746859,
+        19746860,
+        19746861,
+        19746862,
+        19746863,
+        19746864
+      ],
+      "recap_documents": [
+        {
+          "absolute_url": "/docket/73318531/4/state-of-oregon-v-trump/",
+          "attachment_number": null,
+          "cites": [
+            106,
+            84759,
+            84781,
+            85412,
+            100240,
+            101250,
+            102804,
+            103361,
+            109489,
+            109574,
+            118096,
+            145625,
+            145884,
+            212115,
+            442057,
+            463384,
+            536025,
+            815037,
+            820150,
+            1462913,
+            1680318,
+            4205993,
+            4284790,
+            4286670,
+            4288402,
+            4396231,
+            4692447,
+            6317062,
+            6348219,
+            6649288,
+            6824191,
+            6824316,
+            6824528,
+            9413213,
+            9426552,
+            9428084,
+            9430887,
+            9431514,
+            9432245,
+            9432577,
+            9432675,
+            9433568,
+            9433586,
+            9434546,
+            9434725,
+            9440983,
+            9473460,
+            9485171,
+            9502825,
+            9527076,
+            9722205,
+            9795100,
+            9841789,
+            9888645,
+            9889182,
+            11243407
+          ],
+          "description": "MOTION of Appellants DHS, Markwayne Mullin, Rodney S. Scott, Donald J. Trump, United States Customs and Border Protection and US for an emergency stay pending appeal under Rule 8/18. Service: 05/11/2026 by email. [1166315] [26-1804] [Douglas Dreier] [Entered: 05/11/2026 05:17 PM]",
+          "docket_entry_id": 463682755,
+          "document_number": 4,
+          "document_type": "PACER Document",
+          "entry_date_filed": "2026-05-11",
+          "entry_number": 4,
+          "filepath_local": "recap/gov.uscourts.cafc.24360/gov.uscourts.cafc.24360.4.0_1.pdf",
+          "id": 478835878,
+          "is_available": true,
+          "meta": {
+            "timestamp": "2026-05-11T21:36:21.238584Z",
+            "date_created": "2026-05-11T21:29:05.205068Z"
+          },
+          "pacer_doc_id": "01302692012",
+          "page_count": 218,
+          "short_description": "",
+          "snippet": "                                   Nos. 2026-1804, -1805\n\n               IN THE UNITED STATES COURT OF APPEALS\n                       FOR THE FEDERAL CIRCUIT\n\n THE STATE OF OREGON, THE STATE OF ARIZONA, THE STATE OF CALIFORNIA, THE STATE OF\n     NEW YORK, THE STATE OF COLORADO, THE STATE OF CONNECTICUT, THE STATE OF\nDELAWARE, THE STATE OF ILLINOIS, THE OFFICE OF THE GOVERNOR ex rel. ANDY BESHEAR, in\n   his official capacity as Governor of the Commonwealth of Kentucky, THE STATE OF MAINE, THE\n   "
+        }
+      ],
+      "referredTo": null,
+      "referred_to_id": null,
+      "suitNature": "",
+      "trustee_str": null
+    },
+    {
+      "assignedTo": null,
+      "assigned_to_id": null,
+      "attorney": [
+        "Daniel Winik",
+        "Bradley Hinshelwood, Trial Attorney",
+        "Jeffrey Michael Schwab, -",
+        "Douglas C. Dreier, -",
+        "Sophia Shams"
+      ],
+      "attorney_id": [
+        13568460,
+        13568461,
+        13568462,
+        13568463,
+        13563991
+      ],
+      "caseName": "Burlap and Barrel, Inc. v. Trump",
+      "case_name_full": "",
+      "cause": "",
+      "chapter": null,
+      "court": "Court of Appeals for the Federal Circuit",
+      "court_citation_string": "Fed. Cir.",
+      "court_id": "cafc",
+      "dateArgued": null,
+      "dateFiled": "2026-05-08",
+      "dateTerminated": null,
+      "docketNumber": "26-1805",
+      "docket_absolute_url": "/docket/73318463/burlap-and-barrel-inc-v-trump/",
+      "docket_id": 73318463,
+      "firm": [
+        "United States Department of Justice, Civil Division",
+        "United States Department of Justice",
+        "United States Department of Justice, Appellate Staff, Civil Division",
+        "Jeffrey Michael Schwab",
+        "Direct: 202-514-4452, United States Department of Justice",
+        "United States Department of Justice, Environment & Natural Resources Division",
+        "United States Department of Justice, Commercial Litigation Branch, Civil Division, International Trade Field Office"
+      ],
+      "firm_id": [
+        1318307,
+        989135,
+        1117785,
+        97361,
+        39985,
+        1009524,
+        884409
+      ],
+      "jurisdictionType": "",
+      "juryDemand": "",
+      "meta": {
+        "timestamp": "2026-05-08T20:36:15.797307Z",
+        "date_created": "2026-05-08T20:36:15.634692Z",
+        "score": {
+          "bm25": 13454294000000.0
+        },
+        "more_docs": false
+      },
+      "pacer_case_id": "24361",
+      "party": [
+        "JAMIESON GREER, U.S. Trade Representative",
+        "MARKWAYNE MULLIN, Secretary of Homeland Security",
+        "RODNEY S. SCOTT, Commissioner of U.S. Customs and Border Protection",
+        "DEPARTMENT OF HOMELAND SECURITY",
+        "EXECUTIVE OFFICE OF THE PRESIDENT",
+        "BASIC FUN, INC.",
+        "UNITED STATES",
+        "OFFICE OF THE UNITED STATES TRADE REPRESENTATIVE",
+        "UNITED STATES CUSTOMS AND BORDER PROTECTION",
+        "BURLAP AND BARREL, INC.",
+        "DONALD J. TRUMP, in his official capacity as President of the United States"
+      ],
+      "party_id": [
+        19742691,
+        19742692,
+        19742693,
+        19742694,
+        19742695,
+        19742696,
+        19742697,
+        19742698,
+        19742699,
+        19742700,
+        19742701
+      ],
+      "recap_documents": [
+        {
+          "absolute_url": "/docket/73318463/4/burlap-and-barrel-inc-v-trump/",
+          "attachment_number": null,
+          "cites": [
+            106,
+            84759,
+            84781,
+            85412,
+            100240,
+            101250,
+            102804,
+            103361,
+            109489,
+            109574,
+            118096,
+            145625,
+            145884,
+            212115,
+            442057,
+            463384,
+            536025,
+            815037,
+            820150,
+            1462913,
+            1680318,
+            4205993,
+            4284790,
+            4286670,
+            4288402,
+            4396231,
+            4692447,
+            6317062,
+            6348219,
+            6649288,
+            6824191,
+            6824316,
+            6824528,
+            9413213,
+            9426552,
+            9428084,
+            9430887,
+            9431514,
+            9432245,
+            9432577,
+            9432675,
+            9433568,
+            9433586,
+            9434546,
+            9434725,
+            9440983,
+            9473460,
+            9485171,
+            9502825,
+            9527076,
+            9722205,
+            9795100,
+            9841789,
+            9888645,
+            9889182,
+            11243407
+          ],
+          "description": "MOTION of Appellants DHS, Executive Office of the President, Jamieson Greer, Markwayne Mullin, Office of the United States Trade Representative, Rodney S. Scott, Donald J. Trump, United States Customs and Border Protection and US for an emergency stay pending appeal under Rule 8/18. Service: 05/11/2026 by email. [1166318] [26-1805] [Douglas Dreier] [Entered: 05/11/2026 05:21 PM]",
+          "docket_entry_id": 463784055,
+          "document_number": 4,
+          "document_type": "PACER Document",
+          "entry_date_filed": "2026-05-11",
+          "entry_number": 4,
+          "filepath_local": "recap/gov.uscourts.cafc.24361/gov.uscourts.cafc.24361.4.0_1.pdf",
+          "id": 478940722,
+          "is_available": true,
+          "meta": {
+            "timestamp": "2026-05-13T12:41:32.752811Z",
+            "date_created": "2026-05-12T18:28:49.309552Z"
+          },
+          "pacer_doc_id": "01302692018",
+          "page_count": 218,
+          "short_description": "",
+          "snippet": "             Case: 26-1805        Document: 4        Page: 1      Filed: 05/11/2026\n\n\n\n                                   Nos. 2026-1804, -1805\n\n               IN THE UNITED STATES COURT OF APPEALS\n                       FOR THE FEDERAL CIRCUIT\n\n THE STATE OF OREGON, THE STATE OF ARIZONA, THE STATE OF CALIFORNIA, THE STATE OF\n     NEW YORK, THE STATE OF COLORADO, THE STATE OF CONNECTICUT, THE STATE OF\nDELAWARE, THE STATE OF ILLINOIS, THE OFFICE OF THE GOVERNOR ex rel. ANDY BESHEAR, in\n   his off"
+        }
+      ],
+      "referredTo": null,
+      "referred_to_id": null,
+      "suitNature": "",
+      "trustee_str": null
+    },
+    {
+      "assignedTo": null,
+      "assigned_to_id": null,
+      "attorney": [],
+      "attorney_id": [],
+      "caseName": "Fus v. Bayer Corporation",
+      "case_name_full": "",
+      "cause": "",
+      "chapter": null,
+      "court": "District Court, N.D. California",
+      "court_citation_string": "N.D. Cal.",
+      "court_id": "cand",
+      "dateArgued": null,
+      "dateFiled": "2026-05-08",
+      "dateTerminated": null,
+      "docketNumber": "3:26-cv-04261",
+      "docket_absolute_url": "/docket/73317697/fus-v-bayer-corporation/",
+      "docket_id": 73317697,
+      "firm": [],
+      "firm_id": [],
+      "jurisdictionType": "",
+      "juryDemand": "",
+      "meta": {
+        "timestamp": "2026-05-08T19:41:12.405914Z",
+        "date_created": "2026-05-08T19:31:15.073811Z",
+        "score": {
+          "bm25": 13454294000000.0
+        },
+        "more_docs": false
+      },
+      "pacer_case_id": "469733",
+      "party": [
+        "Fus",
+        "Bayer Corporation"
+      ],
+      "party_id": [],
+      "recap_documents": [
+        {
+          "absolute_url": "/docket/73317697/1/fus-v-bayer-corporation/",
+          "attachment_number": null,
+          "cites": [],
+          "description": "",
+          "docket_entry_id": 463468837,
+          "document_number": 1,
+          "document_type": "PACER Document",
+          "entry_date_filed": "2026-05-08",
+          "entry_number": 1,
+          "filepath_local": "recap/gov.uscourts.cand.469733/gov.uscourts.cand.469733.1.0.pdf",
+          "id": 478615516,
+          "is_available": true,
+          "meta": {
+            "timestamp": "2026-05-14T08:58:13.291053Z",
+            "date_created": "2026-05-08T20:04:13.886221Z"
+          },
+          "pacer_doc_id": "035027105869",
+          "page_count": 21,
+          "short_description": "Complaint",
+          "snippet": "10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n\nCase 3:26-cv-04261-JSC Document1 Filed 05/08/26 Page1of21\n\nSMITH KRIVOSHEY, PC\n\nYeremey O. Krivoshey (State Bar No. 295032)\nBrittany S. Scott (State Bar No. 327132)\n\n28 Geary Street, Ste. 650, #1507\n\nSan Francisco, CA 94108\n\nPhone: 415-839-7000\n\nE-Mail: yeremey@skclassactions.com\nbrittany @skclassactions.com\n\nAttorneys for Plaintiff\n\nAdditional attorneys listed on\nsignature page\n\nUNITED STATES DISTRICT COURT\n\nNORTHERN DISTRICT OF CALIFORN"
+        }
+      ],
+      "referredTo": null,
+      "referred_to_id": null,
+      "suitNature": "",
+      "trustee_str": null
+    },
+    {
+      "assignedTo": "Julie Rebecca Rubin",
+      "assigned_to_id": null,
+      "attorney": [
+        "Steven Shipe"
+      ],
+      "attorney_id": [
+        13565438
+      ],
+      "caseName": "In Re: Children's National Subpoena No. 25-1431-028 v. U.S. Department of Justice",
+      "case_name_full": "",
+      "cause": "Motion to Quash",
+      "chapter": null,
+      "court": "District Court, D. Maryland",
+      "court_citation_string": "D. Maryland",
+      "court_id": "mdd",
+      "dateArgued": null,
+      "dateFiled": "2026-05-08",
+      "dateTerminated": null,
+      "docketNumber": "1:26-cv-01825",
+      "docket_absolute_url": "/docket/73317474/in-re-childrens-national-subpoena-no-25-1431-028-v-us-department-of/",
+      "docket_id": 73317474,
+      "firm": [
+        "Dc"
+      ],
+      "firm_id": [
+        1192063
+      ],
+      "jurisdictionType": "U.S. Government Defendant",
+      "juryDemand": "None",
+      "meta": {
+        "timestamp": "2026-05-09T10:47:01.965662Z",
+        "date_created": "2026-05-08T19:12:46.906893Z",
+        "score": {
+          "bm25": 13454294000000.0
+        },
+        "more_docs": false
+      },
+      "pacer_case_id": "605398",
+      "party": [
+        "U.S. Department of Justice",
+        "Children's National Hospital",
+        "Children's National Subpoena No. 25-1431-028"
+      ],
+      "party_id": [
+        19745244,
+        19747149,
+        19747150
+      ],
+      "recap_documents": [
+        {
+          "absolute_url": "/docket/73317474/2/1/in-re-childrens-national-subpoena-no-25-1431-028-v-us-department-of/",
+          "attachment_number": 1,
+          "cites": [
+            104758,
+            111437,
+            185086,
+            205266,
+            386024,
+            770617,
+            773616,
+            799929,
+            1472778,
+            2497025,
+            2500459,
+            4250965,
+            9352828,
+            9418026,
+            9419755,
+            9426661,
+            9426832,
+            9434042,
+            9813126
+          ],
+          "description": "MOTION to Limit Subpoena Duces Tecum as to Children's National Subpoena No. 25-1431-028 by Children's National Hospital. (Attachments: # 1 Memorandum in Support #(2) Exhibit A, # 3 Exhibit B, # 4 Exhibit C, # 5 Exhibit D, # 6 Text of Proposed Order Re: Motion to Limit Subpoena) (Shipe, Steven) (Entered: 05/08/2026)",
+          "docket_entry_id": 463529911,
+          "document_number": 2,
+          "document_type": "Attachment",
+          "entry_date_filed": "2026-05-08",
+          "entry_number": 2,
+          "filepath_local": "recap/gov.uscourts.mdd.605398/gov.uscourts.mdd.605398.2.1.pdf",
+          "id": 478678733,
+          "is_available": true,
+          "meta": {
+            "timestamp": "2026-05-11T14:39:32.728624Z",
+            "date_created": "2026-05-09T10:47:19.540807Z"
+          },
+          "pacer_doc_id": "093015734252",
+          "page_count": 29,
+          "short_description": "Memorandum in Support Re: Motion to Limit Subpoena",
+          "snippet": "     Case 1:26-cv-01825-JRR       Document 2-1     Filed 05/08/26   Page 1 of 29\n\n\n\n                        UNITED STATES DISTRICT COURT\n                           DISTRICT OF MARYLAND\n\n\nIn Re: Children\u2019s National Subpoena No.       Case No.:\n25-1431-028                                   ____________________________\n\n\n\n                   MEMORANDUM OF LAW IN SUPPORT OF\n                  MOTION TO LIMIT SUBPOENA DUCES TECUM\n\n\n\n\n                                          1\n\f          Case 1:26-cv-0"
+        }
+      ],
+      "referredTo": null,
+      "referred_to_id": null,
+      "suitNature": "890 Other Statutory Actions",
+      "trustee_str": null
+    },
+    {
+      "assignedTo": "Karen Spencer Marston",
+      "assigned_to_id": 15382,
+      "attorney": [
+        "Jason Scott Goldstein"
+      ],
+      "attorney_id": [
+        13563108
+      ],
+      "caseName": "MONASTIERO v. NOVO NORDISK INC.",
+      "case_name_full": "",
+      "cause": "28:1332 Diversity-Product Liability",
+      "chapter": null,
+      "court": "District Court, E.D. Pennsylvania",
+      "court_citation_string": "E.D. Pa.",
+      "court_id": "paed",
+      "dateArgued": null,
+      "dateFiled": "2026-05-08",
+      "dateTerminated": null,
+      "docketNumber": "2:26-cv-03132",
+      "docket_absolute_url": "/docket/73316205/monastiero-v-novo-nordisk-inc/",
+      "docket_id": 73316205,
+      "firm": [
+        "Parker Waichman LLP"
+      ],
+      "firm_id": [
+        2347
+      ],
+      "jurisdictionType": "Diversity",
+      "juryDemand": "Plaintiff",
+      "meta": {
+        "timestamp": "2026-05-08T18:13:31.083404Z",
+        "date_created": "2026-05-08T16:37:14.246186Z",
+        "score": {
+          "bm25": 13454294000000.0
+        },
+        "more_docs": false
+      },
+      "pacer_case_id": "654348",
+      "party": [
+        "GREGG MONASTIERO",
+        "NOVO NORDISK A/S",
+        "NOVO NORDISK INC."
+      ],
+      "party_id": [
+        19741232,
+        19741233,
+        19741234
+      ],
+      "recap_documents": [
+        {
+          "absolute_url": "/docket/73316205/1/monastiero-v-novo-nordisk-inc/",
+          "attachment_number": null,
+          "cites": [],
+          "description": "COMPLAINT against NOVO NORDISK A/S, NOVO NORDISK INC. ( Filing fee $ 405 receipt number APAEDC-19246415.), filed by GREGG MONASTIERO. (Attachments: # 1 Civil Cover Sheet, # 2 Designation Form)(Goldstein, Jason) (Entered: 05/08/2026)",
+          "docket_entry_id": 463435692,
+          "document_number": 1,
+          "document_type": "PACER Document",
+          "entry_date_filed": "2026-05-08",
+          "entry_number": 1,
+          "filepath_local": "recap/gov.uscourts.paed.654348/gov.uscourts.paed.654348.1.0.pdf",
+          "id": 478581344,
+          "is_available": true,
+          "meta": {
+            "timestamp": "2026-05-08T18:15:06.968163Z",
+            "date_created": "2026-05-08T17:16:16.031956Z"
+          },
+          "pacer_doc_id": "153023814441",
+          "page_count": 55,
+          "short_description": "Complaint (Attorney)",
+          "snippet": "         Case 2:26-cv-03132-KSM            Document 1      Filed 05/08/26      Page 1 of 55\n\n\n\n\n                          UNITED STATES DISTRICT COURT\n                    FOR THE EASTERN DISTRICT OF PENNSYLVANIA\n\n\n\n    IN RE GLUCAGON-LIKE PEPTIDE-1                     MDL NO. 3163\n    RECEPTOR AGONISTS (GLP-1 RAS)\n    NON-ARTERITIC ISCHEMIC OPTIC                      THIS DOCUMENT RELATES TO ALL\n    NEUROPATHY PRODUCTS                               CASES\n    LIABILITY LITIGATION\n                "
+        }
+      ],
+      "referredTo": null,
+      "referred_to_id": null,
+      "suitNature": "367 P.I.: Health Care/Pharmaceutical Personal Injury Product Liability",
+      "trustee_str": null
+    },
+    {
+      "assignedTo": "Luis Ernesto Rivera II",
+      "assigned_to_id": null,
+      "attorney": [
+        "Michael R Dal Lago"
+      ],
+      "attorney_id": [
+        13563133
+      ],
+      "caseName": "CHS TX, INC.",
+      "case_name_full": "",
+      "cause": "",
+      "chapter": "11",
+      "court": "United States Bankruptcy Court, M.D. Florida",
+      "court_citation_string": "Bankr. M.D. Fla.",
+      "court_id": "flmb",
+      "dateArgued": null,
+      "dateFiled": "2026-05-08",
+      "dateTerminated": null,
+      "docketNumber": "2:26-bk-01090",
+      "docket_absolute_url": "/docket/73315655/chs-tx-inc/",
+      "docket_id": 73315655,
+      "firm": [
+        "Michael R Dal Lago"
+      ],
+      "firm_id": [
+        66049
+      ],
+      "jurisdictionType": "",
+      "juryDemand": "",
+      "meta": {
+        "timestamp": "2026-05-08T18:16:25.597384Z",
+        "date_created": "2026-05-08T15:24:07.713899Z",
+        "score": {
+          "bm25": 13454294000000.0
+        },
+        "more_docs": false
+      },
+      "pacer_case_id": "1429302",
+      "party": [
+        "United States Trustee - FTM",
+        "CHS TX, INC."
+      ],
+      "party_id": [
+        19741254,
+        19741255
+      ],
+      "recap_documents": [
+        {
+          "absolute_url": "/docket/73315655/1/chs-tx-inc/",
+          "attachment_number": null,
+          "cites": [],
+          "description": "Voluntary Petition under Chapter 11. (Verify Fee). List of Equity Security Holders; Certificate of Authorization to File Bankruptcy Schedules and Statements Incomplete, Statement of Financial Affairs Not Filed or Incomplete, Disclosure of Compensation of Attorney Not Filed or Not Required, Filed by Michael R Dal Lago on behalf of CHS TX, INC.. Chapter 11 Plan due by 09/8/2026. Disclosure Statement due by 09/8/2026. (Dal Lago, Michael) (Entered: 05/08/2026)",
+          "docket_entry_id": 463417988,
+          "document_number": 1,
+          "document_type": "PACER Document",
+          "entry_date_filed": "2026-05-08",
+          "entry_number": 1,
+          "filepath_local": "recap/gov.uscourts.flmb.1429302/gov.uscourts.flmb.1429302.1.0.pdf",
+          "id": 478563007,
+          "is_available": true,
+          "meta": {
+            "timestamp": "2026-05-08T19:31:11.772386Z",
+            "date_created": "2026-05-08T15:32:53.781034Z"
+          },
+          "pacer_doc_id": "046093526652",
+          "page_count": 79,
+          "short_description": "Voluntary Petition (Chapter 11)",
+          "snippet": "                           Case\n Fill in this information to        2:26-bk-01090-FMR\n                             identify the case:                         Doc 1        Filed 05/08/26              Page 1 of 79\n     United States Bankruptcy Court for the:\n\n     ____________________ District of _________________\n     Middle  District of Florida      (State)\n\n\n\n                                                                      11\n     Case number (If known): _________________________ Chapter _"
+        }
+      ],
+      "referredTo": null,
+      "referred_to_id": null,
+      "suitNature": "",
+      "trustee_str": ""
+    },
+    {
+      "assignedTo": "Luis Ernesto Rivera II",
+      "assigned_to_id": null,
+      "attorney": [
+        "Adisley Cortez-Rodriguez",
+        "Conor McLaughlin",
+        "Michael R Dal Lago"
+      ],
+      "attorney_id": [
+        13581926,
+        13563149,
+        13563150
+      ],
+      "caseName": "YesCare Corp.",
+      "case_name_full": "",
+      "cause": "",
+      "chapter": "11",
+      "court": "United States Bankruptcy Court, M.D. Florida",
+      "court_citation_string": "Bankr. M.D. Fla.",
+      "court_id": "flmb",
+      "dateArgued": null,
+      "dateFiled": "2026-05-08",
+      "dateTerminated": null,
+      "docketNumber": "2:26-bk-01089",
+      "docket_absolute_url": "/docket/73315585/yescare-corp/",
+      "docket_id": 73315585,
+      "firm": [
+        "DOJ-Ust",
+        "Michael R Dal Lago"
+      ],
+      "firm_id": [
+        66049,
+        742651,
+        1154839
+      ],
+      "jurisdictionType": "",
+      "juryDemand": "",
+      "meta": {
+        "timestamp": "2026-05-08T18:20:37.464627Z",
+        "date_created": "2026-05-08T15:13:58.530503Z",
+        "score": {
+          "bm25": 13454294000000.0
+        },
+        "more_docs": false
+      },
+      "pacer_case_id": "1429298",
+      "party": [
+        "United States Trustee - FTM",
+        "YesCare Corp."
+      ],
+      "party_id": [
+        19741283,
+        19741284
+      ],
+      "recap_documents": [
+        {
+          "absolute_url": "/docket/73315585/1/yescare-corp/",
+          "attachment_number": null,
+          "cites": [],
+          "description": "Voluntary Petition under Chapter 11. (Fee Paid.). List of Equity Security Holders; Certificate of Authorization to File Bankruptcy Petition Schedules and Statements Incomplete, Statement of Financial Affairs Not Filed or Incomplete, Disclosure of Compensation of Attorney Not Filed or Not Required, Filed by Michael R Dal Lago on behalf of YesCare Corp.. Chapter 11 Plan due by 09/8/2026. Disclosure Statement due by 09/8/2026. (Dal Lago, Michael) (Entered: 05/08/2026)",
+          "docket_entry_id": 463418374,
+          "document_number": 1,
+          "document_type": "PACER Document",
+          "entry_date_filed": "2026-05-08",
+          "entry_number": 1,
+          "filepath_local": "recap/gov.uscourts.flmb.1429298/gov.uscourts.flmb.1429298.1.0.pdf",
+          "id": 478563393,
+          "is_available": true,
+          "meta": {
+            "timestamp": "2026-05-11T19:56:12.275256Z",
+            "date_created": "2026-05-08T15:33:08.835551Z"
+          },
+          "pacer_doc_id": "046093526433",
+          "page_count": 78,
+          "short_description": "Voluntary Petition (Chapter 11)",
+          "snippet": "                           Case\n Fill in this information to        2:26-bk-01089-FMR\n                             identify WKH case:                         Doc 1        Filed 05/08/26               Page 1 of 78\n     United States Bankruptcy Court for the:\n\n     ____________________ District of _________________\n     Middle  District of Florida      (State)\n\n\n\n                                                                      \u0014\u0014\n     Case number (If known): _________________________ Chapter\u0003"
+        }
+      ],
+      "referredTo": null,
+      "referred_to_id": null,
+      "suitNature": "",
+      "trustee_str": ""
+    },
+    {
+      "assignedTo": "Luis Ernesto Rivera II",
+      "assigned_to_id": null,
+      "attorney": [
+        "Christian G Haman",
+        "Conor McLaughlin",
+        "Jeremy R. Johnson",
+        "Trinitee G. Green",
+        "Michael R Dal Lago"
+      ],
+      "attorney_id": [
+        13563106,
+        13568584,
+        13568585,
+        13568586,
+        13563641
+      ],
+      "caseName": "CHS FL, LLC",
+      "case_name_full": "",
+      "cause": "",
+      "chapter": "11",
+      "court": "United States Bankruptcy Court, M.D. Florida",
+      "court_citation_string": "Bankr. M.D. Fla.",
+      "court_id": "flmb",
+      "dateArgued": null,
+      "dateFiled": "2026-05-08",
+      "dateTerminated": null,
+      "docketNumber": "2:26-bk-01087",
+      "docket_absolute_url": "/docket/73315421/chs-fl-llc/",
+      "docket_id": 73315421,
+      "firm": [
+        "Polsinelli PC",
+        "DOJ-Ust",
+        "Dal Lago Law",
+        "Michael R Dal Lago"
+      ],
+      "firm_id": [
+        66049,
+        149177,
+        143253,
+        742651
+      ],
+      "jurisdictionType": "",
+      "juryDemand": "",
+      "meta": {
+        "timestamp": "2026-05-08T18:12:55.778511Z",
+        "date_created": "2026-05-08T14:54:00.873847Z",
+        "score": {
+          "bm25": 13454294000000.0
+        },
+        "more_docs": false
+      },
+      "pacer_case_id": "1429294",
+      "party": [
+        "CHS FL, LLC",
+        "United States Trustee - FTM"
+      ],
+      "party_id": [
+        19741224,
+        19741225
+      ],
+      "recap_documents": [
+        {
+          "absolute_url": "/docket/73315421/1/chs-fl-llc/",
+          "attachment_number": null,
+          "cites": [],
+          "description": "Voluntary Petition under Chapter 11. (Fee Paid). List of Equity Security Holders; Certificate of Authorization to File Bankruptcy Petition Schedules and Statements Incomplete, Statement of Financial Affairs Not Filed or Incomplete, Disclosure of Compensation of Attorney Not Filed or Not Required, Filed by Michael R Dal Lago on behalf of CHS FL, LLC. Chapter 11 Plan due by 09/8/2026. Disclosure Statement due by 09/8/2026. (Dal Lago, Michael)Modified on 5/8/2026 (RS). (Entered: 05/08/2026)",
+          "docket_entry_id": 463412183,
+          "document_number": 1,
+          "document_type": "PACER Document",
+          "entry_date_filed": "2026-05-08",
+          "entry_number": 1,
+          "filepath_local": "recap/gov.uscourts.flmb.1429294/gov.uscourts.flmb.1429294.1.0.pdf",
+          "id": 478557126,
+          "is_available": true,
+          "meta": {
+            "timestamp": "2026-05-08T19:33:38.867464Z",
+            "date_created": "2026-05-08T15:05:37.928575Z"
+          },
+          "pacer_doc_id": "046093526075",
+          "page_count": 78,
+          "short_description": "Voluntary Petition (Chapter 11)",
+          "snippet": "                           Case\n Fill in this information to        2:26-bk-01087-FMR\n                             identify WKH case:                         Doc 1        Filed 05/08/26               Page 1 of 78\n     United States Bankruptcy Court for the:\n\n     ____________________ District of _________________\n     Middle  District of Florida      (State)\n\n\n\n                                                                      \u0014\u0014\n     Case number (If known): _________________________ Chapter\u0003"
+        }
+      ],
+      "referredTo": null,
+      "referred_to_id": null,
+      "suitNature": "",
+      "trustee_str": ""
+    },
+    {
+      "assignedTo": "Denise Jefferson Casper",
+      "assigned_to_id": 563,
+      "attorney": [
+        "Joseph M. Cacace"
+      ],
+      "attorney_id": [
+        13558423
+      ],
+      "caseName": "Nested Bean, Inc. v. United States",
+      "case_name_full": "",
+      "cause": "28:1346 Tort Claim",
+      "chapter": null,
+      "court": "District Court, D. Massachusetts",
+      "court_citation_string": "D. Mass.",
+      "court_id": "mad",
+      "dateArgued": null,
+      "dateFiled": "2026-05-07",
+      "dateTerminated": null,
+      "docketNumber": "1:26-cv-12078",
+      "docket_absolute_url": "/docket/73308201/nested-bean-inc-v-united-states/",
+      "docket_id": 73308201,
+      "firm": [
+        "Todd and Weld LLP"
+      ],
+      "firm_id": [
+        42737
+      ],
+      "jurisdictionType": "Federal Question",
+      "juryDemand": "None",
+      "meta": {
+        "timestamp": "2026-05-07T16:55:15.577767Z",
+        "date_created": "2026-05-07T14:33:27.928993Z",
+        "score": {
+          "bm25": 13454208000000.0
+        },
+        "more_docs": false
+      },
+      "pacer_case_id": "300105",
+      "party": [
+        "Nested Bean, Inc.",
+        "The United States of America"
+      ],
+      "party_id": [
+        19734112,
+        19734113
+      ],
+      "recap_documents": [
+        {
+          "absolute_url": "/docket/73308201/1/nested-bean-inc-v-united-states/",
+          "attachment_number": null,
+          "cites": [],
+          "description": "COMPLAINT for Damages Under the Federal Tort Claims Act against The United States of America Filing fee: $ 405, receipt number AMADC-11727576 (Fee Status: Filing Fee paid), filed by NESTED BEAN, INC.. (Attachments: # 1 Exhibit 1, # 2 Exhibit 2, # 3 Exhibit 3, # 4 Exhibit 4, # 5 Exhibit 5, # 6 Exhibit 6, # 7 Exhibit 7, # 8 Exhibit 8, # 9 Exhibit 9, # 10 Exhibit 10, # 11 Exhibit 11, # 12 Exhibit 12, # 13 Exhibit 13, # 14 Exhibit 14, # 15 Exhibit 15, # 16 Exhibit 16, # 17 Exhibit 17, # 18 Exhibit 18, # 19 Exhibit 19, # 20 Exhibit 20, # 21 Exhibit 21, # 22 Exhibit 22, # 23 Exhibit 23, # 24 Exhibit 24, # 25 Exhibit 25, # 26 Exhibit 26, # 27 Exhibit 27, # 28 Exhibit 28, # 29 Exhibit 29, # 30 Exhibit 30, # 31 Exhibit 31, # 32 Exhibit 32, # 33 Exhibit 33, # 34 Exhibit 34, # 35 Exhibit 35, # 36 Exhibit 36, # 37 Exhibit 37, # 38 Exhibit 38, # 39 Exhibit 39, # 40 Exhibit 40, # 41 Exhibit 41, # 42 Exhibit 42, # 43 Exhibit 43, # 44 Exhibit 44, # 45 Exhibit 45, # 46 Exhibit 46, # 47 Exhibit 47, # 48 Civil Cover Sheet, # 49 Category Form)(Cacace, Joseph) (Entered: 05/07/2026)",
+          "docket_entry_id": 463277916,
+          "document_number": 1,
+          "document_type": "PACER Document",
+          "entry_date_filed": "2026-05-07",
+          "entry_number": 1,
+          "filepath_local": "recap/gov.uscourts.mad.300105/gov.uscourts.mad.300105.1.0.pdf",
+          "id": 478418896,
+          "is_available": true,
+          "meta": {
+            "timestamp": "2026-05-07T17:55:27.296485Z",
+            "date_created": "2026-05-07T16:22:18.705962Z"
+          },
+          "pacer_doc_id": "095013663088",
+          "page_count": 99,
+          "short_description": "Complaint",
+          "snippet": "           Case 1:26-cv-12078-DJC               Document 1         Filed 05/07/26   Page 1 of 99\n\n\n\n\n                                UNITED STATES DISTRICT COURT\n                             FOR THE DISTRICT OF MASSACHUSETTS\n\n__________________________________________\n                                          )\nNESTED BEAN, INC.,                        )\n                                          )\n      Plaintiff,                          )                            Civil Action No. ___________"
+        }
+      ],
+      "referredTo": null,
+      "referred_to_id": null,
+      "suitNature": "360 P.I.: Other",
+      "trustee_str": null
+    },
+    {
+      "assignedTo": "Michael E. Farbiarz",
+      "assigned_to_id": null,
+      "attorney": [
+        "PETER D. ST. PHILLIP , JR."
+      ],
+      "attorney_id": [
+        13571446
+      ],
+      "caseName": "CENTENE CORPORATION v. CELGENE CORPORATION",
+      "case_name_full": "",
+      "cause": "15:2 Antitrust Litigation",
+      "chapter": null,
+      "court": "District Court, D. New Jersey",
+      "court_citation_string": "D.N.J.",
+      "court_id": "njd",
+      "dateArgued": null,
+      "dateFiled": "2026-05-07",
+      "dateTerminated": null,
+      "docketNumber": "2:26-cv-05125",
+      "docket_absolute_url": "/docket/73308056/centene-corporation-v-celgene-corporation/",
+      "docket_id": 73308056,
+      "firm": [
+        "Lowey Dannenberg P.C."
+      ],
+      "firm_id": [
+        227821
+      ],
+      "jurisdictionType": "Federal Question",
+      "juryDemand": "Plaintiff",
+      "meta": {
+        "timestamp": "2026-05-12T12:55:40.791695Z",
+        "date_created": "2026-05-07T14:14:04.168949Z",
+        "score": {
+          "bm25": 13454208000000.0
+        },
+        "more_docs": false
+      },
+      "pacer_case_id": "597762",
+      "party": [
+        "BRISTOL MYERS SQUIBB COMPANY",
+        "DR. REDDY'S LABORATORIES, INC.",
+        "CENTENE CORPORATION",
+        "NATCO PHARMA LTD.",
+        "CELGENE CORPORATION",
+        "TEVA PHARMACEUTICALS USA, INC.",
+        "DR. REDDY'S LABORATORIES LTD.",
+        "ABBVIE, INC."
+      ],
+      "party_id": [
+        19753826,
+        19753827,
+        19753828,
+        19753829,
+        19753830,
+        19753831,
+        19753832,
+        19753833
+      ],
+      "recap_documents": [
+        {
+          "absolute_url": "/docket/73308056/1/centene-corporation-v-celgene-corporation/",
+          "attachment_number": null,
+          "cites": [
+            768768,
+            902769,
+            2679203,
+            2812250,
+            3153978,
+            4421131,
+            7236323,
+            8413855,
+            8711141,
+            9799322
+          ],
+          "description": "COMPLAINT against ABBVIE, INC., BRISTOL MYERS SQUIBB COMPANY, CELGENE CORPORATION, DR. REDDY'S LABORATORIES LTD., DR. REDDY'S LABORATORIES, INC., NATCO PHARMA LTD., TEVA PHARMACEUTICALS USA, INC. ( Filing and Admin fee $ 405 receipt number ANJDC-17394975) with JURY DEMAND, filed by CENTENE CORPORATION.(ST. PHILLIP, PETER) (Entered: 05/07/2026)",
+          "docket_entry_id": 463260961,
+          "document_number": 1,
+          "document_type": "PACER Document",
+          "entry_date_filed": "2026-05-07",
+          "entry_number": 1,
+          "filepath_local": "recap/gov.uscourts.njd.597762/gov.uscourts.njd.597762.1.0.pdf",
+          "id": 478401539,
+          "is_available": true,
+          "meta": {
+            "timestamp": "2026-05-12T13:08:01.934616Z",
+            "date_created": "2026-05-07T14:38:43.060734Z"
+          },
+          "pacer_doc_id": "119023899273",
+          "page_count": 263,
+          "short_description": "Complaint",
+          "snippet": "Case 2:26-cv-05125-MEF-MAH    Document 1     Filed 05/07/26     Page 1 of 263 PageID: 1\n\n\n\n\n                       UNITED STATES DISTRICT COURT\n                      FOR THE DISTRICT OF NEW JERSEY\n\n\n\nCENTENE CORPORATION,\n\n                             Plaintiff,\n                                           Civil Action No.   2:26-cv-5125\n                 v.\n                                           COMPLAINT\nCELGENE CORPORATION, BRISTOL\nMYERS SQUIBB COMPANY, NATCO\nPHARMA LTD., ABBVIE, INC., TEVA  "
+        }
+      ],
+      "referredTo": "Michael A. Hammer",
+      "referred_to_id": 9382,
+      "suitNature": "410 Anti-Trust",
+      "trustee_str": null
+    },
+    {
+      "assignedTo": "Jed Saul Rakoff",
+      "assigned_to_id": 2652,
+      "attorney": [
+        "Vincent A Licata"
+      ],
+      "attorney_id": [
+        13566568
+      ],
+      "caseName": "Rovenko v. Dziedzic",
+      "case_name_full": "",
+      "cause": "15:78j(b)ss Stockholder Suit",
+      "chapter": null,
+      "court": "District Court, S.D. New York",
+      "court_citation_string": "S.D.N.Y.",
+      "court_id": "nysd",
+      "dateArgued": null,
+      "dateFiled": "2026-05-06",
+      "dateTerminated": null,
+      "docketNumber": "1:26-cv-03759",
+      "docket_absolute_url": "/docket/73304291/rovenko-v-dziedzic/",
+      "docket_id": 73304291,
+      "firm": [
+        "Rigrodsky Law, P.A."
+      ],
+      "firm_id": [
+        1160832
+      ],
+      "jurisdictionType": "Federal Question",
+      "juryDemand": "Plaintiff",
+      "meta": {
+        "timestamp": "2026-05-11T02:55:36.422460Z",
+        "date_created": "2026-05-06T19:09:03.276622Z",
+        "score": {
+          "bm25": 13454121000000.0
+        },
+        "more_docs": false
+      },
+      "pacer_case_id": "663450",
+      "party": [
+        "Diron Smith",
+        "Sheila Antrum",
+        "Donald  J. Spence",
+        "Dolores  Rovenko",
+        "Cheryl  C. Capps",
+        "Pamela G. Bailey",
+        "James F. Hinrichs",
+        "Michael J. Coyle",
+        "Integer Holdings Corporation",
+        "Payman Khales",
+        "Joseph W. Dziedzic",
+        "Jean Hobby",
+        "Alvin Jeffers",
+        "Filippo  Passerini",
+        "M.  Craig Maxwell"
+      ],
+      "party_id": [
+        19746275,
+        19746276,
+        19746277,
+        19746278,
+        19746279,
+        19746280,
+        19746281,
+        19746282,
+        19746283,
+        19746284,
+        19746285,
+        19746286,
+        19746287,
+        19746288,
+        19746289
+      ],
+      "recap_documents": [
+        {
+          "absolute_url": "/docket/73304291/1/rovenko-v-dziedzic/",
+          "attachment_number": null,
+          "cites": [],
+          "description": "COMPLAINT against Sheila Antrum, Pamela G. Bailey, Cheryl C. Capps, Michael J. Coyle, Joseph W. Dziedzic, James F. Hinrichs, Jean Hobby, Integer Holdings Corporation, Alvin Jeffers, Payman Khales, M. Craig Maxwell, Filippo Passerini, Diron Smith, Donald J. Spence. (Filing Fee $ 405.00, Receipt Number ANYSDC-32808287)Document filed by Dolores Rovenko. (Attachments: # 1 Exhibit Verification of Dolores Rovenko).(Licata, Vincent) (Entered: 05/06/2026)",
+          "docket_entry_id": 463166306,
+          "document_number": 1,
+          "document_type": "PACER Document",
+          "entry_date_filed": "2026-05-06",
+          "entry_number": 1,
+          "filepath_local": "recap/gov.uscourts.nysd.663450/gov.uscourts.nysd.663450.1.0.pdf",
+          "id": 478304391,
+          "is_available": true,
+          "meta": {
+            "timestamp": "2026-05-11T02:58:11.919416Z",
+            "date_created": "2026-05-06T19:09:05.534722Z"
+          },
+          "pacer_doc_id": "127039564025",
+          "page_count": 64,
+          "short_description": "Complaint",
+          "snippet": "      Case 1:26-cv-03759-JSR          Document 1        Filed 05/06/26     Page 1 of 64\n\n\n\n\n                          UNITED STATES DISTRICT COURT\n                         SOUTHERN DISTRICT OF NEW YORK\n\n\n\nDOLORES ROVENKO, Derivatively on Behalf\nof Nominal Defendant INTEGER HOLDINGS\nCORPORATION,\n                                                     Case No. ______________\n                     Plaintiff,\n\n     v.                                              JURY TRIAL DEMANDED\n\nJOSEPH W. DZIEDZIC, "
+        }
+      ],
+      "referredTo": null,
+      "referred_to_id": null,
+      "suitNature": "160 Stockholders Suits",
+      "trustee_str": null
+    },
+    {
+      "assignedTo": "Mary Susan McElroy",
+      "assigned_to_id": 14420,
+      "attorney": [
+        "Miriam Weizenbaum",
+        "Julia Harvey",
+        "Nicole Smith",
+        "Eric G. Olshan",
+        "Amy Retsinas Romero",
+        "Sarah Rice",
+        "Brantley Mayers",
+        "Jordan Campbell",
+        "Lynette J. Labinger",
+        "Nina Monfredo",
+        "Kathryn T. Gradowski",
+        "Ross S. Goldstein",
+        "Omar Gonzalez-Pagan",
+        "Kevin Bolan",
+        "Gil Alan Bianchi , Jr.",
+        "Kathryn G. Barber",
+        "Stacey P. Nakasian",
+        "Sonja L. Deyoe",
+        "Kevin Love Hubbard",
+        "Karen Loewy",
+        "A.D. Sean Lewis",
+        "Patrick Runkle"
+      ],
+      "attorney_id": [
+        13546760,
+        13546761,
+        13546762,
+        13569801,
+        13569802,
+        13569803,
+        13569804,
+        13569805,
+        13569806,
+        13569807,
+        13567253,
+        13565463,
+        13568295,
+        13568296,
+        13568297,
+        13568298,
+        13564893,
+        13564894,
+        13557728,
+        13557729,
+        13546617,
+        13546618
+      ],
+      "caseName": "In Re: Motion to Quash Administrative Subpoena to Rhode Island Hospital",
+      "case_name_full": "",
+      "cause": "no cause specified",
+      "chapter": null,
+      "court": "District Court, D. Rhode Island",
+      "court_citation_string": "D.R.I.",
+      "court_id": "rid",
+      "dateArgued": null,
+      "dateFiled": "2026-05-04",
+      "dateTerminated": "2026-05-13",
+      "docketNumber": "1:26-mc-00007",
+      "docket_absolute_url": "/docket/73290254/in-re-motion-to-quash-administrative-subpoena-to-rhode-island-hospital/",
+      "docket_id": 73290254,
+      "firm": [
+        "DOJ-Civ, Ealb",
+        "Law Offices of Sonja L. Deyoe",
+        "Rhode Island Attorney General",
+        "RI Department of Attorney General",
+        "DeLuca, Weizenbaum, Barry & Revens, Ltd.",
+        "Bianchi Brouillard Sousa O Connell",
+        "Bianchi Brouillard Sousa & O'Connell, P.C.",
+        "Lambda Legal Defense and Education Fundtional Fund, INc.",
+        "McGuireWoords LLP",
+        "McGuireWoods LLP",
+        "Lynette Labinger, Attorney at Law",
+        "DOJ-CIV, POC Agostinho, Jean",
+        "DOJ-Civ",
+        "U.S. Department of Justice, Enforcement & Affirmative Litigation Branch",
+        "Duffy & Sweeney, Ltd.",
+        "Lambda Legal Defense and Education Fund, Inc."
+      ],
+      "firm_id": [
+        468706,
+        979652,
+        116197,
+        1121990,
+        244199,
+        1137093,
+        346762,
+        1318647,
+        676974,
+        1318289,
+        1318644,
+        29557,
+        1318645,
+        639960,
+        367064,
+        1318646,
+        1025596,
+        742174
+      ],
+      "jurisdictionType": "",
+      "juryDemand": "",
+      "meta": {
+        "timestamp": "2026-05-13T23:00:00.704729Z",
+        "date_created": "2026-05-04T16:11:18.732228Z",
+        "score": {
+          "bm25": 13453948000000.0
+        },
+        "more_docs": true
+      },
+      "pacer_case_id": "62049",
+      "party": [
+        "Rhode Island Hospital",
+        "Commonwealth of Massachusetts",
+        "State of Vermont",
+        "State of Delaware",
+        "State of New Mexico",
+        "Child Advocate for the State of Rhode Island",
+        "National Center for Youth Law",
+        "State of New Jersey",
+        "National Center for  LGBTQ Rights",
+        "United States of America",
+        "District of Columbia",
+        "State of Washington",
+        "State of California",
+        "State of Maryland",
+        "State of Minnesota",
+        "State of Arizona",
+        "State of Illinois",
+        "State of Michigan",
+        "State of Wisconsin",
+        "State of Maine",
+        "State of Rhode Island",
+        "State of Nevada",
+        "State of New York",
+        "State of Connecticut",
+        "State of Colorado",
+        "State of Oregon",
+        "LAMBDA Legal Defense and Education Fund, Inc."
+      ],
+      "party_id": [
+        19748366,
+        19744549,
+        19744550,
+        19744551,
+        19716683,
+        19716684,
+        19751254,
+        19751255,
+        19751256,
+        19751257,
+        19751258,
+        19751259,
+        19751260,
+        19751261,
+        19751262,
+        19751263,
+        19751264,
+        19751265,
+        19751266,
+        19751267,
+        19751268,
+        19751269,
+        19751270,
+        19751271,
+        19751272,
+        19751273,
+        19745278
+      ],
+      "recap_documents": [
+        {
+          "absolute_url": "/docket/73290254/1/v-united-states-of-america/",
+          "attachment_number": null,
+          "cites": [
+            104600,
+            111437,
+            185086,
+            386024,
+            468551,
+            482109,
+            503102,
+            532753,
+            566082,
+            685118,
+            718328,
+            739069,
+            770617,
+            773616,
+            1412765,
+            2147482,
+            6113459,
+            7247645,
+            9418652,
+            9419755,
+            9420232,
+            9422881,
+            9423449,
+            9426406,
+            9426661,
+            9432185,
+            9433298,
+            9434042,
+            9434985,
+            9435093,
+            9476637,
+            9496852,
+            9501751,
+            9910168
+          ],
+          "description": "Emergency MOTION to Quash - New Case ( filing fee paid $ 52.00, receipt number ARIDC-2273580 ), filed by Child Advocate for the State of Rhode Island. Responses due by 5/18/2026. (Attachments: # 1 Exhibit Exhibit 1, # 2 Exhibit Exhibit 2, # 3 Exhibit Exhibit 3)(Weizenbaum, Miriam) (Entered: 05/04/2026)",
+          "docket_entry_id": 462853248,
+          "document_number": 1,
+          "document_type": "PACER Document",
+          "entry_date_filed": "2026-05-04",
+          "entry_number": 1,
+          "filepath_local": "recap/gov.uscourts.rid.62049/gov.uscourts.rid.62049.1.0.pdf",
+          "id": 477978082,
+          "is_available": true,
+          "meta": {
+            "timestamp": "2026-05-13T23:00:00.585694Z",
+            "date_created": "2026-05-04T16:20:46.814301Z"
+          },
+          "pacer_doc_id": "16102496348",
+          "page_count": 47,
+          "short_description": "Motion to Quash - New Case",
+          "snippet": "Case 1:26-mc-00007-MSM-AEM       Document 1       Filed 05/04/26   Page 1 of 47 PageID #: 1\n\n\n\n\n                        UNITED STATES DISTRICT COURT\n                      FOR THE DISTRICT OF RHODE ISLAND\n\n\n\n\n   In Re: Administrative Subpoena              Misc. Action No. _________\n   25-1431-032 to Rhode Island Hospital\n\n                                               EMERGENCY MOTION TO QUASH\n                                               SUBPOENA DUCES TECUM\n\n                                   "
+        },
+        {
+          "absolute_url": "/docket/73290254/10/1/in-re-motion-to-quash-administrative-subpoena-to-rhode-island-hospital/",
+          "attachment_number": 1,
+          "cites": [
+            92392,
+            97286,
+            100630,
+            105244,
+            111437,
+            111438,
+            185086,
+            799929,
+            4363260,
+            4909987,
+            8410670,
+            9352828,
+            9416892,
+            9421081,
+            9426096,
+            9433361,
+            9434042,
+            9434988,
+            9435093,
+            9910168
+          ],
+          "description": "Consent MOTION for Leave to File Amicus Brief of Rhode Island, Massachusetts, Arizona, California, Colorado, Connecticut, Delaware, the District of Columbia, Illinois, Maine, Maryland, Michigan, Minnesota, Nevada, New Jersey, New Mexico, New York, Oregon, Vermont, Washington, and Wisconsin filed by State of Rhode Island. Responses due by 5/22/2026. (Attachments: # 1 Proposed States' Amicus Brief)(Rice, Sarah) (Entered: 05/08/2026)",
+          "docket_entry_id": 463487388,
+          "document_number": 10,
+          "document_type": "Attachment",
+          "entry_date_filed": "2026-05-08",
+          "entry_number": 10,
+          "filepath_local": "recap/gov.uscourts.rid.62049/gov.uscourts.rid.62049.10.1.pdf",
+          "id": 478657610,
+          "is_available": true,
+          "meta": {
+            "timestamp": "2026-05-13T23:00:00.585694Z",
+            "date_created": "2026-05-09T01:50:46.087307Z"
+          },
+          "pacer_doc_id": "16102499356",
+          "page_count": 24,
+          "short_description": "Proposed States' Amicus Brief",
+          "snippet": "Case 1:26-mc-00007-MSM-AEM            Document 10-1     Filed 05/08/26   Page 1 of 24 PageID\n                                           #: 163\n\n\n\n                           UNITED STATES DISTRICT COURT\n                         FOR THE DISTRICT OF RHODE ISLAND\n\n\n\n  IN RE ADMINISTRATIVE SUBPOENA                       No. 1:26-mc-00007-MSM-AEM\n  25-1431-032 to Rhode Island Hospital\n\n\n  [PROPOSED] AMICUS BRIEF OF RHODE ISLAND, MASSACHUSETTS, ARIZONA,\n    CALIFORNIA, COLORADO, CONNECTICUT, DELAWARE, "
+        },
+        {
+          "absolute_url": "/docket/73290254/26/in-re-motion-to-quash-administrative-subpoena-to-rhode-island-hospital/",
+          "attachment_number": null,
+          "cites": [
+            92392,
+            97286,
+            100630,
+            105244,
+            111437,
+            111438,
+            185086,
+            799929,
+            4363260,
+            4909987,
+            8410670,
+            9352828,
+            9416892,
+            9421081,
+            9426096,
+            9433361,
+            9434042,
+            9434988,
+            9435093,
+            9910168
+          ],
+          "description": "AMICUS BRIEF by State of RHODE ISLAND, MASSACHUSETTS, ARIZONA, CALIFORNIA, COLORADO, CONNECTICUT, DELAWARE, THE DISTRICT OF COLUMBIA, ILLINOIS, MAINE, MARYLAND, MICHIGAN, MINNESOTA, NEVADA, NEW JERSEY, NEW MEXICO, NEW YORK, OREGON, VERMONT, WASHINGTON, AND WISCONSIN (Potter, Carrie) (Entered: 05/11/2026)",
+          "docket_entry_id": 463614997,
+          "document_number": 26,
+          "document_type": "PACER Document",
+          "entry_date_filed": "2026-05-11",
+          "entry_number": 26,
+          "filepath_local": "recap/gov.uscourts.rid.62049/gov.uscourts.rid.62049.26.0.pdf",
+          "id": 478766502,
+          "is_available": true,
+          "meta": {
+            "timestamp": "2026-05-13T23:00:00.585694Z",
+            "date_created": "2026-05-11T16:20:11.713646Z"
+          },
+          "pacer_doc_id": "16102499801",
+          "page_count": 24,
+          "short_description": "Amicus Brief",
+          "snippet": "Case 1:26-mc-00007-MSM-AEM           Document 26   Filed 05/11/26     Page 1 of 24 PageID #:\n                                           647\n\n\n\n                           UNITED STATES DISTRICT COURT\n                         FOR THE DISTRICT OF RHODE ISLAND\n\n\n\n  IN RE ADMINISTRATIVE SUBPOENA                    No. 1:26-mc-00007-MSM-AEM\n  25-1431-032 to Rhode Island Hospital\n\n\n  [PROPOSED] AMICUS BRIEF OF RHODE ISLAND, MASSACHUSETTS, ARIZONA,\n    CALIFORNIA, COLORADO, CONNECTICUT, DELAWARE, THE DI"
+        }
+      ],
+      "referredTo": "Amy E. Moses",
+      "referred_to_id": null,
+      "suitNature": "",
+      "trustee_str": null
+    },
+    {
+      "assignedTo": null,
+      "assigned_to_id": null,
+      "attorney": [],
+      "attorney_id": [],
+      "caseName": "Abdelrahim v. Edlow",
+      "case_name_full": "",
+      "cause": "",
+      "chapter": null,
+      "court": "District Court, D. Massachusetts",
+      "court_citation_string": "D. Mass.",
+      "court_id": "mad",
+      "dateArgued": null,
+      "dateFiled": "2026-05-01",
+      "dateTerminated": null,
+      "docketNumber": "1:26-cv-11995",
+      "docket_absolute_url": "/docket/73288044/abdelrahim-v-edlow/",
+      "docket_id": 73288044,
+      "firm": [],
+      "firm_id": [],
+      "jurisdictionType": "",
+      "juryDemand": "",
+      "meta": {
+        "timestamp": "2026-05-02T05:10:46.124577Z",
+        "date_created": "2026-05-02T03:42:11.647279Z",
+        "score": {
+          "bm25": 13453689000000.0
+        },
+        "more_docs": false
+      },
+      "pacer_case_id": "299854",
+      "party": [
+        "Abdelrahim",
+        "Edlow"
+      ],
+      "party_id": [],
+      "recap_documents": [
+        {
+          "absolute_url": "/docket/73288044/1/abdelrahim-v-edlow/",
+          "attachment_number": null,
+          "cites": [
+            136985,
+            494108,
+            778886,
+            1448477,
+            2427199,
+            4036703,
+            6962663,
+            9428095,
+            10827575
+          ],
+          "description": "",
+          "docket_entry_id": 462754192,
+          "document_number": 1,
+          "document_type": "PACER Document",
+          "entry_date_filed": "2026-05-01",
+          "entry_number": 1,
+          "filepath_local": "recap/gov.uscourts.mad.299854/gov.uscourts.mad.299854.1.0.pdf",
+          "id": 477876924,
+          "is_available": true,
+          "meta": {
+            "timestamp": "2026-05-15T01:57:29.061303Z",
+            "date_created": "2026-05-02T04:31:13.038304Z"
+          },
+          "pacer_doc_id": "095013652231",
+          "page_count": 39,
+          "short_description": "Complaint",
+          "snippet": "      Case 1:26-cv-11995-JCB      Document 1    Filed 05/01/26   Page 1 of 39\n\n\n\n\n                      UNITED STATES DISTRICT COURT\n                    FOR THE DISTRICT OF MASSACHUSETTS\n\n\n     ELSHEIKH ABDELRAHIM; RANA :\n     ABUSHAMMA; KHALED                    :\n     AL-ZUBAIDI; ENIOLA AJAO;             :\n     MARIE-ANGE DELIMON;                  :\n     SHAKRE A. ELMANE; SEYED              :\n     ABDULAZIZ ESMAEILI;                  :\n     MESHKAT FARROKHI;                    :         CIVIL "
+        }
+      ],
+      "referredTo": null,
+      "referred_to_id": null,
+      "suitNature": "",
+      "trustee_str": null
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "run_id": "a698bc97-8362-4fa9-8f5e-81b9a96f0a06",
+  "key": "leapfrog_safety_grades",
+  "status": "COMPLETED",
+  "fetched_at": "2026-05-18T14:10:44",
+  "goal": "Navigate to https://www.hospitalsafetygrade.org/ to complete the goal: Find the Leapfrog Hospital Safety Grade lookup tool. Search for and extract safety grades for these 10 US hospitals (one at a time or via a bulk page if available): MASSACHUSETTS GENERAL HOSPITAL (MA), CEDARS-SINAI MEDICAL CENTER (CA), INDIANA UNIVERSITY HEALTH (IN), COX MEDICAL CENTERS (MO), HONORHEALTH SCOTTSDALE SHEA MEDICAL CENTER (AZ), BARNES JEWISH HOSPITAL (MO), SAINT FRANCIS MEDICAL CENTER (IL), MAYO CLINIC HOSPITAL (AZ), NORTHWESTERN MEDICINE (IL), LOMA LINDA UNIVERSITY MEDICAL CENTER (CA). For each: hospital name, state, current letter grade (A/B/C/D/F), grade date.",
+  "result": {
+    "hospitals": [
+      {
+        "name": "MASSACHUSETTS GENERAL HOSPITAL",
+        "grade": "A",
+        "state": "MA",
+        "semester": "Spring 2026"
+      },
+      {
+        "name": "CEDARS-SINAI MEDICAL CENTER",
+        "grade": "C",
+        "state": "CA",
+        "semester": "Spring 2026"
+      },
+      {
+        "name": "INDIANA UNIVERSITY HEALTH",
+        "grade": "Not Assigned",
+        "state": "IN",
+        "semester": "Spring 2026",
+        "searched_name": "IU Health Methodist Hospital"
+      },
+      {
+        "name": "COX MEDICAL CENTERS",
+        "grade": "C",
+        "state": "MO",
+        "semester": "Spring 2026",
+        "searched_name": "Cox Medical Center South"
+      },
+      {
+        "name": "HONORHEALTH SCOTTSDALE SHEA MEDICAL CENTER",
+        "grade": "B",
+        "state": "AZ",
+        "semester": "Spring 2026"
+      },
+      {
+        "name": "BARNES JEWISH HOSPITAL",
+        "grade": "Not Assigned",
+        "state": "MO",
+        "semester": "Spring 2026"
+      },
+      {
+        "name": "SAINT FRANCIS MEDICAL CENTER",
+        "grade": "C",
+        "state": "IL",
+        "semester": "Spring 2026",
+        "searched_name": "OSF HealthCare Saint Francis Medical Center"
+      },
+      {
+        "name": "MAYO CLINIC HOSPITAL",
+        "grade": "Not Retrieved",
+        "state": "AZ",
+        "reason": "Search issues and CAPTCHA block",
+        "semester": "Spring 2026"
+      },
+      {
+        "name": "NORTHWESTERN MEDICINE",
+        "grade": "Not Retrieved",
+        "state": "IL",
+        "reason": "Search issues and CAPTCHA block",
+        "semester": "Spring 2026"
+      },
+      {
+        "name": "LOMA LINDA UNIVERSITY MEDICAL CENTER",
+        "grade": "Not Retrieved",
+        "state": "CA",
+        "reason": "Search issues and CAPTCHA block",
+        "semester": "Spring 2026"
+      }
+    ]
+  },
+  "error": null,
+  "step_count": null,
+  "created_at": "2026-05-18T08:17:23Z",
+  "completed_at": null
+}

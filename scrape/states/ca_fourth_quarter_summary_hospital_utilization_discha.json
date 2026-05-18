@@ -1,0 +1,18 @@
+{
+  "dataset_id": "6a85824f-628b-404c-b787-5c2f80d4103a",
+  "dataset_name": "Fourth Quarter Summary Hospital Utilization Discharges by Payer Source",
+  "resource_name": "Fourth Quarter Summary Hospital Utilization Discharges by Payer Source (CSV)",
+  "resource_url": "https://data.chhs.ca.gov/dataset/6a85824f-628b-404c-b787-5c2f80d4103a/resource/6e84913b-78bc-4065-a2b9-44f2bb31ab56/download/fourth-quarter-summary-hospital-utilization-discharges-by-payer-source.csv",
+  "format": "CSV",
+  "fetched_at": "2026-05-18T14:03:03",
+  "header": "Year,OSHPD_ID,Facility Name,County,Type of Ownership,Hospital Type,Teaching,Small/Rural,Licensed Beds,Available Beds,Staffed Beds,Discharge by Payer,Total Discharges,Discharge Payer Percent,Payer,Location",
+  "sample_rows_raw": [
+    "2011,106300032,CHILDREN'S HOSPITAL - ORANGE COUNTY,Orange,Non-Profit,Comparable,,,238,238,238,10,12073,0.1%,Medicare,\"ORANGE, California",
+    "(33.791489, -117.853096)\"",
+    "2014,106301175,FOUNTAIN VALLEY REGIONAL HOSPITAL & MED CENTER-EUCLID,Orange,Investor,Comparable,,,400,400,245,5734,18495,31%,Medicare,\"FOUNTAIN VALLEY, California",
+    "(33.708975, -117.951323)\"",
+    "2011,106334487,RIVERSIDE COUNTY REGIONAL MEDICAL CENTER,Riverside,City/County,Comparable,Teaching,,439,415,415,2897,22008,13.2%,Medicare,\"MORENO VALLEY, California",
+    "(33.917114, -117.261144)\"",
+    "2015,106334487,RIVERSIDE COUNTY REGIONAL MEDICAL CENTER,Riverside,City/County,Comparable,Teaching,,439,439,439,2556,17126,14.9%,Medicare,\"MORENO VALLEY, California"
+  ]
+}

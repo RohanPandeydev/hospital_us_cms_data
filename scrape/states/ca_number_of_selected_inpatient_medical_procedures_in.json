@@ -1,0 +1,18 @@
+{
+  "dataset_id": "6fe470cc-074f-49ce-8adc-882027076d19",
+  "dataset_name": "Number of Selected Inpatient Medical Procedures in California Hospitals",
+  "resource_name": "Number of Selected Inpatient Medical Procedures in California Hospitals, 2016-2017 (CSV)",
+  "resource_url": "https://data.chhs.ca.gov/dataset/6fe470cc-074f-49ce-8adc-882027076d19/resource/cbc646c9-36b3-4b5d-9d73-63a3e6018ba2/download/ca-oshpd-ahrq-v2018-vol-1617.csv",
+  "format": "CSV",
+  "fetched_at": "2026-05-18T14:03:13",
+  "header": "YEAR,COUNTY,HOSPITAL,OSHPDID,Procedure,Volume,Longitude,Latitude",
+  "sample_rows_raw": [
+    "2016,STATEWIDE,STATEWIDE,,\"AAA Repair (Ruptured, Open)\",122,.,.",
+    "2016,STATEWIDE,STATEWIDE,,Carotid Endarterectomy,4912,.,.",
+    "2016,STATEWIDE,STATEWIDE,,\"AAA Repair (Un-ruptured, Open)\",304,.,.",
+    "2016,STATEWIDE,STATEWIDE,,\"AAA Repair (Un-ruptured, Endovascular)\",2062,.,.",
+    "2016,STATEWIDE,STATEWIDE,,Esophageal Resection,634,.,.",
+    "2016,STATEWIDE,STATEWIDE,,PCI,39318,.,.",
+    "2016,STATEWIDE,STATEWIDE,,\"AAA Repair (Ruptured, Endovascular)\",142,.,."
+  ]
+}

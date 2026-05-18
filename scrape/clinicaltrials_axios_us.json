@@ -1,0 +1,128 @@
+{
+  "source": "ClinicalTrials.gov API v2",
+  "url": "https://clinicaltrials.gov/api/v2/studies",
+  "fetched_at": "2026-05-18T13:26:53",
+  "total_returned": 3,
+  "us_records": 3,
+  "records": [
+    {
+      "nct_id": "NCT03525808",
+      "title": "AXIOS Lumen Apposing Metal Stent for Walled Off Necrosis Drainage IDE Study",
+      "lead_sponsor": "Boston Scientific Corporation",
+      "status": "COMPLETED",
+      "phase": "NA",
+      "enrollment": 40,
+      "start_date": "2018-09-05",
+      "completion_date": "2020-10-02",
+      "us_sites": [
+        {
+          "facility": "University of Colorado, Denver",
+          "city": "Aurora",
+          "state": "Colorado"
+        },
+        {
+          "facility": "Emory University Healthcare",
+          "city": "Atlanta",
+          "state": "Georgia"
+        },
+        {
+          "facility": "Indiana University Health",
+          "city": "Indianapolis",
+          "state": "Indiana"
+        },
+        {
+          "facility": "Brigham & Women's Hospital",
+          "city": "Boston",
+          "state": "Massachusetts"
+        },
+        {
+          "facility": "Mayo Clinic",
+          "city": "Rochester",
+          "state": "Minnesota"
+        }
+      ],
+      "us_site_count": 5
+    },
+    {
+      "nct_id": "NCT06174805",
+      "title": "AXIOS\u2122 Gastroenterostomy for Gastric Outlet Obstruction IDE",
+      "lead_sponsor": "Boston Scientific Corporation",
+      "status": "SUSPENDED",
+      "phase": "NA",
+      "enrollment": 67,
+      "start_date": "2025-02-11",
+      "completion_date": "2027-04",
+      "us_sites": [
+        {
+          "facility": "Brigham and Women's Hospital",
+          "city": "Boston",
+          "state": "Massachusetts"
+        },
+        {
+          "facility": "Mayo Clinic",
+          "city": "Rochester",
+          "state": "Minnesota"
+        },
+        {
+          "facility": "New York Presbyterian/ Weill Cornell Medical Center",
+          "city": "New York",
+          "state": "New York"
+        },
+        {
+          "facility": "University of Pittsburg Medical Center",
+          "city": "Pittsburgh",
+          "state": "Pennsylvania"
+        },
+        {
+          "facility": "Virginia Mason Medical Center",
+          "city": "Seattle",
+          "state": "Washington"
+        }
+      ],
+      "us_site_count": 5
+    },
+    {
+      "nct_id": "NCT03767881",
+      "title": "AXIOS\u2122 for Gallbladder Drainage as an Alternative to Percutaneous Drainage IDE",
+      "lead_sponsor": "Boston Scientific Corporation",
+      "status": "COMPLETED",
+      "phase": "NA",
+      "enrollment": 30,
+      "start_date": "2019-09-10",
+      "completion_date": "2021-12-02",
+      "us_sites": [
+        {
+          "facility": "University of Colorado Denver",
+          "city": "Aurora",
+          "state": "Colorado"
+        },
+        {
+          "facility": "Emory University School of Medicine",
+          "city": "Atlanta",
+          "state": "Georgia"
+        },
+        {
+          "facility": "Parkview Medical Center",
+          "city": "Fort Wayne",
+          "state": "Indiana"
+        },
+        {
+          "facility": "Mayo Clinic",
+          "city": "Rochester",
+          "state": "Minnesota"
+        },
+        {
+          "facility": "Cleveland Clinic",
+          "city": "Cleveland",
+          "state": "Ohio"
+        },
+        {
+          "facility": "Virginia Mason Medical Center",
+          "city": "Seattle",
+          "state": "Washington"
+        }
+      ],
+      "us_site_count": 6
+    }
+  ]
+}

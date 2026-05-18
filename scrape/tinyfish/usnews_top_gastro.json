@@ -1,0 +1,136 @@
+{
+  "run_id": "e13d50c8-fa49-4547-a254-c0fbc3fa0dc3",
+  "key": "usnews_top_gastro",
+  "status": "COMPLETED",
+  "fetched_at": "2026-05-18T13:51:12",
+  "goal": "Navigate to https://health.usnews.com/best-hospitals/rankings/gastroenterology-and-gi-surgery to complete the goal: Extract the U.S. News & World Report top-20 ranked hospitals for Gastroenterology & GI Surgery (where AXIOS-EUS procedures happen). For each: rank, hospital name, city, state, U.S. News score, key procedure volumes if shown.",
+  "result": {
+    "note": "Specific procedure volumes (including AXIOS-EUS specifically) are not displayed on the main rankings list page; they are typically found within the individual 'Performance Details' or 'Scorecard' pages for each hospital.",
+    "hospitals": [
+      {
+        "name": "Mayo Clinic",
+        "rank": 1,
+        "score": "100.0/100",
+        "location": "Rochester, MN"
+      },
+      {
+        "name": "Cedars-Sinai Medical Center",
+        "rank": 2,
+        "score": "92.5/100",
+        "location": "Los Angeles, CA"
+      },
+      {
+        "name": "Cleveland Clinic",
+        "rank": 3,
+        "score": "90.4/100",
+        "location": "Cleveland, OH"
+      },
+      {
+        "name": "NYU Langone Hospitals",
+        "rank": 4,
+        "score": "90.1/100",
+        "location": "New York, NY"
+      },
+      {
+        "name": "Mount Sinai Hospital",
+        "rank": 5,
+        "score": "89.5/100",
+        "location": "New York, NY"
+      },
+      {
+        "name": "Johns Hopkins Hospital",
+        "rank": 6,
+        "score": "88.1/100",
+        "location": "Baltimore, MD"
+      },
+      {
+        "name": "Houston Methodist Hospital",
+        "rank": 7,
+        "score": "87.8/100",
+        "location": "Houston, TX"
+      },
+      {
+        "name": "UCLA Medical Center",
+        "rank": 8,
+        "score": "86.9/100",
+        "location": "Los Angeles, CA"
+      },
+      {
+        "name": "Massachusetts General Hospital",
+        "rank": 9,
+        "score": "86.0/100",
+        "location": "Boston, MA"
+      },
+      {
+        "name": "Northwestern Medicine-Northwestern Memorial Hospital",
+        "rank": 10,
+        "score": "85.1/100",
+        "location": "Chicago, IL"
+      },
+      {
+        "name": "NewYork-Presbyterian Hospital-Columbia and Cornell",
+        "rank": 11,
+        "score": "83.8/100",
+        "location": "New York, NY"
+      },
+      {
+        "name": "Hospitals of the University of Pennsylvania-Penn Presbyterian",
+        "rank": 12,
+        "score": "83.1/100",
+        "location": "Philadelphia, PA"
+      },
+      {
+        "name": "The University of Texas MD Anderson Cancer Center",
+        "rank": 13,
+        "score": "82.8/100",
+        "location": "Houston, TX"
+      },
+      {
+        "name": "Mayo Clinic-Arizona",
+        "rank": 14,
+        "score": "82.1/100",
+        "location": "Phoenix, AZ"
+      },
+      {
+        "name": "Memorial Sloan Kettering Cancer Center",
+        "rank": 15,
+        "score": "82.1/100",
+        "location": "New York, NY"
+      },
+      {
+        "name": "UCSF Health-UCSF Medical Center",
+        "rank": 16,
+        "score": "81.4/100",
+        "location": "San Francisco, CA"
+      },
+      {
+        "name": "Brigham and Women's Hospital",
+        "rank": 17,
+        "score": "81.0/100",
+        "location": "Boston, MA"
+      },
+      {
+        "name": "Stanford Health Care-Stanford Hospital",
+        "rank": 18,
+        "score": "81.0/100",
+        "location": "Palo Alto, CA"
+      },
+      {
+        "name": "Mayo Clinic-Florida",
+        "rank": 19,
+        "score": "80.4/100",
+        "location": "Jacksonville, FL"
+      },
+      {
+        "name": "University of Chicago Medical Center",
+        "rank": 20,
+        "score": "79.6/100",
+        "location": "Chicago, IL"
+      }
+    ]
+  },
+  "error": null,
+  "step_count": null,
+  "created_at": "2026-05-18T08:17:31Z",
+  "completed_at": null
+}

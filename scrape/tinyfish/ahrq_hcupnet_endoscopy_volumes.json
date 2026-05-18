@@ -1,0 +1,15 @@
+{
+  "run_id": "c3da59d4-cc79-45bb-a232-3b797916ed1d",
+  "key": "ahrq_hcupnet_endoscopy_volumes",
+  "status": "COMPLETED",
+  "fetched_at": "2026-05-18T14:03:35",
+  "goal": "Navigate to https://datatools.ahrq.gov/hcupnet/ to complete the goal: Use HCUPnet to find national/state statistics on ERCP and EUS-guided drainage procedures (CPT 43274, 43253, 43240) \u2014 particularly inpatient stays with these procedures or DRG bundles containing them. Extract: total procedures per year (2018-2023), in-hospital mortality rate, mean LOS, mean charges. National + top-volume states if shown.",
+  "result": {
+    "status": "error",
+    "message": "Failed to navigate to the specified HCUPnet tool at https://datatools.ahrq.gov/hcupnet/. Multiple attempts to visit the URL resulted in a connection error (chrome-error://chromewebdata/), suggesting the site is either inaccessible, down, or blocking automated access. As I cannot reach the target page to perform the required data extraction and the attempt limit has been reached, I cannot complete the task."
+  },
+  "error": null,
+  "step_count": null,
+  "created_at": "2026-05-18T08:17:41Z",
+  "completed_at": null
+}

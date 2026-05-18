@@ -1,0 +1,88 @@
+{
+  "run_id": "389e00a2-abae-45eb-9629-2cdeffb0b4b4",
+  "key": "axios_propublica_inspections",
+  "status": "COMPLETED",
+  "fetched_at": "2026-05-18T13:53:22",
+  "goal": "Navigate to https://projects.propublica.org/nursing-homes/ to complete the goal: Search this ProPublica Nursing Home Inspect database. Look for any deficiency citations that mention Boston Scientific products, AXIOS, WATCHMAN, ELUVIA, or stent-related complications. Extract facility name, state, citation date, and quoted text for matches.",
+  "result": {
+    "details": [
+      {
+        "state": "Massachusetts",
+        "citation_date": "Jul 28, 2023",
+        "facility_name": "Life Care Center Of Attleboro",
+        "quoted_text_snippet": "...The consult listed the Resident as having a Boston Scientific CRT-D pacemaker/defibrillator.... aware of the follow up cardiology appointment... per the Boston..."
+      },
+      {
+        "state": "Massachusetts",
+        "citation_date": "Nov 10, 2022",
+        "facility_name": "Prescott House",
+        "quoted_text_snippet": "...the surveyor observed a Boston Scientific Latitude pacemaker monitoring system on night stand next... Nurse #2 said she was not aware that Resident #23 had a pacemaker, this surveyor inquired about the Boston Scientific Latitude pacemaker monitoring system..."
+      },
+      {
+        "state": "New York",
+        "citation_date": "May 13, 2019",
+        "facility_name": "Highland Care Center",
+        "quoted_text_snippet": "Resident was also observed with oxygen tank near bedside, and a cardiac monitoring device (Boston Scientific... A review of Physician order dated 5/01/19 documented the following: Boston Scientific cardiac monitoring..."
+      },
+      {
+        "state": "Ohio",
+        "citation_date": "Feb 6, 2020",
+        "facility_name": "Briarfield At Ashley Circle",
+        "quoted_text_snippet": "Observation on 02/03/20 at 1:22 P.M. revealed a white box with the words Boston Scientific Latitude..."
+      },
+      {
+        "state": "California",
+        "citation_date": "Oct 4, 2024",
+        "facility_name": "St. John Of God Retirement",
+        "quoted_text_snippet": "...the Order Summary Report indicated, Resident 63 had a Boston Scientific (manufacturer of pacemaker) pacemaker implanted on 5/1/2017."
+      },
+      {
+        "state": "Massachusetts",
+        "citation_date": "Feb 23, 2023",
+        "facility_name": "Fall River Jewish Home",
+        "quoted_text_snippet": "...pacer monitor was showing orange lights rather than the usual green; Boston Scientific was called and the Nurse was told the orange light signified an interruption in the connection..."
+      },
+      {
+        "state": "Massachusetts",
+        "citation_date": "Aug 15, 2024",
+        "facility_name": "Care One At Randolph",
+        "quoted_text_snippet": "...LVH (Left ventricular hypertrophy...) with Boston Scientific ICD (an implantable cardioverter defibrillator, is a device designed to administer lifesaving..."
+      }
+    ],
+    "search_summary": {
+      "results": {
+        "AXIOS": {
+          "description": "No specific matches found",
+          "total_citations": 0
+        },
+        "ELUVIA": {
+          "description": "No specific matches found",
+          "total_citations": 0
+        },
+        "WATCHMAN": {
+          "description": "No specific matches found",
+          "total_citations": 0
+        },
+        "Boston Scientific": {
+          "description": "primarily involving monitoring systems and pacemakers",
+          "total_citations": 7
+        },
+        "stent-related complications": {
+          "description": "No specific matches found",
+          "total_citations": 0
+        }
+      },
+      "query_terms": [
+        "Boston Scientific",
+        "AXIOS",
+        "WATCHMAN",
+        "ELUVIA",
+        "stent-related complications"
+      ]
+    }
+  },
+  "error": null,
+  "step_count": null,
+  "created_at": "2026-05-18T08:12:26Z",
+  "completed_at": null
+}

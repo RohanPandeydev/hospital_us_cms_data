@@ -1,0 +1,8 @@
+{
+  "source": "NIH RePORTER API",
+  "url": "https://api.reporter.nih.gov/v2/projects/search",
+  "fetched_at": "2026-05-18T13:26:50",
+  "total_results": 0,
+  "us_records": 0,
+  "records": []
+}

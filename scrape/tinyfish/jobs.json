@@ -1,0 +1,82 @@
+{
+  "first_batch_submitted": "2026-05-18T13:42:29",
+  "second_batch_submitted_at": "2026-05-18T13:47:42",
+  "jobs": [
+    {
+      "key": "fda_bsc_recalls",
+      "run_id": "30034c55-b9a9-45c8-90c4-0723d532d010",
+      "goal": "Search the FDA medical device recalls database for 'Boston Scientific' as the re"
+    },
+    {
+      "key": "fda_bsc_warning_letters",
+      "run_id": "48bdb165-c74b-43ba-bb23-8e2722f9ef31",
+      "goal": "Search this FDA Warning Letters database for 'Boston Scientific'. Extract every "
+    },
+    {
+      "key": "bsc_news_recalls",
+      "run_id": "1e77f8bd-5702-4203-a4e0-37c33e5c32cb",
+      "goal": "Find any product recall announcements, safety notices, or product hold announcem"
+    },
+    {
+      "key": "axios_propublica_inspections",
+      "run_id": "389e00a2-abae-45eb-9629-2cdeffb0b4b4",
+      "goal": "Search this ProPublica Nursing Home Inspect database. Look for any deficiency ci"
+    },
+    {
+      "key": "courtlistener_bsc",
+      "run_id": "45c7eb00-a703-4005-b71b-a9beb251ec6a",
+      "goal": "Search CourtListener for federal cases involving Boston Scientific Corporation a"
+    },
+    {
+      "key": "leapfrog_safety_grades",
+      "run_id": "a698bc97-8362-4fa9-8f5e-81b9a96f0a06",
+      "url": "https://www.hospitalsafetygrade.org/"
+    },
+    {
+      "key": "joint_commission_quality",
+      "run_id": "3405673c-a750-46a0-aa19-1536b1f48efa",
+      "url": "https://www.qualitycheck.org/"
+    },
+    {
+      "key": "pa_patient_safety_annual",
+      "run_id": "3133b86a-e5f8-4d43-b297-20d3c23a6bb1",
+      "url": "http://patientsafety.pa.gov/PatientSafetyAuthority/Pages/default.aspx"
+    },
+    {
+      "key": "ma_serious_reportable_events",
+      "run_id": "05bb3932-1507-4c5c-9299-a6a2e083c957",
+      "url": "https://www.mass.gov/lists/serious-reportable-event-reports"
+    },
+    {
+      "key": "usnews_top_gastro",
+      "run_id": "e13d50c8-fa49-4547-a254-c0fbc3fa0dc3",
+      "url": "https://health.usnews.com/best-hospitals/rankings/gastroenterology-and-gi-surgery"
+    },
+    {
+      "key": "ca_hcai_hospital_safety",
+      "run_id": "a870912b-fc2b-426b-8ea7-924f0a52fbe4",
+      "url": "https://hcai.ca.gov/data/healthcare-quality/"
+    },
+    {
+      "key": "ny_doh_hospital_data",
+      "run_id": "bbb26879-24e7-433f-8dad-bc15c4574d48",
+      "url": "https://www.health.ny.gov/statistics/sparcs/"
+    },
+    {
+      "key": "bsc_pipeline_products",
+      "run_id": "836fabb6-8235-4347-b417-5bb668fd97da",
+      "url": "https://www.bostonscientific.com/en-US/medical-specialties.html"
+    },
+    {
+      "key": "proPublica_dollars_for_docs_bsc",
+      "run_id": "fb299556-ab08-47b3-acfe-4330f7ae37ed",
+      "url": "https://projects.propublica.org/docdollars/"
+    },
+    {
+      "key": "ahrq_hcupnet_endoscopy_volumes",
+      "run_id": "c3da59d4-cc79-45bb-a232-3b797916ed1d",
+      "url": "https://datatools.ahrq.gov/hcupnet/"
+    }
+  ],
+  "replacement_batch_submitted_at": "2026-05-18T13:54:55"
+}

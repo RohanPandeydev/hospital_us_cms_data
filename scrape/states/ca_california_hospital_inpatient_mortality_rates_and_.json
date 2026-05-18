@@ -1,0 +1,18 @@
+{
+  "dataset_id": "05fee607-cea9-4bf1-8b53-20ca584748a3",
+  "dataset_name": "California Hospital Inpatient Mortality Rates and Quality Ratings",
+  "resource_name": "2016-2023 California Hospital Inpatient Mortality Rates and Quality Ratings (CSV)",
+  "resource_url": "https://data.chhs.ca.gov/dataset/05fee607-cea9-4bf1-8b53-20ca584748a3/resource/af88090e-b6f5-4f65-a7ea-d613e6569d96/download/2016-2023-imi-results-long-view.csv",
+  "format": "CSV",
+  "fetched_at": "2026-05-18T14:03:10",
+  "header": "\u00ef\u00bb\u00bfYEAR,COUNTY,HOSPITAL,OSHPDID,Procedure/Condition,Risk Adjuested Mortality Rate,# of Deaths,# of Cases,Hospital Ratings,LONGITUDE,LATITUDE",
+  "sample_rows_raw": [
+    "2016,AAAA,STATEWIDE,None,AAA Repair Unruptured,1.3,30,2358,None,None,None",
+    "2016,AAAA,STATEWIDE,None,AMI,6.1,3178,52167,None,None,None",
+    "2016,AAAA,STATEWIDE,None,Acute Stroke,9.1,5482,60184,None,None,None",
+    "2016,AAAA,STATEWIDE,None,Acute Stroke Hemorrhagic,21.1,2580,12210,None,None,None",
+    "2016,AAAA,STATEWIDE,None,Acute Stroke Ischemic,5,2258,45141,None,None,None",
+    "2016,AAAA,STATEWIDE,None,Acute Stroke Subarachnoid,22.7,644,2833,None,None,None",
+    "2016,AAAA,STATEWIDE,None,Carotid Endarterectomy,0.5,25,4894,None,None,None"
+  ]
+}

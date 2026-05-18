@@ -1,0 +1,725 @@
+{
+  "source": "PubMed E-utils",
+  "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/",
+  "query": "(\"AXIOS\"[All Fields] OR \"Hot AXIOS\"[All Fields] OR \"lumen-apposing\"[All Fields]) AND (\"adverse\"[All Fields] OR \"complication\"[All Fields] OR \"perforation\"[All Fields] OR \"migration\"[All Fields] OR \"bleeding\"[All Fields])",
+  "fetched_at": "2026-05-18T13:26:53",
+  "total_pmids": 60,
+  "us_records": 46,
+  "records": [
+    {
+      "pmid": "42109624",
+      "title": "Endoscopic ultrasound-guided drainage of a subcapsular hepatic pancreatic pseudocyst: a novel application of a lumen-apposing metal stent with visualization of fluid communication pathways.",
+      "year": "2026",
+      "journal": "VideoGIE : an official video journal of the American Society for Gastrointestinal Endoscopy",
+      "abstract_preview": "Subcapsular hepatic pancreatic pseudocysts (SHPCs) are rare adverse events of pancreatitis. Traditional management involves percutaneous or surgical drainage, but endoscopic ultrasound (EUS)-guided approaches are underexplored. To our knowledge, we report the second documented case of EUS-guided SHPC drainage and the first using a lumen-apposing metal stent (LAMS), highlighting EUS's therapeutic role.",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Digestive Health, Gold Coast University Hospital",
+        "Hepatopancreatobiliary Surgery, Surgical Department, Gold Coast University Hospital",
+        "Interventional Radiology, Radiology Department, Gold Coast University Hospital"
+      ]
+    },
+    {
+      "pmid": "41421566",
+      "title": "Subjective evaluation by expert endoscopists in on-label indications of a novel cautery-tipped lumen-apposing metal stent with a conventional delivery system (Hot-Spaxus&#xa9;): a pilot study.",
+      "year": "2026",
+      "journal": "Gastroenterologia y hepatologia",
+      "abstract_preview": "To evaluate the potential acceptance of Hot-Spaxus in routine practice through a subjective technical assessment by expert endoscopists, and to assess its short-term efficacy and safety.",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Unidad de Endoscopias, Servicio de Aparato Digestivo, Hospital Universitari de Bellvitge"
+      ]
+    },
+    {
+      "pmid": "41076021",
+      "title": "Lumen-apposing metal stents for partial reversal of Roux-en-Y gastric bypass: a multicenter study.",
+      "year": "2026",
+      "journal": "Gastrointestinal endoscopy",
+      "abstract_preview": "Roux-en-Y gastric bypass (RYGB) is an effective treatment of obesity; however, some patients may develop debilitating postoperative adverse events requiring surgical reversal, which can be technically challenging and highly morbid. Endoscopic ultrasound (EUS)-guided placement of a lumen-apposing metal stent (LAMS) offers a minimally invasive option that creates a gastrogastric fistula. Partial redirection of food into the native stomach results in improvement of nutritional status and may serve",
+      "us_affiliations": [
+        "Center for Interventional Endoscopy, AdventHealth Orlando, Orlando, Florida, USA. Electronic address: kamkad@gmail.com.",
+        "Department of Internal Medicine, SUNY Upstate Medical University, Syracuse, New York, USA.",
+        "Center for Interventional Endoscopy, AdventHealth Orlando, Orlando, Florida, USA.",
+        "Center for Interventional Endoscopy, AdventHealth Orlando, Orlando, Florida, USA.",
+        "AdventHealth, Orlando, Florida, USA."
+      ],
+      "hospitals_extracted": [
+        "Department of Gastroenterology, Virginia Mason Medical Center",
+        "Department of Internal Medicine, SUNY Upstate Medical University"
+      ]
+    },
+    {
+      "pmid": "41076016",
+      "title": "Transenteric endoscopic retrograde cholangiopancreatography via endoscopic ultrasound-guided anastomosis using lumen-apposing metal stents in patients with surgically altered anatomy (with video).",
+      "year": "2026",
+      "journal": "Gastrointestinal endoscopy",
+      "abstract_preview": "Endoscopic ultrasonography (EUS)-directed transenteric endoscopic retrograde cholangiopancreatography (ERCP) (EUS-directed transenteric ERCP [EDEE]) using a lumen-apposing metal stent (LAMS) is a novel biliary drainage technique for patients with surgically altered anatomy. The study aimed to evaluate the feasibility, safety, and effectiveness of EDEE.",
+      "us_affiliations": [
+        "Hackensack Meridian Health Care System, Hackensack, New Jersey, USA.",
+        "Hackensack Meridian Health Care System, Hackensack, New Jersey, USA.",
+        "Hackensack Meridian Health Care System, Hackensack, New Jersey, USA.",
+        "Hackensack Meridian Health Care System, Hackensack, New Jersey, USA.",
+        "Foundation for Interventional &amp; Therapeutic Endoscopy, New Brunswick, New Jersey, USA."
+      ],
+      "hospitals_extracted": [
+        "Department of Gastroenterology and Hepatology, University Hospitals Leuven",
+        "Department of Gastroenterology, Hospital Universitario Puerta de Hierro Majadahonda",
+        "Department of Internal Medicine and Medical Therapeutics, University of Pavia",
+        "Vita Salute San Raffaele University",
+        "Department of Gastroenterology, Ghent University Hospital",
+        "Department of Gastroenterology, University Hospital of Montpellier",
+        "Department of Gastroenterology, Henri Mondor Hospital",
+        "Cesena Hospitals",
+        "Department of Gastroenterology, Georges-Pompidou European Hospital",
+        "Department of Interventional Radiology, Georges-Pompidou European Hospital"
+      ]
+    },
+    {
+      "pmid": "42078425",
+      "title": "A Rare but Life-Threatening Complication of Direct Endoscopic Necrosectomy: Tension Pneumoperitoneum With Pneumothorax and Hypercapnia due to Walled-Off Necrosis Rupture.",
+      "year": "2026",
+      "journal": "Case reports in gastrointestinal medicine",
+      "abstract_preview": "Endoscopic ultrasonography (EUS)-guided drainage followed by direct endoscopic necrosectomy (DEN) is widely used as a minimally invasive treatment for walled-off necrosis (WON). While this approach is considered effective and safe, serious complications may occur. We report a case of carbon dioxide (CO2)-related tension pneumoperitoneum accompanied by severe hypercapnia during DEN. A 65-year-old man with gallstone pancreatitis developed a large WON causing gastric outlet obstruction. He underwen",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Gastroenterology and Hepatology, Kindai University Faculty of Medicine",
+        "Department of Surgery, Kindai University Faculty of Medicine"
+      ]
+    },
+    {
+      "pmid": "42029728",
+      "title": "Evolution of gallbladder drainage: a comprehensive review from percutaneous to endoscopic ultrasound-guided approaches.",
+      "year": "2026",
+      "journal": "Journal of gastroenterology",
+      "abstract_preview": "Acute cholecystitis frequently occurs in elderly or medically fragile patients. While early cholecystectomy remains the standard treatment for operable patients, gallbladder drainage plays a critical role in those who are poor candidates for immediate surgery. Over the past decade, gallbladder drainage has evolved from reliance on percutaneous transhepatic gallbladder drainage (PT-GBD) to a spectrum of endoscopic alternatives, including endoscopic transpapillary gallbladder drainage (ET-GBD) and",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Hospital, College of Medicine, The Catholic University of Korea",
+        "Department of Gastroenterology, Asan Medical Center"
+      ]
+    },
+    {
+      "pmid": "41997209",
+      "title": "Lumen-apposing metal stents vs. self-expandable metal stents for endoscopic ultrasound-guided choledocoduodenostomy: a network meta-analysis of randomized controlled trials.",
+      "year": "2026",
+      "journal": "Endoscopy",
+      "abstract_preview": "Endoscopic ultrasound-guided choledochoduodenostomy (EUS-CDS) has emerged as an alternative to endoscopic retrograde cholangiopancreatography (ERCP) for biliary drainage in patients with malignant distal biliary obstruction (MDBO). With cautery-enhanced lumen-apposing metal stents (CE-LAMSs), EUS-CDS has become more feasible, yet concerns remain regarding stent patency and safety. Comparative data between CE-LAMS-based and conventional self-expandable metal stent (SEMS)-based EUS-CDS are lacking",
+      "us_affiliations": [
+        "Division of Gastroenterology, Hepatology and Endoscopy, Brigham and Women's Hospital, Boston, United States."
+      ],
+      "hospitals_extracted": [
+        "Division of Gastroenterology and Hepatology, McGill University Health Centre",
+        "Surgery, Prince of Wales Hospital",
+        "Biomedical Sciences, Humanitas University",
+        "IBD Unit, Humanitas Clinical and Research Center - IRCCS",
+        "Cesena Hospitals",
+        "Endoscopy Unit, IRCCS Humanitas Research Hospital",
+        "Gastroenterology, Georges Pompidou European Hospital Anatomical Pathology"
+      ]
+    },
+    {
+      "pmid": "41982447",
+      "title": "Endoscopic reversal of Roux-en-Y gastric bypass using lumen-apposing metal stent for the treatment of excessive weight loss and hyperammonemic encephalopathy.",
+      "year": "2026",
+      "journal": "VideoGIE : an official video journal of the American Society for Gastrointestinal Endoscopy",
+      "abstract_preview": "Hyperammonemic encephalopathy is a rare but potentially life-threatening adverse event following Roux-en-Y gastric bypass (RYGB), typically associated with severe weight loss, sarcopenia, and small-intestinal bacterial overgrowth. This case illustrates the use of endoscopic reversal as a minimally invasive alternative to surgical intervention in a high-risk patient.",
+      "us_affiliations": [
+        "Department of Gastroenterology and Hepatology, Cleveland Clinic, Cleveland, Ohio, USA.",
+        "Division of Gastroenterology and Nutrition, Department of Medicine, UT Health San Antonio, San Antonio, Texas, USA.",
+        "Division of Gastroenterology and Nutrition, Department of Medicine, UT Health San Antonio, San Antonio, Texas, USA."
+      ],
+      "hospitals_extracted": [
+        "Department of Gastroenterology and Hepatology, Cleveland Clinic"
+      ]
+    },
+    {
+      "pmid": "41982443",
+      "title": "Endoscopic ultrasound-assisted double-lumen-apposing metal stent septotomy for permanent partial reversal of Roux-en-Y gastric bypass.",
+      "year": "2026",
+      "journal": "VideoGIE : an official video journal of the American Society for Gastrointestinal Endoscopy",
+      "abstract_preview": "Surgical reversal of Roux-en-Y gastric bypass (RYGB) is associated with high morbidity but may be necessary in patients with malnutrition. In recent years, endoscopic gastrogastric (GG) fistulas created via lumen-apposing metal stents (LAMSs) have offered patients a less-invasive alternative, but they are associated with adverse events if left in situ for long periods of time. We describe the use of a double-LAMS septotomy technique with septotomy to achieve permanent and durable partial RYGB re",
+      "us_affiliations": [
+        "Department of Gastroenterology, Center for Interventional Endoscopy, AdventHealth, Orlando, Florida, USA.",
+        "Gastroenterology, Virginia Mason Medical Center, Seattle, Washington, USA."
+      ],
+      "hospitals_extracted": [
+        "Gastroenterology, Virginia Mason Medical Center"
+      ]
+    },
+    {
+      "pmid": "41948877",
+      "title": "Management of ERCP Failure in Malignant Biliary Obstruction: Comparative Effectiveness and Safety of EUS-Guided Gallbladder Drainage Versus Choledocoduodenostomy.",
+      "year": "2026",
+      "journal": "Digestive endoscopy : official journal of the Japan Gastroenterological Endoscopy Society",
+      "abstract_preview": "It is unclear which is the best approach for the drainage of malignant distal biliary obstruction (MDBO) after failed endoscopic retrograde cholangiopancreatography (ERCP). We compared endoscopic ultrasound (EUS)-guided gallbladder drainage (GBD) and EUS-guided choledocoduodenostomy (CDS) with lumen-apposing metal stents (LAMS) as rescue treatment in the case of ERCP failure.",
+      "us_affiliations": [
+        "Division of Gastroenterology, Hepatology, and Endoscopy, Brigham and Women's Hospital, Boston, Massachusetts, USA.",
+        "Division of Gastroenterology, Hepatology, and Nutrition, University of Utah, Salt Lake City, Utah, USA."
+      ],
+      "hospitals_extracted": [
+        "Gastroenterology and Hepatology, KU Leuven University Hospitals Leuven",
+        "Therapeutic GI Endoscopy Unit, Campus Bio-Medico University Hospital",
+        "Medical Gastroenterology, AIG Hospitals",
+        "Department of Biomedical Sciences, Humanitas University",
+        "Department of Internal Medicine and Medical Therapeutics, University of Pavia",
+        "Pancreatobiliary Endoscopy and Endosonography Division, Pancreas Translational and Clinical Research Center",
+        "Gastroenterology Department, Enrique Baltodano Briceno Hospital",
+        "Department of Medicine, Haukeland University Hospital",
+        "Department of Experimental Medicine, Section of Gastroenterology, University of Salento",
+        "Gastroenterology and Endoscopy Division, Instituto Ecuatoriano de Enfermedades Digestivas, University Hospital Omni"
+      ]
+    },
+    {
+      "pmid": "41577578",
+      "title": "EUS-guided drainage of Post-Surgical versus Post-Pancreatitis collections (the RESPELL study): A prospective comparison of clinical presentations and therapeutic outcomes.",
+      "year": "2026",
+      "journal": "Digestive and liver disease : official journal of the Italian Society of Gastroenterology and the Italian Association for the Study of the Liver",
+      "abstract_preview": "Prospective evidence on Endoscopic Ultrasound-guided drainage (EUS-FCD) for Post-surgical Fluid Collections (PS-FCs) is lacking, and differences from Post-pancreatitis collections (PP-FCs) remain undefined.",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Gastroenterology and Hepatology, Imelda Hospital Bonheiden",
+        "Department of Gastroenterology and Hepatology, University Hospital Gasthuisberg",
+        "PhD Program, Department of Life Sciences, University of Modena and Reggio Emilia",
+        "Amsterdam Gastroenterology Endocrinology Metabolism, Cancer Center Amsterdam",
+        "Vita Salute University"
+      ]
+    },
+    {
+      "pmid": "41183599",
+      "title": "Outcomes of endoscopic retrograde cholangiopancreatography performed via a lumen-apposing gastroenterostomy stent: a multicenter observational study (with videos).",
+      "year": "2026",
+      "journal": "Gastrointestinal endoscopy",
+      "abstract_preview": "We describe our multicenter experience with endoscopic retrograde cholangiopancreatography (ERCP) performed via a lumen-apposing metal stent (LAMS) for the management of coincident gastric outlet obstruction (GOO) and biliary obstruction.",
+      "us_affiliations": [
+        "Division of Gastroenterology and Hepatology, Mayo Clinic, Rochester, Minnesota, USA.",
+        "Division of Gastroenterology and Hepatology, Johns Hopkins Medicine, Baltimore, Maryland, USA; Division of Gastroenterology, Department of Medicine, Chulalongkorn University, Bangkok, Thailand.",
+        "Division of Gastroenterology and Hepatology, Mayo Clinic, Rochester, Minnesota, USA.",
+        "Division of Gastroenterology and Hepatology, Mayo Clinic, Rochester, Minnesota, USA.",
+        "Division of Gastroenterology and Hepatology, Mayo Clinic, Rochester, Minnesota, USA."
+      ],
+      "hospitals_extracted": [
+        "Division of Gastroenterology and Hepatology, Cedars-Sinai Medical Center",
+        "Division of Gastroenterology, Department of Medicine, Chulalongkorn University",
+        "Department of Internal Medicine, Gastroenterology, Haemato-Oncology, Diabetology, and Infectious Diseases, RKH Hospital ",
+        "Division of Gastroenterology and Hepatology, Mayo Clinic"
+      ]
+    },
+    {
+      "pmid": "41152606",
+      "title": "Outcomes of Endoscopic Ultrasound-Guided Gallbladder Drainage Using Lumen-Apposing Metal Stent Performed by Early Career Advanced Endoscopists: A Multicenter Study.",
+      "year": "2026",
+      "journal": "Digestive diseases and sciences",
+      "abstract_preview": "Endoscopic ultrasound-guided gallbladder drainage (EUS-GBD) has gained popularity for acute cholecystitis (AC) management in patients deemed unfit for surgery. Recent studies have found&#x2009;&gt;&#x2009;95% technical success and&#x2009;&gt;&#x2009;90% clinical success when performed by experienced advanced endoscopists. Recently, the U.S. Food and Drug Administration (FDA) approved the use of lumen-apposing metal stent (LAMS) for EUS-GBD. The aim of this study is to evaluate the safety and eff",
+      "us_affiliations": [
+        "Department of Internal Medicine, University of Minnesota, Minneapolis, MN, USA.",
+        "Department of Internal Medicine, University of Minnesota, Minneapolis, MN, USA.",
+        "Section of Digestive Diseases and Nutrition, University of Oklahoma Health Sciences Center, Oklahoma City, OK, USA.",
+        "Department of Internal Medicine, University of Minnesota, Minneapolis, MN, USA.",
+        "Division of Gastroenterology, SUNY Upstate Medical University, Syracuse, NY, USA."
+      ],
+      "hospitals_extracted": [
+        "Division of Digestive and Liver Diseases, Department of Internal Medicine, University of Texas Southwestern",
+        "Division of Gastroenterology, SUNY Upstate Medical University",
+        "Division of Gastroenterology, University of Iowa Hospitals and Clinics",
+        "Division of Gastroenterology, Jewish General Hospital",
+        "Section of Digestive Diseases and Nutrition, University of Oklahoma Health Sciences Center",
+        "Department of Internal Medicine, University of Minnesota",
+        "Division of Gastroenterology and Hepatology, University of Colorado Anschutz Medical Campus",
+        "Division of Gastroenterology, University of South Carolina School of Medicine"
+      ]
+    },
+    {
+      "pmid": "40599979",
+      "title": "Role of Endoscopic Ultrasound-guided Gastroenterostomy for Benign Gastric Outlet Obstruction.",
+      "year": "2026",
+      "journal": "DEN open",
+      "abstract_preview": "Benign gastric outlet obstruction (GOO) often results from intrinsic conditions like peptic strictures, caustic-induced stricture, and surgical anastomoses, and extrinsic conditions like pancreatitis, hematoma, and superior mesenteric artery syndrome. While traditional management involved surgery or endoscopic balloon dilation, endoscopic ultrasound-guided gastroenterostomy (EUS-GE) has emerged as a minimally invasive alternative using lumen-apposing metal stents (LAMS). We aimed to summarize th",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Digestive Diseases and Clinical Nutrition Advanced Centre for Treatment"
+      ]
+    },
+    {
+      "pmid": "41925047",
+      "title": "Comparative efficacy and safety of bi-flanged metal stents versus lumen-apposing metal stents for endoscopic drainage of pancreatic fluid collections: a systematic review and meta-analysis.",
+      "year": "2026",
+      "journal": "European journal of gastroenterology &amp; hepatology",
+      "abstract_preview": "Pancreatic fluid collections (PFCs), particularly walled-off necrosis, are common complications of acute pancreatitis that often require endoscopic drainage. Bi-flanged metal stents (BFMS; NAGI; Taewoong Medical, Gyenoggi-do, Korea) and electrocautery-enhanced lumen-apposing metal stents (LAMS; AXIOS, Boston Scientific Corporation, Marlborough, Massachusetts, USA) are frequently used, but comparative data remain limited. This study aims to compare the efficacy and safety of BFMS and LAMS in the",
+      "us_affiliations": [
+        "Department of Internal Medicine, Penn State Health Milton S. Hershey Medical Center, The Pennsylvania State University, Hershey, Pennsylvania, USA.",
+        "Department of Gastroenterology and Hepatology, University of Illinois College of Medicine at Peoria, Peoria, Illinois, USA.",
+        "Department of Gastroenterology and Hepatology, Penn State Health Milton S. Hershey Medical Center, The Pennsylvania State University, Hershey, Pennsylvania, USA."
+      ],
+      "hospitals_extracted": [
+        "Department of Gastroenterology and Hepatology, University of Illinois College of Medicine at Peoria",
+        "Hershey Medical Center",
+        "Department of Internal Medicine, Henry Ford Hospital",
+        "Department of Medicine, King Edward Medical University"
+      ]
+    },
+    {
+      "pmid": "41860060",
+      "title": "Endoscopic Ultrasound-Guided Gallbladder Drainage Using Lumen-Apposing Metal Stents for Non-Surgical Candidates With Cholecystitis: A Prospective Cohort Study.",
+      "year": "2026",
+      "journal": "ANZ journal of surgery",
+      "abstract_preview": "Management of acute cholecystitis (AC) in high-risk surgical candidates is challenging. Drainage via percutaneous transhepatic gallbladder drainage (PT-GBD) has been standard of care, with high complication and re-intervention rates. Endoscopic ultrasound-guided gallbladder drainage (EUS-GBD) using lumen-apposing metal stents (LAMS) is proposed as an alternative. This study evaluates the efficacy and safety of LAMS in EUS-GBD for non-surgical candidates presenting with AC.",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Gastroenterology and Hepatology, Waikato Hospital",
+        "Gastroenterology and Hepatology, Amsterdam UMC, University of Amsterdam"
+      ]
+    },
+    {
+      "pmid": "41824843",
+      "title": "Lumen-apposing metal stent for peripancreatic fluid collection contributes to early improvement of nutritional status: A multicenter retrospective study (YCR-P001).",
+      "year": "2026",
+      "journal": "Medicine",
+      "abstract_preview": "Acute pancreatitis causes malnutrition due to severe systemic inflammatory response and organ failure and is associated with increased susceptibility to severe infections and complications such as peripancreatic fluid collection (PFC). PFC is treated using endoscopic ultrasound-guided transluminal drainage (EUS-TD). Lumen-apposing metal stents (LAMSs) have high drainage efficiency and are useful; however, their impact on improving nutritional status and long-term prognosis is unclear. We aimed t",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Gastroenterology, Tokuyama Central Hospital",
+        "Department of Gastroenterology, Saiseikai Yamaguchi General Hospital",
+        "Department of Gastroenterology, Saiseikai Shimonoseki General Hospital",
+        "Department of Gastroenterology and Hepatology, Yamaguchi University Graduate School of Medicine"
+      ]
+    },
+    {
+      "pmid": "41786152",
+      "title": "Efficacy and safety of endoscopic ultrasound-guided choledochoduodenostomy compared with endoscopic ultrasound-guided gallbladder drainage for palliation of malignant distal biliary obstruction: a systematic review and meta-analysis.",
+      "year": "2026",
+      "journal": "Gastrointestinal endoscopy",
+      "abstract_preview": "When ERCP is not feasible or fails in the palliation of malignant distal biliary obstruction (MDBO), EUS-guided choledochoduodenostomy (EUS-CDS) and EUS-guided gallbladder drainage (EUS-GBD) are viable alternatives. We conducted a systematic review and meta-analysis comparing the safety and efficacy of the 2 techniques for the palliation of MDBO.",
+      "us_affiliations": [
+        "Advanced Endoscopy, Houston Methodist West Hospital, Houston, Texas, USA.",
+        "Internal Medicine, AdventHealth Orlando, Orlando, Florida, USA.",
+        "AdventHealth Porter, Denver, Colorado, USA. Electronic address: dougraham2001@gmail.com."
+      ],
+      "hospitals_extracted": [
+        "Advanced Endoscopy, Houston Methodist West Hospital"
+      ]
+    },
+    {
+      "pmid": "41772227",
+      "title": "Endoscopic ultrasound-guided gastrointestinal anastomoses for the treatment of afferent limb syndrome: a systematic review and meta-analysis.",
+      "year": "2026",
+      "journal": "Surgical endoscopy",
+      "abstract_preview": "Afferent limb syndrome (ALS) is a rare condition resulting in a mechanical obstruction in the afferent loop after surgical gastrointestinal (GI) reconstruction. Endoscopic ultrasound (EUS)-guided gastrojejunostomy (GJ) or jejunojejunostomy (JJ) is increasing in clinical practice. Therefore, the aim of this systematic review with meta-analysis is to evaluate the efficacy and safety of EUS-GJ or EUS-JJ for ALS.",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Internal Medicine and Medical Therapeutics, University of Pavia",
+        "Pancreatobiliary Endoscopy and EUS Division, IRCCS San Raffaele Scientific Institute and Vita-Salute University",
+        "Department of Medical Sciences and Surgery, University of Bologna",
+        "University of Pittsburgh Medical Center",
+        "Cesena Hospitals",
+        "Department of Medical and Surgical Sciences, University of Bologna",
+        "Department of General and Emergency Surgery, Bufalini Hospital AUSL Romagna Cesena"
+      ]
+    },
+    {
+      "pmid": "41629126",
+      "title": "Clinical Outcomes and Risk Factors for Adverse Events Associated With Endoscopic Ultrasound-Guided Drainage of Postoperative Pancreatic Fluid Collections Following Distal Pancreatectomy.",
+      "year": "2026",
+      "journal": "Journal of gastroenterology and hepatology",
+      "abstract_preview": "Endoscopic ultrasound (EUS)-guided drainage is widely used for postoperative pancreatic fluid collections (PO-PFCs). However, concerns regarding adverse events persist. We aimed to assess clinical outcomes and identify risk factors for adverse events following endoscopic ultrasound-guided drainage of postoperative pancreatic fluid collections after distal pancreatectomy.",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Gastroenterology, University of Ulsan College of Medicine",
+        "Department of Internal Medicine, Korea University Anam Hospital"
+      ]
+    },
+    {
+      "pmid": "41558906",
+      "title": "EUS-guided versus surgical gastroenterostomy for the management of malignant gastric outlet obstruction: A systematic review and meta-analysis.",
+      "year": "2026",
+      "journal": "Digestive and liver disease : official journal of the Italian Society of Gastroenterology and the Italian Association for the Study of the Liver",
+      "abstract_preview": "Gastric outlet obstruction (GOO) is a late complication of several malignancies, markedly impairing quality of life. Surgical gastroenterostomy (S-GE) has long been the palliative standard, but outcomes are variable and morbidity remains considerable. Endoscopic ultrasound-guided gastroenterostomy (EUS-GE) has emerged as a minimally invasive alternative. We conducted a systematic review and meta-analysis comparing EUS-GE and S-GE, with a specific focus on malignant GOO.",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Cesena Hospitals",
+        "Gastroenterology Unit, Umberto I Hospital",
+        "Gastroenterology Unit, Department of Experimental Medicine, University of Salento",
+        "Department of Internal Medicine and Medical Therapeutics, University of Pavia"
+      ]
+    },
+    {
+      "pmid": "41511419",
+      "title": "Endoscopic Ultrasound-Guided Choledochoduodenostomy vs Endoscopic Retrograde Cholangiopancreatography in Malignant Distal Biliary Obstruction to Prevent Postprocedural Pancreatitis: A Randomized Trial.",
+      "year": "2026",
+      "journal": "Gastroenterology",
+      "abstract_preview": "Postprocedural pancreatitis is the most common adverse event (AE) associated with endoscopic retrograde cholangiopancreatography (ERCP). Endoscopic ultrasound-guided choledochoduodenostomy (EUS-CDS) using a lumen-apposing metal stent is emerging as a promising approach for managing malignant distal biliary obstruction, offering the potential to lower the risk of postprocedural pancreatitis.",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Humanitas Clinical and Research Center-IRCCS",
+        "Campus Bio-Medico, University of Rome",
+        "Valduce Hospital",
+        "Humanitas University",
+        "Cesena Hospitals"
+      ]
+    },
+    {
+      "pmid": "41493548",
+      "title": "Transgastric versus transduodenal endoscopic ultrasound-guided gallbladder drainage: an observational study.",
+      "year": "2026",
+      "journal": "Surgical endoscopy",
+      "abstract_preview": "Endoscopic ultrasound-guided gallbladder drainage (EUS-GBD) with lumen-apposing metal stents (LAMS) is an effective strategy for high-risk surgical patients. The optimal access route-transgastric (TG) versus transduodenal (TD)-remains uncertain. We compared outcomes of TG versus TD EUS-GBD at a high-volume tertiary center.",
+      "us_affiliations": [
+        "Division of Gastroenterology and Hepatology, Mayo Clinic, Rochester, MN, USA. rishad.khan1@ucalgary.ca.",
+        "Division of Gastroenterology and Hepatology, Mayo Clinic, Rochester, MN, USA.",
+        "Division of Gastroenterology and Hepatology, Mayo Clinic, Rochester, MN, USA.",
+        "Division of Gastroenterology and Hepatology, Mayo Clinic, Rochester, MN, USA.",
+        "Division of Gastroenterology and Hepatology, Mayo Clinic, Rochester, MN, USA."
+      ],
+      "hospitals_extracted": [
+        "Division of Gastroenterology and Hepatology, University of Calgary",
+        "Division of Gastroenterology and Hepatology, Cedars Sinai Medical Center",
+        "Division of Gastroenterology and Hepatology, Mayo Clinic"
+      ]
+    },
+    {
+      "pmid": "41076015",
+      "title": "Sequential lumen-apposing metal stent and septotomy technique for endoscopic anastomosis creation and revision in patients with previous upper gastrointestinal surgery.",
+      "year": "2026",
+      "journal": "Gastrointestinal endoscopy",
+      "abstract_preview": "We present an endoscopic technique for the creation or revision of upper GI anastomoses using endoscopic ultrasound guidance, sequential deployment of lumen-apposing metal stents, and septotomy after tract maturation. We also present our case series of 4 patients in whom we have successfully used this technique for both reversal of postbariatric surgical anatomy and management of anastomotic strictures.",
+      "us_affiliations": [
+        "Department of Surgery, Bassett Healthcare Network, Cooperstown, New York, USA. Electronic address: casey.lamb@bassett.org.",
+        "Northern Light Mercy Hospital Gastroenterology, Portland, Maine, USA.",
+        "Division of Gastroenterology, Department of Medicine, University of Utah Health, Salt Lake City, Utah, USA.",
+        "Section of Gastroenterology, Department of Medicine, Dartmouth Health, Lebanon, New Hampshire, USA; Geisel School of Medicine at Dartmouth, Hanover, New Hampshire, USA.",
+        "Geisel School of Medicine at Dartmouth, Hanover, New Hampshire, USA; Division of Minimally Invasive Surgery, Department of Surgery, Dartmouth Health, Lebanon, New Hampshire, USA."
+      ],
+      "hospitals_extracted": [
+        "Division of Gastroenterology, Department of Medicine, University of Utah Health",
+        "Northern Light Mercy Hospital Gastroenterology"
+      ]
+    },
+    {
+      "pmid": "41015272",
+      "title": "Delayed adverse event of lumen-apposing metal stent.",
+      "year": "2026",
+      "journal": "Gastrointestinal endoscopy",
+      "abstract_preview": "",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Sorbonne University"
+      ]
+    },
+    {
+      "pmid": "40962232",
+      "title": "Transmural gallbladder drainage using a novel endosonographic-guided suture (with video).",
+      "year": "2026",
+      "journal": "Gastrointestinal endoscopy",
+      "abstract_preview": "Interventional EUS has allowed for the endoscopic management of conditions that previously required abdominal surgery, including transmural drainage of the gallbladder (EUS-GBD). These procedures are technically demanding and can be associated with serious adverse events. The aim of this study was to establish the feasibility and safety of a novel endosonography-guided suturing device, which allows apposition of the gastrointestinal lumen and gallbladder for EUS-GBD, reducing technical demands a",
+      "us_affiliations": [
+        "Division of Gastroenterology and Hepatology, Mayo Clinic, Rochester, Minnesota, USA.",
+        "Division of Gastroenterology and Hepatology, Mayo Clinic, Rochester, Minnesota, USA.",
+        "Division of Gastroenterology and Hepatology, Mayo Clinic, Rochester, Minnesota, USA.",
+        "Division of Gastroenterology and Hepatology, Mayo Clinic, Rochester, Minnesota, USA.",
+        "Division of Gastroenterology and Hepatology, Mayo Clinic, Rochester, Minnesota, USA. Electronic address: storm.andrew@mayo.edu."
+      ],
+      "hospitals_extracted": [
+        "Division of Gastroenterology and Hepatology, Mayo Clinic"
+      ]
+    },
+    {
+      "pmid": "40701486",
+      "title": "Lumen-Apposing Stents With or Without Pigtail in Endosonography-Guided Biliary Drainage for Malignant Distal Biliary Obstruction.",
+      "year": "2026",
+      "journal": "Clinical gastroenterology and hepatology : the official clinical practice journal of the American Gastroenterological Association",
+      "abstract_preview": "Endoscopic ultrasound-guided biliary drainage, creating a choledochoduodenostomy and using lumen-apposing metal stents (LAMSs), is a promising intervention for the management of malignant distal biliary obstruction (MDBO). But concerns exist regarding its stent patency. Our aim was to determine whether the insertion of an axis-orienting double-pigtail plastic stent (DPS) through LAMS offered a clinical benefit by improving the stent dysfunction rate.",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Hepato-bilio-pancreatic Unit, Department of General Surgery, Hospital Universitari de Bellvitge",
+        "Medical Oncology Department, Hospital Duran i Reynals",
+        "Endoscopy Unit, Department of Digestive Diseases, Hospital Universitario Rio Hortega",
+        "Endoscopy Unit, Department of Digestive Diseases, Hospital Universitari de Bellvitge",
+        "Clinical Research Support Unit, Clinical Pharmacology Department"
+      ]
+    },
+    {
+      "pmid": "41909311",
+      "title": "Recurrent Chylothorax: A Rare Complication of Acute Necrotizing Pancreatitis With Necrosectomy and Stent Placement for Pseudocyst.",
+      "year": "2026",
+      "journal": "Cureus",
+      "abstract_preview": "Chylothorax is an abnormal collection of chyle in the pleural space that requires prompt intervention. This case report describes a 47-year-old female who presented with recurrent chylothorax as a complication of necrotizing pancreatitis. She was initially evaluated for acute respiratory distress. Chest radiograph showed a large right-sided pleural effusion requiring multiple thoracenteses followed by chest tube placement for symptomatic relief. The patient had a history of acute necrotizing pan",
+      "us_affiliations": [
+        "Internal Medicine, Mary Washington Healthcare, Fredericksburg, USA.",
+        "Internal Medicine, Mary Washington Healthcare, Fredericksburg, USA.",
+        "Internal Medicine, Gastroenterology, Edward Via College of Osteopathic Medicine (VCOM), Blacksburg, USA.",
+        "Division of Gastroenterology and Hepatology, Mary Washington Healthcare, Fredericksburg, USA.",
+        "Division of Gastroenterology and Hepatology, Mary Washington Healthcare, Fredericksburg, USA."
+      ],
+      "hospitals_extracted": []
+    },
+    {
+      "pmid": "41939788",
+      "title": "Complete Rectal Anastomotic Occlusion That Spontaneously Recanalized, Allowing for Unusual Endoscopic Treatment with a Lumen-Apposing Metal Stent: A Case Report.",
+      "year": "2026",
+      "journal": "Case reports in gastroenterology",
+      "abstract_preview": "Complete anastomotic occlusion following rectal surgery is a rare and challenging complication. While surgical revision remains the standard treatment, it is associated with significant morbidity. Recently, novel endoscopic techniques have emerged as minimally invasive alternatives.",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of General Surgery, Hillel Yaffe Medical Center",
+        "Department of Gastroenterology, Hillel Yaffe Medical Center",
+        "Faculty of Medicine, Tel Aviv University"
+      ]
+    },
+    {
+      "pmid": "41722788",
+      "title": "Durable partial reversal of Roux-en-Y gastric bypass using the parallel lumen-apposing metal stent septotomy technique: a multicenter feasibility study (with video).",
+      "year": "2026",
+      "journal": "Gastrointestinal endoscopy",
+      "abstract_preview": "Surgical reversal of Roux-en-Y gastric bypass (RYGB) is associated with significant morbidity. EUS-guided creation of gastrogastric (GG) fistulas, using lumen-apposing metal stents (LAMSs), offers a minimally invasive alternative, but the inability to leave stents in place long term and fistula closure soon after stent removal limit durability.",
+      "us_affiliations": [
+        "Center for Interventional Endoscopy, AdventHealth Orlando, Orlando, Florida, USA. Electronic address: kambiz.kadkhodayan.md@adventhealth.com.",
+        "Center for Interventional Endoscopy, AdventHealth Orlando, Orlando, Florida, USA.",
+        "Center for Interventional Endoscopy, AdventHealth Orlando, Orlando, Florida, USA.",
+        "Center for Interventional Endoscopy, AdventHealth Orlando, Orlando, Florida, USA.",
+        "AdventHealth, Orlando, Florida, USA."
+      ],
+      "hospitals_extracted": [
+        "Virginia Mason Medical Center"
+      ]
+    },
+    {
+      "pmid": "41970686",
+      "title": "Durable endoscopic gastrojejunal anastomosis using the double-lumen apposing metal stent septotomy technique: Feasibility study.",
+      "year": "2026",
+      "journal": "Endoscopy international open",
+      "abstract_preview": "Surgical gastrojejunostomy (S-GJ) is standard treatment for gastric outlet obstruction (GOO), but is associated with significant morbidity, high cost, and prolonged recovery. Endoscopic ultrasound-guided gastroenterostomy (EUS-GE) provides a minimally invasive alternative; however, the anastomosis often closes after removal of the lumen-apposing metal stent (LAMS), limiting its role to palliation. We evaluated feasibility of the double LAMS septotomy technique to achieve durable gastroenterostom",
+      "us_affiliations": [
+        "Center For Interventional Endoscopy, AdventHealth, Orlando, Florida, United States.",
+        "Gastroenterology, AdventHealth Orlando, Orlando, United States.",
+        "Center For Interventional Endoscopy, AdventHealth, Orlando, Florida, United States.",
+        "Center For Interventional Endoscopy, AdventHealth, Orlando, Florida, United States.",
+        "Center For Interventional Endoscopy, AdventHealth, Orlando, Florida, United States."
+      ],
+      "hospitals_extracted": [
+        "Gastroenterology and Hepatology, Virginia Mason Medical Center"
+      ]
+    },
+    {
+      "pmid": "41672534",
+      "title": "Clinical Course and Management of Pancreatic Pseudocyst Perforation.",
+      "year": "2026",
+      "journal": "Internal medicine (Tokyo, Japan)",
+      "abstract_preview": "",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Gastroenterology, Akita University Graduate School of Medicine"
+      ]
+    },
+    {
+      "pmid": "41777341",
+      "title": "Endoscopic ultrasonography-guided gastroenterostomy for malignant gastric outlet obstruction: Comparison between gastric and duodenal obstruction.",
+      "year": "2026",
+      "journal": "Endoscopy international open",
+      "abstract_preview": "It is currently unclear whether obstruction location affects clinical and procedure outcomes after endoscopic ultrasonography-guided gastroenterostomy (EUS-GE) with a lumen-apposing metal stent (LAMS) in patients with malignant gastric outlet obstruction (GOO). Therefore, we compared clinical outcomes of EUS-GE for malignant GOO located in the stomach with obstruction located in the duodenum.",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Gastroenterology and Hepatology, Erasmus MC University Medical Center",
+        "Department of Gastroenterology and Hepatology, Martini Hospital",
+        "Department of Gastrointestinal Oncology, Netherlands Cancer Institute - Antoni van Leeuwenhoek Hospital",
+        "Department of Gastroenterology and Hepatology, Leiden University Medical Center",
+        "Department of Gastroenterology and Hepatology, Amsterdam UMC, Location University of Amsterdam",
+        "Department of Gastroenterology and Hepatology, University Medical Center Utrecht",
+        "Department of Gastroenterology and Hepatology, University Medical Center Groningen"
+      ]
+    },
+    {
+      "pmid": "41518589",
+      "title": "Changing the Flow: How EUS-Guided Drainage is Reshaping the Management of Distal Malignant Biliary Obstruction.",
+      "year": "2026",
+      "journal": "United European gastroenterology journal",
+      "abstract_preview": "Endoscopic ultrasound-guided biliary drainage (EUS-BD) has evolved from a rescue therapy into a viable alternative to endoscopic retrograde cholangiopancreatography (ERCP) and percutaneous drainage for distal malignant biliary obstruction (dMBO). Among the available techniques, EUS-guided choledochoduodenostomy (EUS-CDS) has become the preferred approach, supported by expanding evidence, and wider adoption beyond expert centres. EUS-guided hepaticogastrostomy (EUS-HGS) currently retains a role i",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Gastroenterology and Hepatology, Leiden University Medical Center",
+        "Department of Gastroenterology and Hepatology, Amsterdam UMC, Location University of Amsterdam"
+      ]
+    },
+    {
+      "pmid": "40449631",
+      "title": "Fistula dilation-free endoscopic ultrasound-guided choledochoduodenostomy using tubular dumbbell-shaped metal stent versus endoscopic retrograde cholangiopancreatography in first-line drainage for malignant distal biliary obstruction (with video).",
+      "year": "2026",
+      "journal": "Gastrointestinal endoscopy",
+      "abstract_preview": "EUS-guided choledochoduodenostomy (CDS) is a potential first-line drainage method for unresectable malignant distal biliary obstruction (UMDBO). However, lumen-apposing metal stents present difficulty in application for insufficient bile duct dilation, biliary wall compression, duodenobiliary reflux, and high cost. This study evaluated the utility of fistula dilation-free EUS-CDS with a tubular dumbbell-shaped metal stent (MS).",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Gastroenterology, Aichi Medical University"
+      ]
+    },
+    {
+      "pmid": "39761155",
+      "title": "EUS-Guided Gastroenterostomy for Benign Gastric Outlet Obstruction: A Systematic Review and Meta-analysis.",
+      "year": "2026",
+      "journal": "Journal of clinical gastroenterology",
+      "abstract_preview": "Gastric outlet obstruction (GOO) is a clinical manifestation of mechanical obstruction at the antropyloric region or proximal small bowel. The goal of endoscopic management is to relieve the obstruction so patients can resume per oral intake. Most studies have focused on malignant causes of GOO; yet only a handful have explored outcomes related to benign etiologies. Endoscopic ultrasound-guided gastroenterostomy (EUS-GE) has emerged as a novel method to bypass the obstruction with a lumen apposi",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Division of Gastroenterology and Hepatology, Virginia Mason Medical Center",
+        "Division of Gastroenterology and Hepatology, University of North Carolina at Chapel Hill",
+        "Division of Gastroenterology and Hepatology, University of Maryland Medical Center"
+      ]
+    },
+    {
+      "pmid": "41548724",
+      "title": "Long-term Outcomes of endoscopic ultrasound-guided Gastroenterostomy (LONG-RANGE study): a prospective cohort study tracking symptom recurrence, reintervention timelines and stent modifications over time.",
+      "year": "2026",
+      "journal": "Gastrointestinal endoscopy",
+      "abstract_preview": "Limited information is available on long-term outcomes of EUS-guided gastroenterostomy (EUS-GE) and modifications of lumen-apposing metal stents (LAMSs) over time.",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Vita-Salute San Raffaele University"
+      ]
+    },
+    {
+      "pmid": "41503172",
+      "title": "Endoscopic Ultrasound-Guided Gastric Remnant Access for Massive Upper Gastrointestinal Bleeding in Roux-en-Y Anatomy.",
+      "year": "2026",
+      "journal": "ACG case reports journal",
+      "abstract_preview": "This case reports a novel and successful attempt at identifying and treating massive upper gastrointestinal bleeding in an unstable patient with Roux-en-Y anatomy via endoscopic ultrasound-directed transgastric intervention and over-the-scope clip placement. The remnant stomach was located under endoscopic ultrasound and accessed via gastrogastrostomy, which was created via lumen-apposing metal stent placement. The lesion was identified, and hemostasis was achieved with epinephrine injection and",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Medicine, Brooke Army Medical Center",
+        "Department of Gastroenterology, Brooke Army Medical Center"
+      ]
+    },
+    {
+      "pmid": "41612989",
+      "title": "Lumen-apposing metal stents versus double pigtail plastic stents for early (&lt;4 weeks of illness) endoscopic transluminal drainage of pancreatic necrotic collections.",
+      "year": "2026",
+      "journal": "Annals of gastroenterology",
+      "abstract_preview": "Pancreatic necrotic collections (PNC) gradually liquefy over time. In the early phase of pancreatitis (&lt;4 weeks), collections contain more solid debris. This study retrospectively compared the safety and efficacy of endoscopic transluminal drainage (ETD) using multiple plastic stents (MPS) vs. lumen-apposing metal stents (LAMS) in early-phase PNC.",
+      "us_affiliations": [
+        "Department of Medicine, Washington University, Saint Louis, Missouri, USA (Sarakshi Mahajan)."
+      ],
+      "hospitals_extracted": [
+        "Department of Medicine, Washington University"
+      ]
+    },
+    {
+      "pmid": "41584628",
+      "title": "Entanglement of an over-the-scope full-thickness endoscopic suturing device during stent fixation: a case series of adverse events and rescue strategies.",
+      "year": "2026",
+      "journal": "VideoGIE : an official video journal of the American Society for Gastrointestinal Endoscopy",
+      "abstract_preview": "Esophageal fully covered self-expandable metal stents (FCSEMSs) and lumen-apposing metal stents are used for the management of strictures and luminal defects. Stent fixation can minimize stent migration risk, and endoscopic suturing is an effective option. Here, we describe an adverse event of over-the-scope endoscopic suturing device entanglement during stent fixation and discuss rescue maneuvers.",
+      "us_affiliations": [
+        "Division of Gastroenterology and Hepatology, Thomas Jefferson University Hospital, Philadelphia, Pennsylvania, USA.",
+        "Division of Gastroenterology and Hepatology, Thomas Jefferson University Hospital, Philadelphia, Pennsylvania, USA.",
+        "Division of Gastroenterology, Temple University Hospital, Philadelphia, Pennsylvania, USA.",
+        "Division of Gastroenterology and Hepatology, Thomas Jefferson University Hospital, Philadelphia, Pennsylvania, USA."
+      ],
+      "hospitals_extracted": [
+        "Division of Gastroenterology and Hepatology, Thomas Jefferson University Hospital",
+        "Division of Gastroenterology, Temple University Hospital"
+      ]
+    },
+    {
+      "pmid": "41198065",
+      "title": "Minimally invasive, maximum impact: advances in the application of colonic stents.",
+      "year": "2026",
+      "journal": "Current opinion in gastroenterology",
+      "abstract_preview": "Malignant colorectal obstruction (MCO) is a common and life-threatening presentation of colorectal cancer, traditionally managed with emergency surgery associated with high morbidity and high stoma rates. Self-expanding metal stents (SEMS) have emerged as an important alternative for both palliation and as a bridge to curative resection. This review summarizes recent advances in indications, technical aspects, and emerging applications of colonic stenting, highlighting its role in modern multidi",
+      "us_affiliations": [
+        "Department of Gastroenterology and Hepatology, The University of Texas MD Anderson Cancer Center, Houston, Texas, USA."
+      ],
+      "hospitals_extracted": [
+        "Department of Gastroenterology and Hepatology, The University of Texas MD Anderson Cancer Center"
+      ]
+    },
+    {
+      "pmid": "40985743",
+      "title": "Endoscopic Ultrasound-Directed Transgastric ERCP in Patients With Roux-En-Y Gastric Bypass: A Multicenter Prospective Cohort Study (EDGE-Pilot).",
+      "year": "2026",
+      "journal": "Digestive endoscopy : official journal of the Japan Gastroenterological Endoscopy Society",
+      "abstract_preview": "Endoscopic retrograde cholangiopancreatography (ERCP) is frequently indicated in patients who underwent Roux-en-Y gastric bypass (RYGB) surgery. Endoscopic ultrasound-directed ERCP (EDGE) is a technique that is used to create a gastro-gastrostomy by placing a lumen-apposing metal stent (LAMS) between the gastric pouch and the excluded stomach, facilitating subsequent ERCP. However, prospective studies on EDGE are lacking. The aim of this study is to provide prospective evidence for the efficacy",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Gastroenterology and Hepatology, Leiden University Medical Centre",
+        "Department of Gastroenterology and Hepatology, Amsterdam UMC, Location University of Amsterdam",
+        "Department of Gastroenterology and Hepatology, Rijnstate Hospital"
+      ]
+    },
+    {
+      "pmid": "40828340",
+      "title": "Entero-Enteric Lumen Apposing Metal Stents (LAMS) for Biliary Access in Patients with Altered Anatomy.",
+      "year": "2026",
+      "journal": "Digestive diseases and sciences",
+      "abstract_preview": "Biliary access in patients with Roux-en-Y hepaticojejunostomy, pancreaticoduodenectomy and duodenal switch can be challenging. Placement of an EUS guided lumen apposing metal stent (LAMS) between the small bowel and the afferent jejunal limb can create an entero-enteric conduit (EUS-EE), allowing for successful endoscopic access to the biliary tree for intervention. In this study, we aim to describe the safety and efficacy of EUS-EE for biliary access.",
+      "us_affiliations": [
+        "Division of Gastroenterology, Thomas Jefferson University Hospital, 132 South 10th Street, Main Building, Suite 480, Philadelphia, PA, 19107, USA.",
+        "Department of Medicine, Thomas Jefferson University Hospital, Philadelphia, PA, USA.",
+        "Division of Gastroenterology, Thomas Jefferson University Hospital, 132 South 10th Street, Main Building, Suite 480, Philadelphia, PA, 19107, USA.",
+        "Division of Gastroenterology, Hackensack University Medical Center, Hackensack, NJ, USA.",
+        "Division of Gastroenterology, Hackensack Meridian Health-Jersey Shore University Medical Center, Neptune, NJ, USA."
+      ],
+      "hospitals_extracted": [
+        "Division of Gastroenterology, Hackensack Meridian Health-Jersey Shore University Medical Center",
+        "Department of Medicine, Thomas Jefferson University Hospital",
+        "Division of Gastroenterology, Thomas Jefferson University Hospital",
+        "Division of Gastroenterology, Geisinger Medical Center",
+        "Division of Gastroenterology, Hackensack University Medical Center"
+      ]
+    },
+    {
+      "pmid": "40695478",
+      "title": "Endoscopic ultrasound-guided gallbladder versus bile duct drainage for first-line therapy of malignant biliary obstruction: international multicenter trial.",
+      "year": "2026",
+      "journal": "Endoscopy",
+      "abstract_preview": "Endoscopic ultrasound (EUS)-guided gallbladder drainage (GBD) and EUS-guided choledochoduodenostomy (CDS) with lumen-apposing metal stents are alternative approaches to endoscopic retrograde cholangiopancreatography. We compared EUS-GBD and EUS-CDS as first-line therapies in the management of distal malignant biliary obstruction (MBO).",
+      "us_affiliations": [
+        "Division of Gastroenterology, Hepatology, and Endoscopy, Brigham and Women's Hospital, Boston, Massachusetts, United States.",
+        "Division of Gastroenterology, Hepatology, and Nutrition, Salt Lake City, Utah, United States.",
+        "Division of Gastroenterology, Hepatology, and Nutrition, Salt Lake City, Utah, United States.",
+        "Division of Gastroenterology, Hepatology, and Nutrition, Salt Lake City, Utah, United States."
+      ],
+      "hospitals_extracted": [
+        "Medical Gastroenterology, AIG Hospitals",
+        "Department of Experimental Medicine, Section of Gastroenterology, University of Salento",
+        "Medicine, Haukeland University Hospital",
+        "Gastroenterology, University of Verona",
+        "Endoscopy Unit, Department of Digestive Diseases, Hospital General Universitario de Alicante",
+        "Therapeutic GI Endoscopy Unit, Campus Bio-Medico University Hospital",
+        "Surgery, Prince of Wales Hospital",
+        "Gastroenterology Department, Enrique Baltodano Briceno Hospital",
+        "Division of Gastroenterology and Endoscopy, Casa Sollievo della Sofferenza Hospital",
+        "Department of Biomedical Sciences, Humanitas University"
+      ]
+    },
+    {
+      "pmid": "41458317",
+      "title": "EUS-guided enterocolostomy with lumen-apposing metal stents for palliative management of malignant bowel obstruction: a systematic review and meta-analysis.",
+      "year": "2025",
+      "journal": "Therapeutic advances in gastrointestinal endoscopy",
+      "abstract_preview": "Malignant bowel obstruction (MBO) is a frequent and debilitating complication in advanced abdominal cancers, particularly ovarian, colorectal, and gastric malignancies associated with peritoneal carcinomatosis. Surgery is often not feasible, and conventional decompression carries substantial morbidity. Endoscopic ultrasound-guided enterocolostomy (EUS-EC) with lumen-apposing metal stents (LAMS) has emerged as a minimally invasive alternative, but the evidence remains limited.",
+      "us_affiliations": [
+        "Department of Internal Medicine, Penn State Health Milton S. Hershey Medical Center, The Pennsylvania State University, 500 University Dr, Hershey, PA 17033, USA.",
+        "Department of Internal Medicine, Henry Ford Health System, Detroit, MI, USA.",
+        "Department of Internal Medicine, Penn State Health Milton S. Hershey Medical Center, The Pennsylvania State University, Hershey, PA, USA.",
+        "Department of Internal Medicine, Penn State Health Milton S. Hershey Medical Center, The Pennsylvania State University, Hershey, PA, USA.",
+        "Department of Internal Medicine, Henry Ford Health System, Detroit, MI, USA."
+      ],
+      "hospitals_extracted": [
+        "Hershey Medical Center",
+        "Department of Gastroenterology and Hepatology, University of Cincinnati College of Medicine",
+        "Department of Gastroenterology and Hepatology, Stanford University Medical Center",
+        "Department of Internal Medicine, Henry Ford Health System",
+        "Department of Internal Medicine, King Edward Medical University",
+        "Department of Gastroenterology and Hepatology, ECU Health Medical Center"
+      ]
+    },
+    {
+      "pmid": "41467160",
+      "title": "Natural orifice surgery for rescue of stent misplacement in endoscopic gallbladder drainage.",
+      "year": "2025",
+      "journal": "VideoGIE : an official video journal of the American Society for Gastrointestinal Endoscopy",
+      "abstract_preview": "Lumen-apposing metal stent (LAMS) misdeployment in endoscopic ultrasound-guided gallbladder drainage is one of the primary adverse events, but few studies, to our knowledge, have reported the misplacement of the LAMS into the abdominal cavity and the following endoscopic rescue treatment.",
+      "us_affiliations": [],
+      "hospitals_extracted": [
+        "Department of Gastroenterology, Southwest Hospital",
+        "Department of Gastroenterology, Shanxi Coal Central Hospital"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "source": "CA HCAI Inpatient Mortality Indicators 2016-2023",
+  "url": "https://data.chhs.ca.gov/dataset/05fee607-cea9-4bf1-8b53-20ca584748a3/resource/af88090e-b6f5-4f65-a7ea-d613e6569d96/download/2016-2023-imi-results-long-view.csv",
+  "fetched_at": "2026-05-18T14:09:04",
+  "total_rows": 60498,
+  "axios_relevant_rows": 0,
+  "unique_hospitals": 554,
+  "fields": [
+    "\ufeffYEAR",
+    "COUNTY",
+    "HOSPITAL",
+    "OSHPDID",
+    "Procedure/Condition",
+    "Risk Adjuested Mortality Rate",
+    "# of Deaths",
+    "# of Cases",
+    "Hospital Ratings",
+    "LONGITUDE",
+    "LATITUDE"
+  ],
+  "rows": []
+}

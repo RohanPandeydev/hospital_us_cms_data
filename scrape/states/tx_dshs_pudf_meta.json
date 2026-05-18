@@ -1,0 +1,15 @@
+{
+  "source_pages": [
+    {
+      "url": "https://www.dshs.texas.gov/center-health-statistics/texas-health-care-information-collection/health-data-researcher-information/inpatient-public-use-data-files",
+      "status": 404,
+      "page_size": 188966
+    },
+    {
+      "url": "https://www.dshs.texas.gov/THCIC/Hospitals/Download.shtm",
+      "status": 200,
+      "page_size": 274245
+    }
+  ],
+  "fetched_at": "2026-05-18T14:00:46"
+}

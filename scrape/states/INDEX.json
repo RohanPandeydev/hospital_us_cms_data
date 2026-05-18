@@ -1,0 +1,58 @@
+{
+  "source": "State Hospital Discharge Data Portals",
+  "fetched_at": "2026-05-18T14:03:20",
+  "ny_sparcs_pulls": [
+    {
+      "name": "Emergency Department Treat and Release Encounters by Facility and Payer (SPARCS De-identified): Beginning 2018",
+      "rows": 200,
+      "filter": null
+    },
+    {
+      "name": "Hospital Inpatient Discharges (SPARCS De-Identified): 2024",
+      "rows": 200,
+      "filter": "apr_drg_code IN ('341','342','343','420','438','439','444','445')"
+    },
+    {
+      "name": "Hospital Inpatient Discharges (SPARCS De-Identified): 2023",
+      "rows": 200,
+      "filter": "apr_drg_code IN ('341','342','343','420','438','439','444','445')"
+    }
+  ],
+  "ca_chhs_pulls": [
+    {
+      "name": "Fourth Quarter Summary Hospital Utilization Discharges by Payer Source",
+      "resource": "Fourth Quarter Summary Hospital Utilization Discharges by Payer Source (CSV)",
+      "status": "sampled"
+    },
+    {
+      "name": "Hospital Inpatient - Characteristics by Patient County of Residence",
+      "resource": "Hospital Inpatient Characteristics - Disposition by Patient County of Residence",
+      "status": "sampled"
+    },
+    {
+      "name": "California Hospital Inpatient Mortality Rates and Quality Ratings",
+      "resource": "2016-2023 California Hospital Inpatient Mortality Rates and Quality Ratings (CSV)",
+      "status": "sampled"
+    },
+    {
+      "name": "Number of Selected Inpatient Medical Procedures in California Hospitals",
+      "resource": "Number of Selected Inpatient Medical Procedures in California Hospitals, 2016-2017 (CSV)",
+      "status": "sampled"
+    },
+    {
+      "name": "Mental and Behavioral Health Diagnoses in Emergency Department and Inpatient Discharges by Healthy Places Index Ranking",
+      "resource": "Healthy Places Index (HPI) Diagnosis Group by Setting and Patient Category",
+      "status": "sampled"
+    },
+    {
+      "name": "Pre-2015 Utilization Rates for Selected Medical Procedures in California Hospitals",
+      "resource": "Utilization Rates for Selected Medical Procedures in California Hospitals, 2005 - 2015 (CSV)",
+      "status": "sampled"
+    }
+  ],
+  "tx_pudf_files_directory": "scrape/states/state_discharge_data_directory.json",
+  "summary": {
+    "ny_sparcs_datasets_with_data": 3,
+    "ca_chhs_datasets_sampled": 6
+  }
+}

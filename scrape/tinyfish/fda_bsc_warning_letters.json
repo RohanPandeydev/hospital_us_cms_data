@@ -1,0 +1,30 @@
+{
+  "run_id": "48bdb165-c74b-43ba-bb23-8e2722f9ef31",
+  "key": "fda_bsc_warning_letters",
+  "status": "COMPLETED",
+  "fetched_at": "2026-05-18T14:03:35",
+  "goal": "Navigate to https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/compliance-actions-and-activities/warning-letters to complete the goal: Search this FDA Warning Letters database for 'Boston Scientific'. Extract every warning letter for Boston Scientific. For each: issue date, recipient (facility name + address), subject, and link to the letter PDF.",
+  "result": {
+    "task": "extract warning letters for Boston Scientific from FDA database",
+    "reason": "Bot detection and technical blockers",
+    "status": "Failed",
+    "details": {
+      "bot_detection": {
+        "triggered": true,
+        "protection": "Akamai/Cloudflare",
+        "redirected_to": "verification page with sec-if-behaviours checkbox"
+      },
+      "database_page_attempts": [
+        "Input 'Boston Scientific' and '\"Boston Scientific\"'",
+        "Used Enter key, focus/unfocus, interacted with table headers and filters",
+        "Table did not filter; continued showing default list (~3,474 entries)"
+      ],
+      "site_wide_search_attempts": "Attempted FDA site-wide search for '\"Boston Scientific\" \"Warning Letter\"'"
+    },
+    "outcome": "Execution stopped per rules; no warning letters extracted"
+  },
+  "error": null,
+  "step_count": null,
+  "created_at": "2026-05-18T08:12:22Z",
+  "completed_at": null
+}

@@ -1,0 +1,198 @@
+{
+  "source": "SEC EDGAR submissions API",
+  "cik": "0000885725",
+  "company": "Boston Scientific Corp",
+  "fetched_at": "2026-05-18T13:45:43",
+  "filings_returned": 27,
+  "filings": [
+    {
+      "form": "8-K",
+      "filing_date": "2026-05-05",
+      "accession_number": "0000885725-26-000036",
+      "primary_doc_description": "8-K",
+      "filing_url": "https://www.sec.gov/Archives/edgar/data/885725/000088572526000036/"
+    },
+    {
+      "form": "10-Q",
+      "filing_date": "2026-05-01",
+      "accession_number": "0000885725-26-000033",
+      "primary_doc_description": "10-Q",
+      "filing_url": "https://www.sec.gov/Archives/edgar/data/885725/000088572526000033/"
+    },
+    {
+      "form": "8-K",
+      "filing_date": "2026-04-22",
+      "accession_number": "0000885725-26-000031",
+      "primary_doc_description": "8-K",
+      "filing_url": "https://www.sec.gov/Archives/edgar/data/885725/000088572526000031/"
+    },
+    {
+      "form": "8-K",
+      "filing_date": "2026-03-30",
+      "accession_number": "0000885725-26-000029",
+      "primary_doc_description": "8-K",
+      "filing_url": "https://www.sec.gov/Archives/edgar/data/885725/000088572526000029/"
+    },
+    {
+      "form": "DEF 14A",
+      "filing_date": "2026-03-18",
+      "accession_number": "0000885725-26-000025",
+      "primary_doc_description": "DEF 14A",
+      "filing_url": "https://www.sec.gov/Archives/edgar/data/885725/000088572526000025/"
+    },
+    {
+      "form": "8-K",
+      "filing_date": "2026-02-26",
+      "accession_number": "0000885725-26-000017",
+      "primary_doc_description": "8-K",
+      "filing_url": "https://www.sec.gov/Archives/edgar/data/885725/000088572526000017/"
+    },
+    {
+      "form": "8-K",
+      "filing_date": "2026-02-23",
+      "accession_number": "0000885725-26-000013",
+      "primary_doc_description": "8-K",
+      "filing_url": "https://www.sec.gov/Archives/edgar/data/885725/000088572526000013/"
+    },
+    {
+      "form": "10-K",
+      "filing_date": "2026-02-17",
+      "accession_number": "0000885725-26-000010",
+      "primary_doc_description": "10-K",
+      "filing_url": "https://www.sec.gov/Archives/edgar/data/885725/000088572526000010/"
+    },
+    {
+      "form": "8-K",
+      "filing_date": "2026-02-05",
+      "accession_number": "0000885725-26-000008",
+      "primary_doc_description": "8-K",
+      "filing_url": "https://www.sec.gov/Archives/edgar/data/885725/000088572526000008/"
+    },
+    {
+      "form": "8-K",
+      "filing_date": "2026-02-04",
+      "accession_number": "0000885725-26-000006",
+      "primary_doc_description": "8-K",
+      "filing_url": "https://www.sec.gov/Archives/edgar/data/885725/000088572526000006/"
+    },
+    {
+      "form": "8-K",
+      "filing_date": "2026-01-15",
+      "accession_number": "0000947871-26-000037",
+      "primary_doc_description": "CURRENT REPORT",
+      "filing_url": "https://www.sec.gov/Archives/edgar/data/885725/000094787126000037/"
+    },
+    {
+      "form": "8-K",
+      "filing_date": "2026-01-15",
+      "accession_number": "0000947871-26-000034",
+      "primary_doc_description": "CURRENT REPORT",
+      "filing_url": "https://www.sec.gov/Archives/edgar/data/885725/000094787126000034/"
+    },
+    {
+      "form": "8-K",
+      "filing_date": "2025-11-19",
+      "accession_number": "0000885725-25-000052",
+      "primary_doc_description": "8-K",
+      "filing_url": "https://www.sec.gov/Archives/edgar/data/885725/000088572525000052/"
+    },
+    {
+      "form": "10-Q",
+      "filing_date": "2025-11-03",
+      "accession_number": "0000885725-25-000050",
+      "primary_doc_description": "10-Q",
+      "filing_url": "https://www.sec.gov/Archives/edgar/data/885725/000088572525000050/"
+    },
+    {
+      "form": "8-K",
+      "filing_date": "2025-10-23",
+      "accession_number": "0000885725-25-000048",
+      "primary_doc_description": "8-K",
+      "filing_url": "https://www.sec.gov/Archives/edgar/data/885725/000088572525000048/"
+    },
+    {
+      "form": "8-K",
+      "filing_date": "2025-10-22",
+      "accession_number": "0000885725-25-000046",
+      "primary_doc_description": "8-K",
+      "filing_url": "https://www.sec.gov/Archives/edgar/data/885725/000088572525000046/"
+    },
+    {
+      "form": "8-K",
+      "filing_date": "2025-09-04",
+      "accession_number": "0000885725-25-000043",
+      "primary_doc_description": "8-K",
+      "filing_url": "https://www.sec.gov/Archives/edgar/data/885725/000088572525000043/"
+    },
+    {
+      "form": "10-Q",
+      "filing_date": "2025-08-01",
+      "accession_number": "0000885725-25-000041",
+      "primary_doc_description": "10-Q",
+      "filing_url": "https://www.sec.gov/Archives/edgar/data/885725/000088572525000041/"
+    },
+    {
+      "form": "8-K",
+      "filing_date": "2025-07-23",
+      "accession_number": "0000885725-25-000039",
+      "primary_doc_description": "8-K",
+      "filing_url": "https://www.sec.gov/Archives/edgar/data/885725/000088572525000039/"
+    },
+    {
+      "form": "8-K",
+      "filing_date": "2025-05-28",
+      "accession_number": "0000885725-25-000033",
+      "primary_doc_description": "8-K",
+      "filing_url": "https://www.sec.gov/Archives/edgar/data/885725/000088572525000033/"
+    },
+    {
+      "form": "8-K",
+      "filing_date": "2025-05-06",
+      "accession_number": "0000885725-25-000028",
+      "primary_doc_description": "8-K",
+      "filing_url": "https://www.sec.gov/Archives/edgar/data/885725/000088572525000028/"
+    },
+    {
+      "form": "10-Q",
+      "filing_date": "2025-05-01",
+      "accession_number": "0000885725-25-000026",
+      "primary_doc_description": "10-Q",
+      "filing_url": "https://www.sec.gov/Archives/edgar/data/885725/000088572525000026/"
+    },
+    {
+      "form": "8-K",
+      "filing_date": "2025-04-23",
+      "accession_number": "0000885725-25-000024",
+      "primary_doc_description": "8-K",
+      "filing_url": "https://www.sec.gov/Archives/edgar/data/885725/000088572525000024/"
+    },
+    {
+      "form": "8-K",
+      "filing_date": "2025-04-23",
+      "accession_number": "0000885725-25-000023",
+      "primary_doc_description": "8-K",
+      "filing_url": "https://www.sec.gov/Archives/edgar/data/885725/000088572525000023/"
+    },
+    {
+      "form": "DEF 14A",
+      "filing_date": "2025-03-19",
+      "accession_number": "0000885725-25-000017",
+      "primary_doc_description": "DEF 14A",
+      "filing_url": "https://www.sec.gov/Archives/edgar/data/885725/000088572525000017/"
+    },
+    {
+      "form": "8-K",
+      "filing_date": "2025-02-26",
+      "accession_number": "0000885725-25-000013",
+      "primary_doc_description": "8-K",
+      "filing_url": "https://www.sec.gov/Archives/edgar/data/885725/000088572525000013/"
+    },
+    {
+      "form": "10-K",
+      "filing_date": "2025-02-18",
+      "accession_number": "0000885725-25-000011",
+      "primary_doc_description": "10-K",
+      "filing_url": "https://www.sec.gov/Archives/edgar/data/885725/000088572525000011/"
+    }
+  ]
+}

@@ -1,0 +1,901 @@
+{
+  "source": "State open-data catalog discovery",
+  "fetched_at": "2026-05-18T14:01:55",
+  "ny_sparcs": {
+    "datasets_found": 3,
+    "datasets": [
+      {
+        "id": "a2f4-wuvm",
+        "name": "Emergency Department Treat and Release Encounters by Facility and Payer (SPARCS De-identified): Beginning 2018",
+        "category": "Health",
+        "rowCount": 1764098564,
+        "url": "https://health.data.ny.gov/resource/a2f4-wuvm.json",
+        "portal_url": "https://health.data.ny.gov/d/a2f4-wuvm",
+        "sample_fields": [
+          "year",
+          "permanent_facility_id",
+          "facility_name",
+          "payer",
+          "visits",
+          "percent_of_visits",
+          "charges",
+          "median_charges",
+          "_25th_percentile_charges",
+          "_75th_percentile_charges",
+          "average_charges"
+        ],
+        "sample_row": {
+          "year": "2018",
+          "permanent_facility_id": "000000",
+          "facility_name": "Statewide",
+          "payer": "0 Dual",
+          "visits": "439,201",
+          "percent_of_visits": "6.21",
+          "charges": "1,614,211,490.93",
+          "median_charges": "2,345.14",
+          "_25th_percentile_charges": "1,300.28",
+          "_75th_percentile_charges": "4,413.62",
+          "average_charges": "3,675.30"
+        }
+      },
+      {
+        "id": "sf4k-39ay",
+        "name": "Hospital Inpatient Discharges (SPARCS De-Identified): 2024",
+        "category": "Health",
+        "rowCount": 1760103462,
+        "url": "https://health.data.ny.gov/resource/sf4k-39ay.json",
+        "portal_url": "https://health.data.ny.gov/d/sf4k-39ay",
+        "sample_fields": [
+          "health_service_area",
+          "hospital_county",
+          "operating_certificate_number",
+          "permanent_facility_id",
+          "facility_name",
+          "age_group",
+          "zip_code",
+          "gender",
+          "race",
+          "ethnicity",
+          "length_of_stay",
+          "type_of_admission",
+          "patient_disposition",
+          "discharge_year",
+          "ccsr_diagnosis_code",
+          "ccsr_diagnosis_description",
+          "apr_drg_code",
+          "apr_drg_description",
+          "apr_mdc_code",
+          "apr_mdc_description",
+          "apr_severity_of_illness_code",
+          "apr_severity_of_illness",
+          "apr_risk_of_mortality",
+          "apr_medical_surgical",
+          "payment_typology_1",
+          "emergency_department_indicator",
+          "total_charges",
+          "total_costs"
+        ],
+        "sample_row": {
+          "health_service_area": "Hudson Valley",
+          "hospital_county": "Westchester",
+          "operating_certificate_number": "5957001",
+          "permanent_facility_id": "001139",
+          "facility_name": "WESTCHESTER MEDICAL CENTER",
+          "age_group": "0-17",
+          "zip_code": "OOS",
+          "gender": "F",
+          "race": "White",
+          "ethnicity": "Not Span/Hispanic",
+          "length_of_stay": "1",
+          "type_of_admission": "Emergency",
+          "patient_disposition": "Home or Self Care",
+          "discharge_year": "2024",
+          "ccsr_diagnosis_code": "SYM002",
+          "ccsr_diagnosis_description": "FEVER",
+          "apr_drg_code": "722",
+          "apr_drg_description": "FEVER AND INFLAMMATORY CONDITIONS",
+          "apr_mdc_code": "18",
+          "apr_mdc_description": "INFECTIOUS AND PARASITIC DISEASES, SYSTEMIC OR UNSPECIFIED SITES",
+          "apr_severity_of_illness_code": "2",
+          "apr_severity_of_illness": "Moderate",
+          "apr_risk_of_mortality": "Minor",
+          "apr_medical_surgical": "Medical",
+          "payment_typology_1": "Private Health Insurance",
+          "emergency_department_indicator": "Y",
+          "total_charges": "46814",
+          "total_costs": "6772.07"
+        }
+      },
+      {
+        "id": "46xm-urtu",
+        "name": "Hospital Inpatient Discharges (SPARCS De-Identified): 2023",
+        "category": "Health",
+        "rowCount": 1749048995,
+        "url": "https://health.data.ny.gov/resource/46xm-urtu.json",
+        "portal_url": "https://health.data.ny.gov/d/46xm-urtu",
+        "sample_fields": [
+          "hospital_service_area",
+          "hospital_county",
+          "operating_certificate_number",
+          "permanent_facility_id",
+          "facility_name",
+          "age_group",
+          "zip_code_3_digits",
+          "gender",
+          "race",
+          "ethnicity",
+          "length_of_stay",
+          "type_of_admission",
+          "patient_disposition",
+          "discharge_year",
+          "ccsr_diagnosis_code",
+          "ccsr_diagnosis_description",
+          "ccsr_procedure_code",
+          "ccsr_procedure_description",
+          "apr_drg_code",
+          "apr_drg_description",
+          "apr_mdc_code",
+          "apr_mdc_description",
+          "apr_severity_of_illness_code",
+          "apr_severity_of_illness",
+          "apr_risk_of_mortality",
+          "apr_medical_surgical",
+          "payment_typology_1",
+          "emergency_department_indicator",
+          "total_charges",
+          "total_costs"
+        ],
+        "sample_row": {
+          "hospital_service_area": "New York City",
+          "hospital_county": "Bronx",
+          "operating_certificate_number": "7000006",
+          "permanent_facility_id": "003058",
+          "facility_name": "Montefiore Med Center - Jack D Weiler Hosp of A Einstein College Div",
+          "age_group": "50 to 69",
+          "zip_code_3_digits": "104",
+          "gender": "F",
+          "race": "Other Race",
+          "ethnicity": "Spanish/Hispanic",
+          "length_of_stay": "1",
+          "type_of_admission": "Emergency",
+          "patient_disposition": "Home or Self Care",
+          "discharge_year": "2023",
+          "ccsr_diagnosis_code": "NEO074",
+          "ccsr_diagnosis_description": "Conditions due to neoplasm or the treatment of neoplasm",
+          "ccsr_procedure_code": "ADM021",
+          "ccsr_procedure_description": "ADMINISTRATION OF THERAPEUTIC SUBSTANCES, NEC",
+          "apr_drg_code": "861",
+          "apr_drg_description": "SIGNS, SYMPTOMS AND OTHER FACTORS INFLUENCING HEALTH STATUS",
+          "apr_mdc_code": "23",
+          "apr_mdc_description": "FACTORS INFLUENCING HLTH STAT & OTHR CONTACTS WITH HLTH SERVCS",
+          "apr_severity_of_illness_code": "2",
+          "apr_severity_of_illness": "Moderate",
+          "apr_risk_of_mortality": "Moderate",
+          "apr_medical_surgical": "Medical",
+          "payment_typology_1": "Medicaid",
+          "emergency_department_indicator": "Y",
+          "total_charges": "27,380.60",
+          "total_costs": "3,533.21"
+        }
+      }
+    ]
+  },
+  "ca_chhs": {
+    "datasets_found": 37,
+    "datasets": [
+      {
+        "id": "6a85824f-628b-404c-b787-5c2f80d4103a",
+        "name": "Fourth Quarter Summary Hospital Utilization Discharges by Payer Source",
+        "notes": "This dataset provides the fourth quarter summary roll-up of California hospitals\u2019 financial and utilization data for discharges by payer source.",
+        "downloadable_resources": [
+          {
+            "format": "CSV",
+            "url": "https://data.chhs.ca.gov/dataset/6a85824f-628b-404c-b787-5c2f80d4103a/resource/6e84913b-78bc-4065-a2b9-44f2bb31ab56/download/fourth-quarter-summary-hospital-utilization-discharges-by-payer-source.csv",
+            "name": "Fourth Quarter Summary Hospital Utilization Discharges by Payer Source (CSV)"
+          }
+        ]
+      },
+      {
+        "id": "abfdba95-b1ba-4e39-a417-d006e2667a2c",
+        "name": "Hospital Utilization Trends",
+        "notes": "The datasets provide medical encounter counts across three hospital settings (Inpatient Discharges, Emergency Department visits, and Ambulatory Surgery). The data is categorized by healthcare system a",
+        "downloadable_resources": [
+          {
+            "format": "CSV",
+            "url": "https://data.chhs.ca.gov/dataset/abfdba95-b1ba-4e39-a417-d006e2667a2c/resource/b63a72c4-f501-494a-9956-fa4ef4453389/download/hospital-utilization-trends_2020-2024.csv",
+            "name": "Hospital Utilization Trends_2020-2024"
+          },
+          {
+            "format": "CSV",
+            "url": "https://data.chhs.ca.gov/dataset/abfdba95-b1ba-4e39-a417-d006e2667a2c/resource/7996d860-0564-427a-b9c3-0914ed1b03bb/download/hospital-utilization-trends-by-demographic_2020-2024.csv",
+            "name": "Hospital Utilization Trends by Demographic_2020-2024"
+          },
+          {
+            "format": "CSV",
+            "url": "https://data.chhs.ca.gov/dataset/abfdba95-b1ba-4e39-a417-d006e2667a2c/resource/1594dfbe-5cee-4174-9cb1-19e587655c8e/download/hospital-utilization-trends-by-health-category_2020-2024.csv",
+            "name": "Hospital Utilization Trends by Health Category_2020-2024"
+          }
+        ]
+      },
+      {
+        "id": "ed5d21ce-9ec4-44ca-a482-2f4c767e0528",
+        "name": "Hospital Inpatient - Characteristics by Facility (Pivot Profile)",
+        "notes": "This dataset contains annual Excel pivot tables that display summaries of the inpatients treated in each hospital.  The summary data include discharges, discharge days, average length of stay, age gro",
+        "downloadable_resources": [
+          {
+            "format": "XLSX",
+            "url": "https://data.chhs.ca.gov/dataset/ed5d21ce-9ec4-44ca-a482-2f4c767e0528/resource/995b1051-480a-4992-bb10-108b996b9891/download/2023pddpivot.xlsx",
+            "name": "2023 Hospital Inpatient - Characteristics by Facility (Pivot Profile)"
+          },
+          {
+            "format": "XLSX",
+            "url": "https://data.chhs.ca.gov/dataset/ed5d21ce-9ec4-44ca-a482-2f4c767e0528/resource/7bacc638-e70a-4d02-ba25-18ea0874cea2/download/2022pddpivot.xlsx",
+            "name": "2022 Hospital Inpatient - Characteristics by Facility (Pivot Profile)"
+          },
+          {
+            "format": "XLSX",
+            "url": "https://data.chhs.ca.gov/dataset/ed5d21ce-9ec4-44ca-a482-2f4c767e0528/resource/2d8dfcde-e81e-4968-8a80-6e7c550fbd59/download/2021pddpivot.xlsx",
+            "name": "2021 Hospital Inpatient - Characteristics by Facility (Pivot Profile)"
+          }
+        ]
+      },
+      {
+        "id": "a4805267-55b9-4e07-ba2b-c446703b87a6",
+        "name": "Asthma Hospitalization Rates by County",
+        "notes": "This dataset contains counts and rates (per 10,000 residents) of asthma hospitalizations among Californians statewide and by county. The data are stratified by age group (all ages, 0-17, 18+, 0-4, 5-1",
+        "downloadable_resources": [
+          {
+            "format": "CSV",
+            "url": "https://data.chhs.ca.gov/dataset/a4805267-55b9-4e07-ba2b-c446703b87a6/resource/96a383fc-2aa5-4c3c-beed-64d9c010b55d/download/asthma-hospitalization-rates-by-county-2015_2023.csv",
+            "name": "Asthma Hospitalization Rates by County 2015-present"
+          }
+        ]
+      },
+      {
+        "id": "3ae59d3c-aef0-4742-a16e-65d4e3c27d4a",
+        "name": "California Hospital Performance Ratings",
+        "notes": "The dataset provides performance ratings for coronary artery bypass graft (CABG) surgery, inpatient mortality indicators (IMIs), and elective percutaneous coronary intervention (PCI). The outcome meas",
+        "downloadable_resources": [
+          {
+            "format": "CSV",
+            "url": "https://data.chhs.ca.gov/dataset/3ae59d3c-aef0-4742-a16e-65d4e3c27d4a/resource/ad2ccbd3-01be-4dae-997f-417fde510d83/download/csv_hospitalreports1723_odp.csv",
+            "name": "California Hospital Performance Ratings 2017-2023"
+          },
+          {
+            "format": "CSV",
+            "url": "https://data.chhs.ca.gov/dataset/3ae59d3c-aef0-4742-a16e-65d4e3c27d4a/resource/9af7d9e9-067e-490e-a1e8-7d09758e92ae/download/csv_hospitalreports1621e_odp.csv",
+            "name": "California Hospital Performance Ratings 2016-2021"
+          }
+        ]
+      },
+      {
+        "id": "0fa47cc2-284e-45a2-83b6-a4524fd84fb2",
+        "name": "Top 25 MS-DRGs \u2013 Individual Hospital (Pivot Profile)",
+        "notes": "Annual Excel pivot tables display the top 25 MS-DRGs (Medicare Severity-Diagnosis Related Groups) per hospital.  The ranking can be sorted by the number of discharges, average charge per stay, or aver",
+        "downloadable_resources": [
+          {
+            "format": "XLSX",
+            "url": "https://data.chhs.ca.gov/dataset/0fa47cc2-284e-45a2-83b6-a4524fd84fb2/resource/a6ed2963-df4a-4668-9ead-6d79310a7686/download/2023top25msdrg_pivot_202407018.xlsm",
+            "name": "2023 Top 25 MS-DRGs \u2013 Individual Hospital (Pivot Profile)"
+          },
+          {
+            "format": "XLSX",
+            "url": "https://data.chhs.ca.gov/dataset/0fa47cc2-284e-45a2-83b6-a4524fd84fb2/resource/91f93719-307c-464f-9852-5b892525fea2/download/2022top25msdrg_pivot_20230701.xlsm",
+            "name": "2022 Top 25 MS-DRGs \u2013 Individual Hospital (Pivot Profile)"
+          },
+          {
+            "format": "XLSX",
+            "url": "https://data.chhs.ca.gov/dataset/0fa47cc2-284e-45a2-83b6-a4524fd84fb2/resource/e0e070f3-79e8-43d5-9d3d-5880191208fe/download/2021top25msdrg_pivot_20220705.xlsm",
+            "name": "2021 Top 25 MS-DRGs \u2013 Individual Hospital (Pivot Profile)"
+          }
+        ]
+      },
+      {
+        "id": "6d0c3448-6635-45ad-bd16-16eaf9e55ef7",
+        "name": "Hospital Emergency Department - Characteristics by Facility (Pivot Profile)",
+        "notes": "This dataset contains annual Excel pivot tables that display summaries of the patients treated in each Emergency Department (ED).  The Emergency Department data is sourced from two databases, the ED T",
+        "downloadable_resources": [
+          {
+            "format": "XLSX",
+            "url": "https://data.chhs.ca.gov/dataset/6d0c3448-6635-45ad-bd16-16eaf9e55ef7/resource/906bad02-7ad7-46a7-82f3-b0a890b01e8e/download/2023-ed-pivot-table.xlsm",
+            "name": "2023 Hospital Emergency Department - Characteristics by Facility (Pivot Profile)"
+          },
+          {
+            "format": "XLSX",
+            "url": "https://data.chhs.ca.gov/dataset/6d0c3448-6635-45ad-bd16-16eaf9e55ef7/resource/5ed6b01c-7dc4-42e4-af06-df27aac128c6/download/2022-ed-pivot-table.xlsm",
+            "name": "2022 Hospital Emergency Department - Characteristics by Facility (Pivot Profile)"
+          },
+          {
+            "format": "XLSX",
+            "url": "https://data.chhs.ca.gov/dataset/6d0c3448-6635-45ad-bd16-16eaf9e55ef7/resource/2ed730f2-0dcd-4d4e-9503-422d704ed969/download/2021-ed-pivot-table.xlsm",
+            "name": "2021 Hospital Emergency Department - Characteristics by Facility (Pivot Profile)"
+          }
+        ]
+      },
+      {
+        "id": "44f54d54-e12c-4c06-b32e-924ecf4410d5",
+        "name": "Hospital Inpatient - Characteristics by Patient County of Residence",
+        "notes": "This dataset contains annual hospital inpatient summary data based upon the Patient\u2019s County of Residence.  The summary data includes discharge disposition, expected payer, sex, Medicare Severity-Diag",
+        "downloadable_resources": [
+          {
+            "format": "CSV",
+            "url": "https://data.chhs.ca.gov/dataset/44f54d54-e12c-4c06-b32e-924ecf4410d5/resource/9e6bdf9f-a029-4713-9626-793b20d40ecb/download/disposition_pddmasked.csv",
+            "name": "Hospital Inpatient Characteristics - Disposition by Patient County of Residence"
+          },
+          {
+            "format": "CSV",
+            "url": "https://data.chhs.ca.gov/dataset/44f54d54-e12c-4c06-b32e-924ecf4410d5/resource/6365cd77-61c5-4cda-a6cb-4f052fcf3949/download/expectedpayerpdd.csv",
+            "name": "Hospital Inpatient Characteristics - Expected Payer by Patient County of Residence"
+          },
+          {
+            "format": "CSV",
+            "url": "https://data.chhs.ca.gov/dataset/44f54d54-e12c-4c06-b32e-924ecf4410d5/resource/a9eaf75d-f45f-48f1-80d6-493eef9e7968/download/sexpddmasked.csv",
+            "name": "Hospital Inpatient Characteristics - Sex by Patient County of Residence"
+          }
+        ]
+      },
+      {
+        "id": "c34db6d1-be9e-4d22-8bd4-da02de95513f",
+        "name": "Hospital Encounters for Behavioral Health",
+        "notes": "This dataset contains Statewide counts of inpatient hospitalizations and emergency department visits for patients with Behavioral Health Disorders; stratified by age group, race/ethnicity, sex, and ex",
+        "downloadable_resources": [
+          {
+            "format": "CSV",
+            "url": "https://data.chhs.ca.gov/dataset/c34db6d1-be9e-4d22-8bd4-da02de95513f/resource/4122368e-ab54-4443-a11e-ddfc5e217879/download/hospital-encounters-for-behavioral-health.csv",
+            "name": "Hospital Encounters for Behavioral Health\t"
+          },
+          {
+            "format": "XLSX",
+            "url": "https://data.chhs.ca.gov/dataset/c34db6d1-be9e-4d22-8bd4-da02de95513f/resource/80e9184f-5a9f-47bb-b334-532437b0c999/download/data-dictionary-behavioral-health-encounters.xlsx",
+            "name": "Data dictionary-Behavioral Health Hospital Encounters: Age, Race, Sex, Expected Payer (Statewide)\t"
+          }
+        ]
+      },
+      {
+        "id": "1902083c-f16a-434d-b8ac-f7a573a305df",
+        "name": "Hospital Annual Utilization Report & Pivot Tables",
+        "notes": "The complete data set of annual utilization data reported by hospitals contains basic licensing information including bed classifications; patient demographics including occupancy rates, the number of",
+        "downloadable_resources": [
+          {
+            "format": "XLSX",
+            "url": "https://data.chhs.ca.gov/dataset/1902083c-f16a-434d-b8ac-f7a573a305df/resource/e4f70066-c0ca-40f9-8f54-0ea033f900d9/download/hosp24_util_data_final.xlsx",
+            "name": "2024 Hospital Annual Utilization (October 2025)"
+          },
+          {
+            "format": "XLSX",
+            "url": "https://data.chhs.ca.gov/dataset/1902083c-f16a-434d-b8ac-f7a573a305df/resource/d7b1bd2c-fd8c-4ebe-b1ac-1de197c01e5e/download/hosp23_util_data_final.xlsx",
+            "name": "2023 Hospital Annual Utilization (November 2024)"
+          },
+          {
+            "format": "XLSX",
+            "url": "https://data.chhs.ca.gov/dataset/1902083c-f16a-434d-b8ac-f7a573a305df/resource/dfb5fe7b-35a4-4478-adf7-9a5736aaf216/download/hosp_util_pivot_2023.xlsx",
+            "name": "2023 Calendar Year Hospital Utilization Pivot Table"
+          }
+        ]
+      },
+      {
+        "id": "b91d0f25-d2b1-4c9f-b22d-13be3a6c5c90",
+        "name": "Hospital Emergency Department - Characteristics by Patient County of Residence",
+        "notes": "This dataset contains annual hospital emergency department summary data based upon the Patient\u2019s County of Residence.  The summary data includes discharge disposition, expected payer, sex and race gro",
+        "downloadable_resources": [
+          {
+            "format": "CSV",
+            "url": "https://data.chhs.ca.gov/dataset/b91d0f25-d2b1-4c9f-b22d-13be3a6c5c90/resource/be06665a-7695-4a0b-af07-f0556d7e6707/download/disposition_ed_2024masked.csv",
+            "name": "Hospital Emergency Department Characteristics \u2013 Disposition by Patient County of Residence"
+          },
+          {
+            "format": "CSV",
+            "url": "https://data.chhs.ca.gov/dataset/b91d0f25-d2b1-4c9f-b22d-13be3a6c5c90/resource/fd061afe-9bf2-48d9-bd2d-bb7965ebdf2b/download/racegroup_ed_2024_masked.csv",
+            "name": "Hospital Emergency Department Characteristics \u2013 Race Group by Patient County of Residence"
+          },
+          {
+            "format": "CSV",
+            "url": "https://data.chhs.ca.gov/dataset/b91d0f25-d2b1-4c9f-b22d-13be3a6c5c90/resource/3875b73d-4f1f-4fc5-8233-c30e25156961/download/sex_ed_m_2024_masked.csv",
+            "name": "Hospital Emergency Department Characteristics \u2013 Sex by Patient County of Residence"
+          }
+        ]
+      },
+      {
+        "id": "4f757519-b1a4-49f8-9dfa-b4d95e20f8ed",
+        "name": "Hospital Quarterly Financial & Utilization Report - Sum of Four Quarters",
+        "notes": "The summation contains updated data which reflect all corrections made by HCAI audit staff and hospital representatives. Each file consists of one rolling 4th quarter file for the respective calendar ",
+        "downloadable_resources": [
+          {
+            "format": "XLSX",
+            "url": "https://data.chhs.ca.gov/dataset/4f757519-b1a4-49f8-9dfa-b4d95e20f8ed/resource/6b48b7f6-cd79-4818-8c7b-4a58a07d997f/download/2025_r4_q4.xlsx",
+            "name": "2025 Quarter 4 - Sum of Four Quarters (01/01/2025-12/31/2025)"
+          },
+          {
+            "format": "XLSX",
+            "url": "https://data.chhs.ca.gov/dataset/4f757519-b1a4-49f8-9dfa-b4d95e20f8ed/resource/02383687-0fce-4ec9-a09f-a6b003d27035/download/2025_r4_q3.xlsx",
+            "name": "2025 Quarter 3 - Sum of Four Quarters (02/02/2026)"
+          },
+          {
+            "format": "XLSX",
+            "url": "https://data.chhs.ca.gov/dataset/4f757519-b1a4-49f8-9dfa-b4d95e20f8ed/resource/ae2d0ae6-2aba-47dd-8627-f50996a16594/download/2025_r4_q2.xlsx",
+            "name": "2025 Quarter 2 - Sum of Four Quarters (10/29/2025)"
+          }
+        ]
+      },
+      {
+        "id": "3285fa8d-fe4b-4984-802a-9bca4b0716e5",
+        "name": "AHRQ Pediatric Quality Indicators for California Hospitals",
+        "notes": "The Pediatric Quality Indicators (PDIs), developed by the federal Agency for Healthcare Research and Quality (AHRQ), identify potential quality and patient safety issues specific to the pediatric inpa",
+        "downloadable_resources": [
+          {
+            "format": "CSV",
+            "url": "https://data.chhs.ca.gov/dataset/3285fa8d-fe4b-4984-802a-9bca4b0716e5/resource/e2fa4a13-243b-4a2e-ae63-2834df617a0b/download/2021-2023-pdi-rates.csv",
+            "name": "2021-2023 AHRQ Pediatric Quality Indicators for California Hospitals"
+          }
+        ]
+      },
+      {
+        "id": "44c01ec9-f092-422f-bf55-421aa975dac6",
+        "name": "Patients Leaving California Hospitals Against Medical Advice (AMA)",
+        "notes": "These datasets focus on patients leaving California hospitals against medical advice (AMA), which is defined as choosing to leave the hospital before the treating physician recommends discharge. Patie",
+        "downloadable_resources": [
+          {
+            "format": "CSV",
+            "url": "https://data.chhs.ca.gov/dataset/44c01ec9-f092-422f-bf55-421aa975dac6/resource/fce7850e-9b9f-4c51-9a29-cca7b9f2de19/download/patients-leaving-california-hospitals-against-medical-advice.csv",
+            "name": "Patients Leaving California Hospitals Against Medical Advice Data Set"
+          },
+          {
+            "format": "CSV",
+            "url": "https://data.chhs.ca.gov/dataset/44c01ec9-f092-422f-bf55-421aa975dac6/resource/141d91d6-464d-42d4-b216-6748d8e7e1b2/download/readmissions-rates-in-patients-recently-discharged-ama-vs-not-ama.csv",
+            "name": "Readmission Rates in Patients Recently Discharged AMA vs Not AMA Data Set"
+          }
+        ]
+      },
+      {
+        "id": "9638e316-763e-4f69-b827-e9aba51c1f33",
+        "name": "Hospitalization Counts and Rates of Selected Adverse Hospital Events by California County",
+        "notes": "(See Note below regarding 2015 data).  The dataset contains hospitalization counts and rates (age 18+), statewide and by county, for 7 potentially-preventable adverse events that occur during a hospit",
+        "downloadable_resources": [
+          {
+            "format": "CSV",
+            "url": "https://data.chhs.ca.gov/dataset/9638e316-763e-4f69-b827-e9aba51c1f33/resource/d08f328e-0cd9-4df4-92f2-99ae5261b50a/download/ca-oshpd-adveventhospitalizationspsi-county2005-2015q3.csv",
+            "name": "Hospitalization Counts and Rates of Selected Adverse Hospital Events by California County (CSV)"
+          }
+        ]
+      },
+      {
+        "id": "b0397867-b5c2-413e-8337-63582ab5ffd5",
+        "name": "Hospital Encounters for Homeless Patients",
+        "notes": "This dataset contains counts of inpatient hospitalizations and emergency department visits for persons experiencing homelessness.",
+        "downloadable_resources": [
+          {
+            "format": "XLSX",
+            "url": "https://data.chhs.ca.gov/dataset/b0397867-b5c2-413e-8337-63582ab5ffd5/resource/b692932b-d3c9-4d15-8b03-c81012d0a05f/download/2023-2024-peh_ip_ed_by-facility.xlsx",
+            "name": "2023-2024 Homeless Hospital Encounters by Facility"
+          },
+          {
+            "format": "CSV",
+            "url": "https://data.chhs.ca.gov/dataset/b0397867-b5c2-413e-8337-63582ab5ffd5/resource/0ebb424d-aa42-4288-bc28-1d22cf03cc90/download/2023-2024-data-dictionary-homeless-hospital-encounters-by-facility.csv",
+            "name": "2023-2024 Data Dictionary - Homeless Hospital Encounters by Facility"
+          },
+          {
+            "format": "XLSX",
+            "url": "https://data.chhs.ca.gov/dataset/b0397867-b5c2-413e-8337-63582ab5ffd5/resource/e05f7835-dc55-494b-be19-bdfa3473ade1/download/2023-2024-peh_ip_ed_statewide.xlsx",
+            "name": "2023-2024 Homeless Hospital Encounters Statewide"
+          }
+        ]
+      },
+      {
+        "id": "5ea4b306-5f8b-4ca1-beb3-038b3e76fbe5",
+        "name": "Pre-2012 Hospital Annual Utilization Report & Pivot Tables",
+        "notes": "On an annual basis (individual hospital fiscal year), individual hospitals and hospital systems report detailed facility-level data.  The complete Data Set of annual utilization data reported by hospi",
+        "downloadable_resources": [
+          {
+            "format": "XLSX",
+            "url": "https://data.chhs.ca.gov/dataset/5ea4b306-5f8b-4ca1-beb3-038b3e76fbe5/resource/7b07cf58-db62-4aa3-81c2-731b0b5bad8b/download/hosp11utildatafinal.xlsx",
+            "name": "2011 Calendar Year Hospital Utilization"
+          },
+          {
+            "format": "XLSX",
+            "url": "https://data.chhs.ca.gov/dataset/5ea4b306-5f8b-4ca1-beb3-038b3e76fbe5/resource/6fa37ec6-b168-4900-a803-87f7aff22987/download/aurh2011pivot-profile.xlsm",
+            "name": "2011 Calendar Year Hospital Utilization Pivot Table"
+          },
+          {
+            "format": "XLSX",
+            "url": "https://data.chhs.ca.gov/dataset/5ea4b306-5f8b-4ca1-beb3-038b3e76fbe5/resource/d8be4988-bcff-404e-91a2-be41c295bea0/download/hosp10utildatafinal.xlsx",
+            "name": "2010 Calendar Year Hospital Utilization"
+          }
+        ]
+      },
+      {
+        "id": "05fee607-cea9-4bf1-8b53-20ca584748a3",
+        "name": "California Hospital Inpatient Mortality Rates and Quality Ratings",
+        "notes": "The dataset contains risk-adjusted mortality rates, quality ratings, and number of deaths and cases for 6 medical conditions treated (Acute Stroke, Acute Myocardial Infarction, Heart Failure, Gastroin",
+        "downloadable_resources": [
+          {
+            "format": "CSV",
+            "url": "https://data.chhs.ca.gov/dataset/05fee607-cea9-4bf1-8b53-20ca584748a3/resource/af88090e-b6f5-4f65-a7ea-d613e6569d96/download/2016-2023-imi-results-long-view.csv",
+            "name": "2016-2023 California Hospital Inpatient Mortality Rates and Quality Ratings (CSV)"
+          },
+          {
+            "format": "CSV",
+            "url": "https://data.chhs.ca.gov/dataset/05fee607-cea9-4bf1-8b53-20ca584748a3/resource/5012b03a-fc44-4709-a060-1fb448947377/download/ca-oshpd-ahrq-imi-long-1015.csv",
+            "name": "2010-2015 California Hospital Inpatient Mortality Rates and Quality Ratings (CSV)"
+          },
+          {
+            "format": "XLS",
+            "url": "https://data.chhs.ca.gov/dataset/05fee607-cea9-4bf1-8b53-20ca584748a3/resource/21ac9076-c372-4ff2-ac63-36a1ef04eae9/download/ahrq-imi-conditions-v5-2015.xls",
+            "name": "AHRQ IMI Conditions 2015"
+          }
+        ]
+      },
+      {
+        "id": "17001513-32aa-4b6e-af7a-8995924804ed",
+        "name": "Mortality Following Hip Fracture Repair in California Hospitals",
+        "notes": "This dataset contains risk-adjusted mortality rates, expected mortality rates, observed mortality rates, quality ratings, and the number of deaths and cases for hip fracture repair performed in Califo",
+        "downloadable_resources": [
+          {
+            "format": "CSV",
+            "url": "https://data.chhs.ca.gov/dataset/17001513-32aa-4b6e-af7a-8995924804ed/resource/eb1598cf-fa7b-4453-a121-d570e1487f5d/download/mortality-following-hip-fracture-repair-in-california-hospitals.csv",
+            "name": "Mortality Following Hip Fracture Repair in California Hospitals (CSV)"
+          }
+        ]
+      },
+      {
+        "id": "5d9057ec-dfbf-4c47-9f13-6b9a3db640b0",
+        "name": "Postoperative Sepsis Outcomes for Elective Surgeries in California Hospitals",
+        "notes": "The dataset contains in-hospital postoperative sepsis cases, elective surgical discharges, risk-adjusted sepsis rates, and performance ratings for California hospitals. This dataset does not include s",
+        "downloadable_resources": [
+          {
+            "format": "CSV",
+            "url": "https://data.chhs.ca.gov/dataset/5d9057ec-dfbf-4c47-9f13-6b9a3db640b0/resource/737a04bb-22f0-417f-8917-c9ef072fa6c1/download/2019-2023-postoperative-sepsis-rates.csv",
+            "name": "AHRQ Postoperative Sepsis Rates 2019-2023"
+          }
+        ]
+      },
+      {
+        "id": "6fe470cc-074f-49ce-8adc-882027076d19",
+        "name": "Number of Selected Inpatient Medical Procedures in California Hospitals",
+        "notes": "This dataset contains the number (volume) of 6 selected inpatient procedures (Esophageal Resection, Pancreatic Resection, Abdominal Aortic Aneurysm Repairs (AAA Repairs), Carotid Endarterectomy, Coron",
+        "downloadable_resources": [
+          {
+            "format": "CSV",
+            "url": "https://data.chhs.ca.gov/dataset/6fe470cc-074f-49ce-8adc-882027076d19/resource/cbc646c9-36b3-4b5d-9d73-63a3e6018ba2/download/ca-oshpd-ahrq-v2018-vol-1617.csv",
+            "name": "Number of Selected Inpatient Medical Procedures in California Hospitals, 2016-2017 (CSV)"
+          },
+          {
+            "format": "CSV",
+            "url": "https://data.chhs.ca.gov/dataset/6fe470cc-074f-49ce-8adc-882027076d19/resource/c5878b88-5c7d-4354-8cbe-ebd490d9c546/download/number-of-selected-inpatient-medical-procedures-in-california-hospitals.csv",
+            "name": "Number of Selected Inpatient Medical Procedures in California Hospitals, 2005 - 2015 (CSV)"
+          }
+        ]
+      },
+      {
+        "id": "ea0c8ca9-023e-46a3-b95b-b9d4ab8ec195",
+        "name": "Hospital Annual Financial Data - Selected Data & Pivot Tables",
+        "notes": "On an annual basis (individual hospital fiscal year), individual hospitals and hospital systems report detailed facility-level data on services capacity, inpatient/outpatient utilization, patients, re",
+        "downloadable_resources": [
+          {
+            "format": "CSV",
+            "url": "https://data.chhs.ca.gov/dataset/ea0c8ca9-023e-46a3-b95b-b9d4ab8ec195/resource/81602900-aa04-4fcb-b70b-19bc0553f79b/download/selected-file_2012_2017_machinereadable.csv",
+            "name": "2012 - 2017 CY Hospital Annual Selected File  (Machine-Readable format)"
+          },
+          {
+            "format": "XLSX",
+            "url": "https://data.chhs.ca.gov/dataset/ea0c8ca9-023e-46a3-b95b-b9d4ab8ec195/resource/105ab534-3735-4595-aa23-a1810a0cfc78/download/hadr-2024-2025.xlsx",
+            "name": "2024-2025 FY Hospital Annual Selected File (April 2026 Extract)"
+          },
+          {
+            "format": "XLSX",
+            "url": "https://data.chhs.ca.gov/dataset/ea0c8ca9-023e-46a3-b95b-b9d4ab8ec195/resource/3969a3b0-ec23-4962-b09d-89840a326b44/download/hadr-2024.xlsx",
+            "name": "2024 CY Hospital Annual Selected File (April 2026 Extract)"
+          }
+        ]
+      },
+      {
+        "id": "dace89fc-69ec-4fe8-a8f4-ddfbdb053020",
+        "name": "Number of Cancer Surgeries (Volume) Performed in California Hospitals",
+        "notes": "The dataset contains the number (volume) for 11 types of cancer (bladder, breast, brain, colon, esophagus, liver, lung, pancreas, prostate, rectum, and stomach) surgeries performed in California hospi",
+        "downloadable_resources": [
+          {
+            "format": "CSV",
+            "url": "https://data.chhs.ca.gov/dataset/dace89fc-69ec-4fe8-a8f4-ddfbdb053020/resource/f3d8578f-a9bf-4f6a-a224-7e5b522cbd76/download/ca-oshpd-cancer-surgeries-gachospitals-20132024_odp.csv",
+            "name": "Number of Cancer Surgeries (Volume) Performed in California Hospitals (CSV)"
+          }
+        ]
+      },
+      {
+        "id": "3f169603-e8f5-488d-bbbe-22c2c9c98b60",
+        "name": "Acute Care Hospital Transfers by Major Diagnostic Category (MDC)",
+        "notes": "The three datasets (i.e., Transfer-Encounters, Transfer-Outcomes, Transfer-Locations) provide the number of hospital transfers and Major Diagnostic Categories (MDCs). The Transfer-Encounters Dataset p",
+        "downloadable_resources": [
+          {
+            "format": "XLSX",
+            "url": "https://data.chhs.ca.gov/dataset/3f169603-e8f5-488d-bbbe-22c2c9c98b60/resource/fb239b03-d700-475c-9ef3-a4152df614f8/download/transfer-encounters.xlsx",
+            "name": "Hospital Transfers by Major Diagnostic Category (MDC) - Encounters"
+          },
+          {
+            "format": "XLSX",
+            "url": "https://data.chhs.ca.gov/dataset/3f169603-e8f5-488d-bbbe-22c2c9c98b60/resource/b9532022-a463-4b95-bd45-3ca979fe3a76/download/transfers-locations.xlsx",
+            "name": "Hospital Transfers by Major Diagnostic Category (MDC) - Locations"
+          },
+          {
+            "format": "XLSX",
+            "url": "https://data.chhs.ca.gov/dataset/3f169603-e8f5-488d-bbbe-22c2c9c98b60/resource/b2f1da73-46e8-4ba5-b9b7-8207a36feedc/download/transfers-outcomes.xlsx",
+            "name": "Hospital Transfers by Major Diagnostic Category (MDC) - Outcomes"
+          }
+        ]
+      },
+      {
+        "id": "88024cf8-0882-4a4b-b1e2-46804249f033",
+        "name": "Pre-2012 Hospital Annual Financial Data - Selected Data & Pivot Tables",
+        "notes": "On an annual basis (individual hospital fiscal year), individual hospitals and hospital systems report detailed facility-level data on services capacity, inpatient/outpatient utilization, patients, re",
+        "downloadable_resources": [
+          {
+            "format": "XLSX",
+            "url": "https://data.chhs.ca.gov/dataset/88024cf8-0882-4a4b-b1e2-46804249f033/resource/f71cccc9-5927-4b1c-b9b5-ed4057014299/download/cy-selected-file-hafd11revised1013.xlsx",
+            "name": "2011 CY Hospital Annual Selected File (October 2013 Extract)"
+          },
+          {
+            "format": "XLSX",
+            "url": "https://data.chhs.ca.gov/dataset/88024cf8-0882-4a4b-b1e2-46804249f033/resource/8bf0b2d5-2227-4a8a-b941-70989db8ad0a/download/fy-selected-file-hafd1112-revised-1013.xlsx",
+            "name": "2011 - 2012 FY Hospital Annual Selected File (October 2013 Extract)"
+          },
+          {
+            "format": "XLS",
+            "url": "https://data.chhs.ca.gov/dataset/88024cf8-0882-4a4b-b1e2-46804249f033/resource/19864eaa-e78c-40d0-9175-c12f676e2170/download/hafd2011pivot.xls",
+            "name": "2011 Pivot Table Hospital Annual Selected File"
+          }
+        ]
+      },
+      {
+        "id": "0e8aaf3b-3683-4e4d-b3d2-d221a81c1511",
+        "name": "Top Five Major Diagnostic Categories (MDCs) for California Hospitals",
+        "notes": "The dataset contains counts for the Top Five inpatient diagnosis groups based on Major Diagnostic Categories (MDCs) from the Patient Discharge Data (PDD) for each California hospital. Each MDC corresp",
+        "downloadable_resources": [
+          {
+            "format": "CSV",
+            "url": "https://data.chhs.ca.gov/dataset/0e8aaf3b-3683-4e4d-b3d2-d221a81c1511/resource/59942195-7c44-40d3-93bb-48adc5809bd9/download/top5_dx_2021.csv",
+            "name": "2021 Top Five Major Diagnostic Categories for California Hospitals"
+          },
+          {
+            "format": "XLSX",
+            "url": "https://data.chhs.ca.gov/dataset/0e8aaf3b-3683-4e4d-b3d2-d221a81c1511/resource/cfc0afa3-17fc-4c57-aea3-f9ef06f8d2ed/download/top_5_major_diagnostic_categories_data_dictionary_2021.xlsx",
+            "name": "Data Dictionary - Top Five Major Diagnostic Categories for California Hospitals"
+          }
+        ]
+      },
+      {
+        "id": "85b741c5-f5ff-4333-bee0-a50d63befde2",
+        "name": "Mental and Behavioral Health Diagnoses in Emergency Department and Inpatient Discharges by Healthy Places Index Ranking",
+        "notes": "This dataset provides counts and percentages of diagnoses broken down by each patient\u2019s Healthy Places Index percentile ranking (based on ZIP code of residence). Healthcare encounters are categorized ",
+        "downloadable_resources": [
+          {
+            "format": "CSV",
+            "url": "https://data.chhs.ca.gov/dataset/85b741c5-f5ff-4333-bee0-a50d63befde2/resource/e86bd38d-1260-4824-8d8e-2c83671e110e/download/healthy-places-index-hpi-diagnosis-group-by-setting-and-patient-category.csv",
+            "name": "Healthy Places Index (HPI) Diagnosis Group by Setting and Patient Category"
+          }
+        ]
+      },
+      {
+        "id": "cb0dc592-36b6-45fe-90ce-6db57eb42a0a",
+        "name": "Social Drivers of Health (SDoH) and Preventable Hospitalization Rates",
+        "notes": "The first Social Drivers of Health (SDoH) dataset contains percentages of preventable hospitalizations (i.e., discharges) by Race/Ethnicity, preferred language spoken, expected payer, percent of emplo",
+        "downloadable_resources": [
+          {
+            "format": "XLSX",
+            "url": "https://data.chhs.ca.gov/dataset/cb0dc592-36b6-45fe-90ce-6db57eb42a0a/resource/754c4bd6-5647-4c94-bf2a-9872803e753c/download/sdoh_2021.xlsx",
+            "name": "2021 Social Drivers of Health (SDoH) and Preventable Hospitalization Rates"
+          },
+          {
+            "format": "XLSX",
+            "url": "https://data.chhs.ca.gov/dataset/cb0dc592-36b6-45fe-90ce-6db57eb42a0a/resource/993d9f97-b7e8-4cba-af44-6dc87230af86/download/sdoh-2017-to-2021-over-time.xlsx",
+            "name": "2017 - 2021 Overtime Social Drivers of Health (SDoH) and Preventable Hospitalization Rates"
+          },
+          {
+            "format": "XLSX",
+            "url": "https://data.chhs.ca.gov/dataset/cb0dc592-36b6-45fe-90ce-6db57eb42a0a/resource/4e2e0945-ef21-4540-9f64-b320867b9679/download/data-dictionary-sdoh_2021.xlsx",
+            "name": "Data Dictionary - 2021 Social Drivers of Health (SDoH) and Preventable Hospitalization Rates"
+          }
+        ]
+      },
+      {
+        "id": "20bbdb95-5da1-4a0e-9888-36d0e59b4652",
+        "name": "Pre-2015 Utilization Rates for Selected Medical Procedures in California Hospitals",
+        "notes": "The dataset contains 5 utilization rates (Cesarean Delivery Rate, Uncomplicated; Primary Cesarean Delivery Rate, Uncomplicated; Vaginal Birth After Cesarean Rate, All; Vaginal Birth After Cesarean Rat",
+        "downloadable_resources": [
+          {
+            "format": "CSV",
+            "url": "https://data.chhs.ca.gov/dataset/20bbdb95-5da1-4a0e-9888-36d0e59b4652/resource/c3a3d941-0555-4017-82fe-b2a774944ad1/download/ca-oshpd-ahrq-v50-utilization-2005-2015.csv",
+            "name": "Utilization Rates for Selected Medical Procedures in California Hospitals, 2005 - 2015 (CSV)"
+          }
+        ]
+      },
+      {
+        "id": "25e1dff8-d810-4391-baf8-05fb01a1359b",
+        "name": "All-Cause Unplanned 30-Day Hospital Readmission Rate, California (LGHC Indicator)",
+        "notes": "This dataset contains the statewide number and (unadjusted) rate for all-cause, unplanned, 30-day inpatient readmissions in California hospitals. Data are categorized by age, sex, race/ethnicity, expe",
+        "downloadable_resources": [
+          {
+            "format": "CSV",
+            "url": "https://data.chhs.ca.gov/dataset/25e1dff8-d810-4391-baf8-05fb01a1359b/resource/8dd44ad7-9e78-4c1a-9910-f58a47e402af/download/allcauseunplanned30-dayhospitalreadmissionratecalifornia2011_2024.csv",
+            "name": "All-Cause Unplanned 30-Day Hospital Readmission Rate, California, (CSV)"
+          }
+        ]
+      },
+      {
+        "id": "18072f74-ae01-4d78-97ec-15fee6329c74",
+        "name": "Ambulatory Surgery - Characteristics by Facility (Pivot Profile)",
+        "notes": "This dataset contains annual Excel pivot tables that display summaries of the patients treated in each hospital-based and freestanding Ambulatory Surgery Clinic licensed by the California Department o",
+        "downloadable_resources": [
+          {
+            "format": "XLSX",
+            "url": "https://data.chhs.ca.gov/dataset/18072f74-ae01-4d78-97ec-15fee6329c74/resource/1db71357-fa1a-4be5-a25b-6c9f40503bfa/download/2023-as-pivot-profile.xlsx",
+            "name": "2023 Ambulatory Surgery - Characteristics by Facility (Pivot Profile)"
+          },
+          {
+            "format": "XLSX",
+            "url": "https://data.chhs.ca.gov/dataset/18072f74-ae01-4d78-97ec-15fee6329c74/resource/0d8299f1-ff26-4abf-b8af-f6f119cee644/download/2022-as-pivot-profile.xlsx",
+            "name": "2022 Ambulatory Surgery - Characteristics by Facility (Pivot Profile)"
+          },
+          {
+            "format": "XLSX",
+            "url": "https://data.chhs.ca.gov/dataset/18072f74-ae01-4d78-97ec-15fee6329c74/resource/2c7ce5a2-a266-4990-8214-10610a1e8cdc/download/2021-as-pivot-profile.xlsx",
+            "name": "2021 Ambulatory Surgery - Characteristics by Facility (Pivot Profile)"
+          }
+        ]
+      },
+      {
+        "id": "6b63ea70-aac3-4d96-bbf7-b6e0ea54039e",
+        "name": "Utilization Rates for Selected Medical Procedures in California Hospitals",
+        "notes": "The dataset contains 3 utilization rates (Cesarean Delivery Rate, Uncomplicated; Primary Cesarean Delivery Rate, Uncomplicated; Vaginal Birth After Cesarean Rate, Uncomplicated) for procedures perform",
+        "downloadable_resources": [
+          {
+            "format": "XLSX",
+            "url": "https://data.chhs.ca.gov/dataset/6b63ea70-aac3-4d96-bbf7-b6e0ea54039e/resource/06f75573-e5b3-4ab3-a7a7-84ab56e83965/download/2020-2024-utilization-rates-ahrq-v2025.xlsx",
+            "name": "Utilization Rates for Selected Medical Procedures in California Hospitals, 2020-2024"
+          }
+        ]
+      },
+      {
+        "id": "d1ac90ad-d583-426f-8012-828743cf4ac1",
+        "name": "Hospital Inpatient - Diagnosis, Procedure, and External Cause Codes",
+        "notes": "This dataset contains statewide counts for every diagnosis, procedure, and external cause of injury/morbidity code reported on the hospital inpatient data.  Diagnosis codes are reported using ICD-9-CM",
+        "downloadable_resources": [
+          {
+            "format": "XLSX",
+            "url": "https://data.chhs.ca.gov/dataset/d1ac90ad-d583-426f-8012-828743cf4ac1/resource/cd7c3480-e7b1-4724-b385-e7bb3b8e1af4/download/2023_diagnosiscodefrequencies_pdd.xlsx",
+            "name": "2023 Hospital Inpatient \u2013 Diagnosis Code Frequency"
+          },
+          {
+            "format": "XLSX",
+            "url": "https://data.chhs.ca.gov/dataset/d1ac90ad-d583-426f-8012-828743cf4ac1/resource/a5756bc8-5f98-4647-845d-54f2de54f6b7/download/2023_procedurecodefrequencies_pdd.xlsx",
+            "name": "2023 Hospital Inpatient \u2013 Procedure Code Frequency"
+          },
+          {
+            "format": "XLSX",
+            "url": "https://data.chhs.ca.gov/dataset/d1ac90ad-d583-426f-8012-828743cf4ac1/resource/b03bfb7a-c47d-41c9-96fb-906f8c714079/download/2023_externalcauseofmorbidityfrequencies_pdd.xlsx",
+            "name": "2023 Hospital Inpatient \u2013 External Cause of Injury/Morbidity Code Frequency"
+          }
+        ]
+      },
+      {
+        "id": "4cc2a061-d633-4983-8e43-94598d95d1dd",
+        "name": "Number of Weight Loss Surgeries Performed in California Hospitals",
+        "notes": "The dataset contains the number for five types of weight loss (bariatric) surgeries (Open Roux-en-Y gastric bypass, laparoscopic Roux-en-Y gastric bypass , laparoscopic adjustable gastric banding, ver",
+        "downloadable_resources": [
+          {
+            "format": "CSV",
+            "url": "https://data.chhs.ca.gov/dataset/4cc2a061-d633-4983-8e43-94598d95d1dd/resource/2b34d53f-0d5e-4446-ad47-9af1e19bb9f1/download/number-of-weight-loss-surgeries-performed-in-california-hospitals.csv",
+            "name": "Number of Weight Loss Surgeries Performed in California Hospitals (CSV)"
+          },
+          {
+            "format": "CSV",
+            "url": "https://data.chhs.ca.gov/dataset/4cc2a061-d633-4983-8e43-94598d95d1dd/resource/b16ce25e-dec6-4332-89d1-26398818b6eb/download/datadictionaryforbariatricsurgery.csv",
+            "name": "data-dictionary-for-bariatric-surgery"
+          }
+        ]
+      },
+      {
+        "id": "22026f7b-198a-4708-b1ab-a4aa14885c6e",
+        "name": "Hospital Quarterly Financial & Utilization Report - Complete Data Set",
+        "notes": "On a quarterly basis (every three months), individual hospitals and hospital systems report summary facility-level data on services capacity, revenues and expenses by payer, and utilization by payer. ",
+        "downloadable_resources": [
+          {
+            "format": "XLSX",
+            "url": "https://data.chhs.ca.gov/dataset/22026f7b-198a-4708-b1ab-a4aa14885c6e/resource/8a512ca9-560e-4fcc-9c57-c928c874231b/download/2025_q4.xlsx",
+            "name": "2025 Quarter 4 - Complete Data Set (12/31/2025)"
+          },
+          {
+            "format": "XLSX",
+            "url": "https://data.chhs.ca.gov/dataset/22026f7b-198a-4708-b1ab-a4aa14885c6e/resource/15939e50-5c82-46af-9653-d40a5458dc26/download/2025_q3.xlsx",
+            "name": "2025 Quarter 3 - Complete Data Set (02/02/2026)"
+          },
+          {
+            "format": "XLSX",
+            "url": "https://data.chhs.ca.gov/dataset/22026f7b-198a-4708-b1ab-a4aa14885c6e/resource/f902f922-6806-49c4-bfed-b1dadaab3cc1/download/2025_q2.xlsx",
+            "name": "2025 Quarter 2 - Complete Data Set (10/29/2025)"
+          }
+        ]
+      },
+      {
+        "id": "73f46925-ec89-4ba8-b2d4-c8e371a7776b",
+        "name": "Pre-2012 Hospital Annual Financial Disclosure Report \u2013 Complete Data Set",
+        "notes": "On an annual basis (individual hospital fiscal year), individual hospitals and hospital systems report detailed facility-level data on services capacity, inpatient/outpatient utilization, patients, re",
+        "downloadable_resources": [
+          {
+            "format": "XLSX",
+            "url": "https://data.chhs.ca.gov/dataset/73f46925-ec89-4ba8-b2d4-c8e371a7776b/resource/daee4914-66f2-45de-8b7d-d50744c36a3e/download/fy-2011-2012-37hospitaldata.xlsx",
+            "name": "2011 - 2012 Fiscal Year Hospital Annual Financial"
+          },
+          {
+            "format": "XLSX",
+            "url": "https://data.chhs.ca.gov/dataset/73f46925-ec89-4ba8-b2d4-c8e371a7776b/resource/9a53f5e5-57cc-47c0-981c-f86733a98ebc/download/fy-2010-2011-36hospitaladr51612.xlsx",
+            "name": "2010 - 2011 Fiscal Year Hospital Annual Financial"
+          },
+          {
+            "format": "XLSX",
+            "url": "https://data.chhs.ca.gov/dataset/73f46925-ec89-4ba8-b2d4-c8e371a7776b/resource/e59df92a-8c23-402a-b2e8-7d8ad7913646/download/hadrexcel-complete-file-db-pcl-labels-2004-2010.xlsx",
+            "name": "2004 - 2010 Documentation for Page Column Line "
+          }
+        ]
+      },
+      {
+        "id": "8e8187e2-cbd5-4baf-ba6d-9d1a27ca0bef",
+        "name": "Languages Spoken by Patients and Hospital-Based Providers in California",
+        "notes": "The dataset contains percentages of languages spoken for patient encounters in an inpatient setting, the emergency room, and hospital-based ambulatory surgery centers as well as languages spoken by th",
+        "downloadable_resources": [
+          {
+            "format": "CSV",
+            "url": "https://data.chhs.ca.gov/dataset/8e8187e2-cbd5-4baf-ba6d-9d1a27ca0bef/resource/868bead6-04c7-4d9d-8d71-d9d2bca34cbe/download/2023languagesspokenpatientshospproviders.csv",
+            "name": "Languages Spoken by Patients and Hospital-Based Providers Dataset"
+          },
+          {
+            "format": "CSV",
+            "url": "https://data.chhs.ca.gov/dataset/8e8187e2-cbd5-4baf-ba6d-9d1a27ca0bef/resource/0208ecb7-98e3-4c1f-8183-f28a0fe31ab4/download/data-dictionary-languages-spoken-patient-provider.csv",
+            "name": "Languages Spoken by Patients and Hospital-Based Providers Data Dictionary"
+          },
+          {
+            "format": "XLSX",
+            "url": "https://data.chhs.ca.gov/dataset/8e8187e2-cbd5-4baf-ba6d-9d1a27ca0bef/resource/9cb72ef5-4af4-46a3-a083-1c05d923f20b/download/language-list-languages-spoken-patient-provider.xlsx",
+            "name": "Languages Spoken by Patients and Hospital-Based Providers - List of Languages"
+          }
+        ]
+      }
+    ]
+  },
+  "tx_dshs": {
+    "downloadable_pudf_files": 144,
+    "files": [
+      "https://dshs-wcms-internet.s3.dualstack.us-gov-west-1.amazonaws.com/THCIC/InpatientFreePUDF/PUDF-3Q2014-tab-delimited.zip",
+      "https://www.dshs.texas.gov/sites/default/files/thcic/hospitals/pudf1q03_update_tab.zip",
+      "https://dshs-wcms-internet.s3.dualstack.us-gov-west-1.amazonaws.com/THCIC/InpatientFreePUDF/PUDF-2Q2016-tab-delimited.zip",
+      "https://dshs-wcms-internet.s3.dualstack.us-gov-west-1.amazonaws.com/THCIC/InpatientFreePUDF/PUDF-3Q2017-fixed-length.zip",
+      "https://dshs-wcms-internet.s3.dualstack.us-gov-west-1.amazonaws.com/THCIC/InpatientFreePUDF/PUDF-1Q2011-fixed-length.zip",
+      "https://dshs-wcms-internet.s3.dualstack.us-gov-west-1.amazonaws.com/THCIC/InpatientFreePUDF/PUDF-4Q2011-tab-delimited.zip",
+      "https://dshs-wcms-internet.s3.dualstack.us-gov-west-1.amazonaws.com/THCIC/InpatientFreePUDF/PUDF-2Q2006-tab-delimited.zip",
+      "https://dshs-wcms-internet.s3.dualstack.us-gov-west-1.amazonaws.com/THCIC/InpatientFreePUDF/PUDF-2Q2008-tab-delimited.zip",
+      "https://dshs-wcms-internet.s3.dualstack.us-gov-west-1.amazonaws.com/THCIC/InpatientFreePUDF/PUDF-2Q2007-tab-delimited.zip",
+      "https://dshs-wcms-internet.s3.dualstack.us-gov-west-1.amazonaws.com/THCIC/InpatientFreePUDF/PUDF-1Q2017-fixed-length.zip",
+      "https://www.dshs.texas.gov/sites/default/files/thcic/hospitals/pudf3q03_update.zip",
+      "https://dshs-wcms-internet.s3.dualstack.us-gov-west-1.amazonaws.com/THCIC/InpatientFreePUDF/PUDF-3Q2006-tab-delimited.zip",
+      "https://dshs-wcms-internet.s3.dualstack.us-gov-west-1.amazonaws.com/THCIC/InpatientFreePUDF/PUDF-3Q2016-fixed-length.zip",
+      "https://dshs-wcms-internet.s3.dualstack.us-gov-west-1.amazonaws.com/THCIC/InpatientFreePUDF/PUDF-1Q2010-fixed-length.zip",
+      "https://dshs-wcms-internet.s3.dualstack.us-gov-west-1.amazonaws.com/THCIC/InpatientFreePUDF/PUDF_charges2q2010_update.zip",
+      "https://www.dshs.texas.gov/sites/default/files/thcic/hospitals/PUDF_charges2q2010_update.zip",
+      "https://dshs-wcms-internet.s3.dualstack.us-gov-west-1.amazonaws.com/THCIC/InpatientFreePUDF/PUDF-1Q2007-fixed-length.zip",
+      "https://dshs-wcms-internet.s3.dualstack.us-gov-west-1.amazonaws.com/THCIC/InpatientFreePUDF/PUDF-3Q2012-tab-delimited.zip",
+      "https://www.dshs.texas.gov/sites/default/files/thcic/hospitals/PUDF3q04_update.zip",
+      "https://dshs-wcms-internet.s3.dualstack.us-gov-west-1.amazonaws.com/THCIC/InpatientFreePUDF/PUDF-4Q2006-fixed-length.zip",
+      "https://www.dshs.texas.gov/sites/default/files/thcic/hospitals/PUDF3Q07_update_tab.zip",
+      "https://www.dshs.texas.gov/sites/default/files/thcic/hospitals/PUDF3q04_update_tab.zip",
+      "https://www.dshs.texas.gov/sites/default/files/thcic/hospitals/PUDF3Q08_update.zip",
+      "https://dshs-wcms-internet.s3.dualstack.us-gov-west-1.amazonaws.com/THCIC/InpatientFreePUDF/PUDF1Q2019_tab-delimited.zip",
+      "https://dshs-wcms-internet.s3.dualstack.us-gov-west-1.amazonaws.com/THCIC/InpatientFreePUDF/PUDF-1Q2008-fixed-length.zip",
+      "https://www.dshs.texas.gov/sites/default/files/thcic/hospitals/pudf1q03_update.zip",
+      "https://dshs-wcms-internet.s3.dualstack.us-gov-west-1.amazonaws.com/THCIC/InpatientFreePUDF/PUDF-1Q2016-tab-delimited.zip",
+      "https://dshs-wcms-internet.s3.dualstack.us-gov-west-1.amazonaws.com/THCIC/InpatientFreePUDF/PUDF-3Q2018-fixed-length.zip",
+      "https://www.dshs.texas.gov/sites/default/files/thcic/hospitals/PUDF2Q08_update_tab.zip",
+      "https://www.dshs.texas.gov/sites/default/files/thcic/hospitals/PUDF2q06_update_tab.zip"
+    ]
+  },
+  "wa_chars": {
+    "datasets_found": 0,
+    "datasets": []
+  }
+}

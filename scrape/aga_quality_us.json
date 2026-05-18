@@ -1,0 +1,34 @@
+{
+  "source": "https://www.gastro.org/practice-guidance/quality",
+  "fetched_at": "2026-05-18T13:57:19",
+  "status": 200,
+  "giquic_mentions": [
+    "quality measures These measures have completed a 30-day public comment period and have been approved by the AGA Quality Committee to progress into the alpha testing phase.",
+    "quality measures, and through membership and participation in the Core Quality Measures Collaborative (CQMC), the Centers for Medicare and Medicaid Services (CMS) Quality Payment Program and other nat",
+    "quality measures from AGA guidelines following the GRADE evidence review approach utilizing strong recommendations with at least a moderate quality of evidence.",
+    "quality measures are often rigorous, highly specified , and specific to an individual clinical recommendation that may not be applicable to a broad range of practicing gastroenterologists.",
+    "quality measures , AGA now has a process for developing quality indicators stemming from recommendations from AGA guidelines and other source documents, which allow providers to improve patient outcom"
+  ],
+  "quality_links": [
+    "https://gastro.org/wp-content/uploads/2022/09/QC-Measure-Development-Maintenance-SOP-Final2022.pdf",
+    "https://aga-files.s3.amazonaws.com/pdf/Barrett%E2%80%99s+esophagus_systematic+biopsies+during+EGD_measure+flow.pdf",
+    "https://aga-files.s3.amazonaws.com/pdf/Acute+pancreatitis_cholecystectomy+before+discharge_hospital+inpatient_measure+spec.pdf",
+    "https://gastro.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fgastro.org%2Fpractice-resources%2Fquality-and-performance-measures%2F",
+    "https://cmit.cms.gov/CMIT_public/ListMeasures",
+    "https://aga-files.s3.amazonaws.com/pdf/Barrett%E2%80%99s+esophagus_surveillance+intervals_measure+flow.pdf",
+    "https://aga-files.s3.amazonaws.com/pdf/Inflammatory+bowel+disease_percentage+of+patients+diagnosed+with+extensive+mild-moderate+ulcerative+colitis_measure+flow.pdf",
+    "/committees/aga-institute-quality-committee/",
+    "https://aga-files.s3.amazonaws.com/pdf/2022_Measure_401_MIPSCQM.pdf",
+    "https://aga-files.s3.amazonaws.com/pdf/Acute+pancreatitis_enteral+nutrition_hospital+inpatient_measure+flow.pdf",
+    "https://aga-files.s3.amazonaws.com/pdf/Acute+pancreatitis_cholecystectomy+before+discharge_hospital+inpatient_measure+flow.pdf",
+    "https://aga-files.s3.amazonaws.com/pdf/Inflammatory+bowel+disease_postoperative+monitoring+for+recurrence+of+Crohn%E2%80%99s+disease_measure+spec.pdf",
+    "https://gastro.org/wp-content/uploads/2022/04/GIM-HP-measure-specification-draft_FINAL.pdf",
+    "https://aga-files.s3.amazonaws.com/pdf/Acute+pancreatitis_enteral+nutrition_hospital+inpatient_measure+spec.pdf",
+    "https://gastro.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fgastro.org%2Fpractice-resources%2Fquality-and-performance-measures%2F&#038;format=xml",
+    "https://aga-files.s3.amazonaws.com/pdf/2022_Measure_185_MIPSCQM.pdf",
+    "https://aga-files.s3.amazonaws.com/pdf/Inflammatory+bowel+disease_thiopurine+methyltransferase+(TPMT)_measure+flow.pdf",
+    "https://aga-files.s3.amazonaws.com/pdf/2022_Measure_400_MIPSCQM.pdf",
+    "https://aga-files.s3.amazonaws.com/pdf/2022_Measure_320_MIPSCQM.pdf",
+    "https://aga-files.s3.amazonaws.com/pdf/2022_Measure_439_MIPSCQM.pdf"
+  ]
+}

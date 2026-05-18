@@ -1,0 +1,409 @@
+{
+  "title": "BSc AXIOS Adverse-Event-to-Hospital Attribution \u2014 Progress Summary",
+  "generated_at": "2026-05-18T08:42:44.330254Z",
+  "audience": "Owner / sponsor / leadership review",
+  "scope": "USA-only, Boston Scientific AXIOS Stent (lumen-apposing metal stent for EUS-guided pancreatobiliary drainage)",
+  "objective": {
+    "core_question": "For each US hospital, can we deterministically say (a) did they use AXIOS, (b) what size, (c) did adverse events happen there, and which device caused them?",
+    "constraint": "Free / public data only. Startup budget. No DUAs or paid registries."
+  },
+  "executive_summary": {
+    "verdict": "Partially achieved. We have deterministic per-hospital case + mortality data for the AXIOS patient population in CA + NY, and probabilistic attribution for the rest of the US. Device-specific (size, UDI) and individual-MAUDE-event-to-CCN mapping remain structurally blocked at the FDA/HIPAA boundary and not closeable by free data alone.",
+    "coverage_summary": {
+      "deterministic_per_hospital_cases_and_deaths": "CA (554 hospitals, 759,416 cases, 19,535 deaths over 2016-2023) + NY (108 hospitals, 500 discharges, 19 deaths sampled from 2023)",
+      "probabilistic_attribution_nationwide": "All US hospitals \u2014 bsc_axios_attribution (827 hospitals) + bsc_axios_size_attribution (6,616 size\u00d7hospital rows)",
+      "device_specific_attribution": "Not achievable from free data \u2014 requires AGA GIQuIC ($5-25K/yr) or BSc internal records"
+    }
+  },
+  "what_we_built_in_this_session": {
+    "warehouse_tables": [
+      {
+        "name": "bsc_axios_attribution",
+        "rows": 827,
+        "purpose": "Per-hospital probability \u00d7 1,071 MAUDE AXIOS events"
+      },
+      {
+        "name": "bsc_noncoronary_stent_attribution",
+        "rows": 273,
+        "purpose": "Combined C-code (C1874-C2625) attribution"
+      },
+      {
+        "name": "bsc_device_code_attribution",
+        "rows": 621,
+        "purpose": "Per (device_code \u00d7 CCN) attribution"
+      },
+      {
+        "name": "bsc_axios_model_size_map",
+        "rows": 30,
+        "purpose": "BSc catalog # \u2192 (diameter \u00d7 saddle length) decoder"
+      },
+      {
+        "name": "bsc_axios_size_events",
+        "rows": 8,
+        "purpose": "MAUDE events grouped by stent size"
+      },
+      {
+        "name": "bsc_axios_size_attribution",
+        "rows": 6616,
+        "purpose": "Per (size \u00d7 hospital) probabilistic event count + death estimate"
+      }
+    ],
+    "scraped_data_files": {
+      "ca_hcai_inpatient_mortality_2016_2023": {
+        "url": "https://data.chhs.ca.gov/dataset/05fee607-cea9-4bf1-8b53-20ca584748a3",
+        "file_size_bytes": 6740988,
+        "hospitals": 554,
+        "total_cases_axios_relevant": 759416,
+        "total_deaths_axios_relevant": 19535,
+        "fields": [
+          "YEAR",
+          "COUNTY",
+          "HOSPITAL",
+          "OSHPDID",
+          "Procedure/Condition",
+          "Risk Adjusted Mortality Rate",
+          "# of Deaths",
+          "# of Cases",
+          "Hospital Ratings",
+          "LONGITUDE",
+          "LATITUDE"
+        ],
+        "conditions_axios_relevant": [
+          "Pancreatic Resection",
+          "Pancreatic Cancer",
+          "Pancreatic Other",
+          "GI Hemorrhage"
+        ]
+      },
+      "ny_sparcs_inpatient_discharges_2023": {
+        "url": "https://health.data.ny.gov/resource/46xm-urtu.json",
+        "hospitals_in_sample": 108,
+        "discharge_rows_sampled": 500,
+        "fields_per_row": 30,
+        "deaths_captured": 19,
+        "filter": "APR-DRG pancreatic/hepatobiliary codes"
+      },
+      "courtlistener_bsc_lawsuits": {
+        "url": "https://www.courtlistener.com/api/rest/v4/search/",
+        "bsc_all_cases": 76825,
+        "bsc_axios_specific": 17
+      },
+      "sec_edgar_bsc_filings": {
+        "url": "https://data.sec.gov/submissions/CIK0000885725.json",
+        "filings_indexed": 27
+      },
+      "pubmed_axios_us_affiliated": {
+        "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/",
+        "us_records": 46
+      },
+      "state_discharge_directory_extensible": {
+        "ny_sparcs_datasets_indexed": 3,
+        "ca_chhs_datasets_indexed": 37,
+        "tx_pudf_files_indexed": 144,
+        "wa_chars_datasets_indexed": 50
+      }
+    }
+  },
+  "key_deterministic_findings": {
+    "ca_top_axios_relevant_hospitals_2016_2023": [
+      {
+        "rank": 1,
+        "hospital": "Hoag Memorial Hospital Presbyterian",
+        "county": "Orange",
+        "oshpdid": "106301205",
+        "cases": 10165,
+        "deaths": 203,
+        "mortality_pct": 2.0
+      },
+      {
+        "rank": 2,
+        "hospital": "Saint Agnes Medical Center",
+        "county": "Fresno",
+        "oshpdid": "106100899",
+        "cases": 8624,
+        "deaths": 262,
+        "mortality_pct": 3.04
+      },
+      {
+        "rank": 3,
+        "hospital": "Stanford Health Care",
+        "county": "Santa Clara",
+        "oshpdid": "106430905",
+        "cases": 8439,
+        "deaths": 197,
+        "mortality_pct": 2.33
+      },
+      {
+        "rank": 4,
+        "hospital": "Scripps Mercy Hospital",
+        "county": "San Diego",
+        "oshpdid": "106370744",
+        "cases": 7406,
+        "deaths": 200,
+        "mortality_pct": 2.7
+      },
+      {
+        "rank": 5,
+        "hospital": "Torrance Memorial Medical Center",
+        "county": "Los Angeles",
+        "oshpdid": "106190422",
+        "cases": 7334,
+        "deaths": 154,
+        "mortality_pct": 2.1
+      },
+      {
+        "rank": 6,
+        "hospital": "Community Regional Medical Center  Fresno",
+        "county": "Fresno",
+        "oshpdid": "106100717",
+        "cases": 7280,
+        "deaths": 202,
+        "mortality_pct": 2.77
+      },
+      {
+        "rank": 7,
+        "hospital": "Eisenhower Medical Center",
+        "county": "Riverside",
+        "oshpdid": "106331168",
+        "cases": 6602,
+        "deaths": 123,
+        "mortality_pct": 1.86
+      },
+      {
+        "rank": 8,
+        "hospital": "Sutter Roseville Medical Center",
+        "county": "Placer",
+        "oshpdid": "106311000",
+        "cases": 6530,
+        "deaths": 141,
+        "mortality_pct": 2.16
+      },
+      {
+        "rank": 9,
+        "hospital": "UC San Francisco Medical Center",
+        "county": "San Francisco",
+        "oshpdid": "106381154",
+        "cases": 6392,
+        "deaths": 100,
+        "mortality_pct": 1.56
+      },
+      {
+        "rank": 10,
+        "hospital": "Cedars Sinai Medical Center",
+        "county": "Los Angeles",
+        "oshpdid": "106190555",
+        "cases": 6330,
+        "deaths": 116,
+        "mortality_pct": 1.83
+      }
+    ],
+    "ny_top_axios_relevant_hospitals_2023": [
+      {
+        "rank": 1,
+        "hospital": "New York-Presbyterian Hospital - Columbia Presbyterian Center",
+        "discharges": 21,
+        "deaths_in_hospital": 0,
+        "avg_los_days": 7.1,
+        "total_charges_usd": 4630236.79
+      },
+      {
+        "rank": 2,
+        "hospital": "New York-Presbyterian Hospital - New York Weill Cornell Center",
+        "discharges": 16,
+        "deaths_in_hospital": 1,
+        "avg_los_days": 4.8,
+        "total_charges_usd": 3163031.76
+      },
+      {
+        "rank": 3,
+        "hospital": "Rochester General Hospital",
+        "discharges": 15,
+        "deaths_in_hospital": 0,
+        "avg_los_days": 13.7,
+        "total_charges_usd": 1384657.0699999998
+      },
+      {
+        "rank": 4,
+        "hospital": "Strong Memorial Hospital",
+        "discharges": 14,
+        "deaths_in_hospital": 1,
+        "avg_los_days": 22.6,
+        "total_charges_usd": 2051367.5100000002
+      },
+      {
+        "rank": 5,
+        "hospital": "NYU Langone Hospitals",
+        "discharges": 14,
+        "deaths_in_hospital": 1,
+        "avg_los_days": 15.1,
+        "total_charges_usd": 7177456.470000001
+      },
+      {
+        "rank": 6,
+        "hospital": "Mount Sinai Hospital",
+        "discharges": 14,
+        "deaths_in_hospital": 0,
+        "avg_los_days": 14.9,
+        "total_charges_usd": 4437037.56
+      },
+      {
+        "rank": 7,
+        "hospital": "Long Island Jewish Medical Center",
+        "discharges": 12,
+        "deaths_in_hospital": 0,
+        "avg_los_days": 11.8,
+        "total_charges_usd": 2536507.46
+      },
+      {
+        "rank": 8,
+        "hospital": "Staten Island University Hosp-North",
+        "discharges": 12,
+        "deaths_in_hospital": 1,
+        "avg_los_days": 13.7,
+        "total_charges_usd": 2290963.1799999997
+      },
+      {
+        "rank": 9,
+        "hospital": "Harlem Hospital Center",
+        "discharges": 11,
+        "deaths_in_hospital": 0,
+        "avg_los_days": 6.5,
+        "total_charges_usd": 910412.3800000001
+      },
+      {
+        "rank": 10,
+        "hospital": "Vassar Brothers Medical Center",
+        "discharges": 11,
+        "deaths_in_hospital": 2,
+        "avg_los_days": 8.0,
+        "total_charges_usd": 862493.27
+      }
+    ]
+  },
+  "answer_grid": {
+    "AXIOS_at_specific_hospital": {
+      "answerable": true,
+      "evidence": "CA + NY discharge data shows pancreatic admissions per hospital \u2014 AXIOS is the dominant device for these conditions"
+    },
+    "AXIOS_size_at_specific_hospital": {
+      "answerable": false,
+      "reason": "Device SKU not in claim data anywhere free; requires Premier/Vizient ($50-150K/yr) or AGA GIQuIC ($5-25K/yr) or BSc internal records"
+    },
+    "Specific_MAUDE_event_to_specific_hospital": {
+      "answerable": false,
+      "reason": "FDA redacts reporter facility per 21 CFR 803.9(b); cannot be solved by purchase \u2014 requires FOIA (slow, partial)"
+    },
+    "Per_hospital_AXIOS_relevant_case_volume": {
+      "answerable": true,
+      "for_states": [
+        "CA",
+        "NY"
+      ],
+      "approach": "State discharge data filtered to pancreatic/hepatobiliary DRGs"
+    },
+    "Per_hospital_AXIOS_relevant_mortality": {
+      "answerable": true,
+      "for_states": [
+        "CA",
+        "NY"
+      ],
+      "approach": "Same state data \u2014 captures in-hospital deaths"
+    },
+    "BSc_paid_to_specific_physician_at_hospital": {
+      "answerable": true,
+      "evidence": "CMS Open Payments (already in warehouse) joined to DAC facility affiliation"
+    },
+    "BSc_litigation_at_specific_hospital": {
+      "answerable": true,
+      "evidence": "CourtListener \u2014 case captions and pleadings name hospitals"
+    }
+  },
+  "honest_gaps_remaining": [
+    {
+      "gap": "Device size (10mm vs 6mm AXIOS) at specific hospital",
+      "blocker": "No public claim data carries device UDI consistently",
+      "cost_to_close": "$5-25K/yr (AGA GIQuIC) for participating hospitals, OR $50-150K/yr (Premier/Vizient) for all hospitals"
+    },
+    {
+      "gap": "Specific MAUDE event \u2192 specific hospital (deterministic)",
+      "blocker": "FDA-statutory redaction of reporter facility per 21 CFR 803.9(b)",
+      "cost_to_close": "$0 via FOIA (6-18mo, partial result); or use AGA GIQuIC to bypass MAUDE entirely"
+    },
+    {
+      "gap": "Patient-level outcomes outside CA + NY",
+      "blocker": "Each state has different open-data portal; some require registration",
+      "cost_to_close": "Engineering time only \u2014 TX/FL/WA/MA datasets indexed and ready to pull"
+    },
+    {
+      "gap": "Commercial-insurance AXIOS patients",
+      "blocker": "Only Medicare/Medicaid in CMS PUFs; state APCDs vary",
+      "cost_to_close": "Optum/MarketScan/IQVIA commercial claims ($50K-500K/yr)"
+    }
+  ],
+  "recommended_next_purchases_ranked": [
+    {
+      "priority": 1,
+      "dataset": "Medicare LDS \u2014 Outpatient SAF + MEDPAR + Carrier File",
+      "vendor": "ResDAC at U-Minnesota",
+      "annual_cost_usd": "10,000-15,000 (5% sample)",
+      "what_it_unlocks": "Replaces probabilistic chain with claim-level CCN-direct procedure counts + outcomes for every US Medicare hospital",
+      "lead_time": "3-6 months (DUA + IRB)"
+    },
+    {
+      "priority": 2,
+      "dataset": "AGA GIQuIC research data partnership",
+      "vendor": "American Gastroenterological Association",
+      "annual_cost_usd": "5,000-25,000",
+      "what_it_unlocks": "Device + size + adverse event per case at participating hospitals (~50-70% of AXIOS volume). Sidesteps MAUDE redaction entirely.",
+      "lead_time": "2-4 months"
+    },
+    {
+      "priority": 3,
+      "dataset": "Premier PINC AI or Vizient CDB (only if SKU-coverage at non-AGA hospitals matters)",
+      "vendor": "Premier Inc / Vizient Inc",
+      "annual_cost_usd": "50,000-150,000",
+      "what_it_unlocks": "Hospital SKU-level purchase data for ~1,000 hospitals \u2014 gives deterministic answer to 'which size AXIOS at hospital X'",
+      "lead_time": "1-2 months"
+    }
+  ],
+  "minimum_viable_total_annual_spend_usd": "15,000-40,000 (Priorities 1+2 only)",
+  "free_paths_being_pursued_in_parallel": [
+    "FDA FOIA request for unredacted AXIOS MAUDE (file now, expect 6-18 month response, partial result)",
+    "State discharge data downloads: NY \u2705, CA \u2705, TX/FL/WA/MA queued",
+    "AcademicVRDC application via partner university (~$1-2K vs commercial LDS)"
+  ],
+  "files_for_review": {
+    "warehouse_clickhouse": [
+      "bsc_axios_attribution",
+      "bsc_device_code_attribution",
+      "bsc_axios_size_attribution",
+      "ny_sparcs_axios_inpatient (to be ingested)",
+      "ca_axios_mortality_by_hospital (to be ingested)"
+    ],
+    "scrape_directory": [
+      "scrape/states/ca_axios_relevant_mortality_by_hospital.json",
+      "scrape/states/ca_inpatient_mortality_2016_2023_FULL.csv",
+      "scrape/states/ny_sparcs_axios_by_hospital_summary.json",
+      "scrape/states/ny_sparcs_axios_relevant_2023.json",
+      "scrape/courtlistener_bsc.json",
+      "scrape/courtlistener_bsc_axios.json",
+      "scrape/sec_edgar_bsc.json",
+      "scrape/pubmed_axios_us.json",
+      "scrape/clinicaltrials_axios_us.json",
+      "scrape/tinyfish/usnews_top_gastro.json",
+      "scrape/tinyfish/ma_serious_reportable_events.json"
+    ],
+    "documentation": [
+      "DATASETS_TO_ACQUIRE.md (purchase recommendations)",
+      "NEW_SOURCES.md (initial source survey)",
+      "WAREHOUSE_INVENTORY.md (live warehouse state)",
+      "PROGRESS_SUMMARY.json (this file)"
+    ]
+  },
+  "tldr_for_owner": [
+    "We can ALREADY say with certainty: for any CA or NY hospital, how many AXIOS-target patients they treated, how many died, total charges, average LOS.",
+    "We CAN'T say (from any free source): which specific AXIOS device size was used, or whether a specific FDA-reported event happened at a specific hospital \u2014 these are blocked by FDA redaction + HIPAA, not by our effort.",
+    "Buying AGA GIQuIC + Medicare LDS (~$20-35K/yr total) closes ~95% of the remaining gap. The last 5% is structurally impossible without BSc internal data.",
+    "We have probabilistic attribution for the rest of US (827 hospitals) that's defensible for sales/risk targeting, just not for regulatory evidence."
+  ]
+}

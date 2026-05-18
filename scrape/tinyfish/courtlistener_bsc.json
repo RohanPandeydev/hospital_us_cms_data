@@ -1,0 +1,163 @@
+{
+  "run_id": "45c7eb00-a703-4005-b71b-a9beb251ec6a",
+  "key": "courtlistener_bsc",
+  "status": "COMPLETED",
+  "fetched_at": "2026-05-18T13:48:59",
+  "goal": "Navigate to https://www.courtlistener.com/ to complete the goal: Search CourtListener for federal cases involving Boston Scientific Corporation as defendant from 2020-2026. Look for cases with AXIOS, WATCHMAN, surgical mesh, or device defect claims. For each case: case name, docket number, court, filing date, and short summary. Limit to top 20 results.",
+  "result": {
+    "cases": [
+      {
+        "court": "D. Del.",
+        "summary": "Personal injury litigation involving known connections between pelvic mesh implants and serious complications as identified in FDA notifications.",
+        "case_name": "Hutchinson v. Boston Scientific Corporation",
+        "filing_date": "August 19, 2020",
+        "docket_number": "1:20-cv-01084"
+      },
+      {
+        "court": "D. Mass.",
+        "summary": "Complaint regarding defective surgical mesh used in pelvic mesh products.",
+        "case_name": "Bush v. Boston Scientific Corporation",
+        "filing_date": "June 20, 2025",
+        "docket_number": "1:25-cv-11792"
+      },
+      {
+        "court": "D. Mass.",
+        "summary": "Product liability claim focusing on Defendant\u2019s pelvic surgical mesh products.",
+        "case_name": "Arthur v. Boston Scientific Corp.",
+        "filing_date": "December 30, 2025",
+        "docket_number": "1:25-cv-14003"
+      },
+      {
+        "court": "D. Mass.",
+        "summary": "Claims concerning the surgical treatment of pelvic organ prolapse (POP) and stress urinary incontinence (SUI) using surgical mesh.",
+        "case_name": "Tellez-Reinosa v. Boston Scientific Corporation",
+        "filing_date": "February 18, 2022",
+        "docket_number": "1:22-cv-10289"
+      },
+      {
+        "court": "D. Minn.",
+        "summary": "Complaint alleging injuries caused by surgical mesh products used to repair abdominal defects.",
+        "case_name": "Dolan v. Boston Scientific Corporation",
+        "filing_date": "May 11, 2021",
+        "docket_number": "0:21-cv-01197"
+      },
+      {
+        "court": "D. Minn.",
+        "summary": "Lawsuit regarding the safety and efficacy of surgical mesh products used for abdominal repairs.",
+        "case_name": "Margowski v. Boston Scientific Corp.",
+        "filing_date": "January 20, 2022",
+        "docket_number": "0:22-cv-00128"
+      },
+      {
+        "court": "M.D. Fla.",
+        "summary": "Product liability action concerning the distribution and sale of transvaginal surgical mesh devices.",
+        "case_name": "Moringlanes v. Boston Scientific Corporation",
+        "filing_date": "August 4, 2022",
+        "docket_number": "6:22-cv-01374"
+      },
+      {
+        "court": "D. Mass.",
+        "summary": "Litigation regarding the use of surgical mesh for POP and SUI treatments.",
+        "case_name": "Palomares v. Boston Scientific Corporation",
+        "filing_date": "November 17, 2021",
+        "docket_number": "1:21-cv-11867"
+      },
+      {
+        "court": "E.D. N.C.",
+        "summary": "Personal injury claim involving surgical mesh products used to repair abdominal defects.",
+        "case_name": "Crocker v. Boston Scientific Corporation",
+        "filing_date": "November 6, 2021",
+        "docket_number": "5:21-cv-00461"
+      },
+      {
+        "court": "D. Nev.",
+        "summary": "Product liability complaint regarding medical device defects in surgical mesh.",
+        "case_name": "Weatherford v. Boston Scientific Corporation",
+        "filing_date": "July 27, 2022",
+        "docket_number": "3:22-cv-00337"
+      },
+      {
+        "court": "S.D. Ind.",
+        "summary": "Claims of functional disabilities resulting from abdominal surgical mesh products.",
+        "case_name": "Thewes v. Boston Scientific Corporation",
+        "filing_date": "December 28, 2021",
+        "docket_number": "3:21-cv-00174"
+      },
+      {
+        "court": "C.D. Cal.",
+        "summary": "Complaint regarding surgical mesh used to treat stress urinary incontinence.",
+        "case_name": "Wendy Hartman v. Boston Scientific Corporation",
+        "filing_date": "April 26, 2022",
+        "docket_number": "2:22-cv-02753"
+      },
+      {
+        "court": "N.D. Ind.",
+        "summary": "Product liability case involving mesh devices and their associated risks.",
+        "case_name": "Page v. Boston Scientific Corporation",
+        "filing_date": "December 21, 2021",
+        "docket_number": "4:21-cv-00079"
+      },
+      {
+        "court": "M.D. Ga.",
+        "summary": "Litigation centered on defective surgical mesh medical devices.",
+        "case_name": "Parker v. Boston Scientific Corporation",
+        "filing_date": "July 28, 2022",
+        "docket_number": "1:22-cv-00117"
+      },
+      {
+        "court": "D. Mass.",
+        "summary": "Suit involving the long-term complications of surgical mesh for gynecological treatments.",
+        "case_name": "Santiago v. Boston Scientific Corporation",
+        "filing_date": "August 20, 2021",
+        "docket_number": "1:21-cv-11365"
+      },
+      {
+        "court": "D.S.C.",
+        "summary": "Removal action concerning urogynecologic surgical mesh implants and associated FDA safety information.",
+        "case_name": "Grant v. Boston Scientific Corporation",
+        "filing_date": "May 28, 2021",
+        "docket_number": "8:21-cv-01598"
+      },
+      {
+        "court": "E.D. Ark.",
+        "summary": "Litigation concerning transvaginal surgical mesh used for treatment of POP and SUI.",
+        "case_name": "Vincent v. Boston Scientific Corporation",
+        "filing_date": "December 23, 2020",
+        "docket_number": "3:20-cv-00417"
+      },
+      {
+        "court": "E.D. Ark.",
+        "summary": "Complaint alleging defects in surgical mesh medical devices.",
+        "case_name": "Bennett v. Boston Scientific Corporation",
+        "filing_date": "October 18, 2021",
+        "docket_number": "4:21-cv-00943"
+      },
+      {
+        "court": "D. Colo.",
+        "summary": "Focuses on complications associated with transvaginal surgical mesh in repair procedures.",
+        "case_name": "Bagwell v. Boston Scientific Corporation",
+        "filing_date": "September 1, 2020",
+        "docket_number": "1:20-cv-02656"
+      },
+      {
+        "court": "S.D. Fla.",
+        "summary": "Lawsuit arising from allegedly defective surgical mesh implanted into the plaintiff.",
+        "case_name": "Salas v. Boston Scientific Corporation",
+        "filing_date": "May 12, 2020",
+        "docket_number": "1:20-cv-21988"
+      }
+    ],
+    "focus_areas": [
+      "AXIOS",
+      "WATCHMAN",
+      "surgical mesh",
+      "device defects"
+    ],
+    "search_scope": "Federal Cases: Boston Scientific Corp. (2020-2026)",
+    "total_cases_reported": 20
+  },
+  "error": null,
+  "step_count": null,
+  "created_at": "2026-05-18T08:12:28Z",
+  "completed_at": null
+}

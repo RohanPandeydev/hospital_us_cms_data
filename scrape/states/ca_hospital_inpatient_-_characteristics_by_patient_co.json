@@ -1,0 +1,18 @@
+{
+  "dataset_id": "44f54d54-e12c-4c06-b32e-924ecf4410d5",
+  "dataset_name": "Hospital Inpatient - Characteristics by Patient County of Residence",
+  "resource_name": "Hospital Inpatient Characteristics - Disposition by Patient County of Residence",
+  "resource_url": "https://data.chhs.ca.gov/dataset/44f54d54-e12c-4c06-b32e-924ecf4410d5/resource/9e6bdf9f-a029-4713-9626-793b20d40ecb/download/disposition_pddmasked.csv",
+  "format": "CSV",
+  "fetched_at": "2026-05-18T14:03:06",
+  "header": "patcnty1,dsch_yr,disp1,Discharges,AnnotationCode,AnnotationDesc",
+  "sample_rows_raw": [
+    "Alameda,2012,Acute Care at another hospital,3031,,",
+    "Alameda,2012,Acute Care within the admitting hospital,325,,",
+    "Alameda,2012,Died,2907,,",
+    "Alameda,2012,Home Health Service,14623,,",
+    "Alameda,2012,Invalid,3,,",
+    "Alameda,2012,Left Against Medical Advice,1362,,",
+    "Alameda,2012,Other,216,,"
+  ]
+}
